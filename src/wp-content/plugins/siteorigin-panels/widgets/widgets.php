@@ -22,21 +22,9 @@ function origin_widgets_init(){
 add_action('widgets_init', 'origin_widgets_init');
 
 function origin_widgets_enqueue($prefix){
-	if($prefix == 'widgets.php') wp_enqueue_script('origin-widgets-admin-script', plugin_dir_url(SITEORIGIN_PANELS_BASE_FILE) . 'widgets/js/admin.min.js', array('jquery'), SITEORIGIN_PANELS_VERSION);
+	if($prefix == 'widgets.php') wp_enqueue_script('origin-widgets-admin-script', plugin_dir_url(SITEORIGIN_PANELS_BASE_FILE).'/widgets/js/admin.min.js', array('jquery'), SITEORIGIN_PANELS_VERSION);
 }
 add_action('admin_enqueue_scripts', 'origin_widgets_enqueue');
-
-function origin_widgets_display_css(){
-	if(is_admin()) return;
-	if(empty($_GET['action']) || $_GET['action'] != 'origin_widgets_css') return;
-	if(empty($_GET['class']) || empty($_GET['style']) || empty($_GET['preset'])) return;
-	if(strpos($_GET['class'], 'SiteOrigin_Panels_Widget_') !== 0) return;
-
-	header("Content-type: text/css");
-	echo origin_widgets_generate_css($_GET['class'], $_GET['style'], $_GET['preset'], $_GET['ver']);
-	exit();
-}
-add_action('init', 'origin_widgets_display_css');
 
 function origin_widgets_generate_css($class, $style, $preset, $version = null){
 	$widget = new $class();
@@ -49,7 +37,6 @@ function origin_widgets_generate_css($class, $style, $preset, $version = null){
 	$css = get_site_transient('origin_wcss:'.$key);
 	if($css === false || ( defined('SITEORIGIN_PANELS_NOCACHE') && SITEORIGIN_PANELS_NOCACHE ) ) {
 
-		echo "/* Regenerate Cache */\n\n";
 		// Recreate the CSS
 		$css = $widget->create_css($style, $preset);
 		$css = preg_replace('#/\*.*?\*/#s', '', $css);
@@ -298,19 +285,12 @@ abstract class SiteOrigin_Panels_Widget extends WP_Widget{
 		// Dynamically generate the CSS
 		if(!empty($instance['origin_style'])) {
 			$filename = $this->origin_id.'-'.$style.'-'.$preset;
-			if(siteorigin_panels_setting('inline-css')) {
-				static $inlined_css = array();
-				if(empty($inlined_css[$filename])) {
-					$inlined_css[$filename] = true;
-					?><style type="text/css" media="all"><?php echo origin_widgets_generate_css(get_class($this), $style, $preset) ?></style><?php
-				}
-			}
-			else {
-				wp_enqueue_style( 'origin-widget-'.$filename, add_query_arg(array(
-					'class' => get_class($this),
-					'style' => $style,
-					'preset' => $preset,
-				), site_url('?action=origin_widgets_css') ), array(), SITEORIGIN_PANELS_VERSION );
+			static $inlined_css = array();
+			if(empty($inlined_css[$filename])) {
+				$inlined_css[$filename] = true;
+				global $siteorigin_panels_inline_css;
+				if( empty($siteorigin_panels_inline_css) ) $siteorigin_panels_inline_css = '';
+				$siteorigin_panels_inline_css .= "\n" . origin_widgets_generate_css(get_class($this), $style, $preset);
 			}
 		}
 

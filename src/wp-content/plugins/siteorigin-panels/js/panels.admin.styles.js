@@ -7,12 +7,6 @@
 
 jQuery( function($){
     // Create the dialog for setting up the style
-    var buttons = {};
-    buttons[panels.i10n.buttons.done] = function () {
-        $( '#grid-styles-dialog' ).dialog( 'close' );
-    };
-
-
     $( '#grid-styles-dialog').data('html', $( '#grid-styles-dialog').html() );
     $( '#grid-styles-dialog' )
         .show()
@@ -48,7 +42,15 @@ jQuery( function($){
                     }
                 });
             },
-            buttons: buttons
+            buttons: [
+                {
+                    // The done button
+                    text : panels.i10n.buttons.done,
+                    click: function(){
+                        $( '#grid-styles-dialog' ).dialog( 'close' );
+                    }
+                }
+            ]
         })
     ;
 

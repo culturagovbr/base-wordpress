@@ -102,7 +102,7 @@
                         $( '<div class="ui-button ui-button-icon-only"><div class="ui-icon ui-icon-remove"></div></div>' )
                             .attr( 'data-tooltip', panels.i10n.buttons['delete'] )
                             .click( function () {
-                                $( this ).removeTooltip();
+                                $( this ).panelsRemoveTooltip();
 
                                 // Create an array that represents this grid
                                 var containerData = [];

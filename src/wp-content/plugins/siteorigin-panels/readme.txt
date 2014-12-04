@@ -2,17 +2,19 @@
 Contributors: gpriday
 Tags: page builder, responsive, widget, widgets, builder, page, admin, gallery, content, cms, pages, post, css, layout, grid
 Requires at least: 3.7
-Tested up to: 3.9
+Tested up to: 4.0
 Stable tag: trunk
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
-Donate link: http://siteorigin.com/page-builder/#donate
+Donate link: https://siteorigin.com/page-builder/#donate
 
 Build responsive page layouts using the widgets you know and love using this simple drag and drop page builder.
 
 == Description ==
 
 [vimeo http://vimeo.com/59561067]
+
+Page Builder 2.0 is coming. Read our [announcement post](https://siteorigin.com/page-builder-2-changes-everything/) for more on what you can expect from this update.
 
 WordPress has evolved into a fully functional CMS. Page Builder (previously called Panels) completes the transition by giving you a way to create responsive column layouts using the widgets you know and love.
 
@@ -26,9 +28,9 @@ We've included a few useful widgets, but it works with a lot of other widgets an
 
 Page Builder works with most well made themes. The only requirement is that your theme supports pages. And if your theme is responsive, change a few settings and boom, your layouts will work with your theme and collapse into a single column on mobile devices.
 
-There are loads free and premium themes that work with the Page Builder, we have our own collection of [free themes](http://siteorigin.com/) if you'd like to use one of ours.
+There are loads free and premium themes that work with the Page Builder, we have our own collection of [free themes](https://siteorigin.com/) if you'd like to use one of ours.
 
-Page Builder [Documentation](http://siteorigin.com/page-builder/documentation/) is available on SiteOrigin and we offer free support on our [support forum](http://siteorigin.com/threads/plugin-page-builder/). If you're having strange issues, try following [this guide](http://siteorigin.com/troubleshooting/identifying-plugin-conflicts/).
+Page Builder [Documentation](https://siteorigin.com/page-builder/documentation/) is available on SiteOrigin and we offer free support on our [support forum](http://siteorigin.com/threads/plugin-page-builder/). If you're having strange issues, try following [this guide](http://siteorigin.com/troubleshooting/identifying-plugin-conflicts/).
 
 = Bundled Widgets =
 
@@ -52,11 +54,9 @@ As well as some essential page elements widgets:
 
 Most standard widgets work with Page Builder, but here are some of our favorites.
 
+* [SiteOrigin Widget Bundle](http://wordpress.org/plugins/so-widgets-bundle/) for growing collection of widgets like buttons, price tables and images.
 * [Black Studio TinyMCE](http://wordpress.org/plugins/black-studio-tinymce-widget/) for a visual content editing widget.
 * [Meta Slider](http://wordpress.org/plugins/ml-slider/) for a responsive slider widget.
-* [Price Table Widget](http://wordpress.org/plugins/so-price-table-widget/) for a responsive price table.
-
-[Contact me](mailto:greg@siteorigin.com) if you've created a widget that would work well with Page Builder so I can add it to our recommended plugins list. Your plugin will also be recommended within Page Builder itself.
 
 == Installation ==
 
@@ -76,6 +76,10 @@ Most standard widgets work with Page Builder, but here are some of our favorites
 
 == Frequently Asked Questions ==
 
+= How do I move a site created with Page Builder from one server to another? =
+
+We recommend the [duplicator plugin](https://wordpress.org/plugins/duplicator/). We've tested it in several instances and it always works well with Page Builder data.
+
 = Can I bundle Page Builder with my theme? =
 
 Yes, provided your theme is licensed under GPL or a compatible license. If you're publishing your theme on ThemeForest, you must select the GPL license instead of their regular license.
@@ -87,6 +91,32 @@ Page Builder is actively developed and updated, so generally I'd recommend that 
 I've tried to ensure that Page Builder is compatible with most plugin widgets. It's best to just download Page Builder and test for yourself.
 
 == Changelog ==
+
+= 1.5.4 =
+* All CSS is now loaded inline to prevent slow down issue.
+* Fixed duplication of CSS for home page.
+* Preview data is now forced to save in a separate post meta to prevent overwrite and loss of Page Builder data from preview.
+
+= 1.5.3 =
+* Fixed post loop widget issue.
+* Fixed settings issue.
+
+= 1.5.2 =
+* Changed to custom settings system to fix a few settings bugs.
+* Added option to display more link in post loop widget.
+* Fixed SSL in widget images.
+
+= 1.5.1 =
+* Compatibility with WordPress 4.0 - needed to change how tabs function.
+* Compatibility with Black Studio TinyMCE Widget 2.0.
+* Namespaced Tooltip to avoid conflicts.
+
+= 1.5 =
+* Increased size of widget dialog boxes.
+* Updated incompatible plugins list.
+* Updated to latest version of Chosen.
+* Custom Home Page feature now uses standard pages.
+* Improvements to preview handling.
 
 = 1.4.12 =
 * Improved how missing widgets are handled.
@@ -161,124 +191,3 @@ I've tried to ensure that Page Builder is compatible with most plugin widgets. I
 * CSS fixes.
 * Fixed compatibility issues with Black Studio TinyMCE.
 * Added more development hooks and filters.
-
-= 1.3.10 =
-* Updated to latest jPlayer.
-* Fixed issue that wasn't allowing users to disable custom home page feature.
-* Compatibility with WordPress 3.8, including new admin design.
-* Using wp_slash before saving panels_data meta to ensure \r and \n aren't lost.
-
-= 1.3.9 =
-* Integrated with WordPress revisions.
-* Fixed issue with namespaced widget.
-* Small admin CSS fixes.
-* Fixed dialog closing after adding new row.
-
-= 1.3.8 =
-* Fixed pagination with post loop widget.
-* Fixed testimonial widget HTML.
-* Fixed price box new window setting.
-* Added option to display CSS inline.
-* Fixed incompatibility with namespaced widgets.
-
-= 1.3.7.1 =
-* A small fix to remove error notices in a fairly common situation.
-
-= 1.3.7 =
-* Fixed issue with pagination for a post loop on custom home page.
-* Improved ways that a theme can add custom PB element styles.
-
-= 1.3.6 =
-* Added option to clone the current home page.
-* Fixed issue where certain widgets crashed the builder interface.
-* Updated language files.
-
-= 1.3.5 =
-* Removed post pre preparation that was causing plugin conflicts. Relying on late printing of scripts and styles instead.
-* Fixed infinite loop with post loop widget and issue that was removing the first post.
-* Added "Link To" option to gallery widget.
-* Other minor bug fixes and updates.
-* Removed content option from Post Content widget. TinyMCE widget is recommended for adding content.
-
-= 1.3.4 =
-* Added duplicate widget to improve workflow.
-* Only displays visual styles icon if there are any specified by the theme.
-* Fixed plugin conflicts.
-* Minor bug fixes in previews.
-
-= 1.3.3 =
-* Fixed issue with widgets that relied on global post.
-* Fixed minor search issue.
-
-= 1.3.2 =
-* Minor CSS improvements
-* Fixed a critical issue that was breaking Page Builder CSS on some server configurations.
-
-= 1.3.1 =
-* Fixed issue with CSS of bundled widgets conflicting with some plugins.
-* CSS is now generated separately instead of inline. This also allows for multiple page layouts on a single archive/page.
-* Fixed some JS errors.
-* Made call to action widget responsive.
-* Properly handles password protected posts.
-
-= 1.3 =
-* Added option to select row styles. Requires theme integration.
-* Added open in new window options to bundled widgets.
-* Moved caching of bundled widget CSS into database instead of file based caching.
-* Various bug fixes and performance enhancements.
-
-= 1.2.11 =
-* Prebuilt layouts are now loaded through AJAX to improve performance.
-
-= 1.2.10 =
-* Reduced max height of widget block to prevent overlaps.
-* Fixed issue that caused problems with TinyMCE widget.
-* General code clean up and performance improvements.
-
-= 1.2.9 =
-* Fixed backwards compatibility issue.
-* Fixed potential infinite loop in post loop widget.
-* Various minor fixes and updates.
-* Added setting to remove animations for users experiencing poor performance.
-
-= 1.2.8 =
-* Improved Black Studio TinyMCE compatibility.
-* Fixed issue with html in widgets breaking builder layout.
-
-= 1.2.7 =
-* Added German translation.
-* Improved Page Builder content import.
-* Performance enhancements and bug fixes.
-* Added option to prevent copying content to post content.
-* Improved compatibility with WordPress import/export.
-
-= 1.2.6 =
-* Added compatibility with Black Studio TinyMCE widget.
-* Fixed bug with checkboxes in forms.
-* Fixed delete undo.
-
-= 1.2.5 =
-* Fixed issue with hidden Page Builder interface.
-
-= 1.2.4 =
-* Improved performance.
-* Made efforts to improve compatibility with 3rd party widgets.
-* Fixed preview with bundled widgets.
-
-= 1.2.3 =
-* Various Javascript fixes.
-* Added translation files.
-* Improved Post Loop widget.
-
-= 1.2.2 =
-* Fixed plugin conflict.
-* Minor performance improvements.
-
-= 1.2.1 =
-* Added several bundled widgets.
-* Improved compatibility with latest WordPress beta.
-
-= 1.2 =
-* Added several website element widgets as well as a framework for extending them.
-* Fixed IE8 issue.
-* Improved embedded video widget.

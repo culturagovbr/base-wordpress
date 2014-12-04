@@ -32,25 +32,6 @@ jQuery( function ( $ ) {
     } );
 
     // Create the add grid dialog
-    var gridAddDialogButtons = {};
-    gridAddDialogButtons[panels.i10n.buttons.add] = function () {
-        var num = Number( $( '#grid-add-dialog' ).find( 'input' ).val() );
-
-        if ( isNaN( num ) ) {
-            alert( 'Invalid Number' );
-            return false;
-        }
-
-        // Make sure the number is between 1 and 10.
-        num = Math.min( 10, Math.max( 1, Math.round( num ) ) );
-        var gridContainer = window.panels.createGrid( num );
-
-        if(panels.animations) gridContainer.hide().slideDown();
-        else gridContainer.show();
-
-        $( '#grid-add-dialog' ).dialog( 'close' );
-    };
-
     // Create the dialog that we use to add new grids
     $( '#grid-add-dialog' )
         .show()
@@ -67,7 +48,29 @@ jQuery( function ( $ ) {
             close : function(){
                 $(this).data('overlay').remove();
             },
-            buttons: gridAddDialogButtons
+            buttons: [
+                {
+                    // The add widget button
+                    text : panels.i10n.buttons.add,
+                    click: function () {
+                        var num = Number( $( '#grid-add-dialog' ).find( 'input' ).val() );
+
+                        if ( isNaN( num ) ) {
+                            alert( 'Invalid Number' );
+                            return false;
+                        }
+
+                        // Make sure the number is between 1 and 10.
+                        num = Math.min( 10, Math.max( 1, Math.round( num ) ) );
+                        var gridContainer = window.panels.createGrid( num );
+
+                        if(panels.animations) gridContainer.hide().slideDown();
+                        else gridContainer.show();
+
+                        $( '#grid-add-dialog' ).dialog( 'close' );
+                    }
+                }
+            ]
         })
         .on('keydown', function(e) {
             if (e.keyCode == $.ui.keyCode.ENTER) {
@@ -138,10 +141,7 @@ jQuery( function ( $ ) {
             return false;
         } );
 
-    // Set the default text of the SiteOrigin link
-    $('#siteorigin-widgets-link').data('text', $('#siteorigin-widgets-link').html() );
-
-    // Handle filtering in the panels dialog
+    // Handle filtering in the widgets dialog
     $( '#panels-text-filter-input' )
         .keyup( function (e) {
             if( e.keyCode == 13 ) {
@@ -177,9 +177,8 @@ jQuery( function ( $ ) {
         $( '#panels-dialog' ).dialog( 'close' );
     } );
 
-    
 
-    // Either setup an initial grid or load one from the panels data
+    // Either setup an initial row or load one from the panels data
     if ( typeof panelsData != 'undefined' ) panels.loadPanels(panelsData);
     else panels.createGrid( 1 );
 
@@ -189,9 +188,11 @@ jQuery( function ( $ ) {
     } );
 
     // Handle switching between the page builder and other tabs
-    $( '#wp-content-editor-tools' )
+    $( '.wp-editor-tabs' )
         .find( '.wp-switch-editor' )
-        .click(function () {
+        .click(function (e) {
+            // e.preventDefault();
+
             var $$ = $(this);
 
             $( '#wp-content-editor-container, #post-status-info' ).show();
@@ -202,62 +203,60 @@ jQuery( function ( $ ) {
         } ).end()
         .prepend(
             $( '<a id="content-panels" class="hide-if-no-js wp-switch-editor switch-panels">' + $( '#so-panels-panels h3.hndle span' ).html() + '</a>' )
-                .click( function () {
+                .click( function (e) {
+                    // Switch to the Page Builder interface
+                    e.preventDefault();
+
                     var $$ = $( this );
-                    // This is so the inactive tabs don't show as active
-                    $( '#wp-content-wrap' ).removeClass( 'tmce-active html-active' );
 
-                    // Hide all the standard content editor stuff
-                    $( '#wp-content-editor-container, #post-status-info' ).hide();
+                    // Hide the standard content editor
+                    $( '#wp-content-wrap, #post-status-info' ).hide();
 
-                    // Show panels and the inside div
+                    // Show page builder and the inside div
                     $( '#so-panels-panels' ).show().find('> .inside').show();
-                    $( '#wp-content-wrap' ).addClass( 'panels-active' );
 
                     // Triggers full refresh
                     $( window ).resize();
-                    $('#content-resize-handle' ).hide();
-
-                    return false;
                 } )
         );
 
-    $( '#wp-content-editor-tools .wp-switch-editor' ).click(function(){
-        // This fixes an occasional tab switching glitch
-        var $$ = $(this);
-        var p = $$.attr('id' ).split('-');
-        $( '#wp-content-wrap' ).addClass(p[1] + '-active');
+    $('#so-panels-panels #add-to-panels .switch-to-standard').click(function(){
+        // Switch back to the standard editor
+        $( '#wp-content-wrap, #post-status-info' ).show();
+        $( '#so-panels-panels' ).hide();
+        $( window ).resize();
     });
 
-    // This is for the home page panel
-    $('#panels-home-page #post-body' ).show();
-    $('#panels-home-page #post-body-wrapper' ).css('background', 'none');
+    // This is for the home page builder
+    $( '#panels-home-page #post-body' ).show();
+    $( '#panels-home-page #post-body-wrapper' ).css('background', 'none');
 
     // Move the panels box into a tab of the content editor
     $( '#so-panels-panels' )
-        .insertAfter( '#wp-content-editor-container' )
-        .addClass( 'wp-editor-container' )
+        .insertAfter( '#wp-content-wrap' )
         .hide()
         .find( '.handlediv' ).remove()
         .end()
-        .find( '.hndle' ).html('' ).append(
+        .find( '.hndle' ).html( '' ).append(
             $('#add-to-panels')
         );
 
     // When the content panels button is clicked, trigger a window resize to set up the columns
-    $('#content-panels' ).click(function(){
+    $('#content-panels' ).click( function(){
         $(window ).resize();
-    });
+    } );
 
-    if ( typeof panelsData != 'undefined' || $('#panels-home-page' ).length) $( '#content-panels' ).click();
+    if ( typeof panelsData != 'undefined' || $('#panels-home-page' ).length ) $( '#content-panels' ).click();
+
     // Click again after the panels have been set up
     setTimeout(function(){
         if ( typeof panelsData != 'undefined' || $('#panels-home-page' ).length) $( '#content-panels' ).click();
         $('#so-panels-panels .hndle' ).unbind('click');
-        $('#so-panels-panels .cell' ).eq(0 ).click();
+        $('#so-panels-panels .cell' ).eq(0).click();
     }, 150);
 
-    if($('#panels-home-page' ).length){
+    // This is only for the home page interface
+    if( $('#panels-home-page' ).length ){
         // Lets do some home page settings
         $('#content-tmce, #content-html' ).remove();
         $('#content-panels' ).hide();

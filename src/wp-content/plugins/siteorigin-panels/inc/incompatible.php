@@ -6,7 +6,4 @@ return array(
 	'media-file-manager-advanced/media-relocator.php' => array(
 		'more' => 'http://siteorigin.com/thread/incompatibility-media-file-manager-advanced/',
 	),
-	'social-networks-auto-poster-facebook-twitter-g/NextScripts_SNAP.php' => array(
-		'more' => 'http://siteorigin.com/thread/incompatibility-social-network-auto-poster/',
-	),
 );

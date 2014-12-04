@@ -14,12 +14,20 @@ jQuery(function($){
         modal:       false,
         title:       $( '#grid-prebuilt-dialog' ).attr( 'data-title' ),
         minWidth:    600,
-        height:      350,
+        height:      450,
         create:      function(event, ui){
         },
         open:        function(){
             var overlay = $('<div class="siteorigin-panels-ui-widget-overlay ui-widget-overlay ui-front"></div>').css('z-index', 80001);
             $(this).data('overlay', overlay).closest('.ui-dialog').before(overlay);
+
+            // Turn the dropdown into a chosen selector
+            $( '#grid-prebuilt-dialog' ).find('select').chosen({
+                disable_search_threshold: 8,
+                search_contains: true,
+                placeholder_text: $( '#grid-prebuilt-dialog' ).find('select' ).attr('placeholder')
+            });
+
         },
         close :      function(){
             $(this).data('overlay').remove();
@@ -56,12 +64,6 @@ jQuery(function($){
         ]
     } );
     
-    // Turn the dropdown into a chosen selector
-    $( '#grid-prebuilt-dialog' ).find('select' ).chosen({
-        search_contains: true,
-        placeholder_text: $( '#grid-prebuilt-dialog' ).find('select' ).attr('placeholder') 
-    });
-
     // Button for adding prebuilt layouts
     $( '#add-to-panels .prebuilt-set' )
         .button( {

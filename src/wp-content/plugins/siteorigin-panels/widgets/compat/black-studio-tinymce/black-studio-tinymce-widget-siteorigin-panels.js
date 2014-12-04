@@ -25,8 +25,9 @@ jQuery(function($){
     $(document).on('panelsdone', function(e) {
         var $text_area = $(e.target).find('textarea[id^=widget-black-studio-tinymce]');
 
-        if ($text_area.length > 0) {
-            var editor = tinyMCE.get( $text_area.attr('id') );
+        if ( $text_area.length > 0 ) {
+            var editor = null;
+            if ( typeof tinyMCE != 'undefined' ) editor = tinyMCE.get( $text_area.attr('id') );
             if( editor != null && typeof( editor.getContent ) == "function" ) {
                 var content = editor.getContent();
             }

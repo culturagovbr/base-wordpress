@@ -4,6 +4,7 @@
  * @copyright Greg Priday 2013
  * @license GPL 2.0 http://www.gnu.org/licenses/gpl-2.0.html
  */
+
 jQuery(function($){
     if( typeof wp == 'undefined' || !wp.media || !wp.media.editor ) return;
 

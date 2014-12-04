@@ -14,7 +14,7 @@ function siteorigin_panels_content_save_pre($content){
 	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return $content;
 	if ( empty( $_POST['_sopanels_nonce'] ) || !wp_verify_nonce( $_POST['_sopanels_nonce'], 'save' ) ) return $content;
 	if ( empty($_POST['panels_js_complete']) ) return $content;
-	if ( !current_user_can( 'edit_post', $post->ID ) ) return $content;
+	if ( empty($post) || !current_user_can( 'edit_post', $post->ID ) ) return $content;
 	if ( empty( $_POST['grids'] ) || empty( $_POST['grid_cells'] ) || empty( $_POST['widgets'] ) || empty( $_POST['panel_order'] ) ) return $content;
 
 	$data['grids'] = $_POST['grids'];

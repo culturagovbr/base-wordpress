@@ -7,7 +7,7 @@ function siteorigin_panels_update_notice(){
 	$dismissed = get_option('siteorigin_panels_notice_dismissed');
 
 	if(empty($dismissed) || $dismissed != SITEORIGIN_PANELS_VERSION) {
-		wp_enqueue_script('siteorigin-panels-admin-notice', plugin_dir_url(SITEORIGIN_PANELS_BASE_FILE) . 'js/panels.admin.notice.min.js', array('jquery'), SITEORIGIN_PANELS_VERSION);
+		wp_enqueue_script('siteorigin-panels-admin-notice', plugin_dir_url(SITEORIGIN_PANELS_BASE_FILE).'js/panels.admin.notice.min.js', array('jquery'), SITEORIGIN_PANELS_VERSION);
 
 		?>
 		<div class="updated">
@@ -74,7 +74,7 @@ function siteorigin_panels_incompatibility_notice(){
 			if( empty($non_dismissed) ) return;
 		}
 
-		wp_enqueue_script('siteorigin-panels-admin-notice', plugin_dir_url(SITEORIGIN_PANELS_BASE_FILE) . 'js/panels.admin.notice.min.js', array('jquery'), SITEORIGIN_PANELS_VERSION);
+		wp_enqueue_script('siteorigin-panels-admin-notice', plugin_dir_url(SITEORIGIN_PANELS_BASE_FILE).'js/panels.admin.notice.min.js', array('jquery'), SITEORIGIN_PANELS_VERSION);
 
 		?>
 		<div class="error">

@@ -184,24 +184,7 @@
                     if( typeof activeDialog != 'undefined' ) return false;
 
                     // The done button
-                    var dialogButtons = {};
                     var doneClicked = false;
-                    dialogButtons[ panels.i10n.buttons['done'] ] = function () {
-                        doneClicked = true;
-                        $( this ).trigger( 'panelsdone', panel, activeDialog );
-
-                        var panelData = panel.panelsGetPanelData();
-
-                        // If this was a missing widget form, then ignore what we get back from the form.
-                        if( activeDialog.find('.panels-missing-widget-form').length == 0 ) {
-                            panel.find('input[name$="[data]"]').val(JSON.stringify(panelData));
-                            panel.panelsSetPanelTitle(panelData);
-                            panel.find('input[name$="[info][raw]"]').val(1);
-                        }
-
-                        // Change the title of the panel
-                        activeDialog.dialog( 'close' );
-                    }
 
                     // Create a dialog for this form
                     activeDialog = $( '<div class="panel-dialog dialog-form"></div>' )
@@ -215,8 +198,8 @@
                             draggable:   false,
                             resizable:   false,
                             title:       panels.i10n.messages.editWidget.replace( '%s', panel.data( 'title' ) ),
-                            minWidth:    760,
-                            maxHeight:   Math.min( Math.round($(window).height() * 0.875), 800),
+                            width:   Math.round($(window).width() * 0.9),
+                            height:   Math.round($(window).height() * 0.875),
                             create:      function(event, ui){
                                 $(this ).closest('.ui-dialog' ).find('.show-in-panels' ).show();
                             },
@@ -237,7 +220,27 @@
                                 $(this).dialog('destroy').remove();
                                 activeDialog = undefined;
                             },
-                            buttons: dialogButtons
+                            buttons: [
+                                {
+                                    text: panels.i10n.buttons.done,
+                                    click: function(){
+                                        doneClicked = true;
+                                        $( this ).trigger( 'panelsdone', panel, activeDialog );
+
+                                        var panelData = panel.panelsGetPanelData();
+
+                                        // If this was a missing widget form, then ignore what we get back from the form.
+                                        if( activeDialog.find('.panels-missing-widget-form').length == 0 ) {
+                                            panel.find('input[name$="[data]"]').val(JSON.stringify(panelData));
+                                            panel.panelsSetPanelTitle(panelData);
+                                            panel.find('input[name$="[info][raw]"]').val(1);
+                                        }
+
+                                        // Change the title of the panel
+                                        activeDialog.dialog( 'close' );
+                                    }
+                                }
+                            ]
                         } )
                         .keypress(function(e) {
                             if (e.keyCode == $.ui.keyCode.ENTER) {

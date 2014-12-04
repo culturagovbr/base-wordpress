@@ -16,6 +16,9 @@ $layouts = apply_filters( 'siteorigin_panels_prebuilt_layouts', array() );
 		<?php if(!empty($layouts)) : ?>
 			<button class="prebuilt-set" data-tooltip="<?php esc_attr_e('Prebuilt Layouts','siteorigin-panels') ?>"><?php _e('Prebuilt Layouts', 'siteorigin-panels') ?></button>
 		<?php endif; ?>
+
+		<a href="#" class="switch-to-standard"><?php _e('Switch to Editor', 'siteorigin-panels') ?></a>
+
 		<div class="clear"></div>
 	</div>
 	
@@ -64,7 +67,7 @@ $layouts = apply_filters( 'siteorigin_panels_prebuilt_layouts', array() );
 		<div id="grid-prebuilt-dialog" data-title="<?php esc_attr_e('Insert Prebuilt Page Layout','siteorigin-panels') ?>" class="panels-admin-dialog">
 			<p><label><strong><?php _e('Page Layout', 'siteorigin-panels') ?></strong></label></p>
 			<p>
-				<select type="text" id="grid-prebuilt-input" name="prebuilt_layout" style="width:580px;" placeholder="<?php esc_attr_e('Select Layout', 'siteorigin-panels') ?>" >
+				<select type="text" id="grid-prebuilt-input" name="prebuilt_layout" style="width:568px;" placeholder="<?php esc_attr_e('Select Layout', 'siteorigin-panels') ?>" >
 					<option class="empty" <?php selected(true) ?> value=""></option>
 					<?php foreach($layouts as $id => $data) : ?>
 						<option id="panel-prebuilt-<?php echo esc_attr($id) ?>" data-layout-id="<?php echo esc_attr($id) ?>" class="prebuilt-layout">

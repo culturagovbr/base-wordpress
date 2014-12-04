@@ -32,8 +32,8 @@ class SiteOrigin_Panels_Widget_Animated_Image extends SiteOrigin_Panels_Widget  
 	function enqueue_scripts(){
 		static $enqueued = false;
 		if(!$enqueued) {
-			wp_enqueue_script('siteorigin-widgets-'.$this->origin_id.'-onscreen', plugin_dir_url(__FILE__).'js/onscreen.js', array('jquery'), SITEORIGIN_PANELS_VERSION);
-			wp_enqueue_script('siteorigin-widgets-'.$this->origin_id, plugin_dir_url(__FILE__).'js/main.js', array('jquery'), SITEORIGIN_PANELS_VERSION);
+			wp_enqueue_script('siteorigin-widgets-'.$this->origin_id.'-onscreen', plugin_dir_url(__FILE__).'js/onscreen.min.js', array('jquery'), SITEORIGIN_PANELS_VERSION);
+			wp_enqueue_script('siteorigin-widgets-'.$this->origin_id, plugin_dir_url(__FILE__).'js/main.min.js', array('jquery'), SITEORIGIN_PANELS_VERSION);
 			$enqueued = true;
 		}
 

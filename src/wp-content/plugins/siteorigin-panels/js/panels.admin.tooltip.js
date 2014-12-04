@@ -9,10 +9,10 @@ jQuery( function ( $ ) {
 
     $('body').on({
         mouseenter: function(){
-            $( this ).showTooltip();
+            $( this ).panelsShowTooltip();
         },
         mouseleave : function(){
-            $( this ).removeTooltip();
+            $( this ).panelsRemoveTooltip();
         }
     }, '*[data-tooltip]');
 
@@ -21,7 +21,7 @@ jQuery( function ( $ ) {
      *
      * @returns {*}
      */
-    $.fn.showTooltip = function () {
+    $.fn.panelsShowTooltip = function () {
         this.each( function () {
             var $$ = $( this );
             var tooltip = $( '<div class="panels-tooltip"></div>' ).appendTo( 'body' ).html( $$.attr( 'data-tooltip' ) ).append( $( '<div class="pointer"></div>' ) );
@@ -42,7 +42,7 @@ jQuery( function ( $ ) {
      *
      * @returns {*}
      */
-    $.fn.removeTooltip = function () {
+    $.fn.panelsRemoveTooltip = function () {
         this.each( function () {
             var $$ = $( this );
             var tooltip = $$.data( 'tooltip' );

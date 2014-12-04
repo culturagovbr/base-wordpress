@@ -304,8 +304,12 @@ class SiteOrigin_Panels_Widgets_PostLoop extends WP_Widget{
 			echo $args['before_title'] . $instance['title'] . $args['after_title'];
 		}
 
+		add_filter( 'siteorigin_panels_filter_content_enabled', array( 'SiteOrigin_Panels_Widgets_PostLoop', 'remove_content_filter' ) );
+
+		global $more; $old_more = $more; $more = empty($instance['more']);
+
 		if(strpos('/'.$instance['template'], '/content') !== false) {
-			while(have_posts()) {
+			while( have_posts() ) {
 				the_post();
 				locate_template($instance['template'], true, false);
 			}
@@ -314,10 +318,20 @@ class SiteOrigin_Panels_Widgets_PostLoop extends WP_Widget{
 			locate_template($instance['template'], true, false);
 		}
 
+		$more = $old_more;
+		remove_filter( 'siteorigin_panels_filter_content_enabled', array( 'SiteOrigin_Panels_Widgets_PostLoop', 'remove_content_filter' ) );
+
 		echo $args['after_widget'];
 
 		// Reset everything
 		wp_reset_query();
+	}
+
+	/**
+	 * @return bool
+	 */
+	static function remove_content_filter(){
+		return false;
 	}
 
 	/**
@@ -328,6 +342,7 @@ class SiteOrigin_Panels_Widgets_PostLoop extends WP_Widget{
 	 * @return array
 	 */
 	function update($new, $old){
+		$new['more'] = !empty( $new['more'] );
 		return $new;
 	}
 
@@ -357,6 +372,7 @@ class SiteOrigin_Panels_Widgets_PostLoop extends WP_Widget{
 		}
 
 		$templates = array_unique($templates);
+		$templates = apply_filters('siteorigin_panels_postloop_templates', $templates);
 		sort($templates);
 
 		return $templates;
@@ -383,6 +399,7 @@ class SiteOrigin_Panels_Widgets_PostLoop extends WP_Widget{
 			'sticky' => '',
 
 			'additional' => '',
+			'more' => false,
 		));
 
 		$templates = $this->get_loop_templates();
@@ -468,10 +485,17 @@ class SiteOrigin_Panels_Widgets_PostLoop extends WP_Widget{
 		</p>
 
 		<p>
+			<label for="<?php echo $this->get_field_id('more') ?>"><?php _e('More Link ', 'siteorigin-panels') ?></label>
+			<input type="checkbox" class="widefat" id="<?php echo $this->get_field_id( 'more' ) ?>" name="<?php echo $this->get_field_name( 'more' ) ?>" <?php checked( $instance['more'] ) ?> /><br/>
+			<small><?php _e('If the template supports it, cut posts and display the more link.', 'siteorigin-panels') ?></small>
+		</p>
+
+		<p>
 			<label for="<?php echo $this->get_field_id('additional') ?>"><?php _e('Additional ', 'siteorigin-panels') ?></label>
 			<input type="text" class="widefat" id="<?php echo $this->get_field_id( 'additional' ) ?>" name="<?php echo $this->get_field_name( 'additional' ) ?>" value="<?php echo esc_attr($instance['additional']) ?>" />
 			<small><?php printf(__('Additional query arguments. See <a href="%s" target="_blank">query_posts</a>.', 'siteorigin-panels'), 'http://codex.wordpress.org/Function_Reference/query_posts') ?></small>
 		</p>
+
 	<?php
 	}
 }
@@ -500,10 +524,10 @@ class SiteOrigin_Panels_Widgets_EmbeddedVideo extends WP_Widget {
 		$embed = new WP_Embed();
 
 		if(!wp_script_is('fitvids'))
-			wp_enqueue_script('fitvids', plugin_dir_url(SITEORIGIN_PANELS_BASE_FILE) . 'widgets/js/jquery.fitvids.min.js', array('jquery'), SITEORIGIN_PANELS_VERSION);
+			wp_enqueue_script('fitvids', plugin_dir_url(SITEORIGIN_PANELS_BASE_FILE).'widgets/js/jquery.fitvids.min.js', array('jquery'), SITEORIGIN_PANELS_VERSION);
 
 		if(!wp_script_is('siteorigin-panels-embedded-video'))
-			wp_enqueue_script('siteorigin-panels-embedded-video', plugin_dir_url(SITEORIGIN_PANELS_BASE_FILE) . 'widgets/js/embedded-video.min.js', array('jquery', 'fitvids'), SITEORIGIN_PANELS_VERSION);
+			wp_enqueue_script('siteorigin-panels-embedded-video', plugin_dir_url(SITEORIGIN_PANELS_BASE_FILE).'widgets/js/embedded-video.min.js', array('jquery', 'fitvids'), SITEORIGIN_PANELS_VERSION);
 
 		echo $args['before_widget'];
 		?><div class="siteorigin-fitvids"><?php echo $embed->run_shortcode( '[embed]' . $instance['video'] . '[/embed]' ) ?></div><?php
@@ -560,7 +584,7 @@ class SiteOrigin_Panels_Widgets_Video extends WP_Widget {
 
 		// Enqueue jPlayer scripts and intializer
 		wp_enqueue_script( 'siteorigin-panels-video-jplayer', plugin_dir_url(SITEORIGIN_PANELS_BASE_FILE).'video/jplayer/jquery.jplayer.min.js', array('jquery'), SITEORIGIN_PANELS_VERSION, true);
-		wp_enqueue_script( 'siteorigin-panels-video', plugin_dir_url(SITEORIGIN_PANELS_BASE_FILE) . 'video/panels.video.jquery.min.js', array('jquery'), SITEORIGIN_PANELS_VERSION, true);
+		wp_enqueue_script( 'siteorigin-panels-video', plugin_dir_url(SITEORIGIN_PANELS_BASE_FILE).'video/panels.video.jquery.min.js', array('jquery'), SITEORIGIN_PANELS_VERSION, true);
 
 		// Enqueue the SiteOrigin jPlayer skin
 		$skin = sanitize_file_name($instance['skin']);

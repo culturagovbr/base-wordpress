@@ -416,6 +416,10 @@ function wp_network_dashboard_right_now() {
 function wp_dashboard_quick_press( $error_msg = false ) {
 	global $post_ID;
 
+	if ( ! current_user_can( 'edit_posts' ) ) {
+		return;
+	}
+
 	/* Check if a new auto-draft (= no new post_ID) is needed or if the old can be used */
 	$last_post_id = (int) get_user_option( 'dashboard_quick_press_last_post_id' ); // Get the last post_ID
 	if ( $last_post_id ) {
@@ -518,7 +522,7 @@ function wp_dashboard_recent_drafts( $drafts = false ) {
 function _wp_dashboard_recent_comments_row( &$comment, $show_date = true ) {
 	$GLOBALS['comment'] =& $comment;
 
-	$comment_post_title = strip_tags(get_the_title( $comment->comment_post_ID ));
+	$comment_post_title = _draft_or_post_title( $comment->comment_post_ID );
 
 	if ( current_user_can( 'edit_post', $comment->comment_post_ID ) ) {
 		$comment_post_url = get_edit_post_link( $comment->comment_post_ID );

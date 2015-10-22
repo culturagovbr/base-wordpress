@@ -410,6 +410,9 @@ function wpautop($pee, $br = true) {
 	$pee = preg_replace('!(</' . $allblocks . '>)!', "$1\n\n", $pee);
 	$pee = str_replace(array("\r\n", "\r"), "\n", $pee); // cross-platform newlines
 
+	// Find newlines in all elements and add placeholders.
+	$pee = wp_replace_in_html_tags( $pee, array( "\n" => " <!-- wpnl --> " ) );
+
 	if ( strpos( $pee, '<option' ) !== false ) {
 		// no P/BR around option
 		$pee = preg_replace( '|\s*<option|', '<option', $pee );
@@ -461,7 +464,107 @@ function wpautop($pee, $br = true) {
 	if ( !empty($pre_tags) )
 		$pee = str_replace(array_keys($pre_tags), array_values($pre_tags), $pee);
 
+	// Restore newlines in all elements.
+	$pee = str_replace( " <!-- wpnl --> ", "\n", $pee );
+
 	return $pee;
+}
+
+/**
+ * Separate HTML elements and comments from the text.
+ *
+ * @since 4.2.4
+ *
+ * @param string $input The text which has to be formatted.
+ * @return array The formatted text.
+ */
+function wp_html_split( $input ) {
+	static $regex;
+
+	if ( ! isset( $regex ) ) {
+		$comments =
+			  '!'           // Start of comment, after the <.
+			. '(?:'         // Unroll the loop: Consume everything until --> is found.
+			.     '-(?!->)' // Dash not followed by end of comment.
+			.     '[^\-]*+' // Consume non-dashes.
+			. ')*+'         // Loop possessively.
+			. '(?:-->)?';   // End of comment. If not found, match all input.
+
+		$cdata =
+			  '!\[CDATA\['  // Start of comment, after the <.
+			. '[^\]]*+'     // Consume non-].
+			. '(?:'         // Unroll the loop: Consume everything until ]]> is found.
+			.     '](?!]>)' // One ] not followed by end of comment.
+			.     '[^\]]*+' // Consume non-].
+			. ')*+'         // Loop possessively.
+			. '(?:]]>)?';   // End of comment. If not found, match all input.
+
+		$regex =
+			  '/('              // Capture the entire match.
+			.     '<'           // Find start of element.
+			.     '(?(?=!--)'   // Is this a comment?
+			.         $comments // Find end of comment.
+			.     '|'
+			.         '(?(?=!\[CDATA\[)' // Is this a comment?
+			.             $cdata // Find end of comment.
+			.         '|'
+			.             '[^>]*>?' // Find end of element. If not found, match all input.
+			.         ')'
+			.     ')'
+			. ')/s';
+	}
+
+	return preg_split( $regex, $input, -1, PREG_SPLIT_DELIM_CAPTURE );
+}
+
+/**
+ * Replace characters or phrases within HTML elements only.
+ *
+ * @since 4.2.3
+ *
+ * @param string $haystack The text which has to be formatted.
+ * @param array $replace_pairs In the form array('from' => 'to', ...).
+ * @return string The formatted text.
+ */
+function wp_replace_in_html_tags( $haystack, $replace_pairs ) {
+	// Find all elements.
+	$textarr = wp_html_split( $haystack );
+	$changed = false;
+
+	// Optimize when searching for one item.
+	if ( 1 === count( $replace_pairs ) ) {
+		// Extract $needle and $replace.
+		foreach ( $replace_pairs as $needle => $replace );
+
+		// Loop through delimeters (elements) only.
+		for ( $i = 1, $c = count( $textarr ); $i < $c; $i += 2 ) { 
+			if ( false !== strpos( $textarr[$i], $needle ) ) {
+				$textarr[$i] = str_replace( $needle, $replace, $textarr[$i] );
+				$changed = true;
+			}
+		}
+	} else {
+		// Extract all $needles.
+		$needles = array_keys( $replace_pairs );
+
+		// Loop through delimeters (elements) only.
+		for ( $i = 1, $c = count( $textarr ); $i < $c; $i += 2 ) { 
+			foreach ( $needles as $needle ) {
+				if ( false !== strpos( $textarr[$i], $needle ) ) {
+					$textarr[$i] = strtr( $textarr[$i], $replace_pairs );
+					$changed = true;
+					// After one strtr() break out of the foreach loop and look at next element.
+					break;
+				}
+			}
+		}
+	}
+
+	if ( $changed ) {
+		$haystack = implode( $textarr );
+	}
+
+	return $haystack;
 }
 
 /**
@@ -1309,21 +1412,23 @@ function sanitize_title_with_dashes( $title, $raw_title = '', $context = 'displa
 }
 
 /**
- * Ensures a string is a valid SQL order by clause.
+ * Ensures a string is a valid SQL 'order by' clause.
  *
- * Accepts one or more columns, with or without ASC/DESC, and also accepts
- * RAND().
+ * Accepts one or more columns, with or without a sort order (ASC / DESC).
+ * e.g. 'column_1', 'column_1, column_2', 'column_1 ASC, column_2 DESC' etc.
+ *
+ * Also accepts 'RAND()'.
  *
  * @since 2.5.1
  *
- * @param string $orderby Order by string to be checked.
- * @return false|string Returns the order by clause if it is a match, false otherwise.
+ * @param string $orderby Order by clause to be validated.
+ * @return string|bool Returns $orderby if valid, false otherwise.
  */
-function sanitize_sql_orderby( $orderby ){
-	preg_match('/^\s*([a-z0-9_]+(\s+(ASC|DESC))?(\s*,\s*|\s*$))+|^\s*RAND\(\s*\)\s*$/i', $orderby, $obmatches);
-	if ( !$obmatches )
-		return false;
-	return $orderby;
+function sanitize_sql_orderby( $orderby ) {
+	if ( preg_match( '/^\s*(([a-z0-9_]+|`[a-z0-9_]+`)(\s+(ASC|DESC))?\s*(,\s*(?=[a-z0-9_`])|$))+$/i', $orderby ) || preg_match( '/^\s*RAND\(\s*\)\s*$/i', $orderby ) ) {
+		return $orderby;
+	}
+	return false;
 }
 
 /**

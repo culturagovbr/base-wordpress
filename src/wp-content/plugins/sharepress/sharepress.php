@@ -218,7 +218,7 @@ class Sharepress {
       add_action('add_meta_boxes', array($this, 'add_meta_boxes'));
       add_filter('plugin_action_links_sharepress/sharepress.php', array($this, 'plugin_action_links'), 10, 4);
 
-      if ($_REQUEST['page'] == 'sharepress' && isset($_REQUEST['log'])) {
+      if (array_key_exists('page', $_REQUEST) && $_REQUEST['page'] == 'sharepress' && isset($_REQUEST['log'])) {
         wp_enqueue_style('theme-editor');
       }
     }
@@ -1010,8 +1010,10 @@ class Sharepress {
       self::log("DOING_AUTOSAVE is true; ignoring save_post($post_id)");
       return false;
     }
-
+    
     $post = get_post($post_id);
+    
+    if(get_post_type($post) != 'post' ) return false;
 
     // make sure we're not working with a revision
     if ($post->post_status == 'auto-draft' || ( $parent_post_id = wp_is_post_revision($post) )) {

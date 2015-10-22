@@ -3,7 +3,7 @@
 Plugin Name: Anti-spam
 Plugin URI: http://wordpress.org/plugins/anti-spam/
 Description: No spam in comments. No captcha.
-Version: 3.5
+Version: 4.0
 Author: webvitaly
 Author URI: http://web-profile.com.ua/wordpress/plugins/
 License: GPLv3
@@ -15,12 +15,11 @@ $antispam_allow_trackbacks = false; // if true, than trackbacks will be allowed
 // trackbacks almost not used by users, but mostly used by spammers; pingbacks are always enabled
 // more about the difference between trackback and pingback - http://web-profile.com.ua/web/trackback-vs-pingback/
 
-define('ANTISPAM_VERSION', '3.5');
+define('ANTISPAM_PLUGIN_VERSION', '4.0');
 
 $antispam_settings = array(
 	'send_spam_comment_to_admin' => $antispam_send_spam_comment_to_admin,
 	'allow_trackbacks' => $antispam_allow_trackbacks,
-	'version' => ANTISPAM_VERSION,
 	'admin_email' => get_option('admin_email')
 );
 
@@ -30,7 +29,7 @@ include('anti-spam-info.php');
 
 function antispam_enqueue_script() {
 	if (is_singular() && comments_open()) { // load script only for pages with comments form
-		wp_enqueue_script('anti-spam-script', plugins_url('/js/anti-spam-3.5.js', __FILE__), array('jquery'), null, true);
+		wp_enqueue_script('anti-spam-script', plugins_url('/js/anti-spam-4.0.js', __FILE__), null, null, true);
 	}
 }
 add_action('wp_enqueue_scripts', 'antispam_enqueue_script');
@@ -44,12 +43,11 @@ function antispam_form_part() {
 		echo '		<p class="antispam-group antispam-group-q" style="clear: both;">
 			<label>Current ye@r <span class="required">*</span></label>
 			<input type="hidden" name="antspm-a" class="antispam-control antispam-control-a" value="'.date('Y').'" />
-			<input type="text" name="antspm-q" class="antispam-control antispam-control-q" value="'.$antispam_settings['version'].'" />
+			<input type="text" name="antspm-q" class="antispam-control antispam-control-q" value="'.ANTISPAM_PLUGIN_VERSION.'" autocomplete="off" />
 		</p>'.$rn; // question (hidden with js)
-
 		echo '		<p class="antispam-group antispam-group-e" style="display: none;">
 			<label>Leave this field empty</label>
-			<input type="text" name="antspm-e-email-url-website" class="antispam-control antispam-control-e" value="" />
+			<input type="text" name="antspm-e-email-url-website" class="antispam-control antispam-control-e" value="" autocomplete="off" />
 		</p>'.$rn; // empty field (hidden with css); trap for spammers because many bots will try to put email or url here
 	}
 }
@@ -101,12 +99,14 @@ function antispam_check_comment($commentdata) {
 	if ( ! is_user_logged_in() && $comment_type != 'pingback' && $comment_type != 'trackback') { // logged in user is not a spammer
 		$spam_flag = false;
 
-		if (trim($_POST['antspm-q']) != date('Y')) { // year-answer is wrong - it is spam
-			$spam_flag = true;
-			if (empty($_POST['antspm-q'])) { // empty answer - it is spam
-				$antispam_error_message .= 'Error: empty answer. ['.$_POST['antspm-q'].']<br> '.$rn;
-			} else {
-				$antispam_error_message .= 'Error: answer is wrong. ['.$_POST['antspm-q'].']<br> '.$rn;
+		if ( trim($_POST['antspm-q']) != date('Y') ) { // year-answer is wrong - it is spam
+			if ( trim($_POST['antspm-d']) != date('Y') ) { // extra js-only check: there is no js added input - it is spam
+				$spam_flag = true;
+				if (empty($_POST['antspm-q'])) { // empty answer - it is spam
+					$antispam_error_message .= 'Error: empty answer. ['.$_POST['antspm-q'].']<br> '.$rn;
+				} else {
+					$antispam_error_message .= 'Error: answer is wrong. ['.$_POST['antspm-q'].']<br> '.$rn;
+				}
 			}
 		}
 
@@ -155,7 +155,7 @@ if ( ! is_admin()) {
 
 
 function antispam_plugin_meta($links, $file) { // add some links to plugin meta row
-	if (strpos($file, 'anti-spam.php') !== false) {
+	if (strpos($file, 'anti-spam/anti-spam.php') !== false) {
 		$links = array_merge($links, array('<a href="http://web-profile.com.ua/wordpress/plugins/anti-spam/" title="Plugin page">Anti-spam</a>'));
 		$links = array_merge($links, array('<a href="http://web-profile.com.ua/donate/" title="Support the development">Donate</a>'));
 		$links = array_merge($links, array('<a href="http://codecanyon.net/item/antispam-pro/6491169?ref=webvitaly" title="Upgrade to Pro">Anti-spam Pro</a>'));

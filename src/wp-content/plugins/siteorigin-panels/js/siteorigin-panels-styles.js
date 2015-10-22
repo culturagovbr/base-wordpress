@@ -26,10 +26,15 @@
          * @param type
          * @param postId
          */
-        render: function( stylesType, postId ){
+        render: function( stylesType, postId, args ){
             if( typeof stylesType === 'undefined' ) {
                 return false;
             }
+
+            // Add in the default args
+            args  = _.extend( {
+                builderType : ''
+            }, args );
 
             this.$el.addClass('so-visual-styles');
 
@@ -41,6 +46,7 @@
                     action: 'so_panels_style_form',
                     type: stylesType,
                     style: this.model.get('style'),
+                    args : JSON.stringify( args ),
                     postId: postId
                 },
                 function( response ){
@@ -85,7 +91,10 @@
 
             // Set up the color fields
             if(typeof $.fn.wpColorPicker !== 'undefined') {
-                this.$('.so-wp-color-field').wpColorPicker();
+                if (typeof(panelsOptions.wpColorPickerOptions.palettes) == 'object' && !jQuery.isArray(panelsOptions.wpColorPickerOptions.palettes)) {
+                    panelsOptions.wpColorPickerOptions.palettes = $.map(panelsOptions.wpColorPickerOptions.palettes, function(el) { return el; });
+                }
+                this.$('.so-wp-color-field').wpColorPicker(soPanelsOptions.wpColorPickerOptions);
             }
 
             // Set up the image select fields

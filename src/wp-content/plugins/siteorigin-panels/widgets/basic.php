@@ -48,7 +48,7 @@ class SiteOrigin_Panels_Widgets_Layout extends WP_Widget {
 		if( !is_string( $instance['panels_data'] ) ) $instance['panels_data'] = json_encode( $instance['panels_data'] );
 
 		?>
-		<div class="siteorigin-page-builder-widget siteorigin-panels-builder" id="siteorigin-page-builder-widget-<?php echo esc_attr( $instance['builder_id'] ) ?>" data-builder-id="<?php echo esc_attr( $instance['builder_id'] ) ?>">
+		<div class="siteorigin-page-builder-widget siteorigin-panels-builder" id="siteorigin-page-builder-widget-<?php echo esc_attr( $instance['builder_id'] ) ?>" data-builder-id="<?php echo esc_attr( $instance['builder_id'] ) ?>" data-type="layout_widget">
 			<p>
 				<a href="#" class="button-secondary siteorigin-panels-display-builder" ><?php _e('Open Builder', 'siteorigin-panels') ?></a>
 			</p>
@@ -141,7 +141,7 @@ class SiteOrigin_Panels_Widgets_PostContent extends WP_Widget {
 				<?php endforeach ?>
 			</select>
 		</p>
-	<?php
+		<?php
 	}
 }
 
@@ -182,7 +182,7 @@ class SiteOrigin_Panels_Widgets_PostLoop extends WP_Widget{
 		//If Widgets Bundle post selector is available and a posts query has been saved using it.
 		if ( function_exists( 'siteorigin_widget_post_selector_process_query' ) && ! empty( $instance['posts'] ) ) {
 			$query_args = siteorigin_widget_post_selector_process_query($instance['posts']);
-			$instance['additional'] = $query_args['additional'];
+			$instance['additional'] = empty($query_args['additional']) ? array() : $query_args['additional'];
 		}
 		else {
 			if ( ! empty( $instance['posts'] ) ) {
@@ -203,6 +203,9 @@ class SiteOrigin_Panels_Widgets_PostLoop extends WP_Widget{
 			unset($query_args['template']);
 			unset($query_args['title']);
 			unset($query_args['sticky']);
+			if (empty($query_args['additional'])) {
+				$query_args['additional'] = array();
+			}
 		}
 		$query_args = wp_parse_args($query_args['additional'], $query_args);
 		unset($query_args['additional']);
@@ -225,8 +228,7 @@ class SiteOrigin_Panels_Widgets_PostLoop extends WP_Widget{
 		}
 		else {
 			// Get current page number when we're not using permalinks
-			$paged = filter_input( INPUT_GET, 'paged', FILTER_SANITIZE_NUMBER_INT );
-			$query_args['paged'] = $paged !== false ? $paged : 1;
+			$query_args['paged'] = isset($_GET['paged']) ? intval($_GET['paged']) : 1;
 		}
 
 		// Exclude the current post to prevent possible infinite loop
@@ -258,7 +260,7 @@ class SiteOrigin_Panels_Widgets_PostLoop extends WP_Widget{
 		}
 
 		global $more; $old_more = $more; $more = empty($instance['more']);
-
+		self::$rendering_loop = true;
 		if(strpos('/'.$instance['template'], '/content') !== false) {
 			while( have_posts() ) {
 				the_post();
@@ -268,12 +270,19 @@ class SiteOrigin_Panels_Widgets_PostLoop extends WP_Widget{
 		else {
 			locate_template($instance['template'], true, false);
 		}
+		self::$rendering_loop = false;
 
 		echo $args['after_widget'];
 
 		// Reset everything
 		wp_reset_query();
 		$depth--;
+	}
+
+	static $rendering_loop;
+
+	static function is_rendering_loop() {
+		return self::$rendering_loop;
 	}
 
 	/**

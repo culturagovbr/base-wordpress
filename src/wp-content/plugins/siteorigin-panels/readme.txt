@@ -1,8 +1,8 @@
 === Page Builder by SiteOrigin ===
 Tags: page builder, responsive, widget, widgets, builder, page, admin, gallery, content, cms, pages, post, css, layout, grid
-Requires at least: 3.9
-Tested up to: 4.2
-Stable tag: 2.1.1
+Requires at least: 4.0
+Tested up to: 4.3
+Stable tag: 2.1.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 Donate link: http://siteorigin.com/page-builder/#donate
@@ -93,9 +93,34 @@ Page Builder is actively developed and updated, so generally I'd recommend that 
 
 = Will plugin X work with Page Builder? =
 
-I've tried to ensure that Page Builder is compatible with most plugin widgets. It's best to just download Page Builder and test for yourself.
+We've tried to ensure that Page Builder is compatible with most plugin widgets. It's best to just download Page Builder and test for yourself.
 
 == Changelog ==
+
+= 2.2 - September 7 2015 =
+* Added prebuilt layout directory.
+* Added contextual menu for quick actions.
+* Added parallax background images.
+* Properly handle missing widgets when saving forms.
+* Don't revert to default page template when using custom home page interface.
+* Various minor bug fixes and improvements.
+
+= 2.1.5 - August 19 2015 =
+* Fixed handling of checkboxes and array fields.
+* Properly position Page Builder tab in WordPress 4.3.
+
+= 2.1.4 =
+* Fixed handling of raw forms.
+
+= 2.1.3 =
+* Removed use of filter_input for compatibility with HHVM
+* Fixed checkbox handling in forms.
+* Removed unnecessary sprintf calls to lower chance of translations causing issues.
+* More generic handling of builder instances to allow them to be used in different places.
+* Use implicit check for whether editor is undefined or null.
+* Added optional $widget_id parameter to siteorigin_panels_render_form.
+* Improved checking for home page in sidebars emulator.
+* Added a builder "type" to allow more targetted instances.
 
 = 2.1.2 =
 * Removed rendered content cache introduced in 2.1.1

@@ -7,7 +7,7 @@ Author: HackLab
 */
 
 class WidgetFacebookLikeBox extends WP_Widget {
-    function WidgetFacebookLikeBox() {
+    function __construct() {
         $widget_ops = array('classname' => 'FacebookLikeBox', 'description' => 'Adciona uma caixa de likes de sua página no Facebook' );
         wp_register_script('facebook_like_form', network_site_url() . 'wp-content/mu-plugins/includes/widgets/js/facebook-like.js', array('jquery'));
         wp_enqueue_script('facebook_like_form');
@@ -76,7 +76,9 @@ class WidgetFacebookLikeBox extends WP_Widget {
         <script type="text/javascript">
 		<!--
 			jQuery(document).ready(function() {
-				facebook_like_form_auto_height_init("<?php echo $this->get_field_id('fb-show-faces'); ?>", "<?php echo $this->get_field_id( 'fb-height' ); ?>");
+				if (typeof facebook_like_form_auto_height_init === "function") {
+					facebook_like_form_auto_height_init("<?php echo $this->get_field_id('fb-show-faces'); ?>", "<?php echo $this->get_field_id( 'fb-height' ); ?>");
+				}
 			});
 		//-->
 		</script>

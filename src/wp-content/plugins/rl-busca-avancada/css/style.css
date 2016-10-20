@@ -1,0 +1,10 @@
+.widget-busca-avancada .busca-texto{width: 94%;}
+.widget-busca-avancada .filtro-data{margin-top: 15px;}
+.widget-busca-avancada .from{width: 40%;float:left;}
+.widget-busca-avancada .to{width: 40%;float: right;}
+.widget-busca-avancada .ui-icon{float: left;}
+.widget-busca-avancada .ui-accordion-header{margin-top: 15px;}
+.widget-busca-avancada .clear{clear:both;}
+.widget-busca-avancada input[type="submit"]{float: right; margin-top: 15px;}
+.widget-busca-avancada .tag-listed.child{margin-left:20px;}
+.widget-busca-avancada .ui-state-default,.widget-busca-avancada .ui-widget-content .ui-state-default,.widget-busca-avancada .ui-widget-header .ui-state-default{background:none;}

@@ -149,3 +149,9 @@
 [submodule "src/wp-content/plugins/wp-barra-brasil"]
 	path = src/wp-content/plugins/wp-barra-brasil
 	url = git@github.com:redelivre/wp-barra-brasil.git
+[submodule "wp-divi-salic"]
+	path = wp-divi-salic
+	url = https://github.com/culturagovbr/wp-divi-salic.git
+[submodule "src/wp-content/themes/wp-divi-salic"]
+	path = src/wp-content/themes/wp-divi-salic
+	url = https://github.com/culturagovbr/wp-divi-salic.git

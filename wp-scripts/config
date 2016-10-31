@@ -4,9 +4,15 @@
 
 # vamos garantir que use a ultima versao dos scripts
 
+# Wordpress configs
 WP_SCRIPTS_DIR=$(cd `dirname "${BASH_SOURCE[0]}"` && pwd)
 BASE_DIR=${WP_SCRIPTS_DIR}/../
 PROJECT_DIR=${BASE_DIR}/src/
+
+# Git repository configs
+DEFAULT_BRANCH="master"
+DEFAULT_REMOTE="origin"
+
 
 cd "$PROJECT_DIR"
 

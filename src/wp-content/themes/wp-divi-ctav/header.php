@@ -87,8 +87,8 @@
 
         <div id="logo-header-tema">
             <a href="#" title="CENTRO T&Eacute;CNICO AUDIOVISUAL">
-                <div id="portal-title">CTAV</div>
-                <div id="portal-description" style="color: #F0C419">&nbsp;CENTRO T&Eacute;CNICO AUDIOVISUAL - Minist&eacute;rio da Cultura </div>
+                <div id="portal-title"><img src="/wp-content/uploads/sites/5/2016/11/LogoCTAV.fw_.png"></div>
+                <!--<div id="portal-description" style="color: #F0C419">&nbsp;CENTRO T&Eacute;CNICO AUDIOVISUAL - Minist&eacute;rio da Cultura </div>-->
             </a>
 
         </div>

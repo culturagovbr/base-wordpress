@@ -155,3 +155,6 @@
 [submodule "src/wp-content/themes/wp-divi-salic"]
 	path = src/wp-content/themes/wp-divi-salic
 	url = https://github.com/culturagovbr/wp-divi-salic.git
+[submodule "src/wp-content/themes/wp-divi-intranet"]
+	path = src/wp-content/themes/wp-divi-intranet
+	url = https://github.com/culturagovbr/wp-divi-intranet.git

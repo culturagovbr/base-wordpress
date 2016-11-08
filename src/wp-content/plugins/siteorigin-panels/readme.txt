@@ -2,8 +2,8 @@
 Tags: page builder, responsive, widget, widgets, builder, page, admin, gallery, content, cms, pages, post, css, layout, grid
 Requires at least: 4.0
 Tested up to: 4.6
-Stable tag: 2.4.17
-Build time: 2016-10-17T10:13:15+02:00
+Stable tag: 2.4.18
+Build time: 2016-11-07T14:30:51+02:00
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 Donate link: http://siteorigin.com/page-builder/#donate
@@ -95,6 +95,12 @@ Page Builder is actively developed and updated, so generally I'd recommend that 
 We've tried to ensure that Page Builder is compatible with most plugin widgets. It's best to just download Page Builder and test for yourself.
 
 == Changelog ==
+
+= 2.4.18 - 7 November 2016 =
+* Fixes for PHP 7 checker.
+* Properly provide post ID on custom home page.
+* Fixed CSS and JS URLs.
+* Corrected post__not_in issue for query builder.
 
 = 2.4.17 - 14 October 2016 =
 * Removed old Stellar JS library.

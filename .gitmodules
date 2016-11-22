@@ -133,3 +133,6 @@
 [submodule "src/wp-content/themes/wp-divi-intranet"]
 	path = src/wp-content/themes/wp-divi-intranet
 	url = https://github.com/culturagovbr/wp-divi-intranet.git
+[submodule "src/wp-content/plugins/wp-autenticacao-ad"]
+	path = src/wp-content/plugins/wp-autenticacao-ad
+	url = https://github.com/culturagovbr/wp-autenticacao-ad.git

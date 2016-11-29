@@ -98,7 +98,7 @@
         <div id="portal-searchbox" role="search">
                 <form role="search" method="get" class="" action="<?php echo esc_url( home_url( '/' ) ); ?>">
 					<?php
-						printf( '<input type="search" class="et-search-field"  accesskey="3" placeholder="%1$s" value="%2$s" name="s" title="%3$s" /> <input type="submit" value="Buscar" class="searchButton">',
+						printf( '<input type="search" class="et-search-field"  accesskey="3" placeholder="Buscar" value="Buscar" name="s" title="%3$s" /> <input type="submit" value="Buscar" class="searchButton">',
 							esc_attr__( 'Search &hellip;', 'Divi' ),
 							get_search_query(),
 							esc_attr__( 'Search for:', 'Divi' )

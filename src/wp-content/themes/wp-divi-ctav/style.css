@@ -3071,7 +3071,6 @@ img.alignright {
 #sidebar .et_pb_widget {
 	float: none;
 	width: 100%;
-	margin-bottom: 30px;
 }
 
 /* ET Widgets */
@@ -15503,4 +15502,10 @@ span.comment_date {
 	.et_pb_section .et_pb_column .et_pb_post_slider_image_bottom .et_pb_slide_video {
 		margin-bottom: 16% !important;
 	}
+}
+
+.category-noticias article img {
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 10px;
 }

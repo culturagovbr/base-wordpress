@@ -15509,3 +15509,67 @@ span.comment_date {
     margin-right: 20px;
     margin-bottom: 10px;
 }
+
+
+#main-content .et_pb_widget_area .menu-item-type-post_type:nth-child(even), #sidebar .widget_nav_menu .et_pb_widget ul li:nth-child(even) {
+    background-color: #F8FCFD;
+}
+
+.et_pb_widget_area .menu-item-type-post_type,  #sidebar .widget_nav_menu {
+    padding-left: 6px;
+}
+
+#sidebar .textwidget h4 {
+    background: rgba(0, 0, 0, 0) url("/wp-content/uploads/sites/5/2016/10/bar-blue.png") repeat-x scroll 0 0;
+    color: #dfedf6;
+    font-size: 16px;
+    height: 33px;
+    line-height: 33px;
+    padding: 0 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+#sidebar {
+    padding-left: 0 !important;
+}
+
+#sidebar .widget_nav_menu {
+    background: #dfedf6 none repeat scroll 0 0;
+    border: 1px solid #b5cddb;
+    margin-bottom: 30px;
+}
+
+#sidebar .widget_nav_menu ul li {
+     padding-left: 6px;
+     font-size: 12px;
+}
+
+#sidebar .widget_nav_menu ul li:nth-child(even) {
+     background-color: #F8FCFD;
+}
+
+
+
+.et_pb_blog_grid_wrapper article {
+    height: 300px;
+}
+
+.et_pb_widget_area .widget_nav_menu {
+     margin-bottom: 0 !important;
+}
+
+.page article .et_pb_section .et_pb_widget_area {
+    padding: 0;
+}
+
+/* caixas depoimentos */
+.et_pb_testimonial {
+    height: 400px;
+}
+
+article.et_pb_post .post-content p {
+    font-size: 12px;
+}
+

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+source "`dirname $0`/config"
+
+function main {
+    do_migra_wordpress || die "migra wordpress failed"
+}
+
+function do_migra_wordpress {
+    cd $WP_SCRIPTS_DIR
+
+    echo "Migrando base de dados para dominio local"
+    php migra_bd.php ${DB_NAME} ${DB_USER} %!%${DB_PASS}%!% ${DB_HOST} ${DOMAIN} $TABLE_PREFIX
+}
+
+main

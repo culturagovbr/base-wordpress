@@ -1,4 +1,7 @@
 
+- migra_banco (sem parâmetro):
+  - apenas migra urls do banco (coloca as urls baseadas no DOMAIN_CURRENT_SITE )
+
 - commit (sem parâmetro):
    - adiciona arquivos da pasta upload (ou blogs.dir)
    - faz UPDATE do git

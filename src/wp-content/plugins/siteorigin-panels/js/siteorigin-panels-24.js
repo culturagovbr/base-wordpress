@@ -3307,13 +3307,13 @@ module.exports = Backbone.View.extend( {
 
 		this.trigger( 'builder_rendered' );
 
-		this.$( '.so-tip-wrapper a' ).click( function( e ){
+		this.$( 'a.so-lesson-modal' ).click( function( e ){
 			e.preventDefault();
 			var $$ = $(this).blur();
 			var newwindow = window.open(
 				$$.attr('href'),
 				'signup-window',
-				'height=450,width=650,toolbar=false'
+				'height=600,width=650,toolbar=false'
 			);
 			if ( window.focus ) {
 				newwindow.focus();
@@ -3883,7 +3883,7 @@ module.exports = Backbone.View.extend( {
 	 */
 	updateEditorContent: function ( content ) {
 		// Switch back to the standard editor
-		if ( this.config.editorType !== 'tinymce' || _.isUndefined( tinyMCE ) || _.isNull( tinyMCE.get( "content" ) ) ) {
+		if ( this.config.editorType !== 'tinyMCE' || typeof tinyMCE === 'undefined' || _.isNull( tinyMCE.get( "content" ) ) ) {
 			var $editor = $( this.config.editorId );
 			$editor.val( content ).trigger( 'change' ).trigger( 'keyup' );
 		} else {
@@ -3930,7 +3930,7 @@ module.exports = Backbone.View.extend( {
 		var editorContent = '';
 		var editor;
 
-		if ( ! _.isUndefined( tinyMCE ) ) {
+		if ( typeof tinyMCE !== 'undefined' ) {
 			editor = tinyMCE.get( 'content' );
 		}
 		if ( editor && _.isFunction( editor.getContent ) ) {
@@ -4839,7 +4839,7 @@ module.exports = Backbone.View.extend( {
 				else if ( $$.prop( 'tagName' ) === 'TEXTAREA' && $$.hasClass( 'wp-editor-area' ) ) {
 					// This is a TinyMCE editor, so we'll use the tinyMCE object to get the content
 					var editor = null;
-					if ( ! _.isUndefined( tinyMCE ) ) {
+					if ( typeof tinyMCE !== 'undefined' ) {
 						editor = tinyMCE.get( $$.attr( 'id' ) );
 					}
 
@@ -5181,7 +5181,8 @@ module.exports = Backbone.View.extend( {
 
 		this.postToIframe(
 			{
-				live_editor_panels_data: JSON.stringify( data )
+				live_editor_panels_data: JSON.stringify( data ),
+				live_editor_post_ID: this.builder.config.postId
 			},
 			this.previewUrl,
 			this.$('.so-preview')

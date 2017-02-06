@@ -38,7 +38,7 @@ function wc_get_product( $the_product = false, $args = array() ) {
 function wc_update_product_stock( $product_id, $new_stock_level ) {
 	$product = wc_get_product( $product_id );
 
-	if ( ! metadata_exists( 'post', $product_id, '_stock' ) || $product->get_stock_quantity() !== $new_stock_level ) {
+	if ( $product && ( ! metadata_exists( 'post', $product_id, '_stock' ) || $product->get_stock_quantity() !== $new_stock_level ) ) {
 		$product->set_stock( $new_stock_level );
 	}
 }
@@ -228,8 +228,11 @@ function wc_product_post_type_link( $permalink, $post ) {
 	$terms = get_the_terms( $post->ID, 'product_cat' );
 
 	if ( ! empty( $terms ) ) {
-		usort( $terms, '_usort_terms_by_ID' ); // order by ID
-
+		if ( function_exists( 'wp_list_sort' ) ) {
+			$terms = wp_list_sort( $terms, 'term_id', 'ASC' );
+		} else {
+			usort( $terms, '_usort_terms_by_ID' );
+		}
 		$category_object = apply_filters( 'wc_product_post_type_link_product_cat', $terms[0], $terms, $post );
 		$category_object = get_term( $category_object, 'product_cat' );
 		$product_cat     = $category_object->slug;

@@ -45,6 +45,14 @@
 	path = src/wp-content/plugins/jaiminho
 	url = git@github.com:redelivre/jaiminho.git
 	branch = master
+[submodule "src/wp-content/plugins/jaiminho-sms"]
+	path = src/wp-content/plugins/jaiminho-sms
+        url = git@github.com:ethymos/jaiminho-sms.git
+	branch = master
+[submodule "src/wp-content/plugins/sitepress-multilingual-cms"]
+	path = src/wp-content/plugins/sitepress-multilingual-cms
+	url = git@gitlab.ethymos.com.br:ethymos/sitepress-multilingual-cms.git
+	branch = master
 [submodule "src/wp-content/themes/mobilize"]
 	path = src/wp-content/themes/mobilize
 	url = git@github.com:redelivre/mobilize.git
@@ -132,3 +140,25 @@
 [submodule "src/wp-content/plugins/wp-autenticacao-ad"]
 	path = src/wp-content/plugins/wp-autenticacao-ad
 	url = https://github.com/culturagovbr/wp-autenticacao-ad.git
+
+[submodule "src/wp-content/plugins/wpdialoga"]
+	path = src/wp-content/plugins/wpdialoga
+	url = git@github.com:redelivre/wpdialoga.git
+ 	branch = master
+
+[submodule "src/wp-content/themes/assineja"]
+	path = src/wp-content/themes/assineja
+	url = git@gitlab.ethymos.com.br:campanhacompleta/assineja.git
+[submodule "src/wp-content/themes/meth"]
+	path = src/wp-content/themes/meth
+	url = git@gitlab.ethymos.com.br:ethymos/meth.git
+	branch = master
+
+[submodule "src/wp-content/themes/voice"]
+	path = src/wp-content/themes/voice
+	url = git@gitlab.ethymos.com.br:ethymos/voice.git
+	branch = master
+[submodule "src/wp-content/themes/voice-child"]
+	path = src/wp-content/themes/voice-child
+	url = git@gitlab.ethymos.com.br:ethymos/voice-child.git
+	branch = master

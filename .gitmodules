@@ -162,7 +162,3 @@
 	path = src/wp-content/themes/voice-child
 	url = git@gitlab.ethymos.com.br:ethymos/voice-child.git
 	branch = master
-[submodule "wp-divi-intranet"]
-	path = wp-divi-intranet
-	url = https://github.com/culturagovbr/wp-divi-intranet
-	branch = master

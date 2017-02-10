@@ -1,0 +1,620 @@
+#header {
+    padding: 14px 0 0 0;
+    background-color: #34378F;
+    height: 230px;
+    /* Old browsers */
+    background-color: #0A5517;
+    background-image: -moz-radial-gradient(center, ellipse cover, #1074BC 1%, #34378F 100%);
+    /* FF3.6+ */
+    background-image: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(1%,#1074BC), color-stop(100%, #34378F));
+    /* Chrome,Safari4+ */
+    background-image: -webkit-radial-gradient(center, ellipse cover, #1074BC 1%, #34378F 100%);
+    /* Chrome10+,Safari5.1+ */
+    background-image: -o-radial-gradient(center, ellipse cover, #1074BC 1%, #34378F 100%);
+    /* Opera 12+ */
+    background-image: -ms-radial-gradient(center, ellipse cover, #1074BC 1%, #34378F 100%);
+    /* IE10+ */
+    background-image: radial-gradient(ellipse at center, #1074BC 1%, #34378F 100%);
+    color: #fff;
+    /* IE6-9 fallback on horizontal gradient */
+    filter:progid: DXImageTransform.Microsoft.gradient( startColorstr="#1074BC", endColorstr="#34378F",GradientType=1);
+}
+
+/* Menu de Acessibilidade
+   ========================================================================== */
+
+#accessibility {
+
+}
+
+#accessibility a {
+    color: #fff;
+}
+
+#accessibility li {
+    display: inline;
+}
+
+#accessibility span {
+    background: url("../img/bg-acess-key.gif") center center no-repeat;
+    color: #006600;
+}
+
+/* Titulo do portal
+   ========================================================================== */
+
+#portal-logo,
+#portal-title { color: #fff !important; }
+
+/* Menu site actions - Acessibilidade, Alto Contraste, Mapa do site
+   ========================================================================== */
+
+#portal-siteactions,
+#portal-language { border-bottom: 1px dotted #9bc2a3; }
+
+#portal-siteactions a,
+#portal-siteactions a:hover,
+#portal-language a,
+#portal-language a:hover { color: #fff !important; }
+
+/* Menu sobre o portal
+   ========================================================================== */
+
+#sobre { background: #00420c; }
+
+#sobre a { color: #fff; }
+
+#sobre .portalservicos-item a { border-right: 1px solid #6c9072; }
+
+/* Formulário de busca
+   ========================================================================== */
+
+#portal-searchbox { border: 1px solid #CCCCCC; }
+
+
+/* ==========================================================================
+   Sprinte Icons
+   ========================================================================== */
+
+/* icones de redes sociais */
+#social-icons a,
+    /* central de conteudo */
+.item-central .link-videos,
+.item-central .link-audios,
+.item-central .link-infograficos,
+.item-central .link-publicacoes,
+.item-central .link-fotos,
+.item-central .link-aplicativos,
+.item-central .link-dadosabertos,
+    /* icone do botão de busca */
+#header input.searchButton { background-image: url("../img/sprite.png"); }
+/* icone do botão de relatar erros */
+#content .relatar-erros a { background: url("../img/icon-reportar-erros.png") no-repeat; }
+
+#header > div {
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    max-width:1060px;
+}
+
+
+#accessibility {
+    display: block !important;
+    float: left;
+    font-size: 0.8em;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#accessibility a {
+    margin-right: 8px;
+}
+
+#accessibility span {
+    padding: 0 4px;
+}
+
+/* Titulo do portal
+   ========================================================================== */
+
+#logo-header-tema {
+    float: left;
+    padding: 0;
+    width: 70%;
+}
+
+#logo {
+    display: none;
+}
+
+#logo-header-tema span {
+    position: absolute;
+    display: block;
+    line-height: 0em;
+}
+
+#portal-logo {
+    display: block;
+    margin: 0;
+    width: 100%;
+}
+
+#portal-title {
+    margin: 0;
+    margin: 36px 0 -6px;
+    color: #fff;
+    font-size: 5.35em;
+    font-family: "open_sansbold", Arial, Helvetica, sans-serif;
+    line-height: 1em;
+}
+
+#logo-header-tema .logo {
+    margin-bottom: 0.2em;
+    font-size: 3em !important;
+    line-height: 1.1em;
+}
+
+#portal-title-1 { top: 30px; }
+
+#portal-description {
+    bottom: 8px;
+    text-transform: nome;
+    font-size: 1.2em;
+}
+
+/*
+ * Personal Tools - Menu de administração
+ */
+
+#portal-personaltools {
+    position: absolute;
+    top: 0px;
+    right: 0;
+    float: left;
+    font-size: 1.2em;
+}
+
+/* Menu de idioma
+   ========================================================================== */
+
+#language {
+    float: right;
+    margin-left: 20px;
+    padding-bottom: 2px;
+    border-bottom: 1px dotted #9bc2a3;
+    font-size: 0.93em;
+}
+
+#language li { display: inline; }
+
+#language a {
+    padding: 4px 0 4px 10px;
+    color: #d9ffe3;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+#language a:hover { color: #fff !important; }
+
+#language .language-en {
+    margin-right: 0.5em;
+}
+
+#language .language-en a {
+    padding-left: 0;
+}
+
+/* Menu site actions - Acessibilidade, Alto Contraste, Mapa do site
+   ========================================================================== */
+
+#portal-siteactions {
+    display: block;
+    float: right;
+    clear: none;
+    padding-bottom: 2px;
+}
+
+#portal-siteactions li { display: inline; }
+
+#portal-siteactions a {
+    padding: 4px 0 4px 10px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 11px;
+}
+
+#siteaction-accessibility a { padding-left: 0; }
+
+#portal-siteactions .last-item { margin-right: 0; }
+
+/* Links de redes sociais
+   ========================================================================== */
+
+#social-icons {
+    float: right;
+    clear: right;
+    margin: 1.167em 0;
+}
+
+#social-icons ul { display: table-row; }
+#social-icons li { display: table-cell; }
+
+#social-icons li a {
+    border: none;
+    padding: 0 0 0 5px;
+}
+
+/* Menu sobre o portal
+   ========================================================================== */
+
+#sobre {
+    clear: both;
+    margin: 0;
+    padding: 5px 0;
+    max-width: 100% !important;
+    line-height: 20px;
+}
+
+#sobre ul {
+    margin: 0 auto;
+    max-width: 960px;
+    text-align: right;
+}
+
+#sobre .portalservicos-item a { padding: 0 10px; }
+
+#sobre .last-item a {
+    padding: 0 0 0 10px;
+    border-right: none !important;
+}
+
+/* Formulário de busca
+   ========================================================================== */
+
+.LSBox {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+input.searchField { -moz-appearance: none; }
+
+#portal-searchbox {
+    float: right;
+    clear: right !important;
+    margin: 3.12em 0 0 0;
+    padding: 2px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background: #fff;
+    text-align: right;
+    font-size: 80%;
+}
+
+#portal-searchbox .searchField {
+    padding: 0.3em 0.35em;
+    width: 186px;
+    border: none;
+    border-right: none;
+    font-size: 1.2em;
+    font-family: "open_sansregular", Arial, Helvetica, sans-serif;
+}
+
+#searchGadget,
+#header input.searchButton {
+    padding: 0.3em;
+    padding: 4px 15px;
+    border: none;
+    background: transparent;
+    text-indent: -2000px;
+}
+
+#header input.searchButton {
+    background: url("../img/search-button.gif") no-repeat 3px 2px #FFFFFF;
+}
+
+#LSResult {
+    z-index: 1;
+    margin-top: 0.5%;
+}
+
+
+
+
+/* Barra Servicos */
+
+#main-header {   
+    background-color: #2c4499;
+}
+
+#top-menu a {
+color: #FFFFFF;
+}
+
+/* Footer do Rodapé */
+#footer-widgets .footer-widget li a {   
+   /* padding: 0px 0.83em; */
+    overflow: hidden;
+    margin: 0.83em 0px 1.66em;     
+}
+
+.menu-menu-rodape-container {
+      border-left: 1px dotted rgb(125, 196, 138);
+       padding: 0px 0.3em 0 0.3em;
+}
+
+
+#footer-widgets > div {
+    margin: 2em auto;
+    padding-top: 1em;
+    max-width: 960px;
+}
+
+#footer-widgets > div {
+    margin: 2em auto;
+    padding-top: 1em;
+    max-width: 960px;
+}
+
+#footer-widgets .footer-widget li:before {
+    border-style: none;
+}
+
+#footer-widgets .footer-logos {
+    margin: 0 0 -20px;
+    padding: 2em 0;
+    max-width: 100%;
+    background: #00420c;
+}
+
+.footer-logos > div {
+    margin: 0 auto;
+    max-width: 960px;
+}
+
+/* hack */
+.et_pb_gutters3.et_pb_footer_columns4 .footer-widget {
+   width: 25%;
+}
+
+
+#footer-widgets .logo-brasil img { float: right; }
+
+#extra-footer-widgets p {
+    margin: 1em auto;
+    max-width: 960px;
+}
+
+ul {
+ list-style-type:none
+ } 
+
+/* Rodapé Fonte do Titulo */
+#main-footer .footer-widget h4 {
+    color: #FFFFFF;
+    font-size: 22px;    
+}
+
+/* Input do Pesquisar */
+
+.et-search-form input {
+    position: absolute;
+    top: 10px;
+    right: 32px;
+    bottom: 11px;
+    width: 199px;
+    height: 40px;
+    margin: auto;
+    border: none;
+    color: #333;
+    background: #f9f9f9;
+    float: left;
+    display: block;
+    margin-right: 4.34783%;   
+    display: block;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 4px;
+    border-top: 2px solid #d5d5d5;
+    border-bottom: 0;
+    border-left: 2px solid #d5d5d5;
+    border-right: 0;
+    box-shadow: inset -2px -2px 5px -1px #f0f2f1;
+    font-size: 0.8125em;
+    
+    padding: 0.3em 0.35em;
+    width: 186px;
+    border: none;
+    border-right: none;
+    font-size: 1.2em;
+    font-family: "open_sansregular", Arial, Helvetica, sans-serif;
+}
+
+/* CSS da busca */
+
+.widget_search input#s, .widget_search input#searchsubmit {
+    height: 40px !important;
+    margin: 0;
+    padding: -1.3em;
+    border: 1px solid #00420c;
+    color: #666;
+    font-size: 12px; 
+    /* line-height: normal !important; */
+}
+
+dl.nav-tree dt {
+    background: #f0f2f1;
+    border-bottom: 1px solid #d5d5d5;
+    color: #606060;
+    cursor: pointer;
+    margin: 0;
+    padding: 15px 10px;
+    text-transform: capitalize;
+    font-family: "open_sansbold", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+/* MENU BARRA HORIZONTAL */
+
+
+.fullwidth-menu li li a {
+    width: 500px;
+    padding: 6px 20px;
+}
+
+
+
+.nav li ul {
+    visibility: hidden;
+    z-index: 9999;
+    width: 459px;
+    border-top: 3px solid #2ea3f2;
+    opacity: 0;
+    background: #fff;
+}
+
+
+
+/* OCULTAR INFOR DO RODAPE */
+
+#footer-info {
+    float: left;
+    padding-bottom: 10px;
+    color: #666;
+    text-align: left;
+    display: none;
+}
+
+
+/* MENU PRINCIPAL */ 
+
+.wpb_category_n_menu_accordion > ul > li:not(:last-child) > a {
+    border-bottom: 1px solid #fefffe!important;
+}
+
+.wpb_category_n_menu_accordion > ul > li > a {
+    font-size: 14px;
+    line-height: 20px;
+    padding: 14px 22px;
+    background: #00420c;
+    color: #f5f5f5!important;
+}
+
+.et_color_scheme_green #top-menu li.current-menu-item > a {
+    color: #999;
+}
+
+
+#accessibility span {
+    padding: 0 3px;
+    background: #34378F;
+    color: #fff;
+}
+
+ /* NOVA COLOCACAO */ 
+
+/* icones de redes sociais */
+#social-icons a,
+/* central de conteudo */
+.item-central .link-videos,
+.item-central .link-audios,
+.item-central .link-infograficos,
+.item-central .link-publicacoes,
+.item-central .link-fotos,
+.item-central .link-aplicativos,
+.item-central .link-dadosabertos,
+
+#social-icons a, .item-central .link-videos, .item-central .link-audios, .item-central .link-infograficos, .item-central .link-publicacoes, .item-central .link-fotos, .item-central .link-aplicativos, .item-central .link-dadosabertos, #header input.searchButton {
+    background-image: url("/wp-content/uploads/sites/2/2016/08/sprite.png");
+}
+#header input.searchButton {
+    background-position: 0px 2px;
+    padding-right: 5px;
+}
+#searchGadget, #header input.searchButton {
+    padding: 0.3em;
+    padding: 4px 15px;
+    border: none;
+    background: transparent;
+    text-indent: -2000px;
+}
+#searchGadget, .LSBox input.searchButton {
+}
+
+
+
+/* Formulário de busca
+   ========================================================================== */
+
+.LSBox {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+input.searchField { -moz-appearance: none; }
+
+#portal-searchbox {
+    float: right;
+    clear: right;
+    margin: 3.12em 0 0 0;
+    padding: 2px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background: #fff;
+    text-align: right;
+    font-size: 80%;
+}
+
+#portal-searchbox .searchField {
+    padding: 0.3em 0.35em;
+    width: 186px;
+    border: none;
+    border-right: none;
+    font-size: 1.2em;
+    font-family: "open_sansregular", Arial, Helvetica, sans-serif;
+}
+
+#searchGadget,
+#header input.searchButton {
+    padding: 0.3em;
+    padding: 4px 15px;
+    border: none;
+    background: transparent;
+    text-indent: -2000px;
+}
+
+#header input.searchButton {
+    background: url("/wp-content/uploads/sites/2/2016/08/search-button.gif") no-repeat 3px 2px #FFFFFF;
+}
+
+#LSResult {
+    z-index: 1;
+    margin-top: 0.5%;
+}
+
+
+
+/* MENU PRINCIPAL DA INTRANET */ 
+
+#main-header {    
+    z-index: 1;
+}
+
+.et_pb_widget {
+  margin-bottom: 5% !important;
+}
+
+/* RSS / clipping */
+.rss-aggregator li {
+   list-style: none;
+}
+
+.rss-aggregator li.feed-item {
+    margin-bottom: 0;
+}
+
+.home .feed-date {
+  display: none;
+}

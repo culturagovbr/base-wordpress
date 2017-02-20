@@ -166,3 +166,9 @@
 	path = wp-divi-intranet
 	url = https://github.com/culturagovbr/wp-divi-intranet
 	branch = master
+[submodule "src/wp-content/plugins/base_wordpress_presets"]
+	path = src/wp-content/plugins/base_wordpress_presets
+	url = https://github.com/culturagovbr/base_wordpress_presets.git
+[submodule "src/wp-content/plugins/base-wordpress-presets"]
+	path = src/wp-content/plugins/base-wordpress-presets
+	url = https://github.com/culturagovbr/base-wordpress-presets.git

@@ -1,0 +1,14 @@
+#!/bin/bash
+#
+# Arquivo de configurações do atualizador wordpress
+
+LOG_FILE=/tmp/atualizacao-wp.log
+WP_ROOT=/var/www/base-wordpress/src
+BRANCH=atualizacao
+
+ATUALIZAR_SUBMODULOS=0
+ATUALIZAR_PLUGINS=1
+ATUALIZAR_THEMES=1
+COMMIT=1
+PUSH_COMMIT=1
+ATUALIZAR_CORE=1

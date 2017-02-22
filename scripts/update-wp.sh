@@ -16,17 +16,7 @@ function set_configs {
     #
     # configurações padrão
     #
-    
-    LOG_FILE=/tmp/atualizacao-wp.log
-    WP_ROOT=/var/www/base-wordpress/src
-    BRANCH=atualizacao
-    
-    ATUALIZAR_SUBMODULOS=0
-    ATUALIZAR_PLUGINS=1
-    ATUALIZAR_THEMES=1
-    COMMIT=0
-    PUSH_COMMIT=0
-    ATUALIZAR_CORE=1
+    source update-wp.conf
 }
 
 
@@ -39,7 +29,7 @@ function check_configs {
 	die "Diretório $WP_ROOT não existe! \nCorrija alterando a variável WP_ROOT"
     fi
 
-    is_wp=$(wp core version 2>&1 > /dev/null)
+    is_wp=$(cd $WP_ROOT; wp core version 2>&1 > /dev/null)
     if [[ $is_wp == *"Error"* ]]; then
 	die "O diretório $WP_ROOT não é uma instalação de wordpress válida! \nCorrija alterando a variável WP_ROOT"
     else
@@ -186,6 +176,7 @@ function update {
 function main {
     set_configs
     check_configs
+    cd $WP_ROOT
     
     if [ "$1" = "reset" ]; then
 	reset_updates

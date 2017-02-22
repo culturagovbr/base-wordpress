@@ -53,10 +53,6 @@
 	path = src/wp-content/plugins/sitepress-multilingual-cms
 	url = git@gitlab.ethymos.com.br:ethymos/sitepress-multilingual-cms.git
 	branch = master
-[submodule "src/wp-content/themes/mobilize"]
-	path = src/wp-content/themes/mobilize
-	url = git@github.com:redelivre/mobilize.git
-	branch = master
 [submodule "src/wp-content/themes/pontosdecultura"]
 	path = src/wp-content/themes/pontosdecultura
 	url = git@github.com:redelivre/pontosdecultura.git
@@ -172,3 +168,6 @@
 [submodule "src/wp-content/plugins/base-wordpress-presets"]
 	path = src/wp-content/plugins/base-wordpress-presets
 	url = https://github.com/culturagovbr/base-wordpress-presets.git
+[submodule "src/wp-content/plugins/mobilize"]
+	path = src/wp-content/plugins/mobilize
+	url = git@github.com:redelivre/mobilize.git

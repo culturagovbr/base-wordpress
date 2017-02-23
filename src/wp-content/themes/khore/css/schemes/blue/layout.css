@@ -1,0 +1,341 @@
+::selection { background: #3c81d5; }
+::-moz-selection { background: #3c81d5; }
+a { color: #3c81d5; }
+.nav-wrapper ul li a.section-button:hover {
+    border-color: #3c81d5;
+}
+.nav-wrapper ul li.register:before {
+    background: #3c81d5;
+}
+header.header.shrink .nav-right a {
+    background: #3c81d5;
+}
+header.header nav.nav-wrapper.wide li a:hover {
+    color: #3c81d5;
+}
+header.header .right-icon {
+    background: #3c81d5;
+}
+.nav-wrapper ul li.current-menu-item {
+    color: #3c81d5;
+}
+.nav-wrapper ul li a:hover {
+    color: #3c81d5;
+}
+.nav-wrapper .close-menu:hover,
+.nav-wrapper ul li ul li a:hover {
+    color: #3c81d5;
+}
+.header-video .section-button {
+    border-color:#3c81d5;
+}
+section.fullwidth.gold {
+    background: #3c81d5;
+}
+section.fullwidth.black-gold {
+    color: #3c81d5;
+}
+section.fullwidth.black-gold h2,
+section.fullwidth.black-gold .input-group .form-control,
+section.fullwidth.black-gold .input-group .btn,
+section.fullwidth.black-gold .input-group .input-group-addon,
+section.fullwidth.black-gold .input-group .form-control {
+    color: #3c81d5;
+}
+
+section.fullwidth.black-gold .input-group .form-control,
+section.fullwidth.black-gold .input-group .btn,
+section.fullwidth.black-gold .input-group .input-group-addon {
+    border-color: #3c81d5;
+}
+section.fullwidth.black-gold .input-group .btn:hover {
+    background: #3c81d5;
+}
+.speaker.featured:hover .speaker-name {
+    color: #3c81d5;
+}
+.speaker.featured .speaker-name {
+    color: #3c81d5;
+}
+.speaker .read-more-link {
+    color: #3c81d5;
+}
+.speaker .read-more-link .readmore-icon {
+    color: #3c81d5;
+}
+.content .session-box:hover .item .session-title a {
+    color: #3c81d5;
+}
+section.fullwidth.site-slider .section-button {
+    border-color: #3c81d5;
+}
+section.fullwidth.site-slider:after{
+    background: #3c81d5;
+}
+section.v2 .slider-content p {
+    color: #3c81d5;
+}
+section.header-solid.v2 .slider-content .section-button {
+    border-color: #3c81d5;
+}
+.est-date {
+    color: #3c81d5;
+}
+.est-date span {
+    border-top-color: #3c81d5;
+    border-bottom-color: #3c81d5;
+}
+.est-date.s span {
+    border-top-color: #3c81d5;
+    border-bottom-color: #3c81d5;
+}
+section.fullwidth .carousel-articles .item {
+    border-bottom-color: #3c81d5;
+}
+section.fullwidth .carousel-articles a:hover {
+    color: #3c81d5;
+}
+section.fullwidth .carousel-articles .item:hover .read-more-link {
+    color: #3c81d5;
+}
+section.fullwidth .carousel-sessions .session-title a:hover {
+    color: #3c81d5;
+}
+section.fullwidth .carousel-sessions .on-stage {
+    color: #3c81d5;
+}
+section.regular.social .social-box {
+    border-color: #3c81d5;
+}
+section.regular.social .social-box i {
+    color: #3c81d5;
+}
+section.regular .carousel-instagram .instagram-image:hover .tint:after {
+    box-shadow: inset 0 0 0 4px #3c81d5;
+}
+.contacts a {
+    color: #3c81d5 ;
+}
+.contacts .input-group:hover .input-group-addon,
+.contacts .input-group:hover .form-control {
+    border-color: #3c81d5;
+}
+.contacts .input-group:hover .form-control {
+    box-shadow: inset 0 0 0 2px #3c81d5 !important;
+}
+.contacts .input-group:hover .input-group-addon {
+    background: #3c81d5;
+}
+.contacts .section-button {
+    border-color: #3c81d5;
+}
+.contacts .section-button:hover {
+    color: #3c81d5;
+}
+.gallery-player .active {
+    border-color: #3c81d5;
+}
+section.fullwidth.map-slider .city.active {
+    box-shadow: inset 0 0 0 2px #3c81d5;
+}
+section.fullwidth.map-slider .city.active a {
+    color: #3c81d5;
+}
+section.fullwidth.map-slider .map-title {
+    color: #3c81d5;
+}
+a.button:hover {
+    color: #3c81d5;
+}
+.section-button.normal {
+    border-color: #3c81d5;
+    color: #3c81d5;
+}
+.section-button:hover,
+.section-button:active {
+    background: #3c81d5;
+    border-color: #3c81d5;
+}
+.ticket-box.white-hover:hover .box-price {
+    color: #3c81d5;
+}
+.ticket-box.white-hover:hover .section-button {
+    background: #3c81d5;
+}
+.ticket-box:hover,
+.ticket-box.featured {
+    background: #3c81d5;
+}
+.ticket-box:hover .section-button,
+.ticket-box.featured .section-button {
+    color: #3c81d5;
+}
+.ticket-box .box-price {
+    color: #3c81d5;
+}
+.ticket-box .section-button {
+    color: #3c81d5;
+    border-color: #3c81d5;
+}
+.wide-panel.tweet .posted-time{
+    color: #3c81d5;
+}
+.tint:hover {
+    background: #3c81d5;
+}
+.tint:after {
+    background: #3c81d5;
+}
+.page-content-nav .open > a {
+    color: #3c81d5;
+}
+.schedule-heading,
+.schedule-heading .stickit {
+    color: #3c81d5;
+}
+.schedule-heading .page-content-nav a {
+    color: #3c81d5
+}
+.rsDefault .rsThumb.rsNavSelected {
+    border-color: #3c81d5;
+}
+.entry {
+    border-bottom-color: #3c81d5;
+}
+.single .entry:hover {
+    border-bottom-color: #3c81d5;
+}
+.entry:hover .entry-title a,
+.entry:hover .read-more-link {
+    color: #3c81d5;
+}
+.entry-title .c-gold:hover {
+    color: #3c81d5 !important; 
+}
+#comments .section-button {
+    border-color: #3c81d5;
+}
+#comments .submit-comment {
+    color: #3c81d5 !important;
+}
+#comments .comments-area .comment .comment-author a {
+    color: #3c81d5;
+}
+#site-footer .widgets .widget-title {
+    border-bottom-color: #3c81d5;
+}
+#site-footer .widgets a:hover {
+    color: #3c81d5;
+}
+#site-footer .bottom-footer a {
+    color: #3c81d5;
+}
+#site-footer .bottom-footer .icons a:hover i {
+    color: #3c81d5;;
+}
+.pagination>.active>a,
+.pagination>.active>span,
+.pagination>.active>a:hover,
+.pagination>.active>span:hover,
+.pagination>.active>a:focus,
+.pagination>.active>span:focus {
+    background: #3c81d5;
+}
+.visible-xs ul.pagination .owl-wrapper-outer li.active {
+    background: #3c81d5;
+}
+.bg-gold {
+    background: #3c81d5 !important;
+}
+.label.bg-gold:hover, .label.bg-gold.active {
+    border-color: #3c81d5;
+    color: #3c81d5;
+}
+.c-gold { 
+    color: #3c81d5 !important;
+}
+.c-red:hover 		{ color: #3c81d5 !important; }
+.c-blue:hover 		{ color: #3c81d5 !important; }
+.c-yellow:hover 	{ color: #3c81d5 !important; }
+.c-green:hover 		{ color: #3c81d5 !important; }
+.c-azure:hover 		{ color: #3c81d5 !important; }
+.c-navi:hover 		{ color: #3c81d5 !important; }
+.c-gras:hover 		{ color: #3c81d5 !important; }
+.c-dark:hover 		{ color: #3c81d5 !important; }
+.c-white:hover 		{ color: #3c81d5 !important; }
+.c-gray:hover 		{ color: #3c81d5 !important; }
+.twitter a:hover {
+    color: #3c81d5 !important;
+}
+.section-button:hover,
+.section-button:active {
+    background: #3c81d5;
+    border-color: #3c81d5;
+}
+section.fullwidth.gold .input-group:hover .input-group-btn .btn {
+    color: #3c81d5;
+}
+section.map-slider .carousel-control.left:hover i, section.map-slider .carousel-control.right:hover i {
+    color: #3c81d5;
+}
+.rsDefault .rsThumb.rsNavSelected {
+    border-color: #3c81d5;
+}
+li.current-menu-item>a {
+    color: #3c81d5 !important;
+}
+section.v2 .slider-content p {
+    color: #3c81d5;
+}
+.speaker.featured .speaker-image:hover {
+    border-color: #3c81d5;
+}
+input.form-control:focus {
+    box-shadow: inset 0 0 3px #3c81d5 !important;
+}
+input.form-control:focus ~ .input-group-btn button {
+    background: #3c81d5 !important;
+}
+.pagination > li > span.current{
+	background: #3c81d5;
+}
+header.header-sticked .menu-handler {
+    color: #3c81d5;
+}
+.main-navigation li.menu-item-has-children > a, .main-navigation li.menu-item-has-children > i.fa {
+    color: #3c81d5;
+}
+
+@media only screen and (max-width : 1200px) {
+    .ticket-box .section-button {
+        color: #3c81d5;
+        border-color: #3c81d5;
+    }
+    
+    .est-date.s span {
+        border-top-color: #3c81d5;
+        border-bottom-color: #3c81d5;
+    }
+}
+
+@media (max-width: 767px) {
+    .tweet-box .tweet-title,
+    .wide-panel.tweet .posted-time {
+        color: #3c81d5;
+    }
+}
+
+@media only screen and (max-width : 480px) {
+    .ticket-box .section-button:after {
+        background: #3c81d5;	
+    }
+    .ticket-box:hover .section-button:after {
+        color: #3c81d5;
+    }
+    section.fullwidth.map-slider .city.active a {
+        color: #3c81d5;
+    }
+    section.fullwidth.map-slider .city.active a {
+        color: #3c81d5;
+    }
+}

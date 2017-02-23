@@ -1,0 +1,3 @@
+.sortable-container ul {list-style-type: none; margin: 0 0 10px 0; min-height: 45px; overflow: hidden; border: 2px solid #eaeaea;}
+.sortable-container li {float:left; margin: 10px; cursor:default; padding: 3px;}
+.sortable-container li span { position: absolute; margin-left: -1.3em; }

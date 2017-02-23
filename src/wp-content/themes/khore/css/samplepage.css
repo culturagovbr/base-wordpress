@@ -1,0 +1,207 @@
+.samplepage{
+    color: #929292;
+    font-size: 1.5em;
+    line-height: 1.8em;
+}
+.samplepage .hero{
+    width: 100%;
+    height: auto;
+    margin-bottom: 30px;
+}
+.samplepage .site__title{
+    text-align: center;
+    color:#2C2C2C;
+}
+.samplepage .row{
+    width: 90%;
+    margin: 0 auto;
+}
+.samplepage .row .row{
+    width: 100%;
+}
+.samplepage .content h1{
+    text-transform: uppercase;
+    text-align: left;
+    color: #2C2C2C;
+    font-size: 60px;
+}
+.samplepage .content h2{
+    text-transform: uppercase;
+    text-align: left;
+    color: #2C2C2C;
+    font-size: 50px;
+}
+.samplepage .content h3{
+    text-transform: uppercase;
+    text-align: left;
+    color: #2C2C2C;
+    font-size: 40px;
+}
+.samplepage .content h4{
+    text-transform: uppercase;
+    text-align: left;
+    color: #2C2C2C;
+    font-size: 30px;
+}
+.samplepage .content h5{
+    text-transform: uppercase;
+    text-align: left;
+    color: #2C2C2C;
+    font-size: 20px;
+}
+.samplepage .content h6{
+    text-transform: uppercase;
+    text-align: left;
+    color: #2C2C2C;
+    font-size: 10px;
+}
+.samplepage ul{
+    list-style-type: initial;
+    margin-left: 22px;
+    font-size: 18px;
+}
+.samplepage .large-ghost-button{
+    font-family: Dosis, sans-serif;
+    border: 2px solid #929292;
+    text-decoration: none;
+    background: rgba(0, 0, 0, 0);
+    padding: 10px 20px;
+    text-transform: uppercase;
+    display: inline-block;
+    font-size: 1.8em;
+    color: #2C2C2C;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.samplepage .large-ghost-button:hover{
+    border: 2px solid #2C2C2C;
+    text-decoration: none;
+}
+.samplepage .normal-ghost-button{
+    font-family: Dosis, sans-serif;
+    background: rgba(0, 0, 0, 0);
+    padding: 5px 10px;
+    border: 2px solid #929292;
+    text-transform: uppercase;
+    display: inline-block;
+    font-size: 1.5em;
+    color: #2C2C2C;
+    text-align: center;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+.samplepage .normal-ghost-button:hover{
+    border: 2px solid #2C2C2C;
+    text-decoration: none;
+}
+.samplepage .black-buy-button{
+    font-family: Dosis, sans-serif;
+    border: 2px solid #2C2C2C;
+    text-decoration: none;
+    background: #2C2C2C;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    display: inline-block;
+    font-size: 1.8em;
+    color: #FFF;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.samplepage .black-buy-button:hover{
+    text-decoration: none;
+}
+.samplepage .white-buy-button{
+    font-family: Dosis, sans-serif;
+    border: 2px solid #FFF;
+    text-decoration: none;
+    background: #FFF;
+    color: #2C2C2C;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    display: inline-block;
+    font-size: 1.8em;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.samplepage .white-buy-button:hover{
+    text-decoration:none;
+}
+.samplepage .hover-buy-button{
+    font-family: Dosis, sans-serif;
+    background: #F25421;
+    padding: 10px 20px;
+    border: 2px solid #F25421;
+    text-transform: uppercase;
+    display: inline-block;
+    font-size: 1.8em;
+    color: #FFF;
+    text-align: center;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+.samplepage .hover-buy-button:hover{
+    border: 2px solid #2C2C2C;
+    text-decoration: none;
+    background: #2C2C2C;
+}
+
+/* Embedded in editor */
+
+.samplepage.embedded-editor{
+    font-family: Georgia, "Times New Roman", "Bitstream Charter", Times, serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    margin: 9px 10px;
+    max-width: 100%;
+    -webkit-font-smoothing: antialiased !important;
+}
+.samplepage.embedded-editor .columns .col-md-6{
+    float: left;
+    width: 50%;
+}
+.samplepage.embedded-editor .columns .col-md-4{
+    float: left;
+    width: 33.33333333%;
+}
+.samplepage.embedded-editor .columns .col-md-3{
+    float: left;
+    width: 25%;
+}
+.samplepage.embedded-editor .row .row{
+    width: 100%;
+}
+.samplepage .content img{width: 100%;}
+
+/* GRAVITY FORMS */
+.samplepage iframe {border: 0;}
+.samplepage h2{color: #2c2c2c;}
+.samplepage .gform_title{font-size: 42px !important;letter-spacing: 4px;margin-bottom: 14px;color: #2C2C2C;font-family: 'Dosis', sans-serif;font-weight: 300 !important;text-transform: uppercase;text-align:center;}
+.samplepage .gfield_label{font-size: 20px;letter-spacing: 4px;margin-bottom: 14px;color: #2C2C2C;font-family: 'Dosis', sans-serif;font-weight: 300 !important;text-transform: uppercase;text-align:center;margin:0;}
+.samplepage .ginput_container{margin-top: 0px!important;}
+.samplepage .ginput_container input{margin-top: 0px;color:#2C2C2C; font-size: 20px !important;border: 1px solid #CCC;}
+.samplepage .gform_description{color: #cccccc;width: 100%;text-align: center;display: block;font-size: 32px;}
+.samplepage .ginput_container select{margin-top: 0px;color:#2C2C2C; font-size: 20px !important;border: 1px solid #CCC;background-color: #ffffff;}
+.samplepage .gform_footer{padding-top: 0px !important;}
+.samplepage .gform_heading{margin-bottom: 0px !important;}
+.samplepage .gform_button{font-size: 30px;color: #2C2C2C;background: none;border: 1px solid #2C2C2C;}
+.samplepage .gform_confirmation_message{color:#2c2c2c;}
+.samplepage .validation_error{  letter-spacing: 4px;margin-bottom: 14px;color: #2C2C2C;font-family: 'Dosis', sans-serif;font-weight: 300 !important;text-transform: uppercase;text-align: center;margin: 10px 0;font-size: 20px !important;padding: 5px 0;}
+.samplepage .gfield .validation_message{  letter-spacing: 4px;margin-bottom: 14px;color: #2C2C2C;font-family: 'Dosis', sans-serif;font-weight: 300 !important;text-transform: uppercase;text-align: center;margin: 10px 0;padding: 0;font-size: 20px !important;padding: 5px 0;text-align: left;}
+
+/* WOOCOMMERCE */
+.samplepage .products {width:100%; margin: 20px 0 20px 0;color: #2C2C2C;font-size: 26px;}
+.samplepage .woocommerce .products th{font-size: 18px;}
+.samplepage .woocommerce .products th.quantity-th, .registration .woocommerce .products th.price-th {text-align: center;}
+.samplepage .woocommerce .products tr.product:first-child {border-top: 1px solid #ccc;}
+.samplepage .woocommerce .products tr.product{border-bottom: 1px solid #cccccc;}
+.samplepage .woocommerce .products td {padding: 5px;}
+.samplepage .woocommerce .qty {border: 1px solid #cccccc;width: 40px;padding: 5px; vertical-align: middle;}
+.samplepage .woocommerce .description {text-align: left;}
+.samplepage .woocommerce .title{width: 15%;text-align: left;}
+.samplepage .woocommerce .title h3 {  font-size: 18px !important;display: inline;font-weight: bold;}
+.samplepage .woocommerce form.cart {display: inline-block;}
+.samplepage .woocommerce tr .btn {padding: 5px 15px;}
+.samplepage .add_to_cart_loop {width: auto; padding: 0 20px;}
+.samplepage .woocommerce .short-description {display: inline;vertical-align: -webkit-baseline-middle;vertical-align: middle;font-size: 20px;}
+.samplepage .woocommerce .price {font-size: 18px;font-weight: bold;}

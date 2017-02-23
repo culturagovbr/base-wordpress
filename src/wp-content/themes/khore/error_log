@@ -1,0 +1,1 @@
+[01-Jan-2015 14:04:27 UTC] PHP Fatal error:  Call to undefined function get_header() in /home/eventman/showthemes.com/khore-demo/wp-content/themes/khore/index.php on line 3

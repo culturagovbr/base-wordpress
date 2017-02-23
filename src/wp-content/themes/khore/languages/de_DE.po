@@ -1,0 +1,734 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: khore\n"
+"POT-Creation-Date: 2015-06-23 17:19+0100\n"
+"PO-Revision-Date: 2015-07-01 16:07+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.2\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;_e;__;_n\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: event-framework\n"
+
+#: comments.php:14
+msgid "Name *"
+msgstr "Name *"
+
+#: comments.php:19
+msgid "Last name *"
+msgstr "Nachname *"
+
+#: comments.php:24
+msgid "Website *"
+msgstr "Webseite *"
+
+#: comments.php:29
+msgid "SUBMIT A COMMENT"
+msgstr "KOMMENTAR ABGEBEN"
+
+#: comments.php:30
+msgid "Email address not published. Required fields are marked *"
+msgstr "E-Mail-Adresse nicht veröffentlicht. Pflichtfelder sind markiert *"
+
+#: comments.php:36
+msgid "Comment"
+msgstr "Kommentar"
+
+#: comments.php:46
+#, php-format
+msgid "Comments on %s"
+msgstr "Kommentare auf %s"
+
+#: comments.php:60
+msgid "Comment navigation"
+msgstr "Navigationsmenü Kommentarfunktion"
+
+#: comments.php:61
+msgid "&larr; Older Comments"
+msgstr "&larr; Ältere Kommentare"
+
+#: comments.php:62
+msgid "Newer Comments &rarr;"
+msgstr "Neue Kommentare &rarr;"
+
+#: comments.php:66
+msgid "Comments are closed."
+msgstr "Kommentarfunktion ist geschlossen."
+
+#: components/templates/shortcodes/efcb_contact.php:17
+msgid "Full Name *"
+msgstr "Vollständiger Name"
+
+#: components/templates/shortcodes/efcb_contact.php:21 ef-options.php:108
+msgid "Email Address"
+msgstr "E-Mail-Adresse"
+
+#: components/templates/shortcodes/efcb_contact.php:26
+msgid "Message (Maximum 500 characters)"
+msgstr "Nachricht (maximal 500 Zeichen)"
+
+#: components/templates/shortcodes/efcb_contact.php:33
+msgid "Refresh Captcha Code"
+msgstr "Zufallscode aktualisieren"
+
+#: components/templates/shortcodes/efcb_facebook_rsvp.php:21
+msgid "Yes"
+msgstr "Ja"
+
+#: components/templates/shortcodes/efcb_facebook_rsvp.php:30
+msgid "Maybe"
+msgstr "Vielleicht"
+
+#: components/templates/shortcodes/efcb_facebook_rsvp.php:39
+msgid "No"
+msgstr "Nein"
+
+#: components/templates/shortcodes/efcb_fullschedule.php:30
+msgid "Track"
+msgstr "Nachverfolgen"
+
+#: components/templates/shortcodes/efcb_fullschedule.php:40
+msgid "Location"
+msgstr "Speicherort"
+
+#: components/templates/shortcodes/efcb_fullschedule.php:52
+msgid "Days"
+msgstr "Tage"
+
+#: components/templates/shortcodes/efcb_map.php:29
+msgid "EXPLORE"
+msgstr "ENTDECKEN"
+
+#: ef-options.php:22
+msgid "General Font"
+msgstr "Allgemeine Schrift"
+
+#: ef-options.php:23
+msgid "Default"
+msgstr "Standard"
+
+#: ef-options.php:24
+msgid "Open Sans"
+msgstr "Open Sans"
+
+#: ef-options.php:25
+msgid "Droid Sans"
+msgstr "Droid Sans"
+
+#: ef-options.php:26
+msgid "PT Sans"
+msgstr "PT Sans"
+
+#: ef-options.php:27
+msgid "Lato"
+msgstr "Lato"
+
+#: ef-options.php:28
+msgid "Oswald"
+msgstr "Oswald"
+
+#: ef-options.php:29
+msgid "Droid Serif"
+msgstr "Droid Serif"
+
+#: ef-options.php:30
+msgid "Roboto"
+msgstr "Roboto"
+
+#: ef-options.php:31
+msgid "Lora"
+msgstr "Lora"
+
+#: ef-options.php:32
+msgid "Libre Baskerville"
+msgstr "Libre Baskerville"
+
+#: ef-options.php:33
+msgid "Josefin Slab"
+msgstr "Josefin Slab"
+
+#: ef-options.php:34
+msgid "Arvo"
+msgstr "Arvo"
+
+#: ef-options.php:35
+msgid "Ubuntu"
+msgstr "Ubuntu"
+
+#: ef-options.php:36
+msgid "Raleway"
+msgstr "Raleway"
+
+#: ef-options.php:37
+msgid "Source Sans Pro"
+msgstr "Source Sans Pro"
+
+#: ef-options.php:38
+msgid "Lobster"
+msgstr "Lobster"
+
+#: ef-options.php:39
+msgid "PT Serif"
+msgstr "PT Serif"
+
+#: ef-options.php:40
+msgid "Old Standard TT"
+msgstr "Old Standard TT"
+
+#: ef-options.php:41
+msgid "Volkorn"
+msgstr "Vollkorn"
+
+#: ef-options.php:42
+msgid "Gravitas One"
+msgstr "Gravitas One"
+
+#: ef-options.php:43
+msgid "Merriweather"
+msgstr "Merriweather"
+
+#: ef-options.php:46
+msgid "Primary Color"
+msgstr "Grundfarbe"
+
+#: ef-options.php:47
+msgid "Secondary Color"
+msgstr "Sekundärfarbe"
+
+#: ef-options.php:48
+msgid "Tertiary Color"
+msgstr "Tertiärfarbe"
+
+#: ef-options.php:49
+msgid "Primary Background Color"
+msgstr "Primäre Hintergrundfarbe"
+
+#: ef-options.php:50
+msgid "Secondary Background Color"
+msgstr "Sekundäre Hintergrundfarbe"
+
+#: ef-options.php:51
+msgid "Singular Performer Label"
+msgstr "Einzelnes Performer-Label"
+
+#: ef-options.php:52
+msgid "Plural Performer Label"
+msgstr "Mehrfaches Performer-Label"
+
+#: ef-options.php:58
+msgid "Default Menu Behaviour"
+msgstr "Standardeinstellung Menü"
+
+#: ef-options.php:63
+msgid "Menu Style"
+msgstr "Menüart"
+
+#: ef-options.php:64
+msgid "Hamburger"
+msgstr "Hamburger"
+
+#: ef-options.php:65
+msgid "Text"
+msgstr "Text"
+
+#: ef-options.php:67
+msgid "Menu Logo (Recommended size: 70x70)"
+msgstr "Logo des Menüs (Empfohlene Größe:70x70)"
+
+#: ef-options.php:68
+msgid "Countdown Date/Time"
+msgstr "Countdown Datum/Zeit"
+
+#: ef-options.php:69 ef-options.php:98
+msgid "Show register button"
+msgstr "Schaltfläche Registrieren anzeigen"
+
+#: ef-options.php:70 ef-options.php:99
+msgid "Register button text"
+msgstr "Text für die Schaltfläche Registrieren"
+
+#: ef-options.php:71 ef-options.php:100
+msgid "Register button url"
+msgstr "URL der Schaltfläche Registrieren"
+
+#: ef-options.php:73
+msgid "Register button position"
+msgstr "Position der Schaltfläche Registrieren"
+
+#: ef-options.php:74
+msgid "Top"
+msgstr "Seitenanfang"
+
+#: ef-options.php:75
+msgid "Bottom"
+msgstr "Seitenende"
+
+#: ef-options.php:78 ef-options.php:101
+msgid "Register Button Color"
+msgstr "Farbe der Schaltfläche Registrieren"
+
+#: ef-options.php:79 ef-options.php:102
+msgid "Register Button Font Size"
+msgstr "Schriftgröße der Schaltfläche Registrieren"
+
+#: ef-options.php:84
+msgid "Event Title"
+msgstr "Veranstaltungstitel"
+
+#: ef-options.php:85
+msgid "Event Title Color"
+msgstr "Farbe Veranstaltungstitel"
+
+#: ef-options.php:86
+msgid "Event Title Font Size"
+msgstr "Schriftgröße Veranstaltungstitel"
+
+#: ef-options.php:87
+msgid "Event Subtitle"
+msgstr "Untertitel der Veranstaltung"
+
+#: ef-options.php:88
+msgid "Event Subtitle Color"
+msgstr "Farbe für den Untertitel der Veranstaltung"
+
+#: ef-options.php:89
+msgid "Event Subtitle Font Size"
+msgstr "Schriftgröße für den Untertitel der Veranstaltung "
+
+#: ef-options.php:90
+msgid "Date/Time and place"
+msgstr "Datum/Zeit und Ort"
+
+#: ef-options.php:91
+msgid "Date/Time and Place Color"
+msgstr "Farbe für Datum/Zeit und Ort"
+
+#: ef-options.php:92
+msgid "Date/Time and Place Font Size"
+msgstr "Schriftgröße für Datum/Zeit und Ort"
+
+#: ef-options.php:93
+msgid "Home Page Logo (Recommended size: 300x101)"
+msgstr "Logo der Homepage (Empfohlene Größe 300x101)"
+
+#: ef-options.php:94
+msgid "Remove logo home page optimized size"
+msgstr "Logo der Homepage entfernen größenoptimiert"
+
+#: ef-options.php:95
+msgid "Header Gallery"
+msgstr "Kopfzeilen-Galerie"
+
+#: ef-options.php:95
+msgid "Upload more than one picture to show slider"
+msgstr "Mehr als ein Bild hochladen um Reglerwerte anzuzeigen"
+
+#: ef-options.php:96
+msgid "Header Video Url"
+msgstr "Kopfzeile Video-URL"
+
+#: ef-options.php:97
+msgid "Video Button Color"
+msgstr "Farbe der Schaltfläche Video"
+
+#: ef-options.php:105
+msgid "Facebook URL"
+msgstr "Facebook URL"
+
+#: ef-options.php:106
+msgid "Twitter URL"
+msgstr "Twitter URL"
+
+#: ef-options.php:107
+msgid "Show RSS?"
+msgstr "RSS anzeigen?"
+
+#: ef-options.php:109
+msgid "Google+ URL"
+msgstr "Google+ URL"
+
+#: ef-options.php:110
+msgid "Flickr URL"
+msgstr "Flickr URL"
+
+#: ef-options.php:111
+msgid "Instagram URL"
+msgstr "Instagram URL"
+
+#: ef-options.php:112
+msgid "Pinterest URL"
+msgstr "Pinterest URL"
+
+#: ef-options.php:113
+msgid "LinkedIn URL"
+msgstr "LinkedIn URL"
+
+#: ef-options.php:114
+msgid "AddThis PubID"
+msgstr "Diese öffentliche ID hinzufügen"
+
+#: ef-options.php:115
+msgid "Youtube URL"
+msgstr "Youtube URL"
+
+#: ef-options.php:116
+msgid "Skype User"
+msgstr "Skype-Benutzer"
+
+#: ef-options.php:117
+msgid "Vimeo URL"
+msgstr "Vimeo URL"
+
+#: ef-options.php:120
+msgid "Demo Data"
+msgstr "Demo-Daten"
+
+#: ef-options.php:120
+msgid "Import test data. Success message will follow."
+msgstr "Wichtige Testdaten. Erfolgsmeldung folgt."
+
+#: ef-options.php:123
+msgid "Font"
+msgstr "Schrift"
+
+#: ef-options.php:125
+msgid "Colors"
+msgstr "Farben"
+
+#: ef-options.php:131
+msgid "Performers"
+msgstr "Künstler"
+
+#: ef-options.php:131
+msgid "How would you like to call your performers? (Default: Speakers)"
+msgstr "Wie möchten Sie Ihren Künstler anrufen? (Standard: Lautsprecher)"
+
+#: ef-options.php:148
+msgid "Title Settings"
+msgstr "Einstellungen Titel"
+
+#: ef-options.php:152
+msgid "Subtitle Settings"
+msgstr "Einstellungen Untertitel"
+
+#: ef-options.php:156
+msgid "Date/Time and Place Settings"
+msgstr "Datums-/ Zeit- und Orteinstellungen"
+
+#: ef-options.php:160
+msgid "Logo Settings"
+msgstr "Einstellungen Logo"
+
+#: ef-options.php:163
+msgid "Slider Settings"
+msgstr "Einstellungen Regler"
+
+#: ef-options.php:165
+msgid "Video Settings"
+msgstr "Videoeinstellungen"
+
+#: ef-options.php:168
+msgid "Register Button Settings"
+msgstr "Einstellungen der Schaltfläche Registrieren"
+
+#: ef-options.php:198
+msgid "Twitter"
+msgstr "Twitter"
+
+#: ef-options.php:199
+msgid "Twitter Access Token"
+msgstr "Zugriffsmerkmal"
+
+#: ef-options.php:200
+msgid "Twitter Access Token Secret"
+msgstr "Twitter geheimes Zugriffsmerkmal"
+
+#: ef-options.php:201
+msgid "Twitter Consumer Key"
+msgstr "Twitter Verbraucherschlüssel"
+
+#: ef-options.php:202
+msgid "Twitter Consumer Secret"
+msgstr "Twitter geheimer Verbraucherschlüssel"
+
+#: ef-options.php:205
+msgid "Instagram"
+msgstr "Instagram"
+
+#: ef-options.php:206
+msgid "Instagram Client ID"
+msgstr "Instagram"
+
+#: ef-options.php:207
+msgid "Instagram Client Secret"
+msgstr "Instagram geheimer Benutzerschlüssel"
+
+#: ef-options.php:210
+msgid "Facebook"
+msgstr "Instagram"
+
+#: ef-options.php:211
+msgid "Facebook App ID"
+msgstr "Facebook App ID"
+
+#: ef-options.php:212
+msgid "Facebook Secret Key"
+msgstr "Facebook geheimer Schlüssel"
+
+#: ef-options.php:232
+msgid "Contacts"
+msgstr "Kontakte"
+
+#: ef-options.php:233
+msgid "Recaptcha Public Key"
+msgstr "Recaptcha öffentlicher Schlüssel"
+
+#: ef-options.php:234
+msgid "Recaptcha Private Key"
+msgstr "Recaptcha geheimer Schlüssel"
+
+#: ef-options.php:235
+msgid "Recipient Email"
+msgstr "Empfänger-E-Mail"
+
+#: ef-options.php:244
+msgid "General Site Settings"
+msgstr "Allgemeine Seiteneinstellungen"
+
+#: ef-options.php:245
+msgid "Menu Settings"
+msgstr "Menüeinstellungen"
+
+#: ef-options.php:246
+msgid "Homepage Settings"
+msgstr "Einstellungen der Homepage"
+
+#: ef-options.php:247
+msgid "Social Networks"
+msgstr "Soziale Netzwerke"
+
+#: ef-options.php:248
+msgid "Social API"
+msgstr "Soziale API"
+
+#: ef-options.php:249
+msgid "Contact"
+msgstr "Kontakt"
+
+#: ef-options.php:250
+msgid "Tools"
+msgstr "Werkzeuge"
+
+#: functions.php:87
+msgid "Navigation Menu"
+msgstr "Navigationsmenü"
+
+#: functions.php:333
+msgid "Order"
+msgstr "Bestellung"
+
+#: functions.php:356
+msgid " second"
+msgstr "Sekunde"
+
+#: functions.php:356 functions.php:359 functions.php:362 functions.php:365
+#: functions.php:368
+msgid " ago"
+msgstr "vorher"
+
+#: functions.php:359
+msgid " minute"
+msgstr "Minute"
+
+#: functions.php:362
+msgid " hour"
+msgstr "Stunde "
+
+#: functions.php:365
+msgid " day"
+msgstr "Tag"
+
+#: functions.php:368
+msgid " week"
+msgstr "Woche"
+
+#: functions.php:369
+msgid "on "
+msgstr "eingeschaltet"
+
+#: functions.php:722
+msgid "Previous Post"
+msgstr "Vorheriger Eintrag"
+
+#: functions.php:722
+msgid "Next Post"
+msgstr "Nächster Eintrag"
+
+#: functions.php:917
+msgid "PREV"
+msgstr "VORHERIGER"
+
+#: functions.php:918
+msgid "NEXT"
+msgstr "VORHERIGER"
+
+#. translators: %s: title of menu item which is invalid
+#: functions.php:1075
+#, php-format
+msgid "%s (Invalid)"
+msgstr "%s (Ungültig)"
+
+#. translators: %s: title of menu item in draft status
+#: functions.php:1079
+#, php-format
+msgid "%s (Pending)"
+msgstr "%s (Ausstehend)"
+
+#: functions.php:1091
+msgid "sub item"
+msgstr "Unterpunkt"
+
+#: functions.php:1119
+msgid "Edit Menu Item"
+msgstr "Menüeintrag bearbeiten"
+
+#: functions.php:1128
+msgid "URL"
+msgstr "URL"
+
+#: functions.php:1135
+msgid "Navigation Label"
+msgstr "Navigations-Label"
+
+#: functions.php:1141
+msgid "Title Attribute"
+msgstr "Titelattribut"
+
+#: functions.php:1147
+msgid "Icon"
+msgstr "Symbol"
+
+#: functions.php:1149
+msgid ""
+"Type full name of Font Awesome icon. You can find all icons on <a href="
+"\"http://fontawesome.io/icons\" target=\"_blank\">FontAwesome</a>"
+msgstr ""
+"Geben Sie den vollständigen Namen des Symbols Font Awesome ein. Alle Symbole "
+"finden Sie auf <a href=\"http://fontawesome.io/icons\" target=\"_blank"
+"\">FontAwesome</a>"
+
+#: functions.php:1155
+msgid "Open link in a new window/tab"
+msgstr "Link in neuem Fenster/Tab öffnen"
+
+#: functions.php:1160
+msgid "CSS Classes (optional)"
+msgstr "CSS-Klassen (optional)"
+
+#: functions.php:1166
+msgid "Link Relationship (XFN)"
+msgstr "Link-Beziehung (XFN)"
+
+#: functions.php:1172
+msgid "Description"
+msgstr "Beschreibung"
+
+#: functions.php:1174
+msgid ""
+"The description will be displayed in the menu if the current theme supports "
+"it."
+msgstr ""
+"Die Beschreibung wird im Menü angezeigt wenn sie durch das aktuelle Thema "
+"unterstützt wird."
+
+#: functions.php:1180
+msgid "Move"
+msgstr "Verschieben"
+
+#: functions.php:1181
+msgid "Up one"
+msgstr "Einen nach oben"
+
+#: functions.php:1182
+msgid "Down one"
+msgstr "Einen nach unten"
+
+#: functions.php:1185
+msgid "To the top"
+msgstr "Zum Seitenanfang"
+
+#: functions.php:1192
+#, php-format
+msgid "Original: %s"
+msgstr "Original: %s"
+
+#: functions.php:1204
+msgid "Remove"
+msgstr "Entfernen"
+
+#: functions.php:1205
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: functions.php:1342
+#, php-format
+msgid "%1$s at %2$s"
+msgstr "%1$s bei %2$s"
+
+#: functions.php:1344
+msgid "Your comment is awaiting moderation."
+msgstr "Ihr Beitrag wartet auf Moderation."
+
+#: functions.php:1392
+msgid "Small"
+msgstr "Klein"
+
+#: functions.php:1392
+msgid "Medium"
+msgstr "Mittel"
+
+#: functions.php:1392
+msgid "Large"
+msgstr "Groß"
+
+#: functions.php:1397
+msgid "Recommended size"
+msgstr "Empfohlene Größe"
+
+#: header.php:45
+msgid "Menu"
+msgstr "Menü"
+
+#: post-content.php:63
+msgid "Bookmark and Share"
+msgstr "Lesezeichen setzen und teilen"
+
+#: searchform.php:3
+msgid "Search"
+msgstr "Suchen"
+
+#: speaker-content.php:113
+msgid "MORE INFO"
+msgstr "WEITERE INFORMATIONEN"
+
+#: woocommerce/loop/loop-end.php:12
+msgid "Add to cart"
+msgstr "In den Warenkorb legen"
+
+#: woocommerce/loop/loop-start.php:13
+msgid "Available Tickets"
+msgstr "Verfügbare Tickets"
+
+#: woocommerce/loop/loop-start.php:14
+msgid "Price"
+msgstr "Preis"
+
+#: woocommerce/loop/loop-start.php:15
+msgid "Qty"
+msgstr "Menge"

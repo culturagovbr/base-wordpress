@@ -1,0 +1,93 @@
+/* --------------- inst --------------- */
+.inst {
+    position: relative;
+    background: #fef4f0;
+}
+.inst__wrap {
+    min-height: 100%;
+    padding-top: 0;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    padding-top: 40px;
+}
+.inst__wrap h2 i {
+    display: block;
+    text-align: center;
+    font-size: 52px;
+    color: #f25421;
+}
+.inst__content {
+    display: none;
+}
+.inst__gallery {
+    overflow: hidden;
+}
+.inst__gallery a {
+    float: left;
+}
+.inst__gallery img {
+    width: 100%;
+    border-left: 1px solid #2c2c2c;
+    border-top: 1px solid #2c2c2c;
+}
+.inst__gallery > div {
+    float: left;
+    overflow: hidden;
+    position: relative;
+}
+.inst__gallery > div:nth-child(3n){
+}
+.inst__gallery > div > div {
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.inst__small {
+    width: 20%;
+    padding-bottom: 40%;
+}
+.inst__small a {
+    width: 100%;
+}
+.inst__medium {
+    width: 40%;
+    padding-bottom: 40%;
+}
+.inst__medium a{
+    width: 50%;
+}
+.inst__big {
+    width: 40%;
+    padding-bottom: 40%;
+}
+.inst__big a {
+    width: 100%;
+}
+/* --------------- /inst --------------- */
+@media screen and (max-width: 1199px){
+    .inst__gallery > div {
+        width: 50%;
+        padding-bottom: 50%;
+    }
+}
+@media screen and (max-width: 767px){
+    .inst__content {
+        display: block;
+        overflow: hidden;
+    }
+    .inst__content a{
+        width: 50%;
+        float: left;
+    }
+    .inst__content img {
+        width: 100%;
+        border-left: 1px solid #2c2c2c;
+        border-top: 1px solid #2c2c2c;
+    }
+    .inst__content a:nth-child(5n+1){
+        width: 100%;
+    }
+}

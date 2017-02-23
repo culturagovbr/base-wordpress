@@ -1,0 +1,72 @@
+/* The theme options style
+ * ============================================= */
+#ef-theme-options {
+    background: #FFFFFF;
+    color: #444;
+}
+.ef-options-header {
+    background: #F25421;
+}
+.el-options-links ul li a {
+    color: white;
+}
+.el-options-menu .resp-tab-item {
+    border-bottom: 1px solid #eee;
+}
+.el-options-main {
+    box-shadow: inset 1px 0 1px #f1f1f1;
+}
+.el-options-main .el-option {
+    border-bottom: 1px solid #eee;
+}
+.el-options-main .el-option .el-option-input input[type="text"] {
+    background: #eee;		
+    color: #888;
+}
+.el-options-main .el-option .el-option-description {
+    color: #888;
+}
+.ef-options-header .ef-about{
+    color: #ffffff;
+}
+.ef-options-header .ef-about a{
+    color: #ffffff;
+    text-decoration: underline;
+}
+/* Options panel colors
+ * ============================================= */
+.el-options-links {
+    background: #f25421;
+}
+.el-options-links ul li a {
+    border: none;
+}
+.el-options-links ul li i {
+    color: white;
+}
+.el-options-links ul li a:hover {
+    background: #2C2C2C;
+}
+.el-options-links ul li.el-save {
+    background: #2C2C2C;
+}
+.el-options-menu .resp-tab-active {
+    color: #f25421;
+}
+.el-options-menu .resp-tab-item i {
+    color: #f25421;
+}
+#ef-options-updated {
+    background: #B1EBA9;
+    border: 1px solid #7ED173;
+}
+
+/* Options Buttons
+* ============================================= */
+#ef-importer-misc-importer {
+    color: #057A1D;
+}
+.ef-image-preview {
+    max-height: none;
+    width: auto;
+}

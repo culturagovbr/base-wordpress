@@ -1,0 +1,341 @@
+::selection { background: #f26522; }
+::-moz-selection { background: #f26522; }
+a { color: #f26522; }
+.nav-wrapper ul li a.section-button:hover {
+    border-color: #f26522;
+}
+.nav-wrapper ul li.register:before {
+    background: #f26522;
+}
+header.header.shrink .nav-right a {
+    background: #f26522;
+}
+header.header nav.nav-wrapper.wide li a:hover {
+    color: #f26522;
+}
+header.header .right-icon {
+    background: #f26522;
+}
+.nav-wrapper ul li.current-menu-item {
+    color: #f26522;
+}
+.nav-wrapper ul li a:hover {
+    color: #f26522;
+}
+.nav-wrapper .close-menu:hover,
+.nav-wrapper ul li ul li a:hover {
+    color: #f26522;
+}
+.header-video .section-button {
+    border-color:#f26522;
+}
+section.fullwidth.gold {
+    background: #f26522;
+}
+section.fullwidth.black-gold {
+    color: #f26522;
+}
+section.fullwidth.black-gold h2,
+section.fullwidth.black-gold .input-group .form-control,
+section.fullwidth.black-gold .input-group .btn,
+section.fullwidth.black-gold .input-group .input-group-addon,
+section.fullwidth.black-gold .input-group .form-control {
+    color: #f26522;
+}
+
+section.fullwidth.black-gold .input-group .form-control,
+section.fullwidth.black-gold .input-group .btn,
+section.fullwidth.black-gold .input-group .input-group-addon {
+    border-color: #f26522;
+}
+section.fullwidth.black-gold .input-group .btn:hover {
+    background: #f26522;
+}
+.speaker.featured:hover .speaker-name {
+    color: #f26522;
+}
+.speaker.featured .speaker-name {
+    color: #f26522;
+}
+.speaker .read-more-link {
+    color: #f26522;
+}
+.speaker .read-more-link .readmore-icon {
+    color: #f26522;
+}
+.content .session-box:hover .item .session-title a {
+    color: #f26522;
+}
+section.fullwidth.site-slider .section-button {
+    border-color: #f26522;
+}
+section.fullwidth.site-slider:after{
+    background: #f26522;
+}
+section.v2 .slider-content p {
+    color: #f26522;
+}
+section.header-solid.v2 .slider-content .section-button {
+    border-color: #f26522;
+}
+.est-date {
+    color: #f26522;
+}
+.est-date span {
+    border-top-color: #f26522;
+    border-bottom-color: #f26522;
+}
+.est-date.s span {
+    border-top-color: #f26522;
+    border-bottom-color: #f26522;
+}
+section.fullwidth .carousel-articles .item {
+    border-bottom-color: #f26522;
+}
+section.fullwidth .carousel-articles a:hover {
+    color: #f26522;
+}
+section.fullwidth .carousel-articles .item:hover .read-more-link {
+    color: #f26522;
+}
+section.fullwidth .carousel-sessions .session-title a:hover {
+    color: #f26522;
+}
+section.fullwidth .carousel-sessions .on-stage {
+    color: #f26522;
+}
+section.regular.social .social-box {
+    border-color: #f26522;
+}
+section.regular.social .social-box i {
+    color: #f26522;
+}
+section.regular .carousel-instagram .instagram-image:hover .tint:after {
+    box-shadow: inset 0 0 0 4px #f26522;
+}
+.contacts a {
+    color: #f26522 ;
+}
+.contacts .input-group:hover .input-group-addon,
+.contacts .input-group:hover .form-control {
+    border-color: #f26522;
+}
+.contacts .input-group:hover .form-control {
+    box-shadow: inset 0 0 0 2px #f26522 !important;
+}
+.contacts .input-group:hover .input-group-addon {
+    background: #f26522;
+}
+.contacts .section-button {
+    border-color: #f26522;
+}
+.contacts .section-button:hover {
+    color: #f26522;
+}
+.gallery-player .active {
+    border-color: #f26522;
+}
+section.fullwidth.map-slider .city.active {
+    box-shadow: inset 0 0 0 2px #f26522;
+}
+section.fullwidth.map-slider .city.active a {
+    color: #f26522;
+}
+section.fullwidth.map-slider .map-title {
+    color: #f26522;
+}
+a.button:hover {
+    color: #f26522;
+}
+.section-button.normal {
+    border-color: #f26522;
+    color: #f26522;
+}
+.section-button:hover,
+.section-button:active {
+    background: #f26522;
+    border-color: #f26522;
+}
+.ticket-box.white-hover:hover .box-price {
+    color: #f26522;
+}
+.ticket-box.white-hover:hover .section-button {
+    background: #f26522;
+}
+.ticket-box:hover,
+.ticket-box.featured {
+    background: #f26522;
+}
+.ticket-box:hover .section-button,
+.ticket-box.featured .section-button {
+    color: #f26522;
+}
+.ticket-box .box-price {
+    color: #f26522;
+}
+.ticket-box .section-button {
+    color: #f26522;
+    border-color: #f26522;
+}
+.wide-panel.tweet .posted-time{
+    color: #f26522;
+}
+.tint:hover {
+    background: #f26522;
+}
+.tint:after {
+    background: #f26522;
+}
+.page-content-nav .open > a {
+    color: #f26522;
+}
+.schedule-heading,
+.schedule-heading .stickit {
+    color: #f26522;
+}
+.schedule-heading .page-content-nav a {
+    color: #f26522
+}
+.rsDefault .rsThumb.rsNavSelected {
+    border-color: #f26522;
+}
+.entry {
+    border-bottom-color: #f26522;
+}
+.single .entry:hover {
+    border-bottom-color: #f26522;
+}
+.entry:hover .entry-title a,
+.entry:hover .read-more-link {
+    color: #f26522;
+}
+.entry-title .c-gold:hover {
+    color: #f26522 !important; 
+}
+#comments .section-button {
+    border-color: #f26522;
+}
+#comments .submit-comment {
+    color: #f26522 !important;
+}
+#comments .comments-area .comment .comment-author a {
+    color: #f26522;
+}
+#site-footer .widgets .widget-title {
+    border-bottom-color: #f26522;
+}
+#site-footer .widgets a:hover {
+    color: #f26522;
+}
+#site-footer .bottom-footer a {
+    color: #f26522;
+}
+#site-footer .bottom-footer .icons a:hover i {
+    color: #f26522;;
+}
+.pagination>.active>a,
+.pagination>.active>span,
+.pagination>.active>a:hover,
+.pagination>.active>span:hover,
+.pagination>.active>a:focus,
+.pagination>.active>span:focus {
+    background: #f26522;
+}
+.visible-xs ul.pagination .owl-wrapper-outer li.active {
+    background: #f26522;
+}
+.bg-gold {
+    background: #f26522 !important;
+}
+.label.bg-gold:hover, .label.bg-gold.active {
+    border-color: #f26522;
+    color: #f26522;
+}
+.c-gold { 
+    color: #f26522 !important;
+}
+.c-red:hover 		{ color: #f26522 !important; }
+.c-blue:hover 		{ color: #f26522 !important; }
+.c-yellow:hover 	{ color: #f26522 !important; }
+.c-green:hover 		{ color: #f26522 !important; }
+.c-azure:hover 		{ color: #f26522 !important; }
+.c-navi:hover 		{ color: #f26522 !important; }
+.c-gras:hover 		{ color: #f26522 !important; }
+.c-dark:hover 		{ color: #f26522 !important; }
+.c-white:hover 		{ color: #f26522 !important; }
+.c-gray:hover 		{ color: #f26522 !important; }
+.twitter a:hover {
+    color: #f26522 !important;
+}
+.section-button:hover,
+.section-button:active {
+    background: #f26522;
+    border-color: #f26522;
+}
+section.fullwidth.gold .input-group:hover .input-group-btn .btn {
+    color: #f26522;
+}
+section.map-slider .carousel-control.left:hover i, section.map-slider .carousel-control.right:hover i {
+    color: #f26522;
+}
+.rsDefault .rsThumb.rsNavSelected {
+    border-color: #f26522;
+}
+li.current-menu-item>a {
+    color: #f26522 !important;
+}
+section.v2 .slider-content p {
+    color: #f26522;
+}
+.speaker.featured .speaker-image:hover {
+    border-color: #f26522;
+}
+input.form-control:focus {
+    box-shadow: inset 0 0 3px #f26522 !important;
+}
+input.form-control:focus ~ .input-group-btn button {
+    background: #f26522 !important;
+}
+.pagination > li > span.current{
+	background: #f26522;
+}
+header.header-sticked .menu-handler {
+    color: #f26522;
+}
+.main-navigation li.menu-item-has-children > a, .main-navigation li.menu-item-has-children > i.fa {
+    color: #f26522;
+}
+
+@media only screen and (max-width : 1200px) {
+    .ticket-box .section-button {
+        color: #f26522;
+        border-color: #f26522;
+    }
+    
+    .est-date.s span {
+        border-top-color: #f26522;
+        border-bottom-color: #f26522;
+    }
+}
+
+@media (max-width: 767px) {
+    .tweet-box .tweet-title,
+    .wide-panel.tweet .posted-time {
+        color: #f26522;
+    }
+}
+
+@media only screen and (max-width : 480px) {
+    .ticket-box .section-button:after {
+        background: #f26522;	
+    }
+    .ticket-box:hover .section-button:after {
+        color: #f26522;
+    }
+    section.fullwidth.map-slider .city.active a {
+        color: #f26522;
+    }
+    section.fullwidth.map-slider .city.active a {
+        color: #f26522;
+    }
+}

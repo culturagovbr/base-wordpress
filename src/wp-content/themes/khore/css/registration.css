@@ -1,0 +1,112 @@
+/* --------------- registration --------------- */
+.registration {
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    background: #fef4f0;
+    padding: 0 15px;
+}
+.registration > div{
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    padding-top: 40px;
+}
+.registration .site__title{
+    color: #2C2C2C;
+}
+.registration__title {
+    margin: 0 0 10px;
+    color: #2c2c2c;
+    text-transform: uppercase;
+    font-weight: 100;
+    padding-top: 20px;
+    font-size: 52px;
+    text-align: center;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
+    overflow: hidden;
+    height: 77px;
+}
+.registration__title> span {
+    display: block;
+    margin-top: 10px;
+    color: #f25421;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: normal;
+}
+.registration__subtitle {
+    font-weight: 100;
+    text-transform: uppercase;
+    font-size: 30px;
+    text-align: center;
+    height: 33px;
+    overflow: hidden;
+    color: #f25421;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
+}
+.registration p{
+    font-size: 18px;
+    color: #787775;
+    line-height: 30px;
+}
+
+.registration .vertical-center > div > div {
+    height: auto;
+}
+
+/* GRAVITY FORMS */
+.registration__wrap iframe {border: 0;}
+.registration__wrap h2{color: #2c2c2c;}
+.registration__wrap .gform_title{font-size: 42px !important;letter-spacing: 4px;margin-bottom: 14px;color: #2C2C2C;font-family: 'Dosis', sans-serif;font-weight: 300 !important;text-transform: uppercase;text-align:center;}
+.registration__wrap .gfield_label{font-size: 20px;letter-spacing: 4px;margin-bottom: 14px;color: #2C2C2C;font-family: 'Dosis', sans-serif;font-weight: 300 !important;text-transform: uppercase;text-align:center;margin:0;}
+.registration__wrap .ginput_container{margin-top: 0px!important;}
+.registration__wrap .ginput_container input{margin-top: 0px;color:#2C2C2C; font-size: 20px !important;border: 1px solid #CCC;}
+.registration__wrap .gform_description{color: #cccccc;width: 100%;text-align: center;display: block;font-size: 32px;}
+.registration__wrap .ginput_container select{margin-top: 0px;color:#2C2C2C; font-size: 20px !important;border: 1px solid #CCC;background-color: #ffffff;}
+.registration__wrap .gform_footer{padding-top: 0px !important;}
+.registration__wrap .gform_heading{margin-bottom: 0px !important;}
+.registration__wrap .gform_button{font-size: 30px;color: #2C2C2C;background: none;border: 1px solid #2C2C2C;}
+.registration__wrap .gform_confirmation_message{color:#2c2c2c;}
+.registration__wrap .validation_error{  letter-spacing: 4px;margin-bottom: 14px;color: #2C2C2C;font-family: 'Dosis', sans-serif;font-weight: 300 !important;text-transform: uppercase;text-align: center;margin: 10px 0;font-size: 20px !important;padding: 5px 0;}
+.registration__wrap .gfield .validation_message{  letter-spacing: 4px;margin-bottom: 14px;color: #2C2C2C;font-family: 'Dosis', sans-serif;font-weight: 300 !important;text-transform: uppercase;text-align: center;margin: 10px 0;padding: 0;font-size: 20px !important;padding: 5px 0;text-align: left;}
+
+/* WOOCOMMERCE */
+.registration__wrap .products {width:100%; margin: 20px 0 20px 0;color: #2C2C2C;font-size: 26px;}
+.registration__wrap .woocommerce .products th{font-size: 18px;}
+.registration__wrap .woocommerce .products th.quantity-th, .registration .woocommerce .products th.price-th {text-align: center;}
+.registration__wrap .woocommerce .products tr.product:first-child {border-top: 1px solid #ccc;}
+.registration__wrap .woocommerce .products tr.product{border-bottom: 1px solid #cccccc;}
+.registration__wrap .woocommerce .products td {padding: 5px;}
+.registration__wrap .woocommerce .qty {border: 1px solid #cccccc;width: 40px;padding: 5px; vertical-align: middle;}
+.registration__wrap .woocommerce .description {text-align: left;}
+.registration__wrap .woocommerce .title{width: 15%;text-align: left;}
+.registration__wrap .woocommerce .title h3 {  font-size: 18px !important;display: inline;font-weight: bold;}
+.registration__wrap .woocommerce form.cart {display: inline-block;}
+.registration__wrap .woocommerce tr .btn {padding: 5px 15px;}
+.registration__wrap .add_to_cart_loop {width: auto; padding: 0 20px;}
+.registration__wrap .woocommerce .short-description {display: inline;vertical-align: -webkit-baseline-middle;vertical-align: middle;font-size: 20px;}
+.registration__wrap .woocommerce .price {font-size: 18px;font-weight: bold;}
+.woocommerce .cart .product-thumbnail img {width: 180px;}
+.registration__wrap .gsection_description {color: #2C2C2C;}
+.registration__wrap .gform_wrapper .gfield_radio li label{font-size: 15px;color: #2C2C2C;}
+.registration__wrap .gform_wrapper ul.gform_fields li.gfield input[type=radio]{-webkit-appearance: radio !important; margin:1px;}
+/* ------------ */
+
+/* --------------- /slider --------------- */
+@media screen and (max-width: 749px){
+    /* --------------- registration --------------- */
+    .registration__title {
+        font-size: 42px;
+    }
+    .registration__title> span {
+        font-size: 16px;
+    }
+    /* --------------- /registration --------------- */
+}

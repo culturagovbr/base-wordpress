@@ -1,0 +1,106 @@
+/* --------------- location --------------- */
+.location {
+    position: relative;
+}
+.location__wrap {
+    min-height: 100%;
+    padding-top: 0;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+.location__titles {
+    height: 104px;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+.location__titles span{
+    display: inline-block;
+    padding: 0 60px;
+}
+.location__titles ul{
+    height: 100%;
+}
+.location__titles li{
+    height: 100%;
+    float: left;
+    text-align: center;
+    background: #f7f5f4;
+    font-size: 32px;
+    font-weight: 300;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+}
+.location__btn {
+    position: absolute;
+    top: 32px;
+    z-index: 2;
+    font-size: 20px;
+    width: 40px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 40px;
+}
+.location__btn_prev {
+    left: 20px;
+}
+.location__btn_next{
+    right: 20px;
+}
+.location .ares-select{
+    position: absolute;
+    background: #eae7e4;
+    top: 134px;
+    right: 26px;
+    width: 298px;
+    height: 50px;
+    border: 2px solid #c4c2bf;
+    z-index: 2;
+}
+.location .ares-select__item{
+    line-height: 50px;
+}
+.location .ares-select:after{
+    right: 17px;
+    top: 21px;
+}
+.location__map {
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+/* --------------- /location --------------- */
+
+@media screen and (max-width: 767px){
+    .location__titles {
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+        border-bottom: 4pxpx solid #d2cfcd;
+    }
+    .location .ares-select{
+        display: block;
+        width: auto;
+        position: relative;
+        top: auto;
+        right: auto;
+        bottom: auto;
+        left: auto;
+        margin: 14px 10px 15px;
+    }
+    .location__map{
+        position: relative;
+        top: auto;
+        width: auto;
+        display: block;
+        right: auto;
+        bottom: auto;
+        left: auto;
+        height: 340px;
+        margin: 0 10px;
+        border: 2px solid #c4c2bf;
+    }
+    .location__wrap {
+        padding-bottom: 10px;
+    }
+}

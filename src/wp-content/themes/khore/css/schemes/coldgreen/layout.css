@@ -1,0 +1,341 @@
+::selection { background: #2ac278; }
+::-moz-selection { background: #2ac278; }
+a { color: #2ac278; }
+.nav-wrapper ul li a.section-button:hover {
+    border-color: #2ac278;
+}
+.nav-wrapper ul li.register:before {
+    background: #2ac278;
+}
+header.header.shrink .nav-right a {
+    background: #2ac278;
+}
+header.header nav.nav-wrapper.wide li a:hover {
+    color: #2ac278;
+}
+header.header .right-icon {
+    background: #2ac278;
+}
+.nav-wrapper ul li.current-menu-item {
+    color: #2ac278;
+}
+.nav-wrapper ul li a:hover {
+    color: #2ac278;
+}
+.nav-wrapper .close-menu:hover,
+.nav-wrapper ul li ul li a:hover {
+    color: #2ac278;
+}
+.header-video .section-button {
+    border-color:#2ac278;
+}
+section.fullwidth.gold {
+    background: #2ac278;
+}
+section.fullwidth.black-gold {
+    color: #2ac278;
+}
+section.fullwidth.black-gold h2,
+section.fullwidth.black-gold .input-group .form-control,
+section.fullwidth.black-gold .input-group .btn,
+section.fullwidth.black-gold .input-group .input-group-addon,
+section.fullwidth.black-gold .input-group .form-control {
+    color: #2ac278;
+}
+
+section.fullwidth.black-gold .input-group .form-control,
+section.fullwidth.black-gold .input-group .btn,
+section.fullwidth.black-gold .input-group .input-group-addon {
+    border-color: #2ac278;
+}
+section.fullwidth.black-gold .input-group .btn:hover {
+    background: #2ac278;
+}
+.speaker.featured:hover .speaker-name {
+    color: #2ac278;
+}
+.speaker.featured .speaker-name {
+    color: #2ac278;
+}
+.speaker .read-more-link {
+    color: #2ac278;
+}
+.speaker .read-more-link .readmore-icon {
+    color: #2ac278;
+}
+.content .session-box:hover .item .session-title a {
+    color: #2ac278;
+}
+section.fullwidth.site-slider .section-button {
+    border-color: #2ac278;
+}
+section.fullwidth.site-slider:after{
+    background: #2ac278;
+}
+section.v2 .slider-content p {
+    color: #2ac278;
+}
+section.header-solid.v2 .slider-content .section-button {
+    border-color: #2ac278;
+}
+.est-date {
+    color: #2ac278;
+}
+.est-date span {
+    border-top-color: #2ac278;
+    border-bottom-color: #2ac278;
+}
+.est-date.s span {
+    border-top-color: #2ac278;
+    border-bottom-color: #2ac278;
+}
+section.fullwidth .carousel-articles .item {
+    border-bottom-color: #2ac278;
+}
+section.fullwidth .carousel-articles a:hover {
+    color: #2ac278;
+}
+section.fullwidth .carousel-articles .item:hover .read-more-link {
+    color: #2ac278;
+}
+section.fullwidth .carousel-sessions .session-title a:hover {
+    color: #2ac278;
+}
+section.fullwidth .carousel-sessions .on-stage {
+    color: #2ac278;
+}
+section.regular.social .social-box {
+    border-color: #2ac278;
+}
+section.regular.social .social-box i {
+    color: #2ac278;
+}
+section.regular .carousel-instagram .instagram-image:hover .tint:after {
+    box-shadow: inset 0 0 0 4px #2ac278;
+}
+.contacts a {
+    color: #2ac278 ;
+}
+.contacts .input-group:hover .input-group-addon,
+.contacts .input-group:hover .form-control {
+    border-color: #2ac278;
+}
+.contacts .input-group:hover .form-control {
+    box-shadow: inset 0 0 0 2px #2ac278 !important;
+}
+.contacts .input-group:hover .input-group-addon {
+    background: #2ac278;
+}
+.contacts .section-button {
+    border-color: #2ac278;
+}
+.contacts .section-button:hover {
+    color: #2ac278;
+}
+.gallery-player .active {
+    border-color: #2ac278;
+}
+section.fullwidth.map-slider .city.active {
+    box-shadow: inset 0 0 0 2px #2ac278;
+}
+section.fullwidth.map-slider .city.active a {
+    color: #2ac278;
+}
+section.fullwidth.map-slider .map-title {
+    color: #2ac278;
+}
+a.button:hover {
+    color: #2ac278;
+}
+.section-button.normal {
+    border-color: #2ac278;
+    color: #2ac278;
+}
+.section-button:hover,
+.section-button:active {
+    background: #2ac278;
+    border-color: #2ac278;
+}
+.ticket-box.white-hover:hover .box-price {
+    color: #2ac278;
+}
+.ticket-box.white-hover:hover .section-button {
+    background: #2ac278;
+}
+.ticket-box:hover,
+.ticket-box.featured {
+    background: #2ac278;
+}
+.ticket-box:hover .section-button,
+.ticket-box.featured .section-button {
+    color: #2ac278;
+}
+.ticket-box .box-price {
+    color: #2ac278;
+}
+.ticket-box .section-button {
+    color: #2ac278;
+    border-color: #2ac278;
+}
+.wide-panel.tweet .posted-time{
+    color: #2ac278;
+}
+.tint:hover {
+    background: #2ac278;
+}
+.tint:after {
+    background: #2ac278;
+}
+.page-content-nav .open > a {
+    color: #2ac278;
+}
+.schedule-heading,
+.schedule-heading .stickit {
+    color: #2ac278;
+}
+.schedule-heading .page-content-nav a {
+    color: #2ac278
+}
+.rsDefault .rsThumb.rsNavSelected {
+    border-color: #2ac278;
+}
+.entry {
+    border-bottom-color: #2ac278;
+}
+.single .entry:hover {
+    border-bottom-color: #2ac278;
+}
+.entry:hover .entry-title a,
+.entry:hover .read-more-link {
+    color: #2ac278;
+}
+.entry-title .c-gold:hover {
+    color: #2ac278 !important; 
+}
+#comments .section-button {
+    border-color: #2ac278;
+}
+#comments .submit-comment {
+    color: #2ac278 !important;
+}
+#comments .comments-area .comment .comment-author a {
+    color: #2ac278;
+}
+#site-footer .widgets .widget-title {
+    border-bottom-color: #2ac278;
+}
+#site-footer .widgets a:hover {
+    color: #2ac278;
+}
+#site-footer .bottom-footer a {
+    color: #2ac278;
+}
+#site-footer .bottom-footer .icons a:hover i {
+    color: #2ac278;;
+}
+.pagination>.active>a,
+.pagination>.active>span,
+.pagination>.active>a:hover,
+.pagination>.active>span:hover,
+.pagination>.active>a:focus,
+.pagination>.active>span:focus {
+    background: #2ac278;
+}
+.visible-xs ul.pagination .owl-wrapper-outer li.active {
+    background: #2ac278;
+}
+.bg-gold {
+    background: #2ac278 !important;
+}
+.label.bg-gold:hover, .label.bg-gold.active {
+    border-color: #2ac278;
+    color: #2ac278;
+}
+.c-gold { 
+    color: #2ac278 !important;
+}
+.c-red:hover 		{ color: #2ac278 !important; }
+.c-blue:hover 		{ color: #2ac278 !important; }
+.c-yellow:hover 	{ color: #2ac278 !important; }
+.c-green:hover 		{ color: #2ac278 !important; }
+.c-azure:hover 		{ color: #2ac278 !important; }
+.c-navi:hover 		{ color: #2ac278 !important; }
+.c-gras:hover 		{ color: #2ac278 !important; }
+.c-dark:hover 		{ color: #2ac278 !important; }
+.c-white:hover 		{ color: #2ac278 !important; }
+.c-gray:hover 		{ color: #2ac278 !important; }
+.twitter a:hover {
+    color: #2ac278 !important;
+}
+.section-button:hover,
+.section-button:active {
+    background: #2ac278;
+    border-color: #2ac278;
+}
+section.fullwidth.gold .input-group:hover .input-group-btn .btn {
+    color: #2ac278;
+}
+section.map-slider .carousel-control.left:hover i, section.map-slider .carousel-control.right:hover i {
+    color: #2ac278;
+}
+.rsDefault .rsThumb.rsNavSelected {
+    border-color: #2ac278;
+}
+li.current-menu-item>a {
+    color: #2ac278 !important;
+}
+section.v2 .slider-content p {
+    color: #2ac278;
+}
+.speaker.featured .speaker-image:hover {
+    border-color: #2ac278;
+}
+input.form-control:focus {
+    box-shadow: inset 0 0 3px #2ac278 !important;
+}
+input.form-control:focus ~ .input-group-btn button {
+    background: #2ac278 !important;
+}
+.pagination > li > span.current{
+	background: #2ac278;
+}
+header.header-sticked .menu-handler {
+    color: #2ac278;
+}
+.main-navigation li.menu-item-has-children > a, .main-navigation li.menu-item-has-children > i.fa {
+    color: #2ac278;
+}
+
+@media only screen and (max-width : 1200px) {
+    .ticket-box .section-button {
+        color: #2ac278;
+        border-color: #2ac278;
+    }
+    
+    .est-date.s span {
+        border-top-color: #2ac278;
+        border-bottom-color: #2ac278;
+    }
+}
+
+@media (max-width: 767px) {
+    .tweet-box .tweet-title,
+    .wide-panel.tweet .posted-time {
+        color: #2ac278;
+    }
+}
+
+@media only screen and (max-width : 480px) {
+    .ticket-box .section-button:after {
+        background: #2ac278;	
+    }
+    .ticket-box:hover .section-button:after {
+        color: #2ac278;
+    }
+    section.fullwidth.map-slider .city.active a {
+        color: #2ac278;
+    }
+    section.fullwidth.map-slider .city.active a {
+        color: #2ac278;
+    }
+}

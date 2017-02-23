@@ -1,0 +1,2540 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: dxef\n"
+"POT-Creation-Date: 2015-06-23 17:13+0100\n"
+"PO-Revision-Date: 2015-07-01 16:08+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.2\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;_e;__;_n\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: lib/content-builder/assets/js/jquery-ui.min.js:10
+msgid "'"
+msgstr "'"
+
+#: components/cpts/poi.php:4 components/cpts/poi.php:14
+msgid "Points of Interest"
+msgstr "Points of Interest"
+
+#: components/cpts/poi.php:5
+msgid "Point of Interest"
+msgstr "Point of Interest"
+
+#: components/cpts/poi.php:6 components/cpts/session.php:6
+#: components/cpts/speaker.php:12 components/cpts/sponsor.php:6
+#: components/cpts/ticket.php:7
+#: multievent/includes/multievent-post-types.php:30
+msgid "Add New"
+msgstr "Nieuwe toevoegen"
+
+#: components/cpts/poi.php:7
+msgid "Add New Point of Interest"
+msgstr "Nieuwe Point of Interest toevoegen"
+
+#: components/cpts/poi.php:8
+msgid "Edit Point of Interest"
+msgstr "Bewerk Point of Interest"
+
+#: components/cpts/poi.php:9
+msgid "New Point of Interest"
+msgstr "Nieuwe Point of Interest"
+
+#: components/cpts/poi.php:10
+msgid "View Point of Interest"
+msgstr "Toon Point of Interest"
+
+#: components/cpts/poi.php:11
+msgid "Search Points of Interest"
+msgstr "Zoek Points of Interest"
+
+#: components/cpts/poi.php:12
+msgid "No Points of Interest found"
+msgstr "Geen Points of Interest gevonden"
+
+#: components/cpts/poi.php:13
+msgid "No Points of Interest found in trash"
+msgstr "Geen Points of Interest gevonden in afvalemmer"
+
+#: components/cpts/poi.php:41
+#, php-format
+msgid "Point of Interest updated. <a href=\"%s\">View Point of Interest</a>"
+msgstr ""
+"Point of Interest geupdate. <a href=\"%s\">Bekijk Point of Interest</a>"
+
+#: components/cpts/poi.php:42 components/cpts/session.php:49
+#: components/cpts/speaker.php:55 components/cpts/sponsor.php:43
+#: components/cpts/ticket.php:45
+msgid "Custom field updated."
+msgstr "Aangepast veld bijgewerkt."
+
+#: components/cpts/poi.php:43 components/cpts/session.php:50
+#: components/cpts/speaker.php:56 components/cpts/sponsor.php:44
+#: components/cpts/ticket.php:46
+msgid "Custom field deleted."
+msgstr "Aangepast veld verwijderd."
+
+#: components/cpts/poi.php:44
+msgid "Point of Interest updated."
+msgstr "Point of Interest geupdate."
+
+#. translators: %s: date and time of the revision
+#: components/cpts/poi.php:46
+#, php-format
+msgid "Point of Interest restored to revision from %s"
+msgstr "Point of Interest opgeslagen naar revisie van %s"
+
+#: components/cpts/poi.php:47
+#, php-format
+msgid "Point of Interest published. <a href=\"%s\">View Point of Interest</a>"
+msgstr ""
+"Point of Interest gepubliceerd. <a href=\"%s\">Bekijk Point of Interest</a>"
+
+#: components/cpts/poi.php:48
+msgid "Point of Interest saved."
+msgstr "Point of Interest opgeslagen."
+
+#: components/cpts/poi.php:49
+#, php-format
+msgid ""
+"Point of Interest submitted. <a target=\"_blank\" href=\"%s\">Preview Point "
+"of Interest</a>"
+msgstr ""
+"Point of Interest verzonden. <a target=\"_blank\" href=\"%s\">Vooruitblik "
+"Point of Interest</a>"
+
+#: components/cpts/poi.php:50
+#, php-format
+msgid ""
+"Point of Interest scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" "
+"href=\"%2$s\">Preview Point of Interest</a>"
+msgstr ""
+"Point of Interest gepland voor: <strong>%1$s</strong>. <a target=\"_blank\" "
+"href=\"%2$s\">Vooruitblik Point of Interest</a>"
+
+#. translators: Publish box date format, see http://php.net/date
+#: components/cpts/poi.php:52 components/cpts/session.php:59
+#: components/cpts/speaker.php:65 components/cpts/sponsor.php:53
+#: components/cpts/ticket.php:55
+msgid "M j, Y @ G:i"
+msgstr "M j, Y @ G:i"
+
+#: components/cpts/poi.php:53
+#, php-format
+msgid ""
+"Point of Interest draft updated. <a target=\"_blank\" href=\"%s\">Preview "
+"Point of Interest</a>"
+msgstr ""
+"Point of Interest opzet bijgewerkt. <a target=\"_blank\" href=\"%s"
+"\">Vooruitblik Point of Interest</a>"
+
+#: components/cpts/session.php:4 components/cpts/session.php:14
+msgid "Sessions"
+msgstr "Sessies"
+
+#: components/cpts/session.php:5
+msgid "Session"
+msgstr "Sessie"
+
+#: components/cpts/session.php:7
+msgid "Add New Session"
+msgstr "Nieuwe sessie toevoegen"
+
+#: components/cpts/session.php:8
+msgid "Edit Session"
+msgstr "Bewerk sessie"
+
+#: components/cpts/session.php:9
+msgid "New Session"
+msgstr "Nieuwe sessie"
+
+#: components/cpts/session.php:10
+msgid "View Session"
+msgstr "Bekijk sessie"
+
+#: components/cpts/session.php:11
+msgid "Search Sessions"
+msgstr "Zoek sessies"
+
+#: components/cpts/session.php:12
+msgid "No Sessions found"
+msgstr "Geen sessies gevonden"
+
+#: components/cpts/session.php:13
+msgid "No Sessions found in trash"
+msgstr "Geen sessies in prullenbak"
+
+#: components/cpts/session.php:48
+#, php-format
+msgid "Session updated. <a href=\"%s\">View Session</a>"
+msgstr "Sessie bijgewerkt. <a href=\"%s\">Toon sessie</a>"
+
+#: components/cpts/session.php:51
+msgid "Session updated."
+msgstr "Sessie bijgewerkt."
+
+#. translators: %s: date and time of the revision
+#: components/cpts/session.php:53
+#, php-format
+msgid "Session restored to revision from %s"
+msgstr "Sessie hersteld naar revisie van %s"
+
+#: components/cpts/session.php:54
+#, php-format
+msgid "Session published. <a href=\"%s\">View Session</a>"
+msgstr "Session gepubliceerd. <a href=\"%s\">Toon sessie</a>"
+
+#: components/cpts/session.php:55
+msgid "Session saved."
+msgstr "Sessie opgeslagen."
+
+#: components/cpts/session.php:56
+#, php-format
+msgid "Session submitted. <a target=\"_blank\" href=\"%s\">Preview Session</a>"
+msgstr ""
+"Sessie verzonden. <a target=\"_blank\" href=\"%s\">Vooruitblik sessie</a>"
+
+#: components/cpts/session.php:57
+#, php-format
+msgid ""
+"Session scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" href="
+"\"%2$s\">Preview Session</a>"
+msgstr ""
+"Sessie gepland voor: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s"
+"\">Voortuitblik Sessie</a>"
+
+#: components/cpts/session.php:60
+#, php-format
+msgid ""
+"Session draft updated. <a target=\"_blank\" href=\"%s\">Preview Session</a>"
+msgstr ""
+"Sessie opzet bijgewerkt. <a target=\"_blank\" href=\"%s\">Vooruitblik "
+"sessie</a>"
+
+#: components/cpts/speaker.php:5
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullschedule.php:23
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullspeakers.php:23
+#: lib/content-builder/components/sections/class.ef_content_builder_section_schedule.php:23
+#: lib/content-builder/components/sections/class.ef_content_builder_section_speakers.php:23
+msgid "Speaker"
+msgstr "Spreker"
+
+#: components/cpts/speaker.php:6
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullspeakers.php:24
+#: lib/content-builder/components/sections/class.ef_content_builder_section_speakers.php:24
+msgid "Speakers"
+msgstr "Sprekers"
+
+#: components/cpts/speaker.php:13
+#, php-format
+msgid "Add New %s"
+msgstr "Nieuwe %s toevoegen"
+
+#: components/cpts/speaker.php:14
+#, php-format
+msgid "Edit %s"
+msgstr "Bewerk %s"
+
+#: components/cpts/speaker.php:15
+#, php-format
+msgid "New %s"
+msgstr "Nieuwe %s"
+
+#: components/cpts/speaker.php:16
+#, php-format
+msgid "All %s"
+msgstr "Alle %s"
+
+#: components/cpts/speaker.php:17
+#, php-format
+msgid "View %s"
+msgstr "Bekijk %s"
+
+#: components/cpts/speaker.php:18
+#, php-format
+msgid "Search %s"
+msgstr "Zoek %s"
+
+#: components/cpts/speaker.php:19
+#, php-format
+msgid "No %s found"
+msgstr "Geen %s gevonden"
+
+#: components/cpts/speaker.php:20
+#, php-format
+msgid "No %s found in trash"
+msgstr "Geen %s gevonden prullenbak"
+
+#: components/cpts/speaker.php:54
+#, php-format
+msgid "%s updated. <a href=\"%s\">View %s</a>"
+msgstr "%s bijgewerkt. <a href=\"%s\">Bekijk %s</a>"
+
+#: components/cpts/speaker.php:57
+#, php-format
+msgid "%s updated."
+msgstr "%s bijgewerkt."
+
+#. translators: %s: date and time of the revision
+#: components/cpts/speaker.php:59
+#, php-format
+msgid "%s restored to revision from %s"
+msgstr "%s hersteld naar revisie van %s"
+
+#: components/cpts/speaker.php:60
+#, php-format
+msgid "%s published. <a href=\"%s\">View %s</a>"
+msgstr "%s gepubliceerd. <a href=\"%s\">Bekijk %s</a>"
+
+#: components/cpts/speaker.php:61
+#, php-format
+msgid "%s saved."
+msgstr "%s opgeslagen."
+
+#: components/cpts/speaker.php:62
+#, php-format
+msgid "%s submitted. <a target=\"_blank\" href=\"%s\">Preview %s</a>"
+msgstr "%s verzonden. <a target=\"_blank\" href=\"%s\">Vooruitblik %s</a>"
+
+#: components/cpts/speaker.php:63
+#, php-format
+msgid ""
+"%s scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s"
+"\">Preview %s</a>"
+msgstr ""
+"%s gepland voor: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s"
+"\">Vooruitblik %s</a>"
+
+#: components/cpts/speaker.php:66
+#, php-format
+msgid "%s draft updated. <a target=\"_blank\" href=\"%s\">Preview %s</a>"
+msgstr ""
+"%s opzet bijgewerkt. <a target=\"_blank\" href=\"%s\">Vooruitblik %s</a>"
+
+#: components/cpts/sponsor.php:4 components/cpts/sponsor.php:14
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullsponsors.php:25
+msgid "Sponsors"
+msgstr "Sponsors"
+
+#: components/cpts/sponsor.php:5
+msgid "Sponsor"
+msgstr "Sponsor"
+
+#: components/cpts/sponsor.php:7
+msgid "Add New Sponsor"
+msgstr "Nieuwe Sponsor toevoegen"
+
+#: components/cpts/sponsor.php:8
+msgid "Edit Sponsor"
+msgstr "Bewerk Sponsor"
+
+#: components/cpts/sponsor.php:9
+msgid "New Sponsor"
+msgstr "Nieuwe Sponsor"
+
+#: components/cpts/sponsor.php:10
+msgid "View Sponsor"
+msgstr "Bekijk Sponsor"
+
+#: components/cpts/sponsor.php:11
+msgid "Search Sponsors"
+msgstr "Zoek Sponsors"
+
+#: components/cpts/sponsor.php:12
+msgid "No Sponsors found"
+msgstr "Geen Sponsors gevonden"
+
+#: components/cpts/sponsor.php:13
+msgid "No Sponsors found in trash"
+msgstr "Geen Sponsors in afvalemmer"
+
+#: components/cpts/sponsor.php:42
+#, php-format
+msgid "Sponsor updated. <a href=\"%s\">View Sponsor</a>"
+msgstr "Sponsor bijgewerkt. <a href=\"%s\">Bekijk sponsor</a>"
+
+#: components/cpts/sponsor.php:45
+msgid "Sponsor updated."
+msgstr "Sponsor bijgewerkt."
+
+#. translators: %s: date and time of the revision
+#: components/cpts/sponsor.php:47
+#, php-format
+msgid "Sponsor restored to revision from %s"
+msgstr "Sponsor hersteld naar revisie van %s"
+
+#: components/cpts/sponsor.php:48
+#, php-format
+msgid "Sponsor published. <a href=\"%s\">View Sponsor</a>"
+msgstr "Sponsor gepubliceerd. <a href=\"%s\">Bekijk sponsor</a>"
+
+#: components/cpts/sponsor.php:49
+msgid "Sponsor saved."
+msgstr "Sponsor opgeslagen."
+
+#: components/cpts/sponsor.php:50
+#, php-format
+msgid "Sponsor submitted. <a target=\"_blank\" href=\"%s\">Preview Sponsor</a>"
+msgstr ""
+"Sponsor verzonden. <a target=\"_blank\" href=\"%s\">Vooruitblik sponsor</a>"
+
+#: components/cpts/sponsor.php:51
+#, php-format
+msgid ""
+"Sponsor scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" href="
+"\"%2$s\">Preview Sponsor</a>"
+msgstr ""
+"Sponsor gepland voor: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s"
+"\">Vooruitblik sponsor</a>"
+
+#: components/cpts/sponsor.php:54
+#, php-format
+msgid ""
+"Sponsor draft updated. <a target=\"_blank\" href=\"%s\">Preview Sponsor</a>"
+msgstr ""
+"Sponsor opzet bijgewerkt. <a target=\"_blank\" href=\"%s\">Vooruitblik "
+"sponsor</a>"
+
+#: components/cpts/ticket.php:5 components/cpts/ticket.php:15
+msgid "Tickets"
+msgstr "Toegangskaarten"
+
+#: components/cpts/ticket.php:6
+msgid "Ticket"
+msgstr "Toegangskaart"
+
+#: components/cpts/ticket.php:8
+msgid "Add New Ticket"
+msgstr "Nieuwe toegangskaart toevoegen"
+
+#: components/cpts/ticket.php:9
+msgid "Edit Ticket"
+msgstr "Bewerk toegangskaart"
+
+#: components/cpts/ticket.php:10
+msgid "New Ticket"
+msgstr "Nieuwe toegangskaart"
+
+#: components/cpts/ticket.php:11
+msgid "View Ticket"
+msgstr "Bekijk toegangskaarten"
+
+#: components/cpts/ticket.php:12
+msgid "Search Tickets"
+msgstr "Zoek toegangskaart"
+
+#: components/cpts/ticket.php:13
+msgid "No Tickets found"
+msgstr "Geen toegangskaart gevonden"
+
+#: components/cpts/ticket.php:14
+msgid "No Tickets found in trash"
+msgstr "Geen toegangskaart in afvalemmer"
+
+#: components/cpts/ticket.php:44
+#, php-format
+msgid "Ticket updated. <a href=\"%s\">View Ticket</a>"
+msgstr "Toegangskaarten bijgewerkt. <a href=\"%s\">Bekijk toegangskaart</a>"
+
+#: components/cpts/ticket.php:47
+msgid "Ticket updated."
+msgstr "Toegangskaarten bijgewerkt."
+
+#. translators: %s: date and time of the revision
+#: components/cpts/ticket.php:49
+#, php-format
+msgid "Ticket restored to revision from %s"
+msgstr "Toegangskaart hersteld naar revisie van %s"
+
+#: components/cpts/ticket.php:50
+#, php-format
+msgid "Ticket published. <a href=\"%s\">View Ticket</a>"
+msgstr "Toegangskaart gepubliceerd. <a href=\"%s\">Bekijk toegangskaart</a>"
+
+#: components/cpts/ticket.php:51
+msgid "Ticket saved."
+msgstr "Toegangskaarten opgeslagen."
+
+#: components/cpts/ticket.php:52
+#, php-format
+msgid "Ticket submitted. <a target=\"_blank\" href=\"%s\">Preview Ticket</a>"
+msgstr ""
+"Toegangskaart verzonden. <a target=\"_blank\" href=\"%s\">Vooruitblik "
+"toegangskaart</a>"
+
+#: components/cpts/ticket.php:53
+#, php-format
+msgid ""
+"Ticket scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s"
+"\">Preview Ticket</a>"
+msgstr ""
+"Toegangskaart gepland voor: <strong>%1$s</strong>. <a target=\"_blank\" href="
+"\"%2$s\">Vooruitblik toegangskaart</a>"
+
+#: components/cpts/ticket.php:56
+#, php-format
+msgid ""
+"Ticket draft updated. <a target=\"_blank\" href=\"%s\">Preview Ticket</a>"
+msgstr ""
+"Toegangskaart opzet bijgewerkt. <a target=\"_blank\" href=\"%s\">Vooruitblik "
+"toegangskaart</a>"
+
+#: components/metaboxes/poi.php:7
+msgid "POI Address Info"
+msgstr "POI Adresgegevens"
+
+#: components/metaboxes/poi.php:18
+msgid "Address"
+msgstr "Adres"
+
+#: components/metaboxes/poi.php:22
+msgid "Manual coordinates"
+msgstr "Handmatige coördinaten"
+
+#: components/metaboxes/poi.php:26
+msgid "Latitude"
+msgstr "Breedtegraad"
+
+#: components/metaboxes/poi.php:30
+msgid "Longitude"
+msgstr "Lengtegraad"
+
+#: components/metaboxes/session.php:7
+msgid "Session Details"
+msgstr "Sessiegegevens"
+
+#: components/metaboxes/session.php:32
+msgid "Show in home page"
+msgstr "Toon in startpagina"
+
+#: components/metaboxes/session.php:36
+msgid "Date"
+msgstr "Datum"
+
+#: components/metaboxes/session.php:40
+msgid "Start Time"
+msgstr "Begintijd"
+
+#: components/metaboxes/session.php:42 components/metaboxes/session.php:46
+msgid "Format hh:mm"
+msgstr "Format hh:mm"
+
+#: components/metaboxes/session.php:44
+msgid "End Time"
+msgstr "Eindtijd"
+
+#: components/metaboxes/session.php:49
+msgid ""
+"Please enter the time in 24 hours and four digits format. 9am should be "
+"inputted as 09:00 <strong>not</strong> as 9:00 - notice the lack of a zero."
+msgstr ""
+"Vult u a.u.b. de tijd in 24 uurs indeling en in 4 cijfers in. 9am hoort "
+"ingevuld te worden als 09:00 <strong>en niet</strong> als 9:00 - let op de "
+"ontbrekende nul."
+
+#: components/metaboxes/session.php:52
+msgid "Registration Embed Code:"
+msgstr "Registratie Embed Code:"
+
+#: components/metaboxes/session.php:56
+msgid "Registration Title:"
+msgstr "Registratie titel:"
+
+#: components/metaboxes/session.php:60
+msgid "Registration Text:"
+msgstr "Registratie tekst:"
+
+#: components/metaboxes/session.php:116
+#, php-format
+msgid "Select and order %s to show in this section"
+msgstr "Selecteer en orden %s om in dit deel getoond te worden"
+
+#: components/metaboxes/speaker.php:7
+#, php-format
+msgid "%s Details"
+msgstr "%s gegevens"
+
+#: components/metaboxes/speaker.php:15
+msgid "Keynote"
+msgstr "Hoofdgedachte"
+
+#: components/metaboxes/speaker.php:19
+#: lib/content-builder/components/sections/class.ef_content_builder_section_calltoaction.php:40
+#: lib/content-builder/components/sections/class.ef_content_builder_section_contact.php:40
+#: lib/content-builder/components/sections/class.ef_content_builder_section_exhibitors.php:40
+#: lib/content-builder/components/sections/class.ef_content_builder_section_facebook.php:40
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullexhibitors.php:40
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullnews.php:40
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullschedule.php:42
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullspeakers.php:43
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fulltickets.php:40
+#: lib/content-builder/components/sections/class.ef_content_builder_section_instagram.php:40
+#: lib/content-builder/components/sections/class.ef_content_builder_section_media.php:42
+#: lib/content-builder/components/sections/class.ef_content_builder_section_news.php:40
+#: lib/content-builder/components/sections/class.ef_content_builder_section_newsletter.php:40
+#: lib/content-builder/components/sections/class.ef_content_builder_section_registration.php:40
+#: lib/content-builder/components/sections/class.ef_content_builder_section_samplepage.php:47
+#: lib/content-builder/components/sections/class.ef_content_builder_section_schedule.php:42
+#: lib/content-builder/components/sections/class.ef_content_builder_section_speakers.php:43
+#: lib/content-builder/components/sections/class.ef_content_builder_section_twitter.php:41
+msgid "Subtitle"
+msgstr "Ondertitel"
+
+#: components/metaboxes/speaker.php:54
+msgid "Title Section 1"
+msgstr "Titel Afdeling 1"
+
+#: components/metaboxes/speaker.php:58 components/metaboxes/speaker.php:91
+#: components/metaboxes/speaker.php:123
+msgid "Select and order speakers to show in this section"
+msgstr "Selecteer en orden sprekers die in dit deel getoond worden"
+
+#: components/metaboxes/speaker.php:87
+msgid "Title Section 2"
+msgstr "Titel Afdeling 2"
+
+#: components/metaboxes/speaker.php:119
+msgid "Title Section 3"
+msgstr "Titel Afdeling 3"
+
+#: components/metaboxes/sponsor.php:5
+msgid "Sponsor Details"
+msgstr "Sponsorgegevens"
+
+#: components/metaboxes/sponsor.php:12
+msgid "Link"
+msgstr "Link"
+
+#: components/metaboxes/ticket.php:5
+msgid "Ticket Details"
+msgstr "Sessiegegevens"
+
+#: components/metaboxes/ticket.php:15
+msgid "Price"
+msgstr "Prijs"
+
+#: components/metaboxes/ticket.php:19
+msgid "Button Text"
+msgstr "Knoptekst"
+
+#: components/metaboxes/ticket.php:23
+msgid "Button Link"
+msgstr "Knop koppeling"
+
+#: components/metaboxes/ticket.php:27
+msgid "Status"
+msgstr "Status"
+
+#: components/shortcodes/shortcode-contact.php:71
+msgid "The reCAPTCHA wasn't entered correctly. Go back and try it again.!"
+msgstr "De reCAPTCHA is niet juist ingevuld. Ga terug en probeer het nog eens!"
+
+#: components/shortcodes/shortcode-contact.php:79
+msgid "Forgot your name!"
+msgstr "Uw naam is niet ingevuld!"
+
+#: components/shortcodes/shortcode-contact.php:89
+msgid "Forgot to enter in your e-mail address."
+msgstr "Uw e-mailadres is niet ingevuld."
+
+#: components/shortcodes/shortcode-contact.php:93
+msgid "You entered an invalid email address."
+msgstr "Uw heeft een ongeldig e-mailadres ingevuld."
+
+#: components/shortcodes/shortcode-contact.php:102
+msgid "You forgot to enter a message!"
+msgstr "U heeft nog geen bericht ingevuld!"
+
+#: components/shortcodes/shortcode-contact.php:115
+msgid "Submitted message from "
+msgstr "Bericht verstuurd vanaf"
+
+#: components/shortcodes/shortcode-contact.php:116
+msgid "Name:"
+msgstr "Naam:"
+
+#: components/shortcodes/shortcode-contact.php:116
+msgid "Email:"
+msgstr "E-mail:"
+
+#: components/shortcodes/shortcode-contact.php:116
+msgid "Comments:"
+msgstr "Reacties"
+
+#: components/shortcodes/shortcode-contact.php:122
+msgid "Your email was sent."
+msgstr "Uw e-mail is verzonden."
+
+#: components/shortcodes/shortcode-contact.php:125
+msgid "Error submitting the form"
+msgstr "Er is een fout opgetreden tijdens het versturen van het formulier"
+
+#: components/taxonomies/session-location.php:5
+msgid "Session Locations"
+msgstr "Sessielocaties"
+
+#: components/taxonomies/session-location.php:6
+msgid "Session Location"
+msgstr "Sessielocatie"
+
+#: components/taxonomies/session-location.php:7
+msgid "Search Session Locations"
+msgstr "Zoek sessielocaties"
+
+#: components/taxonomies/session-location.php:8
+msgid "All Session Locations"
+msgstr "Alle sessielocaties"
+
+#: components/taxonomies/session-location.php:9
+msgid "Parent Session Location"
+msgstr "Vorige sessielocatie"
+
+#: components/taxonomies/session-location.php:10
+msgid "Parent Session Location:"
+msgstr "Vorige sessielocatie:"
+
+#: components/taxonomies/session-location.php:11
+msgid "Edit Session Location"
+msgstr "Bewerk sessielocatie"
+
+#: components/taxonomies/session-location.php:12
+msgid "Update Session Location"
+msgstr "Bijwerken sessielocatie"
+
+#: components/taxonomies/session-location.php:13
+msgid "Add New Session Location"
+msgstr "Voeg nieuwe sessielocatie toe"
+
+#: components/taxonomies/session-location.php:14
+msgid "New Session Location"
+msgstr "Nieuwe sessielocatie"
+
+#: components/taxonomies/session-location.php:15
+#: multievent/includes/multievent-post-types.php:64
+msgid "Locations"
+msgstr "Locaties"
+
+#: components/taxonomies/session-track.php:5
+msgid "Session Tracks"
+msgstr "Sessiesporen"
+
+#: components/taxonomies/session-track.php:6
+msgid "Session Track"
+msgstr "Sessiespoor"
+
+#: components/taxonomies/session-track.php:7
+msgid "Search Session Tracks"
+msgstr "Doorzoek sessiesporen"
+
+#: components/taxonomies/session-track.php:8
+msgid "All Session Tracks"
+msgstr "Alle sessiesporen"
+
+#: components/taxonomies/session-track.php:9
+msgid "Parent Session Track"
+msgstr "Vorige sessiespoor"
+
+#: components/taxonomies/session-track.php:10
+msgid "Parent Session Track:"
+msgstr "Vorige sessiespoor:"
+
+#: components/taxonomies/session-track.php:11
+msgid "Edit Session Track"
+msgstr "Bewerk sessiespoor"
+
+#: components/taxonomies/session-track.php:12
+msgid "Update Session Track"
+msgstr "Bijwerken sessiespoor"
+
+#: components/taxonomies/session-track.php:13
+msgid "Add New Session Track"
+msgstr "Nieuwe sessiespoor toevoegen"
+
+#: components/taxonomies/session-track.php:14
+msgid "New Session Track"
+msgstr "Nieuwe sessiespoor "
+
+#: components/taxonomies/session-track.php:15
+msgid "Tracks"
+msgstr "Sporen"
+
+#: event-framework.php:68
+msgid "Theme Options"
+msgstr "Themaopties"
+
+#: event-framework.php:246
+msgid "Search Widget Area : "
+msgstr "Doorzoek widgetgebied : "
+
+#: event-framework.php:247
+msgid "Search Widget : "
+msgstr "Zoek widget:"
+
+#: helpers/cpt/sessions.php:90
+msgid "More info"
+msgstr "Meer informatie"
+
+#: inc/comments.php:11
+msgid "Your comment is awaiting moderation."
+msgstr "Uw reactie wacht op moderatie."
+
+#: inc/comments.php:16
+#: lib/content-builder/classes/class.ef_content_builder.php:407
+msgid "Edit"
+msgstr "Bewerk"
+
+#. translators: 1: date, 2: time
+#: inc/comments.php:24
+#, php-format
+msgid "%1$s at %2$s"
+msgstr "%1$s bij %2$s"
+
+#: inc/event-admin.php:12
+msgid "Theme Options saved"
+msgstr "Themaopties opgeslagen"
+
+#: inc/event-admin.php:18
+msgid "Event Framework Logo"
+msgstr "Gebeurtenis Frameworklogo"
+
+#: inc/event-admin.php:28
+msgid "View Theme Documentation"
+msgstr "Bekijk Thema-documentatie"
+
+#: inc/event-admin.php:29
+msgid "Save options"
+msgstr "Bewaaropties"
+
+#: inc/fields/font.php:47
+msgid "Font Size"
+msgstr "Lettergrootte"
+
+#: inc/fields/gallery.php:21
+msgid "Upload Image"
+msgstr "Afbeelding uploaden"
+
+#: inc/fields/gallery.php:24
+msgid "or add a video url (Youtube or Vimeo)"
+msgstr "of voeg een video-url toe (Youtube of Vimeo)"
+
+#: inc/fields/gallery.php:27
+msgid "Add Video"
+msgstr "Video toevoegen"
+
+#: inc/taxonomy-meta.php:11
+msgid "Color"
+msgstr "Kleur"
+
+#: lib/api/admin/class-cc-tk-license-menu.php:31
+#: lib/api/admin/class-cc-tk-license-menu.php:46
+msgid "Theme Activation"
+msgstr "Thema-activatie"
+
+#: lib/api/admin/class-cc-tk-license-menu.php:40
+msgid "License Activation"
+msgstr "Licentie-activatie"
+
+#: lib/api/admin/class-cc-tk-license-menu.php:53
+msgid "Save Changes"
+msgstr "Bewaar wijzigingen"
+
+#: lib/api/admin/class-cc-tk-license-menu.php:66
+msgid "License Key"
+msgstr "Licentiesleutel"
+
+#: lib/api/admin/class-cc-tk-license-menu.php:67
+msgid "License email"
+msgstr "Licentie e-mail"
+
+#: lib/api/admin/class-cc-tk-license-menu.php:71
+msgid "Theme License Deactivation"
+msgstr "Themalicentie deactivering"
+
+#: lib/api/admin/class-cc-tk-license-menu.php:72
+msgid "Deactivate Theme License"
+msgstr "Deactiveer themalicentie"
+
+#: lib/api/admin/class-cc-tk-license-menu.php:151
+msgid "Plugin activated."
+msgstr "Plugin geactivateerd."
+
+#: lib/api/admin/class-cc-tk-license-menu.php:157
+msgid "Connection failed to the License Key API server. Try again later."
+msgstr ""
+"Verbinding met License Key API-server niet gelukt. Probeer het later nog "
+"eens."
+
+#: lib/api/admin/class-cc-tk-license-menu.php:241
+msgid ""
+"The license could not be deactivated. Use the License Deactivation tab to "
+"manually deactivate the license before activating a new license."
+msgstr ""
+"De licentie kon niet worden gedeactivateerd. Gebruik het tabblad Licentie "
+"deactivering om de licentie handmatig te deactiveren, voor u een nieuwe "
+"licentie activeert."
+
+#: lib/api/admin/class-cc-tk-license-menu.php:274
+msgid "Theme license deactivated."
+msgstr "Themalicentie gedeactiveerd."
+
+#: lib/api/admin/class-cc-tk-license-menu.php:294
+msgid "Deactivates theme license so it can be used on another blog."
+msgstr ""
+"Deactiveert themalicentie zodat deze voor een andere blog kan worden "
+"gebruikt."
+
+#: lib/api/classes/class-cc-tk-plugin-update.php:370
+#, php-format
+msgid ""
+"The license key for %s has expired. You can reactivate or purchase a license "
+"key from your account <a href=\"%s\" target=\"_blank\">dashboard</a>."
+msgstr ""
+"De licentiesleutel voor %s is verlopen. U kunt een licentiesleutel "
+"heractiveren of aanschaffen via het <a href=\"%s\" target=\"_blank"
+"\">dashboard</a> van uw account."
+
+#: lib/api/classes/class-cc-tk-plugin-update.php:384
+#, php-format
+msgid ""
+"The subscription for %s is on-hold. You can reactivate the subscription from "
+"your account <a href=\"%s\" target=\"_blank\">dashboard</a>."
+msgstr ""
+"De aanmelding voor %s is gepauzeerd.  U kunt de aanmelding heractiveren via "
+"het <a href=\"%s\" target=\"_blank\">dashboard</a> van uw account."
+
+#: lib/api/classes/class-cc-tk-plugin-update.php:398
+#, php-format
+msgid ""
+"The subscription for %s has been cancelled. You can renew the subscription "
+"from your account <a href=\"%s\" target=\"_blank\">dashboard</a>. A new "
+"license key will be emailed to you after your order has been completed."
+msgstr ""
+"De aanmelding voor %s is geannuleerd. U kunt deze aanmelding opnieuw doen "
+"via het <a href=\"%s\" target=\"_blank\">dashboard</a> van uw account. Een "
+"nieuwe licentiesleutel zal u via e-mail worden toegestuurd nadat de "
+"bestelling is afgerond."
+
+#: lib/api/classes/class-cc-tk-plugin-update.php:412
+#, php-format
+msgid ""
+"The subscription for %s has expired. You can reactivate the subscription "
+"from your account <a href=\"%s\" target=\"_blank\">dashboard</a>."
+msgstr ""
+"De aanmelding voor %s is gepauzeerd.  U kunt de aanmelding heractiveren via "
+"het <a href=\"%s\" target=\"_blank\">dashboard</a> van uw account."
+
+#: lib/api/classes/class-cc-tk-plugin-update.php:426
+#, php-format
+msgid ""
+"The subscription for %s has been suspended. You can reactivate the "
+"subscription from your account <a href=\"%s\" target=\"_blank\">dashboard</"
+"a>."
+msgstr ""
+"De aanmelding voor %s is opgeschort.  U kunt deze aanmelding heractiveren "
+"via het <a href=\"%s\" target=\"_blank\">dashboard</a> van uw account."
+
+#: lib/api/classes/class-cc-tk-plugin-update.php:440
+#, php-format
+msgid ""
+"The subscription for %s is still pending. You can check on the status of the "
+"subscription from your account <a href=\"%s\" target=\"_blank\">dashboard</"
+"a>."
+msgstr ""
+"Uw abonnementsaanvraag voor %s is nog steeds in behandeling. U kunt de "
+"status van uw aanvraag controleren via het <a href=\"%s\" target=\"_blank"
+"\">dashboard</a> van uw account"
+
+#: lib/api/classes/class-cc-tk-plugin-update.php:454
+#, php-format
+msgid ""
+"The subscription for %s has been placed in the trash and will be deleted "
+"soon. You can purchase a new subscription from your account <a href=\"%s\" "
+"target=\"_blank\">dashboard</a>."
+msgstr ""
+"De abonnementsaanvraag voor %s is in de prullenbak gedaan en zal binnenkort "
+"worden verwijderd. U kunt een nieuw abonnement aanschaffen via het <a href="
+"\"%s\" target=\"_blank\">dashboard</a> van uw account."
+
+#: lib/api/classes/class-cc-tk-plugin-update.php:468
+#, php-format
+msgid ""
+"A subscription for %s could not be found. You can purchase a subscription "
+"from your account <a href=\"%s\" target=\"_blank\">dashboard</a>."
+msgstr ""
+"Er is geen abonnement voor %s gevonden. U kunt een abonnement aanschaffen "
+"via het <a href=\"%s\" target=\"_blank\">dashboard</a> van uw account."
+
+#: lib/api/classes/class-cc-tk-plugin-update.php:482
+#, php-format
+msgid ""
+"A license key for %s could not be found. Maybe you forgot to enter a license "
+"key when setting up %s, or the key was deactivated in your account. You can "
+"reactivate or purchase a license key from your account <a href=\"%s\" target="
+"\"_blank\">dashboard</a>."
+msgstr ""
+"Er is geen licentiesleutel gevonden voor %s. Misschien bent u vergeten een "
+"licentiesleutel in te vullen bij het instellen van %s, of is de sleutel "
+"gedeactiveerd in uw account. U kunt een licentiesleutel heractiveren of "
+"aanschaffen via het <a href=\"%s\" target=\"_blank\">dashboard</a> van uw "
+"account."
+
+#: lib/api/classes/class-cc-tk-plugin-update.php:496
+#, php-format
+msgid ""
+"Download permission for %s has been revoked possibly due to a license key or "
+"subscription expiring. You can reactivate or purchase a license key from "
+"your account <a href=\"%s\" target=\"_blank\">dashboard</a>."
+msgstr ""
+"Downloadpermissie voor %s is herroepen, mogelijk vanwege een verlopen "
+"licentiesleutel of aanmelding. U kunt een licentiesleutel heractiveren of "
+"aanschaffen via het <a href=\"%s\" target=\"_blank\">dashboard</a> van uw "
+"account."
+
+#: lib/api/classes/class-cc-tk-plugin-update.php:510
+#, php-format
+msgid ""
+"%s has not been activated. Go to the settings page and enter the license key "
+"and license email to activate %s."
+msgstr ""
+"%s is nog niet geactiveerd. Ga naar de pagina met instellingen en voer daar "
+"de licentiesleutel en licentie e-mail in, om %s te activeren."
+
+#: lib/api/classes/class-cc-tk-plugin-update.php:524
+#, php-format
+msgid ""
+"You changed the subscription for %s, so you will need to enter your new API "
+"License Key in the settings page. The License Key should have arrived in "
+"your email inbox, if not you can get it by logging into your account <a href="
+"\"%s\" target=\"_blank\">dashboard</a>."
+msgstr ""
+"U heeft het abonnement voor %s gewijzigd, vandaar dat u uw nieuwe API "
+"Licentiesleutel in moet voeren in de pagina met instellingen. De "
+"Licentiesleutel zou in uw e-mail postvak moeten zijn gearriveerd. Is dit "
+"niet het geval dan kunt u deze verkrijgen door in te loggen op uw <a href="
+"\"%s\" target=\"_blank\">dashboard</a> van uw account."
+
+#: lib/api/classes/class-cc-tk-plugin-update.php:538
+#, php-format
+msgid "A new <strong>%s</strong> update is available."
+msgstr "Een nieuwe <strong>%s</strong> update is beschikbaar."
+
+#: lib/content-builder/classes/class.ef_content_builder.php:406
+msgid "Section added"
+msgstr "Sectie toegevoegd"
+
+#: lib/content-builder/classes/class.ef_content_builder.php:408
+msgid "Close"
+msgstr "Afsluiten"
+
+#: lib/content-builder/classes/class.ef_content_builder.php:409
+msgid "Hide Editor"
+msgstr "Verberg editor"
+
+#: lib/content-builder/classes/class.ef_content_builder.php:410
+#: lib/content-builder/classes/class.ef_content_builder.php:461
+msgid "Show Editor"
+msgstr "Toon editor"
+
+#: lib/content-builder/classes/class.ef_content_builder.php:411
+msgid "Columns"
+msgstr "Kolommen"
+
+#: lib/content-builder/classes/class.ef_content_builder.php:412
+msgid "Add Columns"
+msgstr "Kolommen toevoegen"
+
+#: lib/content-builder/classes/class.ef_content_builder.php:413
+msgid "2 Columns"
+msgstr "2 kolommen"
+
+#: lib/content-builder/classes/class.ef_content_builder.php:414
+msgid "3 Columns"
+msgstr "3 kolommen"
+
+#: lib/content-builder/classes/class.ef_content_builder.php:415
+msgid "4 Columns"
+msgstr "4 kolommen"
+
+#: lib/content-builder/classes/class.ef_content_builder.php:416
+msgid "Buttons"
+msgstr "Knoppen"
+
+#: lib/content-builder/classes/class.ef_content_builder.php:417
+msgid "Add Button"
+msgstr "Knoppen toevoegen"
+
+#: lib/content-builder/classes/class.ef_content_builder.php:418
+msgid "Large Ghost Button"
+msgstr "Grote ghost-knop"
+
+#: lib/content-builder/classes/class.ef_content_builder.php:419
+msgid "Normal Ghost Button"
+msgstr "Normale ghost-knop"
+
+#: lib/content-builder/classes/class.ef_content_builder.php:420
+msgid "White Button"
+msgstr "Witte knop"
+
+#: lib/content-builder/classes/class.ef_content_builder.php:421
+msgid "Black Button"
+msgstr "Zwarte knop"
+
+#: lib/content-builder/classes/class.ef_content_builder.php:422
+msgid "Hover Button"
+msgstr "Zwevende knop"
+
+#: lib/content-builder/classes/class.ef_content_builder.php:423
+msgid "Do you want to remove this section="
+msgstr "Wil je deze sectie verwijderen="
+
+#: lib/content-builder/classes/class.ef_content_builder.php:424
+msgid "Do you want use this template, removing all existing sections?"
+msgstr ""
+"Wil je deze sjabloon gebruiken om alle bestaande secties te verwijderen?"
+
+#: lib/content-builder/classes/class.ef_content_builder.php:469
+msgid "Content Builder"
+msgstr "Inhoudbouwer"
+
+#: lib/content-builder/classes/class.ef_content_builder.php:487
+msgid "Save"
+msgstr "Opslaan"
+
+#: lib/content-builder/classes/class.ef_content_builder.php:488
+msgid "Back to top"
+msgstr "Naar de bovenkant"
+
+#: lib/content-builder/classes/class.ef_content_builder.php:489
+msgid "View Templates"
+msgstr "Bekijk sjablonen"
+
+#: lib/content-builder/classes/class.ef_content_builder.php:490
+msgid "View Items"
+msgstr "Bekijk items"
+
+#: lib/content-builder/classes/class.ef_content_builder.php:491
+#: lib/content-builder/classes/class.ef_content_builder.php:493
+msgid "Custom CSS"
+msgstr "Aangepaste CSS"
+
+#: lib/content-builder/classes/class.ef_content_builder.php:495
+msgid "Click on a template to use it in you content"
+msgstr "Klik op een sjabloon om in je inhoud te gebruiken"
+
+#: lib/content-builder/classes/class.ef_content_builder.php:499
+msgid "Click on a item to add it to the content"
+msgstr "Klik op een item om aan je inhoud toe te voegen"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_button.php:25
+msgid "Button"
+msgstr "Knop"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_button.php:33
+#: lib/content-builder/components/sections/class.ef_content_builder_section_heading.php:45
+#: lib/content-builder/components/sections/class.ef_content_builder_section_headline.php:33
+#: lib/content-builder/components/sections/class.ef_content_builder_section_html.php:25
+#: lib/content-builder/components/sections/class.ef_content_builder_section_strapline.php:33
+msgid "Text"
+msgstr "Tekst"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_button.php:40
+msgid "Url"
+msgstr "Url"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_button.php:47
+#: lib/content-builder/components/sections/class.ef_content_builder_section_calltoaction.php:68
+#: lib/content-builder/components/sections/class.ef_content_builder_section_columns2.php:47
+#: lib/content-builder/components/sections/class.ef_content_builder_section_columns3.php:61
+#: lib/content-builder/components/sections/class.ef_content_builder_section_columns4.php:68
+#: lib/content-builder/components/sections/class.ef_content_builder_section_heading.php:52
+#: lib/content-builder/components/sections/class.ef_content_builder_section_headline.php:40
+#: lib/content-builder/components/sections/class.ef_content_builder_section_html.php:40
+#: lib/content-builder/components/sections/class.ef_content_builder_section_strapline.php:40
+msgid "Text alignment:"
+msgstr "Tekst uitlijnen:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_button.php:59
+msgid "Width:"
+msgstr "Breedte:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_button.php:66
+msgid "Height:"
+msgstr "Hoogte:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_button.php:73
+#: lib/content-builder/components/sections/class.ef_content_builder_section_columns2.php:66
+#: lib/content-builder/components/sections/class.ef_content_builder_section_columns3.php:54
+#: lib/content-builder/components/sections/class.ef_content_builder_section_columns4.php:61
+#: lib/content-builder/components/sections/class.ef_content_builder_section_heading.php:64
+#: lib/content-builder/components/sections/class.ef_content_builder_section_headline.php:52
+#: lib/content-builder/components/sections/class.ef_content_builder_section_html.php:59
+#: lib/content-builder/components/sections/class.ef_content_builder_section_registration.php:82
+#: lib/content-builder/components/sections/class.ef_content_builder_section_strapline.php:52
+#: lib/content-builder/components/sections/class.ef_content_builder_section_timer.php:40
+msgid "Text color:"
+msgstr "Tekstkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_button.php:80
+msgid "Text hover color:"
+msgstr "Tekst zweefkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_button.php:87
+#: lib/content-builder/components/sections/class.ef_content_builder_section_calltoaction.php:80
+#: lib/content-builder/components/sections/class.ef_content_builder_section_columns2.php:59
+#: lib/content-builder/components/sections/class.ef_content_builder_section_columns3.php:73
+#: lib/content-builder/components/sections/class.ef_content_builder_section_columns4.php:80
+#: lib/content-builder/components/sections/class.ef_content_builder_section_contact.php:54
+#: lib/content-builder/components/sections/class.ef_content_builder_section_exhibitors.php:54
+#: lib/content-builder/components/sections/class.ef_content_builder_section_facebook.php:68
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullexhibitors.php:54
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullnews.php:54
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullschedule.php:56
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullspeakers.php:57
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullsponsors.php:66
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fulltickets.php:47
+#: lib/content-builder/components/sections/class.ef_content_builder_section_instagram.php:61
+#: lib/content-builder/components/sections/class.ef_content_builder_section_map.php:55
+#: lib/content-builder/components/sections/class.ef_content_builder_section_media.php:49
+#: lib/content-builder/components/sections/class.ef_content_builder_section_news.php:54
+#: lib/content-builder/components/sections/class.ef_content_builder_section_newsletter.php:68
+#: lib/content-builder/components/sections/class.ef_content_builder_section_registration.php:61
+#: lib/content-builder/components/sections/class.ef_content_builder_section_samplepage.php:61
+#: lib/content-builder/components/sections/class.ef_content_builder_section_schedule.php:56
+#: lib/content-builder/components/sections/class.ef_content_builder_section_social.php:34
+#: lib/content-builder/components/sections/class.ef_content_builder_section_speakers.php:57
+#: lib/content-builder/components/sections/class.ef_content_builder_section_sponsors.php:66
+#: lib/content-builder/components/sections/class.ef_content_builder_section_timer.php:33
+#: lib/content-builder/components/sections/class.ef_content_builder_section_twitter.php:62
+msgid "Background color:"
+msgstr "Achtergrondkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_button.php:94
+msgid "Background hover color:"
+msgstr "Achtergrond zweefkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_button.php:101
+msgid "Border color:"
+msgstr "Randkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_button.php:108
+#: lib/content-builder/components/sections/class.ef_content_builder_section_columns2.php:73
+#: lib/content-builder/components/sections/class.ef_content_builder_section_columns3.php:80
+#: lib/content-builder/components/sections/class.ef_content_builder_section_columns4.php:87
+#: lib/content-builder/components/sections/class.ef_content_builder_section_registration.php:103
+#: lib/content-builder/components/sections/class.ef_content_builder_section_strapline.php:59
+#: lib/content-builder/components/sections/class.ef_content_builder_section_timer.php:47
+msgid "Text size:"
+msgstr "Lettergrootte:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_button.php:115
+#: lib/content-builder/components/sections/class.ef_content_builder_section_calltoaction.php:150
+#: lib/content-builder/components/sections/class.ef_content_builder_section_columns2.php:80
+#: lib/content-builder/components/sections/class.ef_content_builder_section_columns3.php:87
+#: lib/content-builder/components/sections/class.ef_content_builder_section_columns4.php:94
+#: lib/content-builder/components/sections/class.ef_content_builder_section_contact.php:117
+#: lib/content-builder/components/sections/class.ef_content_builder_section_exhibitors.php:146
+#: lib/content-builder/components/sections/class.ef_content_builder_section_facebook.php:166
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullexhibitors.php:146
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullnews.php:153
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullschedule.php:189
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullspeakers.php:148
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullsponsors.php:185
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fulltickets.php:159
+#: lib/content-builder/components/sections/class.ef_content_builder_section_heading.php:71
+#: lib/content-builder/components/sections/class.ef_content_builder_section_headline.php:59
+#: lib/content-builder/components/sections/class.ef_content_builder_section_html.php:66
+#: lib/content-builder/components/sections/class.ef_content_builder_section_instagram.php:96
+#: lib/content-builder/components/sections/class.ef_content_builder_section_map.php:90
+#: lib/content-builder/components/sections/class.ef_content_builder_section_media.php:91
+#: lib/content-builder/components/sections/class.ef_content_builder_section_news.php:153
+#: lib/content-builder/components/sections/class.ef_content_builder_section_newsletter.php:117
+#: lib/content-builder/components/sections/class.ef_content_builder_section_picture.php:73
+#: lib/content-builder/components/sections/class.ef_content_builder_section_registration.php:110
+#: lib/content-builder/components/sections/class.ef_content_builder_section_samplepage.php:96
+#: lib/content-builder/components/sections/class.ef_content_builder_section_schedule.php:189
+#: lib/content-builder/components/sections/class.ef_content_builder_section_social.php:62
+#: lib/content-builder/components/sections/class.ef_content_builder_section_speakers.php:148
+#: lib/content-builder/components/sections/class.ef_content_builder_section_sponsors.php:185
+#: lib/content-builder/components/sections/class.ef_content_builder_section_strapline.php:66
+#: lib/content-builder/components/sections/class.ef_content_builder_section_timer.php:54
+#: lib/content-builder/components/sections/class.ef_content_builder_section_twitter.php:132
+msgid "Margin top:"
+msgstr "Marge bovenkant:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_button.php:122
+#: lib/content-builder/components/sections/class.ef_content_builder_section_calltoaction.php:157
+#: lib/content-builder/components/sections/class.ef_content_builder_section_columns2.php:87
+#: lib/content-builder/components/sections/class.ef_content_builder_section_columns3.php:94
+#: lib/content-builder/components/sections/class.ef_content_builder_section_columns4.php:101
+#: lib/content-builder/components/sections/class.ef_content_builder_section_contact.php:124
+#: lib/content-builder/components/sections/class.ef_content_builder_section_exhibitors.php:153
+#: lib/content-builder/components/sections/class.ef_content_builder_section_facebook.php:173
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullexhibitors.php:153
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullnews.php:160
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullschedule.php:196
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullspeakers.php:155
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullsponsors.php:192
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fulltickets.php:166
+#: lib/content-builder/components/sections/class.ef_content_builder_section_heading.php:78
+#: lib/content-builder/components/sections/class.ef_content_builder_section_headline.php:66
+#: lib/content-builder/components/sections/class.ef_content_builder_section_html.php:73
+#: lib/content-builder/components/sections/class.ef_content_builder_section_instagram.php:103
+#: lib/content-builder/components/sections/class.ef_content_builder_section_map.php:97
+#: lib/content-builder/components/sections/class.ef_content_builder_section_media.php:98
+#: lib/content-builder/components/sections/class.ef_content_builder_section_news.php:160
+#: lib/content-builder/components/sections/class.ef_content_builder_section_newsletter.php:124
+#: lib/content-builder/components/sections/class.ef_content_builder_section_picture.php:80
+#: lib/content-builder/components/sections/class.ef_content_builder_section_registration.php:117
+#: lib/content-builder/components/sections/class.ef_content_builder_section_samplepage.php:103
+#: lib/content-builder/components/sections/class.ef_content_builder_section_schedule.php:196
+#: lib/content-builder/components/sections/class.ef_content_builder_section_social.php:69
+#: lib/content-builder/components/sections/class.ef_content_builder_section_speakers.php:155
+#: lib/content-builder/components/sections/class.ef_content_builder_section_sponsors.php:192
+#: lib/content-builder/components/sections/class.ef_content_builder_section_strapline.php:73
+#: lib/content-builder/components/sections/class.ef_content_builder_section_timer.php:61
+#: lib/content-builder/components/sections/class.ef_content_builder_section_twitter.php:139
+msgid "Margin bottom:"
+msgstr "Marge onderkant:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_calltoaction.php:25
+msgid "Call to Action"
+msgstr "Oproep tot Actie"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_calltoaction.php:33
+#: lib/content-builder/components/sections/class.ef_content_builder_section_contact.php:33
+#: lib/content-builder/components/sections/class.ef_content_builder_section_exhibitors.php:33
+#: lib/content-builder/components/sections/class.ef_content_builder_section_facebook.php:33
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullexhibitors.php:33
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullnews.php:33
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullschedule.php:35
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullspeakers.php:36
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullsponsors.php:33
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fulltickets.php:33
+#: lib/content-builder/components/sections/class.ef_content_builder_section_instagram.php:33
+#: lib/content-builder/components/sections/class.ef_content_builder_section_media.php:35
+#: lib/content-builder/components/sections/class.ef_content_builder_section_news.php:33
+#: lib/content-builder/components/sections/class.ef_content_builder_section_newsletter.php:33
+#: lib/content-builder/components/sections/class.ef_content_builder_section_registration.php:33
+#: lib/content-builder/components/sections/class.ef_content_builder_section_samplepage.php:40
+#: lib/content-builder/components/sections/class.ef_content_builder_section_schedule.php:35
+#: lib/content-builder/components/sections/class.ef_content_builder_section_speakers.php:36
+#: lib/content-builder/components/sections/class.ef_content_builder_section_sponsors.php:33
+#: lib/content-builder/components/sections/class.ef_content_builder_section_twitter.php:34
+msgid "Title"
+msgstr "Titel"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_calltoaction.php:47
+msgid "Image:"
+msgstr "Afbeelding:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_calltoaction.php:54
+#: lib/content-builder/components/sections/class.ef_content_builder_section_newsletter.php:54
+msgid "Button text:"
+msgstr "Knoptekst:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_calltoaction.php:61
+msgid "Button url:"
+msgstr "Knop url:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_calltoaction.php:72
+msgid "Left"
+msgstr "Links"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_calltoaction.php:73
+msgid "Right"
+msgstr "Rechts"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_calltoaction.php:74
+msgid "Center"
+msgstr "Midden"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_calltoaction.php:87
+#: lib/content-builder/components/sections/class.ef_content_builder_section_contact.php:61
+#: lib/content-builder/components/sections/class.ef_content_builder_section_samplepage.php:68
+msgid "Title color:"
+msgstr "Titelkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_calltoaction.php:94
+#: lib/content-builder/components/sections/class.ef_content_builder_section_contact.php:68
+#: lib/content-builder/components/sections/class.ef_content_builder_section_samplepage.php:75
+msgid "Subtitle color:"
+msgstr "Ondertitelkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_calltoaction.php:101
+#: lib/content-builder/components/sections/class.ef_content_builder_section_newsletter.php:89
+msgid "Button text color:"
+msgstr "Knoptekstkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_calltoaction.php:108
+msgid "Button hover text color:"
+msgstr "Knop zweven tekstkleur"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_calltoaction.php:115
+msgid "Button background color:"
+msgstr "Knop achtergrondkleur"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_calltoaction.php:122
+msgid "Button hover background color:"
+msgstr "Knop zweven achtergrondkleur"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_calltoaction.php:129
+#: lib/content-builder/components/sections/class.ef_content_builder_section_contact.php:89
+#: lib/content-builder/components/sections/class.ef_content_builder_section_exhibitors.php:110
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullexhibitors.php:110
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullnews.php:117
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullschedule.php:140
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullspeakers.php:113
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullsponsors.php:136
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fulltickets.php:117
+#: lib/content-builder/components/sections/class.ef_content_builder_section_instagram.php:82
+#: lib/content-builder/components/sections/class.ef_content_builder_section_media.php:77
+#: lib/content-builder/components/sections/class.ef_content_builder_section_news.php:117
+#: lib/content-builder/components/sections/class.ef_content_builder_section_newsletter.php:96
+#: lib/content-builder/components/sections/class.ef_content_builder_section_registration.php:89
+#: lib/content-builder/components/sections/class.ef_content_builder_section_samplepage.php:82
+#: lib/content-builder/components/sections/class.ef_content_builder_section_schedule.php:140
+#: lib/content-builder/components/sections/class.ef_content_builder_section_speakers.php:113
+#: lib/content-builder/components/sections/class.ef_content_builder_section_sponsors.php:136
+#: lib/content-builder/components/sections/class.ef_content_builder_section_twitter.php:118
+msgid "Title text size:"
+msgstr "Titel tekstgrootte"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_calltoaction.php:136
+#: lib/content-builder/components/sections/class.ef_content_builder_section_contact.php:96
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullnews.php:124
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullschedule.php:147
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullspeakers.php:120
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullsponsors.php:143
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fulltickets.php:124
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fulltickets.php:131
+#: lib/content-builder/components/sections/class.ef_content_builder_section_instagram.php:89
+#: lib/content-builder/components/sections/class.ef_content_builder_section_media.php:84
+#: lib/content-builder/components/sections/class.ef_content_builder_section_news.php:124
+#: lib/content-builder/components/sections/class.ef_content_builder_section_newsletter.php:103
+#: lib/content-builder/components/sections/class.ef_content_builder_section_registration.php:96
+#: lib/content-builder/components/sections/class.ef_content_builder_section_samplepage.php:89
+#: lib/content-builder/components/sections/class.ef_content_builder_section_schedule.php:147
+#: lib/content-builder/components/sections/class.ef_content_builder_section_speakers.php:120
+#: lib/content-builder/components/sections/class.ef_content_builder_section_sponsors.php:143
+#: lib/content-builder/components/sections/class.ef_content_builder_section_twitter.php:125
+msgid "Subtitle text size:"
+msgstr "Ondertitel tekstgrootte"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_calltoaction.php:143
+#: lib/content-builder/components/sections/class.ef_content_builder_section_newsletter.php:110
+msgid "Button text size:"
+msgstr "Knop tekstgrootte"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_columns2.php:25
+msgid "Columns 2"
+msgstr "Kolommen 2"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_columns2.php:33
+#: lib/content-builder/components/sections/class.ef_content_builder_section_columns3.php:33
+#: lib/content-builder/components/sections/class.ef_content_builder_section_columns4.php:33
+msgid "Content 1"
+msgstr "Inhoud 1"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_columns2.php:40
+#: lib/content-builder/components/sections/class.ef_content_builder_section_columns3.php:40
+#: lib/content-builder/components/sections/class.ef_content_builder_section_columns4.php:40
+msgid "Content 2"
+msgstr "Inhoud 2"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_columns3.php:25
+msgid "Columns 3"
+msgstr "Kolommen 3"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_columns3.php:47
+#: lib/content-builder/components/sections/class.ef_content_builder_section_columns4.php:47
+msgid "Content 3"
+msgstr "Inhoud 3"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_columns4.php:25
+msgid "Columns 4"
+msgstr "Kolommen 4"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_columns4.php:54
+msgid "Content 4"
+msgstr "Inhoud 4"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_contact.php:25
+msgid "Contact"
+msgstr "Contact"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_contact.php:47
+msgid "'Send message' Text:"
+msgstr "'Verstuur bericht' tekst:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_contact.php:75
+msgid "Field color:"
+msgstr "Veldkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_contact.php:82
+msgid "\"Send\" button text olor:"
+msgstr "'Verstuur'-knop tekstkleur "
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_contact.php:103
+msgid "Field text size:"
+msgstr "Veld tekstgrootte"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_contact.php:110
+msgid "\"Send\" button text size:"
+msgstr "'Verstuur'-knop tekstgrootte"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_exhibitors.php:25
+msgid "Exhibitors Showcase"
+msgstr "Exposanten showcase "
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_exhibitors.php:47
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullexhibitors.php:47
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullspeakers.php:50
+#: lib/content-builder/components/sections/class.ef_content_builder_section_speakers.php:50
+msgid "'View profile' Text:"
+msgstr "\"Bekijk profiel\" tekst:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_exhibitors.php:61
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullexhibitors.php:61
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullnews.php:61
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullschedule.php:63
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullspeakers.php:64
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullsponsors.php:73
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fulltickets.php:54
+#: lib/content-builder/components/sections/class.ef_content_builder_section_instagram.php:68
+#: lib/content-builder/components/sections/class.ef_content_builder_section_media.php:56
+#: lib/content-builder/components/sections/class.ef_content_builder_section_news.php:61
+#: lib/content-builder/components/sections/class.ef_content_builder_section_newsletter.php:75
+#: lib/content-builder/components/sections/class.ef_content_builder_section_registration.php:68
+#: lib/content-builder/components/sections/class.ef_content_builder_section_schedule.php:63
+#: lib/content-builder/components/sections/class.ef_content_builder_section_speakers.php:64
+#: lib/content-builder/components/sections/class.ef_content_builder_section_sponsors.php:73
+#: lib/content-builder/components/sections/class.ef_content_builder_section_twitter.php:76
+msgid "Title text color:"
+msgstr "Titel tekstkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_exhibitors.php:68
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullexhibitors.php:68
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullnews.php:68
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullschedule.php:70
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullspeakers.php:71
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullsponsors.php:80
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fulltickets.php:61
+#: lib/content-builder/components/sections/class.ef_content_builder_section_instagram.php:75
+#: lib/content-builder/components/sections/class.ef_content_builder_section_media.php:63
+#: lib/content-builder/components/sections/class.ef_content_builder_section_news.php:68
+#: lib/content-builder/components/sections/class.ef_content_builder_section_newsletter.php:82
+#: lib/content-builder/components/sections/class.ef_content_builder_section_registration.php:75
+#: lib/content-builder/components/sections/class.ef_content_builder_section_schedule.php:70
+#: lib/content-builder/components/sections/class.ef_content_builder_section_speakers.php:71
+#: lib/content-builder/components/sections/class.ef_content_builder_section_sponsors.php:80
+msgid "Subtitle text color:"
+msgstr "Ondertitel tekstkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_exhibitors.php:75
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullexhibitors.php:75
+msgid "Exhibitor title text color:"
+msgstr "Exposant titel tekst kleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_exhibitors.php:82
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullexhibitors.php:82
+msgid "Exhibitor subtitle text color:"
+msgstr "Exposant ondertitel tekstkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_exhibitors.php:89
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullexhibitors.php:89
+msgid "Exhibitor detail button text color:"
+msgstr "Exposant gegevensknop tekstkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_exhibitors.php:96
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullexhibitors.php:96
+msgid "Exhibitor pagination active text color:"
+msgstr "Exposant paginering actieve tekst kleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_exhibitors.php:103
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullexhibitors.php:103
+msgid "Exhibitor pagination disabled text color:"
+msgstr "Exposant paginering inactieve tekst kleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_exhibitors.php:117
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullexhibitors.php:117
+msgid "Subtitle size:"
+msgstr "Ondertitelgrootte:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_exhibitors.php:124
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullexhibitors.php:124
+msgid "Exhibitor title size:"
+msgstr "Exposant titelgrootte:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_exhibitors.php:132
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullexhibitors.php:132
+msgid "Exhibitor subtitle size:"
+msgstr "Exposant ondertitelgrootte:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_exhibitors.php:139
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullexhibitors.php:139
+msgid "Exhibitor detail button size:"
+msgstr "Exposant grootte gegevensknop:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_facebook.php:25
+msgid "Facebook"
+msgstr "Facebook"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_facebook.php:47
+msgid "Event ID:"
+msgstr "Gebeurtenis ID:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_facebook.php:54
+msgid "Link to event on Facebook"
+msgstr "Link naar gebeurtenis op Facebook:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_facebook.php:61
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullsponsors.php:59
+#: lib/content-builder/components/sections/class.ef_content_builder_section_sponsors.php:59
+msgid "Link text:"
+msgstr "Koppeling tekst:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_facebook.php:75
+msgid "Title color"
+msgstr "Titelkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_facebook.php:82
+msgid "Icons color"
+msgstr "Pictogramkleur"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_facebook.php:89
+msgid "Boxes text color"
+msgstr "Vakken tekstkleur"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_facebook.php:96
+msgid "Boxes background color"
+msgstr "Vakken achtergrondkleur"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_facebook.php:103
+msgid "Count text color"
+msgstr "Aantal tekstkleur"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_facebook.php:110
+msgid "Count background color"
+msgstr "Aantal achtergrondkleur"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_facebook.php:117
+msgid "Label text color"
+msgstr "Label tekstkleur"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_facebook.php:124
+msgid "Button text color"
+msgstr "Knoptekstkleur"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_facebook.php:131
+msgid "Title text size"
+msgstr "Titel tekstgrootte"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_facebook.php:138
+msgid "Icon size"
+msgstr "Pictogramgrootte"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_facebook.php:145
+msgid "Count text size"
+msgstr "Aantal tekstgrootte"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_facebook.php:152
+msgid "Label text size"
+msgstr "Label tekstgrootte"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_facebook.php:159
+msgid "Button text size"
+msgstr "Knop tekstgrootte"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullexhibitors.php:25
+msgid "Exhibitors"
+msgstr "Exposanten"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullnews.php:25
+msgid "News"
+msgstr "Nieuws"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullnews.php:47
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullschedule.php:49
+#: lib/content-builder/components/sections/class.ef_content_builder_section_news.php:47
+msgid "\"View\" button text"
+msgstr "\"Bekijk\" knoptekst:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullnews.php:75
+#: lib/content-builder/components/sections/class.ef_content_builder_section_news.php:75
+msgid "News title text color:"
+msgstr "Nieuws titel tekstkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullnews.php:82
+#: lib/content-builder/components/sections/class.ef_content_builder_section_news.php:82
+msgid "News subtitle text color:"
+msgstr "Nieuws ondertitel tekstkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullnews.php:89
+#: lib/content-builder/components/sections/class.ef_content_builder_section_news.php:89
+msgid "News detail button text color:"
+msgstr "Nieuws gegevensknop tekstkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullnews.php:96
+#: lib/content-builder/components/sections/class.ef_content_builder_section_news.php:96
+msgid "Search form text color:"
+msgstr "Zoekformulier tekstkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullnews.php:103
+#: lib/content-builder/components/sections/class.ef_content_builder_section_news.php:103
+msgid "News pagination active text color:"
+msgstr "Nieuws paginering actieve tekst kleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullnews.php:110
+#: lib/content-builder/components/sections/class.ef_content_builder_section_news.php:110
+msgid "News pagination disabled text color:"
+msgstr "Nieuws paginering inactieve tekst kleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullnews.php:131
+#: lib/content-builder/components/sections/class.ef_content_builder_section_news.php:131
+msgid "News title text size:"
+msgstr "Nieuwstitel tekstgrootte"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullnews.php:139
+#: lib/content-builder/components/sections/class.ef_content_builder_section_news.php:139
+msgid "News subtitle text size:"
+msgstr "Nieuws ondertitel tekstgrootte"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullnews.php:146
+#: lib/content-builder/components/sections/class.ef_content_builder_section_news.php:146
+msgid "News detail button text size:"
+msgstr "Nieuws gegevensknop tekstkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullschedule.php:27
+msgid "Schedule"
+msgstr "Rooster"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullschedule.php:77
+#: lib/content-builder/components/sections/class.ef_content_builder_section_schedule.php:77
+msgid "Session background color:"
+msgstr "Sessie achtergrondkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullschedule.php:84
+#: lib/content-builder/components/sections/class.ef_content_builder_section_schedule.php:84
+msgid "Day bar text color:"
+msgstr "Dag balk tekstkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullschedule.php:91
+#: lib/content-builder/components/sections/class.ef_content_builder_section_schedule.php:91
+msgid "Day bar background color:"
+msgstr "Dag balk achtergrondkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullschedule.php:98
+#: lib/content-builder/components/sections/class.ef_content_builder_section_schedule.php:98
+msgid "Session title text color:"
+msgstr "Sessie titel tekstkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullschedule.php:105
+#: lib/content-builder/components/sections/class.ef_content_builder_section_schedule.php:105
+msgid "Session time text color:"
+msgstr "Sessie tijd tekstkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullschedule.php:112
+#: lib/content-builder/components/sections/class.ef_content_builder_section_schedule.php:112
+msgid "Session location text color:"
+msgstr "Sessie locatie tekstkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullschedule.php:119
+msgid "Session \"View\" button text color:"
+msgstr "Sessie \"Bekijk\"-knop tekstkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullschedule.php:126
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullspeakers.php:99
+#: lib/content-builder/components/sections/class.ef_content_builder_section_schedule.php:126
+#: lib/content-builder/components/sections/class.ef_content_builder_section_speakers.php:99
+#, php-format
+msgid "%s pagination active text color:"
+msgstr "%s paginering actieve tekstkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullschedule.php:133
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullspeakers.php:106
+#: lib/content-builder/components/sections/class.ef_content_builder_section_schedule.php:133
+#: lib/content-builder/components/sections/class.ef_content_builder_section_speakers.php:106
+#, php-format
+msgid "%s pagination disabled text color:"
+msgstr "%s paginering inactieve tekstkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullschedule.php:154
+#: lib/content-builder/components/sections/class.ef_content_builder_section_schedule.php:154
+msgid "Day bar text size:"
+msgstr "Dag balk tekstgrootte:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullschedule.php:161
+#: lib/content-builder/components/sections/class.ef_content_builder_section_schedule.php:161
+msgid "Session title text size:"
+msgstr "Sessie titel tekstgrootte:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullschedule.php:168
+#: lib/content-builder/components/sections/class.ef_content_builder_section_schedule.php:168
+msgid "Session time text size:"
+msgstr "Sessie tijd tekstgrootte:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullschedule.php:175
+msgid "Session location font size:"
+msgstr "Sessie locatie lettergrootte:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullschedule.php:182
+#: lib/content-builder/components/sections/class.ef_content_builder_section_schedule.php:182
+msgid "Session button text size:"
+msgstr "Sessie knop tekstgrootte:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullspeakers.php:78
+#: lib/content-builder/components/sections/class.ef_content_builder_section_speakers.php:78
+#, php-format
+msgid "%s title text color:"
+msgstr "%s titel tekstkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullspeakers.php:85
+#: lib/content-builder/components/sections/class.ef_content_builder_section_speakers.php:85
+#, php-format
+msgid "%s subtitle text color:"
+msgstr "%s ondertitel tekstkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullspeakers.php:92
+#: lib/content-builder/components/sections/class.ef_content_builder_section_speakers.php:92
+#, php-format
+msgid "%s detail button text color:"
+msgstr "%s gegevensknop tekstkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullspeakers.php:127
+#: lib/content-builder/components/sections/class.ef_content_builder_section_speakers.php:127
+#, php-format
+msgid "%s title text size:"
+msgstr "%s titel tekstgrootte:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullspeakers.php:134
+#: lib/content-builder/components/sections/class.ef_content_builder_section_speakers.php:134
+#, php-format
+msgid "%s subtitle text size:"
+msgstr "%s ondertitel tekstgrootte:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullspeakers.php:141
+#: lib/content-builder/components/sections/class.ef_content_builder_section_speakers.php:141
+#, php-format
+msgid "%s detail button text size:"
+msgstr "%s gegevensknop tekstgrootte:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullsponsors.php:40
+#: lib/content-builder/components/sections/class.ef_content_builder_section_sponsors.php:40
+msgid "Description"
+msgstr "Beschrijving"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullsponsors.php:47
+#: lib/content-builder/components/sections/class.ef_content_builder_section_sponsors.php:47
+msgid "Type"
+msgstr "Type"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullsponsors.php:87
+#: lib/content-builder/components/sections/class.ef_content_builder_section_sponsors.php:87
+msgid "Tier title text color:"
+msgstr "Rang titel tekstkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullsponsors.php:94
+#: lib/content-builder/components/sections/class.ef_content_builder_section_sponsors.php:94
+msgid "Tier title background color:"
+msgstr "Rang titel achtergrondkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullsponsors.php:101
+#: lib/content-builder/components/sections/class.ef_content_builder_section_sponsors.php:101
+msgid "Tier description text color:"
+msgstr "Rang beschrijving tekstkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullsponsors.php:108
+#: lib/content-builder/components/sections/class.ef_content_builder_section_sponsors.php:108
+msgid "Sponsor background color:"
+msgstr "Sponsor achtergrondkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullsponsors.php:115
+#: lib/content-builder/components/sections/class.ef_content_builder_section_sponsors.php:115
+msgid "Sponsor title text color:"
+msgstr "Sponsor titel tekstkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullsponsors.php:122
+#: lib/content-builder/components/sections/class.ef_content_builder_section_sponsors.php:122
+msgid "Sponsor description text color:"
+msgstr "Sponsor beschrijving tekstkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullsponsors.php:129
+#: lib/content-builder/components/sections/class.ef_content_builder_section_sponsors.php:129
+msgid "Link text color:"
+msgstr "Koppeling tekstkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullsponsors.php:150
+#: lib/content-builder/components/sections/class.ef_content_builder_section_sponsors.php:150
+msgid "Tier title text size:"
+msgstr "Rang titel tekstgrootte:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullsponsors.php:157
+#: lib/content-builder/components/sections/class.ef_content_builder_section_sponsors.php:157
+msgid "Tier description text size:"
+msgstr "Rang beschrijving tekstgrootte:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullsponsors.php:164
+#: lib/content-builder/components/sections/class.ef_content_builder_section_sponsors.php:164
+msgid "Sponsor title text size:"
+msgstr "Sponsor titel tekstgrootte:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullsponsors.php:171
+#: lib/content-builder/components/sections/class.ef_content_builder_section_sponsors.php:171
+msgid "Sponsor description text size:"
+msgstr "Sponsor beschrijving tekstgrootte:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fullsponsors.php:178
+#: lib/content-builder/components/sections/class.ef_content_builder_section_sponsors.php:178
+msgid "Link text size:"
+msgstr "Koppeling tekstgrootte:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fulltickets.php:25
+msgid "All Tickets"
+msgstr "Alle toegangskaarten"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fulltickets.php:68
+msgid "Ticket background color:"
+msgstr "Toegangskaart achtergrondkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fulltickets.php:75
+msgid "Ticket title text color:"
+msgstr "Toegangskaart titel tekstkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fulltickets.php:82
+msgid "Ticket price box background color:"
+msgstr "Toegangskaart prijsvak achtergrondkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fulltickets.php:89
+msgid "Ticket price text color:"
+msgstr "Toegangskaart prijs tekstkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fulltickets.php:96
+msgid "Ticket text text color:"
+msgstr "Toegangskaart tekst tekstkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fulltickets.php:103
+msgid "Ticket button background color:"
+msgstr "Toegangskaart knop achtergrondkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fulltickets.php:110
+msgid "Ticket button text color:"
+msgstr "Toegangskaart knop tekstkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fulltickets.php:138
+msgid "Ticket price text size:"
+msgstr "Toegangskaart prijs tekstgrootte:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fulltickets.php:145
+msgid "Ticket text text size:"
+msgstr "Toegangskaart tekst tekstgrootte:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_fulltickets.php:152
+msgid "Ticket button text size:"
+msgstr "Toegangskaart knop tekstgrootte:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_heading.php:25
+msgid "Heading"
+msgstr "Kop"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_heading.php:33
+msgid "Size"
+msgstr "Grootte"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_heading.php:37
+msgid "Small"
+msgstr "Klein"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_heading.php:38
+msgid "Medium"
+msgstr "Gemiddeld"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_heading.php:39
+msgid "Large"
+msgstr "Groot"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_headline.php:25
+msgid "Headline"
+msgstr "Laatste nieuws"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_html.php:33
+#: lib/content-builder/components/sections/class.ef_content_builder_section_samplepage.php:54
+msgid "Content"
+msgstr "Inhoud"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_html.php:52
+msgid "Line spacing:"
+msgstr "Regelafstand:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_instagram.php:25
+msgid "Instagram"
+msgstr "Instagram"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_instagram.php:47
+msgid "Tag:"
+msgstr "Tag:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_instagram.php:54
+msgid "Pictures count:"
+msgstr "Aantal afbeeldingen:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_map.php:25
+msgid "Map"
+msgstr "Kaart"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_map.php:34
+msgid "Google map zoom"
+msgstr "Google map zoom"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_map.php:35
+msgid "From 1 to 21"
+msgstr "Van 1 tot 21"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_map.php:62
+msgid "Group color:"
+msgstr "Groepskleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_map.php:69
+msgid "Location color:"
+msgstr "Locatiekleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_map.php:76
+msgid "Group font size:"
+msgstr "Groep lettergrootte:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_map.php:83
+msgid "Location font size:"
+msgstr "Locatie lettergrootte:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_media.php:25
+msgid "Media"
+msgstr "Media"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_media.php:70
+msgid "Icons color:"
+msgstr "Pictogramkleur"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_news.php:25
+msgid "News Showcase"
+msgstr "Nieuws showcase"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_newsletter.php:25
+msgid "Newsletter"
+msgstr "Nieuwsbrief"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_newsletter.php:47
+msgid "Textbox text"
+msgstr "Tekstvak tekst"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_newsletter.php:61
+msgid "Mailchimp action URL:"
+msgstr "Mailchimp action URL:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_picture.php:25
+msgid "Image"
+msgstr "Beeld"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_picture.php:33
+msgid "Picture"
+msgstr "Afbeelding"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_picture.php:40
+msgid "Alt"
+msgstr "Alt"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_picture.php:47
+msgid "Width"
+msgstr "Breedte"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_picture.php:54
+msgid "Height"
+msgstr "Hoogte"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_picture.php:61
+msgid "Image alignment:"
+msgstr "Afbeelding uitlijnen:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_registration.php:25
+msgid "Registration"
+msgstr "Registratie"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_registration.php:47
+msgid "Main text:"
+msgstr "Hoofdtekst:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_registration.php:54
+msgid "Registration embed code:"
+msgstr "Registration embed code:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_samplepage.php:25
+msgid "Sample Page"
+msgstr "Voorbeeldpagina"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_samplepage.php:33
+msgid "Hero Image"
+msgstr "Held afbeelding:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_schedule.php:27
+msgid "Schedule Showcase"
+msgstr "Rooster showcase"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_schedule.php:49
+msgid "Button text"
+msgstr "Knoptekst"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_schedule.php:119
+msgid "Session button text color:"
+msgstr "Sessie knop tekstkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_schedule.php:175
+msgid "Session location text size:"
+msgstr "Sessie locatie tekstgrootte:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_social.php:25
+msgid "Social"
+msgstr "Social"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_social.php:41
+#: lib/content-builder/components/sections/class.ef_content_builder_section_twitter.php:69
+msgid "Icon color:"
+msgstr "Pictogramkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_social.php:48
+msgid "Icon hover color:"
+msgstr "Pictogram zweefkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_social.php:55
+#: lib/content-builder/components/sections/class.ef_content_builder_section_twitter.php:111
+msgid "Icon size:"
+msgstr "Pictogramgrootte:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_speakers.php:28
+#, php-format
+msgid "%s Showcase"
+msgstr "%s Showcase"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_sponsors.php:25
+msgid "Sponsors Showcase"
+msgstr "Sponsors showcase"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_strapline.php:25
+msgid "Strapline"
+msgstr "Onderkop"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_timer.php:25
+msgid "Timer"
+msgstr "Timer"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_twitter.php:25
+msgid "Twitter"
+msgstr "Twitter"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_twitter.php:30
+msgid "Please insert Twitter API in the Theme Options page."
+msgstr "Graag de Twitter API in de Themaopties-pagina invoegen."
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_twitter.php:48
+msgid "Event Hashtag Keyword (leave out the #):"
+msgstr "Gebeurtenis hashtag zoekterm (de # weglaten):"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_twitter.php:83
+msgid "SubTitle text color:"
+msgstr "Ondertitel tekstkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_twitter.php:90
+msgid "Tweet background color:"
+msgstr "Tweet achtergrondkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_twitter.php:97
+msgid "Tweet text color:"
+msgstr "Tweet tekstkleur:"
+
+#: lib/content-builder/components/sections/class.ef_content_builder_section_twitter.php:104
+msgid "Tweet links color:"
+msgstr "Tweet linkkleur:"
+
+#: lib/importer/importer.php:136 lib/importer/importer.php:145
+#: lib/importer/importer.php:197 lib/importer/importer.php:201
+#: lib/importer/importer.php:210
+msgid "Sorry, there has been an error."
+msgstr "Sorry, er is een fout opgetreden."
+
+#: lib/importer/importer.php:137
+msgid "The file does not exist, please try again."
+msgstr "Het bestand bestaat niet, probeer het nog een keer."
+
+#: lib/importer/importer.php:181
+msgid "All done."
+msgstr "Klaar."
+
+#: lib/importer/importer.php:181
+msgid "Have fun!"
+msgstr "Veel plezier!"
+
+#: lib/importer/importer.php:182
+msgid "Remember to update the passwords and roles of imported users."
+msgstr ""
+"Vergeet niet om de wachtwoorden en rollen van geïmporteerde gebruikers te "
+"updaten."
+
+#: lib/importer/importer.php:202
+#, php-format
+msgid ""
+"The export file could not be found at <code>%s</code>. It is likely that "
+"this was caused by a permissions problem."
+msgstr ""
+"Het geëxporteerde bestand kon niet worden gevonden op <code>%s</code>. Dit "
+"wordt waarschijnlijk veroorzaakt door een probleem met toegangsrechten."
+
+#: lib/importer/importer.php:218
+#, php-format
+msgid ""
+"This WXR file (version %s) may not be supported by this version of the "
+"importer. Please consider updating."
+msgstr ""
+"Dit WXR-bestand (versie %s) wordt misschien niet ondersteund door deze "
+"versie van de importer. Overweeg een update."
+
+#: lib/importer/importer.php:243
+#, php-format
+msgid ""
+"Failed to import author %s. Their posts will be attributed to the current "
+"user."
+msgstr ""
+"Importeren van auteur %s niet gelukt. Hun berichten worden aan de huidige "
+"gebruiker toegekend."
+
+#: lib/importer/importer.php:269
+msgid "Assign Authors"
+msgstr "Toewijzen auteurs "
+
+#: lib/importer/importer.php:270
+msgid ""
+"To make it easier for you to edit and save the imported content, you may "
+"want to reassign the author of the imported item to an existing user of this "
+"site. For example, you may want to import all the entries as <code>admin</"
+"code>s entries."
+msgstr ""
+"Om het gemakkelijker voor je te maken de geïmporteerde inhoud te bewerken en "
+"bewaren, is het mogelijk om de auteur van het geïmporteerde item toe te "
+"wijzen aan een bestaande gebruiker van deze site. Bijvoorbeeld, je kunt "
+"eventueel alle ingangen importeren als <code>admin</code>s ingangen."
+
+#: lib/importer/importer.php:272
+#, php-format
+msgid ""
+"If a new user is created by WordPress, a new password will be randomly "
+"generated and the new user&#8217;s role will be set as %s. Manually changing "
+"the new user&#8217;s details will be necessary."
+msgstr ""
+"Als er door WordPress een nieuwe gebruiker is aangemaakt, dan zal er een "
+"nieuw willekeurig wachtwoord worden gecreëerd, en de rol van de nieuwe "
+"gebruikers zal ingesteld worden als %s. Het is dan noodzakelijk de gegevens "
+"van de nieuwe gebruikers handmatig aan te passen."
+
+#: lib/importer/importer.php:282
+msgid "Import Attachments"
+msgstr "Importeer bijlagen"
+
+#: lib/importer/importer.php:285
+msgid "Download and import file attachments"
+msgstr "Download en importeer bestandsbijlagen"
+
+#: lib/importer/importer.php:302
+msgid "Import author:"
+msgstr "Importeer auteur:"
+
+#: lib/importer/importer.php:314
+msgid "or create new user with login name:"
+msgstr "of maak een nieuwe gebruiker met loginnaam:"
+
+#: lib/importer/importer.php:317
+msgid "as a new user:"
+msgstr "als nieuwe gebruiker"
+
+#: lib/importer/importer.php:325
+msgid "assign posts to an existing user:"
+msgstr "wijs berichten toe aan een bestaande gebruiker:"
+
+#: lib/importer/importer.php:327
+msgid "or assign posts to an existing user:"
+msgstr "of wijs berichten toe aan een bestaande gebruiker:"
+
+#: lib/importer/importer.php:328
+msgid "- Select -"
+msgstr "- Selecteer -"
+
+#: lib/importer/importer.php:378
+#, php-format
+msgid ""
+"Failed to create new user for %s. Their posts will be attributed to the "
+"current user."
+msgstr ""
+"Aanmaken van nieuwe gebruiker voor %s is mislukt. Hun berichten worden "
+"toegewezen aan de huidige gebruiker."
+
+#: lib/importer/importer.php:430
+#, php-format
+msgid "Failed to import category %s"
+msgstr "Importeren van categorie %s mislukt"
+
+#: lib/importer/importer.php:471
+#, php-format
+msgid "Failed to import post tag %s"
+msgstr "Importeren van berichttag %s mislukt"
+
+#: lib/importer/importer.php:519 lib/importer/importer.php:658
+#, php-format
+msgid "Failed to import %s %s"
+msgstr "Importeren van %s %s mislukt "
+
+#: lib/importer/importer.php:545
+#, php-format
+msgid "Failed to import &#8220;%s&#8221;: Invalid post type %s"
+msgstr "Importeren van &#8220;%s&#8221 mislukt; Ongeldig berichttype %s"
+
+#: lib/importer/importer.php:566
+#, php-format
+msgid "%s &#8220;%s&#8221; already exists."
+msgstr "%s &#8220;%s&#8221; bestaat al."
+
+#: lib/importer/importer.php:625
+#, php-format
+msgid "Failed to import %s &#8220;%s&#8221;"
+msgstr "Importeren van %s &#8220;%s&#8221 mislukt;"
+
+#: lib/importer/importer.php:789
+msgid "Menu item skipped due to missing menu slug"
+msgstr "Menu-item overgeslagen vanwege een ontbrekende menuregel"
+
+#: lib/importer/importer.php:796
+#, php-format
+msgid "Menu item skipped due to invalid menu slug: %s"
+msgstr "Menu-item overgeslagen vanwege een ongeldige menuregel: %s"
+
+#: lib/importer/importer.php:858
+msgid "Fetching attachments is not enabled"
+msgstr "Het ophalen van bijlagen is niet geactiveerd"
+
+#: lib/importer/importer.php:871
+msgid "Invalid file type"
+msgstr "Ongeldig bestandstype"
+
+#: lib/importer/importer.php:929
+msgid "Remote server did not respond"
+msgstr "Remote server reageert niet"
+
+#: lib/importer/importer.php:935
+#, php-format
+msgid "Remote server returned error response %1$d %2$s"
+msgstr "Remote server retourneerde foutmelding %1$d %2$s"
+
+#: lib/importer/importer.php:942
+msgid "Remote file is incorrect size"
+msgstr "Remote bestand heeft ongeldige grootte"
+
+#: lib/importer/importer.php:947
+msgid "Zero size file downloaded"
+msgstr "Leeg bestand gedownload"
+
+#: lib/importer/importer.php:953
+#, php-format
+msgid "Remote file is too large, limit is %s"
+msgstr "Remote bestand is te groot, limiet is %s"
+
+#: lib/importer/importer.php:1052
+msgid "Import WordPress"
+msgstr "Wordpress importeren"
+
+#: lib/importer/importer.php:1059
+#, php-format
+msgid ""
+"A new version of this importer is available. Please update to version %s to "
+"ensure compatibility with newer export files."
+msgstr ""
+"Er is een nieuwe versie van deze importer beschikbaar. Update naar versie %s "
+"om verzekerd te zijn van compatibiliteit met nieuwere exportbestanden."
+
+#: lib/importer/importer.php:1074
+msgid ""
+"Howdy! Upload your WordPress eXtended RSS (WXR) file and we&#8217;ll import "
+"the posts, pages, comments, custom fields, categories, and tags into this "
+"site."
+msgstr ""
+"Howdy! Upload je WordPress eXtended RSS (WXR) bestand en wij importeren de "
+"berichten, pagina's, reacties, aangepaste velden, categorieën en tags in "
+"deze site."
+
+#: lib/importer/importer.php:1075
+msgid "Choose a WXR (.xml) file to upload, then click Upload file and import."
+msgstr ""
+"Kies een WXR (.xml) bestand om te uploaden, klik daarna op Upload bestand om "
+"te importeren."
+
+#: lib/importer/importer.php:1145
+msgid ""
+"Import <strong>posts, pages, comments, custom fields, categories, and tags</"
+"strong> from a WordPress export file."
+msgstr ""
+"Importeer <strong>berichten, pagina's, reacties, aangepaste velden, "
+"categorieën en tags</strong> uit een exportbestand van WordPress."
+
+#: lib/importer/parsers.php:45 lib/importer/parsers.php:81
+#: lib/importer/parsers.php:89
+msgid "There was an error when reading this WXR file"
+msgstr "Er is een fout opgetreden bij het lezen van dit WXR bestand"
+
+#: lib/importer/parsers.php:46
+msgid ""
+"Details are shown above. The importer will now try again with a different "
+"parser..."
+msgstr ""
+"Details worden hierboven getoond. De importer probeert het nogmaals met een "
+"andere parser..."
+
+#: lib/importer/parsers.php:93 lib/importer/parsers.php:98
+#: lib/importer/parsers.php:295 lib/importer/parsers.php:519
+msgid ""
+"This does not appear to be a WXR file, missing/invalid WXR version number"
+msgstr ""
+"Dit is waarschijnlijk geen WXR-bestand; er mist een WXR-versienummer, of "
+"deze is ongeldig"
+
+#: lib/style-switcher/style-switcher.php:50
+msgid "Select Skin"
+msgstr "Selecteer een Skin"
+
+#: lib/taxonomy-meta.php:124 lib/taxonomy-meta.php:465
+msgid "Delete this image"
+msgstr "Verwijder deze afbeelding"
+
+#: lib/taxonomy-meta.php:124 lib/taxonomy-meta.php:434
+#: lib/taxonomy-meta.php:465
+msgid "Delete"
+msgstr "Verwijderen"
+
+#: lib/taxonomy-meta.php:440
+msgid "Upload new files"
+msgstr "Nieuwe bestanden uploaden"
+
+#: lib/taxonomy-meta.php:443
+msgid "Add more file"
+msgstr "Meer bestanden toevoegen"
+
+#: lib/taxonomy-meta.php:471
+msgid "Upload new image"
+msgstr "Nieuwe afbeelding uploaden"
+
+#: lib/taxonomy-meta.php:479
+msgid "Select a color"
+msgstr "Selecteer een kleur"
+
+#: multievent/includes/admin/class-multievent-admin.php:41
+#: multievent/includes/admin/forms/multievent-box.php:26
+#: multievent/includes/multievent-post-types.php:29
+msgid "Event"
+msgstr "Gebeurtenis"
+
+#: multievent/includes/admin/class-multievent-admin.php:118
+#: multievent/includes/admin/class-multievent-admin.php:120
+#: multievent/includes/class-multievent-renderer.php:26
+#: multievent/includes/class-multievent-renderer.php:29
+msgid "Select Event"
+msgstr "Selecteer gebeurtenis"
+
+#: multievent/includes/admin/class-multievent-admin.php:169
+msgid "This widget area is for event."
+msgstr "Dit widget-gebied is voor gebeurtenissen."
+
+#: multievent/includes/admin/forms/multievent-box.php:29
+msgid "Choose a Event..."
+msgstr "Kies een gebeurtenis..."
+
+#: multievent/includes/class-multievent-widgets.php:16
+msgid "Multievent Page"
+msgstr "Multigebeurtenis-pagina"
+
+#: multievent/includes/class-multievent-widgets.php:18
+msgid ""
+"Widgets in this area will be shown on the right hand side of multievent page."
+msgstr ""
+"Widgets van deze afdeling worden getoond aan de rechterkant van de "
+"multigebeurtenis pagina."
+
+#: multievent/includes/multievent-post-types.php:28
+#: multievent/includes/multievent-post-types.php:38
+msgid "Events"
+msgstr "Gebeurtenissen"
+
+#: multievent/includes/multievent-post-types.php:31
+msgid "Add New Event"
+msgstr "Voeg nieuwe gebeurtenis toe"
+
+#: multievent/includes/multievent-post-types.php:32
+msgid "Edit Event"
+msgstr "Bewerk gebeurtenis"
+
+#: multievent/includes/multievent-post-types.php:33
+msgid "New Event"
+msgstr "Nieuwe gebeurtenis"
+
+#: multievent/includes/multievent-post-types.php:34
+msgid "View Event"
+msgstr "Bekijk gebeurtenis"
+
+#: multievent/includes/multievent-post-types.php:35
+msgid "Search Events"
+msgstr "Zoek gebeurtenissen"
+
+#: multievent/includes/multievent-post-types.php:36
+msgid "No Event found"
+msgstr "Geen gebeurtenis gevonden"
+
+#: multievent/includes/multievent-post-types.php:37
+msgid "No Event found in trash"
+msgstr "Geen gebeurtenis gevonden in prullenbak"
+
+#: multievent/includes/multievent-post-types.php:54
+msgid "Events Locations"
+msgstr "Gebeurtenislocaties"
+
+#: multievent/includes/multievent-post-types.php:55
+msgid "Event Location"
+msgstr "Gebeurtenislocatie"
+
+#: multievent/includes/multievent-post-types.php:56
+msgid "Search Events Locations"
+msgstr "Doorzoek gebeurtenislocaties"
+
+#: multievent/includes/multievent-post-types.php:57
+msgid "All Events Locations"
+msgstr "Alle gebeurtenislocaties"
+
+#: multievent/includes/multievent-post-types.php:58
+msgid "Parent Event Location"
+msgstr "Vorige gebeurtenislocaties"
+
+#: multievent/includes/multievent-post-types.php:59
+msgid "Parent Event Location:"
+msgstr "Vorige gebeurtenislocatie:"
+
+#: multievent/includes/multievent-post-types.php:60
+msgid "Edit Event Location"
+msgstr "Bewerk gebeurtenislocaties"
+
+#: multievent/includes/multievent-post-types.php:61
+msgid "Update Event Location"
+msgstr "Bijwerken gebeurtenislocatie"
+
+#: multievent/includes/multievent-post-types.php:62
+msgid "Add New Event Location"
+msgstr "Voeg nieuwe gebeurtenislocatie toe"
+
+#: multievent/includes/multievent-post-types.php:63
+msgid "New Event Location"
+msgstr "Nieuwe gebeurtenislocatie"

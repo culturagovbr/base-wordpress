@@ -1,0 +1,122 @@
+/* --------------- action --------------- */
+.action {
+    background-color: #fff;
+    background-position: center center;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.action__wrap {
+    min-height: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+.action__wrap > .container {
+    margin: 0;
+    width: 100%;
+}
+.action__title {
+    font-size: 60px;
+    font-weight: 200;
+    letter-spacing: 1px;
+    color: #2c2c2c;
+    margin-bottom: 10px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.action__subtitle {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    margin: 0 0 0;
+    padding: 0;
+    color: #f25421;
+    text-align: center;
+    text-transform: uppercase;
+}
+.action__content .btn{
+    width: 298px;
+}
+.action__content {
+    min-height: inherit;
+    text-align: center;
+}
+.action__content p{
+    font-size: 15px;
+    opacity: 0.4;
+    text-align: center;
+    color: #2c2c2c;
+    width: 80%;
+    margin: 0 auto;
+    line-height: 18px;
+    font-family: 'Noto sans';
+}
+.action__content .social{
+    padding: 30px 40px;
+}
+.action.dark .site__title span {
+    color: #fff;
+}
+.action__video {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    background: #000;
+    color: #fff;
+    opacity: 0;
+    -webkit-transition: opacity 500ms ease-in-out;
+    transition: opacity 500ms ease-in-out;
+}
+.action__video.active {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+}
+.action__video > i {
+    font-size: 20px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+.action__video > div {
+    top: 40px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    position: absolute;
+}
+.action__video iframe {
+    width: 100%;
+    height: 100%;
+}
+/* --------------- /action --------------- */
+@media screen and (max-width: 767px){
+
+    .action__title {
+        font-size: 32px;
+    }
+    .action .site__title {
+        font-size: 32px;
+    }
+    .action__subtitle{
+        font-size: 15px;
+    }
+    .action__content .social{
+        padding: 20px 40px;
+    }
+    .action__content p {
+        font-size: 12px;
+    }
+}

@@ -1,0 +1,285 @@
+/*
+ Theme Name:   Khore Child
+ Theme URI:    http://showthemes.com/khore-demo/changelog
+ Description:  Khore Child Child Theme by Ministério da Cultura
+ Author:       Lenon Leite / Fernão / Yuri / Jessé
+ Author URI:   http://lenonleite.com.br
+ Template:     khore
+ Version:      1.0.0
+ Tags:         minc, emergencia, two-columns, left-sidebar, responsive-layout, accessibility-ready
+ Text Domain:  khore-child
+*/
+
+.logo > a > img {
+    width: 42px;
+    height: 96px;
+}
+
+.schedule__card-title {
+    background: #16A0DA;
+    color: #fff;
+    font-size: 18px;
+    line-height: 38px;
+    text-transform: uppercase;
+    font-weight: 600;
+    position: relative;
+    z-index: 5;
+}
+
+.contact {
+    position: relative;
+    background: #F7AF19;
+    color: #FFF;    
+    background: #FFFFFF url(http://emergencias.cultura.gov.br/wp-content/uploads/2015/10/FundoContato.png) no-repeat;
+}
+
+
+.contact__feedback-submit button {
+    background: #9C1C3A;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    text-transform: uppercase;
+    opacity: 0.4;
+    -webkit-transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease;
+    padding: 0 35px;
+    font-size: 15px;
+    line-height: 50px;
+    text-align: center;
+    margin: 0;
+}
+
+.location__titles li {
+    height: 100%;
+    float: left;
+    text-align: center;    
+    background: #f7f5f4 url(http://emergencias.cultura.gov.br/wp-content/uploads/2015/10/TopBarra.png) no-repeat;
+    font-size: 32px;
+    font-weight: 300;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+}
+
+.menu {
+       display: list-item;
+}
+
+.registration {
+    height: 100%;
+    overflow: hidden;
+    position: relative;    
+    padding: 0 15px;
+    background: #f7f5f4 url(http://emergencias.cultura.gov.br/wp-content/uploads/2015/10/TopBarra.png) no-repeat;
+}
+
+.menu-lang {
+    padding-left: 30px;
+}
+
+.menu-lang span {
+    font-size: 12px !important;
+}
+
+.menu-lang a.menu__item  {
+    display: inline-block !important;
+    width: 30px;
+    font-size: 13px;
+    border-bottom: none;
+}
+
+.menu__item a {
+    font-size: 15px;
+}
+
+div.menu__item a {
+    height: 60px; 
+}
+
+#inscricoes {
+    width:760px;
+    margin:0px auto;
+    text-align:left;
+    padding:0px;
+    background-color:#ffffff;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;	
+}
+
+#inscricoes h4 {
+    margin-top: 20px;
+    margin-left: 10%;
+}
+
+#inscricoes label {
+    color:#7c7d7c;
+    display:block;
+}
+
+#inscricoes .necessidade_especial,
+#inscricoes .receber_informacoes_sim {
+    margin-top: 0px;
+}
+
+#inscricoes input {
+    width:78%;
+    margin-left:10%;
+    height:40px;
+    margin-top:20px;
+    padding-left:10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border-style:none;
+    outline: none;
+    background-color:#f5f7f6;
+}
+	
+#inscricoes select {
+    width:78%;
+    margin-left:10%;
+    height:40px;
+    margin-top:20px;
+    padding-left:10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border-style:none;
+    outline: none;
+    background-color:#f5f7f6;
+}
+
+::-webkit-input-placeholder {
+    font-size:100%;
+    font-family: 'Lato', sans-serif;
+}
+
+:-moz-placeholder {
+    font-size:100%;
+    font-family: 'Lato', sans-serif;
+}
+	
+::-moz-placeholder {
+    font-size:100%;
+    font-family: 'Lato', sans-serif;
+}
+
+:-ms-input-placeholder {
+    font-size:100%;
+    font-family: 'Lato', sans-serif;
+}
+
+
+#inscricoes input[type="radio"] 
+	{
+    background-color: #d9dbda;
+    border-radius: 10px;
+    cursor: pointer;
+	display:inline-block;
+    height: 15px;
+    margin-right: 10px;
+    position: relative;
+    width: 15px;
+    -webkit-appearance: none;
+	margin-bottom:-2px;
+	}
+
+#inscricoes input[type="radio"]:after  {
+    background-color: #d9dbda;
+    border-radius: 25px;
+    content: '';
+    display: block;
+    height: 7px;
+    left:-6px;
+    position: relative;
+    top: 4px;
+    width: 7px;
+}
+	
+#inscricoes .radio {
+    margin-bottom: -10px;
+    cursor: pointer;
+    width:40%;
+    margin-left:7%;
+}
+
+#inscricoes textarea {
+    width:78%;
+    height:100px;
+    margin-left:10%;
+    margin-right:10%;
+    margin-top:20px;
+    padding-left:10px;
+    padding-top:10px;
+    border: solid 0px transparent;
+    outline: none;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;	
+    font-size:100%;
+    background-color:#f5f7f6;
+}
+	
+#inscricoes input:focus,
+#inscricoes textarea:focus {
+    background-color:#ebebeb;
+    font-family: 'Lato', sans-serif;
+}
+
+#inscricoes button[type="submit"] {
+    background-color: #f48737;
+    cursor:pointer;
+    width:80%;
+    height:40px;
+    margin-left:10%;
+    border:none;
+    color:#fff;
+    margin-top:30px;
+    margin-bottom:40px;
+    font-size:120%;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;	
+}
+
+#inscricoes .required {
+    border: 2px solid #f00;
+}
+
+#inscricoes .error_messages span {
+    text-align: center;
+    font-size: 17px;
+    color: #f00;
+}
+
+#inscricao-realizada {
+    width: 70%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#inscricao-realizada span {
+    text-align: left;
+}
+
+.qtranxs-available-languages-message {
+    display: none;
+}
+
+.content__layout p {
+    padding: 2px;
+    background-color: #2C2C2C
+}
+
+#main {
+    margin-left: 15%;
+    margin-right: 10%;
+}
+
+#main p {
+    font-size: 15px;
+}
+
+#searchsubmit {
+    color: #aaa !important;
+}

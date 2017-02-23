@@ -1,0 +1,217 @@
+/* General styling specific for preview
+ * ============================================= */
+a {
+    text-decoration: none;
+}
+
+.custom-wrapper {
+    /*max-width: 800px;*/
+    margin: 30px auto;
+    display: block;
+}
+
+/* The theme options style
+ * ============================================= */
+#ef-theme-options {
+    /*max-width: 800px;  Default width */
+    background: #FFFFFF;
+    overflow: hidden;
+
+    /*Typography*/
+    /*font-family: "Merriweather Sans";*/
+    font-size: 12px;
+    line-height: 1.7em;
+    color: #444;
+}
+
+.ef-options-header {
+    padding: 30px 20px;
+    display: block;
+    overflow: hidden;
+}
+
+.ef-options-header .ef-options-logo {
+    float: left;
+    width: 50%;
+}
+
+.ef-options-header .ef-about {
+    float: right;
+    width: 50%;
+    text-align: right;
+}
+.ef-options-header .ef-about p {
+    padding: 0;
+    margin: 0;
+}
+
+.el-options-links {
+    clear: both;
+    display: block;
+    overflow: hidden;
+}
+.el-options-links ul {
+    display: block;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    min-height: 1%;
+    overflow: hidden;
+}
+.el-options-links ul li {
+    display: block;
+    float: left;
+    margin: 0;
+}
+
+.el-options-links ul li a {
+    color: white;
+    padding: 7px 30px;
+    display: block;
+}
+
+.el-options-links ul li.el-save {
+    float: right;
+}
+
+
+.el-options-menu {
+
+}
+.el-options-menu .resp-tabs-list {
+    margin: 15px;
+}
+.el-options-menu .resp-tab-item {
+    font-weight: bold;
+    text-transform: capitalize;
+    border-bottom: 1px solid #eee;
+    margin: 0 10px;
+}
+.el-options-menu .resp-tab-active {
+    margin-left: 1px;
+}
+.el-options-menu .resp-tab-item i {
+    margin-right: 10px;
+}
+
+
+.el-options-main {
+    box-shadow: inset 1px 0 1px #f1f1f1;
+    padding: 0 10px;
+    padding: 0;
+}
+.el-options-main .resp-tab-content {
+    margin: 0 20px;
+}
+.el-options-main .el-option {
+    border-bottom: 1px solid #eee;
+    overflow: hidden;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+}
+.el-options-main .el-option .el-option-input {
+    width: 50%;
+    float: left;
+}
+.el-options-main .el-option .el-option-input input:focus {
+    outline: none;
+}
+.el-options-main .el-option .el-option-input input[type="text"] {
+    width: 100%;
+    margin-top: 5px;
+    padding: 8px 10px;
+    background: #eee;		
+    color: #888;
+    border: none;
+}
+
+.el-options-main .el-option .el-option-input input[type="text"].ef-text {
+    width: 50%;
+    padding: 7px 10px;
+}
+
+select.ef-select {
+    vertical-align: baseline;
+}
+
+.el-options-main .el-option .el-option-description {
+    width: 45%;
+    float: right;
+    font-size: 10px;
+    color: #888;
+}
+.el-options-main .el-option .el-option-description p {
+    margin: 0;
+}
+
+
+/* Options pannel colors
+ * ============================================= */
+.el-options-links {
+    background: #0074a2;
+}
+
+.el-options-links ul li a {
+    border-right: 1px solid #127ea9;
+}
+.el-options-links ul li i {
+    color: white;
+    margin-right: 10px;
+}
+
+.el-options-links ul li a:hover {
+    background: #076990;
+}
+
+.el-options-links ul li.el-save {
+    background: #739e44;
+}
+
+.el-options-menu .resp-tab-active {
+    color: #0074a2;
+}
+
+.el-options-menu .resp-tab-item i {
+    color: #0074a2;
+}
+
+#ef-options-updated {
+    display: none;
+    background: #B1EBA9;
+    border: 1px solid #7ED173;
+    border-radius: 15px;
+}
+
+/* Options Buttons
+* ============================================= */
+.ef-upload-button.button {
+    margin: 10px -12px 0;
+}
+
+/*
+* Blocks */
+.ef-text label, 
+.ef-importer label {
+    display: block;
+}
+
+#ef-importer-misc-importer {
+    color: #057A1D;
+}
+
+.ajax-loader {
+    display: none;
+    width: 40px;
+    height: 40px;
+    background: transparent url('../images//ajax-loader.gif') no-repeat center center; 
+}
+
+/* Options Image Preview
+* ============================================= */
+.ef-image-preview {
+    display: block;
+    width: 100%;
+    max-width: 170px;
+    max-height: 130px;
+    margin-top: 20px;
+}

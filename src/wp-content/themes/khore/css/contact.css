@@ -1,0 +1,154 @@
+/* --------------- contact --------------- */
+.contact {
+    position: relative;
+    background: #2c2c2c;
+    color: #fff;
+}
+.contact__wrap {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    padding-top: 40px;
+}
+.contact__wrap > .container {
+    width: 90%;
+    margin: 0 auto;
+}
+.contact__title {
+    font-size: 60px;
+    font-weight: 200;
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.contact__subtitle{
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: #f25421;
+    margin: 0 0 10px;
+    padding: 0;
+}
+.contact__feedback {
+    border-bottom: 1px solid #FFF;
+    padding-bottom: 60px;
+}
+.contact__feedback .text-field{
+    width: 49%;
+}
+.contact__feedback .text-area{
+    width: 100%;
+}
+.contact__feedback fieldset {
+    text-align: justify;
+    margin-bottom: -20px;
+}
+.contact__feedback fieldset:after {
+    content: '';
+    width: 100%;
+    display: inline-block;
+}
+.contact__feedback-submit {
+    text-align: right;
+}
+.contact__feedback-submit button{
+    background: transparent;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    text-transform: uppercase;
+    opacity: 0.4;
+    -webkit-transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease;
+    padding: 0 35px;
+    font-size: 15px;
+    line-height: 50px;
+    text-align: center;
+    margin: 0;
+}
+.contact__feedback-submit button:hover {
+    opacity: 1;
+}
+.contact__subscribe fieldset {
+    width: 80%;
+    margin: 0 auto;
+    text-align: left;
+    position: relative;
+}
+.contact__subscribe input[type=email]{
+    background: transparent;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    opacity: 0.4;
+    text-transform: uppercase;
+    padding: 0 150px 0 35px;
+    font-size: 15px;
+    margin: 0;
+    height: 50px;
+    width: 100%;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+}
+.contact__subscribe input[type=email]:focus {
+    opacity: 1;
+}
+.contact__subscribe button{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: transparent;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    text-transform: uppercase;
+    opacity: 0.4;
+    -webkit-transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease;
+    padding: 0 35px;
+    font-size: 15px;
+    line-height: 48px;
+    height: 50px;
+    text-align: center;
+    margin: 0;
+    z-index: 2;
+}
+.contact__subscribe button:hover{
+    opacity: 1;
+}
+.contact__copyright {
+    font-size: 15px;
+    opacity: 0.4;
+    padding-bottom: 40px;
+    text-align: center;
+}
+/* --------------- /contact --------------- */
+
+/* --------------- /slider --------------- */
+@media screen and (max-width: 767px){
+    .contact__feedback-submit {
+        text-align: left;
+    }
+    .contact__subscribe button {
+        position: relative;
+        width: 100%;
+    }
+    .captcha {
+        margin-bottom: 10px;
+    }
+    .contact__title {
+        font-size: 32px;
+    }
+    .contact__subtitle{
+        font-size: 15px;
+    }
+    .contact__feedback fieldset {
+        text-align: left;
+        margin-bottom: 0;
+    }
+    .contact__feedback fieldset:after{
+        display: none;
+    }
+    .contact__feedback .text-field{
+        width: 100%;
+    }
+}

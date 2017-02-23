@@ -1,0 +1,1 @@
+<h1 <?php echo $args['styles']['section']; ?> class="headline"><?php echo $args['text']; ?></h1>

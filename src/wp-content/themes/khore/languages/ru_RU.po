@@ -1,0 +1,737 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: khore\n"
+"POT-Creation-Date: 2015-06-23 17:19+0100\n"
+"PO-Revision-Date: 2015-07-01 16:08+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.2\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;_e;__;_n\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: event-framework\n"
+
+#: comments.php:14
+msgid "Name *"
+msgstr "Имя *"
+
+#: comments.php:19
+msgid "Last name *"
+msgstr "Фамилия *"
+
+#: comments.php:24
+msgid "Website *"
+msgstr "Сайт *"
+
+#: comments.php:29
+msgid "SUBMIT A COMMENT"
+msgstr "ОТПРАВИТЬ КОММЕНТАРИЙ"
+
+#: comments.php:30
+msgid "Email address not published. Required fields are marked *"
+msgstr "Адрес электронной почты не добавлен. Обязательные поля помечены *"
+
+#: comments.php:36
+msgid "Comment"
+msgstr "Комментарий"
+
+#: comments.php:46
+#, php-format
+msgid "Comments on %s"
+msgstr "Комментарии на %s"
+
+#: comments.php:60
+msgid "Comment navigation"
+msgstr "Навигация по комментариям"
+
+#: comments.php:61
+msgid "&larr; Older Comments"
+msgstr "&larr; Старые комментарии"
+
+#: comments.php:62
+msgid "Newer Comments &rarr;"
+msgstr "Новые комментарии &rarr;"
+
+#: comments.php:66
+msgid "Comments are closed."
+msgstr "Комментарии закрыты."
+
+#: components/templates/shortcodes/efcb_contact.php:17
+msgid "Full Name *"
+msgstr "Полное имя *"
+
+#: components/templates/shortcodes/efcb_contact.php:21 ef-options.php:108
+msgid "Email Address"
+msgstr "Адрес электронной почты"
+
+#: components/templates/shortcodes/efcb_contact.php:26
+msgid "Message (Maximum 500 characters)"
+msgstr "Сообщение (не более 500 символов)"
+
+#: components/templates/shortcodes/efcb_contact.php:33
+msgid "Refresh Captcha Code"
+msgstr "Обновить капчу"
+
+#: components/templates/shortcodes/efcb_facebook_rsvp.php:21
+msgid "Yes"
+msgstr "Да"
+
+#: components/templates/shortcodes/efcb_facebook_rsvp.php:30
+msgid "Maybe"
+msgstr "Может быть"
+
+#: components/templates/shortcodes/efcb_facebook_rsvp.php:39
+msgid "No"
+msgstr "Нет"
+
+#: components/templates/shortcodes/efcb_fullschedule.php:30
+msgid "Track"
+msgstr "Тема"
+
+#: components/templates/shortcodes/efcb_fullschedule.php:40
+msgid "Location"
+msgstr "Место проведения"
+
+#: components/templates/shortcodes/efcb_fullschedule.php:52
+msgid "Days"
+msgstr "Дни"
+
+#: components/templates/shortcodes/efcb_map.php:29
+msgid "EXPLORE"
+msgstr "ИССЛЕДОВАТЬ"
+
+#: ef-options.php:22
+msgid "General Font"
+msgstr "Общий шрифт"
+
+#: ef-options.php:23
+msgid "Default"
+msgstr "По умолчанию"
+
+#: ef-options.php:24
+msgid "Open Sans"
+msgstr "Open Sans"
+
+#: ef-options.php:25
+msgid "Droid Sans"
+msgstr "Droid Sans"
+
+#: ef-options.php:26
+msgid "PT Sans"
+msgstr "PT Sans"
+
+#: ef-options.php:27
+msgid "Lato"
+msgstr "Lato"
+
+#: ef-options.php:28
+msgid "Oswald"
+msgstr "Oswald"
+
+#: ef-options.php:29
+msgid "Droid Serif"
+msgstr "Droid Serif"
+
+#: ef-options.php:30
+msgid "Roboto"
+msgstr "Roboto"
+
+#: ef-options.php:31
+msgid "Lora"
+msgstr "Lora"
+
+#: ef-options.php:32
+msgid "Libre Baskerville"
+msgstr "Libre Baskerville"
+
+#: ef-options.php:33
+msgid "Josefin Slab"
+msgstr "Josefin Slab"
+
+#: ef-options.php:34
+msgid "Arvo"
+msgstr "Arvo"
+
+#: ef-options.php:35
+msgid "Ubuntu"
+msgstr "Ubuntu"
+
+#: ef-options.php:36
+msgid "Raleway"
+msgstr "Raleway"
+
+#: ef-options.php:37
+msgid "Source Sans Pro"
+msgstr "Source Sans Pro"
+
+#: ef-options.php:38
+msgid "Lobster"
+msgstr "Source Sans Pro"
+
+#: ef-options.php:39
+msgid "PT Serif"
+msgstr "PT Serif"
+
+#: ef-options.php:40
+msgid "Old Standard TT"
+msgstr "Old Standard TT"
+
+#: ef-options.php:41
+msgid "Volkorn"
+msgstr "Volkorn"
+
+#: ef-options.php:42
+msgid "Gravitas One"
+msgstr "Gravitas One"
+
+#: ef-options.php:43
+msgid "Merriweather"
+msgstr "Merriweather"
+
+#: ef-options.php:46
+msgid "Primary Color"
+msgstr "Основной цвет"
+
+#: ef-options.php:47
+msgid "Secondary Color"
+msgstr "Дополнительный цвет"
+
+#: ef-options.php:48
+msgid "Tertiary Color"
+msgstr "Вспомогательный цвет"
+
+#: ef-options.php:49
+msgid "Primary Background Color"
+msgstr "Основной цвет фона"
+
+#: ef-options.php:50
+msgid "Secondary Background Color"
+msgstr "Дополнительный цвет фона"
+
+#: ef-options.php:51
+msgid "Singular Performer Label"
+msgstr "Метка одного выступающего"
+
+#: ef-options.php:52
+msgid "Plural Performer Label"
+msgstr "Метка нескольких выступающих"
+
+#: ef-options.php:58
+msgid "Default Menu Behaviour"
+msgstr "Поведение меню по умолчанию"
+
+#: ef-options.php:63
+msgid "Menu Style"
+msgstr "Стиль меню"
+
+#: ef-options.php:64
+msgid "Hamburger"
+msgstr "Hamburger"
+
+#: ef-options.php:65
+msgid "Text"
+msgstr "Текст"
+
+#: ef-options.php:67
+msgid "Menu Logo (Recommended size: 70x70)"
+msgstr "Логотип меню (Рекомендованный размер: 70x70)"
+
+#: ef-options.php:68
+msgid "Countdown Date/Time"
+msgstr "Дата/Время обратного отсчета"
+
+#: ef-options.php:69 ef-options.php:98
+msgid "Show register button"
+msgstr "Показать кнопку регистрации"
+
+#: ef-options.php:70 ef-options.php:99
+msgid "Register button text"
+msgstr "Текст кнопки регистрации"
+
+#: ef-options.php:71 ef-options.php:100
+msgid "Register button url"
+msgstr "Url кнопки регистрации"
+
+#: ef-options.php:73
+msgid "Register button position"
+msgstr "Положение кнопки регистрации"
+
+#: ef-options.php:74
+msgid "Top"
+msgstr "Верх"
+
+#: ef-options.php:75
+msgid "Bottom"
+msgstr "Низ"
+
+#: ef-options.php:78 ef-options.php:101
+msgid "Register Button Color"
+msgstr "Цвет кнопки регистрации"
+
+#: ef-options.php:79 ef-options.php:102
+msgid "Register Button Font Size"
+msgstr "Размер шрифта кнопки регистрации"
+
+#: ef-options.php:84
+msgid "Event Title"
+msgstr "Заголовок события"
+
+#: ef-options.php:85
+msgid "Event Title Color"
+msgstr "Цвет заголовка события"
+
+#: ef-options.php:86
+msgid "Event Title Font Size"
+msgstr "Размер шрифта заголовка события"
+
+#: ef-options.php:87
+msgid "Event Subtitle"
+msgstr "Подзаголовок события"
+
+#: ef-options.php:88
+msgid "Event Subtitle Color"
+msgstr "Цвет подзаголовка события"
+
+#: ef-options.php:89
+msgid "Event Subtitle Font Size"
+msgstr "Размер шрифта подзаголовка события"
+
+#: ef-options.php:90
+msgid "Date/Time and place"
+msgstr "Дата/Время и место"
+
+#: ef-options.php:91
+msgid "Date/Time and Place Color"
+msgstr "Цвет даты/времени и места"
+
+#: ef-options.php:92
+msgid "Date/Time and Place Font Size"
+msgstr "Размер шрифта даты/времени и места"
+
+#: ef-options.php:93
+msgid "Home Page Logo (Recommended size: 300x101)"
+msgstr "Логотип главной страницы (Рекомендованный размер: 300x101)"
+
+#: ef-options.php:94
+msgid "Remove logo home page optimized size"
+msgstr "Удалить логотип с главной страницы"
+
+#: ef-options.php:95
+msgid "Header Gallery"
+msgstr "Заголовок галереи"
+
+#: ef-options.php:95
+msgid "Upload more than one picture to show slider"
+msgstr "Загрузить более одного изображения для отображения слайдера"
+
+#: ef-options.php:96
+msgid "Header Video Url"
+msgstr "Url видео"
+
+#: ef-options.php:97
+msgid "Video Button Color"
+msgstr "Цвет кнопки видео"
+
+#: ef-options.php:105
+msgid "Facebook URL"
+msgstr "Facebook URL"
+
+#: ef-options.php:106
+msgid "Twitter URL"
+msgstr "Twitter URL"
+
+#: ef-options.php:107
+msgid "Show RSS?"
+msgstr "Показать RSS? "
+
+#: ef-options.php:109
+msgid "Google+ URL"
+msgstr "Google+ URL"
+
+#: ef-options.php:110
+msgid "Flickr URL"
+msgstr "Flickr URL"
+
+#: ef-options.php:111
+msgid "Instagram URL"
+msgstr "Instagram URL"
+
+#: ef-options.php:112
+msgid "Pinterest URL"
+msgstr "Pinterest URL"
+
+#: ef-options.php:113
+msgid "LinkedIn URL"
+msgstr "LinkedIn URL"
+
+#: ef-options.php:114
+msgid "AddThis PubID"
+msgstr "AddThis PubID"
+
+#: ef-options.php:115
+msgid "Youtube URL"
+msgstr "Youtube URL"
+
+#: ef-options.php:116
+msgid "Skype User"
+msgstr "Пользователь Skype"
+
+#: ef-options.php:117
+msgid "Vimeo URL"
+msgstr "Vimeo URL"
+
+#: ef-options.php:120
+msgid "Demo Data"
+msgstr "Демо-данные"
+
+#: ef-options.php:120
+msgid "Import test data. Success message will follow."
+msgstr "Импортировать тестовые данные. Появится сообщение об успешной операции."
+
+#: ef-options.php:123
+msgid "Font"
+msgstr "Шрифт"
+
+#: ef-options.php:125
+msgid "Colors"
+msgstr "Цвета"
+
+#: ef-options.php:131
+msgid "Performers"
+msgstr "Выступающие"
+
+#: ef-options.php:131
+msgid "How would you like to call your performers? (Default: Speakers)"
+msgstr "Как вы хотите называть выступающих (По умолчанию: Спикеры)"
+
+#: ef-options.php:148
+msgid "Title Settings"
+msgstr "Настройки заголовка"
+
+#: ef-options.php:152
+msgid "Subtitle Settings"
+msgstr "Настройки подзаголовка"
+
+#: ef-options.php:156
+msgid "Date/Time and Place Settings"
+msgstr "Настройки даты/времени и места"
+
+#: ef-options.php:160
+msgid "Logo Settings"
+msgstr "Настройки логотипа"
+
+#: ef-options.php:163
+msgid "Slider Settings"
+msgstr "Настройки слайдера"
+
+#: ef-options.php:165
+msgid "Video Settings"
+msgstr "Настройки видео"
+
+#: ef-options.php:168
+msgid "Register Button Settings"
+msgstr "Настройки кнопки регистрации"
+
+#: ef-options.php:198
+msgid "Twitter"
+msgstr "Twitter"
+
+#: ef-options.php:199
+msgid "Twitter Access Token"
+msgstr "Twitter Access Token"
+
+#: ef-options.php:200
+msgid "Twitter Access Token Secret"
+msgstr "Twitter Access Token Secret"
+
+#: ef-options.php:201
+msgid "Twitter Consumer Key"
+msgstr "Twitter Consumer Key"
+
+#: ef-options.php:202
+msgid "Twitter Consumer Secret"
+msgstr "Twitter Consumer Secret"
+
+#: ef-options.php:205
+msgid "Instagram"
+msgstr "Instagram"
+
+#: ef-options.php:206
+msgid "Instagram Client ID"
+msgstr "Instagram Client ID"
+
+#: ef-options.php:207
+msgid "Instagram Client Secret"
+msgstr "Instagram Client Secret"
+
+#: ef-options.php:210
+msgid "Facebook"
+msgstr "Facebook"
+
+#: ef-options.php:211
+msgid "Facebook App ID"
+msgstr "Facebook App ID"
+
+#: ef-options.php:212
+msgid "Facebook Secret Key"
+msgstr "Facebook Secret Key"
+
+#: ef-options.php:232
+msgid "Contacts"
+msgstr "Контакты"
+
+#: ef-options.php:233
+msgid "Recaptcha Public Key"
+msgstr "Recaptcha Public Key"
+
+#: ef-options.php:234
+msgid "Recaptcha Private Key"
+msgstr "Recaptcha Private Key"
+
+#: ef-options.php:235
+msgid "Recipient Email"
+msgstr "Email получателя"
+
+#: ef-options.php:244
+msgid "General Site Settings"
+msgstr "Общие настройки сайта"
+
+#: ef-options.php:245
+msgid "Menu Settings"
+msgstr "Настройки меню"
+
+#: ef-options.php:246
+msgid "Homepage Settings"
+msgstr "Настройки главной страницы"
+
+#: ef-options.php:247
+msgid "Social Networks"
+msgstr "Социальные сети"
+
+#: ef-options.php:248
+msgid "Social API"
+msgstr "Social API"
+
+#: ef-options.php:249
+msgid "Contact"
+msgstr "Контакты"
+
+#: ef-options.php:250
+msgid "Tools"
+msgstr "Инструменты"
+
+#: functions.php:87
+msgid "Navigation Menu"
+msgstr "Меню навигации"
+
+#: functions.php:333
+msgid "Order"
+msgstr "Расположить"
+
+# If the phrase is meant to be 'xx seconds ago' the translation will be 'секунд(ы)'
+#: functions.php:356
+msgid " second"
+msgstr "секунда"
+
+#: functions.php:356 functions.php:359 functions.php:362 functions.php:365
+#: functions.php:368
+msgid " ago"
+msgstr "назад"
+
+# If the phrase is meant to be 'xx minutes ago' the translation will be 'минут(ы)'
+#: functions.php:359
+msgid " minute"
+msgstr "минута"
+
+# If the phrase is meant to be 'xx hours ago' the translation will be 'час(а/ов)'
+#: functions.php:362
+msgid " hour"
+msgstr "час"
+
+# If the phrase is meant to be 'xx days ago' the translation will be 'день (дня)'
+#: functions.php:365
+msgid " day"
+msgstr "день"
+
+# If the phrase is meant to be 'xx weeks ago' the translation will be 'неделю (и/ь)'
+#: functions.php:368
+msgid " week"
+msgstr "неделя"
+
+# In Russian this will not be translated
+#: functions.php:369
+msgid "on "
+msgstr ""
+
+#: functions.php:722
+msgid "Previous Post"
+msgstr "Предыдущая публикация"
+
+#: functions.php:722
+msgid "Next Post"
+msgstr "Следующая публикация"
+
+#: functions.php:917
+msgid "PREV"
+msgstr "ПРЕД."
+
+#: functions.php:918
+msgid "NEXT"
+msgstr "СЛЕД."
+
+#. translators: %s: title of menu item which is invalid
+#: functions.php:1075
+#, php-format
+msgid "%s (Invalid)"
+msgstr "%s (недействительно)"
+
+#. translators: %s: title of menu item in draft status
+#: functions.php:1079
+#, php-format
+msgid "%s (Pending)"
+msgstr "%s (Черновик)"
+
+#: functions.php:1091
+msgid "sub item"
+msgstr "дополнительный элемент"
+
+#: functions.php:1119
+msgid "Edit Menu Item"
+msgstr "Редактировать элемент меню"
+
+#: functions.php:1128
+msgid "URL"
+msgstr "URL"
+
+#: functions.php:1135
+msgid "Navigation Label"
+msgstr "Метка навигации"
+
+#: functions.php:1141
+msgid "Title Attribute"
+msgstr "Атрибут заголовка"
+
+#: functions.php:1147
+msgid "Icon"
+msgstr "Иконка"
+
+#: functions.php:1149
+msgid ""
+"Type full name of Font Awesome icon. You can find all icons on <a href=\"http://"
+"fontawesome.io/icons\" target=\"_blank\">FontAwesome</a>"
+msgstr ""
+"Введите полное наименование иконки с сайта  Font Awesome. Вы можете найти все "
+"иконки на <a href=\"http://fontawesome.io/icons\" target=\"_blank\">FontAwesome</"
+"a>"
+
+#: functions.php:1155
+msgid "Open link in a new window/tab"
+msgstr "Открыть ссылку в новом окне/новой вкладке"
+
+#: functions.php:1160
+msgid "CSS Classes (optional)"
+msgstr "CSS-классы (опционально)"
+
+#: functions.php:1166
+msgid "Link Relationship (XFN)"
+msgstr "Связи (XFN)"
+
+#: functions.php:1172
+msgid "Description"
+msgstr "Описание"
+
+#: functions.php:1174
+msgid ""
+"The description will be displayed in the menu if the current theme supports it."
+msgstr "Описание отобразится в меню, если текущая тема поддерживает это."
+
+#: functions.php:1180
+msgid "Move"
+msgstr "Переместить"
+
+#: functions.php:1181
+msgid "Up one"
+msgstr "Вверх "
+
+#: functions.php:1182
+msgid "Down one"
+msgstr "Вниз"
+
+#: functions.php:1185
+msgid "To the top"
+msgstr "Наверх"
+
+#: functions.php:1192
+#, php-format
+msgid "Original: %s"
+msgstr "Оригинал: %s"
+
+#: functions.php:1204
+msgid "Remove"
+msgstr "Удалить"
+
+#: functions.php:1205
+msgid "Cancel"
+msgstr "Отмена"
+
+#: functions.php:1342
+#, php-format
+msgid "%1$s at %2$s"
+msgstr "%1$s в %2$s"
+
+#: functions.php:1344
+msgid "Your comment is awaiting moderation."
+msgstr "Ваш комментарий ожидает модерации."
+
+#: functions.php:1392
+msgid "Small"
+msgstr "Маленький"
+
+#: functions.php:1392
+msgid "Medium"
+msgstr "Средний"
+
+#: functions.php:1392
+msgid "Large"
+msgstr "Большой"
+
+#: functions.php:1397
+msgid "Recommended size"
+msgstr "Рекомендуемый размер"
+
+#: header.php:45
+msgid "Menu"
+msgstr "Меню"
+
+#: post-content.php:63
+msgid "Bookmark and Share"
+msgstr "Добавить в Избранное и поделиться"
+
+#: searchform.php:3
+msgid "Search"
+msgstr "Поиск"
+
+#: speaker-content.php:113
+msgid "MORE INFO"
+msgstr "ДЕТАЛИ"
+
+#: woocommerce/loop/loop-end.php:12
+msgid "Add to cart"
+msgstr "Добавить в корзину"
+
+#: woocommerce/loop/loop-start.php:13
+msgid "Available Tickets"
+msgstr "Доступные билеты"
+
+#: woocommerce/loop/loop-start.php:14
+msgid "Price"
+msgstr "Цена"
+
+#: woocommerce/loop/loop-start.php:15
+msgid "Qty"
+msgstr "Кол-во"

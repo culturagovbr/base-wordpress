@@ -1,0 +1,159 @@
+/* --------------- twittering --------------- */
+
+.twittering {
+    position: relative;
+    background: #fef4f0;
+}
+.twittering__wrap {
+    min-height: 100%;
+    padding-top: 0;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    padding-top: 40px;
+}
+.twittering__wrap > .container {
+    margin: 0;
+    width: 100%;
+}
+.twittering__wrap .row {
+    padding: 0;
+    position: relative;
+}
+.twittering__title {
+    font-size: 60px;
+    font-weight: 200;
+    letter-spacing: 1px;
+    color: #2c2c2c;
+    margin-top: 0;
+    margin-bottom: 10px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.twittering__subtitle {
+    display:block;
+}
+.twittering__wrap .site__title i {
+    display: block;
+    text-align: center;
+    font-size: 52px;
+    color: #f25421;
+}
+.twittering__item {
+    padding: 30px 15px;
+    height: 231px;
+    border-top: 3px solid #2c2c2c;
+    background: #ffffff;
+}
+.twittering__item:nth-child(2n){
+    border-top: 3px solid #f25421;
+    background: #fef4f0;
+}
+.twittering__item p {
+    font-size: 15px;
+    line-height: 18px;
+    text-align: left;
+    color: #929292;
+    font-family: 'Noto sans';
+}
+.twittering__item p a {
+    color: #f25421;
+    font-family: 'Dosis', sans-serif;
+}
+.twittering__item p a:hover {
+    text-decoration: underline;
+}
+.twittering__item > div > a {
+    float: left;
+    margin-right: 10px;
+    display: block;
+}
+.twittering__item > div > span {
+    float: left;
+    color: #2c2c2c;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: left;
+    line-height: 15px;
+    margin: 0;
+    font-size: 15px;
+    font-weight: 100;
+
+}
+.twittering__item > div > span > a {
+    color: #f25421;
+    clear: both;
+    display: block;
+}
+.twittering__pagination {
+    bottom: 0;
+    width: 100%;
+    background: #FFF;
+    text-align: center;
+    text-transform: uppercase;
+    height: 5vh;
+    z-index: 5;
+    position: absolute;
+    left: 0;
+}
+.twittering__pagination-lnk {
+    position: absolute;
+    top: 0;
+    font-size: 15px;
+    width: auto;
+    z-index: 10;
+    line-height: 5vh;
+    color: #f25421;
+}
+.twittering__pagination-lnk:hover {
+    color: #2c2c2c;
+}
+.twittering__pagination-lnk_prev{
+    left: 20px;
+}
+.twittering__pagination-lnk_next{
+    right: 20px;
+}
+.twittering__pagination ul {
+    display: inline-block;
+}
+.twittering__pagination li {
+    display: inline-block;
+    text-align: center;
+    font-size: 15px;
+    line-height: 5vh;
+    padding: 0 10px 0 0;
+    color: #f25421;
+}
+.twittering__pagination li:before {
+    content:'/';
+    padding-right: 10px;
+    color: #2c2c2c;
+
+}
+.twittering__pagination li:first-child:before {
+    display: none;
+}
+.twittering__pagination li a {
+    color: #2c2c2c;
+}
+.twittering__pagination li a:hover{
+    color: #f25421;
+}
+.twittering__pagination li a.active {
+    color: #f25421;
+    cursor: default;
+}
+/* --------------- /twittering --------------- */
+
+@media screen and (max-width: 1169px){
+    .twittering__item {
+        padding: 30px 15px;
+        height: 231px;
+        border-top: 3px solid #2c2c2c;
+        background: #ffffff;
+    }
+    .twittering__item:nth-child(2n){
+        border-top: 3px solid #f25421;
+        background: #fef4f0;
+    }
+}

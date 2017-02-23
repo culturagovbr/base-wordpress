@@ -1,0 +1,17 @@
+.csv {
+   background-image: url("images/csv.png");
+   background-repeat: no-repeat;
+   cursor: pointer;
+   height: 32px;
+   width: 32px;
+   z-index: 1;
+}
+
+#btnExportXLS {
+   background-image: url(images/xls.png);
+   background-repeat: no-repeat;
+   width: 32px;
+   height: 32px;
+   cursor: pointer;
+}
+

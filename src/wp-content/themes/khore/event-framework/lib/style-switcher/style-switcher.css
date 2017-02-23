@@ -1,0 +1,23 @@
+#dxef-style-switcher {
+	position: absolute;
+	top: 120px;
+	left: 0;
+	width: 180px;
+	padding: 15px 25px 15px 25px;
+	background: #2b2b2b;
+	z-index: 100;
+}
+
+#dxef-style-switcher h3 {
+	color: #fff;
+}
+
+#dxef-style-switcher-close {
+	position: relative;
+	top: 25px;
+	left: 155px;
+	width: 25px;
+	height: 25px;
+	background: url('close.png') no-repeat;
+	
+}

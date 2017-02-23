@@ -1,0 +1,141 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: khore-child\n"
+"POT-Creation-Date: 2015-11-09 10:52-0300\n"
+"PO-Revision-Date: 2015-11-09 10:56-0300\n"
+"Last-Translator: \n"
+"Language-Team:  <fernao@riseup.net>\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.10\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: _e\n"
+"X-Poedit-SearchPath-0: /var/www/emergencias/wp-content/themes/khore-child\n"
+"X-Poedit-SearchPath-1: /var/www/emergencias/wp-content/themes/khore-child/"
+"page-templates\n"
+"X-Poedit-SearchPath-2: /var/www/emergencias/wp-content/themes/khore/"
+"inscricoes\n"
+
+#: /var/www/emergencias/wp-content/themes/khore-child/header.php:45
+msgid "Menu"
+msgstr "Menu"
+
+#: /var/www/emergencias/wp-content/themes/khore-child/page-templates/home-inscricoes2.php:89
+msgid "Subscription succeded!"
+msgstr "Inscrição realizada com sucesso!"
+
+#: /var/www/emergencias/wp-content/themes/khore-child/page-templates/home-inscricoes2.php:90
+msgid "Take note of your subscription data"
+msgstr "Anote os dados da sua inscrição"
+
+#: /var/www/emergencias/wp-content/themes/khore-child/page-templates/home-inscricoes2.php:94
+msgid "Subscription code"
+msgstr "Código da inscrição"
+
+#: /var/www/emergencias/wp-content/themes/khore-child/page-templates/home-inscricoes2.php:99
+#: /var/www/emergencias/wp-content/themes/khore-child/page-templates/home-inscricoes2.php:171
+msgid "Full name"
+msgstr "Nome completo"
+
+#: /var/www/emergencias/wp-content/themes/khore-child/page-templates/home-inscricoes2.php:104
+#: /var/www/emergencias/wp-content/themes/khore-child/page-templates/home-inscricoes2.php:173
+msgid "E-mail"
+msgstr "Email"
+
+#: /var/www/emergencias/wp-content/themes/khore-child/page-templates/home-inscricoes2.php:109
+msgid "Phone"
+msgstr "Telefone"
+
+#: /var/www/emergencias/wp-content/themes/khore-child/page-templates/home-inscricoes2.php:114
+#: /var/www/emergencias/wp-content/themes/khore-child/page-templates/home-inscricoes2.php:178
+msgid "Collective / Entity / Organization"
+msgstr "Coletivo / Entidade / Organização"
+
+#: /var/www/emergencias/wp-content/themes/khore-child/page-templates/home-inscricoes2.php:119
+#: /var/www/emergencias/wp-content/themes/khore-child/page-templates/home-inscricoes2.php:180
+msgid "City"
+msgstr "Cidade"
+
+#: /var/www/emergencias/wp-content/themes/khore-child/page-templates/home-inscricoes2.php:124
+msgid "State"
+msgstr "UF"
+
+#: /var/www/emergencias/wp-content/themes/khore-child/page-templates/home-inscricoes2.php:129
+#: /var/www/emergencias/wp-content/themes/khore-child/page-templates/home-inscricoes2.php:197
+msgid "Country"
+msgstr "País"
+
+#: /var/www/emergencias/wp-content/themes/khore-child/page-templates/home-inscricoes2.php:134
+#: /var/www/emergencias/wp-content/themes/khore-child/page-templates/home-inscricoes2.php:199
+msgid "Do you have any special needs?"
+msgstr "Possui alguma necessidade especial?"
+
+#: /var/www/emergencias/wp-content/themes/khore-child/page-templates/home-inscricoes2.php:139
+#: /var/www/emergencias/wp-content/themes/khore-child/page-templates/home-inscricoes2.php:202
+msgid "Would you like to receive informations from Brazil Culture Ministry?"
+msgstr "Gostaria de receber informações do Ministério da Cultura?"
+
+#: /var/www/emergencias/wp-content/themes/khore-child/page-templates/home-inscricoes2.php:163
+msgid "Subscription"
+msgstr "Ficha de Inscrição"
+
+#: /var/www/emergencias/wp-content/themes/khore-child/page-templates/home-inscricoes2.php:168
+msgid "User data"
+msgstr "Dados do Usuário"
+
+#: /var/www/emergencias/wp-content/themes/khore-child/page-templates/home-inscricoes2.php:176
+msgid "Phone number (with international and local codes)"
+msgstr "Telefone (com DDD e operadora)"
+
+#: /var/www/emergencias/wp-content/themes/khore-child/page-templates/home-inscricoes2.php:184
+msgid "Fill in the state (if applicable)"
+msgstr "Selecione o Estado"
+
+#: /var/www/emergencias/wp-content/themes/khore-child/page-templates/home-inscricoes2.php:203
+msgid "Yes"
+msgstr "Sim"
+
+#: /var/www/emergencias/wp-content/themes/khore-child/page-templates/home-inscricoes2.php:205
+msgid "No"
+msgstr "Não"
+
+#: /var/www/emergencias/wp-content/themes/khore-child/page-templates/home-inscricoes2.php:213
+msgid "Submit"
+msgstr "Enviar"
+
+#: /var/www/emergencias/wp-content/themes/khore/inscricoes/modelo.mail.inscricao.php:5
+#: /var/www/emergencias/wp-content/themes/khore/inscricoes/modelo.mail.inscricao.php:67
+msgid "Application completed!"
+msgstr "Inscrição realizada com sucesso!"
+
+#: /var/www/emergencias/wp-content/themes/khore/inscricoes/modelo.mail.inscricao.php:68
+msgid ""
+"Hello, your application to participate of the debates, workshops, meetings, "
+"courses and the cultural programe of <a href=\"http://emergencias.cultura."
+"gov.br\">Emergências</a> was accepted."
+msgstr ""
+"Olá! Sua inscrição para participar dos debates, oficinas, encontros, cursos "
+"e programação cultural do <a href=\"http://emergencias.cultura.gov.br"
+"\">Emergências</a> foi aceita."
+
+#: /var/www/emergencias/wp-content/themes/khore/inscricoes/modelo.mail.inscricao.php:69
+msgid "We will met from December 7 to 13 at Rio de Janeiro."
+msgstr ""
+"Nos encontramos de 7 a 13 de dezembro no Rio de Janeiro, Baixada Fluminense "
+"e em Niterói."
+
+#: /var/www/emergencias/wp-content/themes/khore/inscricoes/modelo.mail.inscricao.php:70
+msgid "Stay tuned on our social media and follow the news."
+msgstr "Fique ligado nas nossas redes sociais e acompanhe as novidades."
+
+#: /var/www/emergencias/wp-content/themes/khore/inscricoes/modelo.mail.inscricao.php:72
+msgid "Site"
+msgstr "Página"
+
+#: /var/www/emergencias/wp-content/themes/khore/inscricoes/modelo.mail.inscricao.php:74
+msgid "Event"
+msgstr "Evento"

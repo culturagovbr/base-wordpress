@@ -174,3 +174,6 @@
 [submodule "src/wp-content/plugins/emergencias-json"]
 	path = src/wp-content/plugins/emergencias-json
 	url = git@github.com:culturagovbr/emergencias-json.git
+[submodule "src/wp-content/themes/wp-divi-ctav"]
+	path = src/wp-content/themes/wp-divi-ctav
+	url = https://github.com/culturagovbr/wp-divi-ctav.git

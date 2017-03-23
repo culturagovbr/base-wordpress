@@ -177,3 +177,6 @@
 [submodule "src/wp-content/themes/wp-divi-ctav"]
 	path = src/wp-content/themes/wp-divi-ctav
 	url = https://github.com/culturagovbr/wp-divi-ctav.git
+[submodule "src/wp-content/themes/wp-divi-base"]
+	path = src/wp-content/themes/wp-divi-base
+	url = https://github.com/culturagovbr/wp-divi-base.git

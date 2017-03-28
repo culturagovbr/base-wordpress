@@ -180,3 +180,6 @@
 [submodule "src/wp-content/themes/wp-divi-base"]
 	path = src/wp-content/themes/wp-divi-base
 	url = https://github.com/culturagovbr/wp-divi-base.git
+[submodule "src/wp-content/themes/cultural"]
+	path = src/wp-content/themes/cultural
+	url = https://github.com/hacklabr/cultural.git

@@ -142,9 +142,6 @@
 	url = git@github.com:redelivre/wpdialoga.git
  	branch = master
 
-[submodule "src/wp-content/themes/assineja"]
-	path = src/wp-content/themes/assineja
-	url = git@gitlab.ethymos.com.br:campanhacompleta/assineja.git
 [submodule "src/wp-content/themes/meth"]
 	path = src/wp-content/themes/meth
 	url = git@gitlab.ethymos.com.br:ethymos/meth.git

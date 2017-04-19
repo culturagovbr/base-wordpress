@@ -29,3 +29,6 @@ src/wp-content/plugins/debug-bar-console
 *.sublime-project
 *.sublime-workspace
 scripts/update-wp.conf
+
+#PHPStorm
+.idea

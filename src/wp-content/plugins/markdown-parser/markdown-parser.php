@@ -111,16 +111,18 @@ function markdown_parser_meta_callback( $post ) {
         <label for="markdown-parser-from-url" class="markdown_parser-row-title"><?php _e( 'Selecionar arquivo externo (URL) para parsear.', 'markdown_parser-textdomain' )?></label>
     </p>
 
-    <p id="markdown-parser-from-url-box" <?php echo ( $check2 ) ? '' : 'style="display: none"'; ?>>
-        <label for="markdown-parser-url-origin" class="markdown_parser-row-title"><?php _e( 'Insira a URL do arquivo com o texto markdown.', 'markdown_parser-textdomain' )?></label>
-        <input type="text" name="markdown-parser-url-origin" id="markdown-parser-url-origin" value="<?php if ( isset ( $markdown_parser_stored_meta['markdown-parser-url-origin'] ) ) echo $markdown_parser_stored_meta['markdown-parser-url-origin'][0]; ?>" style="width: 100%;"/>
-        <small style="color: #a00; font-style: italic; text-align: center; margin-top: 15px; display: block;">Atenção ao salvar essa página, seu conteúdo será substituído pelo contido na URL acima!</small>
-    </p>
+    <div id="markdown-parser-from-url-box" <?php echo ( $check2 ) ? '' : 'style="display: none"'; ?>>
+        <p>
+            <label for="markdown-parser-url-origin" class="markdown_parser-row-title"><?php _e( 'Insira a URL do arquivo com o texto markdown.', 'markdown_parser-textdomain' )?></label>
+            <input type="text" name="markdown-parser-url-origin" id="markdown-parser-url-origin" value="<?php if ( isset ( $markdown_parser_stored_meta['markdown-parser-url-origin'] ) ) echo $markdown_parser_stored_meta['markdown-parser-url-origin'][0]; ?>" style="width: 100%;"/>
+            <small style="color: #a00; font-style: italic; text-align: center; margin-top: 15px; display: block;">Atenção ao salvar essa página, seu conteúdo será substituído pelo contido na URL acima!</small>
+        </p>
 
-    <p>
-        <input type="checkbox" name="markdown-parser-monitor" id="markdown-parser-monitor" <?php checked( $check3, 'on' ); ?> />
-        <label for="markdown-parser-monitor" class="markdown_parser-row-title"><?php _e( 'Permitir monitoramento automático da URL acima (Isso atualizará essa página periodicamente).', 'markdown_parser-textdomain' )?></label>
-    </p>
+        <p>
+            <input type="checkbox" name="markdown-parser-monitor" id="markdown-parser-monitor" <?php checked( $check3, 'on' ); ?> />
+            <label for="markdown-parser-monitor" class="markdown_parser-row-title"><?php _e( 'Permitir monitoramento automático da URL acima (Isso atualizará essa página periodicamente).', 'markdown_parser-textdomain' )?></label>
+        </p>
+    </div>
 
     <?php
 }

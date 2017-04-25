@@ -55,7 +55,6 @@ function remove_auto_filters() {
  * Get content, parse and then output to user
  */
 function parse_content_filter($content) {
-
     // Check if the option to parse as markdown is set
     $parse_as_markdown = get_post_meta( get_the_ID(), 'markdown-parser', true );
     if( !empty( $parse_as_markdown ) ):

@@ -1,5 +1,4 @@
 jQuery(document).ready(function ($) {
-    console.log('Init here');
 
     $('#markdown-parser-from-url').on('change', function () {
         var checked = ( $(this).prop( 'checked' ) ) ? 'on' : '';

@@ -1593,7 +1593,7 @@ class Parsedown
 
         $heading_toc = '';
         if( $this->heading_arr ):
-            $heading_toc .= '<ul>';
+            $heading_toc .= '<ul class="toc">';
             foreach ( $this->heading_arr as $index => $heading ){
                 $idName = strtolower($heading['heading_text']);
                 $idName = preg_replace('/\s+/', '-', $idName);

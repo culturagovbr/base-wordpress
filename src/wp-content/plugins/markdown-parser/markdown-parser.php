@@ -203,8 +203,8 @@ function parse_markdown_cron_schedule() {
 
     //If $timestamp == false schedule daily backups since it hasn't been done previously
     if( $timestamp == false ){
-        wp_schedule_event( time(), '5sec', 'parse_markdown_cron_run' );
-        wp_schedule_event( time(), 'twicedaily', 'parse_markdown_cron_run' );
+        wp_schedule_event( time(), '5min', 'parse_markdown_cron_run' );
+        // wp_schedule_event( time(), 'twicedaily', 'parse_markdown_cron_run' );
     }
 
 }
@@ -268,9 +268,9 @@ function myprefix_add_weekly_cron_schedule( $schedules ) {
             'display' => __('Once every 60 secs'),
         );
     }
-    if(!isset($schedules['5sec'])) {
-        $schedules['5sec'] = array(
-            'interval' => 5,
+    if(!isset($schedules['5min'])) {
+        $schedules['5min'] = array(
+            'interval' => 60 * 5,
             'display' => __('Once every 5 secs'),
         );
     }

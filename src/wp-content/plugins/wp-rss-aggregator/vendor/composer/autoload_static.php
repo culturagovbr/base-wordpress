@@ -7,18 +7,34 @@ namespace Composer\Autoload;
 class ComposerStaticInit5b1214f1b4db5e953417a3c5488d163a
 {
     public static $prefixLengthsPsr4 = array (
+        'I' => 
+        array (
+            'Interop\\Container\\' => 18,
+        ),
         'D' => 
         array (
             'Dhii\\Stats\\' => 11,
+            'Dhii\\Di\\' => 8,
             'Dhii\\Collection\\' => 16,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'Interop\\Container\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/container-interop/service-provider/src',
+            1 => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container',
+        ),
         'Dhii\\Stats\\' => 
         array (
             0 => __DIR__ . '/..' . '/dhii/stats-interface/src',
             1 => __DIR__ . '/..' . '/dhii/stats-abstract/src',
+        ),
+        'Dhii\\Di\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dhii/di-interface/src',
+            1 => __DIR__ . '/..' . '/dhii/di-abstract/src',
+            2 => __DIR__ . '/..' . '/dhii/di/src',
         ),
         'Dhii\\Collection\\' => 
         array (

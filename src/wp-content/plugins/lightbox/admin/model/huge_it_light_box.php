@@ -173,7 +173,12 @@ class Hugeit_Lightbox_Model {
 			'hugeit_lightbox_speed_new'                     => '600',
 			'hugeit_lightbox_overlayClose_new'              => 'true',
 			'hugeit_lightbox_loop_new'                      => 'true',
-			'hugeit_lightbox_fullwidth_effect'              => 'false'
+			'hugeit_lightbox_fullwidth_effect'              => 'false',
+			'hugeit_lightbox_thumbs'     					=> 'false',
+			'hugeit_lightbox_showTitle'                		=> 'true',
+			'hugeit_lightbox_showDesc'               		=> 'false',
+			'hugeit_lightbox_showBorder'               		=> 'false',
+			'hugeit_lightbox_imageframe'                    => 'frame_0'
 		);
 		return $options;
 	}

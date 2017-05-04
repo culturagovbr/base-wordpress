@@ -1,4 +1,5 @@
 jQuery(document).ready(function() {
+	
 	jQuery('#lightbox_type input').change(function () {
 		jQuery('#lightbox_type input').parent().removeClass('active');
 		jQuery(this).parent().addClass('active');
@@ -49,6 +50,14 @@ jQuery(document).ready(function() {
 		jQuery('#view-style-block ul li[data-id="' + strtr + '"]').addClass('active');
 	});
 
+	jQuery('#view-image_frame ul li[data-id="' + jQuery('#light_box_style option[selected="selected"]').val() + '"]').addClass('active');
+
+	jQuery('#hugeit_lightbox_imageframe').change(function() {
+		var $strt = jQuery(this).val();
+		jQuery('#view-image_frame ul li').removeClass('active');
+		jQuery('#view-image_frame ul li[data-id="' + $strt + '"]').addClass('active');
+	});
+	
 	jQuery('.help').hover(function() {
 		jQuery(this).parent().find('.help-block').removeClass('active');
 		var width = jQuery(this).parent().find('.help-block').outerWidth();

@@ -3,7 +3,7 @@
 Plugin Name: Huge IT Lightbox
 Plugin URI: https://huge-it.com/lightbox
 Description: Lightbox is the perfect tool for viewing photos.
-Version: 2.0.3
+Version: 2.0.7
 Author: Huge-IT
 Author URI: https://huge-it.com
 License: GPL
@@ -181,6 +181,7 @@ function hugeit_lightbox_localize_scripts() {
 			$lightbox_resp_default_options['hugeit_lightbox_watermark_container_bg_color'] = 'rgba(' . $r . ',' . $g . ',' . $b . ',' . $titleopacity . ')';
 			wp_localize_script( 'hugeit-lightbox-js', 'hugeit_resp_lightbox_obj', $lightbox_resp_options );
 			wp_localize_script( 'hugeit-lightbox-js', 'hugeit_gen_resp_lightbox_obj', $lightbox_resp_default_options );
+			wp_localize_script( 'hugeit-lightbox-js', 'hugeit_resp_lightbox_plugins_url', plugins_url('/images/image_frames/', __FILE__) );
 		}
 		wp_localize_script( 'hugeit-custom-js', 'lightbox_type', get_option( 'hugeit_lightbox_type' ) );
 		wp_localize_script( 'hugeit-custom-js', 'ajaxUrl', admin_url( "admin-ajax.php" ) );

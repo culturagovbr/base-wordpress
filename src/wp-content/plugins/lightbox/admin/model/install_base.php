@@ -36,3 +36,23 @@ if (!get_option('hugeit_lightbox_loop_new')) {
 if( !get_option( 'hugeit_lightbox_fullwidth_effect' ) ) {
     update_option('hugeit_lightbox_fullwidth_effect', 'false');
 }
+
+if( !get_option( 'hugeit_lightbox_thumbs' ) ) {
+    update_option('hugeit_lightbox_thumbs', 'false');
+}
+
+if( !get_option( 'hugeit_lightbox_showTitle' ) ) {
+    update_option('hugeit_lightbox_showTitle', 'true');
+}
+
+if( !get_option( 'hugeit_lightbox_showDesc' ) ) {
+    update_option('hugeit_lightbox_showDesc', 'false');
+}
+
+if( !get_option( 'hugeit_lightbox_showBorder' ) ) {
+    update_option('hugeit_lightbox_showBorder', 'false');
+}
+
+if( !get_option( 'hugeit_lightbox_imageframe' ) ) {
+    update_option('hugeit_lightbox_imageframe', 'frame_0');
+}

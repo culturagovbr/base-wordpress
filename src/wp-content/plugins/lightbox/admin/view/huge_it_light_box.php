@@ -131,6 +131,91 @@ require_once 'free_banner.php';
 					echo 'checked="checked"';
 				} ?> name="params[hugeit_lightbox_fullwidth_effect]" value="true"/>
 			</div>
+			<div class="has-background">
+				<label for="hugeit_lightbox_thumbs"><?php _e('Thumbnail','lightbox');?>
+					<div class="help">?
+						<div class="help-block">
+							<span class="pnt"></span>
+							<p><?php _e('Check to activate thumbnails','lightbox');?>.</p>
+						</div>
+					</div>
+				</label>
+				<input type="hidden" value="false" name="params[hugeit_lightbox_thumbs]"/>
+				<input type="checkbox"
+					   id="hugeit_lightbox_thumbs" <?php if ($hugeit_resp_lightbox_values['hugeit_lightbox_thumbs'] == 'true') {
+					echo 'checked="checked"';
+				} ?> name="params[hugeit_lightbox_thumbs]" value="true"/>
+			</div>
+			<div>
+				<label for="hugeit_lightbox_showTitle"><?php _e('Show Title','lightbox');?>
+					<div class="help">?
+						<div class="help-block">
+							<span class="pnt"></span>
+							<p><?php _e('Check to display title.','lightbox');?></p>
+						</div>
+					</div>
+				</label>
+				<input type="hidden" value="false" name="params[hugeit_lightbox_showTitle]"/>
+				<input type="checkbox"
+					   id="hugeit_lightbox_showTitle" <?php if ($hugeit_resp_lightbox_values['hugeit_lightbox_showTitle'] == 'true') {
+					echo 'checked="checked"';
+				} ?> name="params[hugeit_lightbox_showTitle]" value="true"/>
+			</div>
+			<div class="has-background">
+				<label for="hugeit_lightbox_showDesc"><?php _e('Show Description','lightbox');?>
+					<div class="help">?
+						<div class="help-block">
+							<span class="pnt"></span>
+							<p><?php _e('Check to display description.','lightbox');?></p>
+						</div>
+					</div>
+				</label>
+				<input type="hidden" value="false" name="params[hugeit_lightbox_showDesc]"/>
+				<input type="checkbox"
+					   id="hugeit_lightbox_showDesc" <?php if ($hugeit_resp_lightbox_values['hugeit_lightbox_showDesc'] == 'true') {
+					echo 'checked="checked"';
+				} ?> name="params[hugeit_lightbox_showDesc]" value="true"/>
+			</div>
+			<div>
+				<label for="hugeit_lightbox_showBorder"><?php _e('Show Border','lightbox');?>
+					<div class="help">?
+						<div class="help-block">
+							<span class="pnt"></span>
+							<p><?php _e('Check to display border.','lightbox');?></p>
+						</div>
+					</div>
+				</label>
+				<input type="hidden" value="false" name="params[hugeit_lightbox_showBorder]"/>
+				<input type="checkbox"
+					   id="hugeit_lightbox_showBorder" <?php if ($hugeit_resp_lightbox_values['hugeit_lightbox_showBorder'] == 'true') {
+					echo 'checked="checked"';
+				} ?> name="params[hugeit_lightbox_showBorder]" value="true"/>
+			</div>
+			<div class="has-background image_frame">
+				<label for="hugeit_lightbox_imageframe"><?php _e('Image frame','lightbox');?>
+					<div class="help">?
+						<div class="help-block">
+							<span class="pnt"></span>
+							<p><?php _e('Choose the changing frame of the images.','lightbox');?></p>
+						</div>
+					</div>
+				</label>
+				<select id="hugeit_lightbox_imageframe" name="params[hugeit_lightbox_imageframe]">
+					<option <?php selected('frame_0',(string)$hugeit_resp_lightbox_values['hugeit_lightbox_imageframe']); ?> value="frame_0">None</option>
+					<option <?php selected('frame_1',(string)$hugeit_resp_lightbox_values['hugeit_lightbox_imageframe']); ?> value="frame_1">Frame 1</option>
+					<option <?php selected('frame_2',(string)$hugeit_resp_lightbox_values['hugeit_lightbox_imageframe']); ?> value="frame_2">Frame 2</option>
+					<option <?php selected('frame_8',(string)$hugeit_resp_lightbox_values['hugeit_lightbox_imageframe']); ?> value="frame_8">Frame 3</option>
+				</select>
+				<div id="view-image_frame">
+					<span class="view-style-eye"><?php _e( 'Preview', 'hugeit_lightbox' ); ?></span>
+					<ul>
+						<li data-id="frame_0" <?php if((string)$hugeit_resp_lightbox_values['hugeit_lightbox_imageframe'] === 'frame_0') echo "class='active'"; ?>><img src="<?php echo plugins_url('../../images/image_frames/none.png', __FILE__); ?>"></li>
+						<li data-id="frame_1" <?php if((string)$hugeit_resp_lightbox_values['hugeit_lightbox_imageframe'] === 'frame_1') echo "class='active'"; ?>><img src="<?php echo plugins_url('../../images/image_frames/frame_1.png', __FILE__); ?>"></li>
+						<li data-id="frame_2" <?php if((string)$hugeit_resp_lightbox_values['hugeit_lightbox_imageframe'] === 'frame_2') echo "class='active'"; ?>><img src="<?php echo plugins_url('../../images/image_frames/frame_2.png', __FILE__); ?>"></li>
+						<li data-id="frame_8" <?php if((string)$hugeit_resp_lightbox_values['hugeit_lightbox_imageframe'] === 'frame_8') echo "class='active'"; ?>><img src="<?php echo plugins_url('../../images/image_frames/frame_8.png', __FILE__); ?>"></li>
+					</ul>
+				</div>
+			</div>
 		</div>
 		<div class="options-block hugeit-lightbox-pro-option">
 			<h3>Dimensions<img src="<?php echo plugins_url( '../../images/pro-icon.png', __FILE__ ) ?>"
@@ -227,9 +312,66 @@ require_once 'free_banner.php';
 				<span>ms</span>
 			</div>
 		</div>
-		<div class="options-block hugeit-lightbox-pro-option" style=" margin-top: -150px;">
+		<div class="options-block hugeit-lightbox-pro-option">
 			<h3>Advanced Options<img src="<?php echo plugins_url( '../../images/pro-icon.png', __FILE__ ) ?>"
 									 class="hugeit_lightbox_pro_logo"></h3>
+			<div class="has-background">
+				<label for="hugeit_lightbox_bordersize"><?php _e('Border Size','lightbox');?>
+					<div class="help">?
+						<div class="help-block">
+							<span class="pnt"></span>
+							<p><?php _e('Border size','lightbox');?></p>
+						</div>
+					</div>
+				</label>
+				<input type="number" id="hugeit_lightbox_bordersize" value="2" class="text">
+				<span>px</span>
+			</div>
+			<div>
+				<label for="hugeit_lightbox_bordercolor"><?php _e('Border Color','lightbox');?>
+					<div class="help">?
+						<div class="help-block">
+							<span class="pnt"></span>
+							<p><?php _e('Border Color','lightbox');?></p>
+						</div>
+					</div>
+				</label>
+				<input type="text" class="color" id="hugeit_lightbox_bordercolor"
+					   value="#000"
+					   size="10"/>
+			</div>
+			<div class="has-background">
+				<label for="hugeit_lightbox_borderradius"><?php _e('Border radius','lightbox');?>
+					<div class="help">?
+						<div class="help-block">
+							<span class="pnt"></span>
+							<p><?php _e('Border radius','lightbox');?></p>
+						</div>
+					</div>
+				</label>
+				<input type="number"
+					   id="hugeit_lightbox_borderradius"
+					   value="5"
+					   class="text">
+				<span>px</span>
+			</div>
+			<div>
+				<label for="hugeit_lightbox_borderopacity"><?php _e('Border Opacity','lightbox');?>
+					<div class="help">?
+						<div class="help-block">
+							<span class="pnt"></span>
+							<p><?php _e('Border Opacity','lightbox');?></p>
+						</div>
+					</div>
+				</label>
+				<div class="slider-container">
+					<input id="hugeit_lightbox_borderopacity" data-slider-highlight="true"
+						   data-slider-values="0,10,20,30,40,50,60,70,80,90,100" type="text" data-slider="true"
+						   value="100"/>
+						<span>100
+							%</span>
+				</div>
+			</div>
 			<div class="has-background">
 				<label for="hugeit_lightbox_style">EscKey close
 					<div class="help">?
@@ -369,14 +511,160 @@ require_once 'free_banner.php';
 						</div>
 					</div>
 				</label>
-				<select id="hugeit_lightbox_title_pos" name="">
+				<select id="hugeit_lightbox_title_pos">
 					<option value="left">Left</option>
 					<option value="center">Center</option>
 					<option value="right">Right</option>
 				</select>
 			</div>
+			<div>
+				<label for="hugeit_lightbox_imageborder"><?php _e('Show Image Border','lightbox');?>
+					<div class="help">?
+						<div class="help-block">
+							<span class="pnt"></span>
+							<p><?php _e('Show image border.','lightbox');?></p>
+						</div>
+					</div>
+				</label>
+				<input type="hidden" value="false"/>
+				<input type="checkbox"
+					   id="hugeit_lightbox_imageborder" value="true"/>
+			</div>
+			<div class="has-background">
+				<label for="hugeit_lightbox_imagebordersize"><?php _e('Image Border Size','lightbox');?>
+					<div class="help">?
+						<div class="help-block">
+							<span class="pnt"></span>
+							<p><?php _e('Set the size of the image border.','lightbox');?></p>
+						</div>
+					</div>
+				</label>
+				<input type="number" id="hugeit_lightbox_imagebordersize"
+					   value="2" class="text">
+				<span>px</span>
+			</div>
+			<div>
+				<label for="hugeit_lightbox_imagebordercolor"><?php _e('Image Border Color','lightbox');?>
+					<div class="help">?
+						<div class="help-block">
+							<span class="pnt"></span>
+							<p><?php _e('Set the color of the image border.','lightbox');?></p>
+						</div>
+					</div>
+				</label>
+				<input type="text" class="color" id="hugeit_lightbox_imagebordercolor"
+					   value="#C9C9C9"
+					   size="10"/>
+			</div>
+			<div class="has-background">
+				<label for="hugeit_lightbox_imageborderradius"><?php _e('Image Border Radius','lightbox');?>
+					<div class="help">?
+						<div class="help-block">
+							<span class="pnt"></span>
+							<p><?php _e('Set the radius of the image border in pixels.','lightbox');?></p>
+						</div>
+					</div>
+				</label>
+				<input type="number" id="hugeit_lightbox_imageborderradius"
+					   value="5" class="text">
+				<span>px</span>
+			</div>
+			<div>
+				<label for="hugeit_lightbox_imageborderopacity"><?php _e('Image Border Opacity','lightbox');?>
+					<div class="help">?
+						<div class="help-block">
+							<span class="pnt"></span>
+							<p><?php _e('Set the opacity of the image border','lightbox');?></p>
+						</div>
+					</div>
+				</label>
+				<div class="slider-container">
+					<input id="hugeit_lightbox_imageborderopacity" data-slider-highlight="true"
+						   data-slider-values="0,10,20,30,40,50,60,70,80,90,100" type="text" data-slider="true"
+						   value="100"/>
+					<span>100%</span>
+				</div>
+			</div>
+			<div class="has-background">
+				<label for="hugeit_lightbox_imageshadow"><?php _e('Show Image Shadow','lightbox');?>
+					<div class="help">?
+						<div class="help-block">
+							<span class="pnt"></span>
+							<p><?php _e('Show image shadow.','lightbox');?></p>
+						</div>
+					</div>
+				</label>
+				<input type="hidden" value="false" />
+				<input type="checkbox"
+					   id="hugeit_lightbox_imageshadow" value="true"/>
+			</div>
+			<div>
+				<label for="hugeit_lightbox_imageshadowh"><?php _e('Image Horizontal Shadow','lightbox');?>
+					<div class="help">?
+						<div class="help-block">
+							<span class="pnt"></span>
+							<p><?php _e('The position of the horizontal shadow. Negative values are allowed.','lightbox');?></p>
+						</div>
+					</div>
+				</label>
+				<input type="number" id="hugeit_lightbox_imageshadowh"
+					   value="5" class="text">
+				<span>px</span>
+			</div>
+			<div class="has-background">
+				<label for="hugeit_lightbox_imageshadowv"><?php _e('Image Vertical Shadow','lightbox');?>
+					<div class="help">?
+						<div class="help-block">
+							<span class="pnt"></span>
+							<p><?php _e('The position of the vertical shadow. Negative values are allowed.','lightbox');?></p>
+						</div>
+					</div>
+				</label>
+				<input type="number" id="hugeit_lightbox_imageshadowv"
+					   value="5" class="text">
+				<span>px</span>
+			</div>
+			<div>
+				<label for="hugeit_lightbox_imageshadow_blur"><?php _e('Image Shadow Blur','lightbox');?>
+					<div class="help">?
+						<div class="help-block">
+							<span class="pnt"></span>
+							<p><?php _e('The blur distance.','lightbox');?></p>
+						</div>
+					</div>
+				</label>
+				<input type="number" id="hugeit_lightbox_imageshadow_blur"
+					   value="10" class="text">
+				<span>px</span>
+			</div>
+			<div class="has-background">
+				<label for="hugeit_lightbox_imageshadow_spread"><?php _e('Image Shadow Spread','lightbox');?>
+					<div class="help">?
+						<div class="help-block">
+							<span class="pnt"></span>
+							<p><?php _e('The size of shadow. Negative values are allowed.','lightbox');?></p>
+						</div>
+					</div>
+				</label>
+				<input type="number" id="hugeit_lightbox_imageshadow_spread"
+					   value="3" class="text">
+				<span>px</span>
+			</div>
+			<div>
+				<label for="hugeit_lightbox_imageshadow_color"><?php _e('Image Shadow Color','lightbox');?>
+					<div class="help">?
+						<div class="help-block">
+							<span class="pnt"></span>
+							<p><?php _e('The color of the shadow.','lightbox');?></p>
+						</div>
+					</div>
+				</label>
+				<input type="text" class="color" id="hugeit_lightbox_imageshadow_color"
+					   value="#C9C9C9"
+					   size="10"/>
+			</div>
 		</div>
-		<div class="options-block hugeit-lightbox-pro-option">
+		<div class="options-block hugeit-lightbox-pro-option" style="margin-top: -1010px;">
 			<h3>Lightbox Watermark styles<img src="<?php echo plugins_url( '../../images/pro-icon.png', __FILE__ ) ?>"
 											  class="hugeit_lightbox_pro_logo"></h3>
 			<div class="has-background">
@@ -404,7 +692,7 @@ require_once 'free_banner.php';
 				       value="<?php echo $hugeit_resp_default_lightbox_values['hugeit_lightbox_watermark_text']; ?>"
 				       class="text">
 			</div>
-			<div class="has-background">
+			<div>
 				<label for="hugeit_lightbox_watermark_textColor">Watermark Text Color
 					<div class="help">?
 						<div class="help-block">
@@ -417,7 +705,7 @@ require_once 'free_banner.php';
 				       value="#<?php echo $hugeit_resp_default_lightbox_values['hugeit_lightbox_watermark_textColor']; ?>"
 				       size="10"/>
 			</div>
-			<div>
+			<div class="has-background">
 				<label for="hugeit_lightbox_watermark_textFontSize">Watermark Text Font Size
 					<div class="help">?
 						<div class="help-block">
@@ -432,7 +720,7 @@ require_once 'free_banner.php';
 				       class="text">
 				<span>px</span>
 			</div>
-			<div class="has-background">
+			<div>
 				<label for="hugeit_lightbox_watermark_containerBackground">Watermark Background Color
 					<div class="help">?
 						<div class="help-block">
@@ -445,7 +733,7 @@ require_once 'free_banner.php';
 				       value="#<?php echo $hugeit_resp_default_lightbox_values['hugeit_lightbox_watermark_containerBackground']; ?>"
 				       size="10"/>
 			</div>
-			<div>
+			<div class="has-background">
 				<label for="hugeit_lightbox_watermark_containerOpacity">Watermark Background Opacity
 					<div class="help">?
 						<div class="help-block">
@@ -462,7 +750,7 @@ require_once 'free_banner.php';
 							%</span>
 				</div>
 			</div>
-			<div class="has-background">
+			<div>
 				<label for="hugeit_lightbox_watermark_containerWidth">Watermark Width
 					<div class="help">?
 						<div class="help-block">
@@ -477,7 +765,7 @@ require_once 'free_banner.php';
 				       class="text">
 				<span>px</span>
 			</div>
-			<div class="has-height">
+			<div class="has-background has-height">
 				<label for="hugeit_lightbox_watermark_containerWidth">Watermark Position
 					<div class="help">?
 						<div class="help-block">
@@ -535,7 +823,7 @@ require_once 'free_banner.php';
 					</table>
 				</div>
 			</div>
-			<div class="has-background">
+			<div>
 				<label for="hugeit_lightbox_watermark_margin">Watermark Margin
 					<div class="help">?
 						<div class="help-block">
@@ -566,7 +854,7 @@ require_once 'free_banner.php';
 					<span><?php echo $hugeit_resp_default_lightbox_values['hugeit_lightbox_watermark_opacity']; ?>%</span>
 				</div>
 			</div>
-			<div style="height:auto;">
+			<div class="has-background" style="height:auto;">
 				<label for="watermark_image_btn">Select Watermark Image
 					<div class="help">?
 						<div class="help-block">
@@ -583,7 +871,7 @@ require_once 'free_banner.php';
 				<input type="hidden" id="img_watermark_hidden_new" value="<?php echo $hugeit_resp_default_lightbox_values['hugeit_lightbox_watermark_img_src_new']; ?>">
 			</div>
 		</div>
-		<div class="options-block hugeit-lightbox-pro-option" style="margin-top: -365px;">
+		<div class="options-block hugeit-lightbox-pro-option" style="margin-top: -345px;">
 			<h3><?php _e('Zoom Options','lightbox');?><img src="<?php echo plugins_url( '../../images/pro-icon.png', __FILE__ ) ?>"
 														   class="hugeit_lightbox_pro_logo"></h3>
 			<div class="has-background">
@@ -595,11 +883,9 @@ require_once 'free_banner.php';
 						</div>
 					</div>
 				</label>
-				<input type="hidden" value="false" name="params[hugeit_lightbox_zoom]"/>
+				<input type="hidden" value="false" />
 				<input type="checkbox"
-					   id="hugeit_lightbox_zoom" <?php if ($hugeit_resp_lightbox_values['hugeit_lightbox_zoom'] == 'true') {
-					echo 'checked="checked"';
-				} ?> name="params[hugeit_lightbox_zoom]" value="true"/>
+					   id="hugeit_lightbox_zoom" value="true"/>
 			</div>
 			<div class="has-background">
 				<label for="hugeit_lightbox_zoomtype"><?php _e('Zoom Type','lightbox');?>
@@ -610,8 +896,8 @@ require_once 'free_banner.php';
 						</div>
 					</div>
 				</label>
-				<select id="hugeit_lightbox_zoomtype" name="params[hugeit_lightbox_zoomtype]">
-					<option <?php selected('Full Lightbox',$hugeit_resp_lightbox_values['hugeit_lightbox_zoomtype']); ?> value="0"><?php _e('Full Lightbox','lightbox');?></option>
+				<select id="hugeit_lightbox_zoomtype">
+					<option value="0" selected ><?php _e('Full Lightbox','lightbox');?></option>
 				</select>
 			</div>
 			<div>
@@ -624,11 +910,10 @@ require_once 'free_banner.php';
 					</div>
 				</label>
 				<div class="slider-container">
-					<input name="params[hugeit_lightbox_zoomsize]"
-						   id="hugeit_lightbox_zoomsize" data-slider-highlight="true"
+					<input id="hugeit_lightbox_zoomsize" data-slider-highlight="true"
 						   data-slider-values="0,10,20,30,40,50,60,70,80,90,100" type="text" data-slider="true"
-						   value="<?php echo $hugeit_resp_lightbox_values['hugeit_lightbox_zoomsize']; ?>"/>
-					<span><?php echo $hugeit_resp_lightbox_values['hugeit_lightbox_zoomsize']; ?>%</span>
+						   value="100"/>
+					<span>100%</span>
 				</div>
 			</div>
 			<div class="has-background">
@@ -640,14 +925,14 @@ require_once 'free_banner.php';
 						</div>
 					</div>
 				</label>
-				<select id="hugeit_lightbox_zoomlogo" name="params[hugeit_lightbox_zoomlogo]">
-					<option <?php selected('0',$hugeit_resp_lightbox_values['hugeit_lightbox_zoomlogo']); ?> value="0"><?php _e('None','lightbox');?></option>
-					<option <?php selected('1',$hugeit_resp_lightbox_values['hugeit_lightbox_zoomlogo']); ?> value="1"><?php _e('Magnifying Glass','lightbox');?></option>
-					<option <?php selected('2',$hugeit_resp_lightbox_values['hugeit_lightbox_zoomlogo']); ?> value="2"><?php _e('Hand','lightbox');?></option>
+				<select id="hugeit_lightbox_zoomlogo">
+					<option value="0" selected ><?php _e('None','lightbox');?></option>
+					<option value="1"><?php _e('Magnifying Glass','lightbox');?></option>
+					<option value="2"><?php _e('Hand','lightbox');?></option>
 				</select>
 			</div>
 		</div>
-		<div class="options-block hugeit-lightbox-pro-option" style="margin-top: -110px;">
+		<div class="options-block hugeit-lightbox-pro-option" style="margin-top: -85px;">
 			<h3>Social Share Buttons<img src="<?php echo plugins_url( '../../images/pro-icon.png', __FILE__ ) ?>"
 										 class="hugeit_lightbox_pro_logo"></h3>
 			<div class="has-background">
@@ -762,6 +1047,92 @@ require_once 'free_banner.php';
 				</div>
 			</div>
 		</div>
+		<div class="options-block hugeit-lightbox-pro-option">
+			<h3><?php _e('Thumbnails','lightbox');?><img src="<?php echo plugins_url( '../../images/pro-icon.png', __FILE__ ) ?>"
+														 class="hugeit_lightbox_pro_logo"></h3>
+			<div>
+				<label for="hugeit_lightbox_thumbs_width"><?php _e('Thumbnails Width','lightbox');?>
+					<div class="help">?
+						<div class="help-block">
+							<span class="pnt"></span>
+							<p><?php _e('Set the size of the thumbnails width in pixels.','lightbox');?></p>
+						</div>
+					</div>
+				</label>
+				<input type="number" id="hugeit_lightbox_thumbs_width"
+					   value="100" class="text">
+				<span>px</span>
+			</div>
+			<div class="has-background">
+				<label for="hugeit_lightbox_thumbs_height"><?php _e('Thumbnails height','lightbox');?>
+					<div class="help">?
+						<div class="help-block">
+							<span class="pnt"></span>
+							<p><?php _e('Set the size of the thumbnails height in pixels (Max height - 200px).','lightbox');?></p>
+						</div>
+					</div>
+				</label>
+				<input type="number" id="hugeit_lightbox_thumbs_height"
+					   value="100" max="200" class="text">
+				<span>px</span>
+			</div>
+			<div>
+				<label for="hugeit_lightbox_thumbs_margin"><?php _e('Thumbnails Margin','lightbox');?>
+					<div class="help">?
+						<div class="help-block">
+							<span class="pnt"></span>
+							<p><?php _e('Set the size of the thumbnails margin in pixels.','lightbox');?></p>
+						</div>
+					</div>
+				</label>
+				<input type="number" id="hugeit_lightbox_thumbs_margin"
+					   value="5" class="text">
+				<span>px</span>
+			</div>
+			<div class="has-background">
+				<label for="hugeit_lightbox_thumbs_position"><?php _e('Thumbnails position','lightbox');?>
+					<div class="help">?
+						<div class="help-block">
+							<span class="pnt"></span>
+							<p><?php _e('Thumbnails position (Bottom, Top, Left, Right)','lightbox');?></p>
+						</div>
+					</div>
+				</label>
+				<select id="hugeit_lightbox_thumbs_position" >
+					<option selected value="0"><?php _e('Bottom','lightbox');?></option>
+				</select>
+			</div>
+			<div>
+				<label for="hugeit_lightbox_thumbs_overlay_color"><?php _e('Thumbnails Overlay Color','lightbox');?>
+					<div class="help">?
+						<div class="help-block">
+							<span class="pnt"></span>
+							<p><?php _e('Passive Thumbnails Overlay Color.','lightbox');?></p>
+						</div>
+					</div>
+				</label>
+				<input type="text" class="color" id="hugeit_lightbox_thumbs_overlay_color"
+					   value="#000"
+					   size="10"/>
+			</div>
+			<div class="has-background">
+				<label for="hugeit_lightbox_thumbs_overlay_opacity"><?php _e('Thumbnails Overlay Opacity','lightbox');?>
+					<div class="help">?
+						<div class="help-block">
+							<span class="pnt"></span>
+							<p><?php _e('Passive Thumbnails Overlay Opacity','lightbox');?></p>
+						</div>
+					</div>
+				</label>
+				<div class="slider-container">
+					<input id="hugeit_lightbox_thumbs_overlay_opacity" data-slider-highlight="true"
+						   data-slider-values="0,10,20,30,40,50,60,70,80,90,100" type="text" data-slider="true"
+						   value="50"/>
+					<span>50%</span>
+				</div>
+			</div>
+		</div>
+
 	</div>
 	<div id="lightbox-options-list"
 	     class="unique-type-options-wrapper <?php if ( $hugeit_lightbox_values['hugeit_lightbox_type'] == 'old_type' ) {
@@ -866,21 +1237,6 @@ require_once 'free_banner.php';
 				<input type="number" name="params[hugeit_lightbox_fadeout]" id="hugeit_lightbox_fadeout"
 				       value="<?php echo esc_attr( $hugeit_lightbox_values['hugeit_lightbox_fadeout'] ); ?>" class="text">
 				<span>ms</span>
-			</div>
-			<div class="has-background">
-				<label for="hugeit_lightbox_title">Show the title
-					<div class="help">?
-						<div class="help-block">
-							<span class="pnt"></span>
-							<p>Choose whether to display the content title.</p>
-						</div>
-					</div>
-				</label>
-				<input type="hidden" value="false" name="params[hugeit_lightbox_title]"/>
-				<input type="checkbox"
-				       id="hugeit_lightbox_title" <?php if ( $hugeit_lightbox_values['hugeit_lightbox_title'] == 'true' ) {
-					echo 'checked="checked"';
-				} ?> name="params[hugeit_lightbox_title]" value="true"/>
 			</div>
 		</div>
 		<div class="options-block hugeit-lightbox-pro-option">

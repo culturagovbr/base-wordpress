@@ -1,10 +1,12 @@
 (function ($) {
 
     'use strict';
-    jQuery.each(hugeit_gen_resp_lightbox_obj, function(index, value) {
-        if(value.indexOf('true')>-1 || value.indexOf('false')>-1)
+
+    jQuery.each(hugeit_gen_resp_lightbox_obj, function (index, value) {
+        if (value.indexOf('true') > -1 || value.indexOf('false') > -1)
             hugeit_gen_resp_lightbox_obj[index] = value == "true";
     });
+
     function Lightbox(element, options) {
 
         this.el = element;
@@ -27,13 +29,13 @@
         idPrefix: 'rwd-',
         classPrefix: 'rwd-',
         attrPrefix: 'data-',
-        slideAnimationType: hugeit_gen_resp_lightbox_obj.hugeit_lightbox_slideAnimationType,     /*  effect_1   effect_2    effect_3
+        slideAnimationType: hugeit_gen_resp_lightbox_obj.hugeit_lightbox_slideAnimationType, /*  effect_1   effect_2    effect_3
          effect_4   effect_5    effect_6
          effect_7   effect_8    effect_9   */
         lightboxView: hugeit_resp_lightbox_obj.hugeit_lightbox_lightboxView,              //  view1, view2, view3, view4, view5
         speed: hugeit_resp_lightbox_obj.hugeit_lightbox_speed_new,
-        width: hugeit_resp_lightbox_obj.hugeit_lightbox_width_new+'%',
-        height: hugeit_resp_lightbox_obj.hugeit_lightbox_height_new+'%',
+        width: hugeit_resp_lightbox_obj.hugeit_lightbox_width_new + '%',
+        height: hugeit_resp_lightbox_obj.hugeit_lightbox_height_new + '%',
         videoMaxWidth: hugeit_resp_lightbox_obj.hugeit_lightbox_videoMaxWidth,
         sizeFix: true, //not for option
         overlayDuration: +hugeit_gen_resp_lightbox_obj.hugeit_lightbox_overlayDuration,
@@ -45,9 +47,12 @@
         arrows: hugeit_gen_resp_lightbox_obj.hugeit_lightbox_arrows,
         mouseWheel: hugeit_gen_resp_lightbox_obj.hugeit_lightbox_mouseWheel,
         download: hugeit_gen_resp_lightbox_obj.hugeit_lightbox_download,
+        showTitle: hugeit_resp_lightbox_obj.hugeit_lightbox_showTitle === 'true',
+        showDesc: hugeit_resp_lightbox_obj.hugeit_lightbox_showDesc === 'true',
+        showBorder: hugeit_resp_lightbox_obj.hugeit_lightbox_showBorder === 'true',
         showCounter: hugeit_gen_resp_lightbox_obj.hugeit_lightbox_showCounter,
         defaultTitle: '',  //some text
-        preload: 1,  //not for option
+        preload: 10,  //not for option
         showAfterLoad: true,  //not for option
         nextHtml: '',  //not for option
         prevHtml: '',  //not for option
@@ -61,7 +66,12 @@
         hideControlOnEnd: false,  //not for option
         watermark: hugeit_gen_resp_lightbox_obj.hugeit_lightbox_watermark,
         socialSharing: hugeit_gen_resp_lightbox_obj.hugeit_lightbox_socialSharing,
-        fullwidth: hugeit_resp_lightbox_obj.hugeit_lightbox_fullwidth_effect,
+        titlePos: hugeit_resp_lightbox_obj.hugeit_lightbox_title_pos,
+        fullwidth: hugeit_resp_lightbox_obj.hugeit_lightbox_fullwidth_effect === 'true',
+        zoomLogo: hugeit_resp_lightbox_obj.hugeit_lightbox_zoomlogo,
+        wURL: hugeit_resp_lightbox_obj.hugeit_lightbox_watermark_link,
+        watermarkURL: hugeit_resp_lightbox_obj.hugeit_lightbox_watermark_url,
+        wURLnewTab: hugeit_resp_lightbox_obj.hugeit_lightbox_watermark_url_new_tab,
         share: {
             facebookButton: hugeit_gen_resp_lightbox_obj.hugeit_lightbox_facebookButton,
             twitterButton: hugeit_gen_resp_lightbox_obj.hugeit_lightbox_twitterButton,
@@ -114,9 +124,18 @@
 
         });
 
-        $('body').on('click', function () {
+        $object.$body.on('click', function () {
             $object.$_y_ = window.pageYOffset;
         });
+
+        switch (this.settings.zoomLogo) {
+            case '1':
+                $object.$body.addClass('rwd-zoomGlass');
+                break;
+            case '2':
+                $object.$body.addClass('rwd-zoomHand');
+                break;
+        }
 
     };
 
@@ -126,7 +145,7 @@
 
         $object.structure();
 
-        $object.lightboxModul['video'] = new $.fn.lightbox.lightboxModul['video']($object.el);
+        $object.lightboxModul['modul'] = new $.fn.lightbox.lightboxModul['modul']($object.el);
 
         $object.slide(index, false, false);
 
@@ -152,22 +171,21 @@
 
         });
 
-        $('.shareLook').on('click.rwd-container', function(){
-            $(this).css({'display' : 'none'});
-            $('.rwd-share-buttons').css({'display' : 'block'});
-            /* setTimeout(function(){
-             $('.shareLook').css({'display' : 'block'});
-             $('.rwd-share-buttons').css({'display' : 'none'});
-             }, 9000);*/
+        $('.shareLook').on('click.rwd-container', function () {
+            $(this).css({'display': 'none'});
+            $('.rwd-share-buttons').css({'display': 'block'});
+            setTimeout(function(){
+                $('.shareLook').css({'display' : 'block'});
+                $('.rwd-share-buttons').css({'display' : 'none'});
+            }, 9000);
         });
 
         $object.calculateDimensions();
-
     };
 
     Lightbox.prototype.structure = function () {
 
-        var $object = this, list = '', controls = '',i,
+        var $object = this, list = '', controls = '', i,
             subHtmlCont1 = '', subHtmlCont2 = '', subHtmlCont3 = '',
             close1 = '', close2 = '', socialIcons = '',
             template, $arrows, $next, $prev,
@@ -178,77 +196,99 @@
         );
         this.objects.overlay.css('transition-duration', this.settings.overlayDuration + 'ms');
 
-        for (i = 0; i < this.$items.length; i++) {
-            list += '<div class="' + this.settings.classPrefix + 'item"></div>';
+        var $wURL = '',
+            $target = '';
+
+        if($object.settings.watermark && $object.settings.wURL && hugeit_resp_lightbox_obj.hugeit_lightbox_watermark_text){
+            if($object.settings.wURLnewTab){
+                $target = 'target="_blank"';
+            }
+            $wURL = '<a href="' + $object.settings.watermarkURL + '" class="w_url" ' + $target + '></a>';
         }
 
-        $close_bg    = '<svg class="close_bg" width="16px" height="16px" fill="#999" viewBox="-341 343.4 15.6 15.6">' +
+        for (i = 0; i < this.$items.length; i++) {
+            list += '<div class="' + this.settings.classPrefix + 'item">' + $wURL + '</div>';
+        }
+
+        $close_bg = '<svg class="close_bg" width="16px" height="16px" fill="#999" viewBox="-341 343.4 15.6 15.6">' +
             '<path d="M-332.1,351.2l6.5-6.5c0.3-0.3,0.3-0.8,0-1.1s-0.8-0.3-1.1,0l-6.5,6.5l-6.5-6.5c-0.3-0.3-0.8-0.3-1.1,0s-0.3,0.8,0,1.1l6.5,6.5l-6.5,6.5c-0.3,0.3-0.3,0.8,0,1.1c0.1,0.1,0.3,0.2,0.5,0.2s0.4-0.1,0.5-0.2l6.5-6.5l6.5,6.5c0.1,0.1,0.3,0.2,0.5,0.2s0.4-0.1,0.5-0.2c0.3-0.3,0.3-0.8,0-1.1L-332.1,351.2z"/>' +
             '</svg>';
 
         switch (this.settings.lightboxView) {
             case 'view1':
             default:
-                $_next       = '<svg class="next_bg" width="22px" height="22px" fill="#999" viewBox="-333 335.5 31.5 31.5" >' +
+                $_next = '<svg class="next_bg" width="22px" height="22px" fill="#999" viewBox="-333 335.5 31.5 31.5" >' +
                     '<path d="M-311.8,340.5c-0.4-0.4-1.1-0.4-1.6,0c-0.4,0.4-0.4,1.1,0,1.6l8,8h-26.6c-0.6,0-1.1,0.5-1.1,1.1s0.5,1.1,1.1,1.1h26.6l-8,8c-0.4,0.4-0.4,1.2,0,1.6c0.4,0.4,1.2,0.4,1.6,0l10-10c0.4-0.4,0.4-1.1,0-1.6L-311.8,340.5z"/>' +
                     '</svg>';
-                $_prev       = '<svg class="prev_bg" width="22px" height="22px" fill="#999" viewBox="-333 335.5 31.5 31.5" >' +
+                $_prev = '<svg class="prev_bg" width="22px" height="22px" fill="#999" viewBox="-333 335.5 31.5 31.5" >' +
                     '<path d="M-322.7,340.5c0.4-0.4,1.1-0.4,1.6,0c0.4,0.4,0.4,1.1,0,1.6l-8,8h26.6c0.6,0,1.1,0.5,1.1,1.1c0,0.6-0.5,1.1-1.1,1.1h-26.6l8,8c0.4,0.4,0.4,1.2,0,1.6c-0.4,0.4-1.1,0.4-1.6,0l-10-10c-0.4-0.4-0.4-1.1,0-1.6L-322.7,340.5z"/>' +
                     '</svg>';
-                subHtmlCont1 = '<div class="' + this.settings.classPrefix + 'title"></div>';
+                if(this.settings.showTitle){
+                    subHtmlCont1 = '<div class="' + this.settings.classPrefix + 'title"></div>';
+                }
                 close1 = '<span class="' + this.settings.classPrefix + 'close ' + $object.settings.classPrefix + 'icon">' + $close_bg + '</span>';
                 break;
             case 'view2':
-                $_next       = '<svg class="next_bg" width="22px" height="22px" fill="#999" viewBox="-123 125.2 451.8 451.8" >' +
+                $_next = '<svg class="next_bg" width="22px" height="22px" fill="#999" viewBox="-123 125.2 451.8 451.8" >' +
                     '<g><path d="M222.4,373.4L28.2,567.7c-12.4,12.4-32.4,12.4-44.8,0c-12.4-12.4-12.4-32.4,0-44.7l171.9-171.9L-16.6,179.2c-12.4-12.4-12.4-32.4,0-44.7c12.4-12.4,32.4-12.4,44.8,0l194.3,194.3c6.2,6.2,9.3,14.3,9.3,22.4C231.7,359.2,228.6,367.3,222.4,373.4z"/></g>' +
                     '</svg>';
-                $_prev       = '<svg class="prev_bg" width="22px" height="22px" fill="#999" viewBox="-123 125.2 451.8 451.8" >' +
+                $_prev = '<svg class="prev_bg" width="22px" height="22px" fill="#999" viewBox="-123 125.2 451.8 451.8" >' +
                     '<g><path d="M-25.9,351.1c0-8.1,3.1-16.2,9.3-22.4l194.3-194.3c12.4-12.4,32.4-12.4,44.8,0c12.4,12.4,12.4,32.4,0,44.7L50.5,351.1L222.4,523c12.4,12.4,12.4,32.4,0,44.7c-12.4,12.4-32.4,12.4-44.7,0L-16.6,373.4C-22.8,367.3-25.9,359.2-25.9,351.1z"/></g>' +
                     '</svg>';
-                subHtmlCont2 = '<div class="' + this.settings.classPrefix + 'title"></div>';
-                close2       = '<div class="barCont"></div><span class="' + this.settings.classPrefix + 'close ' + $object.settings.classPrefix + 'icon">' + $close_bg + '</span>';
+                if(this.settings.showTitle){
+                    subHtmlCont2 = '<div class="' + this.settings.classPrefix + 'title"></div>';
+                }
+                close2 = '<div class="barCont"></div><span class="' + this.settings.classPrefix + 'close ' + $object.settings.classPrefix + 'icon">' + $close_bg + '</span>';
                 break;
             case 'view3':
-                $_next       = '<svg class="next_bg" width="22px" height="22px" fill="#999" viewBox="-104 105.6 490.4 490.4" >' +
+                $_next = '<svg class="next_bg" width="22px" height="22px" fill="#999" viewBox="-104 105.6 490.4 490.4" >' +
                     '<g><g><path d="M141.2,596c135.2,0,245.2-110,245.2-245.2s-110-245.2-245.2-245.2S-104,215.6-104,350.8S6,596,141.2,596z M141.2,130.1c121.7,0,220.7,99,220.7,220.7s-99,220.7-220.7,220.7s-220.7-99-220.7-220.7S19.5,130.1,141.2,130.1z"/>' +
                     '<path d="M34.7,363.1h183.4l-48,48c-4.8,4.8-4.8,12.5,0,17.3c2.4,2.4,5.5,3.6,8.7,3.6s6.3-1.2,8.7-3.6l68.9-68.9c4.8-4.8,4.8-12.5,0-17.3l-68.9-68.9c-4.8-4.8-12.5-4.8-17.3,0s-4.8,12.5,0,17.3l48,48H34.7c-6.8,0-12.3,5.5-12.3,12.3C22.4,357.7,27.9,363.1,34.7,363.1z"/></g></g>' +
                     '</svg>';
-                $_prev       = '<svg class="prev_bg" width="22px" height="22px" fill="#999" viewBox="-104 105.6 490.4 490.4" >' +
+                $_prev = '<svg class="prev_bg" width="22px" height="22px" fill="#999" viewBox="-104 105.6 490.4 490.4" >' +
                     '<g><g><path d="M141.2,596c135.2,0,245.2-110,245.2-245.2s-110-245.2-245.2-245.2S-104,215.6-104,350.8S6,596,141.2,596z M141.2,130.1c121.7,0,220.7,99,220.7,220.7s-99,220.7-220.7,220.7s-220.7-99-220.7-220.7S19.5,130.1,141.2,130.1z"/>' +
                     '<path d="M94.9,428.4c2.4,2.4,5.5,3.6,8.7,3.6s6.3-1.2,8.7-3.6c4.8-4.8,4.8-12.5,0-17.3l-48-48h183.4c6.8,0,12.3-5.5,12.3-12.3c0-6.8-5.5-12.3-12.3-12.3H64.3l48-48c4.8-4.8,4.8-12.5,0-17.3c-4.8-4.8-12.5-4.8-17.3,0l-68.9,68.9c-4.8,4.8-4.8,12.5,0,17.3L94.9,428.4z"/></g></g>' +
                     '</svg>';
-                subHtmlCont1 = '<div class="' + this.settings.classPrefix + 'title"></div>';
-                close1       = '<span class="' + this.settings.classPrefix + 'close ' + $object.settings.classPrefix + 'icon">' + $close_bg + '</span>';
+                if(this.settings.showTitle){
+                    subHtmlCont1 = '<div class="' + this.settings.classPrefix + 'title"></div>';
+                }
+                close1 = '<span class="' + this.settings.classPrefix + 'close ' + $object.settings.classPrefix + 'icon">' + $close_bg + '</span>';
                 break;
             case 'view4':
-                $_next       = '<svg class="next_bg" width="22px" height="22px" fill="#999" viewBox="-123 125.2 451.8 451.8" >' +
+                $_next = '<svg class="next_bg" width="22px" height="22px" fill="#999" viewBox="-123 125.2 451.8 451.8" >' +
                     '<g><path d="M222.4,373.4L28.2,567.7c-12.4,12.4-32.4,12.4-44.8,0c-12.4-12.4-12.4-32.4,0-44.7l171.9-171.9L-16.6,179.2c-12.4-12.4-12.4-32.4,0-44.7c12.4-12.4,32.4-12.4,44.8,0l194.3,194.3c6.2,6.2,9.3,14.3,9.3,22.4C231.7,359.2,228.6,367.3,222.4,373.4z"/></g>' +
                     '</svg>';
-                $_prev       = '<svg class="prev_bg" width="22px" height="22px" fill="#999" viewBox="-123 125.2 451.8 451.8" >' +
+                $_prev = '<svg class="prev_bg" width="22px" height="22px" fill="#999" viewBox="-123 125.2 451.8 451.8" >' +
                     '<g><path d="M-25.9,351.1c0-8.1,3.1-16.2,9.3-22.4l194.3-194.3c12.4-12.4,32.4-12.4,44.8,0c12.4,12.4,12.4,32.4,0,44.7L50.5,351.1L222.4,523c12.4,12.4,12.4,32.4,0,44.7c-12.4,12.4-32.4,12.4-44.7,0L-16.6,373.4C-22.8,367.3-25.9,359.2-25.9,351.1z"/></g>' +
                     '</svg>';
-                $close_bg    = '<svg class="close_bg" width="16px" height="16px" fill="#999" viewBox="-341 343.4 15.6 15.6">' +
+                $close_bg = '<svg class="close_bg" width="16px" height="16px" fill="#999" viewBox="-341 343.4 15.6 15.6">' +
                     '<path d="M-332.1,351.2l6.5-6.5c0.3-0.3,0.3-0.8,0-1.1s-0.8-0.3-1.1,0l-6.5,6.5l-6.5-6.5c-0.3-0.3-0.8-0.3-1.1,0s-0.3,0.8,0,1.1l6.5,6.5l-6.5,6.5c-0.3,0.3-0.3,0.8,0,1.1c0.1,0.1,0.3,0.2,0.5,0.2s0.4-0.1,0.5-0.2l6.5-6.5l6.5,6.5c0.1,0.1,0.3,0.2,0.5,0.2s0.4-0.1,0.5-0.2c0.3-0.3,0.3-0.8,0-1.1L-332.1,351.2z"/>' +
                     '</svg>';
-                subHtmlCont2 = '<div class="' + this.settings.classPrefix + 'title"></div>';
+                if(this.settings.showTitle){
+                    subHtmlCont2 = '<div class="' + this.settings.classPrefix + 'title"></div>';
+                }
                 close1 = '<span class="' + this.settings.classPrefix + 'close ' + $object.settings.classPrefix + 'icon">' + $close_bg + '</span>';
                 break;
             case 'view5':
-                $_next       = '<svg class="next_bg" width="22px" height="44px" fill="#999" x="0px" y="0px"' +
+                $_next = '<svg class="next_bg" width="22px" height="44px" fill="#999" x="0px" y="0px"' +
                     'viewBox="0 0 40 70" style="enable-background:new 0 0 40 70;" xml:space="preserve">' +
                     '<path id="XMLID_2_" class="st0" d="M3.3,1.5L1.8,2.9l31.8,31.8c0.5,0.5,0.5,0.9,0,1.4L1.8,67.9l1.5,1.4c0.3,0.5,0.9,0.5,1.4,0' +
                     'l33.2-33.2c0.3-0.5,0.3-0.9,0-1.4L4.7,1.5C4.3,1,3.6,1,3.3,1.5L3.3,1.5z"/>' +
                     '</svg>';
-                $_prev       = '<svg class="prev_bg" width="22px" height="44px" fill="#999" x="0px" y="0px"' +
+                $_prev = '<svg class="prev_bg" width="22px" height="44px" fill="#999" x="0px" y="0px"' +
                     'viewBox="0 0 40 70" style="enable-background:new 0 0 40 70;" xml:space="preserve">' +
                     '<path id="XMLID_2_" class="st0" d="M37.1,68.9l1.5-1.4L6.8,35.7c-0.3-0.5-0.3-0.9,0-1.4L38.6,2.5l-1.5-1.4c-0.3-0.5-0.9-0.5-1.2,0' +
                     'L2.5,34.3c-0.3,0.5-0.3,0.9,0,1.4l33.4,33.2C36.2,69.4,36.8,69.4,37.1,68.9L37.1,68.9z"/>' +
                     '</svg>';
-                $close_bg    = '<svg class="close_bg" width="16px" height="16px" fill="#999" viewBox="-341 343.4 15.6 15.6">' +
+                $close_bg = '<svg class="close_bg" width="16px" height="16px" fill="#999" viewBox="-341 343.4 15.6 15.6">' +
                     '<path d="M-332.1,351.2l6.5-6.5c0.3-0.3,0.3-0.8,0-1.1s-0.8-0.3-1.1,0l-6.5,6.5l-6.5-6.5c-0.3-0.3-0.8-0.3-1.1,0s-0.3,0.8,0,1.1l6.5,6.5l-6.5,6.5c-0.3,0.3-0.3,0.8,0,1.1c0.1,0.1,0.3,0.2,0.5,0.2s0.4-0.1,0.5-0.2l6.5-6.5l6.5,6.5c0.1,0.1,0.3,0.2,0.5,0.2s0.4-0.1,0.5-0.2c0.3-0.3,0.3-0.8,0-1.1L-332.1,351.2z"/>' +
                     '</svg>';
-                subHtmlCont3 = '<div class="' + this.settings.classPrefix + 'title"></div>' +
-                               '<div class="' + this.settings.classPrefix + 'description"></div>';
+                if(this.settings.showTitle){
+                    subHtmlCont3 += '<div class="' + this.settings.classPrefix + 'title"></div>';
+                }
+                if(this.settings.showDesc){
+                    subHtmlCont3 += '<div class="' + this.settings.classPrefix + 'description"></div>';
+                }
                 close1 = '<span class="' + this.settings.classPrefix + 'close ' + $object.settings.classPrefix + 'icon">' + $close_bg + '</span>';
                 break;
         }
@@ -265,7 +305,7 @@
         }
 
         $contInner = (this.settings.lightboxView === 'view5') ? '<div class="contInner">' + subHtmlCont3 + '</div>' : '';
-
+        
         template = '<div class="' + this.settings.classPrefix + 'cont ">' +
             '<div class="rwd-container rwd-' + this.settings.lightboxView + '">' +
             '<div class="cont-inner">' + list + '</div>' +
@@ -278,8 +318,6 @@
             close2 + subHtmlCont1 + socialIcons + '</div>' +
             '</div>' +
             '</div>';
-
-
 
         if ($object.settings.socialSharing) {
             setTimeout(function () {
@@ -325,6 +363,23 @@
             $inner.css('transition-duration', this.settings.speed + 'ms');
         }
 
+        switch($object.settings.lightboxView){
+            case 'view1':
+            case 'view2':
+            case 'view3':
+                $inner.css({
+                    height: 'calc(100% - 92px)',
+                    top: '47px'
+                });
+                break;
+            case 'view4':
+                $inner.css({
+                    height: 'calc(100% - 92px)',
+                    top: '45px'
+                });
+                break;
+        }
+
         $object.objects.overlay.addClass('in');
 
         setTimeout(function () {
@@ -335,6 +390,13 @@
             $download_bg = '<svg class="download_bg" width="20px" height="20px" stroke="#999" fill="#999"  viewBox="-328 330.3 41.7 41.7" >' +
                 '<path class="st0" d="M-296.4,352.1c0.4-0.4,0.4-1.1,0-1.6c-0.4-0.4-1.1-0.4-1.6,0l-8,8V332c0-0.6-0.5-1.1-1.1-1.1c-0.6,0-1.1,0.5-1.1,1.1v26.5l-8-8c-0.4-0.4-1.2-0.4-1.6,0c-0.4,0.4-0.4,1.1,0,1.6l10,10c0.4,0.4,1.1,0.4,1.6,0L-296.4,352.1zM-288.5,359.4c0-0.6,0.5-1.1,1.1-1.1c0.6,0,1.1,0.5,1.1,1.1v10.9c0,0.6-0.5,1.1-1.1,1.1h-39.5c-0.6,0-1.1-0.5-1.1-1.1v-10.9c0-0.6,0.5-1.1,1.1-1.1c0.6,0,1.1,0.5,1.1,1.1v9.8h37.2V359.4z"/>' +
                 '</svg>';
+            $download_bg_ = '<svg class="download_bg" width="36px" height="34px" stroke="#999" fill="#999" x="0px" y="0px"' +
+                'viewBox="0 0 90 90" style="enable-background:new 0 0 90 90;" xml:space="preserve">' +
+                '<path id="XMLID_2_" class="st0" d="M61.3,31.8L45.5,47.7c-0.2,0.2-0.5,0.2-0.7,0l-16-15.9c-0.2-0.2-0.2-0.5,0-0.7l2.1-2.1l12.6,12.6' +
+                'V7.4c0-0.9,0.7-1.7,1.7-1.7s1.8,0.8,1.8,1.7v34l12.2-12.3l2.1,2.1C61.5,31.3,61.5,31.6,61.3,31.8L61.3,31.8z"/>' +
+                '<path id="XMLID_3_" class="st0" d="M25.6,50.7L25.6,50.7h38.7c1.6,0,2.8,1.2,2.8,2.7v1.5c0,1.6-1.2,2.9-2.8,2.9H25.6' +
+                'c-1.5,0-2.8-1.3-2.8-2.9v-1.5C22.9,51.9,24.1,50.7,25.6,50.7L25.6,50.7z"/>' +
+                '</svg>';
             switch (this.settings.lightboxView) {
                 case 'view1':
                 default:
@@ -344,7 +406,7 @@
                     this.$cont.find('.' + $object.settings.classPrefix + 'bar').append('<a id="' + $object.settings.classPrefix + 'download" target="_blank" download class="' + this.settings.classPrefix + 'download ' + $object.settings.classPrefix + 'icon">' + $download_bg + '</a>');
                     break;
                 case 'view4':
-                    $('<a id="' + $object.settings.classPrefix + 'download" target="_blank" download class="' + this.settings.classPrefix + 'download ' + $object.settings.classPrefix + 'icon">' + $download_bg + '</a>').insertBefore($('.rwd-title'));;
+                    $('<a id="' + $object.settings.classPrefix + 'download" target="_blank" download class="' + this.settings.classPrefix + 'download ' + $object.settings.classPrefix + 'icon">' + $download_bg + '</a>').insertBefore($('.rwd-title'));
                     break;
                 case 'view5':
                     $('.rwd-toolbar').append('<a id="' + $object.settings.classPrefix + 'download" target="_blank" download class="' + this.settings.classPrefix + 'download ' + $object.settings.classPrefix + 'icon">' + $download_bg_ + '</a>');
@@ -353,30 +415,44 @@
         }
 
         $arrows = $('.rwd-arrows .rwd-next, .rwd-arrows .rwd-prev');
-        $next   = $('.rwd-arrows .rwd-next');
-        $prev   = $('.rwd-arrows .rwd-prev');
+        $next = $('.rwd-arrows .rwd-next');
+        $prev = $('.rwd-arrows .rwd-prev');
+
+        var title_text = $('.rwd-title');
+
+        switch (this.settings.titlePos) {
+            case 'left':
+                title_text.css({'text-align': 'left'});
+                break;
+            case 'center':
+                title_text.css({'text-align': 'center'});
+                break;
+            case 'right':
+                title_text.css({'text-align': 'right'});
+                break;
+        }
 
         switch (this.settings.lightboxView) {
             case 'view1':
             default:
-                $arrows.css({'top' : '50%'});
-                $next.css({'right' : '20px'});
-                $prev.css({'left' : '20px'});
+                $arrows.css({'top': '50%'});
+                $next.css({'right': '20px'});
+                $prev.css({'left': '20px'});
                 break;
             case 'view2':
-                $arrows.css({'bottom' : '0'});
-                $next.css({'right' : '40%'});
-                $prev.css({'left' : '40%'});
+                $arrows.css({'bottom': '0'});
+                $next.css({'right': '40%'});
+                $prev.css({'left': '40%'});
                 break;
             case 'view3':
-                $arrows.css({'top' : '14px', 'z-index' : '1090000'});
-                $next.css({'right' : '20px'});
-                $prev.css({'right' : '55px'});
-                $('.rwd-title').css({'text-align' : 'left','border-top' : '1px solid #999'});
-                $('.rwd-close').css({'margin-right' : '45%'});
-                $('.rwd-overlay, .rwd-toolbar, .rwd-title, .rwd-next, .rwd-prev').css({'background' : 'rgba(255, 255, 255, 1)'});
-                $('.rwd-title, .shareLook').css({'color' : '#999'});
-                $('.rwd-toolbar').css({'border-bottom' : '1px solid #999'});
+                $arrows.css({'top': '14px', 'z-index': '1090'});
+                $next.css({'right': '20px'});
+                $prev.css({'right': '55px'});
+                title_text.css({'text-align': 'left', 'border-top': '1px solid #999'});
+                $('.rwd-close').css({'margin-right': '45%'});
+                $('.rwd-overlay, .rwd-toolbar, .rwd-title, .rwd-next, .rwd-prev').css({'background': 'rgba(255, 255, 255, 1)'});
+                $('.rwd-title, .shareLook').css({'color': '#999'});
+                $('.rwd-toolbar').css({'border-bottom': '1px solid #999'});
                 $('.rwd-toolbar .rwd-icon, .rwd-arrows .rwd-icon').addClass('rwd-icon0');
                 break;
         }
@@ -390,12 +466,26 @@
             'height': $object.settings.height
         });
 
-        setTimeout(function () {
+        var $color, $zoomTop = (document.documentElement.clientHeight - $object.objects.content.height()) / 2;
+        switch (this.settings.lightboxView){
+            case 'view3':
+                $color = 'rgba(255,255,255,.9)';
+                break;
+            default:
+                $color = 'rgba(0,0,0,.9)';
+                break;
+        }
+            setTimeout(function () {
             $('.rwd-container').bind('contextmenu', function () {
                 return false;
             });
         }, 50);
 
+        if(this.settings.showBorder){
+            $('.rwd-container').css({
+                border: '2px solid #999'
+            });
+        }
     };
 
     Lightbox.prototype.calculateDimensions = function () {
@@ -410,7 +500,6 @@
         $('.' + $object.settings.classPrefix + 'video-cont ').css({
             'max-width': $width + 'px'
         });
-
     };
 
     Lightbox.prototype.effectsSupport = function () {
@@ -452,7 +541,7 @@
                 case 'view1':
                 default:
                     $('.' + this.settings.classPrefix + 'toolbar').append(this.objects.counter = $('<div id="' + this.settings.idPrefix + 'counter"></div>'));
-                    $('#rwd-counter').css({'padding-left' : '23px'});
+                    $('#rwd-counter').css({'padding-left': '23px'});
                     break;
                 case 'view2':
                 case 'view4':
@@ -478,11 +567,11 @@
             $currentElement.find('img').attr('title') ||
             this.settings.defaultTitle || '';
 
-        this.$cont.find('.' + this.settings.classPrefix + 'title').html('<div class="rwd-title-text">'+$title+'</div>');
+        this.$cont.find('.' + this.settings.classPrefix + 'title').html('<div class="rwd-title-text">' + $title + '</div>');
 
-        (($object.settings.lightboxView === 'view2') && $('.rwd-title-text').css({'width' : '100%'}));
+        (($object.settings.lightboxView === 'view2') && $('.rwd-title-text').css({'width': '100%'}));
 
-        if($object.settings.lightboxView !== 'view1' && $object.settings.lightboxView !== 'view3' && $object.settings.lightboxView !== 'view4'){
+        if ($object.settings.lightboxView !== 'view1' && $object.settings.lightboxView !== 'view3' && $object.settings.lightboxView !== 'view4') {
             ($title === '' && $object.settings.socialSharing) ?
                 this.$cont.find('.' + this.settings.classPrefix + 'title').hide() :
                 this.$cont.find('.' + this.settings.classPrefix + 'title').show();
@@ -495,7 +584,7 @@
         $currentElement = this.$items.eq(index);
         $description = $currentElement.find('img').attr('data-description') || '';
 
-        this.$cont.find('.' + this.settings.classPrefix + 'description').html('<div class="rwd-description-text" title="'+$description+'">'+$description+'</div>');
+        this.$cont.find('.' + this.settings.classPrefix + 'description').html('<div class="rwd-description-text" title="' + $description + '">' + $description + '</div>');
     };
 
     Lightbox.prototype.preload = function (index) {
@@ -533,7 +622,7 @@
         shareButtons += $object.settings.share.yummlyButton ? '<li><a title="Yummly" id="rwd-share-yummly" target="_blank"></a></li>' : '';
         shareButtons += '</ul>';
 
-        if(this.settings.lightboxView === 'view5'){
+        if (this.settings.lightboxView === 'view5') {
             $('.contInner').append(shareButtons);
         } else {
             $('.' + this.settings.classPrefix + 'socialIcons').append(shareButtons);
@@ -579,7 +668,6 @@
             src = $object.$items.eq(index).attr('href');
         }
 
-
         isVideo = $object.isVideo(src, index);
         if (!$object.$item.eq(index).hasClass($object.settings.classPrefix + 'loaded')) {
             if (isVideo) {
@@ -618,6 +706,23 @@
             }
         }
 
+        if(hugeit_resp_lightbox_obj.hugeit_lightbox_imageframe !== 'frame_0'){
+            $('.rwd-image').css({
+                borderColor: '#f4be52',
+                borderStyle: 'inset',
+                borderWidth: '60px'
+            });
+            if(hugeit_resp_lightbox_obj.hugeit_lightbox_imageframe !== 'frame_8'){
+                $('.rwd-image').css({
+                    borderImage: 'url("' + hugeit_resp_lightbox_plugins_url + hugeit_resp_lightbox_obj.hugeit_lightbox_imageframe + '.png") 90 95 95 90 stretch stretch'
+                });
+            } else {
+                $('.rwd-image').css({
+                    borderImage: 'url("' + hugeit_resp_lightbox_plugins_url + hugeit_resp_lightbox_obj.hugeit_lightbox_imageframe + '.png") 90 123 85 129 stretch stretch'
+                });
+            }
+        }
+
     };
 
     Lightbox.prototype.slide = function (index, fromSlide, fromThumb) {
@@ -633,15 +738,25 @@
 
         if (this.settings.download) {
             var src;
-            src = $object.$items.eq(index).attr('data-download-url') !== 'false' && ($object.$items.eq(index).attr('data-download-url') || $object.$items.eq(index).attr('href'));
-
+            if (!this.settings.watermark) {
+                src = $object.$items.eq(index).attr('data-download-url') !== 'false' && ($object.$items.eq(index).attr('data-download-url') || $object.$items.eq(index).attr('href'));
+            }
+            else {
+                src = $object.$items.eq(index).find('img').attr('data-src');
+            }
             if (src) {
                 $('#' + $object.settings.classPrefix + 'download').attr('href', src);
                 $object.$cont.removeClass($object.settings.classPrefix + 'hide-download');
+                $object.$cont.removeClass($object.settings.classPrefix + 'hide-actual-size');
                 $object.$cont.removeClass($object.settings.classPrefix + 'hide-fullwidth');
+                $object.$cont.removeClass($object.settings.classPrefix + 'hide-zoom-in');
+                $object.$cont.removeClass($object.settings.classPrefix + 'hide-zoom-out');
             } else {
                 $object.$cont.addClass($object.settings.classPrefix + 'hide-download');
+                $object.$cont.addClass($object.settings.classPrefix + 'hide-actual-size');
                 $object.$cont.addClass($object.settings.classPrefix + 'hide-fullwidth');
+                $object.$cont.addClass($object.settings.classPrefix + 'hide-zoom-in');
+                $object.$cont.addClass($object.settings.classPrefix + 'hide-zoom-out');
             }
         }
 
@@ -651,12 +766,12 @@
             $object.setTitle(index);
         }, time);
 
-        if($object.settings.lightboxView === 'view5'){
+        if ($object.settings.lightboxView === 'view5') {
             setTimeout(function () {
                 $object.setDescription(index);
             }, time);
         }
-        
+
         this.arrowDisable(index);
 
 
@@ -729,8 +844,75 @@
             $object.changeHash(index);
         }
 
+        var $top, $left, $wWidth, $wHeight, $imgWidth, $imgHeight, $wmWidth, $wmHeight, $pos, $item;
+        $item = $('.rwd-item.rwd-current');
+        $pos = +hugeit_resp_lightbox_obj.hugeit_lightbox_watermark_margin;
+        $wWidth = +hugeit_resp_lightbox_obj.hugeit_lightbox_watermark_containerWidth;
+        $wHeight = +hugeit_resp_lightbox_obj.hugeit_lightbox_watermark_textFontSize;
+        $imgWidth = $object.$item.eq(index).find('img').width();
+        $imgHeight = $object.$item.eq(index).find('img').height();
+        $wmWidth = $item.width();
+        $wmHeight = $item.height();
+
+        switch ('pos' + hugeit_resp_lightbox_obj.hugeit_lightbox_watermark_position_new) {
+            case 'pos1':
+                $top = ($wmHeight - $imgHeight) / 2 + $pos;
+                $left = ($wmWidth - $imgWidth) / 2 + $pos;
+                break;
+            case 'pos2':
+                $top = ($wmHeight - $imgHeight) / 2 + $pos;
+                $left = ($wmWidth - $wWidth) / 2;
+                break;
+            case 'pos3':
+                $top = ($wmHeight - $imgHeight) / 2 + $pos;
+                $left = ($wmWidth + $imgWidth) / 2 - $wWidth - $pos;
+                break;
+            case 'pos4':
+                $top = ($wmHeight - $wHeight) / 2;
+                $left = ($wmWidth - $imgWidth) / 2 + $pos;
+                break;
+            case 'pos5':
+                $top = ($wmHeight - $wHeight) / 2;
+                $left = ($wmWidth - $wWidth) / 2;
+                break;
+            case 'pos6':
+                $top = ($wmHeight - $wHeight) / 2;
+                $left = ($wmWidth + $imgWidth) / 2 - $wWidth - $pos;
+                break;
+            case 'pos7':
+                $top = ($wmHeight + $imgHeight) / 2 - $wHeight - $pos;
+                $left = ($wmWidth - $imgWidth) / 2 + $pos;
+                break;
+            case 'pos8':
+                $top = ($wmHeight + $imgHeight) / 2 - $wHeight - $pos;
+                $left = ($wmWidth - $wWidth) / 2;
+                break;
+            case 'pos9':
+                $top = ($wmHeight + $imgHeight) / 2 - $wHeight - $pos;
+                $left = ($wmWidth + $imgWidth) / 2 - $wWidth - $pos;
+                break;
+            default:
+                $top = ($wmHeight - $wHeight) / 2;
+                $left = ($wmWidth - $wWidth) / 2;
+        }
+
+        $('.w_url').css({
+            position: 'absolute',
+            width: $wWidth + 'px',
+            height: $wHeight + 'px',
+            top: $top + 'px',
+            left: $left + 'px'
+        });
+
         $object.calculateDimensions();
 
+        $('.rwd-container .rwd-thumb-item img').css({
+            opacity: 1 - 10 / 100
+        });
+
+        $('.rwd-container .rwd-thumb-item.active img').css({
+            opacity: 1
+        });
     };
 
     Lightbox.prototype.goToNextSlide = function (fromSlide) {
@@ -741,7 +923,7 @@
             $object.index++;
             $object.slide($object.index, fromSlide, false);
         } else {
-            if ($object.settings.loop) {
+            if ($object.settings.loop === 'true') {
                 $object.index = 0;
                 $object.slide($object.index, fromSlide, false);
             }
@@ -772,7 +954,7 @@
             $object.index--;
             $object.slide($object.index, fromSlide, false);
         } else {
-            if ($object.settings.loop) {
+            if ($object.settings.loop === 'true') {
                 $object.index = $object.$items.length - 1;
                 $object.slide($object.index, fromSlide, false);
             }
@@ -842,8 +1024,8 @@
     Lightbox.prototype.startSlide = function () {
         var $object = this;
         $object.$cont.addClass('' + $object.settings.classPrefix + 'show-autoplay');
-        $('.rwd-autoplay-button > .pause_bg').css({'display' : 'inline-block'});
-        $('.rwd-autoplay-button > .play_bg').css({'display' : 'none'});
+        $('.rwd-autoplay-button > .pause_bg').css({'display': 'inline-block'});
+        $('.rwd-autoplay-button > .play_bg').css({'display': 'none'});
         $object.interval = setInterval(function () {
             $object.goToNextSlide();
         }, $object.settings.slideshowSpeed);
@@ -852,8 +1034,9 @@
     Lightbox.prototype.stopSlide = function () {
         clearInterval(this.interval);
         this.$cont.removeClass(this.settings.classPrefix + 'show-autoplay');
-        $('.rwd-autoplay-button > .pause_bg').css({'display' : 'none'});
-        $('.rwd-autoplay-button > .play_bg').css({'display' : 'inline-block'});
+        $('.rwd-thumb').removeClass('thumb_move');
+        $('.rwd-autoplay-button > .pause_bg').css({'display': 'none'});
+        $('.rwd-autoplay-button > .play_bg').css({'display': 'inline-block'});
     };
 
     Lightbox.prototype.addKeyEvents = function () {
@@ -911,16 +1094,6 @@
             } else {
                 this.$cont.find('.' + this.settings.classPrefix + 'prev').attr('disabled', 'disabled').addClass('disabled');
             }
-        }
-    };
-
-    Lightbox.prototype.setTranslate = function ($element, xValue, yValue) {
-        if (!this.settings.slideAnimation) {
-            $element.css('left', xValue);
-        } else {
-            $element.css({
-                transform: 'translate3d(' + (xValue) + 'px, ' + yValue + 'px, 0px)'
-            });
         }
     };
 
@@ -983,7 +1156,7 @@
 
         ($object.settings.socialSharing && (window.location.hash = ''));
 
-        this.$element.off('.rwd-container.tm');
+        this.$element.off('.rwd-container');
 
         $(window).off('.rwd-container');
 
@@ -1017,48 +1190,73 @@
 
     var Modul = function (element) {
 
-        this.core = $(element).data('lightbox');
-
+        this.dataL = $(element).data('lightbox');
         this.$element = $(element);
-        this.core.modulSettings = $.extend({}, this.constructor.defaultsVideo, this.core.modulSettings);
+        this.dataL.modulSettings = $.extend({}, this.constructor.defaultsModul);
 
         this.init();
 
-        if (this.core.modulSettings.fullwidth && this.core.effectsSupport()) {
+        if (this.dataL.modulSettings.zoom && this.dataL.effectsSupport()) {
+            this.initZoom();
+
+            this.zoomabletimeout = false;
+
+            this.pageX = $(window).width() / 2;
+            this.pageY = ($(window).height() / 2) + $(window).scrollTop();
+        }
+
+        if (this.dataL.modulSettings.fullwidth && this.dataL.effectsSupport()) {
             this.initFullWidth();
+        }
+
+        this.$el = $(element);
+        this.$thumbCont = null;
+        this.thumbContWidth = 0;
+        this.thumbTotalWidth = (this.dataL.$items.length * (this.dataL.modulSettings.thumbsWidth + this.dataL.modulSettings.thumbMargin));
+        this.thumbIndex = this.dataL.index;
+        this.left = 0;
+        if(hugeit_resp_lightbox_obj.hugeit_lightbox_thumbs === 'true'){
+            this.initThumbs();
         }
 
         return this;
     };
 
-    Modul.defaultsVideo = {
+    Modul.defaultsModul = {
         idPrefix: 'rwd-',
         classPrefix: 'rwd-',
         attrPrefix: 'data-',
-        videoMaxWidth: hugeit_gen_resp_lightbox_obj.hugeit_lightbox_videoMaxWidth, //Assigned with line 34
-        //videoMaxHeight: '100%',
-        youtubePlayerParams: false,
-        vimeoPlayerParams: false,
-        fullwidth: hugeit_resp_lightbox_obj.hugeit_lightbox_fullwidth_effect
+        videoMaxWidth: hugeit_gen_resp_lightbox_obj.hugeit_lightbox_videoMaxWidth,
+        fullwidth: hugeit_resp_lightbox_obj.hugeit_lightbox_fullwidth_effect === 'true',
+        zoom: hugeit_resp_lightbox_obj.hugeit_lightbox_zoom,
+        scale: +hugeit_resp_lightbox_obj.hugeit_lightbox_zoomsize / 10,
+        thumbnail: hugeit_resp_lightbox_obj.hugeit_lightbox_thumbs,
+        thumbsWidth: 100,
+        thumbsHeight: 100,
+        thumbMargin: 5,
+        showByDefault: true,
+        toogleThumb: false,
+        thumbPosition: '0',
+        thumbsOverlayColor: 'black',
+        thumbsOverlayOpacity: 10
     };
 
     Modul.prototype.init = function () {
         var $object = this;
 
-        $object.core.$element.on('hasVideo.rwd-container.tm', function (event, index, src) {
-            $object.core.$item.eq(index).find('.' + $object.core.modulSettings.classPrefix + 'video').append($object.loadVideo(src, '' + $object.core.modulSettings.classPrefix + 'object', index));
+        $object.dataL.$element.on('hasVideo.rwd-container', function (event, index, src) {
+            $object.dataL.$item.eq(index).find('.' + $object.dataL.modulSettings.classPrefix + 'video').append($object.loadVideo(src, '' + $object.dataL.modulSettings.classPrefix + 'object', index));
         });
 
-        $object.core.$element.on('onAferAppendSlide.rwd-container.tm', function (event, index) {
-            $object.core.$item.eq(index).find('.' + $object.core.settings.classPrefix + 'video-cont').css({
-                'max-width': $object.core.modulSettings.videoMaxWidth + 'px'
-                //'max-height'  :  $object.core.modulSettings.videoMaxHeight
+        $object.dataL.$element.on('onAferAppendSlide.rwd-container', function (event, index) {
+            $object.dataL.$item.eq(index).find('.' + $object.dataL.settings.classPrefix + 'video-cont').css({
+                'max-width': $object.dataL.modulSettings.videoMaxWidth + 'px'
             });
         });
 
-        $object.core.$element.on('onBeforeSlide.rwd-container.tm', function (event, prevIndex, index) {
+        $object.dataL.$element.on('onBeforeSlide.rwd-container', function (event, prevIndex, index) {
 
-            var $videoSlide = $object.core.$item.eq(prevIndex),
+            var $videoSlide = $object.dataL.$item.eq(prevIndex),
                 youtubePlayer = $videoSlide.find('.rwd-youtube').get(0),
                 vimeoPlayer = $videoSlide.find('.rwd-vimeo').get(0);
 
@@ -1073,18 +1271,21 @@
             }
 
             var src;
-            src = $object.core.$items.eq(index).attr('href');
+            src = $object.dataL.$items.eq(index).attr('href');
 
-            var isVideo = $object.core.isVideo(src, index) || {};
+            var isVideo = $object.dataL.isVideo(src, index) || {};
             if (isVideo.youtube || isVideo.vimeo) {
-                $object.core.$cont.addClass('' + $object.core.modulSettings.classPrefix + 'hide-download');
-                $object.core.$cont.addClass($object.core.modulSettings.classPrefix + 'hide-fullwidth');
+                $object.dataL.$cont.addClass($object.dataL.modulSettings.classPrefix + 'hide-download');
+                $object.dataL.$cont.addClass($object.dataL.modulSettings.classPrefix + 'hide-actual-size');
+                $object.dataL.$cont.addClass($object.dataL.modulSettings.classPrefix + 'hide-fullwidth');
+                $object.dataL.$cont.addClass($object.dataL.modulSettings.classPrefix + 'hide-zoom-in');
+                $object.dataL.$cont.addClass($object.dataL.modulSettings.classPrefix + 'hide-zoom-out');
             }
 
         });
 
-        $object.core.$element.on('onAfterSlide.rwd-container.tm', function (event, prevIndex) {
-            $object.core.$item.eq(prevIndex).removeClass($object.core.modulSettings.classPrefix + 'video-playing');
+        $object.dataL.$element.on('onAfterSlide.rwd-container', function (event, prevIndex) {
+            $object.dataL.$item.eq(prevIndex).removeClass($object.dataL.modulSettings.classPrefix + 'video-playing');
         });
     };
 
@@ -1092,31 +1293,24 @@
         var video = '',
             autoplay = 0,
             a = '',
-            isVideo = this.core.isVideo(src, index) || {};
+            isVideo = this.dataL.isVideo(src, index) || {};
 
         if (isVideo.youtube) {
 
             a = '?wmode=opaque&autoplay=' + autoplay + '&enablejsapi=1';
-            if (this.core.modulSettings.youtubePlayerParams) {
-                a = a + '&' + $.param(this.core.modulSettings.youtubePlayerParams);
-            }
 
-            video = '<iframe class="' + this.core.modulSettings.classPrefix + 'video-object ' + this.core.modulSettings.classPrefix + 'youtube ' + addClass + '" width="560" height="315" src="//www.youtube.com/embed/' + isVideo.youtube[1] + a + '" frameborder="0" allowfullscreen></iframe>';
+            video = '<iframe class="' + this.dataL.modulSettings.classPrefix + 'video-object ' + this.dataL.modulSettings.classPrefix + 'youtube ' + addClass + '" width="560" height="315" src="//www.youtube.com/embed/' + isVideo.youtube[1] + a + '" frameborder="0" allowfullscreen></iframe>';
 
         } else if (isVideo.vimeo) {
 
             a = '?autoplay=' + autoplay + '&api=1';
-            if (this.core.modulSettings.vimeoPlayerParams) {
-                a = a + '&' + $.param(this.core.modulSettings.vimeoPlayerParams);
-            }
 
-            video = '<iframe class="' + this.core.modulSettings.classPrefix + 'video-object ' + this.core.modulSettings.classPrefix + 'vimeo ' + addClass + '" width="560" height="315"  src="//player.vimeo.com/video/' + isVideo.vimeo[1] + a + '" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>';
+            video = '<iframe class="' + this.dataL.modulSettings.classPrefix + 'video-object ' + this.dataL.modulSettings.classPrefix + 'vimeo ' + addClass + '" width="560" height="315"  src="//player.vimeo.com/video/' + isVideo.vimeo[1] + a + '" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>';
 
         }
 
         return video;
     };
-
 
     Modul.prototype.initFullWidth = function () {
         var $object = this,
@@ -1130,13 +1324,25 @@
             '<g><g id="fullscreen-exit"><path d="M134, 127.5h 96.5V 224h 31V 96.5H 114V 147.5z M210.5 -36.5H 134v 31h 127.5V -133h -31V -36.5z M363.5, 224h 31v -96.5H 491v -31H 363.5V 224z M394.5 -56.5V -133h -31V -5.5H 491v -31H 395.5z"></path>' +
             '</g></g></svg>';
 
-        if (this.core.modulSettings.fullwidth) {
+        if (this.dataL.modulSettings.fullwidth) {
             var fullwidth = '<span class="rwd-fullwidth rwd-icon">' + $fullWidth + $fullWidthOn + '</span>';
-            this.core.$cont.find('.rwd-toolbar').append(fullwidth);
+            switch (hugeit_resp_lightbox_obj.hugeit_lightbox_lightboxView) {
+                case 'view1':
+                default:
+                    this.dataL.$cont.find('.rwd-toolbar').append(fullwidth);
+                    break;
+                case 'view2':
+                    this.dataL.$cont.find('.rwd-bar').append(fullwidth);
+                    break;
+                case 'view4':
+                    $(fullwidth).insertBefore('.rwd-title');
+                    break;
+            }
+
         }
 
-        if (this.core.modulSettings.fullwidth) {
-            $('.rwd-fullwidth').on('click.rwd', function () {
+        if (this.dataL.modulSettings.fullwidth) {
+            $('.rwd-fullwidth').on('click.rwd-container', function () {
                 !$('.rwd-cont').hasClass('rwd-fullwidth-on') ? $object.onFullWidth() : $object.offFullWidth();
             });
         }
@@ -1144,7 +1350,7 @@
 
     Modul.prototype.onFullWidth = function () {
 
-        var $imageObject = this.core.$cont.find('.rwd-current .rwd-image');
+        var $imageObject = this.dataL.$cont.find('.rwd-current .rwd-image');
 
         $('#rwd-fullwidth').css({'display': 'none'});
         $('#rwd-fullwidth_on').css({'display': 'inline-block'});
@@ -1169,7 +1375,7 @@
     };
 
     Modul.prototype.offFullWidth = function () {
-        var $imageObject = this.core.$cont.find('.rwd-current .rwd-image');
+        var $imageObject = this.dataL.$cont.find('.rwd-current .rwd-image');
 
         $('#rwd-fullwidth').css({'display': 'inline-block'});
         $('#rwd-fullwidth_on').css({'display': 'none'});
@@ -1185,7 +1391,741 @@
         });
     };
 
-    $.fn.lightbox.lightboxModul.video = Modul;
+    Modul.prototype.initZoom = function () {
+
+        var $object = this, zoomIcons,
+            $zoomIn, $zoomOut, scale;
+
+        $zoomIn = '<svg id="zoom_in" width="20px" height="20px" stroke="#999" fill="#999" x="0px" y="0px" viewBox="-18 19 53 53" style="enable-background:new -18 19 53 53;">' +
+            '<g><path d="M11,39H5v-6c0-0.6-0.4-1-1-1s-1,0.4-1,1v6h-6c-0.6,0-1,0.4-1,1s0.4,1,1,1h6v6c0,0.6,0.4,1,1,1s1-0.4,1-1v-6h6' +
+            'c0.6,0,1-0.4,1-1S11.5,39,11,39z"/>' +
+            '<path d="M33.7,70.3L18.8,54.9c3.8-3.8,6.1-9,6.1-14.8c0-11.6-9.4-21-21-21s-21,9.4-21,21s9.4,21,21,21c5.1,0,9.7-1.8,13.4-4.8' +
+            'l14.9,15.5c0.2,0.2,0.5,0.3,0.7,0.3c0.3,0,0.5-0.1,0.7-0.3C34.1,71.3,34.1,70.7,33.7,70.3z M-15,40c0-10.5,8.5-19,19-19' +
+            's19,8.5,19,19S14.5,59,4,59S-15,50.5-15,40z"/></g>' +
+            '</svg>';
+
+        $zoomOut = '<svg id="zoom_out" width="20px" height="20px" stroke="#999" fill="#999" x="0px" y="0px" x="0px" y="0px" viewBox="-18 19 53 53" style="enable-background:new -18 19 53 53;">' +
+            '<g><path d="M11,39H-3c-0.6,0-1,0.4-1,1s0.4,1,1,1h14c0.6,0,1-0.4,1-1S11.5,39,11,39z"/>' +
+            '<path d="M33.7,70.3L18.8,54.9c3.8-3.8,6.1-9,6.1-14.8c0-11.6-9.4-21-21-21s-21,9.4-21,21s9.4,21,21,21c5.1,0,9.7-1.8,13.4-4.8' +
+            'l14.9,15.5c0.2,0.2,0.5,0.3,0.7,0.3c0.3,0,0.5-0.1,0.7-0.3C34.1,71.3,34.1,70.7,33.7,70.3z M-15,40c0-10.5,8.5-19,19-19' +
+            's19,8.5,19,19S14.5,59,4,59S-15,50.5-15,40z"/></g>' +
+            '</svg>';
+
+        zoomIcons = '<span id="rwd-zoom-out" class="rwd-icon">' + $zoomOut + '</span><span id="rwd-zoom-in" class="rwd-icon">' + $zoomIn + '</span>';
+
+        switch (hugeit_resp_lightbox_obj.hugeit_lightbox_lightboxView) {
+            case 'view1':
+            default:
+                this.dataL.$cont.find('.rwd-toolbar').append(zoomIcons);
+                break;
+            case 'view2':
+                this.dataL.$cont.find('.rwd-bar').append(zoomIcons);
+                break;
+            case 'view4':
+                $(zoomIcons).insertBefore('.rwd-title');
+                break;
+        }
+
+        scale = 1;
+        function zoom(scaleVal) {
+            var $imageObject, _x, _y, offsetX, offsetY, x, y;
+
+            $imageObject = $object.dataL.$cont.find('.rwd-current .rwd-image');
+
+            offsetX = ($(window).width() - $imageObject.width()) / 2;
+            offsetY = (($(window).height() - $imageObject.height()) / 2) + $(window).scrollTop();
+
+            _x = $object.pageX - offsetX;
+            _y = $object.pageY - offsetY;
+
+            x = _x;
+            y = _y;
+
+            $imageObject.css('transform', 'scale3d(' + scaleVal + ', ' + scaleVal + ', 1)').attr('data-scale', scaleVal);
+
+            $imageObject.parent().css({
+                transform: 'translate3d(0, ' + -y + 'px, 0)'
+            }).attr('data-y', -y);
+        }
+
+        function callScale() {
+            if (scale > 1) {
+                $object.dataL.$cont.addClass('rwd-zoomed');
+            } else {
+                $object.dataL.$cont.removeClass('rwd-zoomed');
+            }
+
+            if (scale < 1) {
+                scale = 1;
+            }
+
+            zoom(scale);
+        }
+
+        $(window).on('resize.rwd-container.zoom scroll.rwd-container.zoom orientationchange.rwd-container.zoom', function () {
+            $object.pageX = $(window).width() / 2;
+            $object.pageY = ($(window).height() / 2) + $(window).scrollTop();
+            zoom(scale);
+        });
+
+        $('#rwd-zoom-out').on('click.rwd-container', function () {
+            if ($object.dataL.$cont.find('.rwd-current .rwd-image').length) {
+                scale -= $object.dataL.modulSettings.scale;
+                callScale();
+            }
+        });
+
+        $('#rwd-zoom-in').on('click.rwd-container', function () {
+            if ($object.dataL.$cont.find('.rwd-current .rwd-image').length) {
+                scale += $object.dataL.modulSettings.scale;
+                callScale();
+            }
+        });
+
+        if (hugeit_resp_lightbox_obj.hugeit_lightbox_zoomlogo !== '0') {
+            $object.dataL.$cont.dblclick(function () {
+                if (!$object.dataL.$cont.hasClass('dbl-zoomed')) {
+                    $object.dataL.$cont.addClass('dbl-zoomed');
+                    if ($object.dataL.$cont.find('.rwd-current .rwd-image').length) {
+                        scale += $object.dataL.modulSettings.scale;
+                        callScale();
+                    }
+                } else {
+                    $object.dataL.$cont.removeClass('dbl-zoomed');
+                    if ($object.dataL.$cont.find('.rwd-current .rwd-image').length) {
+                        scale -= $object.dataL.modulSettings.scale;
+                        callScale();
+                    }
+                }
+            });
+        }
+
+        if (!('ontouchstart' in document.documentElement)) {
+            $object.zoomDrag();
+        }
+
+        if (('ontouchstart' in document.documentElement)) {
+            $object.zoomSwipe();
+        }
+
+    };
+
+    Modul.prototype.touchendZoom = function (startCoords, endCoords, abscissa, ordinate) {
+
+        var $object = this, _$el, $imageObject, distanceX, distanceY, maxX, maxY;
+
+        _$el = $object.dataL.$item.eq($object.dataL.index).find('.rwd-img-wrap');
+        $imageObject = $object.dataL.$item.eq($object.dataL.index).find('.rwd-object');
+        maxX = Math.abs($imageObject.outerWidth() * Math.abs($imageObject.attr('data-scale')) - $object.dataL.$cont.find('.rwd-container').width()) / 2;
+        maxY = Math.abs($imageObject.outerHeight() * Math.abs($imageObject.attr('data-scale')) - $object.dataL.$cont.find('.rwd-container').height()) / 2 + $(window).scrollTop();
+
+        if (_$el.attr('data-x')) {
+            distanceX = +_$el.attr('data-x') + (endCoords.x - startCoords.x);
+        } else {
+            distanceX = endCoords.x - startCoords.x;
+        }
+
+        distanceY = +_$el.attr('data-y') + (endCoords.y - startCoords.y);
+
+        if ((Math.abs(endCoords.x - startCoords.x) > 15) || (Math.abs(endCoords.y - startCoords.y) > 15)) {
+
+            if (abscissa) {
+                if (endCoords.x - startCoords.x < 0) {
+                    if(distanceX <= -maxX){
+                        distanceX = -maxX;
+                    }
+                } else {
+                    if(distanceX >= maxX) {
+                        distanceX = maxX;
+                    }
+                }
+
+                _$el.attr('data-x', distanceX);
+            }
+
+            if (ordinate) {
+                if (endCoords.y - startCoords.y < 0) {
+                    if(distanceY <= -(maxY + ($object.pageY - ($(window).height() - $imageObject.height()) / 2)) + 2 * $(window).scrollTop()) {
+                        distanceY = -(maxY + ($object.pageY - ($(window).height() - $imageObject.height()) / 2)) + 2 * $(window).scrollTop();
+                    }
+                } else {
+                    if(distanceY >= maxY - ($object.pageY - ($(window).height() - $imageObject.height()) / 2)) {
+                        distanceY = maxY - ($object.pageY - ($(window).height() - $imageObject.height()) / 2);
+                    }
+                }
+
+                _$el.attr('data-y', distanceY);
+            }
+
+            _$el.css({
+                transform: 'translate3d(' + distanceX + 'px, ' + distanceY + 'px, 0)'
+            });
+
+        }
+    };
+
+    Modul.prototype.zoomDrag = function () {
+
+        var $object = this,
+            startCoords = {},
+            endCoords = {},
+            isDraging = false,
+            isMoved = false,
+            abscissa = false,
+            ordinate = false;
+
+        $object.dataL.$item.on('mousedown.rwd-container.zoom', function (e) {
+
+            var $imageObject = $object.dataL.$item.eq($object.dataL.index).find('.rwd-object');
+
+            ordinate = $imageObject.outerHeight() * $imageObject.attr('data-scale') > $object.dataL.$cont.find('.rwd-container').height();
+            abscissa = $imageObject.outerWidth() * $imageObject.attr('data-scale') > $object.dataL.$cont.find('.rwd-container').width();
+
+            if ($object.dataL.$cont.hasClass('rwd-zoomed')) {
+                if ($(e.target).hasClass('rwd-object') && (abscissa || ordinate)) {
+                    e.preventDefault();
+                    startCoords = {
+                        x: e.pageX,
+                        y: e.pageY
+                    };
+
+                    isDraging = true;
+
+                    $object.dataL.$cont.scrollLeft += 1;
+                    $object.dataL.$cont.scrollLeft -= 1;
+
+                }
+            }
+        });
+
+        $(window).on('mousemove.rwd-container.zoom', function (e) {
+            if (isDraging) {
+                var _$el = $object.dataL.$item.eq($object.dataL.index).find('.rwd-img-wrap');
+                var distanceX;
+                var distanceY;
+
+                isMoved = true;
+                endCoords = {
+                    x: e.pageX,
+                    y: e.pageY
+                };
+
+                if (_$el.attr('data-x')) {
+                    distanceX = +_$el.attr('data-x') + (endCoords.x - startCoords.x);
+                } else {
+                    distanceX = endCoords.x - startCoords.x;
+                }
+
+                if (ordinate) {
+                    distanceY = +_$el.attr('data-y') + (endCoords.y - startCoords.y);
+                }
+
+                _$el.css({
+                    transform: 'translate3d(' + distanceX + 'px, ' + distanceY + 'px, 0)'
+                });
+            }
+        });
+
+        $(window).on('mouseup.rwd-container.zoom', function (e) {
+
+            if (isDraging) {
+                isDraging = false;
+
+                if (isMoved && ((startCoords.x !== endCoords.x) || (startCoords.y !== endCoords.y))) {
+                    endCoords = {
+                        x: e.pageX,
+                        y: e.pageY
+                    };
+                    $object.touchendZoom(startCoords, endCoords, abscissa, ordinate);
+
+                }
+
+                isMoved = false;
+            }
+
+        });
+    };
+
+    Modul.prototype.zoomSwipe = function () {
+        var $object = this,
+            startCoords = {},
+            endCoords = {},
+            isMoved = false,
+            abscissa = false,                   ordinate = false;
+
+        $object.dataL.$item.on('touchstart.rwd-container', function (e) {
+
+            if ($object.dataL.$cont.hasClass('rwd-zoomed')) {
+                var $imageObject = $object.dataL.$item.eq($object.dataL.index).find('.rwd-object');
+
+                ordinate = $imageObject.outerHeight() * $imageObject.attr('data-scale') > $object.dataL.$cont.find('.rwd-container').height();
+                abscissa = $imageObject.outerWidth() * $imageObject.attr('data-scale') > $object.dataL.$cont.find('.rwd-container').width();
+                if ((abscissa || ordinate)) {
+                    e.preventDefault();
+                    startCoords = {
+                        x: e.originalEvent.targetTouches[0].pageX,
+                        y: e.originalEvent.targetTouches[0].pageY
+                    };
+                }
+            }
+
+        });
+
+        $object.dataL.$item.on('touchmove.rwd-container', function (e) {
+
+            if ($object.dataL.$cont.hasClass('rwd-zoomed')) {
+
+                var _$el = $object.dataL.$item.eq($object.dataL.index).find('.rwd-img-wrap');
+                var distanceX;
+                var distanceY;
+
+                e.preventDefault();
+                isMoved = true;
+
+                endCoords = {
+                    x: e.originalEvent.targetTouches[0].pageX,
+                    y: e.originalEvent.targetTouches[0].pageY
+                };
+
+                if (_$el.attr('data-x')) {
+                    distanceX = +_$el.attr('data-x') + (endCoords.x - startCoords.x);
+                } else {
+                    distanceX = endCoords.x - startCoords.x;
+                }
+
+                if (ordinate) {
+                    distanceY = +_$el.attr('data-y') + (endCoords.y - startCoords.y);
+                }
+
+                if ((Math.abs(endCoords.x - startCoords.x) > 15) || (Math.abs(endCoords.y - startCoords.y) > 15)) {
+                    _$el.css({
+                        transform: 'translate3d(' + distanceX + 'px, ' + distanceY + 'px, 0)'
+                    });
+                }
+
+            }
+
+        });
+
+        $object.dataL.$item.on('touchend.rwd-container', function () {
+            if ($object.dataL.$cont.hasClass('rwd-zoomed')) {
+                if (isMoved) {
+                    isMoved = false;
+                    $object.touchendZoom(startCoords, endCoords, abscissa, ordinate);
+
+                }
+            }
+        });
+
+    };
+
+    Modul.prototype.initThumbs = function() {
+        var $object = this;
+
+        if (this.dataL.modulSettings.thumbnail === 'true' && this.dataL.$items.length > 1) {
+
+            if (this.dataL.modulSettings.showByDefault) {
+                setTimeout(function(){
+                    $object.dataL.$cont.addClass('rwd-thumb-open');
+                }, 100);
+            }
+
+            this.buildThumbs();
+
+            this.dataL.effectsSupport() && this.enableThumbDrag();
+
+            this.activatedThumbs = false;
+
+            if ($object.dataL.modulSettings.toogleThumb) {
+                $object.$thumbCont.append('<span class="rwd-toggle-thumb rwd-icon"></span>');
+                $object.dataL.$cont.find('.rwd-toggle-thumb').on('click.rwd-container', function() {
+                    $object.dataL.$cont.toggleClass('rwd-thumb-open');
+                });
+            }
+        }
+
+        $('.rwd-container .rwd-thumb-item').css({
+            background: '#' + this.dataL.modulSettings.thumbsOverlayColor
+        });
+        $('.rwd-container .rwd-thumb-item img').css({
+            opacity: 1 - +this.dataL.modulSettings.thumbsOverlayOpacity / 100
+        });
+
+        $('.rwd-thumb-cont').css({
+            bottom: -$object.dataL.modulSettings.thumbsHeight + 'px'
+        });
+
+        if (this.dataL.modulSettings.showByDefault) {
+            var $cont_ = $('.cont-inner'),
+                $thumb_ = $('.rwd-thumb-cont'),
+                $toolbar_ = $('.rwd-toolbar');
+            setTimeout(function(){
+                switch($object.dataL.settings.lightboxView){
+                    case 'view1':
+                        switch($object.dataL.modulSettings.thumbPosition){
+                            case '0':
+                                $cont_.css({
+                                    height: 'calc(100% - ' + ($object.dataL.modulSettings.thumbsHeight + 92) + 'px)',
+                                    top: '47px'
+                                });
+                                $thumb_.css({
+                                    bottom: '0',
+                                    backgroundColor: 'rgba(0,0,0,.9)'
+                                });
+                                $('.rwd-bar > *').css({
+                                    bottom: $object.dataL.modulSettings.thumbsHeight + 'px'
+                                });
+                                break;
+                            case '1':
+                                $cont_.css({
+                                    height: 'calc(100% - ' + ($object.dataL.modulSettings.thumbsHeight + 92) + 'px)',
+                                    top: $object.dataL.modulSettings.thumbsHeight + 47 + 'px'
+                                });
+                                $thumb_.css({
+                                    top: '47px',
+                                    backgroundColor: 'rgba(0,0,0,.9)'
+                                });
+                                break;
+                        }
+                        break;
+                    case 'view2':
+                        switch($object.dataL.modulSettings.thumbPosition) {
+                            case '0':
+                                $cont_.css({
+                                    height: 'calc(100% - ' + ($object.dataL.modulSettings.thumbsHeight + 92) + 'px)',
+                                    top: '45px'
+                                });
+                                $thumb_.css({
+                                    bottom: '45px',
+                                    backgroundColor: 'rgba(0,0,0,.9)'
+                                });
+                                break;
+                            case '1':
+                                $cont_.css({
+                                    height: 'calc(100% - ' + ($object.dataL.modulSettings.thumbsHeight + 92) + 'px)',
+                                    top: $object.dataL.modulSettings.thumbsHeight + 45 + 'px'
+                                });
+                                $thumb_.css({
+                                    top: '0',
+                                    backgroundColor: 'rgba(0,0,0,.9)'
+                                });
+                                $toolbar_.css({
+                                    top: $object.dataL.modulSettings.thumbsHeight + 'px'
+                                });
+                                break;
+                        }
+                        break;
+                    case 'view3':
+                        switch($object.dataL.modulSettings.thumbPosition) {
+                            case '0':
+                                $cont_.css({
+                                    height: 'calc(100% - ' + ($object.dataL.modulSettings.thumbsHeight + 92) + 'px)',
+                                    top: '47px'
+                                });
+                                $thumb_.css({
+                                    bottom: '0',
+                                    backgroundColor: 'white'
+                                });
+                                $('.rwd-title').css({
+                                    bottom: $object.dataL.modulSettings.thumbsHeight + 'px'
+                                });
+                                break;
+                            case '1':
+                                $cont_.css({
+                                    height: 'calc(100% - ' + ($object.dataL.modulSettings.thumbsHeight + 93) + 'px)',
+                                    top: ($object.dataL.modulSettings.thumbsHeight + 48) + 'px'
+                                });
+                                $thumb_.css({
+                                    top: '48px',
+                                    backgroundColor: 'white'
+                                });
+                                break;
+                        }
+                        break;
+                    case 'view4':
+                        switch($object.dataL.modulSettings.thumbPosition) {
+                            case '0':
+                                $cont_.css({
+                                    height: 'calc(100% - ' + ($object.dataL.modulSettings.thumbsHeight + 92) + 'px)'
+                                });
+                                $thumb_.css({
+                                    bottom: '0',
+                                    backgroundColor: 'none'
+                                });
+                                $('.rwd-socialIcons').css({
+                                    bottom: ($object.dataL.modulSettings.thumbsHeight - 10) + 'px'
+                                });
+                                $('.barCont').css({
+                                    bottom: $object.dataL.modulSettings.thumbsHeight + 'px'
+                                });
+                                $('#rwd-counter').css({
+                                    bottom: ($object.dataL.modulSettings.thumbsHeight + 5) + 'px'
+                                });
+                                $('.rwd-item').css({
+                                    top: '47px'
+                                });
+                                break;
+                            case '1':
+                                $cont_.css({
+                                    height: 'calc(100% - ' + ($object.dataL.modulSettings.thumbsHeight + 90) + 'px)',
+                                    top: $object.dataL.modulSettings.thumbsHeight + 45 + 'px'
+                                });
+                                $thumb_.css({
+                                    top: '45px',
+                                    backgroundColor: 'none'
+                                });
+                                break;
+                        }
+                        break;
+                    case 'view5':
+                        switch($object.dataL.modulSettings.thumbPosition) {
+                            case '0':
+                                $cont_.css({
+                                    height: 'calc(100% - ' + $object.dataL.modulSettings.thumbsHeight + 'px)'
+                                });
+                                $thumb_.css({
+                                    bottom: '0'
+                                });
+                                break;
+                            case '1':
+                                $cont_.css({
+                                    height: 'calc(100% - ' + $object.dataL.modulSettings.thumbsHeight + 'px)',
+                                    top: $object.dataL.modulSettings.thumbsHeight + 'px'
+                                });
+                                $thumb_.css({
+                                    top: '0'
+                                });
+                                break;
+                        }
+                        break;
+                }
+            }, 100);
+        }
+    };
+
+    Modul.prototype.buildThumbs = function() {
+        var $object = this;
+        var thumbList = '';
+        var vimeoErrorThumbSize = '';
+        var $thumb;
+        var html = '<div class="rwd-thumb-cont">' +
+            '<div class="rwd-thumb group">' +
+            '</div>' +
+            '</div>';
+
+        vimeoErrorThumbSize = '100x75';
+
+        $object.dataL.$cont.addClass('rwd-has-thumb');
+
+        $object.dataL.$cont.find('.rwd-container').append(html);
+
+        $object.$thumbCont = $object.dataL.$cont.find('.rwd-thumb-cont');
+        $object.thumbContWidth = $object.$thumbCont.width();
+
+        $object.dataL.$cont.find('.rwd-thumb').css({
+            width: $object.thumbTotalWidth + 'px',
+            position: 'relative'
+        });
+
+        $object.$thumbCont.css('height', $object.dataL.modulSettings.thumbsHeight + 'px');
+
+        function getThumb(src, thumb, index) {
+            var isVideo = $object.dataL.isVideo(src, index) || {};
+            var thumbImg;
+            var vimeoId = '';
+
+            if (isVideo.youtube || isVideo.vimeo || isVideo.dailymotion) {
+                if (isVideo.youtube) {
+                    thumbImg = '//img.youtube.com/vi/' + isVideo.youtube[1] + '/1.jpg';
+                } else if (isVideo.vimeo) {
+                    thumbImg = '//i.vimeocdn.com/video/error_' + vimeoErrorThumbSize + '.jpg';
+                    vimeoId = isVideo.vimeo[1];
+                }
+            } else {
+                thumbImg = thumb;
+            }
+
+            thumbList += '<div data-vimeo-id="' + vimeoId + '" class="rwd-thumb-item" style="width:' + $object.dataL.modulSettings.thumbsWidth + 'px; margin-right: ' + $object.dataL.modulSettings.thumbMargin + 'px"><img src="' + thumbImg + '" /></div>';
+            vimeoId = '';
+        }
+
+        $object.dataL.$items.each(function(i) {
+
+            getThumb($(this).attr('href') || $(this).attr('data-src'), $(this).find('img').attr('src'), i);
+
+        });
+
+        $object.dataL.$cont.find('.rwd-thumb').html(thumbList);
+
+        $thumb = $object.dataL.$cont.find('.rwd-thumb-item');
+
+        $thumb.each(function() {
+            var $this = $(this);
+            var vimeoVideoId = $this.attr('data-vimeo-id');
+
+            if (vimeoVideoId) {
+                $.getJSON('//www.vimeo.com/api/v2/video/' + vimeoVideoId + '.json?callback=?', {
+                    format: 'json'
+                }, function(data) {
+                    $this.find('img').attr('src', data[0]['thumbnail_small']);
+                });
+            }
+        });
+
+        $thumb.eq($object.dataL.index).addClass('active');
+        $object.dataL.$element.on('onBeforeSlide.rwd-container', function() {
+            $thumb.removeClass('active');
+            $thumb.eq($object.dataL.index).addClass('active');
+        });
+
+        $thumb.on('click.rwd-container touchend.rwd-container', function() {
+            var _$this = $(this);
+            setTimeout(function() {
+                if ($object.activatedThumbs || !$object.dataL.effectsSupport()) {
+                    $object.dataL.index = _$this.index();
+                    $object.dataL.slide($object.dataL.index, false, true);
+                    $('.rwd-thumb').removeClass('thumb_move');
+                }
+            }, 50);
+        });
+
+        $object.dataL.$element.on('onBeforeSlide.rwd-container', function() {
+            $object.animateThumb($object.dataL.index);
+        });
+
+        $(window).on('resize.rwd-container.thumb orientationchange.rwd-container.thumb', function() {
+            setTimeout(function() {
+                $object.animateThumb($object.dataL.index);
+                $object.thumbContWidth = $object.$thumbCont.width();
+            }, 200);
+        });
+
+    };
+
+    Modul.prototype.animateThumb = function(index) {
+        var $thumb = this.dataL.$cont.find('.rwd-thumb'),
+            position = (this.thumbContWidth / 2) - (this.dataL.modulSettings.thumbsWidth / 2);
+
+        this.left = ((this.dataL.modulSettings.thumbsWidth + this.dataL.modulSettings.thumbMargin) * index - 1) - position;
+        if (this.left > (this.thumbTotalWidth - this.thumbContWidth)) {
+            this.left = this.thumbTotalWidth - this.thumbContWidth;
+        }
+
+        if (this.left < 0) {
+            this.left = 0;
+        }
+
+        if (this.dataL.rwdalleryOn) {
+            if (!$thumb.hasClass('on')) {
+                this.dataL.$cont.find('.rwd-thumb').css('transition-duration', this.dataL.modulSettings.speed + 'ms');
+            }
+
+            if (!this.dataL.effectsSupport()) {
+                $thumb.animate({
+                    left: -this.left + 'px'
+                }, this.dataL.modulSettings.speed);
+            }
+        } else {
+            if (!this.dataL.effectsSupport()) {
+                $thumb.css('left', -this.left + 'px');
+            }
+        }
+        if(!$('.rwd-thumb').hasClass('thumb_move')){
+            this.dataL.$cont.find('.rwd-thumb').css({
+                transform: 'translate3d(-' + (this.left) + 'px, 0px, 0px)'
+            });
+        }
+    };
+
+    Modul.prototype.enableThumbDrag = function() {
+
+        var $object = this,
+            startCoords = 0,
+            endCoords = 0,
+            isDraging = false,
+            isMoved = false,
+            tempLeft = 0,
+            $left_ = ((this.dataL.modulSettings.thumbsWidth + this.dataL.modulSettings.thumbMargin) * $object.dataL.index - 1) - (this.thumbContWidth / 2) - (this.dataL.modulSettings.thumbsWidth / 2);
+
+        $('.rwd-thumb').attr('data-left', $left_);
+
+        $object.dataL.$cont.find('.rwd-thumb').on('mousedown.rwd-container.thumb', function(e) {
+            if ($object.thumbTotalWidth > $object.thumbContWidth) {
+                e.preventDefault();
+                startCoords = e.pageX;
+                isDraging = true;
+
+                $object.dataL.$cont.scrollLeft += 1;
+                $object.dataL.$cont.scrollLeft -= 1;
+
+                $object.activatedThumbs = false;
+            }
+        });
+
+        $(window).on('mousemove.rwd-container.thumb', function(e) {
+            if (isDraging) {
+                tempLeft = +$('.rwd-thumb').attr('data-left');                isMoved = true;
+                endCoords = e.pageX;
+
+                if(Math.abs(endCoords - startCoords) > 0 && $('.rwd-cont').hasClass('rwd-show-autoplay')){
+                    $('.rwd-thumb').addClass('thumb_move');
+                }
+
+                tempLeft = tempLeft - (endCoords - startCoords);
+
+                if (tempLeft > ($object.thumbTotalWidth - $object.thumbContWidth)) {
+                    tempLeft = $object.thumbTotalWidth - $object.thumbContWidth;
+                }
+
+                if (tempLeft < 0) {
+                    tempLeft = 0;
+                }
+
+                $object.dataL.$cont.find('.rwd-thumb').css({
+                    transform: 'translate3d(-' + (tempLeft) + 'px, 0px, 0px)'
+                });
+            }
+        });
+
+        $(window).on('mouseup.rwd-container.thumb', function() {
+            if (isMoved) {
+                isMoved = false;
+
+                $('.rwd-thumb').attr('data-left', tempLeft);
+
+            } else {
+                $object.activatedThumbs = true;
+            }
+
+            if (isDraging) {
+                isDraging = false;
+            }
+        });
+
+    };
+
+    Modul.prototype.destroy = function () {
+        var $object = this;
+
+        $object.dataL.$element.off('.rwd-container.zoom');
+        $(window).off('.rwd-container.zoom');
+        $object.dataL.$item.off('.rwd-container.zoom');
+        $object.dataL.$element.off('.rwd-container.zoom');
+        $object.dataL.$cont.removeClass('rwd-zoomed');
+        clearTimeout($object.zoomabletimeout);
+        $object.zoomabletimeout = false;
+
+        if (this.dataL.modulSettings.thumbnail === 'true' && this.dataL.$items.length > 1) {
+            $(window).off('resize.rwd-container.thumb orientationchange.rwd-container.thumb keydown.rwd-container.thumb');
+            this.$thumbCont.remove();
+            this.dataL.$cont.removeClass('rwd-has-thumb');
+            $('.cont-inner').css({
+                height: '100%'
+            });
+        }
+    };
+
+    $.fn.lightbox.lightboxModul.modul = Modul;
 
     var WaterMark = function (element) {
         this.element = element;
@@ -1200,7 +2140,7 @@
         textFontSize: +hugeit_gen_resp_lightbox_obj.hugeit_lightbox_watermark_textFontSize,
         containerBackground: hugeit_gen_resp_lightbox_obj.hugeit_lightbox_watermark_container_bg_color,
         containerWidth: +hugeit_gen_resp_lightbox_obj.hugeit_lightbox_watermark_containerWidth,
-        position: 'pos'+hugeit_gen_resp_lightbox_obj.hugeit_lightbox_watermark_position_new,
+        position: 'pos' + hugeit_gen_resp_lightbox_obj.hugeit_lightbox_watermark_position_new,
         opacity: +hugeit_gen_resp_lightbox_obj.hugeit_lightbox_watermark_opacity / 100,
         margin: +hugeit_gen_resp_lightbox_obj.hugeit_lightbox_watermark_margin,
         done: function (imgURL) {
@@ -1209,7 +2149,6 @@
     };
 
     WaterMark.prototype.init = function () {
-
         var $object = this,
             $elem = $object.element,
             $settings = $object.settings,
@@ -1217,9 +2156,9 @@
             imageData = {};
 
         var WatermarkImage = jQuery('<img />');
-        WatermarkImage.attr('src',$object.settings.imgSrc);
-        WatermarkImage.css('display','none').attr('id','huge_it_watermark_img_sample');
-        if(!jQuery('body').find('#huge_it_watermark_img_sample').length) {
+        WatermarkImage.attr('src', $object.settings.imgSrc);
+        WatermarkImage.css('display', 'none').attr('id', 'huge_it_watermark_img_sample');
+        if (!jQuery('body').find('#huge_it_watermark_img_sample').length) {
             jQuery('body').append(WatermarkImage);
         }
 
@@ -1229,7 +2168,7 @@
         };
 
         imageData = {
-            imgurl: $elem.src
+            imgurl: $elem.dataset.imgsrc
         };
 
         var defer = $.Deferred();
@@ -1268,7 +2207,7 @@
 
         canvas.width = $width;
         canvas.height = $height;
-        
+
         context.fillStyle = $settings.containerBackground;
         context.fillRect(0, 0, $width, $height);
 
@@ -1276,13 +2215,12 @@
         context.textAlign = 'center';
         context.font = '500 ' + $settings.textFontSize + 'px Sans-serif';
 
-        context.fillText($settings.text, ($width / 2), ($height - 10));
+        context.fillText($settings.text, ($width / 2), ($height - 5));
 
         return canvas.toDataURL();
     };
 
     WaterMark.prototype.imgurltodata = function (data, callback) {
-
         var $object = this,
             $settings = $object.settings,
             img;
@@ -1325,7 +2263,7 @@
 
             if (data.$wmObject) {
 
-                var $opacity = +hugeit_gen_resp_lightbox_obj.hugeit_lightbox_watermark_containerOpacity/100;
+                var $opacity = +hugeit_gen_resp_lightbox_obj.hugeit_lightbox_watermark_containerOpacity / 100;
                 if ($opacity >= 0 && $opacity <= 1) {
                     //context.globalAlpha = $settings.opacity;
                     context.globalAlpha = $opacity;
@@ -1339,14 +2277,14 @@
                     $wmWidth = data.$wmObject.width;
                     $wmHeight = data.$wmObject.height;
                 }
-                else{
-                    $wmWidth = $settings.containerWidth,
-                        $wmHeight = (jQuery('img#huge_it_watermark_img_sample').prop('naturalHeight')*$wmWidth)/jQuery('img#huge_it_watermark_img_sample').prop('naturalWidth');
+                else {
+                    $wmWidth = $settings.containerWidth;
+                    $wmHeight = (jQuery('img#huge_it_watermark_img_sample').prop('naturalHeight') * $wmWidth) / jQuery('img#huge_it_watermark_img_sample').prop('naturalWidth');
                 }
 
                 switch ($settings.position) {
                     case 'pos1':
-                        $x = 0;
+                        $x = pos;
                         $y = pos;
                         break;
                     case 'pos2':
@@ -1354,11 +2292,11 @@
                         $y = pos;
                         break;
                     case 'pos3':
-                        $x = $imgWidth - $wmWidth;
+                        $x = $imgWidth - $wmWidth - pos;
                         $y = pos;
                         break;
                     case 'pos4':
-                        $x = 0;
+                        $x = pos;
                         $y = $imgHeight / 2 - $wmHeight / 2;
                         break;
                     case 'pos5':
@@ -1366,11 +2304,11 @@
                         $y = $imgHeight / 2 - $wmHeight / 2;
                         break;
                     case 'pos6':
-                        $x = $imgWidth - $wmWidth;
+                        $x = $imgWidth - $wmWidth - pos;
                         $y = $imgHeight / 2 - $wmHeight / 2;
                         break;
                     case 'pos7':
-                        $x = 0;
+                        $x = pos;
                         $y = $imgHeight - $wmHeight - pos;
                         break;
                     case 'pos8':
@@ -1378,7 +2316,7 @@
                         $y = $imgHeight - $wmHeight - pos;
                         break;
                     case 'pos9':
-                        $x = $imgWidth - $wmWidth;
+                        $x = $imgWidth - $wmWidth - pos;
                         $y = $imgHeight - $wmHeight - pos;
                         break;
                     default:

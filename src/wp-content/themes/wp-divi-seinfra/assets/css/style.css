@@ -41,3 +41,20 @@ div#wrapper-footer-brasil{
 .fancybox-container{
     z-index: 199999;
 }
+
+.incsub_wiki_content {
+    margin: 15px 0 30px;
+}
+
+.incsub_wiki_tabs ul{
+	padding: 0 !important;
+}
+
+.incsub_wiki_tabs li a{
+	padding: 10px 15px !important;
+	color: #2ea3f2 !important;
+}
+
+#comment-wrap {
+    padding-top: 30px;
+}

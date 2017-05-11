@@ -12,6 +12,65 @@ function redirect_non_logged_users() {
 add_action( 'template_redirect', 'redirect_non_logged_users' );
 
 /**
+ * Remove itens desncessários da barra de administracao para usuários assinantes
+ * 
+ */
+function remove_toolbar_nodes($wp_admin_bar) {
+    $user = wp_get_current_user();
+    if ( $user->roles[0] !== 'administrator' && $user->roles[0] !== 'editor' ) {
+        $wp_admin_bar->remove_node('new-content');
+        // $wp_admin_bar->remove_node('site-name');
+        $wp_admin_bar->remove_node('my-sites');
+    }
+
+    if ( $user->roles[0] === 'editor' ) {
+        $wp_admin_bar->remove_node('my-sites');
+    }
+}
+add_action('admin_bar_menu', 'remove_toolbar_nodes', 999);
+
+/**
+ * Remove menus admininstrativos para usuarios assinantes
+ * 
+ */
+function remove_menus(){
+    $user = wp_get_current_user();
+    if ( $user->roles[0] !== 'administrator' && $user->roles[0] !== 'editor' ){
+        remove_menu_page( 'index.php' );
+        remove_menu_page( 'edit.php?post_type=event' );
+        remove_menu_page( 'admin.php?page=campaign_contact' );
+    }
+}
+add_action( 'admin_menu', 'remove_menus' );
+
+/**
+ * Redireciona o usuário para a página inicial ao logar
+ * 
+ */
+function seinfra_login_redirect() {
+  return home_url();
+}
+
+add_filter('login_redirect', 'seinfra_login_redirect');
+
+/**
+ * Aplica CSS personalizado na área administrativa
+ * 
+ */
+function admin_custom_style() {
+    $user = wp_get_current_user();
+    if ( $user->roles[0] !== 'administrator' && $user->roles[0] !== 'editor' ){
+    // if( !current_user_can('editor') || !current_user_can('administrator') ) {
+        echo '<style>
+        #adminmenu{
+            display: none;
+        }
+        </style>';
+    }
+}
+add_action('admin_head', 'admin_custom_style');
+
+/**
  * Registra a folha de scripts do tema pai e adiciona específicas para o tema atual
  * 
  */
@@ -78,8 +137,11 @@ function seinfra_login_page_style() { ?>
 <?php }
 add_action( 'login_enqueue_scripts', 'seinfra_login_page_style' );
 
- 
-function my_login_logo_url_title() {
+/**
+* Remove menus admininstrativos para usuarios assinantes
+* 
+*/
+function login_message_title() {
     return '<h3>Para visualizar esse site é necessário realizar o login abaixo.</h3>';
 }
-add_filter( 'login_message', 'my_login_logo_url_title' );
+add_filter( 'login_message', 'login_message_title' );

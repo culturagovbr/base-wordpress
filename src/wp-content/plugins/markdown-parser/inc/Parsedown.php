@@ -1602,11 +1602,8 @@ class Parsedown
                 $next_el_level = intval( str_replace( 'h', '', $this->heading_arr[($index + 1 )]['heading_level'] ) );
                 // $prev_el_level = intval( str_replace( 'h', '', $this->heading_arr[($index - 1 )]['heading_level'] ) );
 
-                if( $next_el_level < $this_el_level ){
-                    $heading_toc .= '</ul>';
-                }
-
                 $heading_toc .= '<li>';
+
                 $heading_toc .= '<a href="#'. $idName .'">'. $heading['heading_text'] .'</a>';
 
                 if( $next_el_level > $this_el_level ){
@@ -1614,6 +1611,10 @@ class Parsedown
                 }
 
                 $heading_toc .= '</li>';
+
+                if( $next_el_level < $this_el_level ){
+                    $heading_toc .= '</ul>';
+                }
             }
             $heading_toc .= '</ul>';
         endif;

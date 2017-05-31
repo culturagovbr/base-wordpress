@@ -73,7 +73,7 @@ if (!is_page_template('page-template-blank.php')) : ?>
         s.parentNode.insertBefore(g, s);
     })();
 </script>
-<script src="http://barra.brasil.gov.br/barra.js" type="text/javascript"></script>
+
 <noscript><p><img src="//analise.cultura.gov.br/piwik.php?idsite=27" style="border:0;" alt=""/></p></noscript>
 <!-- End Piwik Code -->
 

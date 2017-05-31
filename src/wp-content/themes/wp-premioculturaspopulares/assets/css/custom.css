@@ -48,13 +48,13 @@ ul {
 
 #header {
     padding: 14px 0 0 0;
-    background-color: #34378F;
+    background-color: #f5ef97;
     background-image: -moz-radial-gradient(center, ellipse cover, #1074BC 1%, #34378F 100%);
     background-image: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(1%, #1074BC), color-stop(100%, #34378F));
-    background-image: -webkit-radial-gradient(center, ellipse cover, #1074BC 1%, #34378F 100%);
+    background-image: -webkit-radial-gradient(center, ellipse cover, #f5f098 1%, #f3ed96 100%);
     background-image: -o-radial-gradient(center, ellipse cover, #1074BC 1%, #34378F 100%);
     background-image: -ms-radial-gradient(center, ellipse cover, #1074BC 1%, #34378F 100%);
-    background-image: radial-gradient(ellipse at center, #1074BC 1%, #34378F 100%);
+    background-image: radial-gradient(ellipse at center, #f2ec96 1%, #f3ed96 100%);
     color: #fff;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1074BC", endColorstr="#34378F", GradientType=1);
     min-height: 170px;
@@ -73,21 +73,21 @@ ul {
     color: #006600;
 }
 
-#portal-logo,
-#portal-title {
-    color: #fff !important;
+#portal-logo, #portal-title {
+    color: #000 !important;
+}
+#portal-description {
+    bottom: 8px;
+    color: black !important;
+    font-size: 1.2em;
 }
 
-#portal-siteactions,
-#portal-language {
-    border-bottom: 1px dotted #9bc2a3;
-}
 
-#portal-siteactions a,
-#portal-siteactions a:hover,
-#portal-language a,
-#portal-language a:hover {
-    color: #fff !important;
+#portal-siteactions, #portal-language {
+    border-bottom: 1px dotted #000000;
+}
+#portal-siteactions a, #portal-siteactions a:hover, #portal-language a, #portal-language a:hover {
+    color: #000 !important;
 }
 
 #sobre {
@@ -143,7 +143,7 @@ div#page-container {
 }
 
 #accessibility a {
-    margin-right: 8px;
+    color: #000;
 }
 
 #accessibility span {
@@ -591,7 +591,7 @@ dl.nav-tree dt {
 
 #accessibility span {
     padding: 0 3px;
-    background: #34378F;
+    background: #000000;
     color: #fff;
 }
 
@@ -720,6 +720,7 @@ header#main-header.et-fixed-header {
     position: fixed !important;
     top: 41px !important;
     z-index: 11;
+    background: #000000;
 }
 
 /*home */
@@ -1070,10 +1071,8 @@ header#main-header.et-fixed-header {
     }
 
     #main-header {
-        background-color: #2c4499;
-        height: 50px;
+        background-color: #000000;
     }
-
     .mobile_menu_bar:before {
         position: relative;
         top: -11px;
@@ -1432,4 +1431,10 @@ h4.widgettitle {
 .et_pb_widget_area_left {
     padding-right: 0;
     border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+#main-footer {
+    display: block;
+}
+.et_pb_post {
+    margin-bottom: 0px;
 }

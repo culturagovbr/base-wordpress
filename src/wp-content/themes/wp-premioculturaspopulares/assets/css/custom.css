@@ -738,8 +738,11 @@ header#main-header.et-fixed-header {
 #main-content .container .et_pb_row {
     position: relative;
     width: 100%;
-    max-width: 1080px;
+    max-width: 1023px;
+    padding: 55px;
     margin: auto;
+    padding-top: 21px;
+    padding-bottom: 40px;
 }
 /* ==========================================================================
 6 - Rodapé ou Final do site

@@ -691,7 +691,10 @@ input.searchField {
 }
 
 #main-content > .container {
-    max-width: 1073px;
+    max-width: 100% !important;
+    width: 100%;
+    padding-top: 0 !important;
+    margin-top: -11px;
 }
 
 .home #main-content .entry-content {

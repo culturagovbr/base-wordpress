@@ -692,7 +692,7 @@ input.searchField {
 
 #main-content > .container {
     max-width: 100% !important;
-    width: 100%;
+    width: 100% !important;
     padding-top: 0 !important;
     margin-top: -11px;
 }

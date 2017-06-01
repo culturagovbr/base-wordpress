@@ -22,3 +22,12 @@ function divi_child_enqueue_styles() {
 
 add_action( 'wp_head', 'divi_child_enqueue_styles' );
 
+// adicionando area editável barra de servico
+if ( function_exists('register_sidebar') )
+register_sidebar(array(
+'name' => 'barra-servico',
+'before_widget' => '<div class="barra-servico">',
+'after_widget' => '</div>',
+'before_title' => '<h2>',
+'after_title' => '</h2>',
+));

@@ -280,28 +280,8 @@
                 <div id="et-top-navigation" data-height="<?php echo esc_attr( et_get_option( 'menu_height', '66' ) ); ?>" data-fixed-height="<?php echo esc_attr( et_get_option( 'minimized_menu_height', '40' ) ); ?>">
                     <?php if ( ! $et_slide_header || is_customize_preview() ) : ?>
                         <nav id="top-menu-nav">
-                        <?php
-                            $menuClass = 'nav';
-                            if ( 'on' == et_get_option( 'divi_disable_toptier' ) ) $menuClass .= ' et_disable_top_tier';
-                            $primaryNav = '';
-
-                            $primaryNav = wp_nav_menu( array( 'theme_location' => 'primary-menu', 'container' => '', 'fallback_cb' => '', 'menu_class' => $menuClass, 'menu_id' => 'top-menu', 'echo' => false ) );
-
-                            if ( '' == $primaryNav ) :
-                        ?>
-                            <ul id="top-menu" class="<?php echo esc_attr( $menuClass ); ?>">
-                                <?php if ( 'on' == et_get_option( 'divi_home_link' ) ) { ?>
-                                    <li <?php if ( is_home() ) echo( 'class="current_page_item"' ); ?>><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Home', 'Divi' ); ?></a></li>
-                                <?php }; ?>
-
-                                <?php show_page_menu( $menuClass, false, false ); ?>
-                                <?php show_categories_menu( $menuClass, false ); ?>
-                            </ul>
-                        <?php
-                            else :
-                                echo( $primaryNav );
-                            endif;
-                        ?>
+                            <?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar("barra-servico") ) : ?>
+                            <?php endif ;?>
                         </nav>
                     <?php endif; ?>
 

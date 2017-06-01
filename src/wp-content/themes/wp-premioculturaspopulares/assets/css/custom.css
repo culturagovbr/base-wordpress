@@ -345,6 +345,13 @@ input.searchField {
 #menu-principal a {
     color: #FFFFFF;
     padding-bottom: 20px !important;
+    display: block;
+    position: relative;
+    color: rgba(0, 0, 0, 0.6);
+    text-decoration: none;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
 }
 .titulo-page {
     color: #38759a;

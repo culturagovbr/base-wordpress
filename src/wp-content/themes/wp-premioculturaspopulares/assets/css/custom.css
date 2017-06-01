@@ -342,7 +342,7 @@ input.searchField {
     background-color: #000000;
 }
 
-#top-menu a {
+#menu-principal a {
     color: #FFFFFF;
     padding-bottom: 20px !important;
 }
@@ -585,7 +585,7 @@ dl.nav-tree dt {
     color: #f5f5f5 !important;
 }
 
-.et_color_scheme_green #top-menu li.current-menu-item > a {
+.et_color_scheme_green #menu-principal li.current-menu-item > a {
     color: #999;
 }
 

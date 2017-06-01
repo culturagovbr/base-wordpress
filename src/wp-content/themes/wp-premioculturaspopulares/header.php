@@ -280,8 +280,7 @@
                 <div id="et-top-navigation" data-height="<?php echo esc_attr( et_get_option( 'menu_height', '66' ) ); ?>" data-fixed-height="<?php echo esc_attr( et_get_option( 'minimized_menu_height', '40' ) ); ?>">
                     <?php if ( ! $et_slide_header || is_customize_preview() ) : ?>
                         <nav id="top-menu-nav">
-                            <?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar("barra-servico") ) : ?>
-                            <?php endif ;?>
+                            <?php if ( dynamic_sidebar('barra-servico') ) : else : endif; ?>
                         </nav>
                     <?php endif; ?>
 

@@ -347,7 +347,7 @@ input.searchField {
     color: #FFFFFF;
     display: block;
     position: relative;
-    color: rgba(0, 0, 0, 0.6);
+    color: #fff;
     text-decoration: none;
     -webkit-transition: all 0.4s ease-in-out;
     -moz-transition: all 0.4s ease-in-out;
@@ -479,6 +479,7 @@ header#main-header {
     padding-top: 20px;
     margin-top: -31px;
     transform: translateY(0) !important;
+    min-height: 44px;
 }
 #social-icons img {
     opacity: 0;

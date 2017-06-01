@@ -113,6 +113,7 @@ header#main-header {
 div#page-container {
     position: relative !important;
     top: 0 !important;
+    padding-top: 0 !important;
     display: block;
 }
 /* central de conteudo */
@@ -344,7 +345,6 @@ input.searchField {
 
 #menu-principal a {
     color: #FFFFFF;
-    padding-bottom: 20px !important;
     display: block;
     position: relative;
     color: rgba(0, 0, 0, 0.6);
@@ -352,6 +352,11 @@ input.searchField {
     -webkit-transition: all 0.4s ease-in-out;
     -moz-transition: all 0.4s ease-in-out;
     transition: all 0.4s ease-in-out;
+}
+#menu-principal li {
+    display: inline-block;
+    padding-right: 22px;
+    font-size: 14px;
 }
 .titulo-page {
     color: #38759a;

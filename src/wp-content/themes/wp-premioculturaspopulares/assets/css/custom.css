@@ -1528,7 +1528,7 @@ h4.widgettitle {
     margin-bottom: 0px;
 }
 p {
-    font-family: 'PT Serif', serif;
+    font-family: "LinLibertine_R";
 }
 
 h2, h3, h4, h5, h6 .et_pb_post h2 {
@@ -1543,6 +1543,7 @@ h2, .et_pb_post h2 {
 .LinLibertine_R {
     font-family: "LinLibertine_R";
 }
+
 .LinLibertine_RB {
     font-family: "LinLibertine_RB";
 }

@@ -1463,9 +1463,13 @@ h4.widgettitle {
 .et_pb_post {
     margin-bottom: 0px;
 }
-.et_pb_post h2 {
-    margin-top: 30px;
+p {
     font-family: 'PT Serif', serif;
+}
+
+h2, .et_pb_post h2 {
+    margin-top: 30px;
+    font-family: basiler;
     font-weight: bold;
     font-size: 28px;
 }

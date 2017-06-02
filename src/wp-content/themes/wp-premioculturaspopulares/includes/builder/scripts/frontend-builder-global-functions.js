@@ -86,11 +86,9 @@
 				$this_menu.on( 'click', '.mobile_menu_bar', function(){
 					if ( $this_menu.hasClass('closed') ){
 						$this_menu.removeClass( 'closed' ).addClass( 'opened' );
-						$("#top-menu-nav").removeClass( 'closed' ).addClass( 'opened' );
 						$cloned_nav.stop().slideDown( 500 );
 					} else {
 						$this_menu.removeClass( 'opened' ).addClass( 'closed' );
-						$("#top-menu-nav").removeClass( 'opened' ).addClass( 'closed' );
 						$cloned_nav.stop().slideUp( 500 );
 					}
 					return false;

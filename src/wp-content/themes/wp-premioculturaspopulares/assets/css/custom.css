@@ -993,6 +993,15 @@ div#logo-header-tema img {
 /*Responsivo*/
 
 @media (max-width: 980px) {
+    .mobile_menu_bar:before {
+        position: relative;
+        top: 0;
+        left: 0;
+        font-size: 32px;
+        content: "\61";
+        cursor: pointer;
+        color: #f2eb94;
+    }
     header#main-header.et-fixed-header {
         position: fixed !important;
         top: 31px !important;
@@ -1125,6 +1134,7 @@ div#logo-header-tema img {
     }
 }
 
+
 @media (max-width: 700px) {
     ul#portal-siteactions {
         display: none;
@@ -1139,9 +1149,8 @@ div#logo-header-tema img {
         left: 0;
         font-size: 32px;
         content: "\61";
-        color: #faf69b;
-        z-index: 1;
         cursor: pointer;
+        color: #f2eb94;
     }
 
     .et_mobile_menu {
@@ -1162,7 +1171,11 @@ div#logo-header-tema img {
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 }
-
+@media (max-width: 400px) {
+    div#logo-header-tema img {
+        max-width: 57%;
+    }
+}
 #social-icons li a {
     border: none;
     padding: 0;

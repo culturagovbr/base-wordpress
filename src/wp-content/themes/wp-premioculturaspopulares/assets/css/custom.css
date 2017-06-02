@@ -21,6 +21,20 @@
     font-family: "Milho_Cozido_38";
     src: url("Milho_Cozido_38.ttf");
 }
+@font-face {
+    font-family: "LinLibertine_R";
+    src: url("LinLibertine_R.ttf");
+}
+@font-face {
+    font-family: "LinLibertine_RB";
+    src: url("LinLibertine_RB.ttf");
+}
+@font-face {
+    font-family: "LinLibertine_RBI";
+    src: url("LinLibertine_RBI.ttf");
+}
+
+
 /* ==========================================================================
 2 - HTML ou Reset
 ========================================================================== */
@@ -1517,9 +1531,22 @@ p {
     font-family: 'PT Serif', serif;
 }
 
+h2, h3, h4, h5, h6 .et_pb_post h2 {
+    font-family: "Milho_Cozido_38";
+}
 h2, .et_pb_post h2 {
     margin-top: 30px;
-    font-family: "Milho_Cozido_38";
     font-weight: bold;
     font-size: 28px;
 }
+
+.LinLibertine_R {
+    font-family: "LinLibertine_R";
+}
+.LinLibertine_RB {
+    font-family: "LinLibertine_RB";
+}
+.LinLibertine_RBI {
+    font-family: "LinLibertine_RBI";
+}
+

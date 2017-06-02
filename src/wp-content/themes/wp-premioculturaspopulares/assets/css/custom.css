@@ -17,7 +17,11 @@
 /* ==========================================================================
 1 - Dependências
 ========================================================================== */
-
+@font-face {
+    font-family: basiler;
+    src: url(BASILER.TTF);
+    font-weight: bold;
+}
 /* ==========================================================================
 2 - HTML ou Reset
 ========================================================================== */
@@ -48,15 +52,15 @@ ul {
 
 #header {
     padding: 14px 0 0 0;
-    background-color: #faf295;
-    background-image: -moz-radial-gradient(center, ellipse cover, #1074BC 1%, #34378F 100%);
-    background-image: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(1%, #1074BC), color-stop(100%, #34378F));
-    background-image: -webkit-radial-gradient(center, ellipse cover, #faf295 1%, #faf295 100%);
-    background-image: -o-radial-gradient(center, ellipse cover, #1074BC 1%, #34378F 100%);
-    background-image: -ms-radial-gradient(center, ellipse cover, #1074BC 1%, #34378F 100%);
-    background-image: radial-gradient(ellipse at center, #faf295 1%, #faf295 100%);
-    color: #fff;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1074BC", endColorstr="#34378F", GradientType=1);
+    background-color: #B1E7CD;
+    /* background-image: -moz-radial-gradient(center, ellipse cover, #1074BC 1%, #34378F 100%);*/
+    /* background-image: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(1%, #1074BC), color-stop(100%, #34378F));*/
+    /* background-image: -webkit-radial-gradient(center, ellipse cover, #B1E7CD 1%, #faf295 100%); */
+    /* background-image: -o-radial-gradient(center, ellipse cover, #1074BC 1%, #34378F 100%);*/*/
+    /* background-image: -ms-radial-gradient(center, ellipse cover, #1074BC 1%, #34378F 100%);*/
+    /* background-image: radial-gradient(ellipse at center, #faf295 1%, #faf295 100%); */
+    /* color: #fff; */
+    /* filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1074BC", endColorstr="#34378F", GradientType=1);*/
     min-height: 170px;
 }
 
@@ -1459,4 +1463,10 @@ h4.widgettitle {
 }
 .et_pb_post {
     margin-bottom: 0px;
+}
+.et_pb_post h2 {
+    margin-top: 30px;
+    font-family: 'PT Serif', serif;
+    font-weight: bold;
+    font-size: 28px;
 }

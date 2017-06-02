@@ -14816,6 +14816,7 @@ class ET_Builder_Module_Fullwidth_Menu extends ET_Builder_Module {
 						<a href="#" class="mobile_nav closed">
 							<span class="mobile_menu_bar"></span>
 						</a>
+						<?php if ( dynamic_sidebar('barra-servico') ) : else : endif; ?>
 					</div>
 				</div>
 			</div>',

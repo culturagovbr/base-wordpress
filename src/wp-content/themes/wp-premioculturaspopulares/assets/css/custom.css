@@ -49,19 +49,9 @@ ul {
 /* ==========================================================================
 4 - Topo ou Cabeçalho
 ========================================================================== */
-
 #header {
-    padding: 14px 0 0 0;
+    padding: 14px 0 49px 0px;
     background-color: #B1E7CD;
-    /* background-image: -moz-radial-gradient(center, ellipse cover, #1074BC 1%, #34378F 100%);*/
-    /* background-image: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(1%, #1074BC), color-stop(100%, #34378F));*/
-    /* background-image: -webkit-radial-gradient(center, ellipse cover, #B1E7CD 1%, #faf295 100%); */
-    /* background-image: -o-radial-gradient(center, ellipse cover, #1074BC 1%, #34378F 100%);*/*/
-    /* background-image: -ms-radial-gradient(center, ellipse cover, #1074BC 1%, #34378F 100%);*/
-    /* background-image: radial-gradient(ellipse at center, #faf295 1%, #faf295 100%); */
-    /* color: #fff; */
-    /* filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1074BC", endColorstr="#34378F", GradientType=1);*/
-    min-height: 170px;
 }
 
 #accessibility a {
@@ -1004,6 +994,9 @@ div#logo-header-tema img {
 /*Responsivo*/
 
 @media (max-width: 980px) {
+    div#et-top-navigation {
+    height: 48px;
+    }
     .et_pb_sidebar_0 {
         position: inherit;
         top: 74px;
@@ -1012,7 +1005,12 @@ div#logo-header-tema img {
         padding: 38px;
         margin-top: 4px;
     }
-
+    #menu-principal li {
+        display: inline-block;
+        padding-right: -16px;
+        font-size: 14px;
+        display: none;
+    }
     .home .et_pb_section .et_pb_column .et_pb_module {
         margin-bottom: 30px;
     }
@@ -1040,10 +1038,10 @@ div#logo-header-tema img {
         width: 31%;
     }
     
-    #logo-header-tema a {
+   #logo-header-tema a {
         float: left;
         display: block;
-        width: 284px;
+        width: 546px;
         padding-left: 12px;
         overflow: hidden;
     }
@@ -1084,9 +1082,9 @@ div#logo-header-tema img {
         content: "MENU";
         position: absolute;
         z-index: 20600;
-        TOP: 4px;
+        TOP: 15px;
         FONT-SIZE: 20PX;
-        color: #2ea3f2;
+        color: #f3ee97;
         RIGHT: 37px;
     }
 }
@@ -1101,10 +1099,11 @@ div#logo-header-tema img {
     }
     .mobile_menu_bar:before {
         position: relative;
-        top: -11px;
+        top: 0;
         left: 0;
         font-size: 32px;
         content: "\61";
+        color: #b1e7cd;
         cursor: pointer;
     }
 

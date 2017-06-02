@@ -994,6 +994,9 @@ header#main-header.et-fixed-header {
     background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zd…MtMzU0LjIgNTI3LjQtOTA2LjEgNzE3LjQiIGZpbGw9IiNmZmYiLz48L2c+PC9nPjwvc3ZnPgo=) center no-repeat;
     height: 48px;
 }
+div#logo-header-tema img {
+        max-width: 78%;
+}
 /*Responsivo*/
 
 @media (max-width: 980px) {
@@ -1032,9 +1035,7 @@ header#main-header.et-fixed-header {
         padding: 0;
         width: 31%;
     }
-    div#logo-header-tema img {
-        max-width: 78%;
-    }
+    
     #logo-header-tema a {
         float: left;
         display: block;

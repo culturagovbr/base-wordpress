@@ -48,13 +48,13 @@ ul {
 
 #header {
     padding: 14px 0 0 0;
-    background-color: #f5ef97;
+    background-color: #faf295;
     background-image: -moz-radial-gradient(center, ellipse cover, #1074BC 1%, #34378F 100%);
     background-image: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(1%, #1074BC), color-stop(100%, #34378F));
-    background-image: -webkit-radial-gradient(center, ellipse cover, #f5f098 1%, #f3ed96 100%);
+    background-image: -webkit-radial-gradient(center, ellipse cover, #faf295 1%, #faf295 100%);
     background-image: -o-radial-gradient(center, ellipse cover, #1074BC 1%, #34378F 100%);
     background-image: -ms-radial-gradient(center, ellipse cover, #1074BC 1%, #34378F 100%);
-    background-image: radial-gradient(ellipse at center, #f2ec96 1%, #f3ed96 100%);
+    background-image: radial-gradient(ellipse at center, #faf295 1%, #faf295 100%);
     color: #fff;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1074BC", endColorstr="#34378F", GradientType=1);
     min-height: 170px;
@@ -469,7 +469,9 @@ input.searchField {
 .et_header_style_split #et-top-navigation {
     padding-top: 0px;
 }
-
+#et-top-navigation {
+    float: left;
+}
 #portal-searchbox input.et-search-field {
     border: 0 none;
     padding-left: 10px;
@@ -1030,7 +1032,9 @@ header#main-header.et-fixed-header {
         padding: 0;
         width: 31%;
     }
-
+    div#logo-header-tema img {
+        max-width: 78%;
+    }
     #logo-header-tema a {
         float: left;
         display: block;

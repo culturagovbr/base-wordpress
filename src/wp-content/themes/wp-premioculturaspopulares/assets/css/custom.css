@@ -18,9 +18,8 @@
 1 - Dependências
 ========================================================================== */
 @font-face {
-    font-family: basiler;
-    src: url(BASILER.TTF);
-    font-weight: bold;
+    font-family: "Milho_Cozido_38";
+    src: url("Milho_Cozido_38.ttf");
 }
 /* ==========================================================================
 2 - HTML ou Reset
@@ -51,9 +50,8 @@ ul {
 ========================================================================== */
 #header {
     padding: 14px 0 49px 0px;
-    background-color: #B1E7CD;
+    background-color: #f2eb94;
 }
-
 #accessibility a {
     color: #fff;
 }
@@ -1005,16 +1003,29 @@ div#logo-header-tema img {
         padding: 38px;
         margin-top: 4px;
     }
-    ul#menu-principal {
-    position: absolute;
-    background: rgba(0, 0, 0, 0.85);
-    margin-top: 48px;
-    width: 100%;
-    margin-left: 0;
-    right: 0;
-    padding: 24px;
-    padding-top: 0;
+     ul#menu-principal {
+        position: absolute;
+        background: rgba(0, 0, 0, 0.85);
+        margin-top: 48px;
+        width: 100%;
+        margin-left: 0;
+        right: 0;
+        padding: 24px;
+        padding-top: 0;
+        display: none;
     }
+    .menu-collapse ul#menu-principal {
+        position: absolute;
+        background: rgba(0, 0, 0, 0.85);
+        margin-top: 48px;
+        width: 100%;
+        margin-left: 0;
+        right: 0;
+        padding: 24px;
+        padding-top: 0;
+        display: block;
+    }
+
     #menu-principal li {
         display: inline-block;
         padding-right: -16px;
@@ -1119,7 +1130,8 @@ div#logo-header-tema img {
         left: 0;
         font-size: 32px;
         content: "\61";
-        color: #b1e7cd;
+        color: #faf69b;
+        z-index: 1;
         cursor: pointer;
     }
 
@@ -1485,7 +1497,7 @@ p {
 
 h2, .et_pb_post h2 {
     margin-top: 30px;
-    font-family: basiler;
+    font-family: "Milho_Cozido_38";
     font-weight: bold;
     font-size: 28px;
 }

@@ -41,56 +41,12 @@
 </div>
 <div id="header" role="banner">
     <div class="clearfix">
-        <ul id="accessibility">
-            <li>
-                <a accesskey="1" href="#div-conteudo" id="link-conteudo">
-                    Ir para o conte&uacute;do
-                    <span>1</span>
-                </a>
-            </li>
-            <li>
-                <a accesskey="2" href="#irparaomenu" id="link-navegacao">
-                    Ir para o menu
-                    <span>2</span>
-                </a>
-            </li>
-            <li>
-                <a accesskey="3" href="#portal-searchbox" id="link-buscar">
-                    Ir para a busca
-                    <span>3</span>
-                </a>
-            </li>
-            <li>
-                <a accesskey="4" href="#main-footer" id="link-rodape">
-                    Ir para o rodap&eacute;
-                    <span>4</span>
-                </a>
-            </li>
-        </ul>
-
-        <ul id="portal-siteactions">
-            <li>
-                <a href="<?php echo home_url(); ?>/acessibilidade">Acessibilidade</a>
-            </li>
-            <li>
-                <a href="#" class="alto_contraste">Alto Contraste</a>
-            </li>
-            <li>
-                <a href="<?php echo home_url(); ?>/mapa-do-site">Mapa do Site</a>
-            </li>
-        </ul>
-
         <div id="logo-header-tema">
             <a href="<?php echo home_url(); ?>" title="<?php bloginfo('name'); ?>">
-                <div id="portal-title"><?php bloginfo('name'); ?></div>
-                <div id="portal-description" style="color:#FFF">
-                    <?php bloginfo('description'); ?>
-                </div>
+                <img src="logo-premio-culturas-populares.png" alt="" />
             </a>
+
         </div>
-
-        
-
     </div>
 
 </div>

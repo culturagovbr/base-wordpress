@@ -1005,11 +1005,27 @@ div#logo-header-tema img {
         padding: 38px;
         margin-top: 4px;
     }
+    ul#menu-principal {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.85);
+    margin-top: 48px;
+    width: 100%;
+    margin-left: 0;
+    right: 0;
+    padding: 24px;
+    padding-top: 0;
+    }
     #menu-principal li {
         display: inline-block;
         padding-right: -16px;
         font-size: 14px;
-        display: none;
+        display: block;
+        line-height: 34px;
+        text-transform: uppercase;
+        border-bottom: 1px solid #ebdb70;
+    }
+    #menu-principal li a {
+    color: #faf69b;
     }
     .home .et_pb_section .et_pb_column .et_pb_module {
         margin-bottom: 30px;

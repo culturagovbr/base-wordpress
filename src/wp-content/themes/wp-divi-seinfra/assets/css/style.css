@@ -58,3 +58,19 @@ div#wrapper-footer-brasil{
 #comment-wrap {
     padding-top: 30px;
 }
+
+.et_right_sidebar #main-content .container:before{
+	right: inherit;
+	left: 20.875% !important;
+}
+
+.et_right_sidebar #left-area {
+    float: left;
+    padding-right: 0;
+    padding-left: 5.5%;
+}
+
+.et_right_sidebar #sidebar {
+    padding-right: 30px;
+    padding-left: 0;
+}

@@ -303,9 +303,9 @@
                     }
                     ?>
 
-                    <?php if ( $et_slide_header || is_customize_preview() ) : ?>
+                    
                       <div class="menu-responsivo"> <i>Icon</i> Menu </div> 
-                    <?php endif; ?>
+                    
                     <?php do_action( 'et_header_top' ); ?>
                 </div> <!-- #et-top-navigation -->
             </div> <!-- .container -->

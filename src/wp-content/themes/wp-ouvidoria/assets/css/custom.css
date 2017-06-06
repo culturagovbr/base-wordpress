@@ -1427,3 +1427,38 @@ h4.widgettitle {
     padding-right: 0;
     border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
+/*Home*/
+#cadastro .et_pb_promo {
+    background-color: #2e9263 !important;
+    border-radius: 8px;
+    min-height: 366px;
+    margin-left: 0;
+    text-align: center;
+}
+
+
+#cadastro .et_pb_promo  a.et_pb_promo_button.et_pb_button {
+    color: #000000;
+    background: #fbff49;
+    border-color: #9fa748;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#cadastro .et_pb_promo h2 {
+    font-size: 29px !important;
+    margin-left: -25px;
+    margin-right: -25px;
+    text-transform: uppercase;
+}
+
+@media (min-width: 981px){
+    .et_pb_gutters3 .et_pb_column, .et_pb_gutters3.et_pb_row .et_pb_column {
+    margin-right: 1.5%;
+    }
+    .et_pb_gutters3 .et_pb_column_2_3, .et_pb_gutters3.et_pb_row .et_pb_column_2_3 {
+        width: 68.833%;
+    }
+}
+

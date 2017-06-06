@@ -1551,4 +1551,10 @@ h2, .et_pb_post h2 {
 .LinLibertine_RBI {
     font-family: "LinLibertine_RBI";
 }
+#cadastro .et_pb_promo {
+    background-color: #55947c !important;
+    border-radius: 8px;
+    min-height: 366px;
+    margin-left: 0;
+}
 

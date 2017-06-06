@@ -1572,6 +1572,7 @@ header#main-header.et-fixed-header {
         display: block;
         line-height: 44px;
         height: auto;
+        padding-left: 22px;
     }
     .menu-responsivo {
         display: block;
@@ -1584,8 +1585,7 @@ header#main-header.et-fixed-header {
         RIGHT: 37px;
     }
     nav#top-menu-nav {
-        background: rgb(27, 125, 79);
-        top: 3px;
+        background: none;
         position: relative;
         width: 100%;
         top: -15px;
@@ -1607,6 +1607,11 @@ header#main-header.et-fixed-header {
     height: 0;
     margin-top: 45px;
     }
+    div#et-top-navigation {
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+}
 }
 @media (min-width: 981px){
     .et_pb_gutters3 .et_pb_column, .et_pb_gutters3.et_pb_row .et_pb_column {

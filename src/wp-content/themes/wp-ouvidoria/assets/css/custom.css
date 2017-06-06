@@ -70,7 +70,7 @@ ul {
 
 #accessibility span {
     padding: 0 3px;
-    background: #0a502f;
+    background: #1b7d4f;
     color: #fff;
 }
 #portal-logo,
@@ -590,7 +590,7 @@ dl.nav-tree dt {
 
 #accessibility span {
     padding: 0 3px;
-    background: #34378F;
+    background: #1b7d4f;
     color: #fff;
 }
 
@@ -1469,3 +1469,9 @@ h4.widgettitle {
     }
 }
 
+/*Menu*/
+#menu-barra-servico li {
+    display: inline-block;
+    padding-right: 22px;
+    font-size: 14px;
+}

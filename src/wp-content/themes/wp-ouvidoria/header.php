@@ -281,6 +281,7 @@
                     <?php if ( ! $et_slide_header || is_customize_preview() ) : ?>
                         <nav id="top-menu-nav">
                             <?php if ( dynamic_sidebar('barra-servico') ) : else : endif; ?>
+                            <div class="menu-responsivo"> <i>Icon</i> Menu </div> 
                         </nav>
                     <?php endif; ?>
 
@@ -304,7 +305,7 @@
                     ?>
 
                     
-                      <div class="menu-responsivo"> <i>Icon</i> Menu </div> 
+                      
                     
                     <?php do_action( 'et_header_top' ); ?>
                 </div> <!-- #et-top-navigation -->

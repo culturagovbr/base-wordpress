@@ -1437,19 +1437,23 @@ h4.widgettitle {
 }
 
 
-#cadastro .et_pb_promo  a.et_pb_promo_button.et_pb_button {
+
+#cadastro .et_pb_promo h2 {
+    font-size: 29px !important;
+    margin-left: -25px;
+    margin-right: -25px;
+    text-shadow: 1px 1px 0px #125033;
+    text-transform: uppercase;
+}
+#cadastro .et_pb_promo a.et_pb_promo_button.et_pb_button {
     color: #000000;
     background: #fbff49;
     border-color: #9fa748;
     margin-bottom: 20px;
     border-radius: 10px;
     text-align: center;
-}
-
-#cadastro .et_pb_promo h2 {
-    font-size: 29px !important;
-    margin-left: -25px;
-    margin-right: -25px;
+    font-size: 17px;
+    width: 100%;
     text-transform: uppercase;
 }
 
@@ -1459,6 +1463,9 @@ h4.widgettitle {
     }
     .et_pb_gutters3 .et_pb_column_2_3, .et_pb_gutters3.et_pb_row .et_pb_column_2_3 {
         width: 68.833%;
+    }
+    .et_pb_section {
+    padding: 0 0;
     }
 }
 

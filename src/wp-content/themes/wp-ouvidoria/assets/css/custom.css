@@ -919,7 +919,7 @@ header#main-header.et-fixed-header {
         display: block;
         text-transform: uppercase;
         padding: 7px 14px;
-        background: rgb(68, 159, 228);
+        background: rgb(46, 146, 99);
         border-radius: 4px;
         color: #fff;
         right: 11px;
@@ -973,6 +973,26 @@ header#main-header.et-fixed-header {
 /*Responsivo*/
 
 @media (max-width: 980px) {
+    .mobile_menu_bar:before {
+        position: relative;
+        top: 0;
+        left: 0;
+        font-size: 32px;
+        content: "\61";
+        cursor: pointer;
+        color: #f2eb94;
+    }
+    header#main-header.et-fixed-header {
+        position: fixed !important;
+        top: 31px !important;
+        z-index: 11;
+        background: #000000;
+        padding: 0;
+        height: 72px;
+    }
+    div#et-top-navigation {
+    height: 48px;
+    }
     .et_pb_sidebar_0 {
         position: inherit;
         top: 74px;
@@ -981,7 +1001,41 @@ header#main-header.et-fixed-header {
         padding: 38px;
         margin-top: 4px;
     }
+     ul#menu-principal {
+        position: absolute;
+        background: rgba(0, 0, 0, 0.85);
+        margin-top: 48px;
+        width: 100%;
+        margin-left: 0;
+        right: 0;
+        padding: 24px;
+        padding-top: 0;
+        display: none;
+    }
+    .menu-collapse ul#menu-principal {
+        position: absolute;
+        background: rgba(0, 0, 0, 0.85);
+        margin-top: 48px;
+        width: 100%;
+        margin-left: 0;
+        right: 0;
+        padding: 24px;
+        padding-top: 0;
+        display: block;
+    }
 
+    #menu-principal li {
+        display: inline-block;
+        padding-right: -16px;
+        font-size: 14px;
+        display: block;
+        line-height: 34px;
+        text-transform: uppercase;
+        border-bottom: 1px solid #ebdb70;
+    }
+    #menu-principal li a {
+    color: #faf69b;
+    }
     .home .et_pb_section .et_pb_column .et_pb_module {
         margin-bottom: 30px;
     }
@@ -1008,11 +1062,11 @@ header#main-header.et-fixed-header {
         padding: 0;
         width: 31%;
     }
-
-    #logo-header-tema a {
+    
+   #logo-header-tema a {
         float: left;
         display: block;
-        width: 284px;
+        width: 546px;
         padding-left: 12px;
         overflow: hidden;
     }
@@ -1053,9 +1107,9 @@ header#main-header.et-fixed-header {
         content: "MENU";
         position: absolute;
         z-index: 20600;
-        TOP: 4px;
+        TOP: 15px;
         FONT-SIZE: 20PX;
-        color: #2ea3f2;
+        color: #f3ee97;
         RIGHT: 37px;
     }
 }
@@ -1511,4 +1565,11 @@ header#main-header.et-fixed-header {
 }
 .destaques a.entry-featured-image-url {
     margin: -19px -19px 41px;
+}
+
+/*Icone hover - botao da home*/
+.et_pb_button:hover:after, .et_pb_more_button:hover:after, .et_pb_promo_button:hover:after, .et_pb_newsletter_button:hover:after, .et_pb_pricing_table_button:hover:after {
+    margin-left: 0;
+    opacity: 1;
+    margin-top: -5px;
 }

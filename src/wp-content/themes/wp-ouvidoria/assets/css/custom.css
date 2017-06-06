@@ -1470,12 +1470,12 @@ h4.widgettitle {
 }
 
 /*Menu*/
-ul.menu-barra-servico li {
+ul#menu-barra-servico li {
     display: inline-block;
     padding-right: 22px;
     font-size: 14px;
 }
-ul.menu-barra-servico li a {
+ul#menu-barra-servico li a {
     color: #FFFFFF;
     display: block;
     position: relative;

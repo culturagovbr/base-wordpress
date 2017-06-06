@@ -1489,11 +1489,17 @@ header#main-header {
     min-height: 39px;
 }
 .et_pb_column.et_pb_column_1_4.et_pb_column_4 {
-    margin-right: 67px !important;
+    margin-right: 58px !important;
+    margin-left: 3px !important;
+    width: 23%;
 }
 .et_pb_gutters3 .et_pb_column_1_4, .et_pb_gutters3.et_pb_row .et_pb_column_1_4 {
     width: 26.875%;
     overflow: hidden;
     margin-left: -48px !important;
     margin-right: -19px !important;
+}
+header#main-header.et-fixed-header {
+    position: relative !important;
+    top: 0 !important;
 }

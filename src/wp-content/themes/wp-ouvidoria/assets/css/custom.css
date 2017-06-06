@@ -1574,14 +1574,33 @@ header#main-header.et-fixed-header {
         height: auto;
     }
     .menu-responsivo {
-    display: block;
-    content: "MENU";
-    position: absolute;
-    z-index: 20600;
-    TOP: 15px;
-    FONT-SIZE: 20PX;
-    color: #f3ee97;
-    RIGHT: 37px;
+        display: block;
+        content: "MENU";
+        position: absolute;
+        z-index: 20600;
+        TOP: 15px;
+        FONT-SIZE: 20PX;
+        color: #f3ee97;
+        RIGHT: 37px;
+    }
+    nav#top-menu-nav {
+        background: rgba(8, 176, 97, 0.83);
+        top: 3px;
+        position: relative;
+        width: 100%;
+        top: 48px;
+        padding: 30px;
+    }
+    ul#menu-barra-servico li a {
+        color: #FFFFFF;
+        display: block;
+        position: relative;
+        color: #fff;
+        text-decoration: none;
+        -webkit-transition: all 0.4s ease-in-out;
+        -moz-transition: all 0.4s ease-in-out;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.4s ease-in-out;
     }
 }
 @media (min-width: 981px){

@@ -41,6 +41,9 @@ ul {
     vertical-align: bottom;
     border-radius: 4px;
 }
+.et_pb_widget_area.et_pb_widget_area_left.clearfix.et_pb_module.et_pb_bg_layout_light.et_pb_sidebar_0 {
+    border: 0;
+}
 
 /* ==========================================================================
 4 - Topo ou Cabeçalho
@@ -1505,4 +1508,7 @@ header#main-header.et-fixed-header {
 }
 .destaques .et_pb_column.et_pb_column_1_3.et_pb_column_6, .destaques .et_pb_column.et_pb_column_1_3.et_pb_column_8 {
     margin-right: 5.5%;
+}
+.destaques a.entry-featured-image-url {
+    margin: -19px -19px 41px;
 }

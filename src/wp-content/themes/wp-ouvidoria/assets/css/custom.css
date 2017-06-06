@@ -1470,8 +1470,21 @@ h4.widgettitle {
 }
 
 /*Menu*/
-#menu-barra-servico li {
+ul.menu-barra-servico li {
     display: inline-block;
     padding-right: 22px;
     font-size: 14px;
+}
+ul.menu-barra-servico li a {
+    color: #FFFFFF;
+    display: block;
+    position: relative;
+    color: #fff;
+    text-decoration: none;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}
+header#main-header {
+    min-height: 39px;
 }

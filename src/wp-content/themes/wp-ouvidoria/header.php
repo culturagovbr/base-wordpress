@@ -33,6 +33,12 @@
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
+<div id="barra-brasil" style="background:#7F7F7F; height: 20px; padding:0 0 0 10px;display:block;"> 
+    <ul id="menu-barra-temp" style="list-style:none;">
+        <li style="display:inline; float:left;padding-right:10px; margin-right:10px; border-right:1px solid #EDEDED"><a href="http://brasil.gov.br" style="font-family:sans,sans-serif; text-decoration:none; color:white;">Portal do Governo Brasileiro</a></li> 
+        <li><a style="font-family:sans,sans-serif; text-decoration:none; color:white;" href="http://epwg.governoeletronico.gov.br/barra/atualize.html">Atualize sua Barra de Governo</a></li>
+    </ul>
+</div>
 <div id="header" role="banner">
     <div class="clearfix">
         <ul id="accessibility">
@@ -274,29 +280,19 @@
                 <div id="et-top-navigation" data-height="<?php echo esc_attr( et_get_option( 'menu_height', '66' ) ); ?>" data-fixed-height="<?php echo esc_attr( et_get_option( 'minimized_menu_height', '40' ) ); ?>">
                     <?php if ( ! $et_slide_header || is_customize_preview() ) : ?>
                         <nav id="top-menu-nav">
-                        <?php
-                            $menuClass = 'nav';
-                            if ( 'on' == et_get_option( 'divi_disable_toptier' ) ) $menuClass .= ' et_disable_top_tier';
-                            $primaryNav = '';
-
-                            $primaryNav = wp_nav_menu( array( 'theme_location' => 'primary-menu', 'container' => '', 'fallback_cb' => '', 'menu_class' => $menuClass, 'menu_id' => 'top-menu', 'echo' => false ) );
-
-                            if ( '' == $primaryNav ) :
-                        ?>
-                            <ul id="top-menu" class="<?php echo esc_attr( $menuClass ); ?>">
-                                <?php if ( 'on' == et_get_option( 'divi_home_link' ) ) { ?>
-                                    <li <?php if ( is_home() ) echo( 'class="current_page_item"' ); ?>><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Home', 'Divi' ); ?></a></li>
-                                <?php }; ?>
-
-                                <?php show_page_menu( $menuClass, false, false ); ?>
-                                <?php show_categories_menu( $menuClass, false ); ?>
-                            </ul>
-                        <?php
-                            else :
-                                echo( $primaryNav );
-                            endif;
-                        ?>
+                            <?php if ( dynamic_sidebar('barra-servico') ) : else : endif; ?>
                         </nav>
+                    <?php endif; ?>
+
+                    <?php
+                    if ( ! $et_top_info_defined && ( ! $et_slide_header || is_customize_preview() ) ) {
+                        et_show_cart_total( array(
+                            'no_text' => true,
+                        ) );
+                    }
+                    ?>
+                    <?php if ( ! $et_slide_header || is_customize_preview() ) : ?>
+                        
                     <?php endif; ?>
 
                     <?php

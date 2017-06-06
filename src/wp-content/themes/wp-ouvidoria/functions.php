@@ -1,4 +1,23 @@
 <?php
+/**
+ * Criando uma area de widgets
+ *
+ */
+function widgets_novos_widgets_init() {
+
+    register_sidebar( array(
+        'name' => 'barra-servico',
+        'id' => 'barra-servico',
+        'before_widget' => '<div>',
+        'after_widget' => '</div>',
+        'before_title' => '<h2>',
+        'after_title' => '</h2>',
+    ) );
+}
+add_action( 'widgets_init', 'widgets_novos_widgets_init' );
+?>
+
+<?php
 // adicionando css que faz a função do divi custom css (Carrega por último)
 function divi_child_enqueue_styles() {
     // wp_enqueue_style( 'open-sans-font', 'https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' );

@@ -15,10 +15,10 @@ $('#divRss').FeedEk({
 
  /*Leitor de rss pagina noticias*/
     $('#rss-read').FeedEk({
-	FeedUrl:'http://www.cultura.gov.br/rss-backup/-/asset_publisher/PBe5d9MJmlrW/rss?p_p_cacheability=cacheLevelPage',
-	MaxCount: 20,
-	DateFormat: 'DD MMMM YYYY',
-	DateFormatLang: 'pt'
-
+		FeedUrl:'http://www.cultura.gov.br/rss-backup/-/asset_publisher/PBe5d9MJmlrW/rss?p_p_cacheability=cacheLevelPage',
+		MaxCount: 20,
+		DateFormat: 'DD MMMM YYYY',
+		DateFormatLang: 'pt'
+	});
 
 });

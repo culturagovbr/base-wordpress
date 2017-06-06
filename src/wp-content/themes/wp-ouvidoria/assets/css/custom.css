@@ -1544,6 +1544,8 @@ ul#menu-barra-servico li a {
 }
 header#main-header {
     min-height: 39px;
+    position: absolute !important;
+    top: 0 !important;
 }
 .home .et_pb_column.et_pb_column_1_4.et_pb_column_4 {
     margin-right: 58px !important;

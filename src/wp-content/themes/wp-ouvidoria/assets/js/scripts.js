@@ -1,8 +1,7 @@
 jQuery(document).ready(function ($) {
 	
 //*** Função Menu collapse responsivo*** 
-$("#et_mobile_nav_menu").on("click", function(){
-	console.log("teste menu");
+$(".menu-responsivo").on("click", function(){
     $("#top-menu-nav").toggleClass("menu-collapse");
 });
 

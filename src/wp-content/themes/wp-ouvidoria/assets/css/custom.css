@@ -1566,6 +1566,14 @@ header#main-header.et-fixed-header {
 }
 
 @media (max-width: 980px){
+    ul#menu-barra-servico {
+        background: rgba(27, 125, 79, 0.9);
+        margin-top: 45px;
+        border-radius: 0 0 4px 4px;
+    }
+    .menu-collapse ul#menu-barra-servico {
+        height: 0;
+    }
     ul#menu-barra-servico li {
         padding-right: 22px;
         font-size: 14px;
@@ -1579,10 +1587,10 @@ header#main-header.et-fixed-header {
         content: "MENU";
         position: absolute;
         z-index: 20600;
-        TOP: 15px;
+        TOP: 10px;
         FONT-SIZE: 20PX;
         color: #f3ee97;
-        RIGHT: 37px;
+        RIGHT: 7px;
     }
     nav#top-menu-nav {
         background: none;

@@ -2,18 +2,18 @@
 Contributors: mikechallis
 Author URI: http://www.642weather.com/weather/scripts.php
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KXJWLPPWZG83S
-Tags: captcha, recaptcha, buddypress, woocommerce, wpforo, multisite, jetpack, comment, comments, login, register, anti-spam, spam, security
+Tags: captcha, recaptcha, buddypress, bbpress, woocommerce, wpforo, multisite, jetpack, comment, comments, login, register, anti-spam, spam, security
 Requires at least: 3.6.0
-Tested up to: 4.7.2
-Stable tag: 3.0.0.3
+Tested up to: 4.7
+Stable tag: 3.0.0.18
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Adds Secure Image CAPTCHA on the forms for comments, login, registration, lost password, BuddyPress register, wpForo Register, and WooCommerce checkout.
+Adds Secure Image CAPTCHA on the forms for comments, login, registration, lost password, BuddyPress, bbPress, wpForo, and WooCommerce checkout.
 
 == Description ==
 
-Adds Secure Image CAPTCHA anti-spam to WordPress pages for comments, login, registration, lost password, BuddyPress register, wpForo Register, Jetpack Contact Form, and WooCommerce checkout.
+Adds Secure Image CAPTCHA anti-spam to WordPress pages for comments, login, registration, lost password, BuddyPress register, bbPress register, wpForo register, bbPress New Topic and Reply to Topic Forms, Jetpack Contact Form, and WooCommerce checkout.
 In order to post comments, login, or register, users will have to pass the CAPTCHA test. This prevents spam from automated bots, adds security, and is even compatible Akismet. Compatible with Multisite Network Activate. 
 If you don't like image captcha and code entry, you can uninstall this plugin and try my new plugin [Fast Secure reCAPTCHA](https://wordpress.org/plugins/fast-secure-recaptcha/) 
 
@@ -26,14 +26,15 @@ Features:
 --------
  * Secure Image CAPTCHA.
  * Optional setting to hide the Comments CAPTCHA from logged in users.
- * Enable or disable the CAPTCHA on any of the pages for comments, login, registration, lost password, BuddyPress register, wpForo Register, Jetpack Contact Form, and WooCommerce checkout.
- * Login form - WordPress, BuddyPress, wpForo Forum, WooCommerce, WP Multisite
- * Lost Password form - WordPress, BuddyPress, wpForo Forum, WooCommerce, WP Multisite. 
- * Register form - WordPress, BuddyPress, wpForo Forum, WooCommerce, WP Multisite.
+ * Enable or disable the CAPTCHA on any of the pages for comments, login, registration, lost password, BuddyPress register, bbPress register, wpForo Register, Jetpack Contact Form, and WooCommerce checkout.
+ * Login form - WordPress, BuddyPress, bbPress, wpForo Forum, WooCommerce, WP Multisite
+ * Lost Password form - WordPress, BuddyPress, bbPress, wpForo Forum, WooCommerce, WP Multisite. 
+ * Register form - WordPress, BuddyPress, bbPress, wpForo Forum, WooCommerce, WP Multisite.
  * Comment form - WordPress, WP Multisite.  
  * Signup new site - WP Multisite.
  * Checkout form - WooCommerce.
  * Jetpack Contact Form.
+ * bbPress New Topic, Reply to Topic Forms.
  * You can disable any of the forms you don't want CAPTCHA on.
  * Style however you need with CSS.
  * I18n language translation support.
@@ -145,7 +146,6 @@ If you need to adjust the captcha input form colors, [See this FAQ](http://www.f
 
 
 = Troubleshooting the CAPTCHA image or form field does not display, or it does not block the form properly =
-
 Another plugin could be causing a conflict. 
 Temporarily deactivate other plugins to see if the CAPTCHA starts working. 
 
@@ -162,8 +162,17 @@ You may have a theme that has an improperly coded comments.php
 When diagnosing missing CAPTCHA field on comment form....
 
 Make sure your theme has `<?php comment_form(); ?>`
-inside `/wp-content/themes/[your_theme]/comments.php`. (look inside the Twenty Ten theme's comments.php for proper example)
+inside `/wp-content/themes/[your_theme]/comments.php`. (look inside the Twenty Ten theme's comments.php for proper example.
 
+Make sure that the theme comments.php file contains at least one or more of the standard hooks: 
+`do_action ( 'comment_form_logged_in_after' );`
+`do_action ( 'comment_form_after_fields' );` 
+`do_action ( 'comment_form' );` 
+If you didn't find one of these hooks, then put this string in the comment form: 
+`<?php do_action( 'comment_form', $post->ID ); ?>` 
+
+= The CAPTCHA and input field does not display on JetPack comments form =
+If you have JetPack comments module enabled then captcha/recaptca/anti-spam plugins will not work on your comments form because the comments are then loaded in an iFrame from WordPress.com The solution is to disable the comments module in JetPack, then the CAPTCHA plugin will work correctly on your comments form.
 
 = Troubleshooting if the CAPTCHA image itself is not being shown on the comment form: =
 
@@ -247,6 +256,53 @@ Please read [How to update a translation of SI Captcha Anti-Spam for WordPress](
 
 
 == Changelog ==
+
+= 3.0.0.19 =
+* (05 Jun 2017) - Fix duplicate si_captcha_code ID.
+
+= 3.0.0.18 =
+* (05 Jun 2017) - Fix possible empty needle error.
+
+= 3.0.0.17 =
+* (13 May 2017) - Fix possible Catchable fatal error on WooCommerce password reset.
+
+= 3.0.0.16 =
+* (09 May 2017) - Fix typo in code causing validation error on WooCommerce checkout. Sorry for any inconvenience.
+
+= 3.0.0.15 =
+* (04 May 2017) - Revert changes to last update to fix missing CAPTCHA on JetPack Contact form.
+
+= 3.0.0.14 =
+* (04 May 2017) - Fix rare but possible double CAPTCHA on JetPack Contact form.
+
+= 3.0.0.13 =
+* (02 May 2017) - Fix "You have selected an incorrect CAPTCHA value" error on WooCommerce checkout page if "Create an account" is checked and Enable CAPTCHA on WooCommerce checkout is disabled.
+
+= 3.0.0.12 =
+* (21 Apr 2017) - Fix "You have selected an incorrect CAPTCHA value" error on WooCommerce checkout page if "Create an account" is checked.
+
+= 3.0.0.11 =
+* (20 Apr 2017) - Fix WooCommerce /my-account/lost-password/ page validation error causes cannot click "Reset password".
+
+= 3.0.0.10 =
+* (10 Apr 2017) - Fix double CAPTCHA WooCommerce register My Account forms WooCommerce 2.x
+
+= 3.0.0.9 =
+* (10 Apr 2017) - Fix CAPTCHA did not work on WooCommerce register My Account forms since WooCommerce 3.
+
+= 3.0.0.8 =
+* (21 Mar 2017) - Fixed error caused by uninitialized value si_captcha_login on line 764.
+
+= 3.0.0.7 =
+* (03 Mar 2017) - Fixed CAPTCHA not loading on register form on BuddyPress when Extended Profiles is disabled.
+- Fixed CAPTCHA not loading on JetPack Contact Form in a widget.
+
+= 3.0.0.6 =
+* (27 Feb 2017) - Fixed WooCommerce checkout CAPTCHA was still on the form when not enabled.
+
+= 3.0.0.5 =
+* (25 Feb 2017) - Fixed bbPress Register form did not have the CAPTCHA.
+- Added support for bbPress New Topic and Reply to Topic Forms.
 
 = 3.0.0.4 =
 * (18 Feb 2017) - Added CAPTCHA for Jetpack Contact Form.

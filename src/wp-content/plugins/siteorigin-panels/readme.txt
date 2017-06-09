@@ -1,9 +1,9 @@
 === Page Builder by SiteOrigin ===
 Tags: page builder, responsive, widget, widgets, builder, page, admin, gallery, content, cms, pages, post, css, layout, grid
 Requires at least: 4.4
-Tested up to: 4.7.3
-Stable tag: 2.4.25
-Build time: 2017-04-19T17:12:54+02:00
+Tested up to: 4.8
+Stable tag: 2.5.4
+Build time: 2017-06-08T10:19:14+02:00
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 Donate link: https://siteorigin.com/downloads/contribution/
@@ -95,6 +95,22 @@ Page Builder is actively developed and updated, so generally I'd recommend that 
 We've tried to ensure that Page Builder is compatible with most plugin widgets. It's best to just download Page Builder and test for yourself.
 
 == Changelog ==
+
+= 2.5.5 - 8 June 2017 =
+* Ensure form fields name attributes are correct when using the Widgets Bundle post loop helper.
+* Prevent display of unimplemented preview button for Post Loop widget.
+
+= 2.5.4 - 1 June 2017 =
+* Compatibility with WordPress 4.8 widgets.
+* Refactored core widgets.
+* Compatibility with Widgets Bundle 1.9 posts selector.
+* Ensure custom CSS added in element styles is properly formed.
+
+= 2.5.3 - 9 May 2017 =
+* Added legacy function wrapper for siteorigin_panels_generate_css
+* Added more cache render checks
+* Handle translation of Learn submodule strings
+* Added screenshot argument to preview URL
 
 = 2.5.2 - 19 April 2017 =
 * Fixed RTL layouts for new flexbox layout.

@@ -37,8 +37,9 @@ function flamingo_contact_submit_meta_box( $post ) {
 function flamingo_contact_tags_meta_box( $post ) {
 	$taxonomy = get_taxonomy( Flamingo_Contact::contact_tag_taxonomy );
 
-	if ( ! $taxonomy )
+	if ( ! $taxonomy ) {
 		return;
+	}
 
 	$tags = wp_get_post_terms( $post->id, $taxonomy->name );
 	$tag_names = $tag_ids = array();
@@ -57,10 +58,12 @@ function flamingo_contact_tags_meta_box( $post ) {
 		'order' => 'DESC',
 		'number' => 10,
 		'exclude' => $tag_ids,
-		'fields' => 'names' ) );
+		'fields' => 'names',
+	) );
 
-	if ( is_wp_error( $most_used_tags ) )
+	if ( is_wp_error( $most_used_tags ) ) {
 		$most_used_tags = array();
+	}
 
 ?>
 <div class="tagsdiv" id="<?php echo esc_attr( $taxonomy->name ); ?>">
@@ -78,17 +81,21 @@ function flamingo_contact_tags_meta_box( $post ) {
 </p>
 <script type='text/javascript'>
 /* <![CDATA[ */
-(function($) {
-$(function() {
-	$('a.append-this-to-contact-tags').click(function() {
-		var tagsinput = $('#tax-input-<?php echo esc_js( $taxonomy->name ); ?>');
-		tagsinput.val($.trim(tagsinput.val()));
-		if (tagsinput.val()) tagsinput.val(tagsinput.val() + ', ');
-		tagsinput.val(tagsinput.val() + $(this).text());
-		return false;
-	});
-});
-})(jQuery);
+( function( $ ) {
+	$( function() {
+		$( 'a.append-this-to-contact-tags' ).click( function() {
+			var tagsinput = $( '#tax-input-<?php echo esc_js( $taxonomy->name ); ?>' );
+			tagsinput.val( $.trim( tagsinput.val() ) );
+
+			if ( tagsinput.val() ) {
+				tagsinput.val( tagsinput.val() + ', ' );
+			}
+
+			tagsinput.val( tagsinput.val() + $( this ).text() );
+			return false;
+		} );
+	} );
+} )( jQuery );
 /* ]]> */
 </script>
 <?php endif; ?>
@@ -104,14 +111,16 @@ function flamingo_inbound_submit_meta_box( $post ) {
 <div id="delete-action">
 <?php
 	if ( current_user_can( 'flamingo_delete_inbound_message', $post->id ) ) {
-		if ( ! EMPTY_TRASH_DAYS )
+		if ( ! EMPTY_TRASH_DAYS ) {
 			$delete_text = __( 'Delete Permanently', 'flamingo' );
-		else
+		} else {
 			$delete_text = __( 'Move to Trash', 'flamingo' );
+		}
 
 		$delete_link = admin_url(
 			sprintf( 'admin.php?page=flamingo_inbound&post=%s&action=trash', $post->id ) );
-		$delete_link = wp_nonce_url( $delete_link, 'flamingo-trash-inbound-message_' . $post->id );
+		$delete_link = wp_nonce_url( $delete_link,
+			'flamingo-trash-inbound-message_' . $post->id );
 
 ?><a class="submitdelete deletion" href="<?php echo $delete_link; ?>"><?php echo esc_html( $delete_text ); ?></a><?php } ?>
 </div>
@@ -222,14 +231,16 @@ function flamingo_outbound_submit_meta_box( $post ) {
 <div id="delete-action">
 <?php
 	if ( current_user_can( 'flamingo_delete_outbound_message', $post->id ) ) {
-		if ( ! EMPTY_TRASH_DAYS )
+		if ( ! EMPTY_TRASH_DAYS ) {
 			$delete_text = __( 'Delete Permanently', 'flamingo' );
-		else
+		} else {
 			$delete_text = __( 'Move to Trash', 'flamingo' );
+		}
 
 		$delete_link = admin_url(
 			sprintf( 'admin.php?page=flamingo_outbound&post=%s&action=trash', $post->id ) );
-		$delete_link = wp_nonce_url( $delete_link, 'flamingo-trash-outbound-message_' . $post->id );
+		$delete_link = wp_nonce_url( $delete_link,
+			'flamingo-trash-outbound-message_' . $post->id );
 
 ?><a class="submitdelete deletion" href="<?php echo $delete_link; ?>"><?php echo esc_html( $delete_text ); ?></a><?php } ?>
 </div>

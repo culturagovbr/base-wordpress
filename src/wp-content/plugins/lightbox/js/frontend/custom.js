@@ -80,7 +80,7 @@ jQuery(document).ready(function () {
         });
 
         jQuery('a[href*="youtube.com"],a[href*="youtu.bebe"]').not('a[href*="/channel/"]').not('a[href*="/user/"]').not('.huge_it_gallery_item').not('.huge_it_videogallery_item').not('.huge_it_portfolio_item').each(function () {
-            jQuery(this).addClass('youtube').addClass('responsove_lightbox');
+            jQuery(this).addClass('youtube').addClass('responsive_lightbox');
             var url = jQuery(this).attr('href');
             var videoid = url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
             if (videoid) {
@@ -91,25 +91,29 @@ jQuery(document).ready(function () {
         jQuery('a[href*="vimeo.com"]').not('a[href$="vimeo.com"]').not('a[href*="/channels/"]').not('.huge_it_gallery_item').not('.huge_it_videogallery_item').each(function () {
             var href = jQuery(this).attr("href").split("/");
             if (Number(href[href.length - 1]) == Number(href[href.length - 1])) {
-                jQuery(this).addClass('vimeo').addClass('responsove_lightbox');
+                jQuery(this).addClass('vimeo').addClass('responsive_lightbox');
                 /*var vimeourl = jQuery(this).attr('href');
                  var vimeoid = vimeourl.substring(vimeourl.lastIndexOf("/") + 1, vimeourl.length);
                  jQuery(this).attr('href', 'http://player.vimeo.com/video/' + vimeoid);*/
             }
         });
 
-        img.addClass('responsove_lightbox');
+        jQuery('a[href*="dailymotion.com"]').each(function () {
+            jQuery(this).addClass('dailymotion').addClass('responsive_lightbox');
+        });
 
-        jQuery("body a[href$='.jpg'], body a[href$='.jpeg'], body a[href$='.png'], body a[href$='.gif']").addClass('responsove_lightbox');
+        img.removeClass('cboxElement').addClass('responsive_lightbox');
+
+        jQuery("body a[href$='.jpg'], body a[href$='.jpeg'], body a[href$='.png'], body a[href$='.gif']").addClass('responsive_lightbox');
         // solve conflict with Portfolio Gallery
-        jQuery('.portfolio-gallery-content a').removeClass('responsove_lightbox');
+        jQuery('.portfolio-gallery-content a').removeClass('responsive_lightbox');
         // solve conflict with Gallery
-        jQuery('.gallery-img-content a').removeClass('responsove_lightbox');
+        jQuery('.gallery-img-content a').removeClass('responsive_lightbox');
         // solve conflict with Gallery Video
-        jQuery('.gallery-video-content a').removeClass('responsove_lightbox');
+        jQuery('.gallery-video-content a').removeClass('responsive_lightbox');
         // solve conflict with Catalog
-        jQuery('.huge_it_catalog_container a').removeClass('responsove_lightbox');
-        jQuery('section[id^="huge_it_catalog_content_"] a, div[id^="main-slider_"] a').removeClass('responsove_lightbox');
+        jQuery('.huge_it_catalog_container a').removeClass('responsive_lightbox');
+        jQuery('section[id^="huge_it_catalog_content_"] a, div[id^="main-slider_"] a').removeClass('responsive_lightbox');
 
     }
 });
@@ -128,11 +132,11 @@ jQuery(window).load(function(){
     jQuery.post(ajaxUrl, data, function (response) {
         if(response) {
             response = JSON.parse(response);
-            for(var i = 0; i < jQuery("a.responsove_lightbox").length; i++){
-                jQuery("a.responsove_lightbox").eq(i).find('img').attr('data-description', response[i]);
+            for(var i = 0; i < jQuery("a.responsive_lightbox").length; i++){
+                jQuery("a.responsive_lightbox").eq(i).find('img').attr('data-description', response[i]);
             }
         }
     });
 
-    jQuery('.responsove_lightbox').lightbox();
+    jQuery('.responsive_lightbox').lightbox();
 });		

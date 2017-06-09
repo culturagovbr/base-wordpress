@@ -1,8 +1,9 @@
 <?php
 
 // don't load directly
-if ( ! defined( 'ABSPATH' ) )
+if ( ! defined( 'ABSPATH' ) ) {
 	die( '-1' );
+}
 
 if ( ! empty( $post->id ) ) {
 	$nonce_action = 'flamingo-update-outbound_' . $post->id;

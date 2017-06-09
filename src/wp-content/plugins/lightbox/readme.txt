@@ -3,8 +3,8 @@ Contributors: Huge-IT
 Donate link: https://huge-it.com/lightbox/
 Tags: lightbox, popup, popup images, lightbox popup, popup box, wordpress lightbox, wordpress popup, video lightbox, responsive lightbox, WP Lightbox, light box, lightbox youtube,
 Requires at least: 3.0.1
-Tested up to: 4.7.3
-Stable tag: 2.0.7
+Tested up to: 4.7.5
+Stable tag: 2.0.9
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,7 +19,7 @@ Lightbox is the perfect tool for viewing photos.
 * [Lightbox FAQ](https://huge-it.com/wordpress-lightbox-faq/)
 * [Lightbox User Manual](https://huge-it.com/wordpress-lightbox-user-manual/)
 * [Lightbox Support](https://huge-it.com/contact-us/)
-* [Lightbox Forum](https://huge-it.com/forums/forum/wordpress/wordpress-lightbox/)
+* [Lightbox Forum](https://wordpress.org/support/plugin/lightbox)
 * [Lightbox Github Project](https://github.com/Huge-IT/lightbox)
 
 https://www.youtube.com/watch?v=pKcpqKy5I70
@@ -184,6 +184,20 @@ If you use multi site (have number of sites) when you install a plugin in main s
 If you think, that you found a bug in our [WordPress Lightbox](https://huge-it.com/lightbox/) plugin or have any question contact us at [info@huge-it.com](mailto:info@huge-it.com)
 
 == Changelog ==
+
+= 2.0.9 =
+* Lightbox option effects (when you open the image/video or close).
+
+= 2.0.8 =
+* 1) We have added a new option of full screen
+* 2) We have changed the logo of full screen according to its function
+* 3) We have fixed the issue with zoom option where after changing the first photo that is zoomed to the second one the 2nd appeared to be bigger than the original in double size. 
+* 4) We have fixed the issue with the lightbox not appearing on Safari browsers both on Mac and iOS devices, when the watermark is active. Now the plugin shows image only. 
+* 5) We have fixed minor security issues with SQL by adding additional escapes. 
+* 6) We have added DailyMotion video support to the plugin
+* 7) We have added an option allowing to enable right click options
+* 8) We have added advanced arrow options and effects for next and previous buttons 
+* 9) We have made some bug fixes, code optimization as well as edited some front end design in order to meet modern UX/UI standards
 
 = 2.0.7 =
 * 1) We have added 8 new colorful frams to lightbox to add to images. 3 of them are available in Lite version.

@@ -145,3 +145,18 @@ function login_message_title() {
     return '<h3>Para visualizar esse site é necessário realizar o login abaixo.</h3>';
 }
 add_filter( 'login_message', 'login_message_title' );
+
+/**
+* Adiciona permissões para gerir usuários ao perfil de "Editor"
+* 
+*/
+function editor_add_cap() {
+    $edit_editor = get_role('editor'); // Get the user role
+    $edit_editor->add_cap('edit_users');
+    $edit_editor->add_cap('list_users');
+    $edit_editor->add_cap('promote_users');
+    $edit_editor->add_cap('create_users');
+    $edit_editor->add_cap('add_users');
+    $edit_editor->add_cap('delete_users');
+}
+add_action( 'admin_init', 'editor_add_cap', 1 );

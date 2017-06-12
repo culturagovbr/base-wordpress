@@ -18,9 +18,11 @@ class Flamingo_Outbound_Message {
 		register_post_type( self::post_type, array(
 			'labels' => array(
 				'name' => __( 'Flamingo Outbound Messages', 'flamingo' ),
-				'singular_name' => __( 'Flamingo Outbound Message', 'flamingo' ) ),
+				'singular_name' => __( 'Flamingo Outbound Message', 'flamingo' ),
+			),
 			'rewrite' => false,
-			'query_var' => false ) );
+			'query_var' => false,
+		) );
 	}
 
 	public static function find( $args = '' ) {
@@ -32,7 +34,8 @@ class Flamingo_Outbound_Message {
 			'meta_key' => '',
 			'meta_value' => '',
 			'post_status' => 'any',
-			'tax_query' => array() );
+			'tax_query' => array(),
+		);
 
 		$args = wp_parse_args( $args, $defaults );
 
@@ -45,8 +48,9 @@ class Flamingo_Outbound_Message {
 
 		$objs = array();
 
-		foreach ( (array) $posts as $post )
+		foreach ( (array) $posts as $post ) {
 			$objs[] = new self( $post );
+		}
 
 		return $objs;
 	}
@@ -57,7 +61,8 @@ class Flamingo_Outbound_Message {
 			'from' => '',
 			'subject' => '',
 			'body' => '',
-			'meta' => array() );
+			'meta' => array(),
+		);
 
 		$args = wp_parse_args( $args, $defaults );
 
@@ -77,7 +82,8 @@ class Flamingo_Outbound_Message {
 		if ( ! empty( $post ) && ( $post = get_post( $post ) ) ) {
 			$this->id = $post->ID;
 
-			$this->date = get_the_time( __( 'Y/m/d g:i:s A', 'flamingo' ), $this->id );
+			$this->date = get_the_time(
+				__( 'Y/m/d g:i:s A', 'flamingo' ), $this->id );
 			$this->to = get_post_meta( $post->ID, '_to', true );
 			$this->from = get_post_meta( $post->ID, '_from', true );
 			$this->subject = get_post_meta( $post->ID, '_subject', true );
@@ -86,10 +92,11 @@ class Flamingo_Outbound_Message {
 	}
 
 	public function save() {
-		if ( ! empty( $this->subject ) )
+		if ( ! empty( $this->subject ) ) {
 			$post_title = $this->subject;
-		else
+		} else {
 			$post_title = __( '(No Title)', 'flamingo' );
+		}
 
 		$post_content = implode( "\n", array(
 			$this->to, $this->from, $this->subject, $this->body ) );
@@ -101,7 +108,8 @@ class Flamingo_Outbound_Message {
 			'post_type' => self::post_type,
 			'post_status' => $post_status,
 			'post_title' => $post_title,
-			'post_content' => $post_content );
+			'post_content' => $post_content,
+		);
 
 		$post_id = wp_insert_post( $postarr );
 
@@ -117,11 +125,13 @@ class Flamingo_Outbound_Message {
 	}
 
 	public function trash() {
-		if ( empty( $this->id ) )
+		if ( empty( $this->id ) ) {
 			return;
+		}
 
-		if ( ! EMPTY_TRASH_DAYS )
+		if ( ! EMPTY_TRASH_DAYS ) {
 			return $this->delete();
+		}
 
 		$post = wp_trash_post( $this->id );
 
@@ -129,8 +139,9 @@ class Flamingo_Outbound_Message {
 	}
 
 	public function untrash() {
-		if ( empty( $this->id ) )
+		if ( empty( $this->id ) ) {
 			return;
+		}
 
 		$post = wp_untrash_post( $this->id );
 
@@ -138,11 +149,13 @@ class Flamingo_Outbound_Message {
 	}
 
 	public function delete() {
-		if ( empty( $this->id ) )
+		if ( empty( $this->id ) ) {
 			return;
+		}
 
-		if ( $post = wp_delete_post( $this->id, true ) )
+		if ( $post = wp_delete_post( $this->id, true ) ) {
 			$this->id = 0;
+		}
 
 		return (bool) $post;
 	}

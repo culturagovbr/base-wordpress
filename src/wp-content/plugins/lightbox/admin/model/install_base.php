@@ -56,3 +56,19 @@ if( !get_option( 'hugeit_lightbox_showBorder' ) ) {
 if( !get_option( 'hugeit_lightbox_imageframe' ) ) {
     update_option('hugeit_lightbox_imageframe', 'frame_0');
 }
+
+if( !get_option( 'hugeit_lightbox_fullscreen_effect' ) ) {
+    update_option('hugeit_lightbox_fullscreen_effect', 'false');
+}
+
+if( !get_option( 'hugeit_lightbox_rightclick_protection' ) ) {
+    update_option('hugeit_lightbox_rightclick_protection', 'true');
+}
+
+if( !get_option( 'hugeit_lightbox_arrows_hover_effect' ) ) {
+    update_option('hugeit_lightbox_arrows_hover_effect', '0');
+}
+
+if( !get_option( 'lightbox_open_close_effect' ) ) {
+    update_option('lightbox_open_close_effect', '0');
+}

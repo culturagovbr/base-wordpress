@@ -28,6 +28,8 @@ if ( strpos(strtolower($_SERVER['SCRIPT_NAME']),strtolower(basename(__FILE__))) 
          'lostpwd' =>               (isset( $_POST['si_captcha_lostpwd'] ) ) ? 'true' : 'false',
          'wc_checkout' =>           (isset( $_POST['si_captcha_wc_checkout'] ) ) ? 'true' : 'false',
          'jetpack' =>               (isset( $_POST['si_captcha_jetpack'] ) ) ? 'true' : 'false',
+         'bbpress_topic' =>         (isset( $_POST['si_captcha_bbpress_topic'] ) ) ? 'true' : 'false',
+         'bbpress_reply' =>         (isset( $_POST['si_captcha_bbpress_reply'] ) ) ? 'true' : 'false',
          'enable_session' =>        (isset( $_POST['si_captcha_enable_session'] ) ) ? 'true' : 'false',
          'captcha_small' =>         (isset( $_POST['si_captcha_captcha_small'] ) ) ? 'true' : 'false',
          'external_css' =>          (isset( $_POST['si_captcha_external_css'] ) ) ? 'true' : 'false',
@@ -294,7 +296,7 @@ if (isset($api->version)) {
     <label for="si_captcha_wc_checkout"><?php _e('WooCommerce checkout.', 'si-captcha') ?></label>
     <a style="cursor:pointer;" title="<?php esc_attr_e('Click for Help!', 'si-captcha'); ?>" onclick="toggleVisibility('si_captcha_wc_checkout_tip');"><?php _e('help', 'si-captcha'); ?></a>
     <div class="fscf_tip" id="si_captcha_wc_checkout_tip">
-    <?php _e('Require that the user pass a CAPTCHA test on WooCommerce checkout form.', 'si-captcha') ?>
+    <?php _e('Require that the user pass a CAPTCHA test on WooCommerce checkout form when not logged in.', 'si-captcha') ?>
     </div>
     <br />
 
@@ -303,6 +305,22 @@ if (isset($api->version)) {
     <a style="cursor:pointer;" title="<?php esc_attr_e('Click for Help!', 'si-captcha'); ?>" onclick="toggleVisibility('si_captcha_jetpack_tip');"><?php _e('help', 'si-captcha'); ?></a>
     <div class="fscf_tip" id="si_captcha_jetpack_tip">
     <?php _e('Require that the user pass a CAPTCHA test on Jetpack Contact Form.', 'si-captcha') ?>
+    </div>
+    <br />
+
+    <input name="si_captcha_bbpress_topic" id="si_captcha_bbpress_topic" type="checkbox" <?php if ( $si_captcha_opt['bbpress_topic'] == 'true' ) echo ' checked="checked" '; ?> />
+    <label for="si_captcha_bbpress_topic"><?php _e('bbPress New Topic Form.', 'si-captcha') ?></label>
+    <a style="cursor:pointer;" title="<?php esc_attr_e('Click for Help!', 'si-captcha'); ?>" onclick="toggleVisibility('si_captcha_bbpress_topic_tip');"><?php _e('help', 'si-captcha'); ?></a>
+    <div class="fscf_tip" id="si_captcha_bbpress_topic_tip">
+    <?php _e('Require that the user pass a CAPTCHA test on bbPress New Topic Form.', 'si-captcha') ?>
+    </div>
+    <br />
+
+    <input name="si_captcha_bbpress_reply" id="si_captcha_bbpress_reply" type="checkbox" <?php if ( $si_captcha_opt['bbpress_reply'] == 'true' ) echo ' checked="checked" '; ?> />
+    <label for="si_captcha_bbpress_reply"><?php _e('bbPress Reply to Topic Form.', 'si-captcha') ?></label>
+    <a style="cursor:pointer;" title="<?php esc_attr_e('Click for Help!', 'si-captcha'); ?>" onclick="toggleVisibility('si_captcha_bbpress_reply_tip');"><?php _e('help', 'si-captcha'); ?></a>
+    <div class="fscf_tip" id="si_captcha_bbpress_reply_tip">
+    <?php _e('Require that the user pass a CAPTCHA test on bbPress Reply to Topic Form.', 'si-captcha') ?>
     </div>
     <br />
 

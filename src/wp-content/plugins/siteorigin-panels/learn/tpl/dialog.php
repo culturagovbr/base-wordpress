@@ -7,19 +7,9 @@ $user = wp_get_current_user();
 	<div id="siteorigin-learn-overlay"></div>
 	<div id="siteorigin-learn-dialog">
 
-        <h4 class="video-title"></h4>
-
 		<div class="poster-wrapper">
 			<img src="" width="640px" height="360px" class="main-poster" />
-
-            <div class="video-play-info">
-                <div class="video-play-info-text">
-                    <?php _e( 'Watch Intro Video', 'siteorigin-panels' ) ?>
-                    <small><?php _e( 'Loaded from Vimeo Servers', 'siteorigin-panels' ) ?></small>
-                </div>
-            </div>
-
-            <img src="<?php echo plugin_dir_url( __FILE__ ) . '../img/play.svg' ?>" width="640px" height="58px" class="play-button" />
+			<img src="<?php echo plugin_dir_url( __FILE__ ) . '../img/play.svg' ?>" width="48px" height="48px" class="play-button" />
 		</div>
 		<div class="video-iframe">
 		</div>

@@ -25,7 +25,7 @@ $path_site2 = plugins_url( "../../images", __FILE__ );
 		<a target="_blank" href="https://wordpress.org/support/plugin/lightbox/reviews/">Rate Us</a>
 		<a target="_blank" href="https://goo.gl/4Zm1GL">Full Demo</a>
 		<a target="_blank" href="https://goo.gl/PscxCd">FAQ</a>
-		<a target="_blank" href="http://huge-it.com/contact-us/">Contact Us</a>
+		<a target="_blank" href="https://wordpress.org/support/plugin/lightbox">Contact Us</a>
 	</div>
 	<div class="description_text"><p>This is the LITE version of the plugin. Click "GET THE FULL VERSION"
 			for more advanced options. We appreciate every customer.</p></div>

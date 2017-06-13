@@ -16,7 +16,7 @@
         this.lightboxModul = {};
         this.$item = '';
         this.$cont = '';
-        this.$items = this.$body.find('a.responsove_lightbox');
+        this.$items = this.$body.find('a.responsive_lightbox');
 
         this.settings = $.extend({}, this.constructor.defaults, options);
 
@@ -32,11 +32,11 @@
         slideAnimationType: hugeit_gen_resp_lightbox_obj.hugeit_lightbox_slideAnimationType, /*  effect_1   effect_2    effect_3
          effect_4   effect_5    effect_6
          effect_7   effect_8    effect_9   */
-        lightboxView: hugeit_resp_lightbox_obj.hugeit_lightbox_lightboxView,              //  view1, view2, view3, view4, view5
+        lightboxView: hugeit_resp_lightbox_obj.hugeit_lightbox_lightboxView,              //  view1, view2, view3, view4, view5, view6
         speed: hugeit_resp_lightbox_obj.hugeit_lightbox_speed_new,
         width: hugeit_resp_lightbox_obj.hugeit_lightbox_width_new + '%',
         height: hugeit_resp_lightbox_obj.hugeit_lightbox_height_new + '%',
-        videoMaxWidth: hugeit_resp_lightbox_obj.hugeit_lightbox_videoMaxWidth,
+        videoMaxWidth: '700',
         sizeFix: true, //not for option
         overlayDuration: +hugeit_gen_resp_lightbox_obj.hugeit_lightbox_overlayDuration,
         slideAnimation: true, //not for option
@@ -72,6 +72,7 @@
         wURL: hugeit_resp_lightbox_obj.hugeit_lightbox_watermark_link,
         watermarkURL: hugeit_resp_lightbox_obj.hugeit_lightbox_watermark_url,
         wURLnewTab: hugeit_resp_lightbox_obj.hugeit_lightbox_watermark_url_new_tab,
+        openCloseType: hugeit_resp_lightbox_obj.lightbox_open_close_effect,
         share: {
             facebookButton: hugeit_gen_resp_lightbox_obj.hugeit_lightbox_facebookButton,
             twitterButton: hugeit_gen_resp_lightbox_obj.hugeit_lightbox_twitterButton,
@@ -90,7 +91,79 @@
     Lightbox.prototype.init = function () {
 
         var $object = this,
-            $hash;
+            $hash,
+            $openCloseType;
+
+        switch(this.settings.openCloseType){
+            case '0':
+                $openCloseType = {
+                    0: 'open_0',
+                    1: 'close_0'
+                };
+                break;
+            case '1':
+                $openCloseType = {
+                    0: 'open_1',
+                    1: 'close_1'
+                };
+                break;
+            case '2':
+                $openCloseType = {
+                    0: 'open_1_r',
+                    1: 'close_1_r'
+                };
+                break;
+            case '3':
+                $openCloseType = {
+                    0: 'open_2',
+                    1: 'close_2'
+                };
+                break;
+            case '4':
+                $openCloseType = {
+                    0: 'open_2_r',
+                    1: 'close_2_r'
+                };
+                break;
+            case '5':
+                $openCloseType = {
+                    0: 'open_3',
+                    1: 'close_3'
+                };
+                break;
+            case '6':
+                $openCloseType = {
+                    0: 'open_3_r',
+                    1: 'close_3_r'
+                };
+                break;
+            case '7':
+                $openCloseType = {
+                    0: 'open_4',
+                    1: 'close_4'
+                };
+                break;
+            case '8':
+                $openCloseType = {
+                    0: 'open_4_r',
+                    1: 'close_4_r'
+                };
+                break;
+            case '9':
+                $openCloseType = {
+                    0: 'open_5',
+                    1: 'close_5'
+                };
+                break;
+            case '10':
+                $openCloseType = {
+                    0: 'open_5_r',
+                    1: 'close_5_r'
+                };
+                break;
+        }
+
+        this.settings.openCloseType = $openCloseType;
 
         $hash = window.location.hash;
 
@@ -189,10 +262,12 @@
             subHtmlCont1 = '', subHtmlCont2 = '', subHtmlCont3 = '',
             close1 = '', close2 = '', socialIcons = '',
             template, $arrows, $next, $prev,
-            $_next, $_prev, $close_bg, $download_bg, $download_bg_, $contInner;
+            $_next, $_prev, $close_bg, $download_bg, $download_bg_, $contInner, $view;
+
+        $view = (this.settings.lightboxView === 'view6') ? 'rwd-view6' : '';
 
         this.$body.append(
-            this.objects.overlay = $('<div class="' + this.settings.classPrefix + 'overlay"></div>')
+            this.objects.overlay = $('<div class="' + this.settings.classPrefix + 'overlay ' + $view + '"></div>')
         );
         this.objects.overlay.css('transition-duration', this.settings.overlayDuration + 'ms');
 
@@ -270,6 +345,7 @@
                 close1 = '<span class="' + this.settings.classPrefix + 'close ' + $object.settings.classPrefix + 'icon">' + $close_bg + '</span>';
                 break;
             case 'view5':
+            case 'view6':
                 $_next = '<svg class="next_bg" width="22px" height="44px" fill="#999" x="0px" y="0px"' +
                     'viewBox="0 0 40 70" style="enable-background:new 0 0 40 70;" xml:space="preserve">' +
                     '<path id="XMLID_2_" class="st0" d="M3.3,1.5L1.8,2.9l31.8,31.8c0.5,0.5,0.5,0.9,0,1.4L1.8,67.9l1.5,1.4c0.3,0.5,0.9,0.5,1.4,0' +
@@ -300,11 +376,11 @@
                 '</div>';
         }
 
-        if (this.settings.socialSharing && this.settings.lightboxView !== 'view5') {
+        if (this.settings.socialSharing && (this.settings.lightboxView !== 'view5' || this.settings.lightboxView !== 'view6')) {
             socialIcons = '<div class="' + this.settings.classPrefix + 'socialIcons"><button class="shareLook">share</button></div>';
         }
 
-        $contInner = (this.settings.lightboxView === 'view5') ? '<div class="contInner">' + subHtmlCont3 + '</div>' : '';
+        $contInner = (this.settings.lightboxView === 'view5' || this.settings.lightboxView === 'view6') ? '<div class="contInner">' + subHtmlCont3 + '</div>' : '';
         
         template = '<div class="' + this.settings.classPrefix + 'cont ">' +
             '<div class="rwd-container rwd-' + this.settings.lightboxView + '">' +
@@ -318,6 +394,30 @@
             close2 + subHtmlCont1 + socialIcons + '</div>' +
             '</div>' +
             '</div>';
+
+        switch($object.settings.openCloseType[0]){
+            case 'open_1':
+            case 'open_2':
+            case 'open_3':
+            case 'open_4':
+            case 'open_5':
+            case 'open_1_r':
+            case 'open_2_r':
+            case 'open_3_r':
+            case 'open_4_r':
+            case 'open_5_r':
+                setTimeout(function(){
+                    $object.$cont.addClass('rwd-visible');
+                    $('.rwd-container').addClass($object.settings.openCloseType[0]);
+                }, 0);
+                break;
+            default:
+                $('.rwd-container').addClass($object.settings.openCloseType[0]);
+                setTimeout(function () {
+                    $object.$cont.addClass('rwd-visible');
+                }, this.settings.overlayDuration);
+                break;
+        }
 
         if ($object.settings.socialSharing) {
             setTimeout(function () {
@@ -378,6 +478,16 @@
                     top: '45px'
                 });
                 break;
+            case 'view5':
+                jQuery('.cont-inner').css({
+                    width: '60%'
+                });
+                break;
+            case 'view6':
+                jQuery('.cont-inner').css({
+                    width: '80%'
+                });
+                break;
         }
 
         $object.objects.overlay.addClass('in');
@@ -409,6 +519,7 @@
                     $('<a id="' + $object.settings.classPrefix + 'download" target="_blank" download class="' + this.settings.classPrefix + 'download ' + $object.settings.classPrefix + 'icon">' + $download_bg + '</a>').insertBefore($('.rwd-title'));
                     break;
                 case 'view5':
+                case 'view6':
                     $('.rwd-toolbar').append('<a id="' + $object.settings.classPrefix + 'download" target="_blank" download class="' + this.settings.classPrefix + 'download ' + $object.settings.classPrefix + 'icon">' + $download_bg_ + '</a>');
                     break;
             }
@@ -475,11 +586,14 @@
                 $color = 'rgba(0,0,0,.9)';
                 break;
         }
+
+        if(hugeit_resp_lightbox_obj.hugeit_lightbox_rightclick_protection === 'true'){
             setTimeout(function () {
-            $('.rwd-container').bind('contextmenu', function () {
-                return false;
-            });
-        }, 50);
+                $('.rwd-container').bind('contextmenu', function () {
+                    return false;
+                });
+            }, 50);
+        }
 
         if(this.settings.showBorder){
             $('.rwd-container').css({
@@ -518,11 +632,11 @@
     };
 
     Lightbox.prototype.isVideo = function (src, index) {
-
-        var youtube, vimeo;
+        var youtube, vimeo, dailymotion;
 
         youtube = src.match(/\/\/(?:www\.)?youtu(?:\.be|be\.com)\/(?:watch\?v=|embed\/)?([a-z0-9\-\_\%]+)/i);
         vimeo = src.match(/\/\/(?:www\.)?vimeo.com\/([0-9a-z\-_]+)/i);
+        dailymotion = src.match(/^.+dailymotion.com\/(video|hub)\/([^_]+)[^#]*(#video=([^_&]+))?/);
 
         if (youtube) {
             return {
@@ -531,6 +645,10 @@
         } else if (vimeo) {
             return {
                 vimeo: vimeo
+            };
+        } else if (dailymotion) {
+            return {
+                dailymotion: dailymotion
             };
         }
     };
@@ -548,6 +666,7 @@
                     $('.' + this.settings.classPrefix + 'bar').append('<div class="barCont"></div>').append(this.objects.counter = $('<div id="' + this.settings.idPrefix + 'counter"></div>'));
                     break;
                 case 'view5':
+                case 'view6':
                     $('.contInner').append(this.objects.counter = $('<div id="' + this.settings.idPrefix + 'counter"></div>'));
                     break;
             }
@@ -622,7 +741,7 @@
         shareButtons += $object.settings.share.yummlyButton ? '<li><a title="Yummly" id="rwd-share-yummly" target="_blank"></a></li>' : '';
         shareButtons += '</ul>';
 
-        if (this.settings.lightboxView === 'view5') {
+        if (this.settings.lightboxView === 'view5' || this.settings.lightboxView === 'view6') {
             $('.contInner').append(shareButtons);
         } else {
             $('.' + this.settings.classPrefix + 'socialIcons').append(shareButtons);
@@ -758,6 +877,20 @@
                 $object.$cont.addClass($object.settings.classPrefix + 'hide-zoom-in');
                 $object.$cont.addClass($object.settings.classPrefix + 'hide-zoom-out');
             }
+        } else {
+            if(this.$cont.find('.' + $object.settings.classPrefix + 'item').eq(index).find('iframe').length){
+                $object.$cont.addClass($object.settings.classPrefix + 'hide-download');
+                $object.$cont.addClass($object.settings.classPrefix + 'hide-actual-size');
+                $object.$cont.addClass($object.settings.classPrefix + 'hide-fullwidth');
+                $object.$cont.addClass($object.settings.classPrefix + 'hide-zoom-in');
+                $object.$cont.addClass($object.settings.classPrefix + 'hide-zoom-out');
+            } else {
+                $object.$cont.removeClass($object.settings.classPrefix + 'hide-download');
+                $object.$cont.removeClass($object.settings.classPrefix + 'hide-actual-size');
+                $object.$cont.removeClass($object.settings.classPrefix + 'hide-fullwidth');
+                $object.$cont.removeClass($object.settings.classPrefix + 'hide-zoom-in');
+                $object.$cont.removeClass($object.settings.classPrefix + 'hide-zoom-out');
+            }
         }
 
         this.$element.trigger('onBeforeSlide.rwd-container', [prevIndex, index, fromSlide, fromThumb]);
@@ -766,7 +899,7 @@
             $object.setTitle(index);
         }, time);
 
-        if ($object.settings.lightboxView === 'view5') {
+        if ($object.settings.lightboxView === 'view5' || $object.settings.lightboxView === 'view6') {
             setTimeout(function () {
                 $object.setDescription(index);
             }, time);
@@ -1137,45 +1270,77 @@
             });
 
         }
-
     };
 
     Lightbox.prototype.destroy = function (d) {
 
-        var $object = this;
+        var $object = this, $time;
 
-        clearInterval($object.interval);
+        $('.rwd-container').removeClass(this.settings.openCloseType[0]).addClass(this.settings.openCloseType[1]);
 
-        $object.$body.removeClass($object.settings.classPrefix + 'on');
-
-        $(window).scrollTop($object.prevScrollTop);
-
-        if (d) {
-            $.removeData($object.el, 'lightbox');
+        switch(this.settings.openCloseType[1]){
+            case 'close_1':
+            case 'close_1_r':
+                $time = 1000;
+                break;
+            case 'close_2':
+            case 'close_2_r':
+                $time = 300;
+                break;
+            case 'close_3':
+            case 'close_4':
+            case 'close_3_r':
+            case 'close_4_r':
+                $time = 340;
+                break;
+            case 'close_5':
+            case 'close_5_r':
+                $time = 250;
+                break;
         }
 
-        ($object.settings.socialSharing && (window.location.hash = ''));
+        $('html, body').on('mousewheel', function(){
+            return false;
+        });
 
-        this.$element.off('.rwd-container');
+        setTimeout(function(){
+            clearInterval($object.interval);
 
-        $(window).off('.rwd-container');
+            $object.$body.removeClass($object.settings.classPrefix + 'on');
 
-        if ($object.$cont) {
-            $object.$cont.removeClass($object.settings.classPrefix + 'visible');
-        }
+            $(window).scrollTop($object.prevScrollTop);
 
-        $object.objects.overlay.removeClass('in');
-
-        setTimeout(function () {
-            if ($object.$cont) {
-                $object.$cont.remove();
+            if (d) {
+                $.removeData($object.el, 'lightbox');
             }
 
-            $object.objects.overlay.remove();
+            ($object.settings.socialSharing && (window.location.hash = ''));
 
-        }, $object.settings.overlayDuration + 50);
+            $object.$element.off('.rwd-container');
 
-        window.scrollTo(0, $object.$_y_);
+            $(window).off('.rwd-container');
+
+            if ($object.$cont) {
+                $object.$cont.removeClass($object.settings.classPrefix + 'visible');
+            }
+
+            $object.objects.overlay.removeClass('in');
+
+            setTimeout(function () {
+                if ($object.$cont) {
+                    $object.$cont.remove();
+                }
+
+                $object.objects.overlay.remove();
+
+            }, $object.settings.overlayDuration + 50);
+
+            window.scrollTo(0, $object.$_y_);
+
+            $.fn.lightbox.lightboxModul['modul'].prototype.destroy();
+
+            $('html, body').off('mousewheel');
+        }, $time);
     };
 
     $.fn.lightbox = function (options) {
@@ -1219,6 +1384,10 @@
             this.initThumbs();
         }
 
+        if(this.dataL.modulSettings.fullscreen){
+            this.initFullscreen();
+        }
+
         return this;
     };
 
@@ -1226,7 +1395,7 @@
         idPrefix: 'rwd-',
         classPrefix: 'rwd-',
         attrPrefix: 'data-',
-        videoMaxWidth: hugeit_gen_resp_lightbox_obj.hugeit_lightbox_videoMaxWidth,
+        videoMaxWidth: '700',
         fullwidth: hugeit_resp_lightbox_obj.hugeit_lightbox_fullwidth_effect === 'true',
         zoom: hugeit_resp_lightbox_obj.hugeit_lightbox_zoom,
         scale: +hugeit_resp_lightbox_obj.hugeit_lightbox_zoomsize / 10,
@@ -1238,7 +1407,8 @@
         toogleThumb: false,
         thumbPosition: '0',
         thumbsOverlayColor: 'black',
-        thumbsOverlayOpacity: 10
+        thumbsOverlayOpacity: 10,
+        fullscreen: hugeit_resp_lightbox_obj.hugeit_lightbox_fullscreen_effect === 'true'
     };
 
     Modul.prototype.init = function () {
@@ -1258,7 +1428,8 @@
 
             var $videoSlide = $object.dataL.$item.eq(prevIndex),
                 youtubePlayer = $videoSlide.find('.rwd-youtube').get(0),
-                vimeoPlayer = $videoSlide.find('.rwd-vimeo').get(0);
+                vimeoPlayer = $videoSlide.find('.rwd-vimeo').get(0),
+                dailymotionPlayer = $videoSlide.find('.rwd-dailymotion').get(0);
 
             if (youtubePlayer) {
                 youtubePlayer.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
@@ -1268,13 +1439,15 @@
                 } catch (e) {
                     console.error('Make sure you have included froogaloop2 js');
                 }
+            } else if (dailymotionPlayer) {
+                dailymotionPlayer.contentWindow.postMessage('pause', '*');
             }
 
             var src;
             src = $object.dataL.$items.eq(index).attr('href');
 
             var isVideo = $object.dataL.isVideo(src, index) || {};
-            if (isVideo.youtube || isVideo.vimeo) {
+            if (isVideo.youtube || isVideo.vimeo || isVideo.dailymotion) {
                 $object.dataL.$cont.addClass($object.dataL.modulSettings.classPrefix + 'hide-download');
                 $object.dataL.$cont.addClass($object.dataL.modulSettings.classPrefix + 'hide-actual-size');
                 $object.dataL.$cont.addClass($object.dataL.modulSettings.classPrefix + 'hide-fullwidth');
@@ -1307,22 +1480,108 @@
 
             video = '<iframe class="' + this.dataL.modulSettings.classPrefix + 'video-object ' + this.dataL.modulSettings.classPrefix + 'vimeo ' + addClass + '" width="560" height="315"  src="//player.vimeo.com/video/' + isVideo.vimeo[1] + a + '" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>';
 
+        } else if (isVideo.dailymotion) {
+
+            a = '?wmode=opaque&autoplay=' + autoplay + '&api=postMessage';
+
+            video = '<iframe class="rwd-video-object rwd-dailymotion ' + addClass + '" width="560" height="315" src="//www.dailymotion.com/embed/video/' + isVideo.dailymotion[2] + a + '" frameborder="0" allowfullscreen></iframe>';
+      
         }
 
         return video;
+    };
+
+    Modul.prototype.initFullscreen = function() {
+        var fullScreen = '';
+        if (this.dataL.modulSettings.fullscreen) {
+            if (!document.fullscreenEnabled && !document.webkitFullscreenEnabled && !document.mozFullScreenEnabled && !document.msFullscreenEnabled) {
+                return;
+            } else {
+                fullScreen = '<span class="rwd-fullscreen rwd-icon">' +
+                    '<svg id="rwd-fullscreen-on" width="20px" height="20px" stroke="#999" fill="#999" x="0px" y="0px" viewBox="134 -133 357 357" style="enable-background:new 134 -133 357 357;">' +
+                    '<g><g id="fullscreen"><path d="M165,96.5h-31V224h127.5v-31H165V96.5z M134-5.5h31V-82h96.5v-31H134V-5.5z M440,193h-76.5v31H491V96.5h-31V192z M363.5-103v21H460v76.5h31V-113H363.5z"></path>' +
+                    '</g></g></svg>' +
+                    '<svg id="rwd-fullscreen-off" width="20px" height="20px" stroke="#999" fill="#999" x="0px" y="0px" viewBox="134 -133 357 357" style="enable-background:new 134 -133 357 357;">' +
+                    '<g><g id="fullscreen-exit"><path d="M134, 127.5h 96.5V 224h 31V 96.5H 114V 147.5z M210.5 -36.5H 134v 31h 127.5V -133h -31V -36.5z M363.5, 224h 31v -96.5H 491v -31H 363.5V 224z M394.5 -56.5V -133h -31V -5.5H 491v -31H 395.5z"></path>' +
+                    '</g></g></svg>' +
+                    '</span>';
+                switch (hugeit_resp_lightbox_obj.hugeit_lightbox_lightboxView) {
+                    case 'view1':
+                    default:
+                        $('.rwd-cont').find('.rwd-toolbar').append(fullScreen);
+                        break;
+                    case 'view2':
+                        $('.rwd-cont').find('.rwd-bar').append(fullScreen);
+                        break;
+                    case 'view4':
+                        $(fullScreen).insertBefore('.rwd-title');
+                        break;
+                }
+                this.fullScreen();
+            }
+        }
+    };
+
+    Modul.prototype.requestFullscreen = function() {
+        var el = document.documentElement;
+
+        if (el.requestFullscreen) {
+            el.requestFullscreen();
+        } else if (el.msRequestFullscreen) {
+            el.msRequestFullscreen();
+        } else if (el.mozRequestFullScreen) {
+            el.mozRequestFullScreen();
+        } else if (el.webkitRequestFullscreen) {
+            el.webkitRequestFullscreen();
+        }
+    };
+
+    Modul.prototype.exitFullscreen = function() {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        }
+    };
+
+    Modul.prototype.fullScreen = function() {
+        var $object = this;
+
+        $(document).on('fullscreenchange.rwd-container webkitfullscreenchange.rwd-container mozfullscreenchange.rwd-container MSFullscreenChange.rwd-container', function() {
+            $('.rwd-cont').toggleClass('rwd-fullscreen-on');
+        });
+
+        $('.rwd-cont').find('.rwd-fullscreen').on('click.rwd-container', function() {
+            if (!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+                $object.requestFullscreen();
+            } else {
+                $object.exitFullscreen();
+            }
+        });
+
+        $(window).on('keydown', function(e){
+           if(e.keyCode === 27){
+               console.log(1);
+           }
+        });
+
     };
 
     Modul.prototype.initFullWidth = function () {
         var $object = this,
             $fullWidth, $fullWidthOn;
 
-        $fullWidth = '<svg id="rwd-fullwidth" width="20px" height="20px" stroke="#999" fill="#999" x="0px" y="0px" viewBox="134 -133 357 357" style="enable-background:new 134 -133 357 357;">' +
-            '<g><g id="fullscreen"><path d="M165,96.5h-31V224h127.5v-31H165V96.5z M134-5.5h31V-82h96.5v-31H134V-5.5z M440,193h-76.5v31H491V96.5h-31V192z M363.5-103v21H460v76.5h31V-113H363.5z"></path>' +
-            '</g></g></svg>';
+        $fullWidth = '<svg id="rwd-fullwidth" width="50px" height="25px" stroke="#999" fill="#999" x="0px" y="0px" viewBox="0 0 960 500" style="enable-background:new 0 0 960 560;">' +
+            '<g><path d="M769.4,280L651.7,397.6l0.1-90.5L543.1,307l0-54.3l108.6,0.1l0.1-90.5L769.4,280z M416.4,306.9l-108.6-0.1l-0.1,90.5' +
+            'L190.2,279.6L307.9,162l-0.1,90.5l108.6,0.1L416.4,306.9z M416.4,306.9"/></g></svg>';
 
-        $fullWidthOn = '<svg id="rwd-fullwidth_on" width="20px" height="20px" stroke="#999" fill="#999" x="0px" y="0px" viewBox="134 -133 357 357" style="enable-background:new 134 -133 357 357;">' +
-            '<g><g id="fullscreen-exit"><path d="M134, 127.5h 96.5V 224h 31V 96.5H 114V 147.5z M210.5 -36.5H 134v 31h 127.5V -133h -31V -36.5z M363.5, 224h 31v -96.5H 491v -31H 363.5V 224z M394.5 -56.5V -133h -31V -5.5H 491v -31H 395.5z"></path>' +
-            '</g></g></svg>';
+        $fullWidthOn = '<svg  id="rwd-fullwidth_on" width="50px" height="25px" stroke="#999" fill="#999" x="0px" y="0px" viewBox="0 0 960 500" style="enable-background:new 0 0 960 560;">' +
+            '<path d="M516,280.3l117.3-118l0.3,90.5l108.6-0.3l0.2,54.3l-108.6,0.3l0.3,90.5L516,280.3z M217.3,252.8l108.6-0.3l-0.2-90.5' +
+            'l117.9,117.4l-117.4,118l-0.2-90.5l-108.6,0.3L217.3,252.8z M416.4,306.9"/></svg>';
 
         if (this.dataL.modulSettings.fullwidth) {
             var fullwidth = '<span class="rwd-fullwidth rwd-icon">' + $fullWidth + $fullWidthOn + '</span>';
@@ -1878,6 +2137,7 @@
                         }
                         break;
                     case 'view5':
+                    case 'view6':
                         switch($object.dataL.modulSettings.thumbPosition) {
                             case '0':
                                 $cont_.css({
@@ -1904,16 +2164,10 @@
     };
 
     Modul.prototype.buildThumbs = function() {
-        var $object = this;
-        var thumbList = '';
-        var vimeoErrorThumbSize = '';
-        var $thumb;
-        var html = '<div class="rwd-thumb-cont">' +
-            '<div class="rwd-thumb group">' +
-            '</div>' +
-            '</div>';
-
-        vimeoErrorThumbSize = '100x75';
+        var $object = this,
+            thumbList = '',
+            $thumb,
+            html = '<div class="rwd-thumb-cont"><div class="rwd-thumb group"></div></div>';
 
         $object.dataL.$cont.addClass('rwd-has-thumb');
 
@@ -1938,8 +2192,10 @@
                 if (isVideo.youtube) {
                     thumbImg = '//img.youtube.com/vi/' + isVideo.youtube[1] + '/1.jpg';
                 } else if (isVideo.vimeo) {
-                    thumbImg = '//i.vimeocdn.com/video/error_' + vimeoErrorThumbSize + '.jpg';
+                    thumbImg = '//i.vimeocdn.com/video/error_100x75.jpg';
                     vimeoId = isVideo.vimeo[1];
+                } else if (isVideo.dailymotion) {
+                    thumbImg = '//www.dailymotion.com/thumbnail/video/' + isVideo.dailymotion[2];
                 }
             } else {
                 thumbImg = thumb;
@@ -2014,22 +2270,17 @@
         if (this.left < 0) {
             this.left = 0;
         }
-
-        if (this.dataL.rwdalleryOn) {
-            if (!$thumb.hasClass('on')) {
-                this.dataL.$cont.find('.rwd-thumb').css('transition-duration', this.dataL.modulSettings.speed + 'ms');
-            }
-
-            if (!this.dataL.effectsSupport()) {
-                $thumb.animate({
-                    left: -this.left + 'px'
-                }, this.dataL.modulSettings.speed);
-            }
-        } else {
-            if (!this.dataL.effectsSupport()) {
-                $thumb.css('left', -this.left + 'px');
-            }
+        
+        if (!$thumb.hasClass('on')) {
+            this.dataL.$cont.find('.rwd-thumb').css('transition-duration', this.dataL.modulSettings.speed + 'ms');
         }
+
+        if (!this.dataL.effectsSupport()) {
+            $thumb.animate({
+                left: -this.left + 'px'
+            }, this.dataL.modulSettings.speed);
+        }
+            
         if(!$('.rwd-thumb').hasClass('thumb_move')){
             this.dataL.$cont.find('.rwd-thumb').css({
                 transform: 'translate3d(-' + (this.left) + 'px, 0px, 0px)'
@@ -2107,22 +2358,21 @@
     Modul.prototype.destroy = function () {
         var $object = this;
 
-        $object.dataL.$element.off('.rwd-container.zoom');
         $(window).off('.rwd-container.zoom');
-        $object.dataL.$item.off('.rwd-container.zoom');
-        $object.dataL.$element.off('.rwd-container.zoom');
-        $object.dataL.$cont.removeClass('rwd-zoomed');
+        $('.rwd-cont').removeClass('rwd-zoomed');
         clearTimeout($object.zoomabletimeout);
         $object.zoomabletimeout = false;
 
-        if (this.dataL.modulSettings.thumbnail === 'true' && this.dataL.$items.length > 1) {
+        if (hugeit_resp_lightbox_obj.hugeit_lightbox_thumbs === 'true') {
             $(window).off('resize.rwd-container.thumb orientationchange.rwd-container.thumb keydown.rwd-container.thumb');
-            this.$thumbCont.remove();
-            this.dataL.$cont.removeClass('rwd-has-thumb');
+            $('.rwd-cont').removeClass('rwd-has-thumb');
             $('.cont-inner').css({
                 height: '100%'
             });
         }
+
+        $object.exitFullscreen();
+        $(document).off('fullscreenchange.rwd-container webkitfullscreenchange.rwd-container mozfullscreenchange.rwd-container MSFullscreenChange.rwd-container');
     };
 
     $.fn.lightbox.lightboxModul.modul = Modul;

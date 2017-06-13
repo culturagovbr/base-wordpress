@@ -1626,6 +1626,23 @@ header#main-header.et-fixed-header {
     }
 
 }
+.menu-item-has-children ul.sub-menu {
+    float: right;
+    position: absolute;
+    background: #14a662;
+    padding: 20px;
+    width: 124px;
+    top: 18px;
+    right: 0;
+}
+.menu-item-has-children li {
+    display: block;
+    width: 100%;
+    float: none;
+    line-height: 36px;
+    margin-top: -4px;
+    border-bottom: 1px #17a462 solid;
+}
 @media (min-width: 981px){
     .et_pb_gutters3 .et_pb_column, .et_pb_gutters3.et_pb_row .et_pb_column {
     margin-right: 1.5%;

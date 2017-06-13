@@ -1566,10 +1566,10 @@ header#main-header.et-fixed-header {
     background-repeat: no-repeat;
 }
 .menu-item-has-children ul.sub-menu {
-        left: 0;
+    right:  0;
     opacity: 0;
     position: absolute;
-    top: 35px;
+    top: 0px;
     visibility: hidden;
     z-index: 1;
     -webkit-transition: all .25s ease;

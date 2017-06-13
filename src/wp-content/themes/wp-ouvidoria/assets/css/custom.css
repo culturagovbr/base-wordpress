@@ -1641,6 +1641,10 @@ header#main-header.et-fixed-header {
     padding: 20px;
     height: auto;
 }
+.menu-item-has-children ul.sub-menu:hover {
+    padding: 20px;
+    height: auto;
+}
 .menu-item-has-children li {
     display: block;
     width: 100%;

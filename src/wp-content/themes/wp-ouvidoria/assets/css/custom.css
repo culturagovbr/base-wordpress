@@ -1630,10 +1630,16 @@ header#main-header.et-fixed-header {
     float: right;
     position: absolute;
     background: #14a662;
-    padding: 20px;
-    width: 124px;
+    width: auto;
     top: 18px;
     right: 0;
+    height: 0;
+    overflow: hidden;
+    padding: 0;
+}
+.menu-item-has-children:hover ul.sub-menu {
+    padding: 20px;
+    height: auto;
 }
 .menu-item-has-children li {
     display: block;

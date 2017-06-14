@@ -4,12 +4,12 @@
  * 
  */
 function redirect_non_logged_users() {
-	if( !is_user_logged_in() ){
+	if( !is_user_logged_in() && ! preg_match('/sendpress/', $_SERVER['REQUEST_URI']) ){
     	wp_redirect(  home_url() . '/wp-login.php' ); 
 		exit;
 	}
 }
-add_action( 'template_redirect', 'redirect_non_logged_users' );
+add_action( 'template_redirect', 'redirect_non_logged_users' , 0);
 
 /**
  * Remove itens desncessários da barra de administracao para usuários assinantes

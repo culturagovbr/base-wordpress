@@ -1682,6 +1682,15 @@ header#main-header.et-fixed-header {
     transition: none;
 }
 @media (max-width: 980px){
+    .et_pb_row .et_pb_column.et_pb_column_1_4:last-child {
+    margin-bottom: 0;
+    overflow: visible !important;
+    }
+    div#text-2 {
+    width: 100% !important;
+    position: inherit;
+    margin-left: 48px !important;
+    }
     .titulo-page {
         color: #38759a;
         background: #eeeff1;

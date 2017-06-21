@@ -1462,33 +1462,97 @@ h4.widgettitle {
     border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
 /*Home*/
+
+.conteudo-login {
+  background: #2e9263;
+  color: #fff;
+  font-size: 17px;
+  padding: 0px;
+  -webkit-transition: width 0.3s;
+  -moz-transition: width 0.3s;
+  -ms-transition: width 0.3s;
+  -o-transition: width 0.3s;
+  transition: width 0.3s;
+  margin: 0 auto;
+}
+
+.conteudo-login.open {
+  width: 317px;
+  padding: 29px;
+  height: 366px;
+}
+
 #cadastro .et_pb_promo {
-    background-color: #2e9263 !important;
-    border-radius: 8px;
-    min-height: 366px;
-    margin-left: 0;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
+  background-color: #2e9263 !important;
+  border-radius: 8px;
+  min-height: 366px;
+  margin-left: 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
+
+.conteudo-login a {
+  color: #efff18;
+  text-align: right;
+  font-weight: bold;
+}
+
+.conteudo-login input.input {
+  width: 292px;
+  padding: 12px;
+  border: 1px solid #0d673d;
+  border-radius: 7px;
+  margin-bottom: 20px;
+}
+
+.conteudoLogin .button-primary.button-large {
+  background: #fbff49;
+  padding: 14px;
+  border-radius: 4px;
+  box-shadow: 1px 1px 5px 0px;
+}
+
+span.com-autenticacao.et_pb_button.et_pb_custom_button_icon.et_pb_button_0.et_pb_module.et_pb_bg_layout_lightt {
+  padding: 5px;
+  font-size: 15px !important;
+  top: 10px;
+  color: #fbff49;
+  right: 8px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.rSenha {
+  width: 50%;
+  float: left;
+  text-align: left;
+}
+
+.dadosCadastro1 {
+  width: 50%;
+  float: right;
+  text-align: right;
+}
+
 #cadastro .et_pb_promo h2 {
-    font-size: 29px !important;
-    margin-left: -25px;
-    margin-right: -25px;
-    text-shadow: 1px 1px 0px #125033;
-    text-transform: uppercase;
+  font-size: 29px !important;
+  text-shadow: 1px 1px 0px #125033;
+  color: #fff;
+  text-transform: uppercase;
+  width: 317px;
+  margin: 22px auto 0;
+  display: block;
+  position: relative;
 }
-#cadastro .et_pb_promo a.et_pb_promo_button.et_pb_button {
-    color: #000000;
-    background: #fbff49;
-    border-color: #fbff49;
-    margin-bottom: 20px;
-    border-radius: 4px;
-    text-align: center;
-    font-size: 15px;
-    width: 100%;
-    text-transform: uppercase;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.52);
+
+.cadastroUsuariosOuvidoria {
+  float: none;
+  clear: both;
+  margin-top: 34px;
+  display: block;
+  position: relative;
+  top: 19px;
 }
 
 /*Menu*/

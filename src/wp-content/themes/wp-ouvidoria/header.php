@@ -277,7 +277,7 @@
                         <img src="<?php echo esc_attr( $logo ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" id="logo" data-height-percentage="<?php echo esc_attr( et_get_option( 'logo_height', '54' ) ); ?>" />
                     </a>
                 </div>
-                <div id="et-top-navigation" data-height="<?php echo esc_attr( et_get_option( 'menu_height', '66' ) ); ?>" data-fixed-height="<?php echo esc_attr( et_get_option( 'minimized_menu_height', '40' ) ); ?>">
+                <div id="et-top-navigation" >
                     <?php if ( ! $et_slide_header || is_customize_preview() ) : ?>
                         <nav id="top-menu-nav">
                             <div class="menu-responsivo"> <i>Icon</i> Menu </div> 

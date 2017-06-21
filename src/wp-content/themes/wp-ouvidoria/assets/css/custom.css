@@ -1676,7 +1676,28 @@ header#main-header.et-fixed-header {
     color: #fbff49;
     right: -15px;
 }
+.et_fixed_nav #et-top-navigation {
+    -webkit-transition:none;
+    -moz-transition: none;
+    transition: none;
+}
 @media (max-width: 980px){
+    .titulo-page {
+        color: #38759a;
+        background: #eeeff1;
+        border-top: 2px solid;
+        font-size: 20px;
+        text-align: left;
+        padding-left: 10px;
+        padding-top: 7px;
+        padding-bottom: 0;
+        max-height: 51px;
+        margin-top: -42px !important;
+    }
+    #main-content .container {
+    padding-top: 0px;
+    margin-top: -26px;
+    }
     .menu-item-has-children > a:after {
         content: ' \25bc';
         font-size: 9px;
@@ -1780,15 +1801,7 @@ header#main-header.et-fixed-header {
     margin: 0 auto;
     padding: 0;
     }
-    #cadastro .et_pb_promo h2 {
-    font-size: 29px !important;
-    margin-left: -25px;
-    margin-right: -25px;
-    text-shadow: 1px 1px 0px #125033;
-    text-transform: uppercase;
-    margin-top: 28px;
-    color: #fff;
-    }
+
     .et_pb_row_4col, .et_pb_row_1-4_1-4_1-2, .et_pb_row_1-2_1-4_1-4, .et_pb_row_1-4_1-4 {
     display: -webkit-box;
     display: -moz-box;

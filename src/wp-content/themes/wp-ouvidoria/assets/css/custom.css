@@ -1483,13 +1483,14 @@ h4.widgettitle {
 }
 
 #cadastro .et_pb_promo {
-  background-color: #2e9263 !important;
-  border-radius: 8px;
-  min-height: 366px;
-  margin-left: 0;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+    background-color: #2e9263 !important;
+    border-radius: 8px;
+    min-height: 366px;
+    margin-left: 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding: 0;
 }
 
 .conteudo-login a {
@@ -1499,11 +1500,11 @@ h4.widgettitle {
 }
 
 .conteudo-login input.input {
-  width: 292px;
-  padding: 12px;
-  border: 1px solid #0d673d;
-  border-radius: 7px;
-  margin-bottom: 20px;
+    width: 260px;
+    padding: 12px;
+    border: 1px solid #0d673d;
+    border-radius: 7px;
+    margin-bottom: 20px;
 }
 
 .conteudoLogin .button-primary.button-large {
@@ -1536,16 +1537,14 @@ span.com-autenticacao.et_pb_button.et_pb_custom_button_icon.et_pb_button_0.et_pb
 }
 
 #cadastro .et_pb_promo h2 {
-  font-size: 29px !important;
-  text-shadow: 1px 1px 0px #125033;
-  color: #fff;
-  text-transform: uppercase;
-  width: 317px;
-  margin: 22px auto 0;
-  display: block;
-  position: relative;
+    font-size: 29px !important;
+    margin-left: -25px;
+    margin-right: -25px;
+    text-shadow: 1px 1px 0px #125033;
+    text-transform: uppercase;
+    margin-top: 0;
+    color: #fff;
 }
-
 .cadastroUsuariosOuvidoria {
   float: none;
   clear: both;

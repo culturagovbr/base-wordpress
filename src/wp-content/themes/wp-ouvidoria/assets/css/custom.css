@@ -1576,11 +1576,7 @@ header#main-header {
     top: 0 !important;
     max-height: 50px;
 }
-.home .et_pb_column.et_pb_column_1_4.et_pb_column_4 {
-    margin-right: 58px !important;
-    margin-left: 3px !important;
-    width: 23%;
-}
+
 .home .et_pb_gutters3 .et_pb_column_1_4, .home .et_pb_gutters3.et_pb_row .et_pb_column_1_4 {
     width: 26.875%;
     overflow: hidden;
@@ -1826,6 +1822,11 @@ header#main-header.et-fixed-header {
 }
 
 @media (min-width: 981px){
+    .home .et_pb_column.et_pb_column_1_4.et_pb_column_4 {
+    margin-right: 82px !important;
+    margin-left: -42px !important;
+    width: 23%;
+    }
     .menu-responsivo {
     display: none;
     }

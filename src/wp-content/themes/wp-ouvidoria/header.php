@@ -43,25 +43,19 @@
     <div class="clearfix">
         <ul id="accessibility">
             <li>
-                <a accesskey="1" href="#div-conteudo" id="link-conteudo">
+                <a accesskey="1" href="#main-content" id="link-conteudo">
                     Ir para o conte&uacute;do
                     <span>1</span>
                 </a>
             </li>
             <li>
-                <a accesskey="2" href="#irparaomenu" id="link-navegacao">
+                <a accesskey="2" href="#menu-barra-servico" id="link-navegacao">
                     Ir para o menu
                     <span>2</span>
                 </a>
             </li>
             <li>
-                <a accesskey="3" href="#portal-searchbox" id="link-buscar">
-                    Ir para a busca
-                    <span>3</span>
-                </a>
-            </li>
-            <li>
-                <a accesskey="4" href="#main-footer" id="link-rodape">
+                <a accesskey="4" href="#footer-brasil" id="link-rodape">
                     Ir para o rodap&eacute;
                     <span>4</span>
                 </a>

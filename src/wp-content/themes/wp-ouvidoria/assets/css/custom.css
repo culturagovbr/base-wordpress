@@ -140,11 +140,8 @@ div#page-container {
     margin: 0 auto;
     max-width: 1073px;
 }
-@media (max-width: 1024px){
+@media (max-width: 1270px){
     #header > div {
-        position: relative;
-        overflow: hidden;
-        margin: 0 auto;
         max-width: 1010px;
     }
 }

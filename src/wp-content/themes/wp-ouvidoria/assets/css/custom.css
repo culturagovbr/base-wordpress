@@ -34,7 +34,9 @@ ul {
 .et_pb_gutters3.et_pb_footer_columns4 .footer-widget {
     width: 25%;
 }
-
+.et_pb_section.et_pb_section_0.et_section_regular {
+    padding: 0;
+}
 .et_pb_image_container img,
 .et_pb_post a img {
     max-width: 100%;

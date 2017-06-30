@@ -1,6 +1,8 @@
 
 body.contraste {
     background: #000;
+    color: #fff;
+    border-color: #fff;
 }
 body.contraste footer#main-footer {
     background: #000;

@@ -941,6 +941,7 @@ input.searchField {
     overflow: hidden;
     min-height: 120px;
     display: block;
+    margin-bottom: 37px;
     }
 }
 #footer-brasil.verde {

@@ -138,16 +138,23 @@ div#page-container {
     position: relative;
     overflow: hidden;
     margin: 0 auto;
-    max-width: 1020px;
+    max-width: 1073px;
 }
-
+@media (max-width: 1024px){
+    #header > div {
+        position: relative;
+        overflow: hidden;
+        margin: 0 auto;
+        max-width: 1010px;
+    }
+}
 #accessibility {
     display: block !important;
     float: left;
     font-size: 0.8em;
     font-family: Arial, Helvetica, sans-serif;
+    padding: 0;
 }
-
 #accessibility a {
     margin-right: 8px;
 }

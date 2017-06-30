@@ -73,6 +73,9 @@ require_once 'free_banner.php';
 					<option <?php selected( 'view6', esc_html($hugeit_resp_lightbox_values['hugeit_lightbox_lightboxView']) ); ?>
 						value="view6">6
 					</option>
+					<option <?php selected( 'view7', esc_html($hugeit_resp_lightbox_values['hugeit_lightbox_lightboxView']) ); ?>
+						value="view7">7
+					</option>
 				</select>
 			</div>
 			<div class="has-background">
@@ -134,7 +137,7 @@ require_once 'free_banner.php';
 					echo 'checked="checked"';
 				} ?> name="params[hugeit_lightbox_loop_new]" value="true"/>
 			</div>
-			<div>
+			<div <?php if(esc_html($hugeit_resp_lightbox_values['hugeit_lightbox_lightboxView']) == 'view7'){echo 'style="display:none;"';} ?>>
 				<label for="hugeit_lightbox_fullwidth_effect"><?php _e('Full Width Effect','lightbox');?>
 					<div class="help">?
 						<div class="help-block">
@@ -148,6 +151,21 @@ require_once 'free_banner.php';
 					   id="hugeit_lightbox_fullwidth_effect" <?php if (esc_html($hugeit_resp_lightbox_values['hugeit_lightbox_fullwidth_effect']) == 'true') {
 					echo 'checked="checked"';
 				} ?> name="params[hugeit_lightbox_fullwidth_effect]" value="true"/>
+			</div>
+			<div <?php if(esc_html($hugeit_resp_lightbox_values['hugeit_lightbox_lightboxView']) != 'view7'){echo 'style="display:none;"';} ?>>
+				<label for="hugeit_lightbox_view_info"><?php _e('Show info','lightbox');?>
+					<div class="help">?
+						<div class="help-block">
+							<span class="pnt"></span>
+							<p><?php _e('Check to activate show info button.','lightbox');?></p>
+						</div>
+					</div>
+				</label>
+				<input type="hidden" value="false" name="params[hugeit_lightbox_view_info]"/>
+				<input type="checkbox"
+					   id="hugeit_lightbox_view_info" <?php if (esc_html($hugeit_resp_lightbox_values['hugeit_lightbox_view_info']) == 'true') {
+					echo 'checked="checked"';
+				} ?> name="params[hugeit_lightbox_view_info]" value="true"/>
 			</div>
 			<div class="has-background">
 				<label for="hugeit_lightbox_thumbs"><?php _e('Thumbnail','lightbox');?>
@@ -209,7 +227,7 @@ require_once 'free_banner.php';
 					echo 'checked="checked"';
 				} ?> name="params[hugeit_lightbox_showBorder]" value="true"/>
 			</div>
-			<div class="has-background image_frame">
+			<div class="has-background image_frame" <?php if(esc_html($hugeit_resp_lightbox_values['hugeit_lightbox_lightboxView']) == 'view7'){echo 'style="display:none;"';} ?>>
 				<label for="hugeit_lightbox_imageframe"><?php _e('Image frame','lightbox');?>
 					<div class="help">?
 						<div class="help-block">
@@ -249,7 +267,7 @@ require_once 'free_banner.php';
 					echo 'checked="checked"';
 				} ?> name="params[hugeit_lightbox_fullscreen_effect]" value="true"/>
 			</div>
-			<div class="has-background">
+			<div class="has-background" <?php if(esc_html($hugeit_resp_lightbox_values['hugeit_lightbox_lightboxView']) == 'view7'){echo 'style="display:none;"';} ?>>
 				<label for="lightbox_open_close_effect"><?php _e('Lightbox open/close effect','lightbox');?>
 					<div class="help">?
 						<div class="help-block">

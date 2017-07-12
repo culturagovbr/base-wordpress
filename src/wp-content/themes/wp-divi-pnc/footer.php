@@ -49,6 +49,6 @@ if ( ! is_page_template( 'page-template-blank.php' ) ) : ?>
 
 	<?php wp_footer(); ?>
 	
-                
+                <div id="footer-brasil"></div>   
 </body>
 </html>

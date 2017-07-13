@@ -2158,7 +2158,9 @@ nav#top-menu-nav {
     margin-top: 0;
     color: #00385a;
     font-size: 17px;
+    overflow: visible;
     font-weight: bold;
+    min-height: 199px;
     margin-bottom: 16px;
     transition: all 0.3s ease;
 }

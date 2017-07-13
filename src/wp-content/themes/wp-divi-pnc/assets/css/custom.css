@@ -2144,6 +2144,19 @@ nav#top-menu-nav {
     -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
+
+  .box-metas-assuntos-home a {
+    margin: 10px auto;
+    background: #eeeff1;
+    text-align: center;
+    text-transform: uppercase;
+    min-height: auto;
+    padding: 14px 2px;
+}
+.box-metas-assuntos-home {
+    padding: 0px;
+    margin: 0;
+}
 }
 
 /*Home*/

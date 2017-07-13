@@ -43,8 +43,7 @@
 
                             <?php if (!in_array($post_format, array('link', 'audio', 'quote'))) : ?>
                                 <?php if (!in_array($post_format, array('link', 'audio'))) : ?>
-                                    <h2 class="entry-title"><a
-                                                href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                                   
                                 <?php endif; ?>
 
                                 <?php

@@ -39,7 +39,7 @@ ul {
 /* hack */
 
 .et_pb_gutters3.et_pb_footer_columns4 .footer-widget {
-  width: 25%;
+    width: 33.3%;
 }
 
 .et_pb_section.et_pb_section_0.et_section_regular {
@@ -57,7 +57,14 @@ ul {
   border: 0;
 }
 
-
+h4.title {
+    text-transform: uppercase;
+    font-weight: lighter;
+    opacity: 0.8;
+}
+div#nav_menu-7 {
+    margin-left: 61px;
+}
 /* ==========================================================================
 4 - Topo ou Cabeçalho
 ========================================================================== */

@@ -62,8 +62,8 @@ h4.title {
     font-weight: lighter;
     opacity: 0.8;
 }
-div#nav_menu-7 {
-    margin-left: 61px;
+div#nav_menu-7, div#nav_menu-8 {
+    margin-left: 100px;
 }
 /* ==========================================================================
 4 - Topo ou Cabeçalho

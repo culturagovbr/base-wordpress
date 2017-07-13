@@ -623,7 +623,22 @@ dl.nav-tree dt {
   background: #f52269;
   color: #fff;
 }
-
+.post-meta a {
+    background: #f52a6e;
+    padding: 0 3px;
+    margin: 6px 2px;
+    display: block;
+    font-weight: bold;
+    color: #fff !important;
+    text-transform: uppercase;
+    float: left;
+    margin-left: 0;
+    font-size: 12px;
+    width: auto;
+    margin-right: 6px;
+    border-radius: 4px;
+    line-height: 20px;
+}
 
 /* MENU PRINCIPAL DA INTRANET */
 
@@ -856,7 +871,9 @@ input.searchField {
 
 /*(alto-contraste.css)*/
 
-
+.home .post-content {
+    clear: left;
+}
 /* ==========================================================================
 8 - Responsivo
 ========================================================================== */
@@ -2158,18 +2175,14 @@ h2.title-box {
     padding-left: 10px;
     margin-bottom: 25px;
     margin-top: 0;
+    padding-bottom: 10px !important;
 }
 .box-metas-assuntos-home {
     padding: 0px;
     margin-right: -27px;
     margin-left: -2px;
 }
-.et_pb_section_0.et_pb_section {
-    background-color: #eeeff1 !important;
-    display: block;
-    border-bottom: 2px solid rgba(204, 204, 204, 0.64);
-    width: 100%;
-}
+
 /*Banner home*/
 .et_pb_section_0.et_pb_section h1 {
     color: #00445d;
@@ -2239,6 +2252,14 @@ div#banner-topo-cinza .et_pb_widget_area.et_pb_widget_area_left.clearfix.et_pb_m
     box-shadow: 0px 5px 6px #a2a2a2;
 
 }
+div#banner-topo-cinza {
+    background-color: #eeeff1 !important;
+    display: block;
+    border-bottom: 2px solid rgba(204, 204, 204, 0.64);
+    width: 100%;
+}
+
+
 
 
 #tooltip {

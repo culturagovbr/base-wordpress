@@ -14,7 +14,11 @@ if ( ! is_page_template( 'page-template-blank.php' ) ) : ?>
 			if ( has_nav_menu( 'footer-menu' ) ) : ?>
 
 				<div id="et-footer-nav">
-				<div class="voltar-ao-topo container">  <a class="et_pb_button  et_pb_button_1 et_pb_module et_pb_bg_layout_light" href="#">Voltar ao Topo <span aria-hidden="true" class="arrow_carrot-up"></span> </a> </div>
+				<div class="voltar-ao-topo container"> 
+					 <a class="et_pb_button  et_pb_button_1 et_pb_module et_pb_bg_layout_light" href="#">
+					 Voltar ao Topo 
+					 <span aria-hidden="true" class="arrow_carrot-up"></span> </a> 
+				 </div>
 					<div class="container">
 						<?php
 							wp_nav_menu( array(

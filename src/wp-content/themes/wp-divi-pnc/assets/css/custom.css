@@ -794,11 +794,13 @@ input.searchField {
 ========================================================================== */
 
 #footer-widgets .footer-widget li a {
-  /* padding: 0px 0.83em; */
-  overflow: hidden;
-  margin: 0.83em 0px 1.66em;
+    color: #fff;
+    font-size: 19px;
+    text-decoration: none;
+    font-weight: lighter;
+    overflow: hidden;
+    margin: 0.83em 0px 1.66em;
 }
-
 .menu-menu-rodape-container {
   border-left: 1px dotted rgb(125, 196, 138);
   padding: 0px 0.3em 0 0.3em;

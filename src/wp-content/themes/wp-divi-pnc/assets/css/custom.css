@@ -2202,7 +2202,7 @@ div#banner-topo-cinza .et_pb_widget_area.et_pb_widget_area_left.clearfix.et_pb_m
     margin-bottom: 18px;
     padding: 0;
 }
-div#banner-topo-cinza div.widget_nav_menu {
+div#banner-topo-cinza .widget_nav_menu {
     width: 100%;
 }
 

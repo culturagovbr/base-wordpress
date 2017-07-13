@@ -4154,7 +4154,7 @@ class ET_Builder_Module_Post_Slider extends ET_Builder_Module {
 						</div>
 					<?php } ?>
 					<div class="et_pb_slide_description">
-						<h2 class="et_pb_slide_title"><?php the_title(); ?></h2>
+						<h2 class="et_pb_slide_title" style="display: none;"><?php the_title(); ?></h2>
 						<div class="et_pb_slide_content <?php if ( 'on' === $hide_content_on_mobile ) { echo esc_attr( $hide_on_mobile_class ); } ?>">
 							<?php
 							if ( 'off' !== $show_meta ) {

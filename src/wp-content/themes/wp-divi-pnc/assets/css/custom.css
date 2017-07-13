@@ -1536,20 +1536,7 @@ span.com-autenticacao.et_pb_button.et_pb_custom_button_icon.et_pb_button_0.et_pb
   position: relative;
   top: 19px;
 }
-/*Botão Mais notícias*/
-body #page-container .et_pb_button_1 {
-    background: #004490;
-    letter-spacing: 0px;
-    border-radius: 6px;
-    padding: 5px;
-    font-size: 18px;
-    padding-left: 15px;
-    padding-right: 15px;
-    border: 0;
-    box-shadow: 1px 2px 3px rgba(56, 56, 56, 0.73);
-}
 
-/*Menu*/
 
 .menu-desktop ul li {
   display: inline-block;

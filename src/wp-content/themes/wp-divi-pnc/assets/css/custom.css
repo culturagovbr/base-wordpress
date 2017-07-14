@@ -2471,3 +2471,10 @@ div#banner-topo-cinza {
     font-size: 16px;
     line-height: 35px;
 }
+.post-template-default #left-area {
+    width: 100%;
+    padding-bottom: 23px;
+}
+.post-template-default p.post-meta {
+    display: none;
+}

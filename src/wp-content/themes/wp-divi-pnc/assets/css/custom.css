@@ -2451,6 +2451,9 @@ div#banner-topo-cinza {
     font-weight: lighter;
     display: block;
     font-size: 14px;
+    line-height: 17px;
+    padding-top: 10px;
+    margin-bottom: -14px;
 }
 .post-template-default .et_pb_text {
     clear: left;
@@ -2459,11 +2462,13 @@ div#banner-topo-cinza {
     padding: 16px;
     display: block;
     float: left;
-    font-size: 18px;
+    font-size: 17px;
     padding-top: 7px;
-    width: 80%;
+    width: 84%;
     background: #e2e2e2;
+    min-height: 137px;
     padding-bottom: 0;
+    line-height: 23px;
 }
 
 .post-template-default .et_pb_section_0.et_pb_section p {
@@ -2471,10 +2476,11 @@ div#banner-topo-cinza {
     font-size: 16px;
     line-height: 35px;
 }
-.post-template-default #left-area {
-    width: 100%;
-    padding-bottom: 23px;
-}
+
 .post-template-default p.post-meta {
     display: none;
+}
+.post-template-default #left-area {
+    width: 100% !important;
+    padding-bottom: 23px;
 }

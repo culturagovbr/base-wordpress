@@ -2435,7 +2435,7 @@ div#banner-topo-cinza {
 
 
 /*Metas*/
-.post-template-default span.number {
+.post-template-default span.number , .category span.number {
     width: 16%;
     height: 137px;
     display: block;
@@ -2447,7 +2447,7 @@ div#banner-topo-cinza {
     font-size: 65px;
     font-weight: 100;
 }
-.post-template-default span#objetivo {
+.post-template-default span#objetivo , .category span#objetivo{
     font-weight: lighter;
     display: block;
     font-size: 14px;
@@ -2455,10 +2455,10 @@ div#banner-topo-cinza {
     padding-top: 10px;
     margin-bottom: -14px;
 }
-.post-template-default .et_pb_text {
+.post-template-default .et_pb_text , .category .et_pb_text {
     clear: left;
 }
-.post-template-default span.title {
+.post-template-default span.title, .category span.title{
     padding: 16px;
     display: block;
     float: left;
@@ -2471,16 +2471,16 @@ div#banner-topo-cinza {
     line-height: 23px;
 }
 
-.post-template-default .et_pb_section_0.et_pb_section p {
+.post-template-default .et_pb_section_0.et_pb_section p, .category .et_pb_section_0.et_pb_section p{
     color: #666666;
     font-size: 16px;
     line-height: 35px;
 }
 
-.post-template-default p.post-meta {
+.post-template-default p.post-meta , .category p.post-meta {
     display: none;
 }
-.post-template-default #left-area {
+.post-template-default #left-area , .category #left-area {
     width: 100% !important;
     padding-bottom: 23px;
 }

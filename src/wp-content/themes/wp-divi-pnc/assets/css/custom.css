@@ -107,7 +107,9 @@ div#nav_menu-8 {
   background: #1b7d4f;
   color: #fff;
 }
-
+span.author.vcard {
+    display: none;
+}
 #portal-logo,
 #portal-title {
   color: #fff !important;

@@ -43,19 +43,19 @@
                 </a>
             </li>
             <li>
-                <a accesskey="2" href="#menu-barra-servico" id="link-navegacao">
+                <a accesskey="2" href="#top-menu-nav" id="link-navegacao">
                     Ir para o menu
                     <span>2</span>
                 </a>
             </li>
             <li>
-                <a accesskey="4" href="#search" id="link-rodape">
+                <a accesskey="4" href="#portal-searchbox" id="link-rodape">
                     Ir para o busca
                     <span>4</span>
                 </a>
             </li>
             <li>
-                <a accesskey="4" href="#footer-brasil" id="link-rodape">
+                <a accesskey="4" href="#main-footer" id="link-rodape">
                     Ir para o rodap&eacute;
                     <span>4</span>
                 </a>

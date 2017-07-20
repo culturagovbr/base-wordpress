@@ -537,7 +537,7 @@ input.searchField {
   background-position: -155px -25px;
 }
 
-#social-icons li a[title="Youtube"] {
+#social-icons li a[title="Youtube"] 
   background-position: -130px -25px;
 }
 
@@ -752,7 +752,7 @@ input.searchField {
 }
 
 #header input.searchButton {
-  background: url("/wp-content/uploads/sites/2/2016/08/search-button.gif") no-repeat 3px 2px #FFFFFF;
+  background: url("../img/searching-magnifying-glass.svg") no-repeat 3px 2px #FFFFFF;
 }
 
 #LSResult {

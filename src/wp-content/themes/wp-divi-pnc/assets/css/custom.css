@@ -2071,6 +2071,10 @@ div#banner-topo-cinza {
     font-size: 26px;
     overflow: hidden;
 }
+.et_pb_section {
+    position: relative;
+    background-color: transparent;
+}
 @media (max-width: 1270px) {
   #header > div {
     max-width: 816px;

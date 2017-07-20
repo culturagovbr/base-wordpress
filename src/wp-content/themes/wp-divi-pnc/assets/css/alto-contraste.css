@@ -180,8 +180,8 @@ color:#fff;
  .contraste  .oqueadenovo .lista-oqueadenovo li {
     color: black !important;
 }
- .contraste .et_pb_section_3.et_pb_section {
-    background-color: #000000 !important;
+.contraste .et_pb_section_3.et_pb_section {
+    background-color: transparent !important;
 }
 .contraste .et_pb_section_1.et_pb_section {
     -webkit-filter: grayscale(100%);

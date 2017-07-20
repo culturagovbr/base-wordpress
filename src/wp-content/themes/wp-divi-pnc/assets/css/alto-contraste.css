@@ -130,7 +130,7 @@ body.contraste li.current_page_item a {
     filter: gray;
 }
 
-.menu-item-has-children > a:after{
+.contraste .menu-item-has-children > a:after{
 -webkit-filter: grayscale(100%);
     -moz-filter: grayscale(100%);
     -ms-filter: grayscale(100%);
@@ -312,4 +312,7 @@ color:#fff;
 }
 .contraste div#banner-topo-cinza ul#menu-metas li a:hover {
     background: #4c5156;
+}
+.contraste div#banner-topo-cinza .et_pb_widget_area.et_pb_widget_area_left.clearfix.et_pb_module.et_pb_bg_layout_light.et_pb_sidebar_0 h4 {
+    color: #ffffff;
 }

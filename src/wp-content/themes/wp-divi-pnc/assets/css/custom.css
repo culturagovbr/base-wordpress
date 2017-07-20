@@ -162,7 +162,7 @@ div#page-container {
   position: relative;
   overflow: hidden;
   margin: 0 auto;
-  background-image: url(http://wordpress.dev/wp-content/themes/wp-pnc/assets/img/background-ornament-heder.png);
+  background-image: url(../img/background-ornament-heder.png);
   max-width: 1073px;
   background-repeat: no-repeat;
   background-position: right bottom;
@@ -471,7 +471,7 @@ input.searchField {
 /* central de conteudo */
 
 #header input.searchButton {
-  background-image: url("/wp-content/uploads/sites/2/2016/08/sprite.png");
+  background-image: url("../img/sprite.png");
 }
 
 #social-icons li a {
@@ -495,7 +495,7 @@ input.searchField {
 }
 
 #header input.searchButton {
-  background: url(/wp-content/themes/wp-divi-intranet/img/sprite.png) !important;
+  background: url(../img/sprite.png) !important;
   background-position: 0px 3px !important;
 }
 
@@ -521,7 +521,7 @@ input.searchField {
   border: none;
   padding: 0;
   background-image: none;
-  background: url("/wp-content/themes/wp-divi-intranet/img/sprite.png");
+  background: url("../img/sprite.png");
   background-color: #fff;
   margin-left: 11px;
   display: block;
@@ -563,7 +563,7 @@ input.searchField {
 
 #social-icons li a[title="Instagram"] {
   background-position: 0;
-  background-image: url(http://intranet.base-wp.cultura.gov.br/wp-content/themes/wp-divi-intranet/img/instagram-logo.png);
+  background-image: url(../img/instagram-logo.png);
   background-size: 108%;
   border-radius: 5px;
   border: 1px solid #fff;
@@ -1079,7 +1079,7 @@ input.searchField {
   border: none;
   padding: 0;
   background-image: none;
-  background: url(http://rouanet.cultura.gov.br/wp-content/uploads/sites/2/2017/03/sprite.png);
+  background: url(../img/sprite.png);
   background-color: #fff;
   margin-left: 11px;
   display: block;
@@ -1121,7 +1121,7 @@ input.searchField {
 
 #social-icons li a[title="Instagram"] {
   background-position: 0;
-  background-image: url("img/instagram-logo.png");
+  background-image: url("../img/instagram-logo.png");
   background-size: 108%;
   border-radius: 5px;
   border: 1px solid #fff;

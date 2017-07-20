@@ -494,11 +494,6 @@ input.searchField {
   text-indent: -2000px;
 }
 
-#header input.searchButton {
-  background: url(../img/sprite.png) !important;
-  background-position: 0px 3px !important;
-}
-
 .et_header_style_left #et-top-navigation,
 .et_header_style_split #et-top-navigation {
   padding-top: 0px;
@@ -752,10 +747,12 @@ input.searchField {
 }
 
 #header input.searchButton {
-  background: url("../img/searching-magnifying-glass.png") no-repeat 3px 2px #FFFFFF;
-
+    background: url(../img/searching-magnifying-glass.png) no-repeat !important;
+    height: 30px;
+    margin-top: 0px;
+    margin-bottom: 0;
+    background-position: 1px 3px !important;
 }
-
 
 #LSResult {
   z-index: 1;

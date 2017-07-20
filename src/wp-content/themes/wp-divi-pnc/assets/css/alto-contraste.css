@@ -5,7 +5,7 @@ body.contraste {
     border-color: #fff;
 }
 body.contraste footer#main-footer {
-    background: #000;
+    background: #2c2f31;
     border-top: 1px solid #fff;
 }
 body.contraste #footer-brasil {
@@ -33,11 +33,17 @@ body.contraste li.current_page_item a {
     color: #000;
 }
 .contraste .menu a {
-    color: #000;
+    color: #fff;
 }
 .contraste .oqueeleirouanet p {
     background-color: #000 !important;
     color: #fff !important;
+}
+.contraste div#banner-topo-cinza {
+    background-color: #4c5156 !important;
+    display: block;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.64);
+    width: 100%;
 }
 .contraste div#header {
     background: #000;
@@ -114,11 +120,6 @@ body.contraste li.current_page_item a {
 .contraste .et_pb_text h3 {
     color: #fff;
 }
-.contraste #main-content h4.widgettitle {
-    background: none repeat scroll 0 0 #4c5156 !important;
-    border-color: #fff;
-    color: #fff !important;
-}
 
 .contraste #header img {
     -webkit-filter: grayscale(100%);
@@ -129,6 +130,18 @@ body.contraste li.current_page_item a {
     filter: gray;
 }
 
+.menu-item-has-children > a:after{
+-webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    filter: grayscale(100%);
+    filter: gray;
+
+}
+.contraste #header > div.clearfix {
+    filter: grayscale(100%);
+}
 .contraste #main-footer img {
     -webkit-filter: grayscale(100%);
     -moz-filter: grayscale(100%);
@@ -136,6 +149,9 @@ body.contraste li.current_page_item a {
     -o-filter: grayscale(100%);
     filter: grayscale(100%);
     filter: gray;
+}
+.contraste #top-menu-nav a.et_pb_button {
+    background: #4c5156;
 }
 .contraste .et_pb_fullwidth_menu.et_pb_module.et_pb_bg_layout_light.et_pb_text_align_left.et_dropdown_animation_fade.et_pb_fullwidth_menu_0 {
     background: #383838 !important;
@@ -173,6 +189,7 @@ color:#fff;
     -ms-filter: grayscale(100%);
     -o-filter: grayscale(100%);
     filter: grayscale(100%);
+    background: #000;
     filter: gray;
 }
 .contraste img {
@@ -189,6 +206,9 @@ color:#fff;
     -o-filter: grayscale(100%);
     filter: grayscale(100%);
     filter: gray;
+}
+.contraste h2.title-box {
+    background: #4c5156;
 }
 .contraste #social-icons li a {
     -webkit-filter: grayscale(100%);
@@ -219,7 +239,7 @@ color:#fff;
     color: #fff !important;
 }
 .contraste .et_pb_section_2.et_pb_section {
-    background-color: #933d94 !important;
+    background-color: #000000 !important;
     -moz-filter: grayscale(100%);
     -ms-filter: grayscale(100%);
     -o-filter: grayscale(100%);
@@ -242,6 +262,11 @@ color:#fff;
     border-color: #fff;
     color: #fff;
 }
+.contraste .contraste h2.title-box {
+    background: #4c5156;
+    display: block;
+    margin-bottom: 37px;
+}
 .contraste .et_pb_bg_layout_light .et_pb_post .post-meta, .contraste .et_pb_bg_layout_light .et_pb_portfolio_item .post-meta,.contraste .et_pb_bg_layout_light .et_pb_post .post-meta a,.contraste .et_pb_bg_layout_light .et_pb_portfolio_item .post-meta a,.contraste .et_pb_bg_layout_light .et_pb_post p, .contraste .et_pb_bg_layout_light p.et_pb_title_meta_container, .contraste .et_pb_bg_layout_light p.et_pb_title_meta_container a {
     color: #fff;
 }
@@ -259,4 +284,32 @@ color:#fff;
 }
 .contraste .et_pb_toggle_open h5.et_pb_toggle_title {
     color: #fff;
+}
+.contraste .main-header {
+    background-color: #000000;
+    border-top: 1px solid;
+}
+.contraste .et_pb_section_0.et_pb_section h1 {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 26px;
+}
+.contraste .et_pb_section_0.et_pb_section p {
+    color: #e4e4e4;
+    font-size: 20px;
+    line-height: 35px;
+}
+.contraste .et_pb_bg_layout_light.et_pb_module.et_pb_button {
+    color: #ffffff;
+}
+
+.contraste div#banner-topo-cinza .et_pb_widget_area.et_pb_widget_area_left.clearfix.et_pb_module.et_pb_bg_layout_light.et_pb_sidebar_0 {
+    background: #000;
+    box-shadow: 0px 5px 6px #000000;
+}
+.contraste p.post-meta a {
+    background: #4c5156;
+}
+.contraste div#banner-topo-cinza ul#menu-metas li a:hover {
+    background: #4c5156;
 }

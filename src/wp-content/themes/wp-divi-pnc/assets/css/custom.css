@@ -2137,7 +2137,9 @@ div#banner-topo-cinza {
     list-style: none;
     overflow: hidden;
     margin-left: -13px;
-    display: inline;
+    display: inline-block;
+    margin-bottom: -6px;
+    margin-top: 0px;
 }
   
 #breadcrumbs li {

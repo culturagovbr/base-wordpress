@@ -2084,12 +2084,7 @@ div#banner-topo-cinza {
     margin: 0 auto;
 }
 
-.page-template-default .et_pb_row {
-    position: relative;
-    width: 100%;
-    padding: 0 !important;
-    margin: 0;
-}
+
 .page-template-default .et_pb_section_0.et_pb_section h1 {
     color: #00445d;
     font-weight: lighter;
@@ -2101,9 +2096,14 @@ div#banner-topo-cinza {
     padding-left: 9px;
     padding-bottom: 15px;
     box-shadow: 0px 2px 1px #ccc;
-    margin-top: 35px;
+    margin-top: 15px;
 }
-
+.page-template-default .et_pb_row {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 0px;
+}
 
 
 @media (max-width: 1270px) {

@@ -595,6 +595,9 @@ input.searchField {
 .et_pb_with_background .et_pb_row {
     width: 100%;
 }
+.et_pb_pagebuilder_layout.single-post #page-container .et_pb_with_background .et_pb_row{
+  width: 100%;
+}
 dl.nav-tree dt {
   background: #f0f2f1;
   border-bottom: 1px solid #d5d5d5;
@@ -2647,3 +2650,42 @@ p.comment-form-url.comment-form-attachment {
 }
 
 
+
+
+#comment-wrap input[type=text], #comment-wrap input[type=password], #comment-wrap input[type=tel], #comment-wrap input[type=email], #comment-wrap input.text, #comment-wrap input.title, #comment-wrap textarea,#comment-wrap select {
+    padding: 15px;
+    border: 1px solid #dfdfdf;
+    color: #4e4e4e;
+    background-color: #fff;
+    display: block;
+    border-radius: 4px;
+}
+
+#comment-wrap {
+    padding-top: 75px;
+    background: #f1f1f1;
+    padding: 50px;
+    border-radius: 4px;
+    padding-top: 29px;
+}
+
+#comment-wrap form#uploadform {
+    display: none;
+}
+
+p.comment-form-author {
+    display: block;
+    float: left;
+    width: 49%;
+    margin-right: 1%;
+}
+p.comment-form-email{
+    display: block;
+    float: left;
+    width: 50%;
+}
+p.comment-form-url {
+    width: 100%;
+    display: block;
+    clear: left;
+}

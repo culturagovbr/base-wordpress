@@ -60,6 +60,10 @@ ul {
   color: #00385a;
 }
 
+.et_pb_post {
+    margin-bottom: 10px;
+}
+
 .et_pb_widget_area.et_pb_widget_area_left.clearfix.et_pb_module.et_pb_bg_layout_light.et_pb_sidebar_0 {
   border: 0;
 }
@@ -244,6 +248,7 @@ div#page-container {
   float: left;
   font-size: 1.2em;
 }
+
 
 
 /* Menu de idioma
@@ -692,7 +697,16 @@ p.post-meta a {
   min-height: 350px;
 }
 
-
+/* Página de metas*/
+.page-id-55 .et_pb_post h2 {
+    margin-top: 19px;
+    display: block;
+    font-size: 18px;
+    font-weight: lighter;
+    color: #00385a;
+    line-height: 31px;
+    border-bottom: 1px solid #ccc;
+}
 /* Feed RSS
    ========================================================================== */
 

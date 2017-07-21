@@ -322,4 +322,6 @@
         </header> <!-- #main-header -->
 
         <div id="et-main-area">
-        <?php custom_breadcrumbs(); ?>
+        <div class=".et_pb_row">
+            <span> Você está aqui:</span> <?php custom_breadcrumbs(); ?>
+        </div>

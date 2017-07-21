@@ -2659,6 +2659,7 @@ p.comment-form-url.comment-form-attachment {
     background-color: #fff;
     display: block;
     border-radius: 4px;
+    width: 100%;
 }
 
 #comment-wrap {

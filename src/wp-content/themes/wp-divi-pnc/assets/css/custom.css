@@ -814,7 +814,10 @@ input.searchField {
   margin: auto;
   padding-top: 15px;
 }
-
+#main-content .container {
+    padding-top: 12px;
+    max-width: 1074px;
+}
 #main-content > .conteudo {
   max-width: 100%;
   padding-top: 0;

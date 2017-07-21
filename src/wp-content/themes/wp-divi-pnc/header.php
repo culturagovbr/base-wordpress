@@ -322,3 +322,4 @@
         </header> <!-- #main-header -->
 
         <div id="et-main-area">
+        <?php custom_breadcrumbs(); ?>

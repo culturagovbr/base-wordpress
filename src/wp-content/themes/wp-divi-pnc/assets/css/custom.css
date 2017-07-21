@@ -2116,7 +2116,7 @@ div#banner-topo-cinza {
     padding-left: 9px;
     padding-bottom: 15px;
     box-shadow: 0px 2px 1px #ccc;
-    margin-top: 15px;
+    margin-top: -17px;
 }
 .page-template-default:not(.home) .et_pb_row {
     position: relative;
@@ -2526,6 +2526,9 @@ div#banner-topo-cinza {
 }
 
 @media (max-width: 700px) {
+  .container.brad {
+    display: none;
+  }
   .et_pb_gutters3.et_pb_footer_columns4 .footer-widget {
     width: 100% !important;
   }
@@ -2601,20 +2604,35 @@ div#banner-topo-cinza {
 
 
 
-#breadcrumbs{
-    list-style:none;
-    margin:10px 0;
-    overflow:hidden;
+#breadcrumbs {
+    list-style: none;
+    margin: 10px 0;
+    overflow: hidden;
+    display: inline;
 }
   
-#breadcrumbs li{
-    display:inline-block;
-    vertical-align:middle;
-    margin-right:15px;
+#breadcrumbs li {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
 }
   
-#breadcrumbs .separator{
-    font-size:18px;
-    font-weight:100;
-    color:#ccc;
+#breadcrumbs .separator {
+    font-size: 18px;
+    font-weight: 100;
+    color: #f52269;
+}
+
+.container.brad {
+    display: block;
+    margin-top: 26px;
+    margin-bottom: 17px;
+    max-width: 1077px;
+}
+#breadcrumbs a.bread-link {
+    color: #f52269;
+    text-decoration: underline;
+}
+#breadcrumbs strong.bread-current {
+    color: #f52269;
 }

@@ -1862,9 +1862,11 @@ h2.title-box {
 /*Banner home*/
 
 .et_pb_section_0.et_pb_section h1 {
-  color: #00445d;
-  font-weight: bold;
-  font-size: 26px;
+    color: #00445d;
+    font-weight: bold;
+    font-size: 26px;
+    margin-top: -25px;
+    margin-bottom: 16px;
 }
 
 .et_pb_section_0.et_pb_section p {

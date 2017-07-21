@@ -812,6 +812,7 @@ input.searchField {
   width: 100%;
   max-width: 1080px;
   margin: auto;
+  padding-top: 15px;
 }
 
 #main-content > .conteudo {
@@ -2131,15 +2132,15 @@ div#banner-topo-cinza {
 /*Bradcrumbs*/
 #breadcrumbs {
     list-style: none;
-    margin: 10px 0;
     overflow: hidden;
+    margin-left: -13px;
     display: inline;
 }
   
 #breadcrumbs li {
     display: inline-block;
     vertical-align: middle;
-    margin-right: 10px;
+    margin-right: 7px;
 }
   
 #breadcrumbs .separator {

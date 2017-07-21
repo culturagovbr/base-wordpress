@@ -2468,6 +2468,9 @@ div#banner-topo-cinza {
   .et_pb_column {
     margin-bottom: 0;
   }
+  ul#menu-menu-direito {
+    margin-top: 0px;
+  }
 }
 
 @media (max-width: 700px) {
@@ -2527,6 +2530,9 @@ div#banner-topo-cinza {
   }
   .et_pb_section {
     padding: 0px 0;
+  }
+  ul#menu-menu-direito {
+    margin-top: -12px;
   }
 }
 

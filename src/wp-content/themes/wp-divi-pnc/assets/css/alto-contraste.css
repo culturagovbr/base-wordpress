@@ -316,3 +316,13 @@ color:#fff;
 .contraste div#banner-topo-cinza .et_pb_widget_area.et_pb_widget_area_left.clearfix.et_pb_module.et_pb_bg_layout_light.et_pb_sidebar_0 h4 {
     color: #ffffff;
 }
+.contraste  #comment-wrap {
+    background: #565656;
+}
+.contraste span.title {
+    background: #4c5156;
+}
+.contraste .et_pb_text_0 {
+    background-color: #4c5156;
+}
+

@@ -829,6 +829,54 @@ input.searchField {
 }
 
 
+#comment-wrap input[type=text], #comment-wrap input[type=password], #comment-wrap input[type=tel], #comment-wrap input[type=email], #comment-wrap input.text, #comment-wrap input.title, #comment-wrap textarea,#comment-wrap select {
+    padding: 15px;
+    border: 1px solid #dfdfdf;
+    color: #4e4e4e;
+    background-color: #fff;
+    display: block;
+    border-radius: 4px;
+    width: 100%;
+}
+#commentform {
+    padding-bottom: 0;
+}
+#comment-wrap {
+    padding-top: 75px;
+    background: #f1f1f1;
+    padding: 50px;
+    border-radius: 4px;
+    padding-top: 29px;
+}
+
+#comment-wrap form#uploadform {
+    display: none;
+}
+
+#comment-wrap div#ecu_uploadform {
+    display: none;
+}
+#comment-wrap p.comment-form-author {
+    display: block;
+    float: left;
+    width: 49%;
+    margin-right: 1%;
+}
+#comment-wrap p.comment-form-email{
+    display: block;
+    float: left;
+    width: 50%;
+}
+#comment-wrap p.comment-form-url {
+    width: 100%;
+    display: block;
+    clear: left;
+}
+
+#comment-wrap .form-submit {
+    float: right;
+    margin-top: -20px;
+}
 /* ==========================================================================
 6 - Rodapé ou Final do site
 ========================================================================== */
@@ -2049,7 +2097,7 @@ div#banner-topo-cinza {
 
 
 /*Metas*/
-.post-template-default span.number , .category span.number {
+.post-template-default span.number, .category span.number {
     width: 16%;
     height: 137px;
     display: block;
@@ -2059,7 +2107,11 @@ div#banner-topo-cinza {
     background: #f52270;
     color: #fff;
     font-size: 65px;
+    background-image: url(../img/meta-bg.png);
     font-weight: 100;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 34%;
 }
 .post-template-default span#objetivo , .category span#objetivo{
     font-weight: lighter;
@@ -2168,7 +2220,7 @@ p.comment-form-url.comment-form-attachment {
     margin-bottom: 17px;
     max-width: 1077px;
 }
-#breadcrumbs a.bread-link {
+#breadcrumbs a{
     color: #f52269;
     text-decoration: underline;
 }
@@ -2651,42 +2703,3 @@ p.comment-form-url.comment-form-attachment {
 
 
 
-
-#comment-wrap input[type=text], #comment-wrap input[type=password], #comment-wrap input[type=tel], #comment-wrap input[type=email], #comment-wrap input.text, #comment-wrap input.title, #comment-wrap textarea,#comment-wrap select {
-    padding: 15px;
-    border: 1px solid #dfdfdf;
-    color: #4e4e4e;
-    background-color: #fff;
-    display: block;
-    border-radius: 4px;
-    width: 100%;
-}
-
-#comment-wrap {
-    padding-top: 75px;
-    background: #f1f1f1;
-    padding: 50px;
-    border-radius: 4px;
-    padding-top: 29px;
-}
-
-#comment-wrap form#uploadform {
-    display: none;
-}
-
-p.comment-form-author {
-    display: block;
-    float: left;
-    width: 49%;
-    margin-right: 1%;
-}
-p.comment-form-email{
-    display: block;
-    float: left;
-    width: 50%;
-}
-p.comment-form-url {
-    width: 100%;
-    display: block;
-    clear: left;
-}

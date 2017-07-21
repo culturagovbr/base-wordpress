@@ -1071,7 +1071,7 @@ input.searchField {
 }
 
 .et_pb_gutters3.et_pb_footer_columns4 .footer-widget {
-    width: 33.3%;
+    width: 33.3% !important;
 }
 
 /*Responsivo*/
@@ -2466,6 +2466,9 @@ div#banner-topo-cinza {
 }
 
 @media (max-width: 700px) {
+  .et_pb_gutters3.et_pb_footer_columns4 .footer-widget {
+    width: 100% !important;
+  }
   .post-template-default span.number, .category span.number {
     width: 100%;
   }

@@ -778,6 +778,9 @@ input.searchField {
 }
 
 
+
+
+
 /*Layout da página */
 
 .page .et_pb_column_single {
@@ -1699,17 +1702,22 @@ header.main-header.et-fixed-header {
 }
 
 .menu-item-has-children ul.sub-menu {
-  right: 0;
-  opacity: 0;
-  position: absolute;
-  top: 0px;
-  visibility: hidden;
-  z-index: 1;
-  -webkit-transition: all .25s ease;
-  -moz-transition: all .25s ease;
-  -ms-transition: all .25s ease;
-  -o-transition: all .25s ease;
-  transition: all .25s ease;
+  padding: 13px;
+    right: 0;
+    opacity: 0;
+    position: absolute;
+    top: 39px;
+    visibility: hidden;
+    z-index: 1;
+    -webkit-transition: all .25s ease;
+    -moz-transition: all .25s ease;
+    -ms-transition: all .25s ease;
+    -o-transition: all .25s ease;
+    transition: all .25s ease;
+    right: -72px;
+    width: 200px;
+    background: rgba(0, 49, 103, 0.93);
+    overflow: hidden;
 }
 
 .menu-item-has-children:hover ul.sub-menu,
@@ -2325,6 +2333,7 @@ div#banner-topo-cinza {
     transition: all .25s ease;
     width: 100%;
   }
+
   .menu-item-has-children:hover ul.sub-menu,
   .menu-item-has-children:active ul.sub-menu {
     right: 0;

@@ -853,7 +853,7 @@ input.searchField {
     display: none;
 }
 
-#comment-wrap div#ecu_uploadform {
+div#ecu_uploadform {
     display: none;
 }
 #comment-wrap p.comment-form-author {

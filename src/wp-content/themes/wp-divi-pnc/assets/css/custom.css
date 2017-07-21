@@ -2077,6 +2077,35 @@ div#banner-topo-cinza {
     position: relative;
     background-color: transparent;
 }
+
+.page-template-default div#content-area {
+    max-width: 1076px;
+    margin: 0 auto;
+}
+
+.page-template-default .et_pb_row {
+    position: relative;
+    width: 100%;
+    max-width: 0;
+    padding: 0 !important;
+    margin: 0;
+}
+.page-template-default .et_pb_section_0.et_pb_section h1 {
+    color: #00445d;
+    font-weight: lighter;
+    font-size: 26px;
+    background: #eaeaea;
+    border-top: 3px solid;
+    margin-bottom: 16px;
+    padding-top: 9px;
+    padding-left: 9px;
+    padding-bottom: 15px;
+    box-shadow: 0px 2px 1px #ccc;
+    margin-top: 3px;
+}
+
+
+
 @media (max-width: 1270px) {
   #header > div {
     max-width: 816px;

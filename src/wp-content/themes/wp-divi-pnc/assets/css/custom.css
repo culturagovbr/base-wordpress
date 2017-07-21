@@ -652,7 +652,7 @@ p.post-meta {
   color: #fff !important;
 }
 
-p.post-meta a {
+.home p.post-meta a {
   background: #f52a6e;
   padding: 0 3px;
   margin: 6px 2px;

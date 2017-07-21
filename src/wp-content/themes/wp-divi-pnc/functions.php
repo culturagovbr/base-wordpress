@@ -44,7 +44,7 @@ add_action( 'wp_head', 'divi_child_enqueue_styles' );
 
 
 
-// Breadcrumbs
+// Adicionando a função que cria o Breadcrumbs
 function custom_breadcrumbs() {
        
     // Settings
@@ -60,10 +60,12 @@ function custom_breadcrumbs() {
     global $post,$wp_query;
        
     // Do not display on the homepage
+
+
     if ( !is_front_page() ) {
        
         // Build the breadcrums
-        echo '<ul id="' . $breadcrums_id . '" class="' . $breadcrums_class . '">';
+        echo '<div class="container brad"><span> Você está aqui:</span> <ul id="' . $breadcrums_id . '" class="' . $breadcrums_class . '">';
            
         // Home page
         echo '<li class="item-home"><a class="bread-link bread-home" href="' . get_home_url() . '" title="' . $home_title . '">' . $home_title . '</a></li>';
@@ -269,7 +271,7 @@ function custom_breadcrumbs() {
             echo '<li>' . 'Error 404' . '</li>';
         }
        
-        echo '</ul>';
+        echo '</ul> </div>';
            
     }
        

@@ -35,7 +35,7 @@ jQuery(document).ready(function($) {
    */
 
 
-  var targets = $('div#banner-topo-cinza ul#menu-metas li a , .menu-desktop ul li a'),
+  var targets = $('ul#menu-metas li a , .menu-desktop ul li a'),
     target = false,
     tooltip = false,
     title = false;

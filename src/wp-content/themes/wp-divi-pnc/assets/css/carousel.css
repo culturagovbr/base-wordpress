@@ -112,6 +112,12 @@ body:not(.home) #nav_menu-4.widget_nav_menu {
 
 .controls button.toggle {
     position: absolute;
+    top: 55px;
+    color: #f52b6f;
+    background: transparent;
+    border: 0;
+    font-size: 48px;
+    font-weight: lighter;
 }
 .controls button.toggle[data-toggle=prev] {
     left: 12px;

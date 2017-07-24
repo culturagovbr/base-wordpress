@@ -1,38 +1,38 @@
-jQuery(document).ready(function ($) {
-	
-//*** Função Menu collapse responsivo*** 
-$(".menu-responsivo").on("click", function(){
+jQuery(document).ready(function($) {
+
+  //*** Função Menu collapse responsivo*** 
+  $(".menu-responsivo").on("click", function() {
     $("#top-menu-nav").toggleClass("menu-collapse");
-});
+  });
 
-/*Leitor de rss script home*/
-$('#divRss').FeedEk({
-		FeedUrl:'http://www.cultura.gov.br/rss-backup/-/asset_publisher/PBe5d9MJmlrW/rss?p_p_cacheability=cacheLevelPage',
-		MaxCount: 5,
-		DateFormat: 'DD MMMM YYYY',
-		DateFormatLang: 'pt'
-	});
+  /*Leitor de rss script home*/
+  $('#divRss').FeedEk({
+    FeedUrl: 'http://www.cultura.gov.br/rss-backup/-/asset_publisher/PBe5d9MJmlrW/rss?p_p_cacheability=cacheLevelPage',
+    MaxCount: 5,
+    DateFormat: 'DD MMMM YYYY',
+    DateFormatLang: 'pt'
+  });
 
- /*Leitor de rss pagina noticias*/
-    $('#rss-read').FeedEk({
-		FeedUrl:'http://www.cultura.gov.br/rss-backup/-/asset_publisher/PBe5d9MJmlrW/rss?p_p_cacheability=cacheLevelPage',
-		MaxCount: 20,
-		DateFormat: 'DD MMMM YYYY',
-		DateFormatLang: 'pt'
-	});
-
-
+  /*Leitor de rss pagina noticias*/
+  $('#rss-read').FeedEk({
+    FeedUrl: 'http://www.cultura.gov.br/rss-backup/-/asset_publisher/PBe5d9MJmlrW/rss?p_p_cacheability=cacheLevelPage',
+    MaxCount: 20,
+    DateFormat: 'DD MMMM YYYY',
+    DateFormatLang: 'pt'
+  });
 
 
-/**
- * jQuery Tooltip 
- *
- * Copyright (c) 2010 Klaus Hartl (stilbuero.de)
- * Dual licensed under the MIT and GPL licenses:
- * http://www.opensource.org/licenses/mit-license.php
- * https://osvaldas.info/elegant-css-and-jquery-tooltip-responsive-mobile-friendly
- *
- */
+
+
+  /**
+   * jQuery Tooltip 
+   *
+   * Copyright (c) 2010 Klaus Hartl (stilbuero.de)
+   * Dual licensed under the MIT and GPL licenses:
+   * http://www.opensource.org/licenses/mit-license.php
+   * https://osvaldas.info/elegant-css-and-jquery-tooltip-responsive-mobile-friendly
+   *
+   */
 
 
   var targets = $('div#banner-topo-cinza ul#menu-metas li a , .menu-desktop ul li a'),
@@ -112,60 +112,60 @@ $('#divRss').FeedEk({
 
 
 
-/**
- * jQuery Carrousel
- *
- * Copyright (c) 2017 Moisés Rabelo 
- * https://jsfiddle.net/moisesrlima/k8xLcjbr/106/
- *
- */
-var $carousel = $('#menu-metas');
-var $seats = $('.menu-item');
+  /**
+   * jQuery Carrousel
+   *
+   * Copyright (c) 2017 Moisés Rabelo 
+   * https://jsfiddle.net/moisesrlima/k8xLcjbr/106/
+   *
+   */
+  var $carousel = $('#menu-metas');
+  var $seats = $('.menu-item');
 
 
-var $controles = "<div class='controls'> <button class='toggle' data-toggle='prev'> Prev </button> <button class='toggle' data-toggle='next'> Next </button></div>"
-$(".menu-metas-container").after($controles);
+  var $controles = "<div class='controls'> <button class='toggle' data-toggle='prev'> Prev </button> <button class='toggle' data-toggle='next'> Next </button></div>"
+  $(".menu-metas-container").after($controles);
 
 
-$('.toggle').on('click', function(e) {
-  var $newSeat;
-  var $el = $('.is-ref');
-  var $currSliderControl = $(e.currentTarget);
+  $('.toggle').on('click', function(e) {
+    var $newSeat;
+    var $el = $('.is-ref');
+    var $currSliderControl = $(e.currentTarget);
 
-  $el.removeClass('is-ref');
-  if ($currSliderControl.data('toggle') === 'next') {
-    $newSeat = next($el);
-    $carousel.removeClass('is-reversing');
-  } else {
-    $newSeat = prev($el);
-    $carousel.addClass('is-reversing');
-  }
-
-  $newSeat.addClass('is-ref').css('order', 1);
-  for (var i = 2; i <= $seats.length; i++) {
-    $newSeat = next($newSeat).css('order', i);
-  }
-
-  $carousel.removeClass('is-set');
-  return setTimeout(function() {
-    return $carousel.addClass('is-set');
-  }, 50);
-
-  function next($el) {
-    if ($el.next().length) {
-      return $el.next();
+    $el.removeClass('is-ref');
+    if ($currSliderControl.data('toggle') === 'next') {
+      $newSeat = next($el);
+      $carousel.removeClass('is-reversing');
     } else {
-      return $seats.first();
+      $newSeat = prev($el);
+      $carousel.addClass('is-reversing');
     }
-  }
 
-  function prev($el) {
-    if ($el.prev().length) {
-      return $el.prev();
-    } else {
-      return $seats.last();
+    $newSeat.addClass('is-ref').css('order', 1);
+    for (var i = 2; i <= $seats.length; i++) {
+      $newSeat = next($newSeat).css('order', i);
     }
-  }
-});
 
-});
+    $carousel.removeClass('is-set');
+    return setTimeout(function() {
+      return $carousel.addClass('is-set');
+    }, 50);
+
+    function next($el) {
+      if ($el.next().length) {
+        return $el.next();
+      } else {
+        return $seats.first();
+      }
+    }
+
+    function prev($el) {
+      if ($el.prev().length) {
+        return $el.prev();
+      } else {
+        return $seats.last();
+      }
+    }
+  });
+
+};

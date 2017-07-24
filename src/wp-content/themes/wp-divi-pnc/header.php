@@ -286,7 +286,7 @@
                     <?php if ( ! $et_slide_header || is_customize_preview() ) : ?>
                         <nav id="top-menu-nav">
                             <div class="menu-responsivo"> <i>Icon</i> Menu </div> 
-                            <div class="menu-desktop"><?php if ( dynamic_sidebar('barra-servico') ) : else : endif; ?></div>
+                    
                             
                         </nav>
                     <?php endif; ?>

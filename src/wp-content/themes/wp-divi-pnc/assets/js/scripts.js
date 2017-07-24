@@ -1,12 +1,12 @@
-jQuery(document).ready(function($) {
+jQuery(document).ready(function(jQuery) {
 
   //*** Função Menu collapse responsivo*** 
-  $(".menu-responsivo").on("click", function() {
-    $("#top-menu-nav").toggleClass("menu-collapse");
+  jQuery(".menu-responsivo").on("click", function() {
+    jQuery("#top-menu-nav").toggleClass("menu-collapse");
   });
 
   /*Leitor de rss script home*/
-  $('#divRss').FeedEk({
+  jQuery('#divRss').FeedEk({
     FeedUrl: 'http://www.cultura.gov.br/rss-backup/-/asset_publisher/PBe5d9MJmlrW/rss?p_p_cacheability=cacheLevelPage',
     MaxCount: 5,
     DateFormat: 'DD MMMM YYYY',
@@ -14,7 +14,7 @@ jQuery(document).ready(function($) {
   });
 
   /*Leitor de rss pagina noticias*/
-  $('#rss-read').FeedEk({
+  jQuery('#rss-read').FeedEk({
     FeedUrl: 'http://www.cultura.gov.br/rss-backup/-/asset_publisher/PBe5d9MJmlrW/rss?p_p_cacheability=cacheLevelPage',
     MaxCount: 20,
     DateFormat: 'DD MMMM YYYY',
@@ -35,15 +35,15 @@ jQuery(document).ready(function($) {
    */
 
 
-  var targets = $('ul#menu-metas li a , .menu-desktop ul li a'),
+  var targets = jQuery('ul#menu-metas li a , .menu-desktop ul li a'),
     target = false,
     tooltip = false,
     title = false;
 
   targets.bind('mouseenter', function() {
-    target = $(this);
+    target = jQuery(this);
     tip = target.attr('title');
-    tooltip = $('<div id="tooltip"></div>');
+    tooltip = jQuery('<div id="tooltip"></div>');
 
     if (!tip || tip == '')
       return false;
@@ -54,8 +54,8 @@ jQuery(document).ready(function($) {
       .appendTo('body');
 
     var init_tooltip = function() {
-      if ($(window).width() < tooltip.outerWidth() * 1.5)
-        tooltip.css('max-width', $(window).width() / 2);
+      if (jQuery(window).width() < tooltip.outerWidth() * 1.5)
+        tooltip.css('max-width', jQuery(window).width() / 2);
       else
         tooltip.css('max-width', 340);
 
@@ -68,7 +68,7 @@ jQuery(document).ready(function($) {
       } else
         tooltip.removeClass('left');
 
-      if (pos_left + tooltip.outerWidth() > $(window).width()) {
+      if (pos_left + tooltip.outerWidth() > jQuery(window).width()) {
         pos_left = target.offset().left - tooltip.outerWidth() + target.outerWidth() / 2 + 20;
         tooltip.addClass('right');
       } else
@@ -91,14 +91,14 @@ jQuery(document).ready(function($) {
     };
 
     init_tooltip();
-    $(window).resize(init_tooltip);
+    jQuery(window).resize(init_tooltip);
 
     var remove_tooltip = function() {
       tooltip.animate({
         top: '-=10',
         opacity: 0
       }, 50, function() {
-        $(this).remove();
+        jQuery(this).remove();
       });
 
       target.attr('title', tip);
@@ -119,51 +119,51 @@ jQuery(document).ready(function($) {
    * https://jsfiddle.net/moisesrlima/k8xLcjbr/106/
    *
    */
-  var $carousel = $('#menu-metas');
-  var $seats = $('.menu-item');
+  var jQuerycarousel = jQuery('#menu-metas');
+  var jQueryseats = jQuery('.menu-item');
 
-  var $controles = "<div class='controls'> <button class='toggle' data-toggle='prev'> <i class='fa fa-angle-left' aria-hidden='true'></i> </button> <button class='toggle' data-toggle='next'>  <i class='fa fa-angle-right' aria-hidden='true'></i> </button></div>";
-  $("body:not(.home) .menu-metas-container").after($controles);
+  var jQuerycontroles = "<div class='controls'> <button class='toggle' data-toggle='prev'> <i class='fa fa-angle-left' aria-hidden='true'></i> </button> <button class='toggle' data-toggle='next'>  <i class='fa fa-angle-right' aria-hidden='true'></i> </button></div>";
+  jQuery("body:not(.home) .menu-metas-container").after(jQuerycontroles);
 
 
-  $('.toggle').on('click', function(e) {
-    var $newSeat;
-    var $el = $('.is-ref');
-    var $currSliderControl = $(e.currentTarget);
+  jQuery('.toggle').on('click', function(e) {
+    var jQuerynewSeat;
+    var jQueryel = jQuery('.is-ref');
+    var jQuerycurrSliderControl = jQuery(e.currentTarget);
     // Info: e.target is what triggers the event dispatcher to trigger and e.currentTarget is what you assigned your listener to.
 
-    $el.removeClass('is-ref');
-    if ($currSliderControl.data('toggle') === 'next') {
-      $newSeat = next($el);
-      $carousel.removeClass('is-reversing');
+    jQueryel.removeClass('is-ref');
+    if (jQuerycurrSliderControl.data('toggle') === 'next') {
+      jQuerynewSeat = next(jQueryel);
+      jQuerycarousel.removeClass('is-reversing');
     } else {
-      $newSeat = prev($el);
-      $carousel.addClass('is-reversing');
+      jQuerynewSeat = prev(jQueryel);
+      jQuerycarousel.addClass('is-reversing');
     }
 
-    $newSeat.addClass('is-ref').css('order', 1);
-    for (var i = 2; i <= $seats.length; i++) {
-      $newSeat = next($newSeat).css('order', i);
+    jQuerynewSeat.addClass('is-ref').css('order', 1);
+    for (var i = 2; i <= jQueryseats.length; i++) {
+      jQuerynewSeat = next(jQuerynewSeat).css('order', i);
     }
 
-    $carousel.removeClass('is-set');
+    jQuerycarousel.removeClass('is-set');
     return setTimeout(function() {
-      return $carousel.addClass('is-set');
+      return jQuerycarousel.addClass('is-set');
     }, 50);
 
-    function next($el) {
-      if ($el.next().length) {
-        return $el.next();
+    function next(jQueryel) {
+      if (jQueryel.next().length) {
+        return jQueryel.next();
       } else {
-        return $seats.first();
+        return jQueryseats.first();
       }
     }
 
-    function prev($el) {
-      if ($el.prev().length) {
-        return $el.prev();
+    function prev(jQueryel) {
+      if (jQueryel.prev().length) {
+        return jQueryel.prev();
       } else {
-        return $seats.last();
+        return jQueryseats.last();
       }
     }
   });

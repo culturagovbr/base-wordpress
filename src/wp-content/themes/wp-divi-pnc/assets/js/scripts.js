@@ -121,10 +121,10 @@ jQuery(document).ready(function($) {
  *
  */
 var $carousel = jQuery('#menu-metas');
-var $seats = jQuery('.menu-item');
+var $seats = jQuery('#menu-metas .menu-item');
 
 var $controles = "<div class='controls'> <button class='toggle' data-toggle='prev'> <i class='fa fa-angle-left' aria-hidden='true'></i> </button> <button class='toggle' data-toggle='next'>  <i class='fa fa-angle-right' aria-hidden='true'></i> </button></div>";
-$("body:not(.home) .menu-metas-container").after($controles);
+jQuery("body:not(.home) .menu-metas-container").after($controles);
 
 
 jQuery('.toggle').on('click', function(e) {

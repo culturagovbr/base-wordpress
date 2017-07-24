@@ -125,3 +125,7 @@ body:not(.home) #nav_menu-4.widget_nav_menu {
 .controls button.toggle[data-toggle=next] {
     right: 12px;
 }
+body:not(.home) .menu-metas-container #menu-metas .current-menu-item a {
+    background: #f52b6f;
+    color: #fff;
+}

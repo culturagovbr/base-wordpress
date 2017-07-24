@@ -108,7 +108,7 @@ $('#divRss').FeedEk({
     tooltip.bind('click', remove_tooltip);
   });
 
-});
+
 
 
 
@@ -166,4 +166,6 @@ $('.toggle').on('click', function(e) {
       return $seats.last();
     }
   }
+});
+
 });

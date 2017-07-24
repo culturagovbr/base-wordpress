@@ -116,6 +116,6 @@ body:not(.home) #nav_menu-4.widget_nav_menu {
 .controls button.toggle[data-toggle=prev] {
     left: 12px;
 }
-.controls button.toggle[data-toggle=nex] {
+.controls button.toggle[data-toggle=next] {
     right: 12px;
 }

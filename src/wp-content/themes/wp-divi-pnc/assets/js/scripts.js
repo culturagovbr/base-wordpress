@@ -119,8 +119,8 @@ jQuery(document).ready(function($) {
    * https://jsfiddle.net/moisesrlima/k8xLcjbr/106/
    *
    */
-  var $carousel = $('body:not(.home) #menu-metas');
-  var $seats = $('body:not(.home) .menu-item');
+  var $carousel = $('#menu-metas');
+  var $seats = $('.menu-item');
 
 
   var $controles = "<div class='controls'> <button class='toggle' data-toggle='prev'> <i class='fa fa-angle-left' aria-hidden='true'></i> </button> <button class='toggle' data-toggle='next'>  <i class='fa fa-angle-right' aria-hidden='true'></i> </button></div>"
@@ -142,6 +142,7 @@ jQuery(document).ready(function($) {
     }
 
     $newSeat.addClass('is-ref').css('order', 1);
+
     for (var i = 2; i <= $seats.length; i++) {
       $newSeat = next($newSeat).css('order', i);
     }

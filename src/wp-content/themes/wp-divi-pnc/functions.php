@@ -23,9 +23,9 @@ function divi_child_enqueue_styles() {
     // wp_enqueue_style( 'open-sans-font', 'https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' );
     
 	wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
-        wp_enqueue_style( 'feedRead-style', get_stylesheet_directory_uri() . '/assets/css/FeedEk.css');
+    wp_enqueue_style( 'feedRead-style', get_stylesheet_directory_uri() . '/assets/css/FeedEk.css');
     wp_enqueue_style( 'custom-style', get_stylesheet_directory_uri() . '/assets/css/custom.css');
-    wp_enqueue_script( 'carousel', get_stylesheet_directory_uri() . '/assets/js/carousel.css');
+    wp_enqueue_style( 'carousel', get_stylesheet_directory_uri() . '/assets/css/carousel.css');
     wp_enqueue_style( 'alto-contraste', get_stylesheet_directory_uri() . '/assets/css/alto-contraste.css');
     wp_enqueue_script( 'alto-contraste', get_stylesheet_directory_uri() . '/assets/js/alto-contraste.js');
 

@@ -4,7 +4,7 @@
   overflow: hidden;
 }
 
-#menu-metas {
+.menu-metas-container  #menu-metas {
   display: flex;
   left: -100%;
   list-style: none;
@@ -15,67 +15,67 @@
 }
 
 @media (min-width: 30em) {
-  #menu-metas {
+  .menu-metas-container  #menu-metas {
     left: -50%;
     transform: translateX(50%);
   }
 }
 
 @media (min-width: 40em) {
-  #menu-metas {
+  .menu-metas-container  #menu-metas {
     left: -33.33333%;
     transform: translateX(33.33333%);
   }
 }
 
-#menu-metas.is-reversing {
+.menu-metas-container  #menu-metas.is-reversing {
   transform: translateX(-100%);
 }
 
 @media (min-width: 30em) {
-  #menu-metas.is-reversing {
+  .menu-metas-container  #menu-metas.is-reversing {
     transform: translateX(-50%);
   }
 }
 
 @media (min-width: 40em) {
-  #menu-metas.is-reversing {
+  .menu-metas-container  #menu-metas.is-reversing {
     transform: translateX(-33.33333%);
   }
 }
 
-#menu-metas.is-set{
+.menu-metas-container  #menu-metas.is-set{
   transform: none;
   transition: transform 0.5s ease-in-out;
 }
 
-.menu-item {
+.menu-metas-container  .menu-item {
   background: #ddd;
   flex: 1 0 100%;
   order: 2;
 }
 
-.menu-item:nth-child(even) {
+.menu-metas-container  .menu-item:nth-child(even) {
   background: #d5d5d5;
 }
 
 @media (min-width: 30em) {
-  .menu-item {
+  .menu-metas-container  .menu-item {
     flex-basis: 50%;
   }
 }
 
 @media (min-width: 40em) {
-  .menu-item {
+  .menu-metas-container  .menu-item {
     flex-basis: 11%;
   }
 }
 
-.menu-item.is-ref {
+.menu-metas-container  .menu-item.is-ref {
   order: 1;
 }
 
-#menu-metas a {
+.menu-metas-container  #menu-metas a {
   color: #aaa;
   font-size: 7em;
   font-weight: normal;
@@ -84,12 +84,12 @@
   text-align: center;
 }
 
-.controls {
+.menu-metas-container  .controls {
   padding: 1em;
   text-align: center;
 }
 
-.controls button {
+.menu-metas-container  .controls button {
   background: #aaa;
   border: 0;
   border-radius: 0.25em;
@@ -97,7 +97,7 @@
   padding: 0.5em 1em;
 }
 
-.controls button:hover,
-.controls button:focus {
+.menu-metas-container  .controls button:hover,
+.menu-metas-container  .controls button:focus {
   background: orange;
 }

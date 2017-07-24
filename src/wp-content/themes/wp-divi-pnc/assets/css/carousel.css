@@ -101,3 +101,6 @@
 .menu-metas-container  .controls button:focus {
   background: orange;
 }
+#nav_menu-4.widget_nav_menu {
+    width: 100%;
+}

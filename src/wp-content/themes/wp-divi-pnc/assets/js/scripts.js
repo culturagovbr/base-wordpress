@@ -109,3 +109,61 @@ $('#divRss').FeedEk({
   });
 
 });
+
+
+
+/**
+ * jQuery Carrousel
+ *
+ * Copyright (c) 2017 Moisés Rabelo 
+ * https://jsfiddle.net/moisesrlima/k8xLcjbr/106/
+ *
+ */
+var $carousel = $('#menu-metas');
+var $seats = $('.menu-item');
+
+
+var $controles = "<div class='controls'> <button class='toggle' data-toggle='prev'> Prev </button> <button class='toggle' data-toggle='next'> Next </button></div>"
+$(".menu-metas-container").after($controles);
+
+
+$('.toggle').on('click', function(e) {
+  var $newSeat;
+  var $el = $('.is-ref');
+  var $currSliderControl = $(e.currentTarget);
+
+  $el.removeClass('is-ref');
+  if ($currSliderControl.data('toggle') === 'next') {
+    $newSeat = next($el);
+    $carousel.removeClass('is-reversing');
+  } else {
+    $newSeat = prev($el);
+    $carousel.addClass('is-reversing');
+  }
+
+  $newSeat.addClass('is-ref').css('order', 1);
+  for (var i = 2; i <= $seats.length; i++) {
+    $newSeat = next($newSeat).css('order', i);
+  }
+
+  $carousel.removeClass('is-set');
+  return setTimeout(function() {
+    return $carousel.addClass('is-set');
+  }, 50);
+
+  function next($el) {
+    if ($el.next().length) {
+      return $el.next();
+    } else {
+      return $seats.first();
+    }
+  }
+
+  function prev($el) {
+    if ($el.prev().length) {
+      return $el.prev();
+    } else {
+      return $seats.last();
+    }
+  }
+});

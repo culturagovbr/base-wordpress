@@ -50,13 +50,12 @@
 }
 
 .menu-metas-container  .menu-item {
-  background: #ddd;
   flex: 1 0 100%;
   order: 2;
 }
 
 .menu-metas-container  .menu-item:nth-child(even) {
-  background: #d5d5d5;
+
 }
 
 @media (min-width: 30em) {
@@ -75,13 +74,18 @@
   order: 1;
 }
 
-.menu-metas-container  #menu-metas a {
-  color: #aaa;
-  font-size: 7em;
-  font-weight: normal;
-  margin: 0;
-  padding: 0.6em 0;
-  text-align: center;
+.menu-metas-container #menu-metas a {
+    color: #38759a;
+    font-size: 30px;
+    font-weight: normal;
+    margin: 0;
+    padding: 0.6em 0;
+    text-align: center;
+    min-height: 60px;
+    background: #eeeff1;
+    display: block;
+    margin: 18px 10px;
+    border-radius: 4px;
 }
 
 .menu-metas-container  .controls {

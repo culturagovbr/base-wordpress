@@ -143,7 +143,7 @@ jQuery('.toggle').on('click', function(e) {
   }
 
   $newSeat.addClass('is-ref').css('order', 1);
-  for (var i = 2; i <= $seats.length; i++) {
+  for (var i = 10; i <= $seats.length; i++) {
     $newSeat = next($newSeat).css('order', i);
   }
 

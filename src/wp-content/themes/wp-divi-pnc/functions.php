@@ -26,6 +26,7 @@ function divi_child_enqueue_styles() {
     wp_enqueue_style( 'feedRead-style', get_stylesheet_directory_uri() . '/assets/css/FeedEk.css');
     wp_enqueue_style( 'custom-style', get_stylesheet_directory_uri() . '/assets/css/custom.css');
     wp_enqueue_style( 'carousel', get_stylesheet_directory_uri() . '/assets/css/carousel.css');
+    wp_enqueue_style( 'carousel', get_stylesheet_directory_uri() . '/assets/css/font-awesome.css'); 
     wp_enqueue_style( 'alto-contraste', get_stylesheet_directory_uri() . '/assets/css/alto-contraste.css');
     wp_enqueue_script( 'alto-contraste', get_stylesheet_directory_uri() . '/assets/js/alto-contraste.js');
 

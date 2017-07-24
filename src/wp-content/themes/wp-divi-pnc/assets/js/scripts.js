@@ -119,8 +119,8 @@ jQuery(document).ready(function($) {
    * https://jsfiddle.net/moisesrlima/k8xLcjbr/106/
    *
    */
-  var $carousel = $('#menu-metas');
-  var $seats = $('.menu-item');
+  var $carousel = $('body:not(.home) #menu-metas');
+  var $seats = $('body:not(.home) .menu-item');
 
 
   var $controles = "<div class='controls'> <button class='toggle' data-toggle='prev'> Prev </button> <button class='toggle' data-toggle='next'> Next </button></div>"

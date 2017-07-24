@@ -122,8 +122,7 @@ jQuery(document).ready(function($) {
   var $carousel = $('#menu-metas');
   var $seats = $('.menu-item');
 
-
-  var $controles = "<div class='controls'> <button class='toggle' data-toggle='prev'> <i class='fa fa-angle-left' aria-hidden='true'></i> </button> <button class='toggle' data-toggle='next'>  <i class='fa fa-angle-right' aria-hidden='true'></i> </button></div>"
+  var $controles = "<div class='controls'> <button class='toggle' data-toggle='prev'> <i class='fa fa-angle-left' aria-hidden='true'></i> </button> <button class='toggle' data-toggle='next'>  <i class='fa fa-angle-right' aria-hidden='true'></i> </button></div>";
   $("body:not(.home) .menu-metas-container").after($controles);
 
 
@@ -131,6 +130,7 @@ jQuery(document).ready(function($) {
     var $newSeat;
     var $el = $('.is-ref');
     var $currSliderControl = $(e.currentTarget);
+    // Info: e.target is what triggers the event dispatcher to trigger and e.currentTarget is what you assigned your listener to.
 
     $el.removeClass('is-ref');
     if ($currSliderControl.data('toggle') === 'next') {
@@ -142,7 +142,6 @@ jQuery(document).ready(function($) {
     }
 
     $newSeat.addClass('is-ref').css('order', 1);
-
     for (var i = 2; i <= $seats.length; i++) {
       $newSeat = next($newSeat).css('order', i);
     }

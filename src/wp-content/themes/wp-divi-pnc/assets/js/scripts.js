@@ -123,7 +123,7 @@ jQuery(document).ready(function($) {
   var $seats = $('body:not(.home) .menu-item');
 
 
-  var $controles = "<div class='controls'> <button class='toggle' data-toggle='prev'> <i class='fa fa-angle-left' aria-hidden='true'></i> </button> <button class='toggle' data-toggle='next'>  <i class='fa fa-angle-left' aria-hidden='true'></i> </button></div>"
+  var $controles = "<div class='controls'> <button class='toggle' data-toggle='prev'> <i class='fa fa-angle-left' aria-hidden='true'></i> </button> <button class='toggle' data-toggle='next'>  <i class='fa fa-angle-right' aria-hidden='true'></i> </button></div>"
   $("body:not(.home) .menu-metas-container").after($controles);
 
 

@@ -120,6 +120,7 @@ jQuery(document).ready(function($) {
  * https://jsfiddle.net/moisesrlima/k8xLcjbr/106/
  *
  */
+jQuery('#menu-metas > li').last().addClass('is-ref');
 var $carousel = jQuery('#menu-metas');
 var $seats = jQuery('#menu-metas .menu-item');
 
@@ -143,7 +144,7 @@ jQuery('.toggle').on('click', function(e) {
   }
 
   $newSeat.addClass('is-ref').css('order', 1);
-  for (var i = 1; i <= $seats.length; i++) {
+  for (var i = 2; i <= $seats.length; i++) {
     $newSeat = next($newSeat).css('order', i);
   }
 

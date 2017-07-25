@@ -119,8 +119,7 @@ jQuery(document).ready(function($) {
  * Copyright (c) 2017 Moisés Rabelo 
  * https://jsfiddle.net/moisesrlima/k8xLcjbr/106/
  *
- */
-jQuery('#menu-metas > li').last().addClass('is-ref');
+
 var $carousel = jQuery('#menu-metas');
 var $seats = jQuery('#menu-metas .menu-item');
 
@@ -170,3 +169,4 @@ jQuery('.toggle').on('click', function(e) {
   }
 });
 
+ */

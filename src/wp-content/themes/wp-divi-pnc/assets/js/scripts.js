@@ -120,11 +120,37 @@ jQuery(document).ready(function($) {
  * https://jsfiddle.net/moisesrlima/k8xLcjbr/106/
  *
 
-var $carousel = jQuery('#menu-metas');
-var $seats = jQuery('#menu-metas .menu-item');
+*/
 
 var $controles = "<div class='controls'> <button class='toggle' data-toggle='prev'> <i class='fa fa-angle-left' aria-hidden='true'></i> </button> <button class='toggle' data-toggle='next'>  <i class='fa fa-angle-right' aria-hidden='true'></i> </button></div>";
 jQuery("body:not(.home) .menu-metas-container").after($controles);
+
+
+jQuery('.controls button.toggle[data-toggle=prev]').on('click', function(e) {
+var link = jQuery("body:not(.home) .menu-metas-container #menu-metas .current-menu-item a").text();
+link++;
+location.href = link;
+});
+
+jQuery('.controls button.toggle[data-toggle=next]').on('click', function(e) {
+var link = jQuery("body:not(.home) .menu-metas-container #menu-metas .current-menu-item a").text();
+link--;
+location.href = link;
+});
+
+
+
+
+/*
+
+
+
+
+
+
+var $carousel = jQuery('#menu-metas');
+var $seats = jQuery('#menu-metas .menu-item');
+
 
 
 jQuery('.toggle').on('click', function(e) {

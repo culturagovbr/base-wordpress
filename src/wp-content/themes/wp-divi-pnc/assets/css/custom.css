@@ -2124,16 +2124,8 @@ div#banner-topo-cinza {
 .post-template-default .et_pb_text , .category .et_pb_text {
     clear: left;
 }
-.post-template-default span.title, .category span.title{
-    padding: 16px;
-    display: block;
-    float: left;
+.post-template-default span.title, .category span.title {
     font-size: 17px;
-    padding-top: 7px;
-    width: 84%;
-    background: #e2e2e2;
-    min-height: 137px;
-    padding-bottom: 0;
     line-height: 23px;
 }
 

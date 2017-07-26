@@ -128,13 +128,13 @@ jQuery("body:not(.home) .menu-metas-container").after($controles);
 
 jQuery('.controls button.toggle[data-toggle=prev]').on('click', function(e) {
 var link = jQuery("body:not(.home) .menu-metas-container #menu-metas .current-menu-item a").text();
-link++;
+link--;
 location.href = link;
 });
 
 jQuery('.controls button.toggle[data-toggle=next]').on('click', function(e) {
 var link = jQuery("body:not(.home) .menu-metas-container #menu-metas .current-menu-item a").text();
-link--;
+link++;
 location.href = link;
 });
 

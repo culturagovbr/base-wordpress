@@ -381,6 +381,23 @@ jQuery(document).ready(function() {
 		jQuery(".free_version_banner").css('display', 'none');
 		hgLightboxSetCookie('hgSliderFreeBannerShow', 'no', {expires: 3600});
 	});
+
+	jQuery('#hugeit_lightbox_lightboxView').change(function(){
+		switch(jQuery(this).val()){
+			case 'view7':
+				jQuery('#lightbox_open_close_effect').parent().css('display', 'none');
+				jQuery('#hugeit_lightbox_fullwidth_effect').parent().css('display', 'none');
+				jQuery('#hugeit_lightbox_imageframe').parent().css('display', 'none');
+				jQuery('#hugeit_lightbox_view_info').parent().css('display', 'block');
+				break;
+			default:
+				jQuery('#lightbox_open_close_effect').parent().css('display', 'block');
+				jQuery('#hugeit_lightbox_fullwidth_effect').parent().css('display', 'block');
+				jQuery('#hugeit_lightbox_imageframe').parent().css('display', 'block');
+				jQuery('#hugeit_lightbox_view_info').parent().css('display', 'none');
+				break;
+		}
+	});
 });
 
 function hgLightboxSetCookie(name, value, options) {

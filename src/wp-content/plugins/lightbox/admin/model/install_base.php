@@ -72,3 +72,7 @@ if( !get_option( 'hugeit_lightbox_arrows_hover_effect' ) ) {
 if( !get_option( 'lightbox_open_close_effect' ) ) {
     update_option('lightbox_open_close_effect', '0');
 }
+
+if( !get_option( 'hugeit_lightbox_view_info' ) ) {
+    update_option('hugeit_lightbox_view_info', 'false');
+}

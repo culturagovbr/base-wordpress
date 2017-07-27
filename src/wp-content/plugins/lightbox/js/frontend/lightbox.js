@@ -32,7 +32,7 @@
         slideAnimationType: hugeit_gen_resp_lightbox_obj.hugeit_lightbox_slideAnimationType, /*  effect_1   effect_2    effect_3
          effect_4   effect_5    effect_6
          effect_7   effect_8    effect_9   */
-        lightboxView: hugeit_resp_lightbox_obj.hugeit_lightbox_lightboxView,              //  view1, view2, view3, view4, view5, view6
+        lightboxView: hugeit_resp_lightbox_obj.hugeit_lightbox_lightboxView,              //  view1, view2, view3, view4, view5, view6, view7
         speed: hugeit_resp_lightbox_obj.hugeit_lightbox_speed_new,
         width: hugeit_resp_lightbox_obj.hugeit_lightbox_width_new + '%',
         height: hugeit_resp_lightbox_obj.hugeit_lightbox_height_new + '%',
@@ -73,6 +73,7 @@
         watermarkURL: hugeit_resp_lightbox_obj.hugeit_lightbox_watermark_url,
         wURLnewTab: hugeit_resp_lightbox_obj.hugeit_lightbox_watermark_url_new_tab,
         openCloseType: hugeit_resp_lightbox_obj.lightbox_open_close_effect,
+        thumbnail: hugeit_resp_lightbox_obj.hugeit_lightbox_thumbs === 'true',
         share: {
             facebookButton: hugeit_gen_resp_lightbox_obj.hugeit_lightbox_facebookButton,
             twitterButton: hugeit_gen_resp_lightbox_obj.hugeit_lightbox_twitterButton,
@@ -163,7 +164,12 @@
                 break;
         }
 
-        this.settings.openCloseType = $openCloseType;
+        if(this.settings.lightboxView !== 'view7'){
+            this.settings.openCloseType = $openCloseType;
+        } else {
+            this.settings.openCloseType = {0: 'open_1', 1: 'close_1'};
+            this.settings.slideAnimationType = 'effect_2';
+        }
 
         $hash = window.location.hash;
 
@@ -216,7 +222,7 @@
 
         var $object = this;
 
-        $object.structure();
+        $object.structure(index);
 
         $object.lightboxModul['modul'] = new $.fn.lightbox.lightboxModul['modul']($object.el);
 
@@ -253,14 +259,69 @@
             }, 9000);
         });
 
-        $object.calculateDimensions();
+        if(!this.settings.thumbnail){
+            $object.calculateDimensions(index);
+        } else {
+            setTimeout(function(){
+                $object.calculateDimensions(index);
+            }, 800);
+        }
+
+        if(this.settings.lightboxView === 'view7'){
+            setTimeout(function(){
+                $('.view7_share, .rwd-close-bar, .rwd-toolbar').css({
+                    visibility: 'visible',
+                    opacity: '1'
+                });
+
+                $object.calculateDimensions(index);
+            }, 1100);
+            
+            jQuery('.rwd-close').hover(function(){
+                $('.rwd-cont').addClass('close_hover_on');
+            }, function(){
+                $('.rwd-cont').removeClass('close_hover_on');
+            });
+
+            var $w, $l;
+
+            if($('.rwd-container').width() > 768){
+                $('.rwd-view7-title').width($('.rwd-container').width() * 0.2 - 46);
+                $('.rwd-view7-desc').width($('.rwd-container').width() * 0.2 - 36);
+
+                setTimeout(function(){
+                    $('.rwd-view7-desc').height($('.view7_inner').height() - 79);
+                }, 200);
+
+                $w = 256;
+                $l = $('.tool_bar .rwd-icon:not(.zoom_cont)').length;
+
+                if(hugeit_resp_lightbox_obj.hugeit_lightbox_zoom && hugeit_resp_lightbox_obj.hugeit_lightbox_zoomtype === '1'){
+                    $('.zoom_cont').css({
+                        'max-width': '220px'
+                    });
+
+                    $w = 220;
+                } else {
+                    $('.zoom_cont').css({
+                        'max-width': '145px'
+                    });
+
+                    $w = 145;
+                }
+
+                $('.tool_bar').width(50 * $l + $w);
+            } else {
+                $('.tool_bar').css('width', '80%');
+            }
+        }
     };
 
-    Lightbox.prototype.structure = function () {
+    Lightbox.prototype.structure = function (index) {
 
         var $object = this, list = '', controls = '', i,
             subHtmlCont1 = '', subHtmlCont2 = '', subHtmlCont3 = '',
-            close1 = '', close2 = '', socialIcons = '',
+            close1 = '', close2 = '', close3 = '', socialIcons = '',
             template, $arrows, $next, $prev,
             $_next, $_prev, $close_bg, $download_bg, $download_bg_, $contInner, $view;
 
@@ -367,6 +428,47 @@
                 }
                 close1 = '<span class="' + this.settings.classPrefix + 'close ' + $object.settings.classPrefix + 'icon">' + $close_bg + '</span>';
                 break;
+            case 'view7':
+                $_next = '<svg class="next_bg" width="22px" height="22px" fill="#999" viewBox="0 0 43 70.8">' +
+                    '<path id="XMLID_133_" d="M40,33L9.4,2.4c-1.3-1.3-3.5-1.3-4.7,0L1.9,5.2L29.7,33c1.3,1.4,1.3,3.5,0,4.7L1.9,65.5' +
+                    'l2.8,2.8c1.3,1.4,3.5,1.4,4.7,0L40,37.7C41.3,36.5,41.3,34.4,40,33L40,33z"/>' +
+                    '<path id="XMLID_132_" d="M4.1,3.2L3.8,3.5l31.4,31.2c0.3,0.4,0.3,1,0,1.3L3.8,67.4l0.3,0.1c0.3,0.4,0.9,0.4,1.3,0' +
+                    'L36.9,36c0.3-0.3,0.3-0.9,0-1.3L5.5,3.2C5,2.9,4.4,2.9,4.1,3.2L4.1,3.2z"/>' +
+                    '</svg>';
+                $_prev = '<svg class="prev_bg" width="22px" height="22px" fill="#999" x="0px" y="0px" viewBox="0 0 43 70.8">' +
+                    '<path id="XMLID_133_" d="M2.9,37.8l30.6,30.6c1.3,1.3,3.5,1.3,4.7,0l2.8-2.8L13.2,37.8c-1.3-1.4-1.3-3.5,0-4.7L41,5.3' +
+                    'l-2.8-2.8c-1.3-1.4-3.5-1.4-4.7,0L2.9,33.1C1.6,34.3,1.6,36.4,2.9,37.8L2.9,37.8z"/>' +
+                    '<path id="XMLID_132_" d="M38.8,67.5l0.3-0.3L7.7,36.1c-0.3-0.4-0.3-1,0-1.3L39.1,3.4l-0.3-0.1c-0.3-0.4-0.9-0.4-1.3,0' +
+                    'L6,34.8c-0.3,0.3-0.3,0.9,0,1.3l31.4,31.5C37.9,67.8,38.5,67.8,38.8,67.5L38.8,67.5z"/>' +
+                    '</svg>';
+                $close_bg = '<svg id="close_hover" class="close_bg" viewBox="0 0 24.3 23.8" style="enable-background:new 0 0 24.3 23.8;" xml:space="preserve">' +
+                    '<style type="text/css">.st0{opacity:0.3;}.st2{fill:#FFFFFF;}.st3{fill:#010101;}.st4{fill:#231F20;}</style>' +
+                    '<g id="XMLID_248_" class="st0"><g id="XMLID_249_"><g id="XMLID_250_"><defs><rect id="XMLID_137_" x="1.3" y="0.5" width="22.5" height="22.8"/></defs>' +
+                    '<clipPath id="XMLID_140_"><use xlink:href="#XMLID_137_"  style="overflow:visible;"/></clipPath><g id="XMLID_251_" class="st1"><g id="XMLID_252_">' +
+                    '<path id="XMLID_132_" class="st2" d="M14.4,11.7l9-9c0.5-0.5,0.5-1.3,0-1.9c-0.5-0.5-1.3-0.5-1.9,0l-9,9l-9-9' +
+                    'C3,0.3,2.2,0.3,1.7,0.8c-0.5,0.5-0.5,1.3,0,1.9l9,9l-9,9c-0.5,0.5-0.5,1.3,0,1.9C2,22.9,2.3,23,2.6,23s0.7-0.1,0.9-0.4l9-9l9,9' +
+                    'c0.3,0.3,0.6,0.4,0.9,0.4s0.7-0.1,0.9-0.4c0.5-0.5,0.5-1.3,0-1.9L14.4,11.7z"/>' +
+                    '</g></g></g></g></g><g id="XMLID_142_" class="st0"><line id="XMLID_135_" class="st3" x1="1.9" y1="1.1" x2="23.1" y2="22.3"/>' +
+                    '<rect id="XMLID_136_" x="-2.5" y="11.2" transform="matrix(0.7077 0.7066 -0.7066 0.7077 11.918 -5.4355)" class="st4" width="30" height="1"/>' +
+                    '</g><g id="XMLID_139_" class="st0"><line id="XMLID_133_" class="st3" x1="23.4" y1="1" x2="2.2" y2="22.2"/>' +
+                    '<rect id="XMLID_134_" x="12.3" y="-3.4" transform="matrix(0.7071 0.7071 -0.7071 0.7071 11.9598 -5.6442)" class="st4" width="1" height="30"/>' +
+                    '</g></svg>' +
+                    '<svg id="close_hover_on" class="close_bg" viewBox="0 0 24.3 23.8" style="enable-background:new 0 0 24.3 23.8;" xml:space="preserve">' +
+                    '<style type="text/css">.st0{opacity:0.7;}.st2{fill:#FFFFFF;}.st3{opacity:1;}.st4{fill:#010101;}.st5{fill:#231F20;}</style>' +
+                    '<g id="XMLID_248_" class="st0"><g id="XMLID_249_"><g id="XMLID_250_"><defs><rect id="XMLID_137_" x="0.6" y="0.5" width="23" height="23.2"/></defs>' +
+                    '<clipPath id="XMLID_140_"><use xlink:href="#XMLID_137_"  style="overflow:visible;"/></clipPath><g id="XMLID_251_" class="st1"><g id="XMLID_252_">' +
+                    '<path id="XMLID_132_" class="st2" d="M14.1,12l9.2-9.2c0.5-0.5,0.5-1.4,0-1.9c-0.5-0.5-1.4-0.5-1.9,0L12.1,10L2.9,0.8' +
+                    'C2.4,0.3,1.6,0.3,1,0.8C0.5,1.4,0.5,2.2,1,2.8l9.2,9.2l-9.2,9.2c-0.5,0.5-0.5,1.4,0,1.9c0.3,0.3,0.6,0.4,1,0.4s0.7-0.1,1-0.4' +
+                    'l9.2-9.2l9.2,9.2c0.3,0.3,0.6,0.4,1,0.4c0.3,0,0.7-0.1,1-0.4c0.5-0.5,0.5-1.4,0-1.9L14.1,12z"/>' +
+                    '</g></g></g></g></g><g id="XMLID_142_" class="st3"><line id="XMLID_135_" class="st4" x1="1.3" y1="1.1" x2="22.9" y2="22.7"/>' +
+                    '<rect id="XMLID_136_" x="-3.2" y="11.4" transform="matrix(0.7077 0.7066 -0.7066 0.7077 11.9668 -5.0772)" class="st5" width="30.6" height="1"/>' +
+                    '</g><g id="XMLID_139_" class="st3"><line id="XMLID_133_" class="st4" x1="23.2" y1="1" x2="1.6" y2="22.7"/>' +
+                    '<rect id="XMLID_134_" x="11.9" y="-3.5" transform="matrix(0.7072 0.707 -0.707 0.7072 12.0069 -5.2896)" class="st5" width="1" height="30.6"/>' +
+                    '</g></svg>';
+                close3 = '<div class="' + this.settings.classPrefix + 'close-bar">' +
+                    '<span class="' + this.settings.classPrefix + 'close ' + $object.settings.classPrefix + 'icon">' + $close_bg + '</span>' +
+                    '</div>';
+                break;
         }
 
         if (this.settings.arrows && this.$items.length > 1) {
@@ -381,14 +483,36 @@
         }
 
         $contInner = (this.settings.lightboxView === 'view5' || this.settings.lightboxView === 'view6') ? '<div class="contInner">' + subHtmlCont3 + '</div>' : '';
-        
+
+        var arrowHE = (this.settings.lightboxView !== 'view2' && this.settings.lightboxView !== 'view3') ? this.settings.arrowsHoverEffect : '',
+            $up = '<svg class="rwd-up" width="15px" height="12px" viewBox="0 0 26.5 21" style="enable-background:new 0 0 26.5 21;">' +
+                '<g id="Shape_1"><g>' +
+                '<path class="st0" d="M23.7,15.3l-9.2-9.2c-0.4-0.4-1-0.4-1.4,0L3.7,15c-0.4,0.4-0.4,1,0,1.4l0.9,0.9l8.6-8.1' +
+                'c0.4-0.4,1.1-0.4,1.4,0l8.3,8.3l0.9-0.8C24.1,16.3,24.1,15.7,23.7,15.3z"/>' +
+                '</g></g></svg>',
+            $down = '<svg class="rwd-down" width="15px" height="12px" viewBox="0 0 26.5 21" style="enable-background:new 0 0 26.5 21;">' +
+                '<g id="Shape_1"><g>' +
+                '<path class="st0" d="M23.8,6.8l-0.9-0.8l-8.5,8.2c-0.4,0.4-1.1,0.4-1.4,0L4.6,5.8L3.7,6.7C3.3,7,3.3,7.7,3.7,8l9.3,9.1' +
+                'c0.4,0.4,1,0.4,1.4,0l9.4-9C24.2,7.8,24.2,7.1,23.8,6.8z"/>' +
+                '</g></g></svg>',
+            $toggle_bar = (this.settings.lightboxView === 'view7') ? '<div class="toggle_bar">' + $up + $down + '</div>' : '',
+            nw = '', nh = '', $lens;
+
+        if(this.settings.lightboxView === 'view7'){
+            nw = $object.$items.eq(index).find('img').prop('naturalWidth');
+            nh = $object.$items.eq(index).find('img').prop('naturalHeight');
+        }
+
+        $lens = (this.settings.lightboxView === 'view7') ? '<div class="tool_bar"><div class="zoom_cont rwd-icon"><div class="zoom_size"></div><div class="img_size">' + nw + 'px &times; ' + nh + 'px</div></div></div>' : '';
+
         template = '<div class="' + this.settings.classPrefix + 'cont ">' +
-            '<div class="rwd-container rwd-' + this.settings.lightboxView + '">' +
+            '<div class="rwd-container rwd-' + this.settings.lightboxView + ' rwd-arrows_hover_effect-' + arrowHE + '">' +
             '<div class="cont-inner">' + list + '</div>' +
             $contInner +
             '<div class="' + this.settings.classPrefix + 'toolbar group">' +
-            close1 + subHtmlCont2 +
+            close1 + subHtmlCont2 + $toggle_bar + $lens +
             '</div>' +
+            close3 +
             controls +
             '<div class="' + this.settings.classPrefix + 'bar">' +
             close2 + subHtmlCont1 + socialIcons + '</div>' +
@@ -436,13 +560,7 @@
             this.$cont.addClass(this.settings.classPrefix + 'use');
         }
 
-        $object.calculateDimensions();
-
-        $(window).on('resize.rwd-container', function () {
-            setTimeout(function () {
-                $object.calculateDimensions();
-            }, 100);
-        });
+        $object.calculateDimensions(index);
 
         this.$item.eq(this.index).addClass(this.settings.classPrefix + 'current');
 
@@ -488,6 +606,27 @@
                     width: '80%'
                 });
                 break;
+            case 'view7':
+                $('.toggle_bar').on('click', function(){
+                    $('.rwd-container').toggleClass('rwd_toggle_bar');
+
+                    if (jQuery('.rwd-toolbar').height() === 40) {
+                        jQuery('.rwd-toolbar').animate({
+                            height: '',
+                            top: jQuery('.rwd-toolbar').position().top + 40 + 'px'
+                        }, 1000);
+                        jQuery('.tool_bar > *').css('display', 'none');
+                    } else {
+                        jQuery('.rwd-toolbar').animate({
+                            height: '40px',
+                            top: jQuery('.rwd-toolbar').position().top - 40 + 'px'
+                        }, 1000);
+                        setTimeout(function () {
+                            jQuery('.tool_bar > *').css('display', 'block');
+                        }, 1000);
+                    }
+                });
+                break;
         }
 
         $object.objects.overlay.addClass('in');
@@ -522,7 +661,24 @@
                 case 'view6':
                     $('.rwd-toolbar').append('<a id="' + $object.settings.classPrefix + 'download" target="_blank" download class="' + this.settings.classPrefix + 'download ' + $object.settings.classPrefix + 'icon">' + $download_bg_ + '</a>');
                     break;
+                case 'view7':
+                    $('.tool_bar').append('<a id="' + $object.settings.classPrefix + 'download" target="_blank" download class="' + this.settings.classPrefix + 'download ' + $object.settings.classPrefix + 'icon">' + $download_bg_ + '</a>');
+                    break;
             }
+        }
+
+        if(this.settings.lightboxView === 'view7' && hugeit_resp_lightbox_obj.hugeit_lightbox_view_info === 'true'){
+            var $info = '<svg id="rwd-view7-info" width="20" height="20" stroke="#999" fill="#999" viewBox="0 0 543.906 543.906" style="enable-background:new 0 0 543.906 543.906;">' +
+                '<g><path d="M271.953,0C121.759,0,0,121.759,0,271.953s121.759,271.953,271.953,271.953' +
+                's271.953-121.759,271.953-271.953S422.148,0,271.953,0z M316.994,76.316c1.055-0.049,2.138-0.06,3.231,0' +
+                'c14.724-0.484,27.533,10.622,29.578,24.987c6.576,27.581-22.719,55.228-49.631,44.192' +
+                'C268.032,130.576,284.224,77.909,316.994,76.316z M303.739,196.318c20.875-1.327,24.519,22.964,18.014,47.592' +
+                'c-12.695,56.583-32.455,111.403-43.175,168.442c5.178,22.523,33.575-3.312,45.721-11.558c10.329-8.213,12.124,2.083,15.637,10.71' +
+                'c-25.776,18.058-51.687,36.447-80.395,50.991c-26.972,16.361-49.049-9.072-42.321-37.394' +
+                'c11.128-52.841,25.776-104.882,37.736-157.564c3.737-28.468-33.728,0.511-44.872,7.136c-8.985,11.292-13.25,3.051-16.997-7.136' +
+                'c29.871-21.816,60.325-48.593,93.313-65.949C293.138,198.238,298.92,196.622,303.739,196.318z"/>' +
+                '</g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>';
+            $('.tool_bar').append('<span class="info_show_hide rwd-icon">' + $info + '</span>');
         }
 
         $arrows = $('.rwd-arrows .rwd-next, .rwd-arrows .rwd-prev');
@@ -577,6 +733,13 @@
             'height': $object.settings.height
         });
 
+        if($(window).width() < 768 && this.settings.lightboxView === 'view7'){
+            $object.objects.content.css({
+                'width': '100%',
+                'height': '100%'
+            });
+        }
+        
         var $color, $zoomTop = (document.documentElement.clientHeight - $object.objects.content.height()) / 2;
         switch (this.settings.lightboxView){
             case 'view3':
@@ -602,7 +765,7 @@
         }
     };
 
-    Lightbox.prototype.calculateDimensions = function () {
+    Lightbox.prototype.calculateDimensions = function (index) {
         var $object = this, $width;
 
         $width = $('.' + $object.settings.classPrefix + 'current').height() * 16 / 9;
@@ -613,6 +776,298 @@
 
         $('.' + $object.settings.classPrefix + 'video-cont ').css({
             'max-width': $width + 'px'
+        });
+
+        if(this.settings.lightboxView === 'view7') {
+            var $img, $video, $_inner,
+                $_width, $_height, $_wrap, $wrapHeight,
+                $_top, $top, $left, $_left = 0, $t,
+                $length, $k;
+
+            setTimeout(function() {
+
+                $img = document.querySelector('.rwd-item:nth-child(' + (index + 1) + ') img');
+                $video = document.querySelector('.rwd-item:nth-child(' + (index + 1) + ') .rwd-video-cont');
+                $_inner = document.querySelector('.rwd-item:nth-child(' + (index + 1) + ') .view7_inner');
+
+                if($img && $(window).width() > 768){
+                    $k = $object.$item.eq(index).find('img').prop('naturalWidth') / $object.$item.eq(index).find('img').prop('naturalHeight');
+
+                    if ($object.$item.eq(index).find('img').prop('naturalWidth') > $object.$item.eq(index).find('img').prop('naturalHeight') && $k > 2) {
+                        if($object.$item.eq(index).find('img').prop('naturalWidth') < 500 ){
+                            $object.$item.eq(index).find('img').css({
+                                minWidth: '70%'
+                            });
+                        }
+                    } else {
+                        if($object.$item.eq(index).find('img').prop('naturalHeight') < 500){
+                            $object.$item.eq(index).find('img').css({
+                                minHeight: '70%'
+                            });
+                        }
+                    }
+                }
+
+                $_width = parseFloat(window.getComputedStyle($img || $video, null).width);
+                $_height = parseFloat(window.getComputedStyle($img || $video, null).height);
+
+                switch($img || $video){
+                    case $img:
+                        $_wrap = document.querySelector('.rwd-item:nth-child(' + (index + 1) + ') .rwd-img-wrap');
+                        break;
+                    case $video:
+                        $_wrap = document.querySelector('.rwd-item:nth-child(' + (index + 1) + ')');
+                        break;
+                }
+
+                $wrapHeight = parseFloat(window.getComputedStyle($_wrap, null).height);
+
+                $top = ($wrapHeight - $_height) / 2 + $_height - 40;
+                $_top = ($wrapHeight - $_height) / 2;
+                $left = ($('.rwd-container').width() - (parseFloat(window.getComputedStyle($_inner, null).width) + $_width)) / 2;
+                $t = ($object.settings.thumbnail) ? 47 : 0;
+
+                if ($('.rwd-container').width() > 768) {
+
+                    $('.rwd-view7-title').eq(index).width($('.rwd-container').width() * 0.2 - 46);
+                    $('.rwd-view7-desc').eq(index).width($('.rwd-container').width() * 0.2 - 36);
+
+                    setTimeout(function(){
+                        $('.rwd-view7-desc').height($('.view7_inner').height() - ($object.settings.showTitle ? 120 : 9));
+                    }, 200);
+
+                    $_left = ($_inner.classList.contains('is_close')) ? 0 : $('.rwd-container').width() * 0.1;
+
+                    $('.rwd-toolbar').css({
+                        width: $_width + 1 + 'px',
+                        top: $top + $t + ($('.rwd-container').hasClass('rwd_toggle_bar') ? 40 : 0) + 1 + 'px',
+                        left: $left + 'px'
+                    });
+
+                    $('.rwd-close-bar').css({
+                        top: $_top + $t + 'px',
+                        left: $left + $_width - 25 + 'px'
+                    });
+
+                    ($img || $video).style.left = -$_left + ($object.settings.showBorder ? $object.settings.borderSize : 0);
+
+                    $('.view7_inner').eq(index).css({
+                        top: $_top + 'px',
+                        left: $_left + $left + $_width + 'px',
+                        height: $_height + 1 + 'px'
+                    });
+
+                    $('.view7_share').css({
+                        top: $_top + $t + 12 + 'px',
+                        right: 2*$_left + $_width + $left + 5 + 'px'
+                    });
+
+                    $length = $('.view7_share li').length + 1;
+
+                    $('.view7_share, .view7_share > div').width(($_height - 42) / $length).height(($_height - 42) / $length);
+                    $('.view7_share li').width(($_height - 42) / $length).height(($_height - 42) / $length);
+
+                } else {
+                    $('.rwd-toolbar').css({
+                        width: $(window).width() + 'px',
+                        top: '0'
+                    });
+
+                    $('.rwd-toolbar .rwd-icon, .view7_share').width($(window).width() * 0.2);
+
+                    $('.view7_share').css({
+                        'top': '0',
+                        'z-index': '999999999',
+                        'left': ($(window).width() * 0.2 - 40) * 0.5 + 'px'
+                    });
+
+                    $('.rwd-share-buttons').css({
+                        height: $(window).height() + 'px',
+                        width: $(window).width() + 'px',
+                        left: -($(window).width() * 0.2 - 40) * 0.5 + 'px'
+                    });
+
+                    $('.rwd-share-buttons li').css({
+                        width: ($(window).width() - ($object.settings.showBorder ? 8 : 0)) * 0.2 + 'px',
+                        maxWidth: 'none'
+                    });
+
+                    $('.rwd-share-buttons li a').css({
+                        marginLeft: $(window).width() * 0.1 - 20 + 'px'
+                    });
+
+                    $('.rwd-close-bar').css({
+                        top: $_top + $t + 5 + 'px',
+                        left: ($(window).width() - $_width) / 2 + $_width - 30 + 'px'
+                    });
+                }
+            }, 0);
+        }
+    };
+
+    Lightbox.prototype.innerOpenClose = function(){
+        var $object = this;
+
+        $('.info_show_hide').off('click');
+
+        $('.info_show_hide').on('click', function(){
+            var $view7_inner = $('.rwd-item.rwd-current').find('.view7_inner'),
+                $toolbar = $('.rwd-toolbar'),
+                $closebar = $('.rwd-close-bar'),
+                $imgcont = $('.rwd-item.rwd-current').find('img'),
+                $videoCont = $('.rwd-item.rwd-current').find('.rwd-video-cont '),
+                $zoomcont = $('.zoomContainer'),
+                $view7_share = $('.view7_share');
+
+            if($('.rwd-container').width() > 768) {
+                if ($('.rwd-item.rwd-current').hasClass('isImg')) {
+                    if (!$view7_inner.hasClass('is_close')) {
+                        $view7_inner.addClass('is_close');
+
+                        $view7_inner.animate({
+                            width: '0',
+                            left: parseFloat($view7_inner.css('left')) + 'px'
+                        }, 1000);
+
+                        $toolbar.animate({
+                            width: parseFloat($toolbar.css('width')) + 1 + 'px',
+                            left: parseFloat($toolbar.css('left')) + parseFloat($view7_inner.css('width')) / 2 + 'px'
+                        }, 1000);
+
+                        $closebar.animate({
+                            left: parseFloat($closebar.css('left')) + parseFloat($view7_inner.css('width')) / 2 + 'px'
+                        }, 1000);
+
+                        $imgcont.animate({
+                            left: parseFloat($imgcont.css('left')) + parseFloat($view7_inner.css('width')) / 2 + 'px'
+                        }, 1000);
+
+                        $zoomcont.animate({
+                            left: parseFloat($imgcont.css('left')) + parseFloat($view7_inner.css('width')) / 2 + 'px'
+                        }, 1000);
+
+                        $view7_share.animate({
+                            left: parseFloat($view7_share.css('left')) + parseFloat($view7_inner.css('width')) / 2 + 'px'
+                        }, 1000);
+                    } else {
+                        $view7_inner.removeClass('is_close');
+
+                        $view7_inner.animate({
+                            width: $('.rwd-container').width() * 0.2 + 'px',
+                            left: parseFloat($view7_inner.css('left')) + 'px'
+                        }, 1000);
+
+                        $toolbar.animate({
+                            width: parseFloat($toolbar.css('width')) - 1 + 'px',
+                            left: parseFloat($toolbar.css('left')) - $('.rwd-container').width() * 0.1 + 'px'
+                        }, 1000);
+
+                        $closebar.animate({
+                            left: parseFloat($closebar.css('left')) - $('.rwd-container').width() * 0.1 + 'px'
+                        }, 1000);
+
+                        $imgcont.animate({
+                            left: parseFloat($imgcont.css('left')) - $('.rwd-container').width() * 0.1 + 'px'
+                        }, 1000);
+
+                        $zoomcont.animate({
+                            left: parseFloat($imgcont.css('left')) - $('.rwd-container').width() * 0.1 + 'px'
+                        }, 1000);
+
+                        $view7_share.animate({
+                            left: parseFloat($view7_share.css('left')) - $('.rwd-container').width() * 0.1 + 'px'
+                        }, 1000);
+                    }
+                } else if ($('.rwd-item.rwd-current').hasClass('isVideo')) {
+                    if (!$view7_inner.hasClass('is_close')) {
+                        $view7_inner.addClass('is_close');
+
+                        $view7_inner.animate({
+                            width: '0',
+                            left: parseFloat($view7_inner.css('left')) + 'px'
+                        }, 1000);
+
+                        $toolbar.animate({
+                            left: parseFloat($toolbar.css('left')) + parseFloat($view7_inner.css('width')) / 2 + 0.5 + 'px'
+                        }, 1000);
+
+                        $closebar.animate({
+                            left: parseFloat($closebar.css('left')) + parseFloat($view7_inner.css('width')) / 2 + 'px'
+                        }, 1000);
+
+                        $videoCont.animate({
+                            left: parseFloat($videoCont.css('left')) + parseFloat($view7_inner.css('width')) / 2 + 'px'
+                        }, 1000);
+
+                        $view7_share.animate({
+                            left: parseFloat($view7_share.css('left')) + parseFloat($view7_inner.css('width')) / 2 + 'px'
+                        }, 1000);
+                    } else {
+                        $view7_inner.removeClass('is_close');
+
+                        $view7_inner.animate({
+                            width: $('.rwd-container').width() * 0.2 + 'px',
+                            left: parseFloat($view7_inner.css('left')) + 'px'
+                        }, 1000);
+
+                        $toolbar.animate({
+                            left: parseFloat($toolbar.css('left')) - $('.rwd-container').width() * 0.1 - 0.5 + 'px'
+                        }, 1000);
+
+                        $closebar.animate({
+                            left: parseFloat($closebar.css('left')) - $('.rwd-container').width() * 0.1 + 'px'
+                        }, 1000);
+
+                        $videoCont.animate({
+                            left: parseFloat($videoCont.css('left')) - $('.rwd-container').width() * 0.1 + 'px'
+                        }, 1000);
+
+                        $view7_share.animate({
+                            left: parseFloat($view7_share.css('left')) - $('.rwd-container').width() * 0.1 + 'px'
+                        }, 1000);
+                    }
+                }
+            } else {
+                if (!$view7_inner.hasClass('is_open')) {
+                    $view7_inner.addClass('is_open');
+
+                    if($('.rwd-share-buttons').css('display') === 'block'){
+                        $('.rwd-share-buttons').css({
+                            'display': 'none'
+                        });
+                    }
+
+                    $('.rwd-close-bar,.rwd-arrows .rwd-next, .rwd-arrows .rwd-prev').css({
+                        zIndex: '1'
+                    });
+
+                    if(!$object.settings.thumbnail){
+                        $view7_inner.css({
+                            top: '40px'
+                        });
+                    }
+
+                    if($object.settings.thumbnail && hugeit_resp_lightbox_obj.hugeit_lightbox_thumbs_position === '1'){
+                        $view7_inner.css({
+                            top: -(+hugeit_resp_lightbox_obj.hugeit_lightbox_thumbs_height) + 'px'
+                        });
+                    }
+
+                    $view7_inner.animate({
+                        height: $(window).height() + 'px'
+                    }, 1000);
+                } else {
+                    $view7_inner.removeClass('is_open');
+
+                    $('.rwd-close-bar,.rwd-arrows .rwd-next, .rwd-arrows .rwd-prev').animate({
+                        zIndex: '999999999'
+                    }, 700);
+
+                    $view7_inner.animate({
+                        height: '0'
+                    }, 1000);
+                }
+            }
         });
     };
 
@@ -663,6 +1118,7 @@
                     break;
                 case 'view2':
                 case 'view4':
+                case 'view7':
                     $('.' + this.settings.classPrefix + 'bar').append('<div class="barCont"></div>').append(this.objects.counter = $('<div id="' + this.settings.idPrefix + 'counter"></div>'));
                     break;
                 case 'view5':
@@ -695,6 +1151,12 @@
                 this.$cont.find('.' + this.settings.classPrefix + 'title').hide() :
                 this.$cont.find('.' + this.settings.classPrefix + 'title').show();
         }
+
+        if($object.settings.lightboxView === 'view7'){
+            if(this.settings.showTitle){
+                $('.rwd-view7-title').eq(index).html($title);
+            }
+        }
     };
 
     Lightbox.prototype.setDescription = function (index) {
@@ -704,6 +1166,13 @@
         $description = $currentElement.find('img').attr('data-description') || '';
 
         this.$cont.find('.' + this.settings.classPrefix + 'description').html('<div class="rwd-description-text" title="' + $description + '">' + $description + '</div>');
+
+        if($object.settings.lightboxView === 'view7'){
+            if(this.settings.showDesc){
+                $('.rwd-view7-desc').eq(index).html($description);
+                $('.rwd-view7-desc').eq(index).attr('title', $description);
+            }
+        }
     };
 
     Lightbox.prototype.preload = function (index) {
@@ -725,26 +1194,107 @@
     };
 
     Lightbox.prototype.socialShare = function () {
-        var $object = this;
+        var $object = this, shareButtons;
 
-        var shareButtons = '<ul class="rwd-share-buttons">';
-        shareButtons += $object.settings.share.facebookButton ? '<li><a title="Facebook" id="rwd-share-facebook" target="_blank"></a></li>' : '';
-        shareButtons += $object.settings.share.twitterButton ? '<li><a title="Twitter" id="rwd-share-twitter" target="_blank"></a></li>' : '';
-        shareButtons += $object.settings.share.googleplusButton ? '<li><a title="Google Plus" id="rwd-share-googleplus" target="_blank"></a></li>' : '';
-        shareButtons += $object.settings.share.pinterestButton ? '<li><a title="Pinterest" id="rwd-share-pinterest" target="_blank"></a></li>' : '';
-        shareButtons += $object.settings.share.linkedinButton ? '<li><a title="Linkedin" id="rwd-share-linkedin" target="_blank"></a></li>' : '';
-        shareButtons += $object.settings.share.tumblrButton ? '<li><a title="Tumblr" id="rwd-share-tumblr" target="_blank"></a></li>' : '';
-        shareButtons += $object.settings.share.redditButton ? '<li><a title="Reddit" id="rwd-share-reddit" target="_blank"></a></li>' : '';
-        shareButtons += $object.settings.share.bufferButton ? '<li><a title="Buffer" id="rwd-share-buffer" target="_blank"></a></li>' : '';
-        shareButtons += $object.settings.share.diggButton ? '<li><a title="Digg" id="rwd-share-digg" target="_blank"></a></li>' : '';
-        shareButtons += $object.settings.share.vkButton ? '<li><a title="VK" id="rwd-share-vk" target="_blank"></a></li>' : '';
-        shareButtons += $object.settings.share.yummlyButton ? '<li><a title="Yummly" id="rwd-share-yummly" target="_blank"></a></li>' : '';
-        shareButtons += '</ul>';
-
-        if (this.settings.lightboxView === 'view5' || this.settings.lightboxView === 'view6') {
-            $('.contInner').append(shareButtons);
+        if(this.settings.lightboxView !== 'view7'){
+            shareButtons = '<ul class="rwd-share-buttons">';
+            shareButtons += $object.settings.share.facebookButton ? '<li><a title="Facebook" id="rwd-share-facebook" target="_blank"></a></li>' : '';
+            shareButtons += $object.settings.share.twitterButton ? '<li><a title="Twitter" id="rwd-share-twitter" target="_blank"></a></li>' : '';
+            shareButtons += $object.settings.share.googleplusButton ? '<li><a title="Google Plus" id="rwd-share-googleplus" target="_blank"></a></li>' : '';
+            shareButtons += $object.settings.share.pinterestButton ? '<li><a title="Pinterest" id="rwd-share-pinterest" target="_blank"></a></li>' : '';
+            shareButtons += $object.settings.share.linkedinButton ? '<li><a title="Linkedin" id="rwd-share-linkedin" target="_blank"></a></li>' : '';
+            shareButtons += $object.settings.share.tumblrButton ? '<li><a title="Tumblr" id="rwd-share-tumblr" target="_blank"></a></li>' : '';
+            shareButtons += $object.settings.share.redditButton ? '<li><a title="Reddit" id="rwd-share-reddit" target="_blank"></a></li>' : '';
+            shareButtons += $object.settings.share.bufferButton ? '<li><a title="Buffer" id="rwd-share-buffer" target="_blank"></a></li>' : '';
+            shareButtons += $object.settings.share.diggButton ? '<li><a title="Digg" id="rwd-share-digg" target="_blank"></a></li>' : '';
+            shareButtons += $object.settings.share.vkButton ? '<li><a title="VK" id="rwd-share-vk" target="_blank"></a></li>' : '';
+            shareButtons += $object.settings.share.yummlyButton ? '<li><a title="Yummly" id="rwd-share-yummly" target="_blank"></a></li>' : '';
+            shareButtons += '</ul>';
         } else {
-            $('.' + this.settings.classPrefix + 'socialIcons').append(shareButtons);
+            var $fb = '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 30 34.5"' +
+                'style="enable-background:new 0 0 30 34.5;" xml:space="preserve"><style type="text/css">.st0 {fill-rule: evenodd;clip-rule: evenodd;fill: #FFFFFF;</style>' +
+                '<g id="Shape_3"> <g id="XMLID_84_"> <path id="XMLID_85_" class="st0"' +
+                'd="M16.8,12.8V11c0-0.9,0.6-1.1,1.1-1.1c0.4,0,2.7,0,2.7,0V6l-3.7,0c-4.1,0-5.1,2.9-5.1,4.8v2.1H9.4v4.6h2.4c0,5.2,0,11.4,0,11.4h4.8c0,0,0-6.3,0-11.4h3.6l0.2-1.8l0.3-2.8H16.8z"></path>' +
+                '</g> </g></svg>';
+
+            var $gp = '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 30 34.5"' +
+                'style="enable-background:new 0 0 30 34.5;" xml:space="preserve"><style type="text/css">.st0 {fill: #FFFFFF;}</style>' +
+                '<g id="Shape_4"> <g id="XMLID_99_"> <path id="XMLID_100_" class="st0"' +
+                'd="M23.4,16.1v-0.4c0-0.6,0-1.1,0-1.7c0-0.1-0.1-0.3-0.2-0.3c-0.5,0-1,0-1.6,0v2.3h-2.4c0,0.2,0,0.3,0,0.4c0,0.4,0,0.8,0.1,1.3c0.4,0,0.8,0,1.3,0c0.4,0,0.7,0,1.1,0v2.3h1.7v-2.3h2.4v-1.7H23.4z M17.1,15.9c-1.5,0-3,0-4.5,0c-0.4,0-0.9,0-1.3,0c-0.1,0-0.2,0.1-0.2,0.2c0,0.8,0,1.7,0,2.5h3.7c0,0.2-0.1,0.3-0.1,0.4c-0.6,1.6-2.3,2.4-4.1,2.1c-2.3-0.4-3.7-2.4-3.3-4.6c0.1-0.3,0.2-0.6,0.3-0.9c0.8-1.6,2.6-2.6,4.5-2.2c0.7,0.1,1.2,0.5,1.7,0.9c0.7-0.7,1.3-1.3,2-2c0,0-0.1-0.1-0.2-0.1c-1.6-1.3-3.5-1.8-5.5-1.5c-3,0.5-5.1,2.8-5.6,5.4c-0.2,1.1-0.1,2.3,0.4,3.5c1.1,2.8,4.1,4.6,7.2,4.2c1.5-0.2,2.9-0.7,4-1.8c1.6-1.6,2-3.6,1.7-5.7C17.6,15.9,17.4,15.9,17.1,15.9z"></path>' +
+                '</g> </g></svg>';
+
+            var $twitter = '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 30 34.5"' +
+                'style="enable-background:new 0 0 30 34.5;" xml:space="preserve"><style type="text/css">.st0 {fill-rule: evenodd;clip-rule: evenodd;fill: #FFFFFF;}</style> <g id="Shape_5"> <g id="XMLID_84_"> <path id="XMLID_85_" class="st0"' +
+                'd="M27,11.9c-0.8,0.4-1.6,0.6-2.5,0.7c0.9-0.6,1.6-1.5,1.9-2.5c-0.9,0.5-1.8,0.9-2.8,1.1c-0.8-0.9-2-1.4-3.2-1.4c-2.4,0-4.4,2-4.4,4.6c0,0.4,0,0.7,0.1,1c-3.7-0.2-6.9-2-9.1-4.8c-0.4,0.7-0.6,1.5-0.6,2.3c0,1.6,0.8,3,2,3.8c-0.7,0-1.4-0.2-2-0.6v0.1c0,0.6,0.1,1.1,0.3,1.7c0.5,1.4,1.8,2.5,3.2,2.8c-0.4,0.1-0.8,0.2-1.2,0.2c-0.3,0-0.6,0-0.8-0.1c0.6,1.8,2.2,3.1,4.1,3.2c-1.5,1.2-3.4,2-5.5,2c-0.4,0-0.7,0-1.1-0.1c2,1.3,4.3,2,6.8,2c6.9,0,11.2-5,12.3-10.2c0.2-0.9,0.3-1.8,0.3-2.8c0-0.2,0-0.4,0-0.6C25.6,13.6,26.4,12.8,27,11.9z"></path>' +
+                '</g> </g></svg>';
+
+            var $vk = '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 30 34.5"' +
+                'style="enable-background:new 0 0 30 34.5;" xml:space="preserve"><style type="text/css">.st0 {fill-rule: evenodd;clip-rule: evenodd;fill: #FFFFFF;}</style> <g id="Shape_12"> <g id="XMLID_86_"> <path id="XMLID_87_" class="st0"' +
+                'd="M26,23.7c-0.4-0.7-1.1-1.6-2.2-2.7l0,0l0,0l0,0h0c-0.5-0.5-0.8-0.8-0.9-1c-0.2-0.3-0.3-0.7-0.2-1c0.1-0.3,0.4-0.8,1.1-1.6c0.3-0.4,0.6-0.8,0.8-1c1.3-1.9,1.9-3.1,1.8-3.6l-0.1-0.1c0-0.1-0.2-0.1-0.4-0.2c-0.2-0.1-0.4-0.1-0.7,0l-3.4,0c-0.1,0-0.1,0-0.2,0c-0.1,0-0.2,0-0.2,0l-0.1,0l0,0c0,0-0.1,0.1-0.1,0.1c0,0.1-0.1,0.1-0.1,0.2c-0.4,1-0.8,1.9-1.3,2.7c-0.3,0.5-0.6,0.9-0.8,1.3c-0.2,0.4-0.4,0.6-0.6,0.8c-0.2,0.2-0.3,0.3-0.4,0.4c-0.1,0.1-0.2,0.1-0.3,0.1c-0.1,0-0.1,0-0.2,0c-0.1-0.1-0.2-0.2-0.3-0.3c-0.1-0.1-0.1-0.3-0.1-0.5c0-0.2,0-0.4,0-0.5c0-0.1,0-0.3,0-0.6c0-0.3,0-0.4,0-0.5c0-0.3,0-0.6,0-1c0-0.4,0-0.6,0-0.9s0-0.4,0-0.7c0-0.2,0-0.4,0-0.6c0-0.1-0.1-0.3-0.1-0.4c-0.1-0.1-0.1-0.2-0.2-0.3c-0.1-0.1-0.2-0.1-0.4-0.2c-0.4-0.1-0.9-0.1-1.6-0.2c-1.5,0-2.4,0.1-2.8,0.3c-0.2,0.1-0.3,0.2-0.4,0.4c-0.1,0.2-0.2,0.3-0.1,0.3c0.5,0.1,0.8,0.2,1,0.5l0.1,0.1c0.1,0.1,0.1,0.3,0.2,0.6c0.1,0.3,0.1,0.6,0.1,0.9c0,0.6,0,1.1,0,1.5c0,0.4-0.1,0.7-0.1,1c0,0.2-0.1,0.4-0.2,0.6c-0.1,0.1-0.1,0.2-0.1,0.3c0,0,0,0.1-0.1,0.1c-0.1,0-0.2,0.1-0.3,0.1c-0.1,0-0.2-0.1-0.4-0.2c-0.2-0.1-0.3-0.3-0.5-0.5c-0.2-0.2-0.4-0.5-0.6-0.8c-0.2-0.4-0.4-0.8-0.7-1.3l-0.2-0.4c-0.1-0.2-0.3-0.6-0.5-1c-0.2-0.4-0.4-0.9-0.5-1.3c-0.1-0.2-0.2-0.3-0.3-0.4l-0.1,0c0,0-0.1-0.1-0.2-0.1c-0.1,0-0.2-0.1-0.3-0.1l-3.2,0c-0.3,0-0.5,0.1-0.7,0.2l0,0.1c0,0,0,0.1,0,0.2c0,0.1,0,0.2,0.1,0.3c0.5,1.1,1,2.2,1.5,3.3c0.5,1.1,1,1.9,1.4,2.6C7.2,19.8,7.6,20.4,8,21c0.4,0.6,0.7,0.9,0.8,1.1c0.1,0.2,0.2,0.3,0.3,0.4l0.3,0.3c0.2,0.2,0.5,0.4,0.8,0.7c0.4,0.3,0.8,0.5,1.2,0.8c0.4,0.3,1,0.5,1.5,0.6c0.6,0.2,1.2,0.2,1.7,0.2h1.3c0.3,0,0.5-0.1,0.6-0.3l0-0.1c0,0,0.1-0.1,0.1-0.2c0-0.1,0-0.2,0-0.3c0-0.3,0-0.7,0.1-0.9c0.1-0.3,0.1-0.5,0.2-0.6c0.1-0.1,0.2-0.3,0.3-0.4c0.1-0.1,0.2-0.2,0.2-0.2c0,0,0.1,0,0.1,0c0.2-0.1,0.4,0,0.7,0.2c0.3,0.2,0.5,0.4,0.7,0.7c0.2,0.3,0.5,0.6,0.8,0.9c0.3,0.3,0.6,0.6,0.8,0.8l0.2,0.1c0.2,0.1,0.4,0.2,0.6,0.3c0.2,0.1,0.5,0.1,0.7,0.1l3,0c0.3,0,0.5-0.1,0.7-0.2c0.2-0.1,0.3-0.2,0.3-0.3c0-0.1,0-0.3,0-0.4c0-0.2-0.1-0.3-0.1-0.3C26.1,23.8,26.1,23.8,26,23.7z"></path> </g> </g></svg>';
+
+            var $pinterest = '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 30 34.5"style="enable-background:new 0 0 30 34.5;" xml:space="preserve"><style type="text/css">.st0 {fill-rule: evenodd;clip-rule: evenodd;fill: #FFFFFF;}</style> <g id="Shape_7"> <g id="XMLID_84_"> <path id="XMLID_85_" class="st0"d="M16.6,4.4c-6.9,0-10.4,5-10.4,9.2c0,0.8,0.1,1.5,0.3,2.2c0.4,1.6,1.3,2.8,2.7,3.4c0.3,0.1,0.6,0,0.7-0.4c0.1-0.3,0.2-0.9,0.3-1.2c0.1-0.4,0.1-0.5-0.2-0.8c-0.4-0.4-0.6-0.9-0.8-1.5C9.1,15,9,14.5,9,14c0-3.7,2.8-7.1,7.2-7.1c3.9,0,6.1,2.4,6.1,5.6c0,1-0.1,1.9-0.3,2.7c-0.6,3-2.2,5.1-4.4,5.1c-1.5,0-2.7-1.3-2.3-2.8c0.2-0.9,0.5-1.8,0.8-2.7c0.3-1,0.5-1.8,0.5-2.5c0-1.2-0.6-2.2-2-2.2c-1.6,0-2.8,1.6-2.8,3.8c0,0.4,0,0.8,0.1,1.1c0.1,0.8,0.4,1.2,0.4,1.2s-1.6,6.8-1.9,8c-0.6,2.4-0.1,5.3,0,5.6c0,0.2,0.2,0.2,0.3,0.1c0.1-0.2,2-2.5,2.6-4.8c0.2-0.7,1-4,1-4c0.5,1,2,1.8,3.6,1.8c3.8,0,6.6-2.9,7.5-7c0.2-1,0.3-2,0.3-3C25.8,8.5,22.2,4.4,16.6,4.4z"></path> </g> </g></svg>';
+
+            var $linkedin = '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 30 34.5"style="enable-background:new 0 0 30 34.5;" xml:space="preserve"><style type="text/css">.st0 {fill: #FFFFFF;}</style> <g id="Shape_8"> <g id="XMLID_107_"> <path id="XMLID_108_" class="st0"d="M9.8,12.5l-4.6,0l0,3.5l0,9.8l4.6,0l0-10.5L9.8,12.5z M7.5,10.5c1.3,0,2.3-1,2.3-2.3c0-1.3-1-2.3-2.3-2.3c-1.3,0-2.3,1-2.3,2.3C5.2,9.5,6.2,10.5,7.5,10.5z M24.8,18.5L24.8,18.5c0-0.7,0-1.3-0.1-1.9c-0.3-2.5-1.4-4.1-4.8-4.1c-2,0-3.3,0.7-3.8,1.8l-0.1,0l0-1.8l-3.6,0l0,2.5l0,10.7l3.8,0l0-6.6c0-1.7,0.3-3.4,2.4-3.4c2.1,0,2.3,2,2.3,3.5l0,6.5l3.9,0L24.8,18.5z"></path> </g> </g></svg>';
+
+            var $tumblr = ' <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 30.101 30.102" style="enable-background:new 0 0 30.101 30.102;" xml:space="preserve"><g> <path d="M24.313,28.246c0,0.154-0.041,0.23-0.187,0.301c-2.326,1.117-4.771,1.661-7.354,1.537 c-1.592-0.077-3.122-0.395-4.528-1.182c-0.612-0.344-1.158-0.772-1.653-1.271c-0.884-0.884-1.327-1.962-1.421-3.192c-0.043-0.57-0.073-1.144-0.074-1.715c-0.007-3.347-0.003-6.695-0.003-10.042c0-0.101,0-0.202,0-0.342c-1.113,0-2.19,0-3.287,0c-0.005-0.098-0.013-0.174-0.013-0.251c0-1.277,0.002-2.556-0.004-3.833c0-0.146,0.035-0.222,0.183-0.273 c3.151-1.107,5.005-3.342,5.688-6.583c0.049-0.229,0.094-0.461,0.133-0.692C11.832,0.478,11.863,0.245,11.9,0 c1.414,0,2.822,0,4.26,0c0,2.526,0,5.053,0,7.602c2.393,0,4.756,0,7.141,0c0,1.585,0,3.147,0,4.732c-2.365,0-4.729,0-7.108,0c-0.013,0.079-0.021,0.139-0.021,0.198c0.002,2.837-0.004,5.677,0.012,8.515c0.004,0.617,0.07,1.234,0.139,1.852 c0.082,0.741,0.475,1.295,1.107,1.687c0.938,0.577,1.963,0.698,3.033,0.592c1.297-0.13,2.475-0.601,3.575-1.278  c0.076-0.048,0.156-0.094,0.271-0.162c0,0.092,0,0.151,0,0.211C24.308,25.377,24.306,26.811,24.313,28.246z"fill="#FFFFFF"></path> </g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g></svg>';
+
+            var $reddit = ' <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 30 34.5" style="enable-background:new 0 0 30 34.5;" xml:space="preserve"><style type="text/css">.st0 {fill-rule: evenodd;clip-rule: evenodd;fill: #FFFFFF;}</style> <g id="Shape_25"> <g id="XMLID_146_"> <path id="XMLID_147_" class="st0"d="M26.7,16.2L26.7,16.2L26.7,16.2L26.7,16.2c-0.1-0.7-0.3-1.4-0.7-1.9c-0.4-0.5-1-0.9-1.6-1.1c0,0,0,0,0,0l0,0h0c-0.3-0.1-0.5-0.1-0.8-0.1c-0.6,0-1.2,0.2-1.7,0.6c-0.1,0.1-0.3,0.2-0.4,0.3c-0.1,0-0.1-0.1-0.1-0.1l0,0h0c-1.7-1.1-3.6-1.6-5.4-1.7c0-0.9,0.1-1.7,0.4-2.4v0c0.2-0.5,0.7-0.8,1.2-0.9h0c0.1,0,0.2,0,0.3,0c0.7,0,1.3,0.3,1.9,0.6c0,0,0,0.1,0,0.1c0,0.8,0.3,1.5,0.7,2c0.5,0.5,1.1,0.9,1.7,0.9c0.1,0,0.2,0,0.3,0c0.7,0,1.3-0.3,1.8-0.8c0.5-0.5,0.9-1.2,0.9-2v0l0,0c0-0.1,0-0.2,0-0.3c0-0.6-0.2-1.2-0.5-1.7s-0.7-0.9-1.2-1.1c0,0,0,0,0,0c0,0,0,0,0,0v0c-0.3-0.2-0.7-0.2-1.1-0.2c-0.3,0-0.7,0.1-1,0.2l0,0l0,0c-0.6,0.2-1,0.7-1.4,1.2c-0.7-0.3-1.5-0.5-2.4-0.5c-0.3,0-0.6,0-0.9,0.1h0l0,0C16,7.5,15.4,8.2,15,9c-0.5,1-0.6,2.1-0.6,3.1c-1.9,0.1-3.9,0.6-5.6,1.7c-0.1,0-0.2,0.1-0.3,0.2c-0.3-0.2-0.6-0.4-0.9-0.6h0l0,0c-0.4-0.2-0.8-0.2-1.1-0.2c-0.1,0-0.2,0-0.2,0h0c-0.8,0-1.5,0.4-2,1c-0.5,0.6-0.9,1.4-0.9,2.3v0c0,0.6,0.2,1.2,0.5,1.7c0.3,0.5,0.7,0.9,1.1,1.1c0,0.3,0,0.5,0,0.8c0,1.1,0.3,2.3,0.8,3.2c1,1.8,2.6,3,4.2,3.8h0v0c1.6,0.7,3.3,1.1,5.1,1.1c1.2,0,2.3-0.2,3.4-0.5l0,0c2.1-0.6,4.2-1.8,5.6-3.8h0v0c0.7-1.1,1.2-2.4,1.2-3.8c0-0.3,0-0.5,0-0.8c0.5-0.3,0.8-0.7,1.1-1.2c0.3-0.5,0.5-1.1,0.5-1.8C26.7,16.3,26.7,16.3,26.7,16.2z M21.4,8.4c0.2-0.2,0.4-0.4,0.7-0.5l0,0h0c0.1,0,0.2-0.1,0.3-0.1c0.3,0,0.7,0.2,0.9,0.4c0.2,0.3,0.4,0.6,0.4,1c0,0,0,0.1,0,0.1v0c0,0.4-0.2,0.7-0.4,1c-0.2,0.3-0.6,0.4-0.9,0.4c0,0,0,0-0.1,0h0c-0.3,0-0.6-0.2-0.9-0.4c-0.2-0.3-0.4-0.6-0.4-1v0c0,0,0-0.1,0-0.1C21.1,9,21.3,8.7,21.4,8.4z M5.4,17.7c-0.1-0.1-0.3-0.3-0.3-0.5c-0.1-0.2-0.2-0.5-0.2-0.8c0,0,0-0.1,0-0.1l0,0v0c0-0.4,0.2-0.8,0.5-1.1c0.3-0.3,0.7-0.5,1-0.5l0,0h0c0,0,0.1,0,0.1,0c0.3,0,0.5,0.1,0.8,0.2C6.5,15.7,5.8,16.6,5.4,17.7z M23.6,20.9L23.6,20.9c-0.1,0.7-0.4,1.3-0.8,1.9c-0.4,0.6-0.8,1.1-1.3,1.5v0c-1.6,1.3-3.5,2-5.5,2.1c-0.3,0-0.7,0-1,0c-1.9,0-3.9-0.5-5.6-1.5c-0.1-0.1-0.3-0.2-0.4-0.3c-0.6-0.4-1.1-0.9-1.6-1.5c-0.5-0.6-0.8-1.3-1-2l0,0c-0.1-0.3-0.1-0.7-0.1-1c0-0.9,0.3-1.9,0.8-2.7v0c1-1.5,2.5-2.5,4.1-3.1c1.2-0.4,2.5-0.6,3.8-0.6c0.9,0,1.9,0.1,2.8,0.4c0.3,0.1,0.6,0.2,0.9,0.3l0,0c1.6,0.6,3.1,1.6,4.1,3.1c0.5,0.8,0.8,1.7,0.8,2.7C23.7,20.4,23.6,20.7,23.6,20.9z M25,17.2c-0.1,0.2-0.2,0.4-0.4,0.5c-0.4-1.1-1.1-2-1.9-2.7c0.2-0.1,0.5-0.2,0.8-0.2c0.3,0,0.6,0.1,0.9,0.2c0.3,0.2,0.5,0.4,0.6,0.7l0,0l0,0c0.1,0.2,0.1,0.4,0.1,0.7C25.2,16.7,25.1,16.9,25,17.2z M10.9,20.3C10.9,20.3,10.9,20.3,10.9,20.3c0.2,0.1,0.3,0.1,0.5,0.1c0.4,0,0.7-0.2,1-0.5c0.3-0.3,0.5-0.7,0.5-1.1v0c0,0,0,0,0-0.1c0-0.5-0.2-0.9-0.5-1.1c-0.3-0.3-0.6-0.5-1-0.5c-0.1,0-0.2,0-0.3,0c0,0,0,0,0,0h0c-0.5,0.1-0.9,0.5-1.1,1.1c0,0,0,0,0,0c0,0.2-0.1,0.3-0.1,0.5c0,0.4,0.1,0.7,0.3,1C10.3,20,10.6,20.2,10.9,20.3C10.9,20.3,10.9,20.3,10.9,20.3z M19.1,22.4c-0.1-0.1-0.3-0.1-0.4-0.1c-0.1,0-0.2,0-0.4,0.1c-1,0.7-2.2,1.1-3.5,1.1c-0.9,0-1.8-0.2-2.6-0.7l0,0l0,0c-0.1-0.1-0.3-0.2-0.4-0.3c-0.1-0.1-0.2-0.1-0.2-0.2c-0.1,0-0.2-0.1-0.3-0.1c-0.1,0-0.2,0-0.3,0.1c0,0,0,0,0,0c-0.1,0.1-0.3,0.2-0.3,0.3c-0.1,0.1-0.1,0.3-0.1,0.5c0,0.1,0,0.3,0.1,0.4c0.1,0.1,0.1,0.2,0.3,0.3c1.2,0.9,2.5,1.3,3.9,1.3c1.2,0,2.5-0.3,3.6-0.9l0,0l0,0c0.1-0.1,0.3-0.2,0.5-0.3c0.1-0.1,0.2-0.1,0.3-0.2c0.1-0.1,0.1-0.2,0.2-0.4c0-0.1,0-0.1,0-0.2c0-0.1,0-0.2-0.1-0.3C19.3,22.7,19.2,22.5,19.1,22.4z M20,18.2C20,18.2,20,18.2,20,18.2C20,18.2,20,18.2,20,18.2c-0.1-0.4-0.3-0.6-0.6-0.8c-0.3-0.2-0.6-0.3-0.9-0.3c-0.2,0-0.3,0-0.5,0.1c0,0,0,0,0,0c0,0,0,0,0,0c-0.3,0.1-0.5,0.3-0.7,0.6c-0.2,0.3-0.3,0.6-0.3,0.9c0,0.1,0,0.2,0,0.3h0c0,0,0,0,0,0v0c0.1,0.4,0.3,0.7,0.5,1c0.3,0.2,0.6,0.4,0.9,0.4c0.1,0,0.3,0,0.4-0.1h0c0,0,0,0,0,0h0c0.3-0.1,0.6-0.3,0.7-0.6c0.2-0.3,0.3-0.6,0.3-1C20.1,18.6,20.1,18.4,20,18.2L20,18.2z"></path> </g> </g></svg>';
+
+            var $digg = '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 30 34.5" style="enable-background:new 0 0 30 34.5;" xml:space="preserve"><style type="text/css">.st0 {fill-rule: evenodd;clip-rule: evenodd;fill: #FFFFFF;}</style> <g id="Shape_11"> <g id="XMLID_158_"> <path id="XMLID_159_" class="st0" d="M20.2,14.4v8.1h4v1.8h-4v2.3h6V14.4H20.2z M24.2,20.5h-1.7v-4h1.7V20.5z M13.8,22.5h3.7v1.8h-3.7v2.3h6V14.4h-6V22.5z M16,16.4h1.5v4H16V16.4z M7.8,14.4h-4v8.1H10V10.4H7.8V14.4z M7.8,20.5H6v-4h1.7V20.5z M10.5,22.5h2.2v-8.1h-2.2V22.5z M10.5,12.7h2.2v-2.3h-2.2V12.7z"></path> </g> </g></svg>';
+
+            var $buffer = '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 30 34.5" style="enable-background:new 0 0 30 34.5;" xml:space="preserve"><style type="text/css">.st0 {fill: #FFFFFF;}</style> <g id="Shape_13"> <g id="XMLID_104_"> <path id="XMLID_105_" class="st0"d="M4.5,13l10.3,5.2c0.1,0.1,0.3,0.1,0.4,0L25.5,13c0.3-0.2,0.3-0.7,0-0.8L15.2,7C15.1,7,14.9,7,14.8,7L4.5,12.2C4.1,12.3,4.1,12.8,4.5,13z M25.5,18.4l-2.2-1.1l-6.9,3.5C16,21,15.5,21.1,15,21.1c-0.5,0-1-0.1-1.4-0.3l-6.9-3.5l-2.2,1.1c-0.3,0.2-0.3,0.7,0,0.8l10.3,5.2c0.1,0.1,0.3,0.1,0.4,0l10.3-5.2C25.8,19.1,25.8,18.6,25.5,18.4z M25.5,24.7l-2.2-1.1l-6.9,3.5c-0.4,0.2-0.9,0.3-1.4,0.3c-0.5,0-1-0.1-1.4-0.3l-6.9-3.5l-2.2,1.1c-0.3,0.2-0.3,0.7,0,0.8l10.3,5.2c0.1,0.1,0.3,0.1,0.4,0l10.3-5.2C25.8,25.3,25.8,24.9,25.5,24.7z"></path> </g> </g></svg>';
+
+            var $yummly = ' <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 30 34.5" style="enable-background:new 0 0 30 34.5;" xml:space="preserve"><image style="overflow:visible;" width="36" height="14" id="Layer_3_copy_xA0_Image" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAPCAYAAACInr1QAAAACXBIWXMAAA4mAAAOJgGi7yX8AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABWxJREFUeNrMVWtsVEUUnpl7797t3e3utt0u22wJtVisjYCIhhITQiKJMUYMUWIiqRET0JjoP01QQkyIf0yIxhh/ScIvfEREUYogCAUqfWHf25YtfWxLu+1uu6/7fsx47jZpICb8QRJvsrtzZ86eOd/5zvkOQv/nx8rMXmWUMmpohj7c/oG7p3S3Buxsqsu8k/hZG7wa+q/uUrrObmS2xcz5iWP3syPuF2NUsTOz32GPKHDhWHPpoCxQhUUpijBRqanb93Oi9l7kVi/uPieurjt/W12rPed59xd7fRHE8Ygq+bn7+SwZmxP9r2DCN/HVta9SOTtWCixYvR5xQoQWlzr40Jq3jakhCXu8x5hlvo8cC9kL06c8DU8dYqZeJJ6yWnMuMYscR4eLG5x8ZphRpwLOonYh04ts6zHIkqj0nDsMPurAR5aqxdtGcuQTphYS1FA7+HDty0yXFWYZp72NzYulwPzbXlK14b+eAccups5SyNRpIIIoMkObEKL1R5HgCVizY18Iax8/yGwzR9VCP18V288cu4ABFUeIBIGk4OI1yLb3MMdM4VAkykztBSRiFfbDVjrZCkxsYNSSkW3khVjDYTs1eZxhnOLX1L1GC5l58HsZbl8sUSlfP1XOV9XsoJo86bgIS/zSRyA4DTFHR7wg0MJypz13m0AM5ZDVHtiLQCayxq2eA3Zm5geqFOLGWNcBp7DUbecXfzEnB94F9AvWwtSX5tTQxwBARpQViRR8glnWMiYEfHEclXN9yDK8UE8icuxpN2urNQYGUa4ispMZ6qi0ZVcSAg3wFdHtEP0IInwZ5oQKJ5tqxaLXjwjxMDk3SKRAI7X0JSe3cB3znhqqFcaolo9DZmpoYbGd6uoy5uF/y/MXEMYCRphHpj5H/IFGBrZY8IYBuOrk05cQHEImBMbYDABUV2sMiVIYe6Qo9uPNVnrmW0h3E5H8jdb8xHEEFCCOK+NC1c9ylZEdgJRzdGXSUxXbDbWyBO8CKa982k5Pn8Siby3xSjGqKdNceeVWQOyBrKW4YPgA0L8EoHgCVNuqPIilQAzOBT5a9zrxhTZBrclUl8tIsOqQkRz+phSYm3KgsI8LhJ8kQk2YasWE6xQKdJzmM4OAzOKj9e8ghhzAxiHTUIkvsAnO+xAv+rAgVkGQC5DFWjf/pYBD0V1g775q2F/RxGyjANkMAQM+quRmXZ9uJj21jR+5zAFbM3xlbB8iXDXs/7rSwhhPAVUvWtPD9cglP1i90+MLbSa+4KN2Ovm9PtqxB2rLAtSIk0IbAEQ/1NZBZFl50LoZfaxrH82l+5ipytBALfZyaojpSp4q2T+hHtPm7d4PgS0ObG8at7rfAPqvwqVpbeBKMycFtnCRur2cP9gMNZuDBjnqLM/F0V36IxkTA4epqd2htlVk7gPtT01jyc4uXDQSf7fI7T9V6oPXSnWp3ryA1c5WXFoPtBG5/XRprfVfWWmoaz9ibWjFVun5Hbv2pfPBNlL44wQGjWuyUhNfgajPQmModm6xzZwbf86YHCgDXVwJSr5xhtdvdR8BA91Ixj+DOjsFulPURjta9MTNNx21OArvMnTXESPRyz2o+gPAbRBQhqr5OIC+THUlBXceMcZ7I/cov1i/cZ1Qs/4taPUboCsnoWPWAh0dUF/nvQ1bTxijN7YDkhYzGT8uNmxxHiQofbTTA/r1PNRbFdzXATJhgWSMMF1tg+mTvcfYTI6sszJ3uih1KLVMFT4FSOfehzGXlc4zWOu/tBvGXIbapmIXs31A4X4t3h7810iC0TDLhyJfg8h+6s4xc2rwc2iGMw8jMN+23UzpPnsJxuB7yCvVwZQ4D7owDppXvNvuHwEGAPkITPojTuUzAAAAAElFTkSuQmCC" transform="matrix(0.7857 0 0 0.7857 0.8557 11.75)"></image></svg>';
+
+            shareButtons = '<ul class="rwd-share-buttons">';
+            shareButtons += $object.settings.share.facebookButton ? '<li><a title="Facebook" id="rwd-share-facebook" class="view7" target="_blank">' + $fb + '</a></li>' : '';
+            shareButtons += $object.settings.share.googleplusButton ? '<li><a title="Google Plus" id="rwd-share-googleplus" class="view7" target="_blank">' + $gp + '</a></li>' : '';
+            shareButtons += $object.settings.share.twitterButton ? '<li><a title="Twitter" id="rwd-share-twitter" class="view7" target="_blank">' + $twitter + '</a></li>' : '';
+            shareButtons += $object.settings.share.vkButton ? '<li><a title="VK" id="rwd-share-vk" class="view7" target="_blank">' + $vk + '</a></li>' : '';
+            shareButtons += $object.settings.share.pinterestButton ? '<li><a title="Pinterest" id="rwd-share-pinterest" class="view7" target="_blank">' + $pinterest + '</a></li>' : '';
+            shareButtons += $object.settings.share.linkedinButton ? '<li><a title="Linkedin" id="rwd-share-linkedin" class="view7" target="_blank">' + $linkedin + '</a></li>' : '';
+            shareButtons += $object.settings.share.tumblrButton ? '<li><a title="Tumblr" id="rwd-share-tumblr" class="view7" target="_blank">' + $tumblr + '</a></li>' : '';
+            shareButtons += $object.settings.share.redditButton ? '<li><a title="Reddit" id="rwd-share-reddit" class="view7" target="_blank">' + $reddit + '</a></li>' : '';
+            shareButtons += $object.settings.share.diggButton ? '<li><a title="Digg" id="rwd-share-digg" class="view7" target="_blank">' + $digg + '</a></li>' : '';
+            shareButtons += $object.settings.share.bufferButton ? '<li><a title="Buffer" id="rwd-share-buffer" class="view7" target="_blank">' + $buffer + '</a></li>' : '';
+            shareButtons += $object.settings.share.yummlyButton ? '<li><a title="Yummly" id="rwd-share-yummly" class="view7" target="_blank">' + $yummly + '</a></li>' : '';
+            shareButtons += '</ul>';
+        }
+
+        switch(this.settings.lightboxView){
+            case 'view5':
+            case 'view6':
+                $('.contInner').append(shareButtons);
+                break;
+            case 'view7':
+                var $view7_share = '', $share = '', socialIcons_ = '', $m_share_event = '';
+
+                $m_share_event = "if(!this.classList.contains('share_open')){this.classList.add('share_open');document.querySelector('.rwd-share-buttons').style.visibility = 'visible';document.querySelector('.rwd-share-buttons').style.opacity = '1';document.querySelector('.rwd-share-buttons').style.display = 'block';if(document.querySelector('.rwd-current .view7_inner').classList.contains('is_open')){document.querySelector('.rwd-current .view7_inner').classList.remove('is_open');document.querySelector('.rwd-current .view7_inner').style.height = 0;document.querySelector('.rwd-close-bar').style.zIndex = 999999999;document.querySelector('.rwd-next').style.zIndex = 999999999;document.querySelector('.rwd-prev').style.zIndex = 999999999;}} else {this.classList.remove('share_open');document.querySelector('.rwd-share-buttons').style.visibility = 'hidden';document.querySelector('.rwd-share-buttons').style.opacity = '0';}";
+
+                $share ='<svg onclick="' + $m_share_event + '" class="rwd-share" version="1.1" id="Layer_1"' +
+                    'xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"' +
+                    'viewBox="0 0 30 34.5" style="enable-background:new 0 0 30 34.5;" xml:space="preserve">' +
+                    '<style type="text/css">.st0 {fill-rule: evenodd;clip-rule: evenodd;fill: #999;}</style><g id="Shape_2">' +
+                    '<g id="XMLID_84_"> <path id="XMLID_85_" class="st0"' +
+                    'd="M22.1,20.3c-1.3,0-2.5,0.6-3.2,1.6l-7-3.6C12,18,12,17.6,12,17.2c0-0.4-0.1-0.8-0.2-1.2l7-3.6c0.8,1,1.9,1.7,3.3,1.7c2.3,0,4.1-1.9,4.1-4.2c0-2.3-1.8-4.2-4.1-4.2C19.8,5.9,18,7.7,18,10c0,0.4,0.1,0.7,0.2,1.1l-7,3.6c-0.8-1-1.9-1.6-3.2-1.6c-2.3,0-4.1,1.9-4.1,4.2c0,2.3,1.8,4.2,4.1,4.2c1.4,0,2.5-0.7,3.3-1.7l7,3.6c-0.1,0.4-0.2,0.8-0.2,1.2c0,2.3,1.8,4.2,4.1,4.2c2.3,0,4.1-1.9,4.1-4.2C26.2,22.2,24.4,20.3,22.1,20.3z"></path>' +
+                    '</g> </g></svg>';
+
+                socialIcons_ = '<div class="share_open_close rwd-icon">' + $share + '</div>';
+
+                var $share_event = '';
+
+                if($(window).width() > 768){
+                    $share_event = 'onmouseover="document.querySelector(\'.share_open_close\').style.background = \'rgba(0,0,0,.85)\'; document.querySelector(\'.rwd-share-buttons\').style.visibility = \'visible\'; document.querySelector(\'.rwd-share-buttons\').style.opacity = \'1\'; document.querySelector(\'.rwd-share-buttons\').style.transition = \'visibility 0s, opacity 0.5s linear\'" '+
+                        'onmouseout="document.querySelector(\'.share_open_close\').style.background = \'\'; document.querySelector(\'.rwd-share-buttons\').style.visibility = \'hidden\'; document.querySelector(\'.rwd-share-buttons\').style.opacity = \'0\'; document.querySelector(\'.rwd-share-buttons\').style.transition = \'visibility 0.5s, opacity 0.5s linear\'"';
+                }
+
+                $view7_share = '<div class="view7_share"' + $share_event + '>' + socialIcons_ + shareButtons + '</div>';
+
+                $('.rwd-container').append($view7_share);
+                break;
+            default:
+                $('.' + this.settings.classPrefix + 'socialIcons').append(shareButtons);
+                break;
         }
 
         setTimeout(function () {
@@ -787,13 +1337,31 @@
             src = $object.$items.eq(index).attr('href');
         }
 
+        var $view7_inner = '';
+
+        if(this.settings.lightboxView === 'view7'){
+            if(this.settings.showTitle){
+                var $t = '<div class="rwd-view7-title"></div>';
+            }
+            if(this.settings.showDesc){
+                var $d = '<div class="rwd-view7-desc"></div>';
+            }
+
+            $view7_inner = '<div class="view7_inner is_close">' + $t + $d + '</div>';
+        }
+
         isVideo = $object.isVideo(src, index);
         if (!$object.$item.eq(index).hasClass($object.settings.classPrefix + 'loaded')) {
             if (isVideo) {
-                $object.$item.eq(index).prepend('<div class="' + this.settings.classPrefix + 'video-cont "><div class="' + this.settings.classPrefix + 'video"></div></div>');
+                $object.$item.eq(index).addClass('isVideo');
+                $object.$item.eq(index).prepend('<div class="' + this.settings.classPrefix + 'video-cont "><div class="' + this.settings.classPrefix + 'video"></div></div>' + $view7_inner);
                 $object.$element.trigger('hasVideo.rwd-container', [index, src]);
             } else {
-                $object.$item.eq(index).prepend('<div class="' + this.settings.classPrefix + 'img-wrap"><img class="' + this.settings.classPrefix + 'object ' + $object.settings.classPrefix + 'image watermark" src="' + src + '" /></div>');
+                $object.$item.eq(index).addClass('isImg');
+                $object.$item.eq(index).prepend('<div class="' + this.settings.classPrefix + 'img-wrap">' +
+                    '<img class="' + this.settings.classPrefix + 'object ' + $object.settings.classPrefix + 'image watermark lightbox_zoom" src="' + src + '" data-zoom-image="' + src + '" />' +
+                    $view7_inner +
+                    '</div>');
             }
 
             $object.$element.trigger('onAferAppendSlide.rwd-container', [index]);
@@ -825,7 +1393,7 @@
             }
         }
 
-        if(hugeit_resp_lightbox_obj.hugeit_lightbox_imageframe !== 'frame_0'){
+        if(this.settings.lightboxView !== 'view7' && hugeit_resp_lightbox_obj.hugeit_lightbox_imageframe !== 'frame_0'){
             $('.rwd-image').css({
                 borderColor: '#f4be52',
                 borderStyle: 'inset',
@@ -845,10 +1413,28 @@
     };
 
     Lightbox.prototype.slide = function (index, fromSlide, fromThumb) {
-
         var $object, prevIndex;
+
         $object = this;
         prevIndex = this.$cont.find('.' + $object.settings.classPrefix + 'current').index();
+
+        if(this.settings.lightboxView === 'view7'){
+            this.innerOpenClose();
+
+            setTimeout(function(){
+                var nw, nh;
+
+                if($('.rwd-current').hasClass('isImg')){
+                    nw = document.querySelector('.rwd-current img').naturalWidth;
+                    nh = document.querySelector('.rwd-current img').naturalHeight;
+                } else if($('.rwd-current').hasClass('isVideo')){
+                    nw = $('.rwd-current iframe').width();
+                    nh = $('.rwd-current iframe').height();
+                }
+
+                $('.img_size').html(nw + 'px &times; ' + nh + 'px');
+            }, 200);
+        }
 
         var length = this.$item.length,
             time = 0,
@@ -899,7 +1485,7 @@
             $object.setTitle(index);
         }, time);
 
-        if ($object.settings.lightboxView === 'view5' || $object.settings.lightboxView === 'view6') {
+        if ($object.settings.lightboxView === 'view5' || $object.settings.lightboxView === 'view6' || $object.settings.lightboxView === 'view7') {
             setTimeout(function () {
                 $object.setDescription(index);
             }, time);
@@ -1037,7 +1623,7 @@
             left: $left + 'px'
         });
 
-        $object.calculateDimensions();
+        $object.calculateDimensions(index);
 
         $('.rwd-container .rwd-thumb-item img').css({
             opacity: 1 - 10 / 100
@@ -1045,6 +1631,32 @@
 
         $('.rwd-container .rwd-thumb-item.active img').css({
             opacity: 1
+        });
+
+        if(this.settings.lightboxView === 'view7'){
+            this.$element.on('onBeforeSlide.rwd-container', function() {
+                $('.view7_share, .rwd-close-bar, .rwd-toolbar').css({
+                    visibility: 'hidden',
+                    opacity: '0',
+                    transition: 'visibility 0s, opacity 0.5s linear'
+                });
+            });
+
+            this.$element.on('onAfterSlide.rwd-container', function() {
+                setTimeout(function(){
+                    $('.view7_share, .rwd-close-bar, .rwd-toolbar').css({
+                        visibility: 'visible',
+                        opacity: '1'
+                    });
+                }, 450);
+            });
+        }
+
+        $(window).on('resize.rwd-container orientationchange.rwd-container', function () {
+            var $t = ($object.settings.lightboxView !== 'view7') ? 100 : 0;
+            setTimeout(function () {
+                $object.calculateDimensions(index);
+            }, $t);
         });
     };
 
@@ -1136,7 +1748,11 @@
                 $('<span class="' + $object.settings.classPrefix + 'autoplay-button ' + $object.settings.classPrefix + 'icon">' + $play_bg + $pause_bg + '</span>').insertBefore($('.rwd-title'));
                 $('.rwd-toolbar .rwd-icon').addClass('rwd-icon0');
                 break;
+            case 'view7':
+                $('.tool_bar').append('<span class="' + $object.settings.classPrefix + 'autoplay-button ' + $object.settings.classPrefix + 'icon">' + $play_bg + $pause_bg + '</span>');
+                break;
         }
+
         if ($object.settings.slideshowAuto) {
             $object.slideshowAuto();
         }
@@ -1362,15 +1978,17 @@
         this.init();
 
         if (this.dataL.modulSettings.zoom && this.dataL.effectsSupport()) {
-            this.initZoom();
+            if(hugeit_resp_lightbox_obj.hugeit_lightbox_lightboxView !== 'view7' && this.dataL.modulSettings.zoomType === '0'){
+                this.initZoom();
 
-            this.zoomabletimeout = false;
+                this.zoomabletimeout = false;
 
-            this.pageX = $(window).width() / 2;
-            this.pageY = ($(window).height() / 2) + $(window).scrollTop();
+                this.pageX = $(window).width() / 2;
+                this.pageY = ($(window).height() / 2) + $(window).scrollTop();
+            }
         }
 
-        if (this.dataL.modulSettings.fullwidth && this.dataL.effectsSupport()) {
+        if (hugeit_resp_lightbox_obj.hugeit_lightbox_lightboxView !== 'view7' && this.dataL.modulSettings.fullwidth && this.dataL.effectsSupport()) {
             this.initFullWidth();
         }
 
@@ -1485,7 +2103,7 @@
             a = '?wmode=opaque&autoplay=' + autoplay + '&api=postMessage';
 
             video = '<iframe class="rwd-video-object rwd-dailymotion ' + addClass + '" width="560" height="315" src="//www.dailymotion.com/embed/video/' + isVideo.dailymotion[2] + a + '" frameborder="0" allowfullscreen></iframe>';
-      
+
         }
 
         return video;
@@ -1516,7 +2134,11 @@
                     case 'view4':
                         $(fullScreen).insertBefore('.rwd-title');
                         break;
+                    case 'view7':
+                        $('.tool_bar').append(fullScreen);
+                        break;
                 }
+
                 this.fullScreen();
             }
         }
@@ -2019,7 +2641,7 @@
                 $thumb_ = $('.rwd-thumb-cont'),
                 $toolbar_ = $('.rwd-toolbar');
             setTimeout(function(){
-                switch($object.dataL.settings.lightboxView){
+                switch(hugeit_resp_lightbox_obj.hugeit_lightbox_lightboxView){
                     case 'view1':
                         switch($object.dataL.modulSettings.thumbPosition){
                             case '0':
@@ -2102,6 +2724,7 @@
                         }
                         break;
                     case 'view4':
+                    case 'view7':
                         switch($object.dataL.modulSettings.thumbPosition) {
                             case '0':
                                 $cont_.css({
@@ -2270,7 +2893,7 @@
         if (this.left < 0) {
             this.left = 0;
         }
-        
+
         if (!$thumb.hasClass('on')) {
             this.dataL.$cont.find('.rwd-thumb').css('transition-duration', this.dataL.modulSettings.speed + 'ms');
         }
@@ -2280,7 +2903,7 @@
                 left: -this.left + 'px'
             }, this.dataL.modulSettings.speed);
         }
-            
+
         if(!$('.rwd-thumb').hasClass('thumb_move')){
             this.dataL.$cont.find('.rwd-thumb').css({
                 transform: 'translate3d(-' + (this.left) + 'px, 0px, 0px)'

@@ -1,28 +1,9 @@
 
-.contraste .oqueeleirouanet p {
-    background-color: #000 !important;
-    color: #fff !important;
-}
-.contraste div#header {
-    background: #000;
-    background-image: none;
-    border-bottom: 1px solid #fff;
-}
-.contraste header#main-header {
-    background: #000;
-    border-bottom: 1px solid #fff;
-}
-.contraste article {
-    background: #000;
-}
-
-.contraste  .et_pb_section.et_pb_section_0.et_section_specialty {
+body.contraste {
     background: #000;
     color: #fff;
+    border-color: #fff;
 }
-
-
-
 body.contraste footer#main-footer {
     background: #000;
     border-top: 1px solid #fff;
@@ -35,6 +16,70 @@ body.contraste .et_pb_post h2 a, .contraste  .et_pb_portfolio_item h3 a {
     text-decoration: none;
     color: #fff;
 }
+body.contraste li.current_page_item a {
+    color: #f0c419 !important;
+}
+.contraste a {
+    color: #fff;
+}
+.contraste a:hover {
+    color: #fbff49 !important;
+}
+.contraste .itemTitle a {
+    color: #fbff49 !important;
+}
+.contraste .home a.more-link {
+    background: rgb(251, 255, 73);
+    color: #000;
+}
+.contraste .menu a {
+    color: #000;
+}
+.contraste .oqueeleirouanet p {
+    background-color: #000 !important;
+    color: #fff !important;
+}
+.contraste div#header {
+    background: #000;
+    background-image: none;
+    border-bottom: 1px solid #fff;
+}
+.contraste header#main-header {
+    background: #4a4a4a !important;
+    border-bottom: none !important;
+}
+.contraste .feedEkList {
+    background: #000;
+    color: #fefefe;
+}
+.contraste #main-content .et_pb_sidebar_0.et_pb_widget_area a:hover {
+    color: #fbff49 !important;
+}
+
+.contraste .titulo-page {
+    background: #4a4a4a;
+    color: #fff;
+}
+.contraste div#texto-video {
+    color: white;
+}
+.contraste article {
+    background: #000;
+}
+.contraste #cadastro .et_pb_promo {
+    background-color: #4a4a4a !important;
+}
+.contraste .conteudo-login{
+    background-color: #4a4a4a !important;
+}
+.contraste  .et_pb_section.et_pb_section_0.et_section_specialty {
+    background: #000;
+    color: #fff;
+}
+.contraste .et_pb_section_0.et_pb_section {
+    background: #000 !important;
+}
+
 .contraste article.has-post-thumbnail {
     background: black;
 }
@@ -48,33 +93,14 @@ body.contraste .et_pb_post h2 a, .contraste  .et_pb_portfolio_item h3 a {
 .contraste .et_pb_section.et_pb_section_0.et_section_specialty {
     background: #000 !important;
 }
-body.contraste li.current_page_item a {
-    color: #f0c419 !important;
-}
+
 .contraste #main-content {
     background-color: #000;
 }
 .contraste h1.entry-title.main_title {
     color: #fff;
 }
-.contraste a {
-    color: #fff;
-}
-.contraste #top-menu > li:last-child {
-    background-image: url(/wp-content/themes/wp-divi-intranet/img/relogio-ponto.svg);
-    background-repeat: no-repeat;
-    background-position: 3px 9px;
-    position: relative;
-    padding-top: 14px;
-    padding-left: 29px;
-    background-color: #4c5156;
-    padding-right: 7px;
-    padding-bottom: 0px;
-    left: -6px;
-    height: 41px;
-    border-radius: 4px;
-    box-shadow: 1px 1px 1px #888888;
-}
+
 .contraste #main-content .et_pb_sidebar_0.et_pb_widget_area a {
     color: #fff !important;
 }
@@ -114,10 +140,7 @@ body.contraste li.current_page_item a {
 .contraste .et_pb_fullwidth_menu.et_pb_module.et_pb_bg_layout_light.et_pb_text_align_left.et_dropdown_animation_fade.et_pb_fullwidth_menu_0 {
     background: #383838 !important;
 }
-.contraste header#main-header {
-    background: #000;
-    border-bottom: none !important;
-}
+
 .contraste  ul#menu-menu-principal {
     background: #383838 !important;
 }
@@ -144,9 +167,6 @@ color:#fff;
  .contraste .et_pb_section_3.et_pb_section {
     background-color: #000000 !important;
 }
-
-
-
 .contraste .et_pb_section_1.et_pb_section {
     -webkit-filter: grayscale(100%);
     -moz-filter: grayscale(100%);
@@ -209,9 +229,34 @@ color:#fff;
 .contraste .entry-content .et_pb_section_4.et_pb_section {
     background-color: #ffffff !important;
 }
-.contraste .menu a {
-    color: #000;
-}
+
 .contraste #main-content ul#menu-menu-principal {
     background: none repeat scroll 0 0 #383838 !important;
+}
+.contraste #page-container {
+    background: #000;
+}
+
+.contraste .menu-item-has-children:hover ul.sub-menu, .contraste .menu-item-has-children:active ul.sub-menu {
+    background: #000000;
+    border-color: #fff;
+    color: #fff;
+}
+.contraste .et_pb_bg_layout_light .et_pb_post .post-meta, .contraste .et_pb_bg_layout_light .et_pb_portfolio_item .post-meta,.contraste .et_pb_bg_layout_light .et_pb_post .post-meta a,.contraste .et_pb_bg_layout_light .et_pb_portfolio_item .post-meta a,.contraste .et_pb_bg_layout_light .et_pb_post p, .contraste .et_pb_bg_layout_light p.et_pb_title_meta_container, .contraste .et_pb_bg_layout_light p.et_pb_title_meta_container a {
+    color: #fff;
+}
+.contraste h1, .contraste h2, .contraste h3, .contraste h4, .contraste h5, .contraste h6 {
+    padding-bottom: 10px;
+    color: #fff;
+    font-weight: 500;
+    line-height: 1em;
+}
+.contraste .et_pb_toggle_open {
+    padding: 20px;
+    color: #fff;
+    background: #000;
+    border: 0;
+}
+.contraste .et_pb_toggle_open h5.et_pb_toggle_title {
+    color: #fff;
 }

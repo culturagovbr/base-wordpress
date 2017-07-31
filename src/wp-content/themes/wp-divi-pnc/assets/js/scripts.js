@@ -112,7 +112,6 @@ jQuery(document).ready(function($) {
 
 
 
-
 /**
  * jQuery Carrousel
  *
@@ -122,25 +121,35 @@ jQuery(document).ready(function($) {
 
 */
 
-
 var current = jQuery("body:not(.home) .menu-metas-container #menu-metas .current-menu-item a");
 var menuMetas = jQuery("body:not(.home)  .menu-metas-container  #menu-metas");
 var nextButton = jQuery('.controls button.toggle[data-toggle=next]');
 var prevButton = jQuery('.controls button.toggle[data-toggle=prev]');
-var $controles = "<div class='controls'> <button class='toggle' data-toggle='prev'> <i class='fa fa-angle-left' aria-hidden='true'></i> </button> <button class='toggle' data-toggle='next'>  <i class='fa fa-angle-right' aria-hidden='true'></i> </button></div>";
+var $controles = "<div class='controls'> </div>";
+
+if (5 > current) {
+  var $prev = "<button class='toggle' data-toggle='prev'>  <i class='fa fa-angle-left'  aria-hidden='true'></i> </button></div>";
+}
+if (current > 55) {
+  var $next = "<button class='toggle' data-toggle='next'>  <i class='fa fa-angle-right' aria-hidden='true'></i> </button></div>";
+}
+
 jQuery(".menu-metas-container").after($controles);
+jQuery(".controls").append($nex);
+jQuery(".controls").prepend($prev);
+
 current = current.text();
 
 prevButton.on('click', function(e) {
-var link = jQuery("body:not(.home) .menu-metas-container #menu-metas .current-menu-item a").text();
-link--;
-location.href = link;
+  var link = jQuery("body:not(.home) .menu-metas-container #menu-metas .current-menu-item a").text();
+  link--;
+  location.href = link;
 });
 
 nextButton.on('click', function(e) {
-var link = jQuery("body:not(.home) .menu-metas-container #menu-metas .current-menu-item a").text();
-link++;
-location.href = link;
+  var link = jQuery("body:not(.home) .menu-metas-container #menu-metas .current-menu-item a").text();
+  link++;
+  location.href = link;
 });
 
 

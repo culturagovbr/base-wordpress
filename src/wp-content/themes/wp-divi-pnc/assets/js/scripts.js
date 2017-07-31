@@ -122,77 +122,58 @@ jQuery(document).ready(function($) {
 
 */
 
+
+var current = jQuery("body:not(.home) .menu-metas-container #menu-metas .current-menu-item a");
+var menuMetas = jQuery("body:not(.home)  .menu-metas-container  #menu-metas");
+var nextButton = jQuery('.controls button.toggle[data-toggle=next]');
+var prevButton = jQuery('.controls button.toggle[data-toggle=prev]');
 var $controles = "<div class='controls'> <button class='toggle' data-toggle='prev'> <i class='fa fa-angle-left' aria-hidden='true'></i> </button> <button class='toggle' data-toggle='next'>  <i class='fa fa-angle-right' aria-hidden='true'></i> </button></div>";
-jQuery("body:not(.home) .menu-metas-container").after($controles);
+jQuery(".menu-metas-container").after($controles);
+current = current.text();
 
-
-jQuery('.controls button.toggle[data-toggle=prev]').on('click', function(e) {
+prevButton.on('click', function(e) {
 var link = jQuery("body:not(.home) .menu-metas-container #menu-metas .current-menu-item a").text();
 link--;
 location.href = link;
 });
 
-jQuery('.controls button.toggle[data-toggle=next]').on('click', function(e) {
+nextButton.on('click', function(e) {
 var link = jQuery("body:not(.home) .menu-metas-container #menu-metas .current-menu-item a").text();
 link++;
 location.href = link;
 });
 
 
+//-1436.19px
+if (5 < current < 55) {
+  var base = 5;
+  var m = current - base;
+  var f = -400 - (100 * m);
+  alert(f);
+  menuMetas.animate({
+    'left': '' + f + 'px'
+  }, 500);
+}
 
 
-/*
-
-
-
-
-
-
-var $carousel = jQuery('#menu-metas');
-var $seats = jQuery('#menu-metas .menu-item');
-
-
-
-jQuery('.toggle').on('click', function(e) {
-  var $newSeat;
-  var $el = jQuery('.is-ref');
-  var $currSliderControl = jQuery(e.currentTarget);
-  // Info: e.target is what triggers the event dispatcher to trigger and e.currentTarget is what you assigned your listener to.
-
-  $el.removeClass('is-ref');
-  if ($currSliderControl.data('toggle') === 'next') {
-    $newSeat = next($el);
-    $carousel.removeClass('is-reversing');
-  } else {
-    $newSeat = prev($el);
-    $carousel.addClass('is-reversing');
+nextButton.click(function() {
+  var left = menuMetas.css("left");
+  left = parseInt(left, 10);
+  if (left >= -4463.19) {
+    menuMetas.animate({
+      'left': '-=1150px'
+    }, 500);
   }
-
-  $newSeat.addClass('is-ref').css('order', 1);
-  for (var i = 2; i <= $seats.length; i++) {
-    $newSeat = next($newSeat).css('order', i);
-  }
-
-  $carousel.removeClass('is-set');
-  return setTimeout(function() {
-    return $carousel.addClass('is-set');
-  }, 50);
-
-  function next($el) {
-    if ($el.next().length) {
-      return $el.next();
-    } else {
-      return $seats.first();
-    }
-  }
-
-  function prev($el) {
-    if ($el.prev().length) {
-      return $el.prev();
-    } else {
-      return $seats.last();
-    }
-  }
+  event.preventDefault();
 });
 
- */
+prevButton.click(function() {
+  var left = menuMetas.css("left");
+  left = parseInt(left, 10);
+  if (left <= -289) {
+    menuMetas.animate({
+      'left': '+=1150px'
+    }, 500);
+  }
+  event.preventDefault();
+});

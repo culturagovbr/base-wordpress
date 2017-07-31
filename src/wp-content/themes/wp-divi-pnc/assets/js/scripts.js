@@ -156,7 +156,7 @@ if (5 < current < 55) {
 }
 
 
-nextButton.click(function() {
+nextButton.click(function(event) {
   var left = menuMetas.css("left");
   left = parseInt(left, 10);
   if (left >= -4463.19) {
@@ -167,7 +167,7 @@ nextButton.click(function() {
   event.preventDefault();
 });
 
-prevButton.click(function() {
+prevButton.click(function(event) {
   var left = menuMetas.css("left");
   left = parseInt(left, 10);
   if (left <= -289) {

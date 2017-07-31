@@ -123,8 +123,8 @@ jQuery(document).ready(function($) {
 
 var current = jQuery("body:not(.home) .menu-metas-container #menu-metas .current-menu-item a");
 var menuMetas = jQuery("body:not(.home)  .menu-metas-container  #menu-metas");
-var nextButton = jQuery('.controls button.toggle[data-toggle=next]');
-var prevButton = jQuery('.controls button.toggle[data-toggle=prev]');
+var nextButton = jQuery('body:not(.home) .menu-metas-container .controls button.toggle[data-toggle=next]');
+var prevButton = jQuery('body:not(.home) .menu-metas-container .controls button.toggle[data-toggle=prev]');
 var $controles = "<div class='controls'> </div>";
 
 if (5 > current) {

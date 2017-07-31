@@ -134,7 +134,7 @@ if (5 < current) {
 if (current < 55) {
   var $next = "<button class='toggle' data-toggle='next'>  <i class='fa fa-angle-right' aria-hidden='true'></i> </button></div>";
 }
-jQuery(".menu-metas-container").after($controles);
+jQuery("body:not(.home) .menu-metas-container").after($controles);
 jQuery(".controls").append($next);
 jQuery(".controls").prepend($prev);
 

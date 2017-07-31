@@ -1,0 +1,25 @@
+{
+  "name": "inscricao-oscar-2018",
+  "version": "1.0.0",
+  "description": "Inscrição Oscar 2018 Template",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ricardo Carvalho",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-clean-css": "^3.0.4",
+    "gulp-concat": "^2.6.1",
+    "gulp-jshint": "^2.0.4",
+    "gulp-livereload": "^3.8.1",
+    "gulp-notify": "^3.0.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-sourcemaps": "1.11.1",
+    "gulp-uglify": "^2.1.2",
+    "jshint": "^2.9.4",
+    "watch": "^1.0.2"
+  }
+}

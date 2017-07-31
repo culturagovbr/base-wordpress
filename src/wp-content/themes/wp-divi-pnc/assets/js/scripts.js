@@ -158,7 +158,6 @@ if (5 < current < 55) {
   var base = 5;
   var m = current - base;
   var f = -400 - (100 * m);
-  alert(f);
   menuMetas.animate({
     'left': '' + f + 'px'
   }, 500);

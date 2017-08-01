@@ -150,7 +150,7 @@ var nextButton = jQuery('button.toggle[data-toggle=next]');
 nextButton.click(function(event) {
   left = menuMetas.css("left");
   left = parseInt(left, 10);
-  if (left >= -4463) {
+  if (left >= -5000) {
       menuMetas.animate({
         'left': '-=530px'
       }, 500);

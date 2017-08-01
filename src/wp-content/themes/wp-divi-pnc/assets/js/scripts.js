@@ -124,7 +124,6 @@ function navegacaoMetas() {
 var menuMetas =  jQuery("body:not(.home)  .menu-metas-container  #menu-metas");
 var controles = "<div class='controls'> </div>";
 var corrent =    jQuery("body:not(.home) .menu-metas-container #menu-metas .current-menu-item a");
-
 corrent = corrent.text();
 jQuery("body:not(.home) .menu-metas-container").after(controles);
 
@@ -148,8 +147,9 @@ jQuery(".controls").prepend(prev);
 
 var nextButton = jQuery('button.toggle[data-toggle=next]');
 nextButton.click(function(event) {
+  var left = menuMetas.css("left");
   if (left >= -4463) {
-    var left = menuMetas.css("left");
+    
     left = parseInt(left, 10);
 
       menuMetas.animate({
@@ -162,8 +162,9 @@ nextButton.click(function(event) {
 
 var prevButton = jQuery('button.toggle[data-toggle=prev]');
 prevButton.click(function(event) {
+  var left = menuMetas.css("left");
   if (left <= -505) {
-    var left = menuMetas.css("left");
+    
     left = parseInt(left, 10);
 
       menuMetas.animate({

@@ -83,24 +83,25 @@ function inscricao_cpt() {
         'labels' => array(
             'name' => 'Inscrições 2018',
             'singular_name' => 'Inscrição',
-        ),
+            ),
         'description' => 'Inscrições Oscar 2018.',
         'public' => true,
         'menu_position' => 20,
         'supports' => array( 'title' ),
         'menu_icon' => 'dashicons-clipboard'
-    ));
+        ));
 }
 
 function add_inscricao_columns($columns) {
     unset($columns['author']);
-    unset($columns['date']);
+    // unset($columns['date']);
     return array_merge($columns, 
-              array(
-                    'responsible' => __('Proponente'),
-                    'user_cpf' =>__( 'CPF')
-                )
-          );
+        array(
+            'responsible' => __('Proponente'),
+            'user_cpf' => __( 'CPF'),
+            'movie' => __( 'Filme')
+        )
+    );
 }
 add_filter('manage_inscricao_posts_columns' , 'add_inscricao_columns');
 
@@ -111,12 +112,18 @@ function custom_columns( $column, $post_id ) {
 
     switch ( $column ) {
         case 'responsible':
-            echo $post_author->display_name;
-            break;
+        echo $post_author->display_name;
+        break;
 
         case 'user_cpf':
-            echo get_user_meta( $post_author_id, '_user_cpf', true );
-            break;
+        echo get_user_meta( $post_author_id, '_user_cpf', true );
+        break;
+
+        case 'movie':
+        $oscar_movie_name = get_user_meta( $post_author_id, '_oscar_movie_name', true );
+        $oscar_movie_path = get_user_meta( $post_author_id, '_oscar_movie_path', true );
+        echo '<a href="'. $oscar_movie_path .'" target="_blank">' . $oscar_movie_name . '</a>';
+        break;
     }
 }
 
@@ -135,8 +142,7 @@ function oscar_start_session() {
         $_SESSION['logged_user_id'] = $current_user->ID;
 
         $user_cpf = get_user_meta( $current_user->ID, '_user_cpf', true ); 
-        $_SESSION['logged_user_cpf'] = $user_cpf;
-
+        $_SESSION['logged_user_cpf'] = $user_cpf ? $user_cpf : $current_user->ID;
     }
 }
 
@@ -146,7 +152,7 @@ function oscar_end_session() {
 }
 
 /**
- * Shortcodes
+ * Includes - Shortcodes
  */
 // Registration form
 require get_template_directory() . '/inc/shortcodes/auth-form.php';
@@ -155,24 +161,29 @@ require get_template_directory() . '/inc/shortcodes/oscar-main-form.php';
 // Video upload form
 require get_template_directory() . '/inc/shortcodes/video-upload-form.php';
 
+
+/**
+ * Includes - options page for subscriptions
+ */
+require get_template_directory() . '/inc/options-page.php';
+
 /**
  * Function responsible for process video upload
  */
 function upload_oscar_video() {
     error_reporting(0);
     if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
+        $oscar_options = get_option('oscar_options');
         $uploads = wp_upload_dir();
-        // var_dump($uploads);
-        // $path = '/var/www/html/oscar-videos/';
-        $path = $uploads['basedir'] . '/oscar-videos/';
+        $path = $uploads['basedir'] . '/oscar-videos';
 
         if (!file_exists( $path )) {
             mkdir($path, 0777, true);
         }
 
         // Set the valid file extensions 
-        $valid_formats = array('mp4', 'jpg', 'png'); //add the formats you want to upload
-        // $valid_formats = array("jpg", "png", "gif", "bmp", "jpeg", "GIF", "JPG", "PNG", "doc", "txt", "docx", "pdf", "xls", "xlsx"); 
+        // Example: array("jpg", "png", "gif", "bmp", "jpeg", "GIF", "JPG", "PNG", "doc", "txt", "docx", "pdf", "xls", "xlsx"); 
+        $valid_formats =  $oscar_options['oscar_movie_extensions'] ? explode(',', $oscar_options['oscar_movie_extensions']) : array('mp4');
 
         $name = $_FILES['oscarVideo']['name']; // Get the name of the file   
         $nice_name = str_replace( ' ', '_', strtolower( $_FILES['oscarVideo']['name'] ) ); // Remove white-spaces that causes error during move_uploaded_file()
@@ -181,7 +192,8 @@ function upload_oscar_video() {
         if (strlen($name)) { // Check if the file is selected or cancelled after pressing the browse button.
             list($txt, $ext) = explode(".", $name); // Extract the name and extension of the file
             if (in_array($ext, $valid_formats)) { // If the file is valid go on.
-                if ($size < 5e+9) { //  Check if the file size is more than 5 Gb
+                // if ($size < 5e+9) { //  Check if the file size is more than 5 Gb
+                if ($size < intval($oscar_options['oscar_movie_max_size'])*pow(1024,3) ) { //  Check if the file size is more than 5 Gb
                     $file_name = $_FILES['oscarVideo']['name'];
                     $tmp = $_FILES['oscarVideo']['tmp_name'];
 
@@ -191,19 +203,22 @@ function upload_oscar_video() {
                         error_log("Impossível criar arquivo no destino: " . $path);
                     } else {
                         // Creates a unique folder to upload files (based on user CPF)
-                        if (!file_exists( $path . $_SESSION['logged_user_cpf'] )) {
+                        if (!file_exists( $path . '/' . $_SESSION['logged_user_cpf'] )) {
                             mkdir($path . '/' . $_SESSION['logged_user_cpf'], 0777, true);
                         }
 
                         // Check if it the file move successfully.
-                        if (move_uploaded_file($tmp, $path . '/' . $_SESSION['logged_user_cpf'] .'/'. $nice_name)) {
-                            echo 'Upload realizado com sucesso.';
+                        if (move_uploaded_file($tmp, $path . '/' . $_SESSION['logged_user_cpf'] .'/'. $name)) {
+                            update_user_meta( $_SESSION['logged_user_id'], '_oscar_movie_name', $name );
+                            update_user_meta( $_SESSION['logged_user_id'], '_oscar_movie_path', $uploads['baseurl'] . '/oscar-videos' . '/' . $_SESSION['logged_user_cpf'] .'/'. $name );
+                            update_user_meta( $_SESSION['logged_user_id'], '_oscar_video_sent', true );
+                            echo $oscar_options['oscar_movie_uploaded_message'];
                         } else {
                             echo 'Falha ao mover arquivo para pasta destino';
                         }
                     }
                 } else {
-                    echo 'O tamanho do arquivo excede o limite de 5Gb.';
+                    echo 'O tamanho do arquivo excede o limite de '. $oscar_options['oscar_movie_max_size'] .'Gb.';
                 }
             } else {
                 echo 'Formato de arquivo inválido.';
@@ -218,6 +233,11 @@ function upload_oscar_video() {
 add_action('wp_ajax_upload_oscar_video', 'upload_oscar_video');
 add_action('wp_ajax_nopriv_upload_oscar_video', 'upload_oscar_video');
 
+// add_filter( 'wp_mail_content_type', 'set_html_content_type' );
+function set_html_content_type() {
+    return 'text/html';
+}
+
 /**
  * Process the subscription form
  */
@@ -231,41 +251,41 @@ function process_main_oscar_form( $post_id ) {
     if( is_admin() ) {
         return;
     }
+
     $post = get_post( $post_id );
 
     $post = array(
         'post_type' => 'inscricao',
         'post_status' => 'publish'
     );
-    // insert the post
     $post_id = wp_insert_post( $post );
 
     $inscricao = array(
         'ID'           => $post_id,
-        'post_title'   => 'Inscrição - ' . $post_id
+        'post_title'   => 'Oscar 2018 (Inscrição #' . $post_id . ')'
     );
     wp_update_post( $inscricao );
 
     $current_user = wp_get_current_user();
     add_user_meta( $current_user->ID, '_inscricao_id', $post_id, true );
     
-    // vars
+    $oscar_options = get_option('oscar_options');
     $post = get_post( $post_id );
+    $name = 'Inscrições Oscar 2018';
+    $email = $oscar_options['oscar_email_body'];
     
-    // get custom fields (field group exists for content_form)
-    $name = get_field('name', $post_id);
-    $email = get_field('email', $post_id);
-    
-    // email data
-    $to = 'contact@website.com';
-    $headers = 'From: ' . $name . ' <' . $email . '>' . "\r\n";
+    // $to = 'rickmanu@gmail.com'; // @TODO - Change for match user's email
+    $to = $current_user->user_email;
+    $headers = 'From: ' . $name . ' <' . $email . '>;' . "\r\n";
     $subject = $post->post_title;
-    $body = $post->post_content;
+    $body = $oscar_options['oscar_email_body'];
     
-    // send email
-    // wp_mail($to, $subject, $body, $headers );   
+    // Send email
+    if( !wp_mail($to, $subject, $body ) ){
+        error_log("O envio de email para: " . $to . ', Falhou!');
+    }
 
-    // return the new ID
+    // Return the new ID
     return $post_id;
 }
 
@@ -282,7 +302,6 @@ function my_deregister_styles() {
     wp_deregister_style( 'acf-input' );
     wp_deregister_style( 'acf-datepicker' );
 }
-
 remove_filter( 'wp_signup_location', 'custom_register_redirect' );
 
 /**
@@ -314,7 +333,6 @@ function my_login_redirect( $redirect_to, $request, $user ) {
         return $redirect_to;
     }
 }
-
 add_filter( 'login_redirect', 'my_login_redirect', 10, 3 );
 
 function oscar_logout_redirect( $logout_url, $redirect ) {
@@ -328,11 +346,11 @@ function se_logout_redirect( $redirect_to, $requested_redirect_to, $user ) {
     } else {
         $requested_redirect_to = home_url( '/hello-world' );
     }
- 
+
     return $requested_redirect_to;
- 
+
 }
-add_filter( 'logout_redirect', 'se_logout_redirect', 10, 3 );
+// add_filter( 'logout_redirect', 'se_logout_redirect', 10, 3 );
 
 /**
  * Redirect user when logged (or not-logged) to correct url
@@ -350,7 +368,6 @@ function redirect_logged_user_to_profile_page()
         exit;
     }
 }
-
 add_action('template_redirect', 'redirect_logged_user_to_profile_page');
 
 /**
@@ -363,3 +380,4 @@ function block_users_from_access_dashboard() {
     }
 }
 add_action( 'init', 'block_users_from_access_dashboard' );
+

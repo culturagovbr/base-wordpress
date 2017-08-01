@@ -139,6 +139,7 @@ jQuery("body:not(.home) .menu-metas-container").after($controles);
 jQuery(".controls").append($next);
 jQuery(".controls").prepend($prev);
 
+/*
 prevButton.on('click', function(e) {
   var link = jQuery("body:not(.home) .menu-metas-container #menu-metas .current-menu-item a").text();
   link--;
@@ -151,7 +152,7 @@ nextButton.on('click', function(e) {
   location.href = link;
 });
 
-
+*/
 //-1436.19px
 if (5 > current > 55) {
   var base = 5;

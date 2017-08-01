@@ -152,7 +152,7 @@ nextButton.click(function(event) {
   left = parseInt(left, 10);
   if (left >= -4463) {
       menuMetas.animate({
-        'left': '-=510px'
+        'left': '-=530px'
       }, 500);
     event.preventDefault();
   }
@@ -164,7 +164,7 @@ prevButton.click(function(event) {
   left = parseInt(left, 10);
   if (left <= -505) {
       menuMetas.animate({
-        'left': '+=510px'
+        'left': '+=530px'
       }, 500);
     event.preventDefault();
   }

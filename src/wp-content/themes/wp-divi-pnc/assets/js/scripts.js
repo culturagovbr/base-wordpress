@@ -151,7 +151,7 @@ jQuery( document ).ready(function() {
 
 
 
-    /*
+ 
     prevButton.on('click', function(e) {
       var link = jQuery("body:not(.home) .menu-metas-container #menu-metas .corrent-menu-item a").text();
       link--;
@@ -164,8 +164,6 @@ jQuery( document ).ready(function() {
       location.href = link;
     });
 
-    */
-    //-1436.19px
 
 
     var nextButton = jQuery('button.toggle[data-toggle=next]');

@@ -144,14 +144,15 @@ if (5 > corrent > 55) {
 jQuery(".controls").append(next);
 jQuery(".controls").prepend(prev);
 
+var left menuMetas.css("left");
 
 var nextButton = jQuery('button.toggle[data-toggle=next]');
 nextButton.click(function(event) {
-  var left = menuMetas.css("left");
+  left = menuMetas.css("left");
   left = parseInt(left, 10);
   if (left >= -4463) {
       menuMetas.animate({
-        'left': '-=505px'
+        'left': '-=510px'
       }, 500);
     event.preventDefault();
   }
@@ -159,11 +160,11 @@ nextButton.click(function(event) {
 
 var prevButton = jQuery('button.toggle[data-toggle=prev]');
 prevButton.click(function(event) {
-  var left = menuMetas.css("left");
+  left = menuMetas.css("left");
   left = parseInt(left, 10);
   if (left <= -505) {
       menuMetas.animate({
-        'left': '+=505px'
+        'left': '+=510px'
       }, 500);
     event.preventDefault();
   }

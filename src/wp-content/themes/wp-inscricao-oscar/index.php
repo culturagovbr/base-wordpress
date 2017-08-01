@@ -20,13 +20,7 @@ get_header();
 								</div>
 							<?php endif; ?>
 
-							<?php if ( is_single() ) : ?>
-								<h1 class="entry-title"><?php the_title(); ?></h1>
-							<?php else : ?>
-								<h1 class="entry-title">
-									<a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a>
-								</h1>
-							<?php endif;?>
+							<h1 class="entry-title"><?php the_title(); ?></h1>
 							<?php if (current_user_can('manage_options') ): ?>
 							<div class="entry-meta header">
 								<?php edit_post_link( __( 'Edit', 'inscricao-oscar' ), '<span class="edit-link">', '</span>' ); ?>

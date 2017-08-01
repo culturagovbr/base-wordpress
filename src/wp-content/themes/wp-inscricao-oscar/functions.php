@@ -378,7 +378,7 @@ function redirect_logged_user_to_profile_page()
         exit;
     }
 
-    if (!is_user_logged_in() && is_front_page() ) {
+    if ( !is_user_logged_in() && is_front_page() || !is_user_logged_in() && is_page('enviar-video') ) {
         wp_redirect(home_url('/login'));
         exit;
     }

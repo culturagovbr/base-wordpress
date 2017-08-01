@@ -171,6 +171,18 @@ function oscar_settings_init() {
                 'class' => 'form-field',
             ]
         );
+
+        add_settings_field(
+            'oscar_delete_user_video_sent_meta',
+            'Deletar envio de vídeo de usuário',
+            'oscar_delete_user_video_sent_meta',
+            'oscar',
+            'oscar_mail_confirmation_section',
+            [
+                'label_for' => 'oscar_delete_user_video_sent_meta',
+                'class' => 'form-field',
+            ]
+        );
     }
 }
 
@@ -253,5 +265,19 @@ function oscar_debug_view( $args ) {
         echo '</pre>';        
     }else {
         echo 'Não foi possível iniciar a sessão!';
+    }
+}
+
+function oscar_delete_user_video_sent_meta( $args ) { ?>
+    <input id="delete_user_video_sent_meta" name="delete_user_video_sent_meta" type="number" value="">
+    <p class="description">
+        Insira o ID do usuário para deletar sua limitação ao enviar vídeos.
+    </p>
+    <?php
+}
+
+if( !empty( $_POST['delete_user_video_sent_meta'] ) ){
+    if( !delete_user_meta($_POST['delete_user_video_sent_meta'], '_oscar_video_sent') ){
+        error_log("Não foi possível remover a limitação para envio de usuários do ID " . $_POST['delete_user_video_sent_meta']);
     }
 }

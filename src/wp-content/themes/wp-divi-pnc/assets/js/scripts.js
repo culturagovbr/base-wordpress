@@ -148,14 +148,11 @@ jQuery(".controls").prepend(prev);
 var nextButton = jQuery('button.toggle[data-toggle=next]');
 nextButton.click(function(event) {
   var left = menuMetas.css("left");
+  left = parseInt(left, 10);
   if (left >= -4463) {
-    
-    left = parseInt(left, 10);
-
       menuMetas.animate({
         'left': '-=505px'
       }, 500);
-
     event.preventDefault();
   }
 });
@@ -163,14 +160,11 @@ nextButton.click(function(event) {
 var prevButton = jQuery('button.toggle[data-toggle=prev]');
 prevButton.click(function(event) {
   var left = menuMetas.css("left");
+  left = parseInt(left, 10);
   if (left <= -505) {
-    
-    left = parseInt(left, 10);
-
       menuMetas.animate({
         'left': '+=505px'
       }, 500);
-
     event.preventDefault();
   }
 });

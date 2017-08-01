@@ -112,76 +112,80 @@ jQuery(document).ready(function($) {
 
 
 
-/**
- * jQuery Carrousel
- *
- * Copyright (c) 2017 Moisés Rabelo 
- * https://jsfiddle.net/moisesrlima/k8xLcjbr/106/
- *
+    /**
+     * jQuery Carrousel
+     *
+     * Copyright (c) 2017 Moisés Rabelo 
+     * https://jsfiddle.net/moisesrlima/k8xLcjbr/106/
+     *
 
-*/
-
-var current =    jQuery("body:not(.home) .menu-metas-container #menu-metas .current-menu-item a");
-var menuMetas =  jQuery("body:not(.home)  .menu-metas-container  #menu-metas");
-var nextButton = jQuery('body:not(.home)  .controls button.toggle[data-toggle=next]');
-var prevButton = jQuery('body:not(.home)  .controls button.toggle[data-toggle=prev]');
-
-var $controles = "<div class='controls'> </div>";
-current = current.text();
-
-if (5 < current) {
-  var $prev = "<button class='toggle' data-toggle='prev'>  <i class='fa fa-angle-left'  aria-hidden='true'></i> </button></div>";
-}
-if (current < 55) {
-  var $next = "<button class='toggle' data-toggle='next'>  <i class='fa fa-angle-right' aria-hidden='true'></i> </button></div>";
-}
-jQuery("body:not(.home) .menu-metas-container").after($controles);
-jQuery(".controls").append($next);
-jQuery(".controls").prepend($prev);
-
-prevButton.on('click', function(e) {
-  var link = jQuery("body:not(.home) .menu-metas-container #menu-metas .current-menu-item a").text();
-  link--;
-  location.href = link;
-});
-
-nextButton.on('click', function(e) {
-  var link = jQuery("body:not(.home) .menu-metas-container #menu-metas .current-menu-item a").text();
-  link++;
-  location.href = link;
-});
+    */
 
 
-//-1436.19px
-if (5 > current > 55) {
-  var base = 5;
-  var m = current - base;
-  var f = -400 - (100 * m);
-  menuMetas.animate({
-    'left': '' + f + 'px'
-  }, 500);
-}
+    var menuMetas =  jQuery("body:not(.home)  .menu-metas-container  #menu-metas");
+    var $controles = "<div class='controls'> </div>";
+    var corrent =    jQuery("body:not(.home) .menu-metas-container #menu-metas .corrent-menu-item a");
+    corrent = corrent.text();
+    jQuery("body:not(.home) .menu-metas-container").after($controles);
+    jQuery(".controls").append($next);
+    jQuery(".controls").prepend($prev);
+
+    if (5 < corrent) {
+      var $prev = "<button class='toggle' data-toggle='prev'>  <i class='fa fa-angle-left'  aria-hidden='true'></i> </button></div>";
+    }
+    if (corrent < 55) {
+      var $next = "<button class='toggle' data-toggle='next'>  <i class='fa fa-angle-right' aria-hidden='true'></i> </button></div>";
+    }
+    if (5 > corrent > 55) {
+      var base = 5;
+      var m = corrent - base;
+      var f = -400 - (100 * m);
+      menuMetas.animate({
+        'left': '' + f + 'px'
+      }, 500);
+    }
 
 
-nextButton.click(function(event) {
-  var left = menuMetas.css("left");
-  left = parseInt(left, 10);
 
-    menuMetas.animate({
-      'left': '-=1150px'
-    }, 500);
 
-  event.preventDefault();
-});
 
-prevButton.click(function(event) {
-  var left = menuMetas.css("left");
-  left = parseInt(left, 10);
+    /*
+    prevButton.on('click', function(e) {
+      var link = jQuery("body:not(.home) .menu-metas-container #menu-metas .corrent-menu-item a").text();
+      link--;
+      location.href = link;
+    });
 
-    menuMetas.animate({
-      'left': '+=1150px'
-    }, 500);
+    nextButton.on('click', function(e) {
+      var link = jQuery("body:not(.home) .menu-metas-container #menu-metas .corrent-menu-item a").text();
+      link++;
+      location.href = link;
+    });
 
-  event.preventDefault();
-});
- 
+    */
+    //-1436.19px
+
+
+    var nextButton = jQuery('button.toggle[data-toggle=next]');
+    nextButton.click(function(event) {
+      var left = menuMetas.css("left");
+      left = parseInt(left, 10);
+
+        menuMetas.animate({
+          'left': '-=1150px'
+        }, 500);
+
+      event.preventDefault();
+    });
+
+    var prevButton = jQuery('button.toggle[data-toggle=prev]');
+    prevButton.click(function(event) {
+      var left = menuMetas.css("left");
+      left = parseInt(left, 10);
+
+        menuMetas.animate({
+          'left': '+=1150px'
+        }, 500);
+
+      event.preventDefault();
+    });

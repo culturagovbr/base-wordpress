@@ -144,7 +144,7 @@ if (5 > corrent > 55) {
 jQuery(".controls").append(next);
 jQuery(".controls").prepend(prev);
 
-var left menuMetas.css("left");
+var left = menuMetas.css("left");
 
 var nextButton = jQuery('button.toggle[data-toggle=next]');
 nextButton.click(function(event) {

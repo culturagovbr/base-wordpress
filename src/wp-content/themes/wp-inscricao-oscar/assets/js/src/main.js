@@ -70,7 +70,7 @@
                     $(this).parent().remove();
                 });
 
-                $('#div[data-name="data_estreia"]').find('input[type="text"]').mask('00/00/0000');
+                $('div[data-name="data_estreia"] input').mask('00/00/0000');
 
                 var maskBehavior = function(val) {
                         return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
@@ -82,7 +82,7 @@
                     };
 
                 // $('#empresa-produtora-telefone, #empresa-produtora-fax').mask(maskBehavior, options);
-                $('#div[data-name="empresa_telefone"] input, #div[data-name="empresa_fax"] input').mask(maskBehavior, options);
+                $('div[data-name="empresa_telefone"] input, div[data-name="empresa_fax"] input').mask(maskBehavior, options);
                 // $('div{data-name="anexos"] table > tbody > tr.acf-row')
                 $.each( $('div[data-name="anexos"] table > tbody > tr.acf-row'), function( i, rowEl ) {
                   	console.log( rowEl );
@@ -149,8 +149,8 @@
                             return xhr;
                         },
                         success: function(data) {
-                            $('#oscar-video-form .msg').text(data);
-                            // $('#btn').removeAttr('disabled');
+                            $('#oscar-video-form .msg').addClass('success');
+                            $('#oscar-video-form .msg').html(data);
                         }
                     });
                     // return false;

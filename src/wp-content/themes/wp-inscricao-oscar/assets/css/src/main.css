@@ -273,6 +273,13 @@ span.wpcf7-not-valid-tip{
 	border: none;
 	border-radius: 0;
 	padding: 15px;
+    font-size: 18px;
+}
+
+#upload-status .panel.success {
+	color: #3c763d;
+	background-color: #dff0d8;
+	border-color: #d6e9c6;
 }
 
 .entry-meta.header{
@@ -548,6 +555,11 @@ div[data-name="declaracao"] .description{
 
 .acf-file-uploader .file-info ul {
     display: none;
+}
+
+.acf-error-message{
+	color: #da5555;
+	font-style: italic;
 }
 
 @media (min-width: 768px){

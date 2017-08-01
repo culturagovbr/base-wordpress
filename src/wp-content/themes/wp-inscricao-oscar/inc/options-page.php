@@ -125,12 +125,24 @@ function oscar_settings_init() {
 
     add_settings_field(
         'oscar_email_body',
-        'Texto para o email',
+        'Texto para o email de envio do formulário',
         'oscar_email_body',
         'oscar',
         'oscar_mail_confirmation_section',
         [
             'label_for' => 'oscar_email_body',
+            'class' => 'form-field',
+        ]
+    );
+
+    add_settings_field(
+        'oscar_email_body_video_received',
+        'Texto para o email de recebimento do vídeo',
+        'oscar_email_body_video_received',
+        'oscar',
+        'oscar_mail_confirmation_section',
+        [
+            'label_for' => 'oscar_email_body_video_received',
             'class' => 'form-field',
         ]
     );
@@ -201,7 +213,19 @@ function oscar_email_from( $args ) {
 function oscar_email_body( $args ) {
     $options = get_option( 'oscar_options' ); ?>
     <textarea id="<?php echo esc_attr( $args['label_for'] ); ?>" name="oscar_options[<?php echo esc_attr( $args['label_for'] ); ?>]" rows="10"><?php echo $options['oscar_email_body']; ?></textarea>
+    <p class="description">
+        Mensagem recebida pelo usuário ao realizar o cadastro do formulário.
+    </p>
     <?php
+}
+
+function oscar_email_body_video_received( $args ) {
+    $options = get_option( 'oscar_options' ); ?>
+    <textarea id="<?php echo esc_attr( $args['label_for'] ); ?>" name="oscar_options[<?php echo esc_attr( $args['label_for'] ); ?>]" rows="10"><?php echo $options['oscar_email_body_video_received']; ?></textarea>
+    <p class="description">
+        Mensagem recebida pelo usuário após o correto envio do vídeo.
+    </p>
+ <?php
 }
 
 function oscar_videos_folder( $args ) {

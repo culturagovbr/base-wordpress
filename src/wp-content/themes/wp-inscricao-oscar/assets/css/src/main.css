@@ -282,6 +282,10 @@ span.wpcf7-not-valid-tip{
 	border-color: #d6e9c6;
 }
 
+#upload-status .panel.success a{
+	color: #bfa058;
+}
+
 .entry-meta.header{
 	text-align: right;
 	border-bottom: 1px solid #d8c795;

@@ -213,6 +213,7 @@ function upload_oscar_video() {
                             update_user_meta( $_SESSION['logged_user_id'], '_oscar_movie_path', $uploads['baseurl'] . '/oscar-videos' . '/' . $_SESSION['logged_user_cpf'] .'/'. $name );
                             update_user_meta( $_SESSION['logged_user_id'], '_oscar_video_sent', true );
                             echo $oscar_options['oscar_movie_uploaded_message'];
+                            oscar_video_sent_confirmation_email( $_SESSION['logged_user_id'] );
                         } else {
                             echo 'Falha ao mover arquivo para pasta destino';
                         }
@@ -232,6 +233,21 @@ function upload_oscar_video() {
 }
 add_action('wp_ajax_upload_oscar_video', 'upload_oscar_video');
 add_action('wp_ajax_nopriv_upload_oscar_video', 'upload_oscar_video');
+
+function oscar_video_sent_confirmation_email ( $user_id ) {
+    $oscar_options = get_option('oscar_options');
+    $user = get_user_by( 'ID', $user_id );
+    $name = 'Inscrições Oscar 2018 - Vídeo Recebido';
+    
+    $to = $user->user_email;
+    $subject = 'Confirmação de vídeo recebido';
+    $body = $oscar_options['oscar_email_body_video_received'];
+    
+    // Send email
+    if( !wp_mail($to, $subject, $body ) ){
+        error_log("O envio de email para: " . $to . ', Falhou!');
+    }
+}
 
 // add_filter( 'wp_mail_content_type', 'set_html_content_type' );
 function set_html_content_type() {
@@ -272,11 +288,10 @@ function process_main_oscar_form( $post_id ) {
     $oscar_options = get_option('oscar_options');
     $post = get_post( $post_id );
     $name = 'Inscrições Oscar 2018';
-    $email = $oscar_options['oscar_email_body'];
     
     // $to = 'rickmanu@gmail.com'; // @TODO - Change for match user's email
     $to = $current_user->user_email;
-    $headers = 'From: ' . $name . ' <' . $email . '>;' . "\r\n";
+    // $headers = 'From: ' . $name . ' <' . $email . '>;' . "\r\n";
     $subject = $post->post_title;
     $body = $oscar_options['oscar_email_body'];
     

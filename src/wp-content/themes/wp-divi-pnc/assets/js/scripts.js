@@ -125,18 +125,18 @@ jQuery( document ).ready(function() {
 
 
     var menuMetas =  jQuery("body:not(.home)  .menu-metas-container  #menu-metas");
-    var $controles = "<div class='controls'> </div>";
-    var corrent =    jQuery("body:not(.home) .menu-metas-container #menu-metas .corrent-menu-item a");
+    var controles = "<div class='controls'> </div>";
+    var corrent =    jQuery("body:not(.home) .menu-metas-container #menu-metas .current-menu-item a");
+
     corrent = corrent.text();
-    jQuery("body:not(.home) .menu-metas-container").after($controles);
-    jQuery(".controls").append($next);
-    jQuery(".controls").prepend($prev);
+    jQuery("body:not(.home) .menu-metas-container").after(controles);
+ 
 
     if (5 < corrent) {
-      var $prev = "<button class='toggle' data-toggle='prev'>  <i class='fa fa-angle-left'  aria-hidden='true'></i> </button></div>";
+      var prev = "<button class='toggle' data-toggle='prev'>  <i class='fa fa-angle-left'  aria-hidden='true'></i> </button></div>";
     }
     if (corrent < 55) {
-      var $next = "<button class='toggle' data-toggle='next'>  <i class='fa fa-angle-right' aria-hidden='true'></i> </button></div>";
+      var next = "<button class='toggle' data-toggle='next'>  <i class='fa fa-angle-right' aria-hidden='true'></i> </button></div>";
     }
     if (5 > corrent > 55) {
       var base = 5;
@@ -148,25 +148,24 @@ jQuery( document ).ready(function() {
     }
 
 
+    jQuery(".controls").append(next);
+    jQuery(".controls").prepend(prev);
 
 
-
-    /*
+ /*
     prevButton.on('click', function(e) {
-      var link = jQuery("body:not(.home) .menu-metas-container #menu-metas .corrent-menu-item a").text();
+      var link = jQuery("body:not(.home) .menu-metas-container #menu-metas .current-menu-item a").text();
       link--;
       location.href = link;
     });
 
     nextButton.on('click', function(e) {
-      var link = jQuery("body:not(.home) .menu-metas-container #menu-metas .corrent-menu-item a").text();
+      var link = jQuery("body:not(.home) .menu-metas-container #menu-metas .current-menu-item a").text();
       link++;
       location.href = link;
     });
 
-    */
-    //-1436.19px
-
+*/
 
     var nextButton = jQuery('button.toggle[data-toggle=next]');
     nextButton.click(function(event) {

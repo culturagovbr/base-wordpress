@@ -111,7 +111,7 @@ jQuery(document).ready(function($) {
 });
 
 
-
+jQuery( document ).ready(function() {
     /**
      * jQuery Carrousel
      *
@@ -189,3 +189,4 @@ jQuery(document).ready(function($) {
 
       event.preventDefault();
     });
+});

@@ -6,20 +6,23 @@ jQuery(document).ready(function($) {
   });
 
   /*Leitor de rss script home*/
-  $('#divRss').FeedEk({
-    FeedUrl: 'http://www.cultura.gov.br/rss-backup/-/asset_publisher/PBe5d9MJmlrW/rss?p_p_cacheability=cacheLevelPage',
-    MaxCount: 5,
-    DateFormat: 'DD MMMM YYYY',
-    DateFormatLang: 'pt'
-  });
-
-  /*Leitor de rss pagina noticias*/
-  $('#rss-read').FeedEk({
-    FeedUrl: 'http://www.cultura.gov.br/rss-backup/-/asset_publisher/PBe5d9MJmlrW/rss?p_p_cacheability=cacheLevelPage',
-    MaxCount: 20,
-    DateFormat: 'DD MMMM YYYY',
-    DateFormatLang: 'pt'
-  });
+  if ($("#divRss")[0]){
+    $('#divRss').FeedEk({
+      FeedUrl: 'http://www.cultura.gov.br/rss-backup/-/asset_publisher/PBe5d9MJmlrW/rss?p_p_cacheability=cacheLevelPage',
+      MaxCount: 5,
+      DateFormat: 'DD MMMM YYYY',
+      DateFormatLang: 'pt'
+    });
+  }
+  if ($("#rss-read")[0]){
+    /*Leitor de rss pagina noticias*/
+    $('#rss-read').FeedEk({
+      FeedUrl: 'http://www.cultura.gov.br/rss-backup/-/asset_publisher/PBe5d9MJmlrW/rss?p_p_cacheability=cacheLevelPage',
+      MaxCount: 20,
+      DateFormat: 'DD MMMM YYYY',
+      DateFormatLang: 'pt'
+    });
+  }
 
 
 
@@ -33,7 +36,6 @@ jQuery(document).ready(function($) {
    * https://osvaldas.info/elegant-css-and-jquery-tooltip-responsive-mobile-friendly
    *
    */
-
 
   var targets = $('ul#menu-metas li a , .menu-desktop ul li a'),
     target = false,
@@ -111,7 +113,7 @@ jQuery(document).ready(function($) {
 });
 
 
-
+jQuery( document ).ready(function() {
     /**
      * jQuery Carrousel
      *
@@ -189,3 +191,4 @@ jQuery(document).ready(function($) {
 
       event.preventDefault();
     });
+});

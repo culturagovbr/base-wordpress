@@ -65,7 +65,7 @@
                     get_template_part('includes/no-results', 'index');
                 endif;
                 ?>
-                <span class="et_pb_scroll_top et-pb-icon et-visible" style="display: inline;"></span>
+                
             </div>
         </div>
     </div>

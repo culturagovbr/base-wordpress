@@ -4,14 +4,15 @@ body:not(.home) .menu-metas-container {
   overflow: hidden;
 }
 
-body:not(.home) .menu-metas-container  #menu-metas {
-  display: flex;
-  left: -100%;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  position: relative;
-  transform: translateX(100%);
+body:not(.home) .menu-metas-container #menu-metas {
+    display: flex;
+    left: -100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    background: transparent;
+    transform: translateX(100%);
 }
 
 @media (min-width: 30em) {
@@ -32,17 +33,12 @@ body:not(.home) .menu-metas-container  #menu-metas.is-reversing {
   transform: translateX(-100%);
 }
 
-@media (min-width: 30em) {
-  body:not(.home) .menu-metas-container  #menu-metas.is-reversing {
-    transform: translateX(-50%);
-  }
+
+
+body:not(.home) .menu-metas-container  #menu-metas.is-reversing {
+  transform: translateX(-33.33333%);
 }
 
-@media (min-width: 40em) {
-  body:not(.home) .menu-metas-container  #menu-metas.is-reversing {
-    transform: translateX(-33.33333%);
-  }
-}
 
 body:not(.home) .menu-metas-container  #menu-metas.is-set{
   transform: none;
@@ -58,17 +54,11 @@ body:not(.home) .menu-metas-container  .menu-item:nth-child(even) {
 
 }
 
-@media (min-width: 30em) {
-  body:not(.home) .menu-metas-container  .menu-item {
-    flex-basis: 50%;
-  }
+
+body:not(.home) .menu-metas-container  .menu-item {
+  flex-basis: 11%;
 }
 
-@media (min-width: 40em) {
-  body:not(.home) .menu-metas-container  .menu-item {
-    flex-basis: 11%;
-  }
-}
 
 body:not(.home) .menu-metas-container  .menu-item.is-ref {
   order: 1;
@@ -132,4 +122,23 @@ body:not(.home) #nav_menu-4.widget_nav_menu {
 body:not(.home) .menu-metas-container #menu-metas .current-menu-item a {
     background: #f52b6f;
     color: #fff;
+}
+
+
+@media (max-width: 500px) {
+
+  body:not(.home) .menu-metas-container #menu-metas a {
+      color: #38759a;
+      font-size: 14px;
+      font-weight: normal;
+      margin: 0;
+      padding: 0.6em 0;
+      text-align: center;
+      min-height: 27px;
+      background: #eeeff1;
+      display: block;
+      margin: 27px 7px;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+  }
 }

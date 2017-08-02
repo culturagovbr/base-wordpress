@@ -106,9 +106,9 @@ div#nav_menu-8 {
 }
 
 #accessibility span {
-  padding: 0 3px;
-  background: #1b7d4f;
-  color: #fff;
+    padding: 0 3px;
+    background: #004490;
+    color: #fff;
 }
 span.author.vcard {
     display: none;
@@ -641,8 +641,15 @@ dl.nav-tree dt {
 .et_color_scheme_green #top-menu li.current-menu-item > a {
   color: #999;
 }
-
-#accessibility span {
+.current-menu-item a , .menu-desktop ul li a:hover {
+    color: #7dbeff;
+}
+#menu-principal li li.current-menu-item a {
+    background: #0056b1;
+    border-radius: 4px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.48) inset;
+}
+.et_color_scheme_green #top-menu #accessibility span {
   padding: 0 3px;
   background: #f52269;
   color: #fff;

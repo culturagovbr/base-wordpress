@@ -65,6 +65,7 @@
                     get_template_part('includes/no-results', 'index');
                 endif;
                 ?>
+                
             </div>
         </div>
     </div>

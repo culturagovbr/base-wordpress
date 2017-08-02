@@ -30,6 +30,7 @@ if ( ! is_page_template( 'page-template-blank.php' ) ) : ?>
 			<?php endif; ?>
 
 				<div id="footer-bottom">
+				<span class="et_pb_scroll_top et-pb-icon et-visible" style="display: inline;"></span>
 					<div class="container clearfix">
 				<?php
 					if ( false !== et_get_option( 'show_footer_social_icons', true ) ) {

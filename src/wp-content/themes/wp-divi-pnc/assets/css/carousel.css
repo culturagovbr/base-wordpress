@@ -59,8 +59,9 @@ body:not(.home) .menu-metas-container  .menu-item:nth-child(even) {
 }
 
 @media (min-width: 30em) {
-  body:not(.home) .menu-metas-container  .menu-item {
-    flex-basis: 50%;
+  body:not(.home) .menu-metas-container .menu-item {
+    flex-basis: 33.4%;
+    background: transparent;
   }
 }
 

@@ -641,10 +641,7 @@ dl.nav-tree dt {
 .et_color_scheme_green #top-menu li.current-menu-item > a {
   color: #999;
 }
-.current-menu-item a {
-    background: #0056b1;
-}
-.menu-desktop ul li a:hover {
+.current-menu-item a , .menu-desktop ul li a:hover {
     color: #7dbeff;
 }
 #menu-principal li li.current-menu-item a {

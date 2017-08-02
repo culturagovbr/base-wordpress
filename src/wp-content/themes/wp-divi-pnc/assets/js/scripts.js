@@ -121,64 +121,71 @@ jQuery(document).ready(function($) {
 
 function navegacaoMetas() {
 
-var menuMetas =  jQuery("body:not(.home)  .menu-metas-container  #menu-metas");
-var controles = "<div class='controls'> </div>";
-var corrent =    jQuery("body:not(.home) .menu-metas-container #menu-metas .current-menu-item a");
-corrent = corrent.text();
-jQuery("body:not(.home) .menu-metas-container").after(controles);
+  var menuMetas = jQuery("body:not(.home)  .menu-metas-container  #menu-metas");
+  var controles = "<div class='controls'> </div>";
+  var corrent = jQuery("body:not(.home) .menu-metas-container #menu-metas .current-menu-item a");
+  corrent = corrent.text();
+  jQuery("body:not(.home) .menu-metas-container").after(controles);
 
 
   var prev = "<button class='toggle' data-toggle='prev'>  <i class='fa fa-angle-left'  aria-hidden='true'></i> </button></div>";
   var next = "<button class='toggle' data-toggle='next'>  <i class='fa fa-angle-right' aria-hidden='true'></i> </button></div>";
 
-if (4 < corrent < 50) {
-  var base = 5;
-  var m = corrent - base;
-  var f = -260 - (100 * m);
-  menuMetas.animate({
-    'left': '' + f + 'px'
-  }, 500);
-}
-if (corrent > 49) {
-  var base = 5;
-  var m = corrent - base;
-  var f = -360 - (100 * m);
-  menuMetas.animate({
-    'left': '' + f + 'px'
-  }, 500);
-}
+  if (4 < corrent < 50) {
+    var base = 5;
+    var m = corrent - base;
+    var f = -33 - (11 * m);
+    menuMetas.animate({
+      'left': '' + f + '%'
+    }, 500);
+  }
+
+  if (corrent < 5) {
+    var f = -33;
+    menuMetas.animate({
+      'left': '' + f + '%'
+    }, 500);
+  }
+
+  if (corrent > 49) {
+    var f = -517;
+    menuMetas.animate({
+      'left': '' + f + '%'
+    }, 500);
+  }
 
 
-jQuery(".controls").append(next);
-jQuery(".controls").prepend(prev);
+  jQuery(".controls").append(next);
+  jQuery(".controls").prepend(prev);
 
-var left = menuMetas.css("left");
+  var left = menuMetas.css("left");
 
-var nextButton = jQuery('button.toggle[data-toggle=next]');
-nextButton.click(function(event) {
-  left = menuMetas.css("left");
-  left = parseInt(left, 10);
-  if (left >= -5000) {
+  var nextButton = jQuery('button.toggle[data-toggle=next]');
+  nextButton.click(function(event) {
+    left = menuMetas.css("left");
+    left = parseInt(left, 10);
+    if (left >= -5000) {
       menuMetas.animate({
         'left': '-=530px'
       }, 500);
-    event.preventDefault();
-  }
-});
+      event.preventDefault();
+    }
+  });
 
-var prevButton = jQuery('button.toggle[data-toggle=prev]');
-prevButton.click(function(event) {
-  left = menuMetas.css("left");
-  left = parseInt(left, 10);
-  if (left <= -505) {
+  var prevButton = jQuery('button.toggle[data-toggle=prev]');
+  prevButton.click(function(event) {
+    left = menuMetas.css("left");
+    left = parseInt(left, 10);
+    if (left <= -505) {
       menuMetas.animate({
         'left': '+=530px'
       }, 500);
-    event.preventDefault();
-  }
-});
+      event.preventDefault();
+    }
+  });
 
 }
 
 navegacaoMetas(jQuery("#menu-metas"));
+
 

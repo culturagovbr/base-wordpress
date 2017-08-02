@@ -131,10 +131,18 @@ jQuery("body:not(.home) .menu-metas-container").after(controles);
   var prev = "<button class='toggle' data-toggle='prev'>  <i class='fa fa-angle-left'  aria-hidden='true'></i> </button></div>";
   var next = "<button class='toggle' data-toggle='next'>  <i class='fa fa-angle-right' aria-hidden='true'></i> </button></div>";
 
-if (5 > corrent > 55) {
+if (4 < corrent < 50) {
   var base = 5;
   var m = corrent - base;
-  var f = -400 - (100 * m);
+  var f = -260 - (100 * m);
+  menuMetas.animate({
+    'left': '' + f + 'px'
+  }, 500);
+}
+if (corrent > 49) {
+  var base = 5;
+  var m = corrent - base;
+  var f = -360 - (100 * m);
   menuMetas.animate({
     'left': '' + f + 'px'
   }, 500);

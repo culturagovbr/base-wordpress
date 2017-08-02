@@ -64,6 +64,12 @@ body:not(.home) .menu-metas-container  .menu-item:nth-child(even) {
     background: transparent;
   }
 }
+@media (max-width: 30em) {
+  body:not(.home) .menu-metas-container .menu-item {
+    flex-basis: 33.4%;
+    background: transparent;
+  }
+}
 
 @media (min-width: 40em) {
   body:not(.home) .menu-metas-container  .menu-item {

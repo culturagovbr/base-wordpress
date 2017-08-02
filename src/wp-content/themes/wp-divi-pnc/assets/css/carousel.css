@@ -14,8 +14,8 @@ body:not(.home) .menu-metas-container #menu-metas {
     position: relative;
     background: transparent;
     transform: translateX(100%);
+    margin-left: -278%;
 }
-
 @media (min-width: 30em) {
  body:not(.home)  .menu-metas-container  #menu-metas {
     left: -50%;

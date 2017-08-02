@@ -643,6 +643,12 @@ dl.nav-tree dt {
 }
 .current-menu-item a {
     background: #0056b1;
+}
+.menu-desktop ul li a:hover {
+    color: #7dbeff;
+}
+#menu-principal li li.current-menu-item a {
+    background: #0056b1;
     border-radius: 4px;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.48) inset;
 }

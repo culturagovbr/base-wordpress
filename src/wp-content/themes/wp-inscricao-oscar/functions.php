@@ -61,7 +61,7 @@ function oscar_scripts() {
     
     wp_localize_script( 'oscar-scripts', 'oscarJS', array(
         'ajaxurl' => admin_url( 'admin-ajax.php' )
-        ));
+    ));
 }
 add_action( 'wp_enqueue_scripts', 'oscar_scripts' );
 
@@ -89,12 +89,11 @@ function inscricao_cpt() {
         'menu_position' => 20,
         'supports' => array( 'title' ),
         'menu_icon' => 'dashicons-clipboard'
-        ));
+    ));
 }
 
 function add_inscricao_columns($columns) {
     unset($columns['author']);
-    // unset($columns['date']);
     return array_merge($columns, 
         array(
             'responsible' => __('Proponente'),
@@ -171,8 +170,15 @@ require get_template_directory() . '/inc/options-page.php';
  * Function responsible for process video upload
  */
 function upload_oscar_video() {
-    error_reporting(0);
+    // error_reporting(0);
+    // @ini_set('display_errors',0);
     if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
+
+        if( get_user_meta( $_SESSION['logged_user_id'], '_oscar_video_sent', true ) ){
+            echo 'Seu vídeo já foi enviado';
+            exit;
+        }
+
         $oscar_options = get_option('oscar_options');
         $uploads = wp_upload_dir();
         $path = $uploads['basedir'] . '/oscar-videos';
@@ -200,7 +206,7 @@ function upload_oscar_video() {
                     // Check if path folder exists and has correct permissions
                     if (!is_writeable( $path )) {
                         printf('"%s" o diretório não possuir permissão de escrita.', $path);
-                        error_log("Impossível criar arquivo no destino: " . $path);
+                        error_log("Impossível criar arquivo no destino: " . $path, 0);
                     } else {
                         // Creates a unique folder to upload files (based on user CPF)
                         if (!file_exists( $path . '/' . $_SESSION['logged_user_cpf'] )) {
@@ -245,7 +251,7 @@ function oscar_video_sent_confirmation_email ( $user_id ) {
     
     // Send email
     if( !wp_mail($to, $subject, $body ) ){
-        error_log("O envio de email para: " . $to . ', Falhou!');
+        error_log("O envio de email para: " . $to . ', Falhou!', 0);
     }
 }
 
@@ -289,7 +295,6 @@ function process_main_oscar_form( $post_id ) {
     $post = get_post( $post_id );
     $name = 'Inscrições Oscar 2018';
     
-    // $to = 'rickmanu@gmail.com'; // @TODO - Change for match user's email
     $to = $current_user->user_email;
     // $headers = 'From: ' . $name . ' <' . $email . '>;' . "\r\n";
     $subject = $post->post_title;
@@ -297,7 +302,7 @@ function process_main_oscar_form( $post_id ) {
     
     // Send email
     if( !wp_mail($to, $subject, $body ) ){
-        error_log("O envio de email para: " . $to . ', Falhou!');
+        error_log("O envio de email para: " . $to . ', Falhou!', 0);
     }
 
     // Return the new ID
@@ -328,7 +333,7 @@ function auto_login_new_user( $user_id ) {
     wp_redirect( home_url() );
     exit;
 }
-// add_action( 'user_register', 'auto_login_new_user', 0 );
+// add_action( 'user_register', 'auto_login_new_user' );
 
 /**
  * Redirect user to home after successful login.
@@ -348,24 +353,7 @@ function my_login_redirect( $redirect_to, $request, $user ) {
         return $redirect_to;
     }
 }
-add_filter( 'login_redirect', 'my_login_redirect', 10, 3 );
-
-function oscar_logout_redirect( $logout_url, $redirect ) {
-    return home_url( '/?redirect_to=' . home_url() );
-}
-// add_filter( 'logout_url', 'oscar_logout_redirect', 10, 2 );
-
-function se_logout_redirect( $redirect_to, $requested_redirect_to, $user ) {
-    if ( in_array( 'subscriber', $user->roles ) ) {
-        $requested_redirect_to = home_url();
-    } else {
-        $requested_redirect_to = home_url( '/hello-world' );
-    }
-
-    return $requested_redirect_to;
-
-}
-// add_filter( 'logout_redirect', 'se_logout_redirect', 10, 3 );
+// add_filter( 'login_redirect', 'my_login_redirect', 10, 3 );
 
 /**
  * Redirect user when logged (or not-logged) to correct url
@@ -396,3 +384,22 @@ function block_users_from_access_dashboard() {
 }
 add_action( 'init', 'block_users_from_access_dashboard' );
 
+// Hook the appropriate WordPress action
+add_action('init', 'prevent_wp_login');
+
+function prevent_wp_login() {
+    global $pagenow;
+    $action = (isset($_GET['action'])) ? $_GET['action'] : '';
+    // if( $pagenow == 'wp-login.php' && ( ! $action || ( $action && ! in_array($action, array('logout', 'lostpassword', 'rp', 'resetpass'))))) {
+    if( $pagenow == 'wp-login.php' && !empty($_GET['loggedout']) ) { 
+        var_dump($pagenow); ?>
+
+        <script type="text/javascript">
+            window.setTimeout( function(){
+                window.location = '<?php echo home_url(); ?>';
+            }, 1000);
+        </script>
+
+        <?php // exit();
+    }
+}

@@ -18,7 +18,7 @@
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-<header id="site-header">
+<header id="site-header" class="<?php if( is_user_logged_in() ){ echo 'logged-user'; }; ?>">
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
@@ -35,4 +35,16 @@
             </div>
         </div>
     </div>
+    <?php if( is_user_logged_in() ): ?>
+    <div class="logged-user-menu">
+        <div class="container">
+            <div class="row">
+                <ul class="nav nav-pills text-right">
+                    <li role="presentation"><a href="<?php echo home_url('/enviar-video'); ?>">Enviar vídeo</a></li>
+                    <li role="presentation"><a href="<?php echo wp_logout_url( home_url('/login') ); ?>">Sair</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
 </header>

@@ -101,12 +101,43 @@ div[data-type="true_false"] .acf-input .selected input[type="checkbox"]:after,
 	background-color: #101214;
 }
 
+#site-header.logged-user{
+	padding-bottom: 0;
+}
+
+.logged-user-menu{
+	border-top: 2px solid #feebb2;
+}
+
+#site-header.logged-user:after{
+	display: none;
+}
+
 #site-header > .container{
 	background: url(../../images/ornamento.png) right bottom no-repeat;
 }
 
 #site-header .statue{
 	float: left;
+}
+
+#site-header.logged-user .nav>li{
+	float: none;
+	clear: both;
+	display: inline-block;
+}
+
+#site-header.logged-user .nav>li>a{
+	position: relative;
+	display: block;
+	padding: 0 15px;
+	line-height: 35px;
+}
+
+#site-header.logged-user .nav>li>a:focus, 
+#site-header.logged-user .nav>li>a:hover {
+    text-decoration: underline;
+    background-color: #101214;
 }
 
 .oscar-form-desc{
@@ -163,32 +194,40 @@ div[data-type="true_false"] .acf-input .selected input[type="checkbox"]:after,
 	display: none;
 }
 
+#producers-holder,
 #cast-holder {
 	width: 100%;
 }
 
+#producers-holder .acf-table,
 #cast-holder .acf-table{
 	background-color: #4f5051;
 }
 
+#producers-holder .list-group,
 #cast-holder .list-group {
 	margin: 0;
 }
 
+#producers-holder td.acf-fields,
 #cast-holder td.acf-fields {
-    padding-top: 10px;
+	padding-top: 10px;
 }
 
+#producers-holder .list-group .list-group-item,
 #cast-holder .list-group .list-group-item {
 	color: #d8c795;
 	background-color: #5d5a4e;
 }
 
+#producers-holder .list-group .list-group-item a,
 #cast-holder .list-group .list-group-item a{
 	float: right;
 	color: #101214;
 }
 
+#producers-holder .list-group-item:first-child,
+#producers-holder .list-group-item:last-child,
 #cast-holder .list-group-item:first-child,
 #cast-holder .list-group-item:last-child{
 	border-radius: 0;
@@ -237,17 +276,17 @@ span.wpcf7-not-valid-tip{
 }
 
 .inputfile + label {
-    font-size: 1.25em;
-    font-weight: 700;
-    color: white;
-    background-color: #101214;
-    display: inline-block;
-    cursor: pointer;
+	font-size: 1.25em;
+	font-weight: 700;
+	color: white;
+	background-color: #101214;
+	display: inline-block;
+	cursor: pointer;
 }
 
 .inputfile:focus + label,
 .inputfile + label:hover {
-    background-color: #4f5051;
+	background-color: #4f5051;
 }
 
 .inputfile:focus + label {
@@ -273,7 +312,7 @@ span.wpcf7-not-valid-tip{
 	border: none;
 	border-radius: 0;
 	padding: 15px;
-    font-size: 18px;
+	font-size: 18px;
 }
 
 #upload-status .panel.success {
@@ -318,13 +357,13 @@ span.wpcf7-not-valid-tip{
 }
 
 .acf-repeater .acf-row.acf-clone {
-    display: none !important;
+	display: none !important;
 }
 
 .acf-repeater .acf-row-handle .acf-icon {
-    display: block;
-    position: absolute;
-    top: 50%;
+	display: block;
+	position: absolute;
+	top: 50%;
 }
 
 .acf-icon.small.-minus {
@@ -355,10 +394,10 @@ span.wpcf7-not-valid-tip{
 }
 
 .acf-repeater .acf-row-handle {
-    width: 16px;
-    text-align: center !important;
-    vertical-align: middle !important;
-    position: relative;
+	width: 16px;
+	text-align: center !important;
+	vertical-align: middle !important;
+	position: relative;
 }
 
 .acf-repeater .acf-row-handle.order{
@@ -366,10 +405,10 @@ span.wpcf7-not-valid-tip{
 }
 
 a.acf-icon {
-    color: #101214;
-    position: relative;
-    overflow: hidden;
-    transition: none;
+	color: #101214;
+	position: relative;
+	overflow: hidden;
+	transition: none;
 }
 
 a.acf-icon:hover {
@@ -489,11 +528,11 @@ div[data-name="declaracao"] .description{
 }
 
 #oscar-attachments .acf-table {
-    background-color: #4f5051;
+	background-color: #4f5051;
 }
 
 #oscar-attachments .acf-repeater .acf-row-handle.order {
-    display: table-cell;
+	display: table-cell;
 }
 
 #oscar-attachments .acf-repeater .acf-row-handle.order span{
@@ -527,17 +566,17 @@ div[data-name="declaracao"] .description{
 }
 
 .acf-file-uploader .file-wrap {
-    border: #DFDFDF solid 1px;
-    min-height: 84px;
-    position: relative;
+	border: #DFDFDF solid 1px;
+	min-height: 84px;
+	position: relative;
 }
 
 .acf-file-uploader .file-icon {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    padding: 10px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	padding: 10px;
 }
 
 .acf-file-uploader .file-icon img{
@@ -546,19 +585,19 @@ div[data-name="declaracao"] .description{
 }
 
 .acf-file-uploader .file-info p {
-    margin: 0 0 2px;
-    font-size: 13px;
-    line-height: 1.4em;
-    word-break: break-all;
+	margin: 0 0 2px;
+	font-size: 13px;
+	line-height: 1.4em;
+	word-break: break-all;
 }
 
 .acf-file-uploader .file-info {
-    padding: 10px;
-    margin-left: 39px;
+	padding: 10px;
+	margin-left: 39px;
 }
 
 .acf-file-uploader .file-info ul {
-    display: none;
+	display: none;
 }
 
 .acf-error-message{

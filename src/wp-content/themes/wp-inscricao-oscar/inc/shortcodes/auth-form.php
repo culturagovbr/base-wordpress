@@ -125,6 +125,7 @@ function registration() {
             echo '<div class="alert alert-success">';
             echo 'Cadastro realizado com sucesso. Faça o login <strong><a href="' . home_url('/login') . '">aqui</a></strong>!';
             echo '</div>';
+            $_POST = array();
         } else {
             echo '<div class="alert alert-danger">';
             echo '<strong>' . $register_user->get_error_message() . '</strong>';

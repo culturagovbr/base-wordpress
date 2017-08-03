@@ -173,6 +173,12 @@ function upload_oscar_video() {
     // error_reporting(0);
     // @ini_set('display_errors',0);
     if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
+
+        if( get_user_meta( $_SESSION['logged_user_id'], '_oscar_video_sent', true ) ){
+            echo 'Seu vídeo já foi enviado';
+            exit;
+        }
+
         $oscar_options = get_option('oscar_options');
         $uploads = wp_upload_dir();
         $path = $uploads['basedir'] . '/oscar-videos';
@@ -378,3 +384,22 @@ function block_users_from_access_dashboard() {
 }
 add_action( 'init', 'block_users_from_access_dashboard' );
 
+// Hook the appropriate WordPress action
+add_action('init', 'prevent_wp_login');
+
+function prevent_wp_login() {
+    global $pagenow;
+    $action = (isset($_GET['action'])) ? $_GET['action'] : '';
+    // if( $pagenow == 'wp-login.php' && ( ! $action || ( $action && ! in_array($action, array('logout', 'lostpassword', 'rp', 'resetpass'))))) {
+    if( $pagenow == 'wp-login.php' && !empty($_GET['loggedout']) ) { 
+        var_dump($pagenow); ?>
+
+        <script type="text/javascript">
+            window.setTimeout( function(){
+                window.location = '<?php echo home_url(); ?>';
+            }, 1000);
+        </script>
+
+        <?php // exit();
+    }
+}

@@ -101,12 +101,43 @@ div[data-type="true_false"] .acf-input .selected input[type="checkbox"]:after,
 	background-color: #101214;
 }
 
+#site-header.logged-user{
+	padding-bottom: 0;
+}
+
+.logged-user-menu{
+	border-top: 2px solid #feebb2;
+}
+
+#site-header.logged-user:after{
+	display: none;
+}
+
 #site-header > .container{
 	background: url(../../images/ornamento.png) right bottom no-repeat;
 }
 
 #site-header .statue{
 	float: left;
+}
+
+#site-header.logged-user .nav>li{
+	float: none;
+	clear: both;
+	display: inline-block;
+}
+
+#site-header.logged-user .nav>li>a{
+	position: relative;
+	display: block;
+	padding: 0 15px;
+	line-height: 35px;
+}
+
+#site-header.logged-user .nav>li>a:focus, 
+#site-header.logged-user .nav>li>a:hover {
+    text-decoration: underline;
+    background-color: #101214;
 }
 
 .oscar-form-desc{

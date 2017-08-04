@@ -2302,7 +2302,10 @@ p.comment-form-url.comment-form-attachment {
   margin: 0 auto;
 }
 @media (max-width: 1370px) {
-
+ .et_pb_row {
+    width: 80%;
+    max-width: 1010px;
+}
   .page-template-default:not(.home) div#content-area {
     max-width: 1009px ;
     margin: 0 auto;

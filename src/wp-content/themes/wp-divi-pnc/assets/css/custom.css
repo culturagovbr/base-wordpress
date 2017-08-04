@@ -653,11 +653,7 @@ dl.nav-tree dt {
 .current-menu-item a , .menu-desktop ul li a:hover {
     color: #7dbeff;
 }
-#menu-principal li li.current-menu-item a {
-    background: #0056b1;
-    border-radius: 4px;
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.48) inset;
-}
+
 .et_color_scheme_green #top-menu #accessibility span {
   padding: 0 3px;
   background: #f52269;
@@ -1845,14 +1841,13 @@ header.main-header.et-fixed-header {
 }
 
 .menu-item-has-children li {
-  display: block;
-  width: 100%;
-  float: none;
-  line-height: 36px;
-  margin-top: -4px;
-  border-bottom: 1px #003167 solid;
+    display: block;
+    width: 100%;
+    float: none;
+    line-height: 36px;
+    margin-top: -4px;
+    border-bottom: 1px rgba(234, 244, 255, 0.34) solid;
 }
-
 .menu-item-has-children > a:after {
   content: ' \25bc';
   font-size: 9px;
@@ -2161,7 +2156,11 @@ div#banner-topo-cinza {
 .main-header .menu li.menu-item-has-children:nth-child(4) {
   position: inherit;
 }
-
+#menu-principal li li.current-menu-item:nth-child(4) a {
+    background: #0056b1;
+    border-radius: 4px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.48) inset;
+}
 .main-header .menu li.menu-item-has-children:nth-child(4) ul.sub-menu {
   width: 100% !important;
   left: 0 !important;
@@ -2542,22 +2541,18 @@ p.comment-form-url.comment-form-attachment {
     width: 100%;
   }
 
-  .menu-item-has-children:hover ul.sub-menu,
-  .menu-item-has-children:active ul.sub-menu {
-    right: 0;
+ .menu-item-has-children:hover ul.sub-menu, .menu-item-has-children:active ul.sub-menu {
+    padding: 13px;
+    height: auto;
+    visibility: visible;
     opacity: 1;
     position: absolute;
-    top: 43px;
-    visibility: visible;
-    background: #06b161;
-    z-index: 1;
-    -webkit-transition: all 0.1s ease-in;
-    -moz-transition: all 0.1s ease-in;
-    -ms-transition: all 0.1s ease-in;
-    -o-transition: all 0.1s ease-in;
-    transition: all 0.1s ease-in;
-    width: 100%;
-  }
+    display: block;
+    right: -100px;
+    width: 218px;
+    top: 39px;
+    background: rgba(0, 49, 103, 0.93);
+}
 
   .et_pb_section {
     position: relative;

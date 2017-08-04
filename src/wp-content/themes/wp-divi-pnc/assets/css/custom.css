@@ -2812,15 +2812,7 @@ p.comment-form-url.comment-form-attachment {
 }
 
 
-.cd-timeline-content {
-    position: relative;
-    margin-left: 60px;
-    /* background: white; */
-    border-radius: 0.25em;
-    padding: 1em;
-    box-shadow: 0 0 16px 2px #d7e4ed, inset 0 0px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
-    border: 1px solid #d7e4ed;
-}
+
 h2.cd-timeline-title {
     color: #f53283;
     font-size: 32px;
@@ -2829,17 +2821,28 @@ h2.cd-timeline-title {
     margin-top: 0;
     margin-bottom: -35px;
 }
+
 .cd-timeline-content::before {
-    content: '';
-    position: absolute;
-    top: 17px;
+    top: 24px;
+    left: 100%;
+    border-color: transparent;
+    border-left-color: #d7e4ed;
+}
+.cd-timeline-block:nth-child(even) .cd-timeline-content::before {
+    top: 24px;
+    left: auto;
     right: 100%;
-    height: 0;
-    width: 0;
-    border: 15px solid transparent;
-    border-right: 15px solid #d7e4ed;
+    border-color: transparent;
+    border-right-color: #d7e4ed;
 }
 
 
-
-
+.cd-timeline-content {
+    position: relative;
+    /* margin-left: 60px; */
+    background: white;
+    /* border-radius: 0.25em; */
+    /* padding: 1em; */
+    box-shadow: 0 0 16px 2px #d7e4ed, inset 0 0px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
+    border: 1px solid #d7e4ed;
+}

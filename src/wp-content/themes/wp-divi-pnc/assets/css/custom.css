@@ -1980,7 +1980,7 @@ body:not(.home) .metas-por-assuntos-interna li.menu-item a {
 }
 
 body:not(.home) .metas-por-assuntos-interna li.menu-item a:visited {
-    color: #f52269;
+    color: #9345a1;
     opacity: 0;
 }
 body:not(.home) .metas-por-assuntos-interna li.menu-item.current_page_item a, body:not(.home) .metas-por-assuntos-interna li.menu-item a:hover {
@@ -2325,6 +2325,10 @@ p.comment-form-url.comment-form-attachment {
   #footer-widgets {
     padding: 0% 0 0;
     display: none;
+  }
+  .page-template-default:not(.home) div#content-area {
+    max-width: 1009px;
+    margin: 0 auto;
   }
   header.main-header.et-fixed-header {
     top: 31px !important;

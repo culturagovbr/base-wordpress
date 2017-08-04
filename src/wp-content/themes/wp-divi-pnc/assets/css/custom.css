@@ -1954,6 +1954,7 @@ h2.title-box {
   margin-right: -27px;
   margin-left: -2px;
 }
+
 /*Página metas*/
 body:not(.home) .box-metas-assuntos-home {
     padding: 0px;
@@ -1961,7 +1962,19 @@ body:not(.home) .box-metas-assuntos-home {
     margin-left: -2px;
     margin-top: 39px;
 }
-
+/*Metas por assuntos interno*/
+body:not(.home) .metas-por-assuntos-interna div#nav_menu-9 {
+    width: 100%;
+}
+body:not(.home) .metas-por-assuntos-interna li.menu-item a {
+    display: block;
+    float: left;
+    background: #eeeff1;
+    margin: 6px;
+    padding: 5px;
+    border-radius: 4px;
+    color: #004490;
+}
 /*Banner home*/
 
 .et_pb_section_0.et_pb_section h1 {

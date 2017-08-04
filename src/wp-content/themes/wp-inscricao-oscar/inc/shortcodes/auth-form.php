@@ -34,10 +34,10 @@ function oscar_auth_form( $atts ){
                 </div>
 
                 <div class="form-group col-md-4">
-                    <label class="login-field-icon fui-lock" for="reg-pass">CPF</label>
-                    <input name="cpf" type="text" class="form-control login-field"
-                    value="<?php echo(isset($_POST['cpf']) ? $_POST['cpf'] : null); ?>"
-                    placeholder="000.000.000-00" id="reg-pass" required/>
+                    <label class="login-field-icon fui-lock" for="reg-cnpj">CNPJ</label>
+                    <input name="cnpj" type="text" class="form-control login-field"
+                    value="<?php echo(isset($_POST['cnpj']) ? $_POST['cnpj'] : null); ?>"
+                    placeholder="00.000.000/0000-00" id="reg-cnpj" required/>
                 </div>
 
                 <div class="form-group col-md-4">
@@ -48,10 +48,10 @@ function oscar_auth_form( $atts ){
                 </div>
 
                 <div class="form-group col-md-4">
-                    <label class="login-field-icon fui-lock" for="reg-pass">Repita a senha</label>
+                    <label class="login-field-icon fui-lock" for="reg-pass-repeat">Repita a senha</label>
                     <input name="reg_password_repeat" type="password" class="form-control login-field"
                     value="<?php echo(isset($_POST['reg_password_repeat']) ? $_POST['reg_password_repeat'] : null); ?>"
-                    placeholder="" id="reg-pass" required/>
+                    placeholder="" id="reg-pass-repeat" required/>
                 </div>
 
                 <div class="form-group col-md-12 text-right">
@@ -68,11 +68,11 @@ function oscar_auth_form( $atts ){
 function validation() {
     $username = $_POST['reg_name'];
     $email = $_POST['reg_email'];
-    $cpf = $_POST['cpf'];
+    $cnpj = $_POST['cnpj'];
     $password = $_POST['reg_password'];
     $reg_password_repeat = $_POST['reg_password_repeat'];
 
-    if (empty($username) || empty($password) || empty($email) || empty($cpf) ) {
+    if (empty($username) || empty($password) || empty($email) || empty($cnpj) ) {
         return new WP_Error('field', 'Todos os campos são de preenchimento obrigatório.');
     }
 
@@ -85,22 +85,22 @@ function validation() {
     }
 
     if (email_exists($email)) {
-        return new WP_Error('email', 'Este email já está em uso.');
+        return new WP_Error('email', 'Este email já sendo utilizado, para cadastrar um novo filme, por favor utilize outro email.');
     }
 
     if ($password !== $reg_password_repeat) {
         return new WP_Error('password', 'As senhas inseridas são diferentes.');
     }
 
-    if (strlen( str_replace('.', '',  str_replace('-', '', $cpf) ) ) !== 11) {
-        return new WP_Error('cpf', 'O CPF é inválido.');
+    if (strlen( str_replace('.', '',  str_replace('-', '', str_replace('/', '', $cnpj) ) ) ) !== 14) {
+        return new WP_Error('cnpj', 'O CNPJ é inválido.');
     }
 }
 
 function registration() {
     $username = $_POST['reg_name'];
     $email = $_POST['reg_email'];
-    $cpf = $_POST['cpf'];
+    $cnpj = $_POST['cnpj'];
     $password = $_POST['reg_password'];
     $reg_password_repeat = $_POST['reg_password_repeat'];
 
@@ -121,12 +121,17 @@ function registration() {
     } else {
         $register_user = wp_insert_user($userdata);
         if (!is_wp_error($register_user)) {
-            add_user_meta( $register_user, '_user_cpf', esc_attr($cpf), true );
+            add_user_meta( $register_user, '_user_cnpj', esc_attr($cnpj), true );
             echo '<div class="alert alert-success">';
-            echo 'Cadastro realizado com sucesso. Faça o login <strong><a href="' . home_url('/login') . '">aqui</a></strong>!';
+            echo 'Cadastro realizado com sucesso. Você será redirionado para a tela de login, caso isso não ocorra automaticamente, clique <strong><a href="' . home_url('/login') . '">aqui</a></strong>!';
             echo '</div>';
-            $_POST = array();
-        } else {
+            $_POST = array(); ?>
+            <script type="text/javascript">
+                window.setTimeout( function(){
+                    window.location = '<?php echo home_url("/login"); ?>';
+                }, 3000);
+            </script>
+        <?php } else {
             echo '<div class="alert alert-danger">';
             echo '<strong>' . $register_user->get_error_message() . '</strong>';
             echo '</div>';

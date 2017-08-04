@@ -2342,7 +2342,7 @@ p.comment-form-url.comment-form-attachment {
     max-width: 1076px;
     margin: 0 auto;
 }
-@media (max-width: 1024px) {
+@media (max-width: 1265px) {
   .et_pb_section_0.et_pb_section h1 {
     margin-top: 0;
   }

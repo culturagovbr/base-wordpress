@@ -84,10 +84,6 @@ div#nav_menu-7,
 div#nav_menu-8 {
   margin-left: 100px;
 }
-.et_pb_button_module_wrapper.et_pb_module.et_pb_button_alignment_right {
-    position: relative;
-    top: -22px;
-}
 
 
 /* ==========================================================================
@@ -662,6 +658,10 @@ dl.nav-tree dt {
 
 .home p.post-meta {
   color: #fff !important;
+}
+.home .et_pb_section_3 .et_pb_button_module_wrapper.et_pb_module.et_pb_button_alignment_right {
+    position: relative;
+    top: -22px;
 }
 
 .home p.post-meta a {

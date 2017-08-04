@@ -1970,11 +1970,26 @@ body:not(.home) .metas-por-assuntos-interna li.menu-item a {
     display: block;
     float: left;
     background: #eeeff1;
-    margin: 6px;
+    margin-left: 0;
     padding: 5px;
     border-radius: 4px;
     color: #004490;
+    margin-right: 17px;
+    margin-top: 7px;
+    margin-bottom: 10px;
 }
+
+body:not(.home) .metas-por-assuntos-interna li.menu-item a:visited {
+    color: #f52269;
+    opacity: 0;
+}
+body:not(.home) .metas-por-assuntos-interna li.menu-item.current_page_item a, body:not(.home) .metas-por-assuntos-interna li.menu-item a:hover {
+    background: #f52269;
+    color: #fff;
+}
+
+
+
 /*Banner home*/
 
 .et_pb_section_0.et_pb_section h1 {

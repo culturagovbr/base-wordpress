@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Register our oscar_options_page to the admin_menu action hook
  */
@@ -159,6 +158,18 @@ function oscar_settings_init() {
         ]
     );
 
+    add_settings_field(
+        'oscar_monitoring_emails',
+        'Emails para monitoramento',
+        'oscar_monitoring_emails',
+        'oscar',
+        'oscar_mail_confirmation_section',
+        [
+            'label_for' => 'oscar_monitoring_emails',
+            'class' => 'form-field',
+        ]
+    );
+
     if( !empty($_GET['debug']) ){
         add_settings_field(
             'oscar_debug_view',
@@ -272,6 +283,16 @@ function oscar_delete_user_video_sent_meta( $args ) { ?>
     <input id="delete_user_video_sent_meta" name="delete_user_video_sent_meta" type="number" value="">
     <p class="description">
         Insira o ID do usuário para deletar sua limitação ao enviar vídeos.
+    </p>
+    <?php
+}
+
+function oscar_monitoring_emails( $args ) {
+    $options = get_option( 'oscar_options' ); ?>
+
+    <input id="<?php echo esc_attr( $args['label_for'] ); ?>" name="oscar_options[<?php echo esc_attr( $args['label_for'] ); ?>]" type="text" value="<?php echo $options['oscar_monitoring_emails']; ?>">
+    <p class="description">
+        Estes emails receberão uma notificação sempre que for realizado uma inscrição ou edição do formulário de inscrição ao Oscar 2018. Separe múltiplos emails com vírgulas.
     </p>
     <?php
 }

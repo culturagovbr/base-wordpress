@@ -83,7 +83,7 @@ function inscricao_cpt() {
         'labels' => array(
             'name' => 'Inscrições 2018',
             'singular_name' => 'Inscrição',
-            ),
+        ),
         'description' => 'Inscrições Oscar 2018.',
         'public' => true,
         'menu_position' => 20,
@@ -97,12 +97,30 @@ function add_inscricao_columns($columns) {
     return array_merge($columns, 
         array(
             'responsible' => __('Proponente'),
-            'user_cpf' => __( 'CPF'),
+            'user_cnpj' => __( 'CNPJ'),
             'movie' => __( 'Filme')
         )
     );
 }
 add_filter('manage_inscricao_posts_columns' , 'add_inscricao_columns');
+
+function adding_custom_meta_boxes( $post ) {
+    add_meta_box( 
+        'oscar-video-post',
+        'Filme',
+        'oscar_video_post_meta_box',
+        'inscricao',
+        'side',
+        'default'
+    );
+}
+add_action( 'add_meta_boxes_inscricao', 'adding_custom_meta_boxes' );
+
+function oscar_video_post_meta_box( $post ) {
+    $oscar_movie_name = get_user_meta( $post->post_author, '_oscar_movie_name', true );
+    $oscar_movie_path = get_user_meta( $post->post_author, '_oscar_movie_path', true );
+    echo '<a href="'. $oscar_movie_path .'" target="_blank">' . $oscar_movie_name . '</a>';
+}
 
 add_action( 'manage_posts_custom_column' , 'custom_columns', 10, 2 );
 function custom_columns( $column, $post_id ) {
@@ -114,8 +132,8 @@ function custom_columns( $column, $post_id ) {
         echo $post_author->display_name;
         break;
 
-        case 'user_cpf':
-        echo get_user_meta( $post_author_id, '_user_cpf', true );
+        case 'user_cnpj':
+        echo get_user_meta( $post_author_id, '_user_cnpj', true );
         break;
 
         case 'movie':
@@ -140,8 +158,8 @@ function oscar_start_session() {
         $current_user = wp_get_current_user();
         $_SESSION['logged_user_id'] = $current_user->ID;
 
-        $user_cpf = get_user_meta( $current_user->ID, '_user_cpf', true ); 
-        $_SESSION['logged_user_cpf'] = $user_cpf ? $user_cpf : $current_user->ID;
+        $user_cnpj = get_user_meta( $current_user->ID, '_user_cnpj', true ); 
+        $_SESSION['logged_user_cnpj'] = $user_cnpj ? $user_cnpj : $current_user->ID;
     }
 }
 
@@ -208,15 +226,16 @@ function upload_oscar_video() {
                         printf('"%s" o diretório não possuir permissão de escrita.', $path);
                         error_log("Impossível criar arquivo no destino: " . $path, 0);
                     } else {
-                        // Creates a unique folder to upload files (based on user CPF)
-                        if (!file_exists( $path . '/' . $_SESSION['logged_user_cpf'] )) {
-                            mkdir($path . '/' . $_SESSION['logged_user_cpf'], 0777, true);
+                        $unique_folder_based_on_cnpj = str_replace('.', '',  str_replace('-', '', str_replace('/', '', $_SESSION['logged_user_cnpj']) ) );
+                        // Creates a unique folder to upload files (based on user CNPJ)
+                        if (!file_exists( $path . '/' . $unique_folder_based_on_cnpj )) {
+                            mkdir($path . '/' . $unique_folder_based_on_cnpj, 0777, true);
                         }
 
                         // Check if it the file move successfully.
-                        if (move_uploaded_file($tmp, $path . '/' . $_SESSION['logged_user_cpf'] .'/'. $name)) {
+                        if (move_uploaded_file($tmp, $path . '/' . $unique_folder_based_on_cnpj .'/'. $name)) {
                             update_user_meta( $_SESSION['logged_user_id'], '_oscar_movie_name', $name );
-                            update_user_meta( $_SESSION['logged_user_id'], '_oscar_movie_path', $uploads['baseurl'] . '/oscar-videos' . '/' . $_SESSION['logged_user_cpf'] .'/'. $name );
+                            update_user_meta( $_SESSION['logged_user_id'], '_oscar_movie_path', $uploads['baseurl'] . '/oscar-videos' . '/' . $unique_folder_based_on_cnpj .'/'. $name );
                             update_user_meta( $_SESSION['logged_user_id'], '_oscar_video_sent', true );
                             echo $oscar_options['oscar_movie_uploaded_message'];
                             oscar_video_sent_confirmation_email( $_SESSION['logged_user_id'] );
@@ -265,8 +284,28 @@ function set_html_content_type() {
  */
 add_action('acf/pre_save_post', 'process_main_oscar_form');
 function process_main_oscar_form( $post_id ) {
+    $oscar_options = get_option('oscar_options');
 
     if( $post_id != 'new_inscricao' ){
+
+        $post = get_post( $post_id );
+
+        if( $post->post_type !== 'inscricao' ){
+            return $post_id;
+        }
+
+        $name = 'Atualização de cadastro para o Oscar 2018';
+        $oscar_monitoring_emails = explode(',', $oscar_options['oscar_monitoring_emails']);
+        $oscar_monitoring_emails = array_map('trim', $oscar_monitoring_emails);
+
+        $to = $oscar_monitoring_emails;
+        $subject = 'Atualização ' . $post->post_title;
+        $body = 'Uma inscrição ao Oscar 2018 acaba de ser editada. Para visualiza-la, clique <a href="'. admin_url( 'post.php?post='. $post_id .'&action=edit' ) .'">aqui</a>.';
+        
+        if( !wp_mail($to, $subject, $body ) ){
+            error_log("O envio de email para: " . $to . ', Falhou!', 0);
+        }
+
         return $post_id;
     }
 
@@ -291,16 +330,22 @@ function process_main_oscar_form( $post_id ) {
     $current_user = wp_get_current_user();
     add_user_meta( $current_user->ID, '_inscricao_id', $post_id, true );
     
-    $oscar_options = get_option('oscar_options');
     $post = get_post( $post_id );
     $name = 'Inscrições Oscar 2018';
     
     $to = $current_user->user_email;
-    // $headers = 'From: ' . $name . ' <' . $email . '>;' . "\r\n";
     $subject = $post->post_title;
     $body = $oscar_options['oscar_email_body'];
     
-    // Send email
+    if( !wp_mail($to, $subject, $body ) ){
+        error_log("O envio de email para: " . $to . ', Falhou!', 0);
+    }
+
+    $name = 'Novo cadastro para o Oscar 2018';
+    $to = $oscar_options['oscar_monitoring_emails'];
+    $subject = 'Novo cadastro ' . $post->post_title;
+    $body = 'Uma nova inscrição ao Oscar 2018 acaba de ser concluída. Para visualiza-la, clique <a href="'. admin_url( 'post.php?post='. $post_id .'&action=edit' ) .'">aqui</a>.';
+    
     if( !wp_mail($to, $subject, $body ) ){
         error_log("O envio de email para: " . $to . ', Falhou!', 0);
     }
@@ -314,7 +359,6 @@ function process_main_oscar_form( $post_id ) {
  */
 add_action( 'wp_print_styles', 'my_deregister_styles', 100 );
 function my_deregister_styles() {
-    // if( is_front_page() )
     wp_deregister_style( 'wp-admin' );
     wp_deregister_style( 'acf' );
     wp_deregister_style( 'acf-field-group' );
@@ -391,8 +435,7 @@ function prevent_wp_login() {
     global $pagenow;
     $action = (isset($_GET['action'])) ? $_GET['action'] : '';
     // if( $pagenow == 'wp-login.php' && ( ! $action || ( $action && ! in_array($action, array('logout', 'lostpassword', 'rp', 'resetpass'))))) {
-    if( $pagenow == 'wp-login.php' && !empty($_GET['loggedout']) ) { 
-        var_dump($pagenow); ?>
+    if( $pagenow == 'wp-login.php' && !empty($_GET['loggedout']) ) { ?>
 
         <script type="text/javascript">
             window.setTimeout( function(){

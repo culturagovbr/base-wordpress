@@ -84,6 +84,10 @@ div#nav_menu-7,
 div#nav_menu-8 {
   margin-left: 100px;
 }
+.et_pb_button_module_wrapper.et_pb_module.et_pb_button_alignment_right {
+    position: relative;
+    top: -22px;
+}
 
 
 /* ==========================================================================

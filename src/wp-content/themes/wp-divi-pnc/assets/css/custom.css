@@ -1279,7 +1279,20 @@ pre:hover {
     width: 700px;
     z-index: 99;
 }*/
-
+#left-area h1 {
+    color: #00445d;
+    font-weight: lighter;
+    font-size: 26px;
+    background: #eaeaea;
+    border-top: 3px solid;
+    margin-bottom: 16px;
+    padding-top: 9px;
+    padding-left: 9px;
+    padding-bottom: 15px;
+    box-shadow: 0px 2px 1px #ccc;
+    margin-top: -17px;
+    display: block;
+}
 .markdown-body h1 {
   padding-bottom: 0.3em;
   font-size: 2em;

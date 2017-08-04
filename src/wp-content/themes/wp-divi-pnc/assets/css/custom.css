@@ -29,8 +29,14 @@ ul {
   list-style: circle;
   padding-left: 22px;
 }
-
-
+a {
+    color: #0057b3;
+    text-decoration: none;
+}
+a:visited {
+    color: #9345a1;
+    text-decoration: none;
+}
 /* ==========================================================================
 3 - Estilos de Ajuda
 ========================================================================== */
@@ -2000,7 +2006,9 @@ body:not(.home)  #left-area .post-meta {
     font-size: 14px;
     display: none;
 }
-
+body:not(.home) div#sidebar {
+    display: none;
+}
 /*Banner home*/
 
 .et_pb_section_0.et_pb_section h1 {

@@ -595,6 +595,10 @@ input.searchField {
 .et_pb_with_background .et_pb_row {
     width: 100%;
 }
+.home .et_pb_with_background .et_pb_row {
+    max-width: 1073px;
+    width: auto;
+}
 .et_pb_pagebuilder_layout.single-post #page-container .et_pb_with_background .et_pb_row{
   width: 100%;
 }

@@ -1019,7 +1019,7 @@ div#ecu_uploadform {
 8 - Responsivo
 ========================================================================== */
 
-@media (max-width: 981px) {
+@media (min-width: 981px) {
   .et_pb_gutters3 .et_pb_column_4_4 .et_pb_module, .et_pb_gutters3.et_pb_row .et_pb_column_4_4 .et_pb_module {
     margin-bottom: 2.75%;
     margin: 0 auto;

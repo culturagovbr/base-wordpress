@@ -1022,7 +1022,6 @@ div#ecu_uploadform {
 @media (min-width: 981px) {
   .et_pb_gutters3 .et_pb_column_4_4 .et_pb_module, .et_pb_gutters3.et_pb_row .et_pb_column_4_4 .et_pb_module {
     margin-bottom: 2.75%;
-    max-width: 1008px;
     margin: 0 auto;
   }
 
@@ -2801,8 +2800,42 @@ p.comment-form-url.comment-form-attachment {
   }
 }
 
+.cd-timeline-img.cd-picture {
+    background: #f53283;
+    width: 15px;
+    height: 15px;
+    top: 24px;
+    left: 52.6%;
+    box-shadow: 0 0 0 4px #d7e4ed, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
+}
+
+.cd-timeline-content .cd-date {
+    color: #00234a;
+    font-size: 28px;
+    top: -5px;
+}
 
 
-
-
-
+.cd-timeline-content {
+    background: #ffffff;
+    border-color: #d7e4ed;
+    box-shadow: 0px 5px 6px #d7e4ed;
+}
+h2.cd-timeline-title {
+    color: #f53283;
+    font-size: 32px;
+    text-transform: uppercase;
+    font-weight: lighter;
+    margin-top: 0;
+    margin-bottom: -35px;
+}
+.cd-timeline-content::before {
+    content: '';
+    position: absolute;
+    top: 17px;
+    right: 100%;
+    height: 0;
+    width: 0;
+    border: 15px solid transparent;
+    border-right: 15px solid #000000;
+}

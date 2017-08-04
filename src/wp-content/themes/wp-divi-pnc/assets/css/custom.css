@@ -1285,12 +1285,12 @@ pre:hover {
     font-size: 26px;
     background: #eaeaea;
     border-top: 3px solid;
-    margin-bottom: 16px;
+    margin-bottom: -5px;
     padding-top: 9px;
     padding-left: 9px;
-    padding-bottom: 15px;
+    padding-bottom: 17px;
     box-shadow: 0px 2px 1px #ccc;
-    margin-top: -17px;
+    margin-top: 0px;
     display: block;
 }
 .markdown-body h1 {
@@ -2551,13 +2551,14 @@ p.comment-form-url.comment-form-attachment {
     visibility: visible;
     background: #06b161;
     z-index: 1;
-    -webkit-transition: all .25s ease;
-    -moz-transition: all .25s ease;
-    -ms-transition: all .25s ease;
-    -o-transition: all .25s ease;
-    transition: all .25s ease;
+    -webkit-transition: all 0.1s ease-in;
+    -moz-transition: all 0.1s ease-in;
+    -ms-transition: all 0.1s ease-in;
+    -o-transition: all 0.1s ease-in;
+    transition: all 0.1s ease-in;
     width: 100%;
   }
+
   .et_pb_section {
     position: relative;
     background-color: transparent;
@@ -2864,4 +2865,10 @@ h2.cd-timeline-title {
     /* padding: 1em; */
     box-shadow: 0 0 16px 2px #d7e4ed, inset 0 0px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
     border: 1px solid #d7e4ed;
+}
+.et_primary_nav_dropdown_animation_fade #et-top-navigation ul li:hover > ul, .et_secondary_nav_dropdown_animation_fade #et-secondary-nav li:hover > ul {
+    -webkit-transition: all 0.1s ease-in;
+    -moz-transition: all 0.1s ease-in;
+    transition: all 0.1s ease-in;
+    overflow: hidden;
 }

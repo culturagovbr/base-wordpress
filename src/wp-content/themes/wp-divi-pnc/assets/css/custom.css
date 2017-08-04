@@ -666,6 +666,7 @@ dl.nav-tree dt {
 .home .et_pb_section_3 .et_pb_button_module_wrapper.et_pb_module.et_pb_button_alignment_right {
     position: relative;
     top: -22px;
+    line-height: 88px;
 }
 
 .home p.post-meta a {

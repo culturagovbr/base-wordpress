@@ -2306,7 +2306,7 @@ p.comment-form-url.comment-form-attachment {
   max-width: 1076px;
   margin: 0 auto;
 }
-@media (max-width: 1270px) {
+@media (max-width: 1370px) {
 
   .page-template-default:not(.home) div#content-area {
     max-width: 1009px ;

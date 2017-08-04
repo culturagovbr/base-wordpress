@@ -2826,6 +2826,7 @@ h2.cd-timeline-title {
     top: 24px;
     left: 100%;
     border-color: transparent;
+    border: 17px solid transparent;
     border-left-color: #d7e4ed;
 }
 .cd-timeline-block:nth-child(even) .cd-timeline-content::before {

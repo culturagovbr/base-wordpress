@@ -2358,6 +2358,10 @@ p.comment-form-url.comment-form-attachment {
   .home .et_pb_section .et_pb_column .et_pb_module {
     margin-bottom: 30px;
   }
+  .home .et_pb_row_7 {
+    margin-top: -51px !important;
+    margin-bottom: -34px !important;
+  }
   ul#accessibility {
     display: none !important;
   }

@@ -67,7 +67,13 @@ ul {
 .et_pb_widget_area.et_pb_widget_area_left.clearfix.et_pb_module.et_pb_bg_layout_light.et_pb_sidebar_0 {
   border: 0;
 }
-
+.et_pb_row {
+    width: 100%;
+    max-width: 1073px;
+}
+.et_pb_pagebuilder_layout.single-post #page-container .et_pb_with_background .et_pb_row{
+  width: 100%;
+}
 h4.title {
   text-transform: uppercase;
   font-weight: lighter;
@@ -592,13 +598,7 @@ input.searchField {
 
 
 /* MENU BARRA HORIZONTAL */
-.et_pb_with_background .et_pb_row {
-    width: 100%;
-    max-width: 1073px;
-}
-.et_pb_pagebuilder_layout.single-post #page-container .et_pb_with_background .et_pb_row{
-  width: 100%;
-}
+
 dl.nav-tree dt {
   background: #f0f2f1;
   border-bottom: 1px solid #d5d5d5;

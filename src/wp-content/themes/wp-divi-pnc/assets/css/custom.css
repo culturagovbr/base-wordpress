@@ -3033,20 +3033,7 @@ Main components
     transform: scale(1);
   }
 }
-.cd-timeline-content {
-  position: relative;
-  margin-left: 60px;
-  /*background: white;*/
-  border-radius: 0.25em;
-  padding: 1em;
-  box-shadow: 0 0 16px 2px #ccc, inset 0 0px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
-  border: 1px solid #000;
-}
-.cd-timeline-content:after {
-  content: "";
-  display: table;
-  clear: both;
-}
+
 .cd-timeline-content h2 {
   
 }
@@ -3269,4 +3256,18 @@ Main components
     -o-transform: translateX(0);
     transform: translateX(0);
   }
+}
+.cd-timeline-content {
+  position: relative;
+  margin-left: 60px;
+  /*background: white;*/
+  border-radius: 0.25em;
+  padding: 1em;
+  box-shadow: 0 0 16px 2px #ccc, inset 0 0px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
+  border: 1px solid #000;
+}
+.cd-timeline-content:after {
+  content: "";
+  display: table;
+  clear: both;
 }

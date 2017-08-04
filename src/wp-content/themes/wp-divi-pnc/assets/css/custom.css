@@ -33,6 +33,10 @@ a {
     color: #0057b3;
     text-decoration: none;
 }
+body:not(.home) a:visited {
+    color: #9345a1;
+    opacity: 0;
+}
 
 
 /* ==========================================================================
@@ -1988,10 +1992,7 @@ body:not(.home) .metas-por-assuntos-interna li.menu-item a {
     margin-top: 7px;
     margin-bottom: 10px;
 }
-body:not(.home) a:visited {
-    color: #9345a1;
-    opacity: 0;
-}
+
 body:not(.home) .metas-por-assuntos-interna li.menu-item a:visited {
     color: #9345a1;
     opacity: 0;

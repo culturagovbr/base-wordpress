@@ -2239,7 +2239,10 @@ div#banner-topo-cinza {
 p.comment-form-url.comment-form-attachment {
     display: none;
 }
-
+.page-template-default:not(.home) div#content-area {
+    max-width: 1076px;
+    margin: 0 auto;
+}
 
 .page-template-default:not(.home) .et_pb_section_0.et_pb_section h1 {
     color: #00445d;
@@ -2299,7 +2302,16 @@ p.comment-form-url.comment-form-attachment {
 #breadcrumbs strong.bread-current {
     color: #f52269;
 }
+.page-template-default:not(.home) div#content-area {
+  max-width: 1076px;
+  margin: 0 auto;
+}
 @media (max-width: 1270px) {
+
+  .page-template-default:not(.home) div#content-area {
+    max-width: 1009px ;
+    margin: 0 auto;
+  }
   #header > div {
     max-width: 816px;
   }
@@ -2338,11 +2350,8 @@ p.comment-form-url.comment-form-attachment {
     margin-top: 0px; 
     margin-bottom: 16px;
 }
-.page-template-default:not(.home) div#content-area {
-    max-width: 1076px;
-    margin: 0 auto;
-}
-@media (max-width: 1265px) {
+
+@media (max-width: 980px) {
   .et_pb_section_0.et_pb_section h1 {
     margin-top: 0;
   }
@@ -2351,7 +2360,7 @@ p.comment-form-url.comment-form-attachment {
     display: none;
   }
   .page-template-default:not(.home) div#content-area {
-    max-width: 1009px ;
+    max-width: 1009px;
     margin: 0 auto;
   }
   header.main-header.et-fixed-header {

@@ -40,6 +40,7 @@
         <div class="container">
             <div class="row">
                 <ul class="nav nav-pills text-right">
+                    <li role="presentation"><a href="<?php echo home_url('/contato'); ?>">Fale conosco</a></li>
                     <li role="presentation"><a href="<?php echo home_url('/enviar-video'); ?>">Enviar vídeo</a></li>
                     <li role="presentation"><a href="<?php echo wp_logout_url( home_url('/login') ); ?>">Sair</a></li>
                 </ul>

@@ -33,10 +33,8 @@ a {
     color: #0057b3;
     text-decoration: none;
 }
-a:visited {
-    color: #9345a1;
-    text-decoration: none;
-}
+
+
 /* ==========================================================================
 3 - Estilos de Ajuda
 ========================================================================== */
@@ -1017,6 +1015,11 @@ div#ecu_uploadform {
 ========================================================================== */
 
 @media (min-width: 981px) {
+  .et_pb_gutters3 .et_pb_column_4_4 .et_pb_module, .et_pb_gutters3.et_pb_row .et_pb_column_4_4 .et_pb_module {
+    margin-bottom: 2.75%;
+    max-width: 1008px;
+    margin: 0 auto;
+  }
   .et_pb_section .et_pb_row .et_pb_column .et_pb_module:last-child,
   .et_pb_section.et_section_specialty .et_pb_row .et_pb_column .et_pb_column .et_pb_module:last-child,
   .et_pb_section.et_section_specialty .et_pb_row .et_pb_column .et_pb_row_inner .et_pb_column .et_pb_module:last-child {
@@ -1984,7 +1987,10 @@ body:not(.home) .metas-por-assuntos-interna li.menu-item a {
     margin-top: 7px;
     margin-bottom: 10px;
 }
-
+body:not(.home) a:visited {
+    color: #9345a1;
+    opacity: 0;
+}
 body:not(.home) .metas-por-assuntos-interna li.menu-item a:visited {
     color: #9345a1;
     opacity: 0;
@@ -1993,11 +1999,11 @@ body:not(.home) .metas-por-assuntos-interna li.menu-item.current_page_item a, bo
     background: #f52269;
     color: #fff;
 }
-body:not(.home) .et_pb_post a img[width="1080"] {
+body:not(.home) .et_pb_post img[width="1080"] {
     display: none;
 }
 
-body:not(.home) .et_pb_post .et_pb_row a img[width="1080"] {
+body:not(.home) .et_pb_post .et_pb_row  img[width="1080"] {
     display: block;
 }
 
@@ -2007,6 +2013,9 @@ body:not(.home)  #left-area .post-meta {
     display: none;
 }
 body:not(.home) div#sidebar {
+    display: none;
+}
+body:not(.home) .et_post_meta_wrapper img {
     display: none;
 }
 /*Banner home*/

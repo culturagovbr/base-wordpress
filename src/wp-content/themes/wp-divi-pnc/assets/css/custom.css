@@ -2801,7 +2801,7 @@ p.comment-form-url.comment-form-attachment {
     width: 15px;
     height: 15px;
     top: 24px;
-    left: 52.6%;
+    left: 52.3%;
     box-shadow: 0 0 0 4px #d7e4ed, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
 }
 
@@ -2823,7 +2823,7 @@ h2.cd-timeline-title {
 }
 
 .cd-timeline-content::before {
-    top: 24px;
+    top: 14px;
     left: 100%;
     border-color: transparent;
     border: 17px solid transparent;
@@ -2836,7 +2836,9 @@ h2.cd-timeline-title {
     border-color: transparent;
     border-right-color: #d7e4ed;
 }
-
+.cd-timeline-img img {
+    display: none;
+}
 
 .cd-timeline-content {
     position: relative;

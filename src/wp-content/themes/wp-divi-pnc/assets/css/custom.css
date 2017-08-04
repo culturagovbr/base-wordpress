@@ -1987,8 +1987,19 @@ body:not(.home) .metas-por-assuntos-interna li.menu-item.current_page_item a, bo
     background: #f52269;
     color: #fff;
 }
+body:not(.home) .et_pb_post a img[width="1080"] {
+    display: none;
+}
 
+body:not(.home) .et_pb_post .et_pb_row a img[width="1080"] {
+    display: block;
+}
 
+body:not(.home)  #left-area .post-meta {
+    padding-bottom: 15px;
+    font-size: 14px;
+    display: none;
+}
 
 /*Banner home*/
 
@@ -2211,13 +2222,6 @@ p.comment-form-url.comment-form-attachment {
 .page-template-default:not(.home) div#content-area {
     max-width: 1076px;
     margin: 0 auto;
-}
-.category .et_pb_post a img[width="1080"] {
-    display: none;
-}
-
-.category .et_pb_post .et_pb_row a img[width="1080"] {
-    display: block;
 }
 
 .page-template-default:not(.home) .et_pb_section_0.et_pb_section h1 {

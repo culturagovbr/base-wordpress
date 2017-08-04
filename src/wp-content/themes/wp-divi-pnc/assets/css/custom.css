@@ -1025,10 +1025,7 @@ div#ecu_uploadform {
     max-width: 1008px;
     margin: 0 auto;
   }
-  .page-template-default:not(.home) div#content-area {
-    max-width: 1008px;
-    margin: 0 auto;
-  }
+
   .et_pb_section .et_pb_row .et_pb_column .et_pb_module:last-child,
   .et_pb_section.et_section_specialty .et_pb_row .et_pb_column .et_pb_column .et_pb_module:last-child,
   .et_pb_section.et_section_specialty .et_pb_row .et_pb_column .et_pb_row_inner .et_pb_column .et_pb_module:last-child {
@@ -2354,7 +2351,7 @@ p.comment-form-url.comment-form-attachment {
     display: none;
   }
   .page-template-default:not(.home) div#content-area {
-    max-width: 1009px;
+    max-width: 1009px ;
     margin: 0 auto;
   }
   header.main-header.et-fixed-header {

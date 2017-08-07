@@ -125,14 +125,17 @@ $is_page_builder_used = et_pb_is_pagebuilder_used( get_the_ID() );
 				?>
 
 					<?php if (et_get_option('divi_integration_single_bottom') <> '' && et_get_option('divi_integrate_singlebottom_enable') == 'on') echo(et_get_option('divi_integration_single_bottom')); ?>
-					<p> Compartilhar:
-					    <span class="social-icones">
-					        <a class="tp-caption tp-layer-selectable " href="https://plus.google.com/share?url=<?php the_permalink(); ?>" target="_blank"> <i class="fa fa-google-plus"></i> </a>
-					        <a class="tp-caption tp-layer-selectable " href="whatsapp://send?text=<?php the_title(); ?>&nbsp;%C2%A0%20%E2%98%9B%20<?php the_permalink(); ?>" target="_blank"> <i class="fa fa-whatsapp"></i> </a>
-					        <a class="tp-caption tp-layer-selectable " href="https://twitter.com/home?status=<?php the_permalink(); ?>" target="_blank"> <i class="fa fa-twitter"></i> </a>
-					        <a class="tp-caption tp-layer-selectable " href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>" target="_blank"> <i class="fa fa-facebook"></i> </a>
-					    </span>
-					</p>
+
+					    <div class="social-icones">
+					    <p> 
+					    	<h5> Compartilhar: </h5>
+						        <a class="tp-caption tp-layer-selectable " href="https://plus.google.com/share?url=<?php the_permalink(); ?>" target="_blank"> <i class="fa fa-google-plus"></i> </a>
+						        <a class="tp-caption tp-layer-selectable " href="whatsapp://send?text=<?php the_title(); ?>&nbsp;%C2%A0%20%E2%98%9B%20<?php the_permalink(); ?>" target="_blank"> <i class="fa fa-whatsapp"></i> </a>
+						        <a class="tp-caption tp-layer-selectable " href="https://twitter.com/home?status=<?php the_permalink(); ?>" target="_blank"> <i class="fa fa-twitter"></i> </a>
+						        <a class="tp-caption tp-layer-selectable " href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>" target="_blank"> <i class="fa fa-facebook"></i> </a>
+					    </p>
+					    </div>
+					
 
 					<?php
 						if ( ( comments_open() || get_comments_number() ) && 'on' == et_get_option( 'divi_show_postcomments', 'on' ) && ! $et_pb_has_comments_module ) {

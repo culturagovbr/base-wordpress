@@ -2919,3 +2919,18 @@ table.cart th, #main-content table.cart th, table.cart td, #main-content table.c
 .css-events-list {
     margin-left: 10%;
 }
+
+/*Redes sociais*/
+.social-icones a {
+    font-size: 20px;
+    line-height: 40px;
+    vertical-align: middle;
+    background: #f52269;
+    border-radius: 4px;
+    color: #ffffff;
+    width: 38px;
+    display: inline-block;
+    text-align: center;
+    height: 40px;
+    margin-bottom: 5px;
+}

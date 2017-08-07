@@ -2916,10 +2916,28 @@ table.cart th, #main-content table.cart th, table.cart td, #main-content table.c
 .css-events-list table.events-table td {
     padding: 10px;
 }
+
+    
+}
+.hentry h2.entry-title {
+    color: #00445d;
+    font-weight: lighter;
+    font-size: 26px;
+    background: #eaeaea;
+    border-top: 3px solid;
+    margin-bottom: -5px;
+    padding-top: 9px;
+    padding-left: 9px;
+    padding-bottom: 17px;
+    box-shadow: 0px 2px 1px #ccc;
+    margin-top: 0px;
+    display: block;
+    display: block !important;
+}
 .css-events-list {
     margin-left: 10%;
+    margin: 0;
 }
-
 /*Redes sociais*/
 .social-icones a {
   font-size: 20px;

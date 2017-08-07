@@ -53,10 +53,17 @@
                                 the_content();
                                 ?>
                             <?php endif; ?>
-                            <?php
-                            $url=the_permalink();
+                            
+
+                            <span class="social-icones">
+                                <a class="tp-caption tp-layer-selectable " href="https://plus.google.com/share?url=<?php the_permalink(); ?>" target="_blank"> <i class="fa-icon-google-plus"></i> </a>
+                                <a class="tp-caption tp-layer-selectable " href="whatsapp://send?text=<?php the_title(); ?>&nbsp;%C2%A0%20%E2%98%9B%20<?php the_permalink(); ?>" target="_blank"> <i class="fa fa-whatsapp"></i> </a>
+                                <a class="tp-caption tp-layer-selectable " href="https://twitter.com/home?status=<?php the_permalink(); ?>" target="_blank"> <i class="fa-icon-twitter"></i> </a>
+                                <a class="tp-caption tp-layer-selectable " href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>" target="_blank"> <i class="fa-icon-facebook"></i> </a>
+                            </span>
+
                             ?>
-                            <a href="https://www.linkedin.com/cws/share?url=".<?php echo $url; ?>.">Click to share</a>
+                           
                         </article> <!-- .et_pb_post -->
                         <?php
                     endwhile;

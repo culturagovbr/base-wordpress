@@ -2029,15 +2029,17 @@ body:not(.home) .et_post_meta_wrapper img {
 .et_pb_section_0.et_pb_section h1 {
     color: #00445d;
     font-weight: bold;
-    font-size: 26px;
+    font-size: 27px;
     margin-top: -25px;
     margin-bottom: 16px;
+    text-align: right;
+}
+div#banner-topo-cinza p {
+    color: #00445d;
+    text-align: right;
+    font-size: 19px;
 }
 
-.et_pb_section_0.et_pb_section p {
-    color: #66686b;
-    font-size: 15px;
-}
 div#banner-topo-cinza .et_pb_row {
   padding: 5% 0;
 }

@@ -2906,3 +2906,16 @@ h2.cd-timeline-title {
     margin-top: -11px;
     margin-bottom: 16px;
 }
+
+table.cart th, #main-content table.cart th, table.cart td, #main-content table.cart td, table.cart tr, #main-content table.cart tr, #content-area table tr, #content-area table td, #content-area table th {
+    max-width: 1150px;
+    text-align: center;
+    box-shadow: 0px 0.3px 1px black;
+}
+
+.css-events-list table.events-table td {
+    padding: 10px;
+}
+.css-events-list {
+    margin-left: 10%;
+}

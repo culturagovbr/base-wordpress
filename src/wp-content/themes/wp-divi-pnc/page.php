@@ -54,14 +54,7 @@
                                 ?>
                                 
                             <?php endif; ?>
-                                <p> Compartilhar:
-                                    <span class="social-icones">
-                                        <a class="tp-caption tp-layer-selectable " href="https://plus.google.com/share?url=<?php the_permalink(); ?>" target="_blank"> <i class="fa fa-google-plus"></i> </a>
-                                        <a class="tp-caption tp-layer-selectable " href="whatsapp://send?text=<?php the_title(); ?>&nbsp;%C2%A0%20%E2%98%9B%20<?php the_permalink(); ?>" target="_blank"> <i class="fa fa-whatsapp"></i> </a>
-                                        <a class="tp-caption tp-layer-selectable " href="https://twitter.com/home?status=<?php the_permalink(); ?>" target="_blank"> <i class="fa fa-twitter"></i> </a>
-                                        <a class="tp-caption tp-layer-selectable " href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>" target="_blank"> <i class="fa fa-facebook"></i> </a>
-                                    </span>
-                                </p>
+                                
 
                         </article> <!-- .et_pb_post -->
                         <?php

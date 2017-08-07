@@ -2922,40 +2922,44 @@ table.cart th, #main-content table.cart th, table.cart td, #main-content table.c
 
 /*Redes sociais*/
 .social-icones a {
-    font-size: 20px;
-    line-height: 40px;
-    vertical-align: middle;
-    background: #f52269;
-    border-radius: 4px;
-    color: #ffffff;
-    width: 38px;
-    display: inline-block;
-    text-align: center;
-    height: 40px;
-    margin-bottom: 5px;
+  font-size: 20px;
+  line-height: 40px;
+  vertical-align: middle;
+  background: #eaeaea;
+  border-radius: 4px;
+  color: #8c8c8c;
+  width: 38px;
+  display: inline-block;
+  text-align: center;
+  height: 40px;
+  margin-bottom: 5px;
 }
 /*Ocultar upload em comentários*/
 #comment-wrap p.comment-form-url {
-    width: 100%;
-    display: block;
-    clear: left;
-    display: none;
+  width: 100%;
+  display: block;
+  clear: left;
+  display: none;
 }
 .social-icones h5 {
-    font-weight: bold;
-    color: #00445d;
+  font-weight: bold;
+  color: #00445d;
 }
 .social-icones a.google-plus:hover {
   background: #dd4b39;
+  color: #ffffff;
 }
 .social-icones a.whatsapp:hover {
   background: #00c101;
+  color: #ffffff;
 }
 .social-icones a.twitter:hover {
   background: #17a2fe;
+  color: #ffffff;
 }
 .social-icones a.facebook:hover {
   background: #3b5998;
+  color: #ffffff;
 }
 
 

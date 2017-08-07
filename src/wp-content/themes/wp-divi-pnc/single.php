@@ -129,12 +129,12 @@ $is_page_builder_used = et_pb_is_pagebuilder_used( get_the_ID() );
 					    <div class="social-icones">
 					    <p> 
 					    	<h5> Compartilhar: </h5>
-						        <a class="tp-caption tp-layer-selectable google-plus" href="https://plus.google.com/share?url=<?php the_permalink(); ?>" target="_blank"> <i class="fa fa-google-plus"></i> </a>
-						        <a class="tp-caption tp-layer-selectable whatsapp" href="whatsapp://send?text=<?php the_title(); ?>&nbsp;%C2%A0%20%E2%98%9B%20<?php the_permalink(); ?>" target="_blank"> <i class="fa fa-whatsapp"></i> </a>
-						        <a class="tp-caption tp-layer-selectable twitter" href="https://twitter.com/home?status=<?php the_permalink(); ?>" target="_blank"> <i class="fa fa-twitter"></i> </a>
-						        <a class="tp-caption tp-layer-selectable facebook" href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>" target="_blank"> <i class="fa fa-facebook"></i> </a>
+						        <a class="google-plus" href="https://plus.google.com/share?url=<?php the_permalink(); ?>" target="_blank"> <i class="fa fa-google-plus"></i> </a>
+						        <a class="whatsapp" href="whatsapp://send?text=<?php the_title(); ?>&nbsp;%C2%A0%20%E2%98%9B%20<?php the_permalink(); ?>" target="_blank"> <i class="fa fa-whatsapp"></i> </a>
+						        <a class="twitter" href="https://twitter.com/home?status=<?php the_permalink(); ?>" target="_blank"> <i class="fa fa-twitter"></i> </a>
+						        <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>" target="_blank"> <i class="fa fa-facebook"></i> </a>
 					    </p>
-					    </div>
+					    </div> 
 					
 
 					<?php

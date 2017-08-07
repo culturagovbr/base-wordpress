@@ -2868,12 +2868,35 @@ h2.cd-timeline-title {
     transition: all 0.1s ease-in;
     overflow: hidden;
 }
-.header-light .et_pb_text_0 {
+.category .header-light .et_pb_text_0 {
     background: transparent;
 }
-.header-light span.number {
+.category .header-light span.number {
     border-radius: 4px;
 }
-.header-light h1 {
+.category .header-light h1 {
     text-align: left !important;
+}
+.category .header-light span.number {
+    border-radius: 4px;
+    width: 15%;
+    float: left;
+    display: block;
+}
+.category .header-light ul li {
+    color: #003167;
+}
+.category  .header-light .col-md-10 {
+    width: 74%;
+    display: block;
+    float: left;
+    margin-left: 23px;
+    border-left: 1px solid #ccc;
+    margin-top: -16px;
+    padding-left: 28px;
+}
+.category .header-light p.description {
+    color: #003167;
+    font-weight: bold;
+    font-size: 13px;
 }

@@ -2868,3 +2868,12 @@ h2.cd-timeline-title {
     transition: all 0.1s ease-in;
     overflow: hidden;
 }
+.header-light .et_pb_text_0 {
+    background: transparent;
+}
+.header-light span.number {
+    border-radius: 4px;
+}
+.header-light h1 {
+    text-align: left !important;
+}

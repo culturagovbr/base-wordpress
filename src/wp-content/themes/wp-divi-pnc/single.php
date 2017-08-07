@@ -125,14 +125,6 @@ $is_page_builder_used = et_pb_is_pagebuilder_used( get_the_ID() );
 				?>
 
 					<?php if (et_get_option('divi_integration_single_bottom') <> '' && et_get_option('divi_integrate_singlebottom_enable') == 'on') echo(et_get_option('divi_integration_single_bottom')); ?>
-
-					<?php
-						if ( ( comments_open() || get_comments_number() ) && 'on' == et_get_option( 'divi_show_postcomments', 'on' ) && ! $et_pb_has_comments_module ) {
-							comments_template( '', true );
-						}
-					?>
-					</div> <!-- .et_post_meta_wrapper -->
-
 					<p> Compartilhar:
 					    <span class="social-icones">
 					        <a class="tp-caption tp-layer-selectable " href="https://plus.google.com/share?url=<?php the_permalink(); ?>" target="_blank"> <i class="fa fa-google-plus"></i> </a>
@@ -141,7 +133,16 @@ $is_page_builder_used = et_pb_is_pagebuilder_used( get_the_ID() );
 					        <a class="tp-caption tp-layer-selectable " href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>" target="_blank"> <i class="fa fa-facebook"></i> </a>
 					    </span>
 					</p>
+
+					<?php
+						if ( ( comments_open() || get_comments_number() ) && 'on' == et_get_option( 'divi_show_postcomments', 'on' ) && ! $et_pb_has_comments_module ) {
+							comments_template( '', true );
+						}
+					?>
+					</div> <!-- .et_post_meta_wrapper -->
+
 					
+
 				</article> <!-- .et_pb_post -->
 
 			<?php endwhile; ?>

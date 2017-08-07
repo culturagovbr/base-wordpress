@@ -2931,12 +2931,16 @@ table.cart th, #main-content table.cart th, table.cart td, #main-content table.c
     padding-bottom: 17px;
     box-shadow: 0px 2px 1px #ccc;
     margin-top: 0px;
-    display: block;
     display: block !important;
 }
 .css-events-list {
     margin-left: 10%;
     margin: 0;
+}
+.css-events-list table.events-table {
+    border-spacing: 0px;
+    border-collapse: collapse;
+    width: 100%;
 }
 /*Redes sociais*/
 .social-icones a {
@@ -2952,6 +2956,7 @@ table.cart th, #main-content table.cart th, table.cart td, #main-content table.c
   height: 40px;
   margin-bottom: 5px;
 }
+
 /*Ocultar upload em comentários*/
 #comment-wrap p.comment-form-url {
   width: 100%;

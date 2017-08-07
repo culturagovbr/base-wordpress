@@ -2934,3 +2934,29 @@ table.cart th, #main-content table.cart th, table.cart td, #main-content table.c
     height: 40px;
     margin-bottom: 5px;
 }
+/*Ocultar upload em comentários*/
+#comment-wrap p.comment-form-url {
+    width: 100%;
+    display: block;
+    clear: left;
+    display: none;
+}
+.social-icones h5 {
+    font-weight: bold;
+    color: #00445d;
+}
+.social-icones a.google-plus:hover {
+  background: #dd4b39;
+}
+.social-icones a.whatsapp:hover {
+  background: #00c101;
+}
+.social-icones a.twitter:hover {
+  background: #17a2fe;
+}
+.social-icones a.facebook:hover {
+  background: #3b5998;
+}
+
+
+

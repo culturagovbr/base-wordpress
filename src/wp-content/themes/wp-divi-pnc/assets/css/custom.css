@@ -2873,12 +2873,6 @@ h2.cd-timeline-title {
 }
 .category .header-light span.number {
     border-radius: 4px;
-}
-.category .header-light h1 {
-    text-align: left !important;
-}
-.category .header-light span.number {
-    border-radius: 4px;
     width: 15%;
     float: left;
     display: block;
@@ -2899,4 +2893,12 @@ h2.cd-timeline-title {
     color: #003167;
     font-weight: bold;
     font-size: 13px;
+}
+.category .header-light h1 {
+    text-align: left !important;
+    color: #00445d;
+    font-weight: bold;
+    font-size: 27px;
+    margin-top: -11px;
+    margin-bottom: 16px;
 }

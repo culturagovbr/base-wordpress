@@ -2042,6 +2042,10 @@ div#banner-topo-cinza p {
 div#banner-topo-cinza .et_pb_row {
   padding: 5% 0;
 }
+/*Sanfona botão*/
+.et_pb_toggle_title:before{
+color: #f93d69; 
+}
 
 div#banner-topo-cinza .et_pb_widget_area.et_pb_widget_area_left.clearfix.et_pb_module.et_pb_bg_layout_light.et_pb_sidebar_0 {
   background: #fff;

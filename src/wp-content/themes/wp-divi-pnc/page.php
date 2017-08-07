@@ -53,7 +53,10 @@
                                 the_content();
                                 ?>
                             <?php endif; ?>
-
+                            <?php
+                            $url=the_permalink();
+                            ?>
+                            <a href="https://www.linkedin.com/cws/share?url=".<?php echo $url; ?>.">Click to share</a>
                         </article> <!-- .et_pb_post -->
                         <?php
                     endwhile;

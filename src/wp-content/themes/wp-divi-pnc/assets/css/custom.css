@@ -2917,15 +2917,13 @@ table.cart th, #main-content table.cart th, table.cart td, #main-content table.c
     padding: 10px;
 }
 
-    
-}
 .hentry h2.entry-title {
     color: #00445d;
     font-weight: lighter;
     font-size: 26px;
     background: #eaeaea;
     border-top: 3px solid;
-    margin-bottom: -5px;
+    margin-bottom: 20px;
     padding-top: 9px;
     padding-left: 9px;
     padding-bottom: 17px;

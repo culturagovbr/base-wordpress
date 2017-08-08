@@ -3020,11 +3020,12 @@ li #menu-item-15550 > ul.sub-menu {
     border-bottom: 1px solid lightgray;
     width:100%;
     display:block;
-  
+    text-transform: uppercase;
 }
 
 .et_pb_widget ul li {
     margin-bottom: 0.9em;
+    font-size:16px;
 }
 
 #menu-mapa-do-site .menu-item ul.sub-menu {
@@ -3040,5 +3041,4 @@ li #menu-item-15550 > ul.sub-menu {
     margin-top: 10px;
     background: transparent;
 }
-
 

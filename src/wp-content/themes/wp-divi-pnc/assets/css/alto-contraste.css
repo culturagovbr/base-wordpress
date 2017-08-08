@@ -345,9 +345,11 @@ body:not(.home).contraste .hentry h2.entry-title {
     border: 1px solid #000000;
 }
 .contraste .cd-timeline-content::before {
-    border-right-color: #2a2a2a;
+    border-color: transparent;
+    border-left-color: #2a2a2a;
 }
 .contraste .cd-timeline-block:nth-child(even) .cd-timeline-content::before {
+    border-color: transparent;
     border-right-color: #2a2a2a;
 }
 .contraste h4.widgettitle {
@@ -362,4 +364,10 @@ body:not(.home).contraste h2.title-box {
     background: #4c5156;
     border-top: 2px #ffffff solid;
     padding-bottom: 10px !important;
+}
+.contraste .et_pb_toggle_close {
+    background-color: #2a2a2a;
+}
+.contraste .et_pb_toggle_close h5.et_pb_toggle_title {
+    color: #fff;
 }

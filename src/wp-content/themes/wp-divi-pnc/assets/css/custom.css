@@ -3005,6 +3005,40 @@ table.cart th, #main-content table.cart th, table.cart td, #main-content table.c
   color: #ffffff;
 }
 
+/*ALTERAÇÕES MENU_MAPA_SITE */
 
+li #menu-item-15550 > ul.sub-menu {
+  position: inherit;
+  background: transparent;
+  margin-top: 10px;
+} 
+
+#menu-mapa-do-site > li.menu-item > a {
+    font-weight: bold;
+    color: black;
+    opacity: 0.8;
+    border-bottom: 1px solid lightgray;
+    width:100%;
+    display:block;
+  
+}
+
+.et_pb_widget ul li {
+    margin-bottom: 0.9em;
+}
+
+#menu-mapa-do-site .menu-item ul.sub-menu {
+    padding: 20px;
+    height: auto;
+    visibility: inherit;
+    opacity: 1;
+    position: inherit;
+    display: block;
+    right: -72px;
+    width: 200px;
+    top: 39px;
+    margin-top: 10px;
+    background: transparent;
+}
 
 

@@ -52,7 +52,9 @@
 
                                 the_content();
                                 ?>
+                                
                             <?php endif; ?>
+                                
 
                         </article> <!-- .et_pb_post -->
                         <?php

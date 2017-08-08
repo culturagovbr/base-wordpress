@@ -25,7 +25,7 @@ body.contraste li.current_page_item a {
     box-shadow: 0px 2px 1px #ccc;
 }
 .contraste a {
-    color: #fff;
+    color: #fff !important;
 }
 .contraste a:hover {
     color: #fbff49 !important;
@@ -329,5 +329,9 @@ color:#fff;
 }
 .contraste .et_pb_text_0 {
     background-color: #4c5156;
+}
+
+.contraste div#banner-topo-cinza p {
+    color: #f3f3f3;
 }
 

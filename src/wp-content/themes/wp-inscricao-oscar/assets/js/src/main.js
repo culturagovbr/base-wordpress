@@ -6,7 +6,6 @@
 
     var app = {
         init: function() {
-            console.log('foo');
             app.oscarMainForms();
         },
 
@@ -81,12 +80,9 @@
                         }
                     };
 
-                // $('#empresa-produtora-telefone, #empresa-produtora-fax').mask(maskBehavior, options);
                 $('div[data-name="empresa_telefone"] input, div[data-name="empresa_fax"] input').mask(maskBehavior, options);
-                // $('div{data-name="anexos"] table > tbody > tr.acf-row')
                 $.each( $('div[data-name="anexos"] table > tbody > tr.acf-row'), function( i, rowEl ) {
-                  	console.log( rowEl );
-                  	// if( '.file-wrap .file-info strong[data-name="title"]' )
+                  	// console.log( rowEl );
                   	$(this).find('.file-wrap .file-info strong[data-name="title"]').addClass('xxx');
                   	if( $(this).find('.file-wrap .file-info strong[data-name="title"]').text() !== '' ){
                   		$(this).find('.file-wrap').show();

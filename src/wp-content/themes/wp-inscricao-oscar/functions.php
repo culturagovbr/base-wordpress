@@ -61,7 +61,7 @@ function oscar_scripts() {
     
     wp_localize_script( 'oscar-scripts', 'oscarJS', array(
         'ajaxurl' => admin_url( 'admin-ajax.php' )
-    ));
+        ));
 }
 add_action( 'wp_enqueue_scripts', 'oscar_scripts' );
 
@@ -83,13 +83,13 @@ function inscricao_cpt() {
         'labels' => array(
             'name' => 'Inscrições 2018',
             'singular_name' => 'Inscrição',
-        ),
+            ),
         'description' => 'Inscrições Oscar 2018.',
         'public' => true,
         'menu_position' => 20,
         'supports' => array( 'title' ),
         'menu_icon' => 'dashicons-clipboard'
-    ));
+        ));
 }
 
 function add_inscricao_columns($columns) {
@@ -99,8 +99,8 @@ function add_inscricao_columns($columns) {
             'responsible' => __('Proponente'),
             'user_cnpj' => __( 'CNPJ'),
             'movie' => __( 'Filme')
-        )
-    );
+            )
+        );
 }
 add_filter('manage_inscricao_posts_columns' , 'add_inscricao_columns');
 
@@ -112,7 +112,7 @@ function adding_custom_meta_boxes( $post ) {
         'inscricao',
         'side',
         'default'
-    );
+        );
 }
 add_action( 'add_meta_boxes_inscricao', 'adding_custom_meta_boxes' );
 
@@ -318,13 +318,13 @@ function process_main_oscar_form( $post_id ) {
     $post = array(
         'post_type' => 'inscricao',
         'post_status' => 'publish'
-    );
+        );
     $post_id = wp_insert_post( $post );
 
     $inscricao = array(
         'ID'           => $post_id,
         'post_title'   => 'Oscar 2018 (Inscrição #' . $post_id . ')'
-    );
+        );
     wp_update_post( $inscricao );
 
     $current_user = wp_get_current_user();
@@ -390,6 +390,8 @@ function my_login_redirect( $redirect_to, $request, $user ) {
         if ( in_array( 'administrator', $user->roles ) ) {
             // redirect them to the default place
             return $redirect_to;
+        } elseif( in_array( 'committee_manager', $user->roles )  ) {
+            return admin_url('edit.php?post_type=inscricao');
         } else {
             return home_url();
         }
@@ -421,7 +423,7 @@ add_action('template_redirect', 'redirect_logged_user_to_profile_page');
  * Limit Access to WordPress Dashboard
  */
 function block_users_from_access_dashboard() {
-    if ( is_admin() && !current_user_can( 'level_7' ) && ! ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
+    if ( is_admin() && !current_user_can( 'level_7' ) && !current_user_can( 'committee_manager' ) && ! ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
         wp_redirect( home_url() );
         exit;
     }
@@ -437,12 +439,85 @@ function prevent_wp_login() {
     // if( $pagenow == 'wp-login.php' && ( ! $action || ( $action && ! in_array($action, array('logout', 'lostpassword', 'rp', 'resetpass'))))) {
     if( $pagenow == 'wp-login.php' && !empty($_GET['loggedout']) ) { ?>
 
-        <script type="text/javascript">
-            window.setTimeout( function(){
-                window.location = '<?php echo home_url(); ?>';
-            }, 1000);
-        </script>
+    <script type="text/javascript">
+        window.setTimeout( function(){
+            window.location = '<?php echo home_url(); ?>';
+        }, 1000);
+    </script>
 
         <?php // exit();
     }
 }
+
+/**
+* Assessment committee role
+* 
+*/
+function add_roles_on_plugin_activation() {
+    // remove_role( 'committee_manager' );
+    add_role( 'committee_manager', 'Comitê de avaliação', array(
+        'read'         => true, 
+        'edit_posts'   => true,
+        'edit_published_posts'   => true,
+        'edit_others_posts'   => true, 
+        'delete_posts' => true,
+        'delete_others_posts' => true
+        ) 
+    );
+    // flush_rewrite_rules();
+}
+add_action( 'admin_init', 'add_roles_on_plugin_activation' );
+
+/**
+ * Remove itens desncessários da barra de administracao para usuários assinantes
+ * 
+ */
+function remove_toolbar_nodes($wp_admin_bar) {
+    $user = wp_get_current_user();
+    if ( $user->roles[0] === 'committee_manager') {
+        $wp_admin_bar->remove_node('my-sites');
+        $wp_admin_bar->remove_node('menu-posts');
+        $wp_admin_bar->remove_node('new-content');
+        $wp_admin_bar->remove_node('comments');
+    }
+}
+add_action('admin_bar_menu', 'remove_toolbar_nodes', 999);
+
+/**
+ * Remove a top level admin menu
+ */
+function remove_menus(){
+    if ( is_admin() && !current_user_can( 'administrator' ) ){
+        remove_menu_page( 'index.php' );
+        remove_menu_page( 'jetpack' );
+        remove_menu_page( 'edit.php' );
+        remove_menu_page( 'edit.php?post_type=incsub_wiki' );
+        remove_menu_page( 'edit.php?post_type=page' );
+        remove_menu_page( 'upload.php' );
+        remove_menu_page( 'edit-comments.php' );
+        remove_menu_page( 'tools.php' );
+        remove_menu_page( 'options-general.php' );
+        remove_menu_page( 'admin' );
+        remove_menu_page( 'admin.php?page=wpcf7' );
+        remove_menu_page( 'admin.php?page=campaign_contact' );
+    }
+}
+add_action( 'admin_menu', 'remove_menus', 999 );
+
+/**
+ * Apply custom css to admin area
+ * Hiding itens for non admin users
+ */
+function oscar_admin_custom_style() {
+    if ( is_admin() && !current_user_can( 'administrator' ) ) {
+        echo '<style>
+        #wtoplevel_page_wpcf7,
+        #toplevel_page_wpcf7,
+        #toplevel_page_campaign_contact,
+        tr.type-inscricao .row-actions .view{
+            display: none !important;
+        }
+        </style>';
+    }
+}
+add_action('admin_head', 'oscar_admin_custom_style');

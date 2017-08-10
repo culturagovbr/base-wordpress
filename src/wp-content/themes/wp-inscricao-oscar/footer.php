@@ -8,7 +8,7 @@
 				<img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-governo-federal.png">
 			</div>
 			<div class="col-md-4">
-				<img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-sav.png">
+				<img src="<?php echo get_template_directory_uri(); ?>/assets/images/sav.png">
 			</div>
 		</div>
 	</div>

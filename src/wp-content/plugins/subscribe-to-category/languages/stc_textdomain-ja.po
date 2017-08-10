@@ -1,0 +1,349 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Subscribe to Category v1.2.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2016-04-26 04:00:00+0000\n"
+"Last-Translator: nobu <nobuyuki.hirota@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n>1;\n"
+"X-Generator: CSL v1.x\n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: JAPAN\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
+
+#: classes/class-settings.php:55
+#@ stc_textdomain
+msgid "Scheduled event successfully executed"
+msgstr "予定されたイベントの実行に成功しました"
+
+#: classes/class-settings.php:79
+#@ stc_textdomain
+msgid "Subscribe to Category"
+msgstr "カテゴリーに登録"
+
+#: classes/class-settings.php:80
+#: classes/class-subscribe.php:1067
+#@ stc_textdomain
+msgid "Subscribe"
+msgstr "登録"
+
+#: classes/class-settings.php:103
+#@ stc_textdomain
+msgid "Settings for subscribe to category"
+msgstr "カテゴリーに登録の設定"
+
+#: classes/class-settings.php:109
+#@ stc_textdomain
+msgid "Schedule: "
+msgstr "スケジュール: "
+
+#: classes/class-settings.php:109
+#@ stc_textdomain
+msgid "E-mail is scheduled to be sent once every hour."
+msgstr "電子メールが1時間おきに送信されるようにスケジュールされています。"
+
+#: classes/class-settings.php:111
+#@ stc_textdomain
+msgid "Click here to run this action right now"
+msgstr "今すぐこのアクションを実行するにはここをクリック"
+
+#: classes/class-settings.php:114
+#, php-format
+#@ stc_textdomain
+msgid "Next run is going to be <strong>%s</strong> and will include %s posts."
+msgstr "次回の実行は <strong>%s</strong> で、%s 件の投稿を含みます。"
+
+#: classes/class-settings.php:190
+#@ stc_textdomain
+msgid "E-mail settings"
+msgstr "電子メールの設定"
+
+#: classes/class-settings.php:197
+#@ stc_textdomain
+msgid "E-mail from: "
+msgstr "電子メールの送信元: "
+
+#: classes/class-settings.php:205
+#@ stc_textdomain
+msgid "Email subject: "
+msgstr "電子メールの件名: "
+
+#: classes/class-settings.php:215
+#@ stc_textdomain
+msgid "Resend post on update"
+msgstr "投稿更新時に再送"
+
+#: classes/class-settings.php:222
+#@ stc_textdomain
+msgid "Resend:"
+msgstr "再送:"
+
+#: classes/class-settings.php:232
+#@ stc_textdomain
+msgid "Stylesheet (CSS) settings"
+msgstr "スタイルシート(CSS)設定"
+
+#: classes/class-settings.php:239
+#@ stc_textdomain
+msgid "Custom CSS: "
+msgstr "カスタム CSS:"
+
+#: classes/class-settings.php:249
+#@ stc_textdomain
+msgid "On plugin deactivation"
+msgstr "プラグインの無効化時"
+
+#: classes/class-settings.php:256
+#@ stc_textdomain
+msgid "Subscribers: "
+msgstr "登録者: "
+
+#: classes/class-settings.php:280
+#@ stc_textdomain
+msgid "The plugin will remove all data in database created by this plugin but there is an option regarding subscribers"
+msgstr "プラグインは自身で作られたデータベース内の全てのデータを削除しますが、サブスクライバーに関しては選択肢があります。"
+
+#: classes/class-settings.php:301
+#@ stc_textdomain
+msgid "You have entered an invalid email."
+msgstr "無効なメールアドレスが入力されました。"
+
+#: classes/class-settings.php:332
+#@ stc_textdomain
+msgid "Add your E-mail settings"
+msgstr "電子メールの設定を追加"
+
+#: classes/class-settings.php:345
+#, php-format
+#@ stc_textdomain
+msgid "Enter the e-mail address for the sender, if empty the admin e-mail address %s is going to be used as sender."
+msgstr "電子メールの送信元のメールアドレスを入力。空欄の場合は、管理者のメールアドレス %s が発信者として使われます。"
+
+#: classes/class-settings.php:358
+#@ stc_textdomain
+msgid "Enter e-mail subject for the e-mail notification, leave empty if you wish to use post title as email subject."
+msgstr "お知らせメールの件名を入力。空欄の場合は、投稿のタイトルが件名として使われます。"
+
+#: classes/class-settings.php:376
+#@ stc_textdomain
+msgid "Enable resend post option"
+msgstr "投稿の再送オプションを可能にする"
+
+#: classes/class-settings.php:377
+#@ stc_textdomain
+msgid "Gives an option on edit post (in the publish panel) to resend a post on update."
+msgstr "（公開パネル内の）投稿の編集で投稿の更新時に再送のオプションを与える"
+
+#: classes/class-settings.php:394
+#@ stc_textdomain
+msgid "Exclude custom CSS"
+msgstr "カスタム CSS を除外"
+
+#: classes/class-settings.php:395
+#@ stc_textdomain
+msgid "Check this option if your theme supports Bootstrap framework or if you want to place your own CSS for Subscribe to Category in your theme."
+msgstr "もし使用中のテーマがブートストラップフレームワークをサポートしているか、自身の CSS を使いたい場合はこのオプションをチェックしてください。"
+
+#: classes/class-settings.php:413
+#@ stc_textdomain
+msgid "Delete all subscribers on deactivation"
+msgstr "無効化時に全ての登録者を削除する"
+
+#: classes/class-settings.php:426
+#@ stc_textdomain
+msgid "Export to excel"
+msgstr "Excelにエクスポート"
+
+#: classes/class-settings.php:431
+#@ stc_textdomain
+msgid "Filter by categories"
+msgstr "カテゴリーでフィルター"
+
+#: classes/class-settings.php:438
+#@ stc_textdomain
+msgid "There are no categories to list yet"
+msgstr "表示するカテゴリーがありません。"
+
+#: classes/class-settings.php:509
+#@ stc_textdomain
+msgid "Filtered by: "
+msgstr "フィルターで使用したカテゴリー: "
+
+#: classes/class-subscribe.php:103
+#@ stc_textdomain
+msgid "Resend post to subscribers"
+msgstr "登録者に投稿を再送"
+
+#: classes/class-subscribe.php:105
+#, php-format
+#@ stc_textdomain
+msgid "This post update will be re-sent to subscribers %s"
+msgstr "この投稿の更新は登録者 %s に再送されます"
+
+#: classes/class-subscribe.php:159
+#@ stc_textdomain
+msgid "Take me to start page"
+msgstr "スタートページへ戻る"
+
+#: classes/class-subscribe.php:188
+#@ stc_textdomain
+msgid "Thanks for your subscription!"
+msgstr "ご登録ありがとうございました!"
+
+#: classes/class-subscribe.php:189
+#@ stc_textdomain
+msgid "If you want to unsubscribe there is a link for unsubscription attached in the email."
+msgstr "登録を解除したい場合には、登録解除要のリンクがメールにあります。"
+
+#: classes/class-subscribe.php:217
+#@ default
+msgid "We are sorry but something went wrong with your unsubscription."
+msgstr "申し訳ありません。登録解除で問題が発生しました。"
+
+#: classes/class-subscribe.php:225
+#, php-format
+#@ stc_textdomain
+msgid "We have successfully removed your email %s from our database."
+msgstr "あなたのメールアドレス %s は我々のデータベースから削除されました。"
+
+#: classes/class-subscribe.php:307
+#: classes/class-subscribe.php:333
+#, php-format
+#@ stc_textdomain
+msgid "Unsubscribe from %s"
+msgstr "%s の登録解除"
+
+#: classes/class-subscribe.php:334
+#@ stc_textdomain
+msgid "Follow this link to confirm your unsubscription"
+msgstr "このリンクをたどってあなたの登録解除を確認してください。"
+
+#: classes/class-subscribe.php:358
+#: classes/class-subscribe.php:391
+#: classes/class-subscribe.php:527
+#@ stc_textdomain
+msgid "You need to enter a valid email address"
+msgstr "無効なメールアドレスが入力されました。"
+
+#: classes/class-subscribe.php:367
+#@ stc_textdomain
+msgid "Email address not found in database"
+msgstr "メールアドレスがデータベース内に見つかりませんでした。"
+
+#: classes/class-subscribe.php:375
+#@ stc_textdomain
+msgid "We have received your request to unsubscribe from our newsfeed. Please check your email and confirm your unsubscription."
+msgstr "登録解除のリクエストを受け付けました。メールをチェックして登録解除を確認してください。"
+
+#: classes/class-subscribe.php:403
+#@ stc_textdomain
+msgid "You need to select some categories"
+msgstr "カテゴリーを選択してください"
+
+#: classes/class-subscribe.php:534
+#@ stc_textdomain
+msgid "E-mail address already exists"
+msgstr "メールアドレスがすでに存在します"
+
+#: classes/class-subscribe.php:538
+#@ stc_textdomain
+msgid "No categories are selected"
+msgstr "カテゴリーが選択されていません。"
+
+#: classes/class-subscribe.php:580
+#@ stc_textdomain
+msgid " - this post is set to draft"
+msgstr "- この投稿は、draft に設定されました。"
+
+#: classes/class-subscribe.php:772
+#@ stc_textdomain
+msgid "E-mail Address: "
+msgstr "電子メールアドレス: "
+
+#: classes/class-subscribe.php:779
+#: classes/class-subscribe.php:991
+#@ stc_textdomain
+msgid "Unsubscribe me"
+msgstr "登録解除"
+
+#: classes/class-subscribe.php:784
+#@ stc_textdomain
+msgid "Categories"
+msgstr "カテゴリー"
+
+#: classes/class-subscribe.php:789
+#@ stc_textdomain
+msgid "All categories"
+msgstr "全カテゴリー"
+
+#: classes/class-subscribe.php:809
+#@ stc_textdomain
+msgid "Subscribe me"
+msgstr "登録"
+
+#: classes/class-subscribe.php:810
+#@ stc_textdomain
+msgid "Unsubscribe"
+msgstr "登録解除"
+
+#: classes/class-subscribe.php:934
+#@ stc_textdomain
+msgid "Update | "
+msgstr "更新 | "
+
+#: classes/class-subscribe.php:990
+#@ stc_textdomain
+msgid "Click here to read full story"
+msgstr "全文を読むにはここをクリック"
+
+#: classes/class-subscribe.php:1066
+#: classes/class-subscribe.php:1076
+#@ stc_textdomain
+msgid "Subscribers"
+msgstr "登録者"
+
+#: classes/class-subscribe.php:1068
+#: classes/class-subscribe.php:1069
+#@ stc_textdomain
+msgid "Add new subscriber"
+msgstr "新しい登録者の追加"
+
+#: classes/class-subscribe.php:1070
+#@ stc_textdomain
+msgid "Edit subscriber"
+msgstr "登録者の変更"
+
+#: classes/class-subscribe.php:1071
+#@ stc_textdomain
+msgid "New subscriber"
+msgstr "新しい登録者"
+
+#: classes/class-subscribe.php:1072
+#@ stc_textdomain
+msgid "Show subscriber"
+msgstr "登録者の表示"
+
+#: classes/class-subscribe.php:1073
+#@ stc_textdomain
+msgid "Search subscribers"
+msgstr "登録者の検索"
+
+#: classes/class-subscribe.php:1074
+#@ stc_textdomain
+msgid "Not found"
+msgstr "見つかりませんでした"
+
+#: classes/class-subscribe.php:1075
+#@ stc_textdomain
+msgid "Nothing found in trash"
+msgstr "ゴミ箱には何も見つかりませんでした"
+

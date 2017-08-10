@@ -1,4 +1,5 @@
 
+
 body.contraste {
     background: #000;
     color: #fff;
@@ -276,10 +277,7 @@ color:#fff;
     color: #fff;
 }
 .contraste h1, .contraste h2, .contraste h3, .contraste h4, .contraste h5, .contraste h6 {
-    padding-bottom: 10px;
     color: #fff;
-    font-weight: 500;
-    line-height: 1em;
 }
 .contraste .et_pb_toggle_open {
     padding: 20px;
@@ -296,13 +294,9 @@ color:#fff;
 }
 .contraste .et_pb_section_0.et_pb_section h1 {
     color: #ffffff;
-    font-weight: bold;
-    font-size: 26px;
 }
 .contraste .et_pb_section_0.et_pb_section p {
     color: #e4e4e4;
-    font-size: 20px;
-    line-height: 35px;
 }
 .contraste .et_pb_bg_layout_light.et_pb_module.et_pb_button {
     color: #ffffff;
@@ -328,10 +322,52 @@ color:#fff;
     background: #4c5156;
 }
 .contraste .et_pb_text_0 {
-    background-color: #4c5156;
+    background-color: #000000;
 }
-
 .contraste div#banner-topo-cinza p {
     color: #f3f3f3;
 }
 
+
+body:not(.home).contraste .hentry h2.entry-title {
+    color: #ffffff;
+    background: #2a2a2a;
+    box-shadow: 0px 2px 1px #4c5156;
+  }
+ .contraste .cd-timeline-content .cd-date {
+    color: #dee3e8;
+    font-size: 28px;
+    top: -5px;
+}
+.contraste .cd-timeline-content {
+    background: #2a2a2a;
+    box-shadow: 0 0 16px 2px #2a2a2a, inset 0 0px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
+    border: 1px solid #000000;
+}
+.contraste .cd-timeline-content::before {
+    border-color: transparent;
+    border-left-color: #2a2a2a;
+}
+.contraste .cd-timeline-block:nth-child(even) .cd-timeline-content::before {
+    border-color: transparent;
+    border-right-color: #2a2a2a;
+}
+.contraste h4.widgettitle {
+    color: #eeeff1;
+    background: #4c5156;
+}
+.contraste #main-content .et_pb_sidebar_0.et_pb_widget_area a {
+    color: #fff !important;
+    background: #4c5156;
+}
+body:not(.home).contraste h2.title-box {
+    background: #4c5156;
+    border-top: 2px #ffffff solid;
+    padding-bottom: 10px !important;
+}
+.contraste .et_pb_toggle_close {
+    background-color: #2a2a2a;
+}
+.contraste .et_pb_toggle_close h5.et_pb_toggle_title {
+    color: #fff;
+}

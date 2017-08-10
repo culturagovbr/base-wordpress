@@ -2825,6 +2825,7 @@ p.comment-form-url.comment-form-attachment {
   ul#menu-menu-direito {
     margin-top: -12px;
   }
+
 }
 
 @media (min-width: 981px) {
@@ -2931,7 +2932,15 @@ h2.cd-timeline-title {
     margin-top: -11px;
     margin-bottom: 16px;
 }
-
+@media (max-width: 500px) {
+  .cd-timeline-content::before {
+      top: 14px;
+      left: -34px;
+      border-color: transparent;
+      border: 17px solid transparent;
+      border-right-color: #d7e4ed;
+  }
+}
 table.cart th, #main-content table.cart th, table.cart td, #main-content table.cart td, table.cart tr, #main-content table.cart tr, #content-area table tr, #content-area table td, #content-area table th {
     max-width: 1150px;
     text-align: center;
@@ -2941,6 +2950,7 @@ table.cart th, #main-content table.cart th, table.cart td, #main-content table.c
 .css-events-list table.events-table td {
     padding: 10px;
 }
+
 
 
 .css-events-list {
@@ -2995,6 +3005,40 @@ table.cart th, #main-content table.cart th, table.cart td, #main-content table.c
   color: #ffffff;
 }
 
+/*ALTERAÇÕES MENU_MAPA_SITE */
 
+li #menu-item-15550 > ul.sub-menu {
+  position: inherit;
+  background: transparent;
+  margin-top: 10px;
+} 
 
+#menu-mapa-do-site > li.menu-item > a {
+    font-weight: bold;
+    color: black;
+    opacity: 0.8;
+    border-bottom: 1px solid lightgray;
+    width:100%;
+    display:block;
+    text-transform: uppercase;
+}
+
+.et_pb_widget ul li {
+    margin-bottom: 0.9em;
+    font-size:16px;
+}
+
+#menu-mapa-do-site .menu-item ul.sub-menu {
+    padding: 20px;
+    height: auto;
+    visibility: inherit;
+    opacity: 1;
+    position: inherit;
+    display: block;
+    right: -72px;
+    width: 200px;
+    top: 39px;
+    margin-top: 10px;
+    background: transparent;
+}
 

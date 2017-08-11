@@ -201,12 +201,12 @@ function openModal(botao,url,) {
   var fechar = jQuery("div#modal-siga.modal .et_pb_widget")
   fechar.append('<button title="Close (Esc)" type="button" class="mfp-close">×</button>');
   botao.click(function(e){
-    url.show();
+    url.toggleClass("modal-oppen");
     e.preventDefault();
   });
   jQuery("button.mfp-close").click(function(e){
     url.hide();
-    e.preventDefault();
+    url.toggleClass("modal-oppen");
   });
 };
 

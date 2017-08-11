@@ -3166,4 +3166,10 @@ div#modal-siga.modal h4.widgettitle {
 }
 div.modal {
     display: none;
+    transition: all 0.2s ease-in-out 0s;
+    opacity: 0 ;
+}
+div.modal.modal-oppen {
+    display: block;
+    opacity: 1 ;
 }

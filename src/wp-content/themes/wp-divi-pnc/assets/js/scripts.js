@@ -188,4 +188,29 @@ function navegacaoMetas() {
 
 navegacaoMetas(jQuery("#menu-metas"));
 
+/**
+ * jQuery Modal
+ * Copyright (c) 2017 Moisés Rabelo 
+ * Modal Newsletter
+ *
+*/
+
+function openModal(botao,url,) {
+  var botao = botao
+  var url = url
+  var fechar = jQuery("div#modal-siga.modal .et_pb_widget")
+  fechar.append('<button title="Close (Esc)" type="button" class="mfp-close">×</button>');
+  botao.click(function(e){
+    url.show();
+    e.preventDefault();
+  });
+  fechar.click(function(e){
+    url.hide();
+    e.preventDefault();
+  });
+};
+
+
+
+function openModal(jQuery("#top-menu-nav a.et_pb_button"),jQuery("div#modal-siga.modal"))
 

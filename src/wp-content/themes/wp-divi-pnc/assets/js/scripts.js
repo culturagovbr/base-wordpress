@@ -200,11 +200,11 @@ function openModal(botao,url,) {
   var url = url
   var fechar = jQuery("div#modal-siga.modal .et_pb_widget")
   fechar.append('<button title="Close (Esc)" type="button" class="mfp-close">×</button>');
-  jQuery("button.mfp-close").click(function(e){
+  botao.click(function(e){
     url.show();
     e.preventDefault();
   });
-  fechar.click(function(e){
+  jQuery("button.mfp-close").click(function(e){
     url.hide();
     e.preventDefault();
   });

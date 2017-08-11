@@ -3078,15 +3078,16 @@ div#modal-siga.modal {
     position: fixed;
     top: 0;
     width: 100%;
+    max-width: 100%;
     height: 100%;
     text-align: center;
     left: 0;
     background-color: rgba(0, 68, 144, 0.67) !important;
     z-index: 41;
     opacity: 0;
+    padding-top: 117px;
     transition: all 0.2s ease-in-out 0s;
 }
-
 
 div#modal-siga.modal .et_pb_sidebar_1 {
     margin: 0 auto;

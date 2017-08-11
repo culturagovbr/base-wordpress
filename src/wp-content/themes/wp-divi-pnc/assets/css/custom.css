@@ -3083,6 +3083,8 @@ div#modal-siga.modal {
     left: 0;
     background-color: rgba(0, 68, 144, 0.67) !important;
     z-index: 41;
+    opacity: 0;
+    transition: all 0.2s ease-in-out 0s;
 }
 
 
@@ -3163,6 +3165,7 @@ div#modal-siga.modal h4.widgettitle {
     font-size: 39px;
     display: block;
     background: transparent;
+
 }
 div.modal {
     display: none;

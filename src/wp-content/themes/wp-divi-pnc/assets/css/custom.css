@@ -3167,12 +3167,12 @@ div#modal-siga.modal h4.widgettitle {
     background: transparent;
 
 }
-div.modal {
+div#modal-siga.modal {
     display: none;
     transition: all 0.2s ease-in-out 0s;
     opacity: 0 ;
 }
-div.modal.modal-oppen {
+div#modal-siga.modal-oppen {
     display: block;
     opacity: 1 ;
 }

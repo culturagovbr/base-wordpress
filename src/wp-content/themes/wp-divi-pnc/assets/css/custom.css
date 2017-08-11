@@ -3073,4 +3073,95 @@ span.fn > a {
 color:#00445d;
 }
 
+/*Modal - Início*/
+div#modal-siga.modal {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    left: 0;
+    background-color: rgba(0, 68, 144, 0.67) !important;
+    z-index: 41;
+}
 
+
+div#modal-siga.modal .et_pb_sidebar_1 {
+    margin: 0 auto;
+    width: 503px;
+    max-width: 90%;
+    background: #ffffff;
+    border: 5px #000000;
+    padding: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 8px 7px rgba(0, 0, 0, 0.2);
+}
+div#modal-siga.modal .et_pb_sidebar_1 div.widget_stc_widget {
+    width: 100%;
+    position: relative;
+}
+div#modal-siga.modal .et_pb_sidebar_1 div.widget_stc_widget label {
+    display: block;
+    font-size: 17px;
+    line-height: 27px;
+}
+button.mfp-close {
+    color: #f52a6e;
+}
+div#modal-siga.modal input#stc-email {
+    padding: 10px;
+    font-size: 25px;
+    width: 85%;
+    border-radius: 4px;
+    box-shadow: 0px 1px 4px #ccc inset;
+    color: #7795b3;
+}
+div#modal-siga.modal .stc-categories {
+    text-align: left;
+    margin: 0 auto;
+    width: 85%;
+}
+div#modal-siga.modal button#stc-subscribe-btn {
+    font-size: 18px;
+    width: 85%;
+    padding: 0 20px 0 58px;
+    height: 53px;
+    background: #ffffff;
+    color: #f52a6e;
+    line-height: 53px;
+    border: 2px solid;
+    text-transform: uppercase;
+    margin-top: 20px;
+    border-radius: 4px;
+}
+div#modal-siga.modal button#stc-subscribe-btn:hover {
+    font-size: 18px;
+    width: 85%;
+    padding: 0 20px 0 58px;
+    height: 53px;
+    background: #f52a6e;
+    color: #fff;
+    line-height: 53px;
+    border: 2px solid;
+    text-transform: uppercase;
+    margin-top: 20px;
+    border-radius: 4px;
+}
+
+div#modal-siga.modal h4.widgettitle {
+    color: #4275ad;
+    background: #eeeff1;
+    border-top: 6px solid;
+    padding-top: 11px;
+    font-weight: lighter;
+    margin-top: 0px;
+    padding-left: 10px;
+    width: 100%;
+    font-size: 39px;
+    display: block;
+    background: transparent;
+}
+div.modal {
+    display: none;
+}

@@ -205,7 +205,6 @@ function openModal(botao,url,) {
     e.preventDefault();
   });
   jQuery("button.mfp-close").click(function(e){
-    url.hide();
     url.toggleClass("modal-oppen");
   });
 };

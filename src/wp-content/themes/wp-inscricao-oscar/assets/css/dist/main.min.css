@@ -7,7 +7,7 @@
 
 
 /*Modificação Oscar - Aviso da Marca rodapé*/
-footer:before {
+footer#site-footer:before {
     content: "The Oscars é uma marca registrada da Academy of Motion Pictures Arts and Sciences.";
     text-align: center;
     width: 100%;

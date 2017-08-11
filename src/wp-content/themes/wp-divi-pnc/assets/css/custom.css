@@ -3041,4 +3041,36 @@ li #menu-item-15550 > ul.sub-menu {
     margin-top: 10px;
     background: transparent;
 }
+.comment-reply-link {
+margin-top: 4%;
+}
+.comment-body {
+padding: 20px 140px 0 100px;
+padding-bottom: 28px;
+border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+#comment-wrap {
+margin-top:16px;
+border-radius: 35px;
+}
+
+h1#comments {
+color: #00445d;
+font-size: 26px;
+margin-bottom: -5px;
+padding-top: 9px;
+padding-left: 9px;
+padding-bottom: 17px;
+margin-top: 0px;
+display: block;
+font-weight:bolder;
+border-top:none;
+background:transparent;
+}
+
+span.fn > a {
+color:#00445d;
+}
+
 

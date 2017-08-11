@@ -3114,8 +3114,10 @@ div#modal-siga.modal input#stc-email {
     font-size: 25px;
     width: 85%;
     border-radius: 4px;
+    margin-top: 20px;
     box-shadow: 0px 1px 4px #ccc inset;
-    color: #7795b3;
+    color: #6e7780;
+    margin-bottom: 27px;
 }
 div#modal-siga.modal .stc-categories {
     text-align: left;

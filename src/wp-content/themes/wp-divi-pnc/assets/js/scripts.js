@@ -212,5 +212,5 @@ function openModal(botao,url,) {
 
 
 
-function openModal(jQuery("#top-menu-nav a.et_pb_button"),jQuery("div#modal-siga.modal"))
+openModal(jQuery("#top-menu-nav a.et_pb_button"),jQuery("div#modal-siga.modal"))
 

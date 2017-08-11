@@ -1,0 +1,335 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Subscribe to Category v1.2.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2016-03-14 19:49+0100\n"
+"Last-Translator: adminccsuser <daniel.soderstrom@cybercom.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 1.8.6\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
+"X-Textdomain-Support: yes\n"
+"Language: sv_SE\n"
+"X-Poedit-SearchPath-0: .\n"
+
+# @ stc_textdomain
+#: classes/class-subscribe.php:992
+msgid "Click here to read full story"
+msgstr "Klik hier om het hele verhaal te lezen"
+
+# @ stc_textdomain
+#: classes/class-subscribe.php:781 classes/class-subscribe.php:993
+msgid "Unsubscribe me"
+msgstr "Meld me af"
+
+# @ stc_textdomain
+#: classes/class-subscribe.php:188
+msgid "Thanks for your subscription!"
+msgstr "Bedankt voor je aanmelding!"
+
+# @ stc_textdomain
+#: classes/class-subscribe.php:189
+msgid "If you want to unsubscribe there is a link for unsubscription attached in the email."
+msgstr "Als je je wilt afmelden, er is een link in de e-mail toegevoegd."
+
+# @ stc_textdomain
+#: classes/class-subscribe.php:225
+#, php-format
+msgid "We have successfully removed your email %s from our database."
+msgstr "Je e-mailadres %s is uit ons systeem verwijderd."
+
+# @ stc_textdomain
+#: classes/class-subscribe.php:309 classes/class-subscribe.php:335
+#, php-format
+msgid "Unsubscribe from %s"
+msgstr "Meld me af voor %s"
+
+# @ stc_textdomain
+#: classes/class-subscribe.php:336
+msgid "Follow this link to confirm your unsubscription"
+msgstr "Volg deze link om uw afmelding te bevestigen"
+
+# @ stc_textdomain
+#: classes/class-subscribe.php:360 classes/class-subscribe.php:393
+#: classes/class-subscribe.php:529
+msgid "You need to enter a valid email address"
+msgstr "Vul een geldig e-mailadres in"
+
+# @ stc_textdomain
+#: classes/class-subscribe.php:377
+msgid "We have received your request to unsubscribe from our newsfeed. Please check your email and confirm your unsubscription."
+msgstr "Wij hebben een verzoek gekregen om je af te melden van onze nieuwsberichten. Check je e-mail om deze te bevestigen."
+
+# @ stc_textdomain
+#: classes/class-subscribe.php:405
+msgid "You need to select some categories"
+msgstr "Kies een of meerdere categoriëen"
+
+# @ stc_textdomain
+# @ stc_textdomain
+#: classes/class-subscribe.php:774 classes/class-subscribe.php:786
+msgid "Categories"
+msgstr "Categoriëen"
+
+# @ stc_textdomain
+#: classes/class-subscribe.php:811
+msgid "Subscribe me"
+msgstr "Meld me aan"
+
+# @ stc_textdomain
+#: classes/class-subscribe.php:812
+msgid "Unsubscribe"
+msgstr "Afmelden"
+
+# @ stc_textdomain
+#: classes/class-settings.php:79
+msgid "Subscribe to Category"
+msgstr "Meld me aan voor deze categorie"
+
+# @ stc_textdomain
+#: classes/class-settings.php:80 classes/class-subscribe.php:1069
+msgid "Subscribe"
+msgstr "Aanmelden"
+
+# @ stc_textdomain
+#: classes/class-settings.php:103
+msgid "Settings for subscribe to category"
+msgstr "Instellingen voor aanmelden van categorie"
+
+# @ stc_textdomain
+#: classes/class-settings.php:190
+msgid "E-mail settings"
+msgstr "E-mailinstellingen"
+
+# @ stc_textdomain
+#: classes/class-settings.php:197
+msgid "E-mail from: "
+msgstr "E-mail van:"
+
+# @ stc_textdomain
+#: classes/class-settings.php:332
+msgid "Add your E-mail settings"
+msgstr "Voeg je e-mailinstellingen toe"
+
+# @ stc_textdomain
+#: classes/class-subscribe.php:369
+msgid "Email address not found in database"
+msgstr "E-mailadres is niet bekend in ons systeem"
+
+# @ stc_textdomain
+#: classes/class-subscribe.php:791
+msgid "All categories"
+msgstr "Alle categoriëen"
+
+# @ stc_textdomain
+#: classes/class-subscribe.php:1070 classes/class-subscribe.php:1071
+msgid "Add new subscriber"
+msgstr "Voeg een nieuwe abonnee toe"
+
+# @ stc_textdomain
+#: classes/class-subscribe.php:1072
+msgid "Edit subscriber"
+msgstr "Wijzig abonnee"
+
+# @ stc_textdomain
+#: classes/class-subscribe.php:1073
+msgid "New subscriber"
+msgstr "Nieuwe abonnee"
+
+# @ stc_textdomain
+#: classes/class-subscribe.php:1074
+msgid "Show subscriber"
+msgstr "Toon abonnee"
+
+# @ stc_textdomain
+#: classes/class-subscribe.php:1075
+msgid "Search subscribers"
+msgstr "Zoek abonnee"
+
+# @ stc_textdomain
+#: classes/class-subscribe.php:1076
+msgid "Not found"
+msgstr "Niet gevonden"
+
+# @ stc_textdomain
+#: classes/class-subscribe.php:1077
+msgid "Nothing found in trash"
+msgstr "Geen items in prullenbak"
+
+# @ stc_textdomain
+#: classes/class-subscribe.php:1068 classes/class-subscribe.php:1078
+msgid "Subscribers"
+msgstr "Abonnees"
+
+# @ stc_textdomain
+#: classes/class-settings.php:232
+msgid "Stylesheet (CSS) settings"
+msgstr "Stylesheet (CSS) instellingen"
+
+# @ stc_textdomain
+#: classes/class-settings.php:239
+msgid "Custom CSS: "
+msgstr "Eigen stylesheet:"
+
+# @ stc_textdomain
+#: classes/class-settings.php:301
+msgid "You have entered an invalid email."
+msgstr "Je hebt een ongeldig e-mailadres ingevuld."
+
+# @ stc_textdomain
+#: classes/class-settings.php:345
+#, php-format
+msgid "Enter the e-mail address for the sender, if empty the admin e-mail address %s is going to be used as sender."
+msgstr "Vul het e-mailadres van de afzender in, als het niet ingevuld wordt dit %s adres gebruikt."
+
+# @ stc_textdomain
+#: classes/class-settings.php:394
+msgid "Exclude custom CSS"
+msgstr "Negeer eigen CSS"
+
+# @ stc_textdomain
+#: classes/class-settings.php:395
+msgid "Check this option if your theme supports Bootstrap framework or if you want to place your own CSS for Subscribe to Category in your theme."
+msgstr "Vink dit aan als je thema het Bootstrap Framework ondersteunt of als je je eigen CSS wilt gebruiken."
+
+# @ stc_textdomain
+#: classes/class-subscribe.php:159
+msgid "Take me to start page"
+msgstr "Ga naar homepage"
+
+# @ default
+#: classes/class-subscribe.php:217
+msgid "We are sorry but something went wrong with your unsubscription."
+msgstr "Onze excuses er is iets mis gegaan met de afmelding"
+
+# @ stc_textdomain
+#: classes/class-subscribe.php:536
+msgid "E-mail address already exists"
+msgstr "E-mailadres bestaat in systeem"
+
+# @ stc_textdomain
+#: classes/class-subscribe.php:540
+msgid "No categories are selected"
+msgstr "Er zijn geen categoriëen geselecteerd"
+
+# @ stc_textdomain
+#: classes/class-subscribe.php:582
+msgid " - this post is set to draft"
+msgstr " - dit bericht is opgeslagen als concept."
+
+# @ stc_textdomain
+#: classes/class-settings.php:426
+msgid "Export to excel"
+msgstr "Exporteer naar excel"
+
+# @ stc_textdomain
+#: classes/class-settings.php:431
+msgid "Filter by categories"
+msgstr "Filter op categoriëen"
+
+# @ stc_textdomain
+#: classes/class-settings.php:438
+msgid "There are no categories to list yet"
+msgstr "Er zijn nog geen categoriëen bekend"
+
+# @ stc_textdomain
+#: classes/class-settings.php:509
+msgid "Filtered by: "
+msgstr "Gefilterd op:"
+
+# @ stc_textdomain
+#: classes/class-settings.php:205
+msgid "Email subject: "
+msgstr "E-mail onderwerp:"
+
+# @ stc_textdomain
+#: classes/class-settings.php:358
+msgid "Enter e-mail subject for the e-mail notification, leave empty if you wish to use post title as email subject."
+msgstr "Vul het onderwerp van het e-mailbericht in, laat het leeg als je de titel van het bericht wilt gebruiken."
+
+# @ stc_textdomain
+#: classes/class-settings.php:55
+msgid "Scheduled event successfully executed"
+msgstr "Taak is succelvol uitgevoerd"
+
+# @ stc_textdomain
+#: classes/class-settings.php:109
+msgid "Schedule: "
+msgstr "Schema:"
+
+# @ stc_textdomain
+#: classes/class-settings.php:109
+msgid "E-mail is scheduled to be sent once every hour."
+msgstr "Berichten worden elk uur verstuurd."
+
+# @ stc_textdomain
+#: classes/class-settings.php:111
+msgid "Click here to run this action right now"
+msgstr "Klik hier om de berichten direct te versturen"
+
+# @ stc_textdomain
+#: classes/class-settings.php:114
+#, php-format
+msgid "Next run is going to be <strong>%s</strong> and will include %s posts."
+msgstr "De volgende taak is gepland op <strong>%s</strong> en zal %s berichten versturen."
+
+# @ stc_textdomain
+#: classes/class-settings.php:249
+msgid "On plugin deactivation"
+msgstr "Bij deactivatie plugin"
+
+# @ stc_textdomain
+#: classes/class-settings.php:256
+msgid "Subscribers: "
+msgstr "Abonnees:"
+
+# @ stc_textdomain
+#: classes/class-settings.php:280
+msgid "The plugin will remove all data in database created by this plugin but there is an option regarding subscribers"
+msgstr "De plugin zal alle data van de plugin uit de database verwijderen, er is wel een optie ten aanzien van de abonnees."
+
+# @ stc_textdomain
+#: classes/class-settings.php:413
+msgid "Delete all subscribers on deactivation"
+msgstr "Verwijder alle abonnees bij deactivatie"
+
+# @ stc_textdomain
+#: classes/class-subscribe.php:105
+#, php-format
+msgid "This post update will be re-sent to subscribers %s"
+msgstr "De update van het bericht zal opnieuw verstuurd worden naar %s abonnees"
+
+# @ stc_textdomain
+#: classes/class-settings.php:215
+msgid "Resend post on update"
+msgstr "Verstuur het bericht opnieuw bij wijzigingen."
+
+# @ stc_textdomain
+#: classes/class-settings.php:222
+msgid "Resend:"
+msgstr "Verstuur opnieuw"
+
+# @ stc_textdomain
+#: classes/class-settings.php:376
+msgid "Enable resend post option"
+msgstr "Activeer "
+
+# @ stc_textdomain
+#: classes/class-settings.php:377
+msgid "Gives an option on edit post (in the publish panel) to resend a post on update."
+msgstr "Geeft de mogelijkheid om een gewijzigd bericht ( via het admin panel) opnieuw te versturen."
+
+# @ stc_textdomain
+#: classes/class-subscribe.php:103
+msgid "Resend post to subscribers"
+msgstr "Stuur bericht opnieuw naar abonnees"
+
+# @ stc_textdomain
+#: classes/class-subscribe.php:936
+msgid "Update | "
+msgstr "Update | "

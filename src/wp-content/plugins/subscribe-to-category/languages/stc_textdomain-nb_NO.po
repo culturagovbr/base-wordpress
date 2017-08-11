@@ -1,0 +1,309 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Subscribe to Category v1.2.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: Sun Jun 05 2016 14:14:55 GMT+0200 (Romance Daylight Time)\n"
+"Last-Translator: adminccsuser <daniel.soderstrom@cybercom.com>\n"
+"Language-Team: Norwegian (Norway)\n"
+"Language: no-NO\n"
+"Plural-Forms: nplurals=2; plural=n != 1\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Loco-Source-Locale: en_NO\n"
+"X-Generator: Loco - https://localise.biz/\n"
+"X-Poedit-Language: Norwegian\n"
+"X-Poedit-Country: NORWAY\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
+"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: \n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes\n"
+"X-Loco-Parser: loco_parse_po"
+
+#: classes/class-subscribe.php:217
+msgid "We are sorry but something went wrong with your unsubscription."
+msgstr "Beklager noe gikk galt med avmeldingen"
+
+#: classes/class-subscribe.php:992
+msgid "Click here to read full story"
+msgstr "Klikk her for å lese hele artikkelen"
+
+#: classes/class-subscribe.php:781 classes/class-subscribe.php:993
+msgid "Unsubscribe me"
+msgstr "Meld meg av listen"
+
+#: classes/class-subscribe.php:188
+msgid "Thanks for your subscription!"
+msgstr "Takk for din påmelding"
+
+#: classes/class-subscribe.php:189
+msgid ""
+"If you want to unsubscribe there is a link for unsubscription attached in "
+"the email."
+msgstr "Hvis du vil avmelde deg er det en link i e-post som er sendt."
+
+#: classes/class-subscribe.php:225
+#, php-format
+msgid "We have successfully removed your email %s from our database."
+msgstr "Vi har slettet din e-post adresse fra vår liste."
+
+#: classes/class-subscribe.php:309 classes/class-subscribe.php:335
+#, php-format
+msgid "Unsubscribe from %s"
+msgstr "Meld meg av %s"
+
+#: classes/class-subscribe.php:336
+msgid "Follow this link to confirm your unsubscription"
+msgstr "Følg denne linken for å fullføre din avmelding"
+
+#: classes/class-subscribe.php:360 classes/class-subscribe.php:393 
+#: classes/class-subscribe.php:529
+msgid "You need to enter a valid email address"
+msgstr "Du må oppgi en gyldig e-post adresse"
+
+#: classes/class-subscribe.php:377
+msgid ""
+"We have received your request to unsubscribe from our newsfeed. Please check "
+"your email and confirm your unsubscription."
+msgstr ""
+"Vi har mottatt din avmelding fra vårt nyhetsbrev. Vær vennlig å bekreft "
+"avmeldingen i e-posten."
+
+#: classes/class-subscribe.php:405
+msgid "You need to select some categories"
+msgstr "Du må velge en eller flere kategorier"
+
+#: classes/class-subscribe.php:774
+msgid "E-mail Address: "
+msgstr "Din e-post:"
+
+#: classes/class-subscribe.php:786
+msgid "Categories"
+msgstr "Kategorier"
+
+#: classes/class-subscribe.php:811
+msgid "Subscribe me"
+msgstr "Meld meg på"
+
+#: classes/class-subscribe.php:812
+msgid "Unsubscribe"
+msgstr "Meld meg av"
+
+#: classes/class-settings.php:79
+msgid "Subscribe to Category"
+msgstr "Abonner på kategori"
+
+#: classes/class-settings.php:80 classes/class-subscribe.php:1069
+msgid "Subscribe"
+msgstr "Abonner"
+
+#: classes/class-settings.php:103
+msgid "Settings for subscribe to category"
+msgstr "Innstillinger for Følg kategori"
+
+#: classes/class-settings.php:190
+msgid "E-mail settings"
+msgstr "E-post innstillinger"
+
+#: classes/class-settings.php:197
+msgid "E-mail from: "
+msgstr "E-post fra:"
+
+#: classes/class-settings.php:332
+msgid "Add your E-mail settings"
+msgstr "Legg til e-post innstillinger"
+
+#: classes/class-subscribe.php:369
+msgid "Email address not found in database"
+msgstr "E-post adressen finns ikke i vår database"
+
+#: classes/class-subscribe.php:791
+msgid "All categories"
+msgstr "Alle kategorier"
+
+#: classes/class-subscribe.php:1070 classes/class-subscribe.php:1071
+msgid "Add new subscriber"
+msgstr "Legg til et nytt abonnement"
+
+#: classes/class-subscribe.php:1072
+msgid "Edit subscriber"
+msgstr "Endre abonnement"
+
+#: classes/class-subscribe.php:1073
+msgid "New subscriber"
+msgstr "Nytt abonnement"
+
+#: classes/class-subscribe.php:1074
+msgid "Show subscriber"
+msgstr "Vis abonnenter"
+
+#: classes/class-subscribe.php:1075
+msgid "Search subscribers"
+msgstr "Søk i abonnenter"
+
+#: classes/class-subscribe.php:1076
+msgid "Not found"
+msgstr "Finnes ikke"
+
+#: classes/class-subscribe.php:1077
+msgid "Nothing found in trash"
+msgstr "Papirkurven er tom"
+
+#: classes/class-subscribe.php:1068 classes/class-subscribe.php:1078
+msgid "Subscribers"
+msgstr "Abonnenter"
+
+#: classes/class-settings.php:232
+msgid "Stylesheet (CSS) settings"
+msgstr "Innstillinger for CSS"
+
+#: classes/class-settings.php:239
+msgid "Custom CSS: "
+msgstr "STC stylesheet:"
+
+#: classes/class-settings.php:301
+msgid "You have entered an invalid email."
+msgstr "Du har angitt en feil e-post adresse."
+
+#: classes/class-settings.php:345
+#, php-format
+msgid ""
+"Enter the e-mail address for the sender, if empty the admin e-mail address "
+"%s is going to be used as sender."
+msgstr ""
+"Angi den e-post adressen som skal være avsender, som standard brukes "
+"administrators e-post %s."
+
+#: classes/class-settings.php:394
+msgid "Exclude custom CSS"
+msgstr "Ekskluder STC CSS"
+
+#: classes/class-settings.php:395
+msgid ""
+"Check this option if your theme supports Bootstrap framework or if you want "
+"to place your own CSS for Subscribe to Category in your theme."
+msgstr ""
+"Bruk dette alternativet hvis du benytter Bootstrap rammeverk eller om du vil "
+"benytte egen CSS for Subscribe to Category i ditt tema."
+
+#: classes/class-subscribe.php:159
+msgid "Take me to start page"
+msgstr "Til forsiden"
+
+#: classes/class-subscribe.php:536
+msgid "E-mail address already exists"
+msgstr "E-post adressen er allerede registrert"
+
+#: classes/class-subscribe.php:540
+msgid "No categories are selected"
+msgstr "Ingen kategorier er valgt"
+
+#: classes/class-subscribe.php:582
+msgid " - this post is set to draft"
+msgstr "- innleggets status er endret til utkast"
+
+#: classes/class-settings.php:426
+msgid "Export to excel"
+msgstr "Eksporter til Excel"
+
+#: classes/class-settings.php:431
+msgid "Filter by categories"
+msgstr "Velg og filtrer på kategorier"
+
+#: classes/class-settings.php:438
+msgid "There are no categories to list yet"
+msgstr "Det finnes ingen kategorier innlagt"
+
+#: classes/class-settings.php:509
+msgid "Filtered by: "
+msgstr "Filtrering på:"
+
+#: classes/class-settings.php:205
+msgid "Email subject: "
+msgstr "E-post tittel:"
+
+#: classes/class-settings.php:358
+msgid ""
+"Enter e-mail subject for the e-mail notification, leave empty if you wish to "
+"use post title as email subject."
+msgstr ""
+"Som standard brukes artikkelens tittel som tittel på e-post utsendelsen. "
+"Angi egen tittel hvis du ønsker å forandre standard tittel."
+
+#: classes/class-settings.php:55
+msgid "Scheduled event successfully executed"
+msgstr "Tidsinnstilt event er utført"
+
+#: classes/class-settings.php:109
+msgid "Schedule: "
+msgstr "Tidsinnstillinger:"
+
+#: classes/class-settings.php:109
+msgid "E-mail is scheduled to be sent once every hour."
+msgstr "E-posten er tidsinnstilt og sendes hver time."
+
+#: classes/class-settings.php:111
+msgid "Click here to run this action right now"
+msgstr "Klikk her for å sende e-post nå"
+
+#: classes/class-settings.php:114
+#, php-format
+msgid "Next run is going to be <strong>%s</strong> and will include %s posts."
+msgstr "Neste utsendelse er <strong>%s</strong> og inkluderer %s innlegg."
+
+#: classes/class-settings.php:249
+msgid "On plugin deactivation"
+msgstr "Ved aktivering av denne plugin"
+
+#: classes/class-settings.php:256
+msgid "Subscribers: "
+msgstr "Abonnenter:"
+
+#: classes/class-settings.php:280
+msgid ""
+"The plugin will remove all data in database created by this plugin but there "
+"is an option regarding subscribers"
+msgstr ""
+"Alle innstillinger utenom abonnenter vil bli slettet ved aktivering av denne "
+"plugin. For å slette abonnenter er det et eget valg."
+
+#: classes/class-settings.php:413
+msgid "Delete all subscribers on deactivation"
+msgstr "Slett alle abonnenter ved aktivering av plugin"
+
+#: classes/class-subscribe.php:105
+#, php-format
+msgid "This post update will be re-sent to subscribers %s"
+msgstr "Innelgget vil bli sendt til abonnenter %s"
+
+#: classes/class-settings.php:215
+msgid "Resend post on update"
+msgstr "Send e-post pånytt når innelgget oppdateres"
+
+#: classes/class-settings.php:222
+msgid "Resend:"
+msgstr "Send på nytt:"
+
+#: classes/class-settings.php:376
+msgid "Enable resend post option"
+msgstr "Aktivere send innlegg pånytt"
+
+#: classes/class-settings.php:377
+msgid ""
+"Gives an option on edit post (in the publish panel) to resend a post on "
+"update."
+msgstr ""
+"Legg til et valg i \\\"Publiser\\\" for å sende pånytt når oppdaterer "
+"innlegg."
+
+#: classes/class-subscribe.php:103
+msgid "Resend post to subscribers"
+msgstr "Send innlegg til abonnementer"
+
+#: classes/class-subscribe.php:936
+msgid "Update | "
+msgstr "Oppdater | "

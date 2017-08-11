@@ -1,0 +1,344 @@
+# Copyright (C) 2016 Subscribe to Category
+# This file is distributed under the same license as the Subscribe to Category package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Subscribe to Category 1.7.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/subscribe-to-"
+"category\n"
+"POT-Creation-Date: 2016-01-13 20:36:15+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2017-08-10 10:59-0300\n"
+"Language-Team: \n"
+"X-Generator: Poedit 2.0.3\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: pt_BR\n"
+
+#: classes/class-settings.php:55
+msgid "Scheduled event successfully executed"
+msgstr "Evento agendado executado com sucesso"
+
+#. Plugin Name of the plugin/theme
+#: classes/class-settings.php:79 classes/class-stc-widget.php:11
+msgid "Subscribe to Category"
+msgstr "Assinar categoria"
+
+#: classes/class-settings.php:80 classes/class-stc-widget.php:47
+#: classes/class-subscribe.php:1190
+msgid "Subscribe"
+msgstr "Inscrições"
+
+#: classes/class-settings.php:103
+msgid "Settings for subscribe to category"
+msgstr "Configurações para subscribe to category"
+
+#: classes/class-settings.php:109
+msgid "Schedule: "
+msgstr "Agendamento: "
+
+#: classes/class-settings.php:109
+msgid "E-mail is scheduled to be sent once every hour."
+msgstr "E-mail agendado para envio a cada uma hora."
+
+#: classes/class-settings.php:111
+msgid "Click here to run this action right now"
+msgstr "Clique aqui para executar essa ação agora"
+
+#: classes/class-settings.php:114
+msgid "Next run is going to be <strong>%s</strong> and will include %s posts."
+msgstr "A próxima execução será em <strong>%s</strong> e inclui %s postagens."
+
+#: classes/class-settings.php:190
+msgid "E-mail settings"
+msgstr "Configurações de e-mail"
+
+#: classes/class-settings.php:197
+msgid "E-mail from: "
+msgstr "E-mail remetente: "
+
+#: classes/class-settings.php:205
+msgid "Email subject: "
+msgstr "Assunto: "
+
+#: classes/class-settings.php:215
+msgid "Resend post on update"
+msgstr "Reenviar post ao atualizar"
+
+#: classes/class-settings.php:222
+msgid "Resend:"
+msgstr "Reenviar:"
+
+#: classes/class-settings.php:232
+msgid "Stylesheet (CSS) settings"
+msgstr "Configurações de estilo (CSS)"
+
+#: classes/class-settings.php:239
+msgid "Custom CSS: "
+msgstr "CSS personalizado: "
+
+#: classes/class-settings.php:249
+msgid "On plugin deactivation"
+msgstr "Ao desativar plugin"
+
+#: classes/class-settings.php:256
+msgid "Subscribers: "
+msgstr "Assinantes: "
+
+#: classes/class-settings.php:280
+msgid ""
+"The plugin will remove all data in database created by this plugin but there "
+"is an option regarding subscribers"
+msgstr ""
+"O plugin irá remover todos os dados armazenados no banco de dados criados "
+"por este plugin, mas há uma opção em relação aos assinantes"
+
+#: classes/class-settings.php:301
+msgid "You have entered an invalid email."
+msgstr "O email que você inseriu é inválido."
+
+#: classes/class-settings.php:332
+msgid "Add your E-mail settings"
+msgstr "Adicione suas configurações de e-mail"
+
+#: classes/class-settings.php:345
+msgid ""
+"Enter the e-mail address for the sender, if empty the admin e-mail address "
+"%s is going to be used as sender."
+msgstr ""
+"Insira o endereço de e-mail para o remetente, se vazio, o email de "
+"administrador %s será usado como remetente."
+
+#: classes/class-settings.php:358
+msgid ""
+"Enter e-mail subject for the e-mail notification, leave empty if you wish to "
+"use post title as email subject."
+msgstr ""
+"Digite o assunto do e-mail para a notificação por e-mail, deixe vazio se "
+"desejar usar o título da postagem como assunto do e-mail."
+
+#: classes/class-settings.php:376
+msgid "Enable resend post option"
+msgstr "Habilitar a opção de reenvio de postagem"
+
+#: classes/class-settings.php:377
+msgid ""
+"Gives an option on edit post (in the publish panel) to resend a post on "
+"update."
+msgstr ""
+"Oferece uma opção na publicação/edição (no painel de publicação das "
+"postagens) para reenviar uma postagem na atualização."
+
+#: classes/class-settings.php:394
+msgid "Exclude custom CSS"
+msgstr "Excluir CSS personalizado"
+
+#: classes/class-settings.php:395
+msgid ""
+"Check this option if your theme supports Bootstrap framework or if you want "
+"to place your own CSS for Subscribe to Category in your theme."
+msgstr ""
+"Marque esta opção se o seu tema suportar a estrutura do Bootstrap ou se "
+"desejar colocar seu próprio CSS no seu tema."
+
+#: classes/class-settings.php:413
+msgid "Delete all subscribers on deactivation"
+msgstr "Deletar todas as inscrições ao desativar"
+
+#: classes/class-settings.php:426
+msgid "Export to excel"
+msgstr "Exportar para Excel"
+
+#: classes/class-settings.php:431
+msgid "Filter by categories"
+msgstr "Filtrar por categoria"
+
+#: classes/class-settings.php:438
+msgid "There are no categories to list yet"
+msgstr "Não existem categorias para listar"
+
+#: classes/class-settings.php:509
+msgid "Filtered by: "
+msgstr "Filtrado por: "
+
+#: classes/class-stc-widget.php:12
+msgid "Adding the subscribe form to a widget area."
+msgstr "Formulário de inscrição na área de widgets."
+
+#: classes/class-stc-widget.php:56
+msgid "Title:"
+msgstr "Título:"
+
+#: classes/class-stc-widget.php:59
+msgid ""
+"As default all categories are available for subscription. You should only "
+"use the checkboxes below if you want to include or exclude some categories "
+"for subscription."
+msgstr ""
+"Por padrão, todas as categorias estão disponíveis para inscrição. Você só "
+"deve usar as opções abaixo se desejar incluir ou excluir categorias para "
+"inscrição."
+
+#: classes/class-stc-widget.php:63
+msgid "Selectable categories for subscription: "
+msgstr "Categorias selecionáveis para inscrição: "
+
+#: classes/class-stc-widget.php:77
+msgid "Excluded selectable categories for subscription:"
+msgstr "Exclui categorias selecionáveis para inscrição:"
+
+#: classes/class-subscribe.php:102
+msgid "Resend post to subscribers"
+msgstr "Reenviar postagem para os inscritos"
+
+#: classes/class-subscribe.php:104
+msgid "This post update will be re-sent to subscribers %s"
+msgstr "Esta postagem será reenviada para on inscritos em %s"
+
+#: classes/class-subscribe.php:158
+msgid "Take me to start page"
+msgstr "Leve-em para a página inicial"
+
+#: classes/class-subscribe.php:187
+msgid "Thanks for your subscription!"
+msgstr "Obrigado pela sua inscrição!"
+
+#: classes/class-subscribe.php:188
+msgid ""
+"If you want to unsubscribe there is a link for unsubscription attached in "
+"the email."
+msgstr ""
+"Se você deseja cancelar sua inscrição, há um link para cancelamento no e-"
+"mail."
+
+#: classes/class-subscribe.php:216
+msgid "We are sorry but something went wrong with your unsubscription."
+msgstr "Sintimos muito, mas parece que algo deu errado com sua inscrição."
+
+#: classes/class-subscribe.php:226
+msgid "We have successfully removed your email %s from our database."
+msgstr "Seu email %s foi removdio com sucesso do nosso banco de dados."
+
+#: classes/class-subscribe.php:312 classes/class-subscribe.php:338
+msgid "Unsubscribe from %s"
+msgstr "Cancelar inscrição de %s"
+
+#: classes/class-subscribe.php:339
+msgid "Follow this link to confirm your unsubscription"
+msgstr "Siga esse link para confirmar seu cancelamento"
+
+#: classes/class-subscribe.php:363 classes/class-subscribe.php:396
+#: classes/class-subscribe.php:544
+msgid "You need to enter a valid email address"
+msgstr "Você precisa inserir um endereço de email válido"
+
+#: classes/class-subscribe.php:372
+msgid "Email address not found in database"
+msgstr "Endereço de email não encontrado no nosso banco de dados"
+
+#: classes/class-subscribe.php:380
+msgid ""
+"We have received your request to unsubscribe from our newsfeed. Please check "
+"your email and confirm your unsubscription."
+msgstr ""
+"Recebemos o seu pedido para cancelar a sua inscrição do nosso newsletter. "
+"Verifique seu e-mail e confirme o cancelamento de sua inscrição."
+
+#: classes/class-subscribe.php:408
+msgid "You need to select some categories"
+msgstr "Você precisa selecionar alguma categoria"
+
+#: classes/class-subscribe.php:551
+msgid "E-mail address already exists"
+msgstr "Endereço de email em uso"
+
+#: classes/class-subscribe.php:555
+msgid "No categories are selected"
+msgstr "Nenhuma categoria selecionada"
+
+#: classes/class-subscribe.php:597
+msgid " - this post is set to draft"
+msgstr " - essa postagem é um rascunho"
+
+#: classes/class-subscribe.php:861
+msgid "E-mail Address: "
+msgstr "Endereço de email: "
+
+#: classes/class-subscribe.php:868 classes/class-subscribe.php:1094
+msgid "Unsubscribe me"
+msgstr "Cancelar minha inscrição"
+
+#: classes/class-subscribe.php:875
+msgid "Categories"
+msgstr "Categoria"
+
+#: classes/class-subscribe.php:880
+msgid "All categories"
+msgstr "Todas as categorias"
+
+#: classes/class-subscribe.php:905
+msgid "Subscribe me"
+msgstr "Inscreva-me"
+
+#: classes/class-subscribe.php:906
+msgid "Unsubscribe"
+msgstr "Cancelar inscrição"
+
+#: classes/class-subscribe.php:1030
+msgid "Update | "
+msgstr "Atualizar | "
+
+#: classes/class-subscribe.php:1093
+msgid "Click here to read full story"
+msgstr "Clique aqui para visualizar"
+
+#: classes/class-subscribe.php:1189 classes/class-subscribe.php:1199
+msgid "Subscribers"
+msgstr "Inscrições"
+
+#: classes/class-subscribe.php:1191 classes/class-subscribe.php:1192
+msgid "Add new subscriber"
+msgstr "Adicionar inscrição"
+
+#: classes/class-subscribe.php:1193
+msgid "Edit subscriber"
+msgstr "Editar inscrição"
+
+#: classes/class-subscribe.php:1194
+msgid "New subscriber"
+msgstr "Nova inscrição"
+
+#: classes/class-subscribe.php:1195
+msgid "Show subscriber"
+msgstr "Mostrar inscritos"
+
+#: classes/class-subscribe.php:1196
+msgid "Search subscribers"
+msgstr "Pesquisar por inscritos"
+
+#: classes/class-subscribe.php:1197
+msgid "Not found"
+msgstr "Nada encontrado"
+
+#: classes/class-subscribe.php:1198
+msgid "Nothing found in trash"
+msgstr "Nada encontrado na lixeira"
+
+#. Plugin URI of the plugin/theme
+msgid "http://dcweb.nu"
+msgstr "http://dcweb.nu"
+
+#. Description of the plugin/theme
+msgid "Lets your visitor subscribe to posts for one or several categories."
+msgstr ""
+"Permite aos seus usuários se inscrever para receber atualizações sobre "
+"postagens em diferentes categorias."
+
+#. Author of the plugin/theme
+msgid "Daniel Söderström"
+msgstr "Daniel Söderström"
+
+#. Author URI of the plugin/theme
+msgid "http://dcweb.nu/"
+msgstr "http://dcweb.nu/"

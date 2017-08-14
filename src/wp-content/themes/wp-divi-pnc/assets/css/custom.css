@@ -3096,7 +3096,7 @@ div#modal-siga.modal .et_pb_sidebar_1 {
     background: #ffffff;
     border: 5px #000000;
     padding: 0;
-    border-radius: 8px;
+    border-radius: 8px.;
     overflow: hidden;
     box-shadow: 0px 8px 7px rgba(0, 0, 0, 0.2);
 }
@@ -3176,4 +3176,11 @@ div#modal-siga.modal {
 div#modal-siga.modal-oppen {
     display: block;
     opacity: 1 ;
+}
+
+div#modal-siga.modal-oppen label[for="stc-email"] {
+    display: none !important;
+}
+div#modal-siga.modal-oppen .checkbox:nth-child(2) {
+    display: none;
 }

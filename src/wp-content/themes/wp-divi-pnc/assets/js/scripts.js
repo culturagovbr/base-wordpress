@@ -196,10 +196,13 @@ navegacaoMetas(jQuery("#menu-metas"));
 */
 
 function openModal(botao,url,) {
+  
+  jQuery("#stc_widget-2").parent().addClass("modal")
   var botao = botao
   var url = url
-  var fechar = jQuery("div#stc_widget-2 .et_pb_widget")
+  var fechar = jQuery("div.modal .et_pb_widget");
   fechar.append('<button title="Close (Esc)" type="button" class="mfp-close">×</button>');
+
   botao.click(function(e){
     url.toggleClass("modal-oppen");
     e.preventDefault();
@@ -207,10 +210,10 @@ function openModal(botao,url,) {
   jQuery("button.mfp-close").click(function(e){
     url.toggleClass("modal-oppen");
   });
-  jQuery("div#stc_widget-2 input#stc-email").attr("placeholder","Digite seu email");
+  jQuery("div.modal input#stc-email").attr("placeholder","Digite seu email");
 };
 
 
 
-openModal(jQuery("#top-menu-nav a.et_pb_button"),jQuery("div#stc_widget-2"))
+openModal(jQuery("#top-menu-nav a.et_pb_button"),jQuery("div#stc_widget-2"));
 

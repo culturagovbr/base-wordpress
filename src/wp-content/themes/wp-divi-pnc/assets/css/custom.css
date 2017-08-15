@@ -3097,7 +3097,7 @@ color:#00445d;
 }
 
 /*Modal - Início*/
-div#stc_widget-2 {
+div.modal {
     position: fixed;
     top: 0;
     width: 100%;
@@ -3112,7 +3112,7 @@ div#stc_widget-2 {
     transition: all 0.2s ease-in-out 0s;
 }
 
-div#stc_widget-2 .et_pb_sidebar_1 {
+div.modal .et_pb_sidebar_1 {
     margin: 0 auto;
     width: 503px;
     max-width: 90%;
@@ -3123,11 +3123,11 @@ div#stc_widget-2 .et_pb_sidebar_1 {
     overflow: hidden;
     box-shadow: 0px 8px 7px rgba(0, 0, 0, 0.2);
 }
-div#stc_widget-2 .et_pb_sidebar_1 div.widget_stc_widget {
+div.modal .et_pb_sidebar_1 div.widget_stc_widget {
     width: 100%;
     position: relative;
 }
-div#stc_widget-2 .et_pb_sidebar_1 div.widget_stc_widget label {
+div.modal .et_pb_sidebar_1 div.widget_stc_widget label {
     display: block;
     font-size: 17px;
     line-height: 27px;
@@ -3135,7 +3135,7 @@ div#stc_widget-2 .et_pb_sidebar_1 div.widget_stc_widget label {
 button.mfp-close {
     color: #f52a6e;
 }
-div#stc_widget-2 input#stc-email {
+div.modal input#stc-email {
     padding: 10px;
     font-size: 25px;
     width: 85%;
@@ -3145,12 +3145,12 @@ div#stc_widget-2 input#stc-email {
     color: #6e7780;
     margin-bottom: 27px;
 }
-div#stc_widget-2 .stc-categories {
+div.modal .stc-categories {
     text-align: left;
     margin: 0 auto;
     width: 85%;
 }
-div#stc_widget-2 button#stc-subscribe-btn {
+div.modal button#stc-subscribe-btn {
     font-size: 18px;
     width: 85%;
     padding: 0 20px 0 58px;
@@ -3163,7 +3163,7 @@ div#stc_widget-2 button#stc-subscribe-btn {
     margin-top: 20px;
     border-radius: 4px;
 }
-div#stc_widget-2 button#stc-subscribe-btn:hover {
+div.modal button#stc-subscribe-btn:hover {
     font-size: 18px;
     width: 85%;
     padding: 0 20px 0 58px;
@@ -3177,7 +3177,7 @@ div#stc_widget-2 button#stc-subscribe-btn:hover {
     border-radius: 4px;
 }
 
-div#stc_widget-2 h4.widgettitle {
+div.modal h4.widgettitle {
     color: #4275ad;
     background: #eeeff1;
     border-top: 6px solid;
@@ -3191,24 +3191,24 @@ div#stc_widget-2 h4.widgettitle {
     background: transparent;
 
 }
-div#stc_widget-2 {
+div.modal {
     display: none;
     transition: all 0.2s ease-in-out 0s;
     opacity: 0 ;
 }
-div#stc_widget-2.modal-oppen {
+div.modal-oppen {
     display: block;
     opacity: 1 ;
 }
 
-div#stc_widget-2.modal-oppen label[for="stc-email"] {
+div.modal-oppen label[for="stc-email"] {
     display: none !important;
 }
-div#stc_widget-2.modal-oppen .checkbox:nth-child(2) {
+div.modal-oppen .checkbox:nth-child(2) {
     display: none;
 }
 @media (max-width: 500px) {
-  div#stc_widget-2.modal-oppen h4.widgettitle {
+  div.modal-oppen h4.widgettitle {
       font-size: 27px !important;
   }
 }

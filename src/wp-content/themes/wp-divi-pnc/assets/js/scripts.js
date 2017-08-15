@@ -202,7 +202,7 @@ function openModal(botao,url,) {
   var url = url.parent();
   var fechar = jQuery("div.modal .et_pb_widget");
   fechar.append('<button title="Close (Esc)" type="button" class="mfp-close">×</button>');
-
+  jQuery("div.modal input[name=stc-unsubscribe]").parent().hide()
   botao.click(function(e){
     url.toggleClass("modal-oppen");
     e.preventDefault();

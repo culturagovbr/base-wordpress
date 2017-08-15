@@ -3120,7 +3120,7 @@ color:#00445d;
     border: 5px #000000;
     padding: 0;
     float: none !important;
-    position: initial;
+    position: relative;
     padding-bottom: 43px;
     left: 10px;
     border-radius: 8px !important;
@@ -3209,9 +3209,7 @@ button.mfp-close {
 #footer-widgets .footer-widget.last.modal-oppen label[for="stc-email"] {
     display: none !important;
 }
-#footer-widgets .footer-widget.last.modal-oppen .checkbox:nth-child(2) {
-    display: none;
-}
+
 @media (max-width: 500px) {
   #footer-widgets .footer-widget.last.modal-oppen h4.widgettitle {
       font-size: 27px !important;

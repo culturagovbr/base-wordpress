@@ -3182,7 +3182,7 @@ button.mfp-close {
     border-radius: 4px;
 }
 
-#footer-widgets .footer-widget.last.modal h4.widgettitle {
+#footer-widgets .footer-widget.last.modal h4.title {
     color: #4275ad;
     background: #eeeff1;
     border-top: 6px solid;

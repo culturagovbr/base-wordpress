@@ -171,7 +171,7 @@ function process_main_oscar_form( $post_id ) {
 
     $inscricao = array(
         'ID'           => $post_id,
-        'post_title'   => 'Inscrição #' . $post_id
+        'post_title'   => 'Inscrição Mapas Culturais'
     );
     wp_update_post( $inscricao );
     
@@ -189,9 +189,9 @@ function process_main_oscar_form( $post_id ) {
         error_log("O envio de email para: " . $to . ', Falhou!', 0);
     }
 
-    $name = 'Nova inscrição realizada';
+    $name = 'Nova inscrição realizada em Mapas Culturais';
     $to = $mapasculturais_options['mapasculturais_monitoring_emails'];
-    $subject = 'Nova inscrição (' . $post->post_title . ')';
+    $subject = 'Nova inscrição realizada em Mapas Culturais';
     $body = 'Uma nova inscrição ao Mapas Culturais acaba de ser concluída. Para visualiza-la, clique <a href="'. admin_url( 'post.php?post='. $post_id .'&action=edit' ) .'">aqui</a>.';
     
     if( !wp_mail($to, $subject, $body ) ){

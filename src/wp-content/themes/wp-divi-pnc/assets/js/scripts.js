@@ -197,9 +197,9 @@ navegacaoMetas(jQuery("#menu-metas"));
 
 function openModal(botao,url,) {
   
-  jQuery("#stc_widget-2").parent().addClass("modal")
-  var botao = botao
-  var url = url
+  jQuery("#stc_widget-2").parent().addClass("modal");
+  var botao = botao;
+  var url = url.parent();
   var fechar = jQuery("div.modal .et_pb_widget");
   fechar.append('<button title="Close (Esc)" type="button" class="mfp-close">×</button>');
 

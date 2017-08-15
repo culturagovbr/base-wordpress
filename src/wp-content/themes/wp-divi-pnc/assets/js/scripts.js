@@ -207,6 +207,7 @@ function openModal(botao,url,) {
   jQuery("button.mfp-close").click(function(e){
     url.toggleClass("modal-oppen");
   });
+  jQuery("div#modal-siga.modal input#stc-email").attr("placeholder","Digite seu email");
 };
 
 

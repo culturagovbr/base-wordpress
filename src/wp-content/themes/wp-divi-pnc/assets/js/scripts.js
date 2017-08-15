@@ -188,4 +188,32 @@ function navegacaoMetas() {
 
 navegacaoMetas(jQuery("#menu-metas"));
 
+/**
+ * jQuery Modal
+ * Copyright (c) 2017 Moisés Rabelo 
+ * Modal Newsletter
+ *
+*/
+
+function openModal(botao,url,) {
+  
+  jQuery("#stc_widget-2").parent().addClass("modal");
+  var botao = botao;
+  var url = url.parent();
+  var fechar = jQuery("div.modal .et_pb_widget");
+  fechar.append('<button title="Close (Esc)" type="button" class="mfp-close">×</button>');
+  jQuery("div.modal input[name=stc-unsubscribe]").parent().hide()
+  botao.click(function(e){
+    url.toggleClass("modal-oppen");
+    e.preventDefault();
+  });
+  jQuery("button.mfp-close").click(function(e){
+    url.toggleClass("modal-oppen");
+  });
+  jQuery("div.modal input#stc-email").attr("placeholder","Digite seu email");
+};
+
+
+
+openModal(jQuery("#top-menu-nav a.et_pb_button"),jQuery("div#stc_widget-2"));
 

@@ -195,7 +195,7 @@ navegacaoMetas(jQuery("#menu-metas"));
  *
 */
 
-function openModal(botao,url,) {
+function openModal(botao,url) {
   
   jQuery("#stc_widget-2").parent().addClass("modal");
   var botao = botao;

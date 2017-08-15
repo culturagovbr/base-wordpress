@@ -72,6 +72,40 @@ function inscricao_cpt() {
     ));
 }
 
+add_filter('manage_inscricao_posts_columns' , 'add_inscricao_columns');
+function add_inscricao_columns($columns) {
+    unset($columns['author']);
+    return array_merge($columns, 
+        array(
+            'responsible' => __('Nome'),
+            'estado_ou_municipio' => __( 'Estado ou UF/Município')
+        )
+    );
+}
+
+add_action( 'manage_posts_custom_column' , 'custom_columns', 10, 2 );
+function custom_columns( $column, $post_id ) {
+    $post_author_id = get_post_field( 'post_author', $post_id );
+    $post_author = get_user_by('id', $post_author_id);
+
+    switch ( $column ) {
+        case 'responsible':
+        echo get_field( 'nome', $post_id );
+        break;
+
+        case 'estado_ou_municipio':
+        echo get_field( 'estado_ou_municipio', $post_id );
+        break;
+    }
+}
+
+add_filter( 'manage_edit-inscricao_sortable_columns', 'custom_sortable_column' );
+function custom_sortable_column( $columns ) {
+    $columns['responsible'] = 'responsible';
+    $columns['estado_ou_municipio'] = 'estado_ou_municipio';
+    return $columns;
+}
+
 /**
  * Includes - options page for subscriptions
  */
@@ -165,4 +199,12 @@ function process_main_oscar_form( $post_id ) {
     }
     // Return the new ID
     return $post_id;
+}
+
+add_action( 'admin_notices', 'theme_plugin_dependencies' );
+function theme_plugin_dependencies() {
+    // if( ! function_exists('plugin_function') )
+    if( !class_exists('acf') ){
+        echo '<div class="error"><p><b>Aviso:</b> Este tema necessita do plugin <a href="https://www.advancedcustomfields.com/" target="_blank">Advanced Custom Fields</a> para funcionar!</p></div>';
+    }
 }

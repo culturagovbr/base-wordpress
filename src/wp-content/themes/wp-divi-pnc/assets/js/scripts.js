@@ -207,7 +207,7 @@ function openModal(botao,url) {
     url.toggleClass("modal-oppen");
     e.preventDefault();
   });
-  jQuery("button.mfp-close , #footer-widgets .footer-widget.last.modal").click(function(e){
+  jQuery("button.mfp-close").click(function(e){
     url.toggleClass("modal-oppen");
   });
 

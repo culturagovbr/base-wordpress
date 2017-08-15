@@ -3196,19 +3196,19 @@ div#stc_widget-2 {
     transition: all 0.2s ease-in-out 0s;
     opacity: 0 ;
 }
-div#stc_widget-2-oppen {
+div#stc_widget-2.modal-oppen {
     display: block;
     opacity: 1 ;
 }
 
-div#stc_widget-2-oppen label[for="stc-email"] {
+div#stc_widget-2.modal-oppen label[for="stc-email"] {
     display: none !important;
 }
-div#stc_widget-2-oppen .checkbox:nth-child(2) {
+div#stc_widget-2.modal-oppen .checkbox:nth-child(2) {
     display: none;
 }
 @media (max-width: 500px) {
-  div#stc_widget-2-oppen h4.widgettitle {
+  div#stc_widget-2.modal-oppen h4.widgettitle {
       font-size: 27px !important;
   }
 }

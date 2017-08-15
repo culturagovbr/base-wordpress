@@ -3191,10 +3191,9 @@ button.mfp-close {
     margin-top: 0px;
     padding-left: 10px;
     width: 100%;
-    font-size: 39px;
+    font-size: 34px;
     display: block;
     background: transparent;
-
 }
 #footer-widgets .footer-widget.last.modal {
     display: none;

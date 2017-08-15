@@ -3112,7 +3112,7 @@ div.modal {
     transition: all 0.2s ease-in-out 0s;
 }
 
-div.modal .et_pb_sidebar_1 {
+div.modal .widget_stc_widget {
     margin: 0 auto;
     width: 503px;
     max-width: 90%;
@@ -3123,11 +3123,11 @@ div.modal .et_pb_sidebar_1 {
     overflow: hidden;
     box-shadow: 0px 8px 7px rgba(0, 0, 0, 0.2);
 }
-div.modal .et_pb_sidebar_1 div.widget_stc_widget {
+div.modal .widget_stc_widget div.widget_stc_widget {
     width: 100%;
     position: relative;
 }
-div.modal .et_pb_sidebar_1 div.widget_stc_widget label {
+div.modal .widget_stc_widget div.widget_stc_widget label {
     display: block;
     font-size: 17px;
     line-height: 27px;

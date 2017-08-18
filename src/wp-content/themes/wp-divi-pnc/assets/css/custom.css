@@ -2066,7 +2066,7 @@ div#banner-topo-cinza p {
     line-height: 26px;
 }
 div#banner-topo-cinza .et_pb_row {
-  padding: 5% 0;
+    padding: 6% 0px 0% 0px;
 }
 /*Sanfona botão*/
 .et_pb_toggle_title:before{

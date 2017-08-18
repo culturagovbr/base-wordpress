@@ -195,7 +195,7 @@ navegacaoMetas(jQuery("#menu-metas"));
  *
 */
 
-function openModal(botao,url,) {
+function openModal(botao,url) {
   
   jQuery("#stc_widget-2").parent().addClass("modal");
   var botao = botao;
@@ -210,6 +210,7 @@ function openModal(botao,url,) {
   jQuery("button.mfp-close").click(function(e){
     url.toggleClass("modal-oppen");
   });
+
   jQuery("div.modal input#stc-email").attr("placeholder","Digite seu email");
 };
 

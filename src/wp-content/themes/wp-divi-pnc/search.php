@@ -35,7 +35,7 @@
                             <ul class="pagination">
                                 <?php
                                 $search_str = '/?s=' . get_search_query();
-                                $search_str = ( !empty($_GET['cat']) ) ? $search_str . '&cat=' . $_GET['cat'] : '';
+                                $search_str = ( !empty($_GET['cat']) ) ? $search_str . '&cat=' . $_GET['cat'] : $search_str;
                                 if( $paged <= 1 ):?>
                                     <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
                                 <?php else: ?>

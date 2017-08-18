@@ -3362,6 +3362,12 @@ button.mfp-close {
     text-align: right;
 }
 /*Seta animada na home*/
+.arrow {
+    opacity: 0.1;
+}
+.banner-topo-cinza:hover  .arrow {
+    opacity: 1;
+}
 .arrow,
 .arrow:before {
   position: absolute;

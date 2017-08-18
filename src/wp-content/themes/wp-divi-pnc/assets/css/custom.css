@@ -3220,22 +3220,23 @@ button.mfp-close {
     color: #525252;
 }
 
-.search-heading{
-    background: #eeeff1;
+.search-heading {
+    background: #eaeaea;
     font-weight: normal;
     border-top: 2px #38759a solid;
     color: #38759a;
     padding: 10px 10px 0;
     margin-bottom: 30px;
     margin-top: 0;
+    box-shadow: 0px 2px 1px #ccc;
 }
 
-.search-heading input[type="text"]{
+.search-heading input[type="text"] {
     line-height: 28px;
     padding: 4px 35px 4px 10px;
     border-radius: 5px;
+    width: 225px;
 }
-
 .search-heading input[type="submit"] {
     background: url(../img/searching-magnifying-glass.png) left center no-repeat !important;
     height: 30px;
@@ -3248,12 +3249,12 @@ button.mfp-close {
     display: none;
 }
 
-.search-heading h1{
-    color: #38759a;
-    text-transform: uppercase;
+.search-heading h1 {
+    color: #00445d;
     font-weight: normal;
+    font-size: 26px;
+    font-weight: lighter;
 }
-
 .search-heading ul{
     margin: 10px 0 0 0;
     padding: 0;
@@ -3270,16 +3271,25 @@ button.mfp-close {
   border-bottom: 2px solid #f52269;
 }
 
-.searched-post{
-    margin-bottom: 30px;
+.searched-post {
+    margin-bottom: 23px;
+    border-bottom: 1px dotted #ccc;
+    padding-bottom: 23px;
 }
 
+.search-heading a {
+    color: #00445d;
+    text-decoration: none;
+}
 .searched-post h2{
     text-transform: uppercase;
     font-weight: 400;
     font-size: 18px;
 }
-
+.searched-post a:hover {
+    color: #f52269;
+    text-decoration: underline;
+}
 .pagination {
     margin: 18px 0;
     text-align: center;

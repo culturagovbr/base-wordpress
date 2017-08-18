@@ -265,7 +265,7 @@ function custom_breadcrumbs() {
         } else if ( is_search() ) {
            
             // Search results page
-            echo '<li class="item-current item-current-' . get_search_query() . '"><strong class="bread-current bread-current-' . get_search_query() . '" title="Search results for: ' . get_search_query() . '">Search results for: ' . get_search_query() . '</strong></li>';
+            echo '<li class="item-current item-current-' . get_search_query() . '"><strong class="bread-current bread-current-' . get_search_query() . '" title="Resultado da busca por: ' . get_search_query() . '">Resultado da busca por: ' . get_search_query() . '</strong></li>';
            
         } elseif ( is_404() ) {
                

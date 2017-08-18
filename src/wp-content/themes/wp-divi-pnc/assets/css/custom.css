@@ -3365,7 +3365,7 @@ button.mfp-close {
 .arrow {
     opacity: 0.1;
 }
-.banner-topo-cinza:hover  .arrow {
+#banner-topo-cinza:hover  .arrow {
     opacity: 1;
 }
 .arrow,

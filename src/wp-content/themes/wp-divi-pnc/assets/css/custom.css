@@ -2065,6 +2065,22 @@ div#banner-topo-cinza p {
     font-size: 21px;
     line-height: 26px;
 }
+div#banner-topo-cinza .et_pb_button {
+    position: relative;
+    padding: 0.1em 1em;
+    border: 2px solid;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background: transparent;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.7em !important;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    transition: all 0.2s;
+    margin-bottom: 20px;
+}
 div#banner-topo-cinza .et_pb_row {
     padding: 3.8% 0px 0% 0px;
 }
@@ -2152,6 +2168,9 @@ div#banner-topo-cinza .et-pb-controllers .et-pb-active-control{
 div#banner-topo-cinza .et-pb-controllers a {
     background-color: rgba(0, 68, 144, 0.55) !important;
 }
+div#banner-topo-cinza a.et_pb_more_button.et_pb_button {
+    float: right;
+}
 .et_pb_section_0.et_pb_section h1 {
     color: #00445d !important;
     font-weight: bold;
@@ -2172,6 +2191,9 @@ div#banner-topo-cinza .et_pb_widget_area.et_pb_widget_area_left.clearfix.et_pb_m
   margin-top: -26px;
   min-height: 275px;
   box-shadow: 0px 5px 6px #a2a2a2;
+}
+div#banner-topo-cinza .et_pb_column.et_pb_column_1_2.et_pb_column_0 {
+    margin-top: -41px;
 }
 div#banner-topo-cinza .et_pb_slide_description, .et_pb_slider_fullwidth_off .et_pb_slide_description {
     width: auto;

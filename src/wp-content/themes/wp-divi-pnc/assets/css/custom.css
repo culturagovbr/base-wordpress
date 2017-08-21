@@ -1599,7 +1599,13 @@ h4.widgettitle {
   width: 100%;
   display: block;
 }
-
+body:not(.home) .menu-metas-container #menu-metas .current-menu-item a {
+    background: #f52b6f;
+    color: #fff;
+}
+.category h4.widgettitle {
+    opacity: 0;
+}
 .et_pb_widget_area_left {
   padding-right: 0;
   border-right: 1px solid rgba(0, 0, 0, 0.1);
@@ -2109,7 +2115,7 @@ div#banner-topo-cinza .et_pb_row {
 color: #f93d69; 
 }
 
-.et_pb_widget_area.et_pb_widget_area_left.clearfix.et_pb_module.et_pb_bg_layout_light.et_pb_sidebar_0 {
+.home .et_pb_widget_area.et_pb_widget_area_left.clearfix.et_pb_module.et_pb_bg_layout_light.et_pb_sidebar_0 {
     background: #fff;
     border-radius: 4px;
     height: 316px;

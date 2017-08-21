@@ -2066,30 +2066,30 @@ div#banner-topo-cinza p {
     line-height: 26px;
 }
 div#banner-topo-cinza .et_pb_row {
-    padding: 6% 0px 0% 0px;
+    padding: 3.8% 0px 0% 0px;
 }
 /*Sanfona botão*/
 .et_pb_toggle_title:before{
 color: #f93d69; 
 }
 
-div#banner-topo-cinza .et_pb_widget_area.et_pb_widget_area_left.clearfix.et_pb_module.et_pb_bg_layout_light.et_pb_sidebar_0 {
-  background: #fff;
-  border-radius: 4px;
-  padding: 27px;
-  margin-top: -26px;
-  min-height: 275px;
-  box-shadow: 0px 5px 6px #a2a2a2;
+.et_pb_widget_area.et_pb_widget_area_left.clearfix.et_pb_module.et_pb_bg_layout_light.et_pb_sidebar_0 {
+    background: #fff;
+    border-radius: 4px;
+    height: 316px;
+    padding: 13.8px;
+    margin-top: -26px;
+    min-height: 275px;
+    box-shadow: 0px 5px 6px #a2a2a2;
 }
-
 div#banner-topo-cinza .et_pb_widget_area.et_pb_widget_area_left.clearfix.et_pb_module.et_pb_bg_layout_light.et_pb_sidebar_0 h4 {
-  color: #00445d;
-  font-weight: bold;
-  background: transparent;
-  border: 0;
-  margin: 0;
-  margin-bottom: 18px;
-  padding: 0;
+    color: #00445d;
+    font-weight: bold;
+    background: transparent;
+    border: 0;
+    margin: 0;
+    margin-bottom: 3px;
+    padding: 0;
 }
 
 div#banner-topo-cinza .widget_nav_menu {

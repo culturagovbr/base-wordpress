@@ -2087,11 +2087,14 @@ body:not(.home) .et_post_meta_wrapper img {
 /*Banner home*/
 
 .et_pb_section_0.et_pb_section h1 {
-    color: #00445d;
+    color: #00445d !important;
     font-weight: bold;
     font-size: 27px;
     margin-top: -25px;
-    margin-bottom: 16px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
 }
 div#banner-topo-cinza p {
     color: #00445d;

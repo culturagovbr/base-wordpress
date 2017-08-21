@@ -84,7 +84,12 @@ h4.title {
   font-weight: lighter;
   opacity: 0.8;
 }
-
+.category h4 {
+    font-size: 18px;
+    color: #00445d;
+    font-weight: bold;
+    text-transform: uppercase;
+}
 div#nav_menu-7,
 div#nav_menu-8 {
   margin-left: 100px;

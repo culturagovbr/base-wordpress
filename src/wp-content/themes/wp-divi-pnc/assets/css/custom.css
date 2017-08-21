@@ -2097,7 +2097,6 @@ body:not(.home) .et_post_meta_wrapper img {
     font-size: 27px;
     margin-top: -25px;
     text-align: left;
-    border-bottom: 1px solid #ccc;
     padding-bottom: 20px;
     margin-bottom: 20px;
 }
@@ -2213,19 +2212,22 @@ div#banner-topo-cinza .et-pb-controllers a {
 div#banner-topo-cinza a.et_pb_more_button.et_pb_button {
     float: right;
 }
-.et_pb_section_0.et_pb_section h1 {
+.category .et_pb_section_0.et_pb_section h1 {
     color: #00445d !important;
     font-weight: bold;
     font-size: 27px;
     margin-top: -25px;
     text-align: left;
     margin-bottom: 16px;
+    border-bottom: 1px solid #ccc;
 }
 div#banner-topo-cinza ul#menu-metas li a:hover {
   background: #eeeff1;
   color: #f52a6e;
 }
-
+.single-post #left-area .post-meta a {
+    color: #00445d;
+}
 div#banner-topo-cinza .et_pb_widget_area.et_pb_widget_area_left.clearfix.et_pb_module.et_pb_bg_layout_light.et_pb_sidebar_0 {
   background: #fff;
   border-radius: 4px;

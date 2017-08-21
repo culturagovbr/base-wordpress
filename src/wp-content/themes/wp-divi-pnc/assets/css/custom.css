@@ -2216,10 +2216,12 @@ div#banner-topo-cinza .et_pb_slide_description, .et_pb_slider_fullwidth_off .et_
     padding: 1px;
 }
 div#banner-topo-cinza {
-  background-color: #eeeff1 !important;
-  display: block;
-  border-bottom: 2px solid rgba(204, 204, 204, 0.64);
-  width: 100%;
+    background-color: #eeeff1 !important;
+    display: block;
+    border-bottom: 2px solid rgba(204, 204, 204, 0.64);
+    width: 100%;
+    position: relative;
+    z-index: 0;
 }
 
 #tooltip {

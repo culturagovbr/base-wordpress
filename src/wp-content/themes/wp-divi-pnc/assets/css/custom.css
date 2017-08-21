@@ -1948,7 +1948,7 @@ nav#top-menu-nav {
     overflow: visible;
     font-weight: bold;
     min-height: 199px;
-    margin-bottom: -8px;
+    margin-bottom: 0px;
     transition: all 0.3s ease;
 }
 

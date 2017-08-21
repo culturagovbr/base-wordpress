@@ -2198,7 +2198,7 @@ div#banner-topo-cinza .et_pb_column.et_pb_column_1_2.et_pb_column_0 {
 div#banner-topo-cinza .et_pb_slide_description, .et_pb_slider_fullwidth_off .et_pb_slide_description {
     width: auto;
     margin: auto;
-    padding: 0;
+    min-height: 100px;
 }
 div#banner-topo-cinza {
   background-color: #eeeff1 !important;

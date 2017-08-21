@@ -1998,7 +1998,7 @@ body:not(.home)  .hentry h2.entry-title {
     margin-top: 0px;
     display: block !important;
 }
-h2.titulo-modulo{
+h2.titulo-modulo {
     color: #00445d;
     font-weight: lighter;
     font-size: 26px;
@@ -2007,7 +2007,7 @@ h2.titulo-modulo{
     margin-bottom: 20px;
     padding-top: 9px;
     padding-left: 9px;
-    padding-bottom: 17px;
+    padding-bottom: 17px !important;
     box-shadow: 0px 2px 1px #ccc;
     margin-top: 0px;
     display: block !important;

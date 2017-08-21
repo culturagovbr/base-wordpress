@@ -3522,3 +3522,13 @@ button.mfp-close {
     transform: translate(-10px, -10px);
   }
 }
+
+
+/*Página da meta*/
+.category span.published {
+display: none
+}
+.category a.et_pb_button.et_pb_button_0.et_pb_module.et_pb_bg_layout_light {
+    position: relative;
+    top: -47px;
+}

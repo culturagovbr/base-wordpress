@@ -1984,7 +1984,7 @@ body:not(.home) .box-metas-assuntos-home {
     margin-left: -2px;
     margin-top: 39px;
 }
-body:not(.home)  .hentry h2.entry-title {
+h2.entry-title {
     color: #00445d;
     font-weight: lighter;
     font-size: 26px;

@@ -910,12 +910,15 @@ div#ecu_uploadform {
 /* ==========================================================================
 6 - Rodapé ou Final do site
 ========================================================================== */
+
 #footer-widgets ul {
     list-style: none;
     padding-left: 22px;
     margin: 0;
-    margin-left: -21px;
+    margin-left: -1px;
     padding-top: 13px;
+    list-style: disc;
+    color: #f52a6e;
 }
 
 #footer-widgets .footer-widget li a {
@@ -978,7 +981,10 @@ div#ecu_uploadform {
   padding: 0% 0 0;
 }
 
-
+ul#menu-rodape-direito {
+    text-transform: uppercase;
+    margin-top: -11px;
+}
 /* Rodapé Fonte do Titulo */
 
 #main-footer {

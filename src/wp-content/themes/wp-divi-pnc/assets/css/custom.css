@@ -2235,6 +2235,11 @@ div#banner-topo-cinza ul#menu-metas li a:hover {
     margin-top: 21px;
     margin-bottom: -23px;
 }
+.single-post p.post-meta {
+    display: block !important;
+    margin-top: 20px;
+    margin-bottom: -20px;
+}
 div#banner-topo-cinza .et_pb_widget_area.et_pb_widget_area_left.clearfix.et_pb_module.et_pb_bg_layout_light.et_pb_sidebar_0 {
   background: #fff;
   border-radius: 4px;

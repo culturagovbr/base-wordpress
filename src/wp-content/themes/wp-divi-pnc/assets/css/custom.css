@@ -2301,6 +2301,10 @@ div#banner-topo-cinza {
   margin-top: -18px;
   margin-bottom: -50px;
 }
+.home .et_pb_row.et_pb_row_2 {
+    margin-top: -9px;
+    margin-bottom: -50px;
+}
 
 
 /*Metas*/
@@ -2391,7 +2395,7 @@ p.comment-form-url.comment-form-attachment {
     display: none;
 }
 .home h2.titulo-modulo {
-    margin-top: -24px;
+    margin-top: -2px;
 }
 /*Bradcrumbs*/
 #breadcrumbs {

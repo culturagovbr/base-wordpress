@@ -668,6 +668,7 @@ dl.nav-tree dt {
     position: relative;
     top: -22px;
     line-height: 88px;
+    margin-top: -88px;
 }
 
 .home p.post-meta a {

@@ -1940,16 +1940,16 @@ nav#top-menu-nav {
 }
 
 .box-metas-assuntos-home a {
-  padding: 0;
-  width: 200px;
-  margin-top: 0;
-  color: #00385a;
-  font-size: 17px;
-  overflow: visible;
-  font-weight: bold;
-  min-height: 199px;
-  margin-bottom: 16px;
-  transition: all 0.3s ease;
+    padding: 0;
+    width: 200px;
+    margin-top: 0;
+    color: #00385a;
+    font-size: 17px;
+    overflow: visible;
+    font-weight: bold;
+    min-height: 199px;
+    margin-bottom: -8px;
+    transition: all 0.3s ease;
 }
 
 .box-metas-assuntos-home a:hover {
@@ -2390,7 +2390,9 @@ p.comment-form-url.comment-form-attachment {
 .page-template-default:not(.home) p.post-meta {
     display: none;
 }
-
+.home h2.titulo-modulo {
+    margin-top: -24px;
+}
 /*Bradcrumbs*/
 #breadcrumbs {
     list-style: none;

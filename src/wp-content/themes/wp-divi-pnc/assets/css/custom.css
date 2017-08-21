@@ -2109,14 +2109,42 @@ div#banner-topo-cinza ul#menu-metas li {
 }
 
 div#banner-topo-cinza ul#menu-metas li a {
-  color: #00445d;
-  width: 40px;
-  height: 40px;
-  display: block;
-  line-height: 38px;
-  vertical-align: middle;
+    color: #00445d;
+    width: 40px;
+    height: 40px;
+    display: block;
+    line-height: 38px;
+    font-weight: lighter;
+    font-family: "Roboto";
 }
-
+div#banner-topo-cinza h2.et_pb_slide_title {
+    display: block;
+    opacity: 0;
+}
+div#banner-topo-cinza .et_pb_slider .et_pb_slide {
+    display: none;
+    float: left;
+    position: relative;
+    width: 100%;
+    margin-right: -100%;
+    -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: none !important;
+    text-align: center;
+    list-style: none !important;
+}
+div#banner-topo-cinza .et_pb_slide.et_pb_bg_layout_dark.et_pb_media_alignment_center.et_pb_slide_0.et-pb-active-slide {
+    margin-left: 0;
+    padding: 0;
+}
+.et_pb_section_0.et_pb_section h1 {
+    color: #00445d !important;
+    font-weight: bold;
+    font-size: 27px;
+    margin-top: -25px;
+    text-align: right;
+    margin-bottom: 16px;
+}
 div#banner-topo-cinza ul#menu-metas li a:hover {
   background: #eeeff1;
   color: #f52a6e;
@@ -2130,7 +2158,11 @@ div#banner-topo-cinza .et_pb_widget_area.et_pb_widget_area_left.clearfix.et_pb_m
   min-height: 275px;
   box-shadow: 0px 5px 6px #a2a2a2;
 }
-
+div#banner-topo-cinza .et_pb_slide_description, .et_pb_slider_fullwidth_off .et_pb_slide_description {
+    width: auto;
+    margin: auto;
+    padding: 0;
+}
 div#banner-topo-cinza {
   background-color: #eeeff1 !important;
   display: block;

@@ -2137,6 +2137,14 @@ div#banner-topo-cinza .et_pb_slide.et_pb_bg_layout_dark.et_pb_media_alignment_ce
     padding: 0;
     padding-bottom: 35px;
 }
+div#banner-topo-cinza  .et-pb-controllers {
+    position: absolute;
+    z-index: 10;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
 div#banner-topo-cinza .et-pb-controllers .et-pb-active-control{
     background-color: #004490 !important;
 }

@@ -912,13 +912,12 @@ div#ecu_uploadform {
 ========================================================================== */
 
 #footer-widgets ul {
-    list-style: none;
+    list-style: disc;
     padding-left: 22px;
     margin: 0;
-    margin-left: -1px;
-    padding-top: 13px;
-    list-style: disc;
     color: #f52a6e;
+    margin-left: -4px;
+    padding-top: 13px;
 }
 
 #footer-widgets .footer-widget li a {

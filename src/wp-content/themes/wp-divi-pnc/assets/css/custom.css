@@ -2228,6 +2228,13 @@ div#banner-topo-cinza ul#menu-metas li a:hover {
 .single-post #left-area .post-meta a {
     color: #00445d;
 }
+.sigle-post #left-area .post-meta {
+    padding-bottom: 15px;
+    font-size: 14px;
+    display: block;
+    margin-top: 21px;
+    margin-bottom: -23px;
+}
 div#banner-topo-cinza .et_pb_widget_area.et_pb_widget_area_left.clearfix.et_pb_module.et_pb_bg_layout_light.et_pb_sidebar_0 {
   background: #fff;
   border-radius: 4px;

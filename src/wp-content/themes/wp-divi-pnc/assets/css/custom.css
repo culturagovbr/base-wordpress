@@ -2135,6 +2135,14 @@ div#banner-topo-cinza .et_pb_slider .et_pb_slide {
 div#banner-topo-cinza .et_pb_slide.et_pb_bg_layout_dark.et_pb_media_alignment_center.et_pb_slide_0.et-pb-active-slide {
     margin-left: 0;
     padding: 0;
+    padding-bottom: 35px;
+}
+div#banner-topo-cinza .et-pb-controllers .et-pb-active-control{
+    background-color: #004490 !important;
+}
+
+div#banner-topo-cinza .et-pb-controllers a {
+    background-color: rgba(0, 68, 144, 0.55) !important;
 }
 .et_pb_section_0.et_pb_section h1 {
     color: #00445d !important;

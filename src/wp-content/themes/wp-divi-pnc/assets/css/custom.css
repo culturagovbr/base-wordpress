@@ -2091,6 +2091,15 @@ body:not(.home) .et_post_meta_wrapper img {
 }
 /*Banner home*/
 
+.home .et_pb_section_0.et_pb_section h1 {
+    color: #00445d !important;
+    font-weight: bold;
+    font-size: 27px;
+    margin-top: -25px;
+    text-align: left;
+    padding-bottom: 20px;
+    margin-bottom: 1px;
+}
 .et_pb_section_0.et_pb_section h1 {
     color: #00445d !important;
     font-weight: bold;
@@ -2098,7 +2107,7 @@ body:not(.home) .et_post_meta_wrapper img {
     margin-top: -25px;
     text-align: left;
     padding-bottom: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 1px;
 }
 div#banner-topo-cinza p {
     color: #00445d;
@@ -2123,7 +2132,8 @@ div#banner-topo-cinza .et_pb_button {
     margin-bottom: 20px;
 }
 div#banner-topo-cinza .et_pb_row {
-    padding: 3.8% 0px 0% 0px;
+    padding: 5.2% 0px 0% 0px;
+    margin-bottom: -14.4px;
 }
 /*Sanfona botão*/
 .et_pb_toggle_title:before{
@@ -2152,17 +2162,20 @@ div#banner-topo-cinza .et_pb_widget_area.et_pb_widget_area_left.clearfix.et_pb_m
 div#banner-topo-cinza .widget_nav_menu {
   width: 100%;
 }
-
+ul#menu-metas {
+    display: block;
+    margin-left: 9px;
+}
 div#banner-topo-cinza ul#menu-metas li {
-  width: 42.6px;
-  float: left;
-  font-size: 21.5px;
-  display: block;
-  margin-right: 2px;
-  margin-left: 0;
-  margin-top: 4px;
-  text-align: center;
-  margin-bottom: 0;
+    width: 44.6px;
+    float: left;
+    font-size: 21.5px;
+    display: block;
+    margin-right: 2px;
+    margin-left: 0;
+    margin-top: 4px;
+    text-align: center;
+    margin-bottom: -1px;
 }
 
 div#banner-topo-cinza ul#menu-metas li a {
@@ -2241,12 +2254,12 @@ div#banner-topo-cinza ul#menu-metas li a:hover {
     margin-bottom: -20px;
 }
 div#banner-topo-cinza .et_pb_widget_area.et_pb_widget_area_left.clearfix.et_pb_module.et_pb_bg_layout_light.et_pb_sidebar_0 {
-  background: #fff;
-  border-radius: 4px;
-  padding: 27px;
-  margin-top: -26px;
-  min-height: 275px;
-  box-shadow: 0px 5px 6px #a2a2a2;
+    background: #fff;
+    border-radius: 4px;
+    padding: 19px;
+    margin-top: -26px;
+    min-height: 275px;
+    box-shadow: 0px 5px 6px #a2a2a2;
 }
 div#banner-topo-cinza .et_pb_column.et_pb_column_1_2.et_pb_column_0 {
     margin-top: -41px;

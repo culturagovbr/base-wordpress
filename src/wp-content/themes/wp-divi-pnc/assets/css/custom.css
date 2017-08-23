@@ -3164,6 +3164,15 @@ table.cart th, #main-content table.cart th, table.cart td, #main-content table.c
   background: #00c101;
   color: #ffffff;
 }
+
+.social-icones a.whatsapp {
+    display: none;
+}
+@media (max-width: 500px) {
+  .social-icones a.whatsapp {
+    display: inline-block;
+  }
+}
 .social-icones a.twitter:hover {
   background: #17a2fe;
   color: #ffffff;

@@ -3170,7 +3170,7 @@ table.cart th, #main-content table.cart th, table.cart td, #main-content table.c
 }
 @media (max-width: 500px) {
   .social-icones a.whatsapp {
-    display: block;
+    display: inline-block;
   }
 }
 .social-icones a.twitter:hover {

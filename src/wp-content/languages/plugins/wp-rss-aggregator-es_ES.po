@@ -1,0 +1,1454 @@
+# Translation of Plugins - WP RSS Aggregator - Stable (latest release) in Spanish (Spain)
+# This file is distributed under the same license as the Plugins - WP RSS Aggregator - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2017-08-23 11:38:37+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: es\n"
+"Project-Id-Version: Plugins - WP RSS Aggregator - Stable (latest release)\n"
+
+#. Author of the plugin/theme
+msgid "Jean Galea"
+msgstr "Jean Galea"
+
+#. Description of the plugin/theme
+msgid "Imports and aggregates multiple RSS Feeds using SimplePie"
+msgstr "Importa y agrega múltiples feeds RSS usando SimplePie"
+
+#. #-#-#-#-#  tmp-wp-rss-aggregator.pot (WP RSS Aggregator 4.7.5)  #-#-#-#-#
+#. Plugin URI of the plugin/theme
+#. #-#-#-#-#  tmp-wp-rss-aggregator.pot (WP RSS Aggregator 4.7.5)  #-#-#-#-#
+#. Author URI of the plugin/theme
+msgid "http://www.wprssaggregator.com"
+msgstr "http://www.wprssaggregator.com"
+
+#. Plugin Name of the plugin/theme
+msgid "WP RSS Aggregator"
+msgstr "WP RSS Aggregator"
+
+#: wp-rss-aggregator.php:426
+msgid "This plugin requires WordPress version %1$s or higher."
+msgstr "Este plugin requiere una versión de WordPress %1$s o superior."
+
+#: wp-rss-aggregator.php:283
+msgid "Allow tracking"
+msgstr "Permitir seguimiento"
+
+#: wp-rss-aggregator.php:282
+msgid "Do not allow tracking"
+msgstr "No permitir seguimiento"
+
+#: wp-rss-aggregator.php:275
+msgid "You've just installed WP RSS Aggregator. Please helps us improve it by allowing us to gather anonymous usage stats so we know which configurations, plugins and themes to test with."
+msgstr "Acabas de instalar WP RSS Aggregator. Por favor, ayúdanos a mejorarlo permitiéndonos recopilar estadísticas de uso anónimas para que sepamos qué configuraciones, complementos y temas probar."
+
+#: wp-rss-aggregator.php:275
+msgid "Help improve WP RSS Aggregator"
+msgstr "Ayuda a mejorar WP RSS Aggregator"
+
+#: includes/update.php:69
+msgid "Follow"
+msgstr "Seguir"
+
+#: includes/update.php:67
+msgid "No Follow"
+msgstr "No seguir"
+
+#: includes/system-info.php:100
+msgid "Your server does not support fsockopen."
+msgstr "Tu servidor no es compatible con fsockopen."
+
+#: includes/system-info.php:100
+msgid "Your server supports fsockopen."
+msgstr "Tu servidor es compatible con fsockopen."
+
+#: includes/system-info.php:71
+msgid "Could not determine database driver version"
+msgstr "No se puede determinar la versión del controlador de la base de datos"
+
+#: includes/system-info.php:38
+msgid "Download System Info File"
+msgstr "Descargar un archivo con información del sistema"
+
+#: includes/system-info.php:33
+msgid "To copy the system info, click below then press Ctrl + C (PC) or Cmd + C (Mac)."
+msgstr "Para copiar la información del sistema, haz clic debajo y pulsa Ctrl + C (PC) o Cmd + C (Mac)."
+
+#: includes/system-info.php:27
+msgid "System Information"
+msgstr "Información del sistema"
+
+#: includes/scripts.php:133
+msgid "Your message has been sent and we'll send you a confirmation e-mail when we receive it."
+msgstr "Tu mensaje ha sido enviado y te enviaremos un correo electrónico de confirmación cuando lo recibamos."
+
+#: includes/scripts.php:132
+msgid "There was an error sending the form. Please use the <a href=\"%s\">contact form on our site.</a>"
+msgstr "Se ha producido un error al enviar el formulario. Utiliza el <a href=\"%s\">formulario de contacto de nuestro sitio web</a>, por favor."
+
+#: includes/scripts.php:131
+msgid "Sending..."
+msgstr "Enviando..."
+
+#: includes/scripts.php:124
+msgid "Deactivating..."
+msgstr "Desactivando..."
+
+#: includes/scripts.php:123
+msgid "Activating..."
+msgstr "Activando..."
+
+#: includes/scripts.php:95
+msgid "Move to Trash"
+msgstr "Mover a la papelera"
+
+#: includes/scripts.php:89
+msgid "Pause"
+msgstr "Pausar"
+
+#: includes/scripts.php:75
+msgid "Remove selected from Blacklist"
+msgstr "Eliminar seleccionados de la lista negra"
+
+#: includes/scripts.php:74
+msgid "The feed items listed here will be disregarded when importing new items from your feed sources."
+msgstr "Los elementos de feed enumerados aquí no se tendrán en cuenta al importar nuevos elementos de sus feeds de origen.."
+
+#: includes/scripts.php:73
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: includes/scripts.php:72
+msgid "OK"
+msgstr "OK"
+
+#: includes/scripts.php:71
+msgid "Bulk Add"
+msgstr "Agregar masivamente"
+
+#: includes/scripts.php:69
+msgid "Items are importing"
+msgstr "Los elementos se están importando"
+
+#: includes/scripts.php:68
+msgid "Failed to import"
+msgstr "Falló la importación"
+
+#: includes/scripts.php:47 includes/scripts.php:70
+msgid "Please wait ..."
+msgstr "Por favor espera..."
+
+#: includes/opml-importer.php:258
+msgid "Import Feeds from an OPML file into WP RSS Aggregator"
+msgstr "Importar feeds de un archivo OPML a WP RSS Aggregator"
+
+#: includes/opml-importer.php:257
+msgid "WP RSS OPML"
+msgstr "WP RSS OPML"
+
+#: includes/opml-importer.php:194 includes/opml-importer.php:225
+msgid "ID"
+msgstr "ID"
+
+#: includes/opml-importer.php:187
+msgid "Feeds were imported successfully!"
+msgstr "¡Los feeds se importaron con éxito!"
+
+#: includes/opml-importer.php:115
+msgid "It is likely that this was caused by a permissions problem."
+msgstr "Es probable que esto haya sido causado por un problema de permisos."
+
+#: includes/opml-importer.php:114
+msgid "The uploaded file could not be found at "
+msgstr "El archivo subido no se pudo encontrar en"
+
+#: includes/opml-importer.php:113
+msgid "Sorry, it seems your uploaded file has been misplaced!"
+msgstr "Lo siento, parece que el archivo que has subido se ha perdido"
+
+#: includes/opml-importer.php:108
+msgid "Sorry, an error has been encountered."
+msgstr "Lo siento, se ha encontrado un error."
+
+#: includes/opml-importer.php:77
+msgid "We will take care of the rest."
+msgstr "Nos haremos cargo del resto."
+
+#: includes/opml-importer.php:76
+msgid "Click the button below, choose your file, and click 'Upload'."
+msgstr "Haz clic en el botón de debajo, escoge tu archivo y haz clic en 'Subir'."
+
+#: includes/opml-importer.php:75
+msgid "Howdy! Import your feeds here from an OPML (.xml) export file."
+msgstr "¡Hola! Importa tus feeds desde un archivo de exportación de OPML (.xml)."
+
+#: includes/opml-importer.php:65
+msgid "Import OPML"
+msgstr "Importar OPML"
+
+#. translators: If your word count is based on single characters (East Asian
+#. characters), 	   enter 'characters'. Otherwise, enter 'words'. Do not
+#. translate into your own language.
+#: includes/misc-functions.php:317
+msgctxt "word count: words or characters?"
+msgid "words"
+msgstr "palabras"
+
+#: includes/misc-functions.php:312
+msgid "&hellip;"
+msgstr "&hellip;"
+
+#: includes/licensing.php:622
+msgid "Failed to get license information. This is a temporary problem. Check your internet connection and try again later."
+msgstr "Error al obtener información sobre la licencia. Este es un problema temporal. Comprueba tu conexión a Internet y vuelve a intentarlo más tarde."
+
+#: includes/licensing.php:617
+msgid "Registered to"
+msgstr "Registrado por"
+
+#: includes/licensing.php:614
+msgid "Expires on"
+msgstr "Expira el"
+
+#: includes/licensing.php:611
+msgid "Activations"
+msgstr "Activaciones"
+
+#: includes/licensing.php:608
+msgid "Renew your license to continue receiving updates and support."
+msgstr "Renueva tu licencia para seguir recibiendo actualizaciones y soporte."
+
+#: includes/licensing.php:603
+msgid "No activations left. Click here to manage the sites you've activated licenses on."
+msgstr "No quedan activaciones. Haz clic aquí para administrar los sitios en los que has activado las licencias."
+
+#: includes/licensing.php:572
+msgid "Status"
+msgstr "Estado"
+
+#: includes/licensing.php:547
+msgid "Enter your license key"
+msgstr "Escribe tu clave de licencia"
+
+#: includes/licensing.php:513
+msgid "Activate License"
+msgstr "Activar licencia"
+
+#: includes/licensing.php:504
+msgid "License Key"
+msgstr "Clave de licencia"
+
+#: includes/licensing.php:497
+msgid "License"
+msgstr "Licencia"
+
+#: includes/licensing.php:401
+msgid "No nonce"
+msgstr "Sin nonce"
+
+#: includes/licensing.php:398
+msgid "Bad nonce"
+msgstr "Mal nonce"
+
+#: includes/licensing.php:389
+msgid "No license"
+msgstr "Sin licencia"
+
+#: includes/licensing.php:382
+msgid "No event specified"
+msgstr "No se ha especificado ningún evento"
+
+#: includes/licensing.php:379 includes/licensing.php:421
+msgid "Invalid event specified"
+msgstr "Evento especificado no válido"
+
+#: includes/licensing.php:371 includes/licensing.php:457
+msgid "No addon ID"
+msgstr "Sin ID de complemento"
+
+#: includes/licensing.php:336
+msgid "<a href=\"%s\">Save 30%% on your license renewal</a> for the WP RSS Aggregator <b>%s</b> add-on and continue receiving updates and support."
+msgstr "<a href=\"%s\">Ahorra un 30%% en la renovación de tu licencia</a> de la extensión <b>%s</b> de WP RSS Aggregator y continua recibiendo actualizaciones y soporte."
+
+#: includes/licensing.php:310
+msgid "Remember to <a href=\"%s\">enter your plugin license code</a> for the WP RSS Aggregator <b>%s</b> add-on to benefit from updates and support."
+msgstr "Recuerda <a href=\"%s\">introducir el código de licencia del plugin</a> de la extensión <b>%s</b> de WP RSS Aggregator para conseguir actualizaciones y soporte."
+
+#: includes/libraries/EDD_licensing/EDD_SL_Plugin_Updater.php:324
+msgid "Error"
+msgstr "Error"
+
+#: includes/libraries/EDD_licensing/EDD_SL_Plugin_Updater.php:324
+msgid "You do not have permission to install plugin updates"
+msgstr "No tienes permiso para instalar actualizaciones del plugin"
+
+#: includes/libraries/EDD_licensing/EDD_SL_Plugin_Updater.php:184
+msgid "There is a new version of %1$s available. <a target=\"_blank\" class=\"thickbox\" href=\"%2$s\">View version %3$s details</a> or <a href=\"%4$s\">update now</a>."
+msgstr "Existe una nueva versión disponible de %1$s. <a target=\"_blank\" class=\"thickbox\" href=\"%2$s\">Ver los detalles de la versión %3$s</a> o <a href=\"%4$s\">actualizar ahora</a>."
+
+#: includes/libraries/EDD_licensing/EDD_SL_Plugin_Updater.php:177
+msgid "There is a new version of %1$s available. <a target=\"_blank\" class=\"thickbox\" href=\"%2$s\">View version %3$s details</a>."
+msgstr "Existe una nueva versión disponible de %1$s. <a target=\"_blank\" class=\"thickbox\" href=\"%2$s\">Ver los detalles de la versión %3$s</a>."
+
+#: includes/image-caching.php:497
+msgid "The file library cannot be read from %1$s"
+msgstr "No se puede leer el archivo de la biblioteca de %1$s"
+
+#: includes/image-caching.php:491
+msgid "Could not create directory: \"%1$s\". Filename: \"%2$s\""
+msgstr "No se puede crear el directorio: \"%1$s\". Nombre de archivo: \"%2$s\""
+
+#: includes/image-caching.php:475
+msgid "Invalid URL provided: \"%1$s\""
+msgstr "URL proporcionada no válida: \"%1$s\""
+
+#: includes/feed-states.php:124
+msgid "The feed sources have been paused!!"
+msgstr "¡Las fuentes de feeds han sido pausadas! "
+
+#: includes/feed-states.php:110
+msgid "The feed sources have been activated!"
+msgstr "¡Las fuentes de feeds han sido activadas!"
+
+#: includes/feed-importing.php:690
+msgid "The PHP script timed out while importing an item from this feed, after %d seconds."
+msgstr "El script PHP agotó el tiempo de importación de un elemento de este feed, después de %d segundos."
+
+#: includes/feed-importing.php:290
+msgid "Failed to fetch the RSS feed. Error: %s"
+msgstr "No se pudo obtener el feed RSS. Error: %s"
+
+#: includes/feed-display.php:410
+msgid "Newer posts"
+msgstr "Entradas más recientes"
+
+#: includes/feed-display.php:409
+msgid "Older posts"
+msgstr "Entradas más antiguas"
+
+#: includes/feed-display.php:359
+msgid "No feed items found."
+msgstr "No se encontraron elementos en los feeds."
+
+#: includes/feed-blacklist.php:321 includes/opml-importer.php:195
+#: includes/opml-importer.php:226
+msgid "Title"
+msgstr "Título"
+
+#: includes/feed-blacklist.php:261
+msgid "Remove from blacklist"
+msgstr "Eliminar de la lista negra"
+
+#: includes/feed-blacklist.php:248
+msgid "The item will be deleted permanently, and its permalink will be recorded in the blacklist"
+msgstr "El elemento será borrado definitivamente y su enlace permanente se añadirá a la lista negra."
+
+#: includes/feed-blacklist.php:242
+msgid "Delete Permanently & Blacklist"
+msgstr "Borrar permanentemente y añadir a lista negra"
+
+#: includes/feed-blacklist.php:200
+msgid "You do not have any items blacklisted yet!"
+msgstr "¡Aún no tienes elementos añadidos a la lista negra!"
+
+#: includes/feed-blacklist.php:199
+msgid "Search Blacklist"
+msgstr "Buscar en la lista negra"
+
+#: includes/feed-blacklist.php:196 includes/feed-blacklist.php:197
+#: includes/feed-blacklist.php:198
+msgid "Blacklist"
+msgstr "Añadir a la lista negra"
+
+#: includes/feed-blacklist.php:134
+msgid "The item you are trying to blacklist is not valid!"
+msgstr "¡El elemento que estás tratando de añadir a la lista negra no es válido!"
+
+#: includes/feed-blacklist.php:129
+msgid "The item you are trying to blacklist does not exist"
+msgstr "El elemento que estás tratando de añadir a la lista negra no existe"
+
+#: includes/feed-access.php:119
+msgid "Certificate Path"
+msgstr "Certificar la ruta"
+
+#: includes/custom-post-types.php:78
+msgid "No Feed Items Found In Trash"
+msgstr "No se encontraron artículos del feed en la papelera"
+
+#: includes/custom-post-types.php:77
+msgid "No Feed Items Found"
+msgstr "No se encontraron artículos del feed"
+
+#: includes/custom-post-types.php:76
+msgid "Search Feed Items"
+msgstr "Buscar artículos del feed"
+
+#: includes/custom-post-types.php:75
+msgid "View Feed Items"
+msgstr "Ver artículos del feed"
+
+#: includes/custom-post-types.php:73
+msgid "Feed Item"
+msgstr "Artículo del feed"
+
+#: includes/custom-post-types.php:72 includes/custom-post-types.php:74
+msgid "Feed Items"
+msgstr "Artículos del feed"
+
+#: includes/custom-post-types.php:32
+msgid "RSS Aggregator"
+msgstr "RSS Aggregator"
+
+#: includes/custom-post-types.php:31
+msgid "No Feed Sources Found In Trash"
+msgstr "No se encontraron fuentes de feed en la papelera"
+
+#: includes/custom-post-types.php:30
+msgid "No Feed Sources Found"
+msgstr "No se encontraron fuentes de feed"
+
+#: includes/custom-post-types.php:29
+msgid "Search Feeds"
+msgstr "Buscar feeds"
+
+#: includes/custom-post-types.php:28
+msgid "View Feed Source"
+msgstr "Mostrar fuente de feed "
+
+#: includes/custom-post-types.php:27
+msgid "New Feed Source"
+msgstr "Nueva fuente de feed "
+
+#: includes/custom-post-types.php:26
+msgid "Edit Feed Source"
+msgstr "Modificar fuente de feed "
+
+#: includes/custom-post-types.php:25
+msgid "Add New Feed Source"
+msgstr "Añadir nuevas fuentes de feed"
+
+#: includes/custom-post-types.php:23
+msgid "Add New"
+msgstr "Añadir nueva"
+
+#: includes/custom-post-types.php:22
+msgid "Feed Source"
+msgstr "Fuente de feed "
+
+#: includes/cron-jobs.php:80
+msgid "Once every two hours"
+msgstr "Una vez cada dos horas"
+
+#: includes/cron-jobs.php:76
+msgid "Once every thirty minutes"
+msgstr "Una vez cada 30 minutos"
+
+#: includes/cron-jobs.php:72
+msgid "Once every fifteen minutes"
+msgstr "Una vez cada 15 minutos"
+
+#: includes/cron-jobs.php:68
+msgid "Once every ten minutes"
+msgstr "Una vez cada 10 minutos"
+
+#: includes/cron-jobs.php:64
+msgid "Once every five minutes"
+msgstr "Una vez cada 5 minutos"
+
+#: includes/cpt-feeds.php:82
+msgid "%1$s &raquo; %2$s Feed"
+msgstr "Feed %1$s &raquo; %2$s"
+
+#: includes/admin.php:94
+msgid "Name this feed (e.g. WP Mayor)"
+msgstr "Nombrar este feed (por ej. WP Mayor)"
+
+#: includes/admin.php:41 includes/admin.php:111
+msgid "Settings"
+msgstr "Ajustes"
+
+#: includes/admin.php:40
+msgid "Import & Export"
+msgstr "Importar y exportar"
+
+#: includes/admin.php:40
+msgid "Export & Import Settings"
+msgstr "Ajustes de importación y exportación"
+
+#: includes/admin-welcome.php:164
+msgid "Go to WP RSS Aggregator settings"
+msgstr "Ir a los ajustes de WP RSS Aggregator"
+
+#: includes/admin-welcome.php:154
+msgid "Import and store feeds that contain specific keywords in either the title or their content. Control what gets imported to your blog."
+msgstr "Importe y almacene feeds que contengan palabras clave específicas en el título o en su contenido. Controla qué se importa en tu blog."
+
+#: includes/admin-welcome.php:144
+msgid "Organize your feeds into custom categories. Filter feed items by category and make custom WordPress feeds for specific categories."
+msgstr "Organiza tus feeds en categorías personalizadas. Filtra los elementos de feed por categoría y crea feeds personalizados de WordPress para categorías específicas."
+
+#: includes/admin-welcome.php:134
+msgid "Fetch RSS feed excerpts to your blog and add thumbnails! Perfect for adding some life and color to your feeds."
+msgstr "¡Obtén extractos del fedd RSS para tu blog y añade miniaturas! Perfecto para agregar un poco de vida y color a tus feeds."
+
+#: includes/admin-welcome.php:123
+msgid "Need functionality not already available in core or the add-ons? You can <a href=\"%1$s\">suggest new features</a>!"
+msgstr "¿Necesitas alguna funcionalidad que aún no está disponible en el núcleo o en las extensiones? ¡Puedes <a href=\"%1$s\">sugerir nuevas funcionalidades</a>!"
+
+#: includes/admin-welcome.php:117
+msgid "Changelog for v%1$s"
+msgstr "Registro de cambios para v%1$s"
+
+#: includes/admin-welcome.php:111
+msgid "More information about add-ons can be found on our website <a href=\"%1$s\">%2$s</a>"
+msgstr "Puedes encontrar más información sobre las extensiones en nuestro sitio web <a href=\"%1$s\">%2$s</a>"
+
+#: includes/admin-welcome.php:104
+msgid "Excerpts &amp; Thumbnails"
+msgstr "Extractos &amp; miniaturas"
+
+#: includes/admin-welcome.php:100
+msgid "Check out our add-ons:"
+msgstr "Prueba nuestras extensiones:"
+
+#: includes/admin-welcome.php:91
+msgid "The Blacklist"
+msgstr "Lista negra"
+
+#: includes/admin-welcome.php:84
+msgid "Blacklist Trashed Items"
+msgstr "Elementos borrados en la lista negra"
+
+#: includes/admin-welcome.php:78
+msgid "Trash undesired items"
+msgstr "Elimina elementos no deseados"
+
+#: includes/admin-welcome.php:74
+msgid "Feed Item Blacklist"
+msgstr "Lista negra de elementos de feed"
+
+#: includes/admin-welcome.php:69
+msgid ""
+"The new bulk adding option saves you time by allowing you to enter your feed names and URLs all at once.\n"
+"\t\t\t\t\t\t\t\t\t\tSimply type in or paste your feed sources, and with the press of a button, your feed sources will instantly be created!\n"
+"\t\t\t\t\t\t\t\t\t\tTry it now from the <a href=\"%1$s\">Import &amp; Export</a> page."
+msgstr ""
+"La nueva opción de añadir masivamente te permite ahorrar tiempo introduciendo todos los nombres de tus feeds y sus URLS de una sola vez.\n"
+"\t\t\t\t\t\t\t\t\t\t¡Simplemente escribe o pega tus fuentes de feeds y con solo pulsar un botón tus fuentes de feeds se crearán automáticamente!\n"
+"\t\t\t\t\t\t\t\t\t\tPruébalo ahora desde la página de <a href=\"%1$s\">Importar &amp; exportar</a>."
+
+#: includes/admin-welcome.php:66
+msgid "Bulk Adding Feed Sources"
+msgstr "Añadiendo fuentes de feed masivamente"
+
+#: includes/admin-welcome.php:42
+msgid "What's New?"
+msgstr "¿Que hay de nuevo?"
+
+#: includes/admin-welcome.php:34
+msgid "Thank you for upgrading to the latest version!"
+msgstr "¡Gracias por actualizar a la versión más reciente!"
+
+#: includes/admin-welcome.php:32
+msgid "Welcome to WP RSS Aggregator %1$s!"
+msgstr "¡Bienvenido a WP RSS Aggregator %1$s!"
+
+#: includes/admin-statistics.php:149
+msgid "<b>WP RSS Aggregator:</b> Data report sent!"
+msgstr "<b>WP RSS Aggregator:</b> ¡Informe de datos enviado!"
+
+#: includes/admin-options.php:943
+msgid "now"
+msgstr "ahora"
+
+#: includes/admin-options.php:938
+msgid "%s second"
+msgid_plural "%s seconds"
+msgstr[0] "%s segundo"
+msgstr[1] "%s segundos"
+
+#: includes/admin-options.php:937
+msgid "%s minute"
+msgid_plural "%s minutes"
+msgstr[0] "%s minuto"
+msgstr[1] "%s minutos"
+
+#: includes/admin-options.php:936
+msgid "%s hour"
+msgid_plural "%s hours"
+msgstr[0] "%s hora"
+msgstr[1] "%s horas"
+
+#: includes/admin-options.php:935
+msgid "%s day"
+msgid_plural "%s days"
+msgstr[0] "%s día"
+msgstr[1] "%s días"
+
+#: includes/admin-options.php:934
+msgid "%s week"
+msgid_plural "%s weeks"
+msgstr[0] "%s semana"
+msgstr[1] "%s semanas"
+
+#: includes/admin-options.php:933
+msgid "%s month"
+msgid_plural "%s months"
+msgstr[0] "%s mes"
+msgstr[1] "%s meses"
+
+#: includes/admin-options.php:932
+msgid "%s year"
+msgid_plural "%s years"
+msgstr[0] "%s año"
+msgstr[1] "%s años"
+
+#: includes/admin-options.php:888
+msgid "Please help us improve WP RSS Aggregator by allowing us to gather anonymous usage statistics. No sensitive data is collected."
+msgstr "Por favor ayúdanos a mejorar WP RSS Aggregator permitiéndonos recoger estadísticas de uso anónimas. No se recopilan datos confidenciales."
+
+#: includes/admin-options.php:872
+msgid "Use the above actions only when absolutely necessary, or when instructed to by support staff."
+msgstr "Utiliza las acciones anteriores sólo cuando sea absolutamente necesario, o cuando lo indique el equipo de soporte."
+
+#: includes/admin-options.php:868
+msgid "Does both of the above"
+msgstr "Hace ambos de los anteriores"
+
+#: includes/admin-options.php:867
+msgid "Deactivates WP RSS Aggregator"
+msgstr "Desactiva WP RSS Aggregator"
+
+#: includes/admin-options.php:866
+msgid "Resets your WP RSS Aggregator settings"
+msgstr "Reinicia los ajustes de WP RSS Aggregator"
+
+#: includes/admin-options.php:863
+msgid ""
+"Leave this empty to disable the secure reset function.<br/>\n"
+"            You use this code by adding any of the following to any URL on your site."
+msgstr ""
+"Deja esto vacío para desactivar la función de reinicio seguro. <br/>\n"
+"Utiliza este código agregando cualquiera de lo siguiente a cualquier URL de tu sitio."
+
+#: includes/admin-options.php:857
+msgid "Enter the code to use to securely reset the plugin and deactivate it. Be sure to save this code somewhere safe."
+msgstr "Introduce el código que deseas utilizar para reiniciar de forma segura el plugin y desactivarlo. Asegúrate de guardar este código en algún lugar seguro."
+
+#: includes/admin-options.php:852
+msgid "Generate Random Code"
+msgstr "Generar un código aleatorio"
+
+#: includes/admin-options.php:740
+msgid "No Limit"
+msgstr "Sin límite"
+
+#: includes/admin-options.php:678
+msgid "Page numbers with \"Next\" and \"Previous\" page links"
+msgstr "Números de página con enlaces a páginas  \"Siguientes\" y \"Anteriores\""
+
+#: includes/admin-options.php:677
+msgid "\"Older posts\" and \"Newer posts\" links"
+msgstr "Enlaces a las \"Entradas más antiguas\" y a las \"Entradas más recientes\""
+
+#: includes/admin-options.php:595 includes/admin-options.php:706
+msgid "No limit"
+msgstr "Sin límite"
+
+#: includes/admin-options.php:567
+msgid "PHP Date Format Reference"
+msgstr "Referencia de formato de fecha PHP"
+
+#: includes/admin-options.php:528 includes/update.php:200
+msgid "New window"
+msgstr "Nueva ventana"
+
+#: includes/admin-options.php:527
+msgid "Lightbox"
+msgstr "Lightbox"
+
+#: includes/admin-options.php:512
+msgid "This will not affect already imported feed items."
+msgstr "Esto no afectará a los elementos del feed ya importados."
+
+#: includes/admin-options.php:498
+msgid "Embedded video player link"
+msgstr "Enlace del reproductor de video incorporado"
+
+#: includes/admin-options.php:497
+msgid "Original page link"
+msgstr "Enlace a la página original"
+
+#: includes/admin-options.php:470
+msgid "Participate in helping us make the plugin better."
+msgstr "Colabora ayudándonos a hacer un plugin mejor."
+
+#: includes/admin-options.php:461
+msgid "Set your security reset code, in case of any errors."
+msgstr "Establece tu código de reinicio para casos de error."
+
+#: includes/admin-options.php:452
+msgid "If you would like to disable all styles used in this plugin, tick the checkbox."
+msgstr "Si quieres desactivar todos los estilos usados en este plugin, marca la casilla de verificación."
+
+#: includes/admin-options.php:443
+msgid "Options that control how the feed item's date is displayed."
+msgstr "Opciones que controlan como se muestra la fecha de los elementos del feed."
+
+#: includes/admin-options.php:434
+msgid "Options that control how the feed item's source is displayed."
+msgstr "Opciones que controlan como se muestran las fuentes de de los elmentos del feed."
+
+#: includes/admin-options.php:424
+msgid "In this section you can find some general options that control how the feed items are displayed."
+msgstr "En esta sección puedes encontrar algunas opciones generales que controlan cómo se muestran los elementos del feed."
+
+#: includes/admin-options.php:415
+msgid "These are the general settings for WP RSS Aggregator."
+msgstr "Estos son los ajustes generales de WP RSS Aggregator."
+
+#: includes/admin-options.php:401
+msgid "Save Settings"
+msgstr "Guardar ajustes"
+
+#: includes/admin-options.php:361
+msgid "Licenses"
+msgstr "Licencias"
+
+#: includes/admin-options.php:357
+msgid "General"
+msgstr "General"
+
+#: includes/admin-options.php:347 includes/admin.php:41
+msgid "WP RSS Aggregator Settings"
+msgstr "Ajustes de WP RSS Aggregator"
+
+#: includes/admin-options.php:185
+msgid "Disable Styles"
+msgstr "Deshabilitar estilos"
+
+#: includes/admin-options.php:178
+msgid "Time ago format"
+msgstr "Formato del tiempo"
+
+#: includes/admin-options.php:174
+msgid "Date format"
+msgstr "Formato de fecha"
+
+#: includes/admin-options.php:170
+msgid "Text preceding date"
+msgstr "Texto que precede a la fecha"
+
+#: includes/admin-options.php:166
+msgid "Show date"
+msgstr "Mostrar fecha"
+
+#: includes/admin-options.php:158
+msgid "Link source"
+msgstr "Enlace a la fuente"
+
+#: includes/admin-options.php:154
+msgid "Text preceding source"
+msgstr "Texto que precede a la fuente"
+
+#: includes/admin-options.php:150
+msgid "Show source"
+msgstr "Mostrar fuente"
+
+#: includes/admin-options.php:142
+msgid "Set links as nofollow"
+msgstr "Establecer los enlaces como nofollow"
+
+#: includes/admin-options.php:138
+msgid "Open links behaviour"
+msgstr "Abrir comportamiento de enlaces"
+
+#: includes/admin-options.php:134
+msgid "Feed display limit"
+msgstr "Límite de feeds mostrados"
+
+#: includes/admin-options.php:130
+msgid "Pagination type"
+msgstr "Tipo de paginación"
+
+#: includes/admin-options.php:126
+msgid "For video feed items use"
+msgstr "Para los elementos de feed de vídeo utiliza"
+
+#: includes/admin-options.php:122
+msgid "Show authors"
+msgstr "Mostrar autores"
+
+#: includes/admin-options.php:114
+msgid "Title maximum length"
+msgstr "Longitud máxima del título"
+
+#: includes/admin-options.php:110
+msgid "Link title"
+msgstr "Enlace en el título"
+
+#: includes/admin-options.php:98
+msgid "Custom feed limit"
+msgstr "Límite del feed personalizado"
+
+#: includes/admin-options.php:94
+msgid "Custom feed Title"
+msgstr "Título de feed personalizado"
+
+#: includes/admin-options.php:90
+msgid "Custom feed URL"
+msgstr "URL de feed personalizado"
+
+#: includes/admin-options.php:82
+msgid "Feed processing interval"
+msgstr "Intervalo de procesamiento del feed"
+
+#: includes/admin-options.php:78
+msgid "Limit feed items per feed"
+msgstr "Límite de elementos por feed"
+
+#: includes/admin-options.php:74
+msgid "Limit feed items stored"
+msgstr "Límite de elementos de feed almacenados"
+
+#: includes/admin-options.php:70
+msgid "Limit feed items by age"
+msgstr "Limitar los feed por edad"
+
+#: includes/admin-options.php:60
+msgid "Styles"
+msgstr "Estilos"
+
+#: includes/admin-options.php:59
+msgid "Date display settings"
+msgstr "Ajustes de visualización de fecha"
+
+#: includes/admin-options.php:58
+msgid "Source display settings"
+msgstr "Ajustes de visualización de fuente"
+
+#: includes/admin-options.php:57
+msgid "General display settings"
+msgstr "Ajustes de visualización generales"
+
+#: includes/admin-options.php:56
+msgid "General plugin settings"
+msgstr "Ajustes generales del plugin"
+
+#: includes/admin-metaboxes.php:663
+msgid "Like WP Mayor on Facebook."
+msgstr "Haz me gusta a WP Mayor en Facebook."
+
+#: includes/admin-metaboxes.php:662
+msgid "Follow WP Mayor on Twitter."
+msgstr "Sigue a WP Mayor en Twitter."
+
+#: includes/admin-metaboxes.php:641
+msgid "Check out the Premium Extensions:"
+msgstr "Prueba las extensiones premium:"
+
+#: includes/admin-metaboxes.php:637
+msgid "Donate a token of your appreciation"
+msgstr "Dona un token por tu agradecimiento"
+
+#: includes/admin-metaboxes.php:636
+msgid "Give it a 5 star rating on WordPress.org"
+msgstr "Dar una valoración de 5 estrellas en WordPress.org"
+
+#: includes/admin-metaboxes.php:623
+msgid "Suggest a new feature"
+msgstr "Proponer una nueva funcionalidad"
+
+#: includes/admin-metaboxes.php:620
+msgid "Check out the support forum"
+msgstr "Eche un vistazo al foro de soporte"
+
+#: includes/admin-metaboxes.php:618
+msgid "Need help?"
+msgstr "¿Necesitas ayuda?"
+
+#: includes/admin-metaboxes.php:493
+msgid "Active"
+msgstr "Activar"
+
+#: includes/admin-metaboxes.php:457
+msgid "Force the feed"
+msgstr "Forzar el feed"
+
+#: includes/admin-metaboxes.php:432
+msgid "No feed URL defined yet"
+msgstr "Aún no se ha definido la URL del feed."
+
+#: includes/admin-metaboxes.php:427
+msgid "Not sure where to find the RSS feed on a website? <a target=\"_blank\" href=\"%1$s\">Click here</a> for a visual guide. "
+msgstr "¿No estás seguro de dónde encontrar el feed RSS de un sitio web? <a target=\"_blank\" href=\"%1$s\">Haz clic aquí</a> para ver una guía. "
+
+#: includes/admin-metaboxes.php:423
+msgid "<strong>Invalid feed URL</strong> - Double check the feed source URL setting above."
+msgstr "<strong>URL del feed inválida</strong> - Chequee nuevamente los ajustes de URL de origen del feed arriba."
+
+#: includes/admin-metaboxes.php:402
+msgid "No Date"
+msgstr "Sin fecha"
+
+#: includes/admin-metaboxes.php:400 includes/scripts.php:103
+msgid "ago"
+msgstr "hace"
+
+#: includes/admin-metaboxes.php:393
+msgid "Latest %1$s feed items out of %2$s available from %3$s"
+msgstr "Los últimos %1$s de %2$s elementos disponibles del feed de %3$s"
+
+#: includes/admin-metaboxes.php:223 includes/admin-metaboxes.php:498
+#: includes/admin-options.php:826 includes/admin-options.php:928
+msgid "Default"
+msgstr "Por defecto"
+
+#: includes/admin-metaboxes.php:111 includes/admin-options.php:86
+msgid "Unique titles only"
+msgstr "Solo títulos únicos"
+
+#: includes/admin-metaboxes.php:105
+msgid "Link to enclosure"
+msgstr "Enlace al adjunto"
+
+#: includes/admin-metaboxes.php:99
+msgid "Limit"
+msgstr "Límite"
+
+#: includes/admin-metaboxes.php:91 includes/opml-importer.php:196
+#: includes/opml-importer.php:227
+msgid "URL"
+msgstr "URL"
+
+#: includes/admin-metaboxes.php:58
+msgid "Feed Source Details"
+msgstr "Detalles de la Fuente del Feed"
+
+#: includes/admin-metaboxes.php:48
+msgid "Like This Plugin?"
+msgstr "¿Te gusta este plugin?"
+
+#: includes/admin-metaboxes.php:38
+msgid "Feed Processing"
+msgstr "Procesando el feed"
+
+#: includes/admin-metaboxes.php:29
+msgid "Feed Preview"
+msgstr "Mostrar Feed"
+
+#: includes/admin-metaboxes.php:20
+msgid "Save Feed Source"
+msgstr "Guardar Fuente del Feed"
+
+#: includes/admin-log.php:236
+msgid "Log level threshold"
+msgstr "Umbral de nivel de registro"
+
+#: includes/admin-import-export.php:237
+msgid "On the <a href=\"%1$simport.php\">Import</a> page, choose the previously created file and click the <strong>Upload file and import</strong> button."
+msgstr "En la página de <a href=\"%1$simport.php\">Importar</a> escoge el archivo creado previamente y haz clic en el botón <strong>Subir archivo e importar</strong>."
+
+#: includes/admin-import-export.php:235
+msgid "To import/export your feed sources, please use the standard WordPress <a href=\"%1$simport.php\">Import</a> and <a href=\"%1$sexport.php\">Export</a> functionality."
+msgstr "Para importar/exportar tus fuentes de feed, por favor utiliza las funcionalidades estándar de WordPress <a href=\"%1$simport.php\">Importar</a> y <a href=\"%1$sexport.php\">Exportar</a>"
+
+#: includes/admin-import-export.php:234
+msgid "Importing/Exporting Feed Sources"
+msgstr "Importando/exportando fuentes de feeds"
+
+#: includes/admin-import-export.php:224
+msgid "Press the <strong>Import Settings</strong> button, and WordPress will do the rest for you."
+msgstr "Pulsa el botón <strong>Ajustes de importación</strong> y WordPress hará el resto por ti."
+
+#: includes/admin-import-export.php:223
+msgid "Click the <strong>Choose file</strong> button and choose a backup file."
+msgstr "Haz clic en el botón <strong>Escoger archivo</strong> y escoge un archivo de copia de seguridad."
+
+#: includes/admin-import-export.php:222 includes/admin-import-export.php:230
+msgid "Import Settings"
+msgstr "Importar opciones"
+
+#: includes/admin-import-export.php:213
+msgid "After exporting, you can either use the backup file to restore your settings to this site or to another WordPress site."
+msgstr "Tras exportar puedes utilizar el archivo de copia de seguridad para restaurar la configuración en este sitio o en otro sitio de WordPress."
+
+#: includes/admin-import-export.php:212
+msgid "Click the <strong>Export Settings</strong> button to generate a file containing all the settings used by WP RSS Aggregator"
+msgstr "Haz clic en el botón <strong>Exportar ajustes</strong> para generar un archivo que contenga todos los ajustes usados por WP RSS Aggregator"
+
+#: includes/admin-import-export.php:211 includes/admin-import-export.php:218
+msgid "Export Settings"
+msgstr "Esportar opciones"
+
+#: includes/admin-import-export.php:209
+msgid "Import & Export Settings"
+msgstr "Ajustes de importación y exportación"
+
+#: includes/admin-import-export.php:204
+msgid "Bulk Import"
+msgstr "Importación masiva"
+
+#: includes/admin-import-export.php:198
+msgid "Feed Name, http://www.myfeed.com"
+msgstr "Nombre del feed, http://www.myfeed.com"
+
+#: includes/admin-import-export.php:197
+msgid "Separate the name and the URL using a comma on each line:"
+msgstr "Separa el nombre y la URL utilizando una coma en cada línea:"
+
+#: includes/admin-import-export.php:196
+msgid "Import multiple feed sources at once, by entering the name and URLs of your feeds below."
+msgstr "Importa varias fuentes de feed a la vez, introduciendo el nombre y las URL de tus feeds a continuación."
+
+#: includes/admin-import-export.php:195
+msgid "Bulk Feed Import"
+msgstr "Importación masiva de feeds"
+
+#: includes/admin-import-export.php:141
+msgid "Invalid file or file size too big."
+msgstr "Archivo no válido o archivo demasiado grande."
+
+#: includes/admin-import-export.php:130
+msgid "All options are restored successfully."
+msgstr "Todas las opciones fueron restablecidas con éxito."
+
+#: includes/admin-import-export.php:119
+msgid "All options are exported successfully."
+msgstr "Todas las opciones se exportaron con éxito."
+
+#: includes/admin-import-export.php:63
+msgid "Successfully imported <code>%1$s</code> feed sources."
+msgstr "Importadas con éxito <code>%1$s</code> fuentes de feed."
+
+#: includes/admin-help.php:936
+msgid "Could not enqueue tooltip content: the queue method is not a valid callable."
+msgstr "No se pudo encolar el contenido de información emergente: el método de cola no es válido."
+
+#: includes/admin-help.php:182
+msgid "Please enter a valid email address."
+msgstr "Por favor introduce una dirección de correo electrónico válida."
+
+#: includes/admin-help.php:174
+msgid "Please fill out all the fields in the form, including the <strong>%s</strong> field."
+msgstr "Por favor completa todos los campos del formulario, incluido el campo <strong>%s</strong>"
+
+#: includes/admin-help.php:144
+msgid "There was an error sending the form. Please use the <a href=\"%s\" target=\"_blank\">contact form on our site.</a>"
+msgstr "Ha habido un error enviando el formulario. Por favor usa <a href=\"%s\" target=\"_blank\">el formulario de contacto de nuestro sitio.</a>"
+
+#: includes/admin-help.php:110
+msgid "Support Forums"
+msgstr "Foros de soporte"
+
+#: includes/admin-help.php:97
+msgid "Send Message"
+msgstr "Enviar mensaje"
+
+#: includes/admin-help.php:92
+msgid "WordPress information"
+msgstr "Información sobre WordPress"
+
+#: includes/admin-help.php:89
+msgid "WP RSS Aggregator log file"
+msgstr "Archivo de registro de WP RSS Aggregator"
+
+#: includes/admin-help.php:86
+msgid "Attachments"
+msgstr "Adjuntos"
+
+#: includes/admin-help.php:77
+msgid "Replies will be sent to this email address."
+msgstr "Las respuestas se enviarán a esta dirección de correo."
+
+#: includes/admin-help.php:72
+msgid "From: "
+msgstr "De:"
+
+#: includes/admin-help.php:65
+msgid "If you still can't find an answer to your query after reading the documentation and going through the FAQ, just fill out the support request form below. We'll be happy to help you out."
+msgstr "Si sigues sin no poder encontrar una respuesta a tu duda después de leer la documentación y pasar por las preguntas más frecuentes, simplemente rellena el formulario de solicitud de soporte que aparece a continuación. Estaremos encantados de ayudarte."
+
+#: includes/admin-help.php:64
+msgid "Email Support"
+msgstr "Soporte por correo electrónico"
+
+#: includes/admin-help.php:19
+msgid "If after going through the documentation you still have questions, please take a look at the <a href=\"http://www.wprssaggregator.com/faq/\">FAQ page</a> on the site, we set this up purposely to answer the most commonly asked questions by our users."
+msgstr "Si después de leer la documentación aún tienes preguntas, por favor echa un vistazo a la <a href=\"http://www.wprssaggregator.com/faq/\">página de FAQ</a> de nuestro sitio, que hemos creado específicamente para resolver las preguntas más habituales de nuestros usuarios."
+
+#: includes/admin-help.php:18
+msgid "Frequently Asked Questions (FAQ)"
+msgstr "Preguntas frecuentes (FAQ)"
+
+#: includes/admin-help.php:14 includes/admin.php:112
+msgid "Documentation"
+msgstr "Documentación"
+
+#: includes/admin-help.php:13 includes/admin.php:44
+msgid "Help & Support"
+msgstr "Ayuda y soporte"
+
+#: includes/admin-help-settings.php:110
+msgid "The format to use for the feed item dates, as a PHP date format."
+msgstr "El formato a utilizar para las fechas de los elementos del feed, como el formato de fecha PHP."
+
+#: includes/admin-help-settings.php:108
+msgid "Enter the text that you want to show before the feed item date. A space is automatically added between this text and the date."
+msgstr "Introduce el texto que deseas mostrar antes de la fecha del elemento de feed. Se agrega automáticamente un espacio entre este texto y la fecha."
+
+#: includes/admin-help-settings.php:106
+msgid "Enable this to show the feed item's date."
+msgstr "Activa esto para mostrar la fecha del elemento del feed."
+
+#: includes/admin-help-settings.php:100
+msgid "Enable this option to link the feed source name to the RSS feed's source site."
+msgstr "Activa esta opción para enlazar el nombre de la fuente del feed al feed RSS del sitio de origen."
+
+#: includes/admin-help-settings.php:98
+msgid "Enter the text that you want to show before the source name. A space is automatically added between this text and the feed source name."
+msgstr "Introduce el texto que deseas mostrar antes del nombre de la fuente. Se añade automáticamente un espacio entre este texto y el nombre de la fuente del feed."
+
+#: includes/admin-help-settings.php:96
+msgid "Enable this option to show the feed source name for each feed item."
+msgstr "Activa esta opción para mostrar el nombre de la fuente del feed para cada elemento del feed."
+
+#: includes/admin-help-settings.php:85
+msgid "Choose how you want links to be opened. This applies to the feed item title and the source link."
+msgstr "Elige cómo deseas que se abran los enlaces. Esto se aplica al título del elemento del feed y al enlace de origen."
+
+#: includes/admin-help-settings.php:73
+msgid "For feed items from YouTube, Vimeo or Dailymotion, you can choose whether you want to have the items link to the original page link, or a link to the embedded video player only."
+msgstr "Para elementos del feed de YouTube, Vimeo o Dailymotion, puedes elegir si deseas que los elementos enlacen al vínculo de página original o solo un enlace al reproductor de vídeo integrado."
+
+#: includes/admin-help-settings.php:71
+msgid "Check this box to show the author for each feed item, if it is available."
+msgstr "Marca esta casilla para mostrar al autor de cada elemento del feed, si está disponible."
+
+#: includes/admin-help-settings.php:64
+msgid "Check this box to make the feed item titles link to the original article."
+msgstr "Marca esta casilla para que los títulos de los elementos del feed se vinculen al artículo original."
+
+#: includes/admin-help-settings.php:58
+msgid "The maximum number of feed items in the custom feed."
+msgstr "Número máximo de elementos de feed en el feed personalizado."
+
+#: includes/admin-editor.php:139
+msgid "Add shortcode"
+msgstr "Añadir shortcode"
+
+#: includes/admin-editor.php:130
+msgid "Feed Limit:"
+msgstr "Límite del feed:"
+
+#: includes/admin-editor.php:124
+msgid "Choose the feed sources to exclude:"
+msgstr "Elige que fuentes de feed excluir:"
+
+#: includes/admin-editor.php:122
+msgid "Exclude:"
+msgstr "Excluir:"
+
+#: includes/admin-editor.php:101
+msgid "Choose the feed source to display:"
+msgstr "Elige la fuente de feed que mostrar:"
+
+#: includes/admin-editor.php:99
+msgid "All feed sources"
+msgstr "Todas las fuentes de feeds"
+
+#: includes/admin-editor.php:97 includes/custom-post-types.php:21
+#: includes/custom-post-types.php:24
+msgid "Feed Sources"
+msgstr "Fuentes de Feed"
+
+#: includes/admin-editor.php:87
+msgid "Hold Ctrl or Mac Command key when clicking to select more than one feed source."
+msgstr "Mantén pulsado Ctrl o la tecla Comando en Mac cuando hagas clic para seleccionar más de una fuente de feed."
+
+#: includes/admin-display.php:528
+msgid "Publish Feed"
+msgstr "Publicar Feed"
+
+#: includes/admin-display.php:359
+msgid "Delete feed items imported by this feed source"
+msgstr "Borrar los elementos importados desde esta fuente del feed"
+
+#: includes/admin-display.php:358
+msgid "Delete Items"
+msgstr "Borrar elementos"
+
+#: includes/admin-display.php:355
+msgid "Fetch Items"
+msgstr "Obtener elementos"
+
+#: includes/admin-display.php:352
+msgid "View Items"
+msgstr "Ver elementos"
+
+#: includes/admin-display.php:338
+msgid "ID: %1$s"
+msgstr "ID: %1$s"
+
+#: includes/admin-display.php:311
+msgid "Feed source submitted."
+msgstr "Origen del feed enviado."
+
+#: includes/admin-display.php:309 includes/admin-display.php:310
+msgid "Feed source saved."
+msgstr "Origen del feed salvado."
+
+#: includes/admin-display.php:307 includes/admin-display.php:313
+msgid "Feed source updated."
+msgstr "Origen del feed actualizado."
+
+#: includes/admin-display.php:306
+msgid "Custom field deleted."
+msgstr "Campo personalizado eliminado."
+
+#: includes/admin-display.php:305
+msgid "Custom field updated."
+msgstr "Campo personalizado actualizado."
+
+#: includes/admin-display.php:304
+msgid "Feed source updated. "
+msgstr "Origen del feed actualizado."
+
+#: includes/admin-display.php:215
+msgid "Source"
+msgstr "Fuente"
+
+#: includes/admin-display.php:214
+msgid "Date published"
+msgstr "Fecha de publicación"
+
+#: includes/admin-display.php:213 includes/feed-blacklist.php:322
+msgid "Permalink"
+msgstr "Permalink"
+
+#: includes/admin-display.php:124 includes/admin-metaboxes.php:248
+msgid "Updating feed source"
+msgstr "Actualizando la fuente del feed"
+
+#: includes/admin-display.php:109
+msgid "Last update imported: <code class=\"last-update-imported\">%1$d</code> items"
+msgstr "La última actualización importó: <code class=\"last-update-imported\">%1$d</code> elementos"
+
+#: includes/admin-display.php:107 includes/feed-display.php:157
+msgid "%1$s ago"
+msgstr "hace %1$s"
+
+#: includes/admin-display.php:106
+msgid "Last updated:"
+msgstr "Última actualización:"
+
+#: includes/admin-display.php:98
+msgid "Next update:"
+msgstr "Siguiente actualización:"
+
+#: includes/admin-display.php:91 includes/admin-heartbeat.php:50
+#: includes/admin-metaboxes.php:494
+msgid "Paused"
+msgstr "En pausa"
+
+#: includes/admin-display.php:89 includes/admin-heartbeat.php:53
+msgid "None"
+msgstr "Ninguno"
+
+#: includes/admin-display.php:48
+msgid "This feed source experienced an error during the last feed fetch or validation check. Re-check the feed source URL or check the Error Log in the Debugging page for more details."
+msgstr "Esta fuente de feed sufrió un error durante la última búsqueda de feed o comprobación de validación. Vuelve a comprobar la URL del feedd o consulta el registro de errores en la página de depuración para conocer más detalles."
+
+#: includes/admin-display.php:28
+msgid "Updates"
+msgstr "Actualizaciones"
+
+#: includes/admin-display.php:27
+msgid "State"
+msgstr "Provincia"
+
+#: includes/admin-display.php:20 includes/admin-display.php:212
+msgid "Name"
+msgstr "Nombre"
+
+#: includes/admin-debugging.php:281
+msgid "The plugin settings have been reset to default."
+msgstr "Los ajustes del plugin se han reiniciado a los valores por defecto."
+
+#: includes/admin-debugging.php:271
+msgid "The error log has been cleared."
+msgstr "El registro de errores ha sido limpiado."
+
+#: includes/admin-debugging.php:261
+msgid "Feeds deleted and are being re-imported in the background."
+msgstr "Los feeds han sido borrados y están siendo reimportados en un segundo plano."
+
+#: includes/admin-debugging.php:252
+msgid "Feeds are being updated in the background."
+msgstr "Los feeds están siendo actualizados en un segundo plano."
+
+#: includes/admin-debugging.php:202 includes/admin.php:42
+msgid "Debugging"
+msgstr "Depurando"
+
+#: includes/admin-debugging.php:174
+msgid "Clear log"
+msgstr "Borrar registro"
+
+#: includes/admin-debugging.php:168
+msgid "Error Log"
+msgstr "Registro de errores"
+
+#: includes/admin-debugging.php:149
+msgid "<em><strong>Note:</strong> This cannot be undone. Once the settings have been reset, your old settings cannot be restored.</em>"
+msgstr "<em><strong>Aviso:</strong> Esto no puede deshacerse. Una vez que los ajustes sean reiniciados tus ajustes antiguos no podrán ser recuperados</em>"
+
+#: includes/admin-debugging.php:148
+msgid "Click the red button to reset the plugin settings to default."
+msgstr "Haz clic en el botón rojo para reiniciar los ajustes a las opciones por defecto."
+
+#: includes/admin-debugging.php:147 includes/admin-debugging.php:154
+msgid "Restore Default Settings"
+msgstr "Restaurar los ajustes por defecto"
+
+#: includes/admin-debugging.php:133
+msgid "Delete and Re-import all feeds"
+msgstr "Borrar y reimportar todos los feeds"
+
+#: includes/admin-debugging.php:128
+msgid "<em><strong>Note:</strong> This is a server-intensive process and should only be used when instructed to by support staff.</em>"
+msgstr "<em><strong>Aviso:</strong> Este es un proceso de elevada intensidad de carga para el servidor y solo debería ser usado siguiendo las instrucciones del equipo de soporte.</em>"
+
+#: includes/admin-debugging.php:127
+msgid "Click the red button to delete all imported feed items and re-import them."
+msgstr "Haz clic en el botón rojo para borrar todos los feeds importados y volver a importarlos."
+
+#: includes/admin-debugging.php:126
+msgid "Delete and Re-import Feeds"
+msgstr "Borrar y reimportar todos los feeds"
+
+#: includes/admin-debugging.php:112
+msgid "Update all feeds"
+msgstr "Actualizar todos los feeds"
+
+#: includes/admin-debugging.php:107
+msgid "<strong>Note:</strong> This might take more than a few seconds if you have many feed sources."
+msgstr "<strong>Aviso:</strong> Esto puede tardar más de unos segundos si tiene muchos fuentes de feeds.."
+
+#: includes/admin-debugging.php:105
+msgid "Existing feed items will not be modified."
+msgstr "Los elementos de feed existentes no se modificarán."
+
+#: includes/admin-debugging.php:104
+msgid "Click the blue button to update all active feed items now. This will check all feed sources for any new feed items."
+msgstr "Haz clic en el botón azul para actualizar todos los elementos activos del feed ahora. Esto verificará todas las fuentes de feed de cualquier elemento nuevo."
+
+#: includes/admin-debugging.php:103
+msgid "Update All Feeds Now"
+msgstr "Actualizar todos los feeds ahora"
+
+#: includes/admin-dashboard.php:25 includes/admin-dashboard.php:26
+msgid "Welcome to WP RSS Aggregator"
+msgstr "Bienvenido a WP RSS Aggregator"
+
+#: includes/admin-ajax-notice.php:36 includes/admin-ajax-notice.php:491
+#: includes/licensing.php:343
+msgid "Dismiss this notification"
+msgstr "Descartar esta notificación"
+
+#: includes/admin-ajax-notice.php:35
+msgid "page."
+msgstr "página."
+
+#: includes/admin-ajax-notice.php:35
+msgid "extensions"
+msgstr "extensiones"
+
+#: includes/admin-ajax-notice.php:35
+msgid "Check out the"
+msgstr "Comprobar la"
+
+#: includes/admin-ajax-notice.php:34
+msgid "Did you know that you can get more RSS features? Excerpts, thumbnails, keyword filtering, importing into posts and more... "
+msgstr "¿Sabías que puedes obtener más funcionalidades RSS? Extractos, miniaturas, filtrado de palabras clave, importación a entradas y más ..."
+
+#: includes/admin-addons.php:93
+msgid "Purchase & Install"
+msgstr "Comprar e instalar"
+
+#: includes/admin-addons.php:91 includes/scripts.php:88
+msgid "Activate"
+msgstr "Activar"
+
+#: includes/admin-addons.php:89
+msgid "Installed"
+msgstr "Instalado"
+
+#: includes/admin-addons.php:73
+msgid "Each Add-on can be installed as a separate plugin. Note that activating the Feed to Post plugin will deactivate the Categories and Excerpts & Thumbnails add-ons."
+msgstr "Cada extensión puede instalarse como un plugin por separado. Ten en cuenta que al activar la extensión Feed a entrada se desactivarán las extensiones Categorías y Extractos y miniaturas."
+
+#: includes/admin-addons.php:72
+msgid "The following Add-ons are available to increase the functionality of the WP RSS Aggregator plugin."
+msgstr "Las siguientes extensiones permiten incrementar las funcionalidades del plugin WP RSS Aggregator."
+
+#: includes/admin-addons.php:71 includes/admin.php:43
+msgid "Add-Ons"
+msgstr "Extensiones"
+
+#: includes/admin-addons.php:59
+msgid "Allows you to spin the content for posts imported by Feed to Post using WordAi. Cleverly rewrite your posts without changing their meaning and maintaining human readability."
+msgstr "Te permite dar una vuelta al contenido de las publicaciones importadas por Feed a entrada utilizando WordAi. Reescribe inteligentemente tus publicaciones sin cambiar su significado y manteniendo la legibilidad."
+
+#: includes/admin-addons.php:58 includes/admin-welcome.php:108
+msgid "WordAi"
+msgstr "WordAi"
+
+#: includes/admin-addons.php:50
+msgid "This add-ons provides the connectivity to our Full Text Premium service, which gives you unlimited feed items returned per feed source."
+msgstr "Esta extensión ofrece conectividad con nuestro servicio Full Text Premium, que te proporciona ilimitados elementos de feed devueltos por cada fuente."
+
+#: includes/admin-addons.php:49 includes/admin-welcome.php:107
+msgid "Full Text RSS Feeds"
+msgstr "Feeds RSS de texto completo"
+
+#: includes/admin-addons.php:41
+msgid "Allows you to import feed items into posts or any other custom post type that you have created. Takes WP RSS Aggregator to a whole new level of flexibility."
+msgstr "Te permite importar elementos de feed a entradas o cualquier otro tipo de contenido personalizada que hayas creado. Lleva a WP RSS Aggregator a un nuevo nivel de flexibilidad."
+
+#: includes/admin-addons.php:40 includes/admin-welcome.php:103
+msgid "Feed to Post"
+msgstr "Feed a entrada"
+
+#: includes/admin-addons.php:32
+msgid "Import feeds that contain specific keywords in either the title or their content. Control what gets imported to your blog. You can use keywords, keyphrases and categories."
+msgstr "Importa feeds que contengan palabras clave específicas en el título o en su contenido. Controla qué se importa a tu blog. Puedes usar palabras clave, frases clave y categorías."
+
+#: includes/admin-addons.php:31 includes/admin-welcome.php:106
+msgid "Keyword Filtering"
+msgstr "Filtrado de palabras clave"
+
+#: includes/admin-addons.php:23
+msgid "Assign categories to your feed sources. Then display a particular category or multiple categories on a post or page via shortcodes."
+msgstr "Asigna categorías a tus fuentes de feeds. Así puedes mostrar una categoría en particular o varias categorías en una entrada o página a través de shortcodes."
+
+#: includes/admin-addons.php:22 includes/admin-welcome.php:105
+msgid "Categories"
+msgstr "Categorías"
+
+#: includes/admin-addons.php:14
+msgid "Adds the ability to display thumbnails and excerpts. Perfect for adding some life and color to your feed item display. For more flexibility Feed to Post is a better option."
+msgstr "Añade la posibilidad de mostrar miniaturas y extractos. Perfecto para dar un poco de vida y color a como se muestran los elementos del feed. Para más flexibilidad Feed a entrada es una opción mejor."
+
+#: includes/admin-addons.php:13
+msgid "Excerpts & Thumbnails"
+msgstr "Extractos y miniaturas"
+
+#: includes/OPML.php:42
+msgid "An error occurred: The file might not be a valid OPML file or is corrupt. "
+msgstr "Ha sucedido un error: parece que el archivo no es un archivo OPML válido o está corrupto."

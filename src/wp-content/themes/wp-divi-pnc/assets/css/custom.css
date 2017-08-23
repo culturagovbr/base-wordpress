@@ -692,7 +692,9 @@ dl.nav-tree dt {
   border-radius: 4px;
   line-height: 20px;
 }
-
+.home p.post-meta a[href*="destaque"] {
+    display: none;
+}
 
 /* MENU PRINCIPAL DA INTRANET */
 

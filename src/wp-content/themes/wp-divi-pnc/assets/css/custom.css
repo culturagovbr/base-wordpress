@@ -692,7 +692,7 @@ dl.nav-tree dt {
   border-radius: 4px;
   line-height: 20px;
 }
-.home p.post-meta a[href*="destaque"], .home p.post-meta a[href*="noticia"] {
+.home p.post-meta a[href*="destaque"], .home p.post-meta a[href*="conteudo-noticia"] {
     display: none;
 }
 

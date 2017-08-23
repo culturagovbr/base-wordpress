@@ -692,7 +692,7 @@ dl.nav-tree dt {
   border-radius: 4px;
   line-height: 20px;
 }
-.home p.post-meta a[href*="destaque"] {
+.home p.post-meta a[href*="destaque"], .home p.post-meta a[href*="metas"]  {
     display: none;
 }
 
@@ -1932,9 +1932,11 @@ nav#top-menu-nav {
     font-size: 15px;
     background: #0057b3;
     border: 0;
+    float: right;
     padding-top: 4px;
     margin-top: 2px;
     box-shadow: 1px 1px 1px #003167;
+    top: 0;
 }
 #top-menu-nav a.et_pb_button:after {
     top: 0;
@@ -2453,6 +2455,17 @@ p.comment-form-url.comment-form-attachment {
 }
 .page-template-default:not(.home) p.post-meta {
     display: none;
+}
+ .page-template-default:not(.home) .post-167 p.post-meta a {
+    color: #a2a2a2;
+    font-size: 11px;
+    margin-top: -15px;
+}
+.page-template-default:not(.home) .post-167 p.post-meta{
+    color: #a2a2a2;
+    font-size: 11px;
+    display: block;
+    margin-top: -15px;
 }
 .home h2.titulo-modulo {
     margin-top: -2px;

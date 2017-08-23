@@ -696,9 +696,7 @@ dl.nav-tree dt {
 .home p.post-meta a[href*="destaque"], .home p.post-meta a[href*="noticia"] {
     display: none;
 }
-.home p.post-meta a[href*="meta"] {
-    display: block;
-}
+
 /* MENU PRINCIPAL DA INTRANET */
 
 .main-header {

@@ -3507,9 +3507,9 @@ button.mfp-close {
     border-left: 2px solid #f52a6e;
     border-radius: 4px;
 }
-.pagination a:hover {
+.page .pagination a:hover {
     color: #ffffff;
-    background: #f52a6e;   
+    background: #f52a6e !important;
 }
 
 .pagination a:hover,

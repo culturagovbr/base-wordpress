@@ -1629,6 +1629,10 @@ body:not(.home) .menu-metas-container #menu-metas a:before {
 .ul-title {
     border-bottom: 1px solid #ccc;
     padding-bottom: 12px !important;
+    font-size: 14px;
+    padding-top: 20px;
+    padding-left: 200px;
+    font-weight:normal;
 }
 
 /*Home*/

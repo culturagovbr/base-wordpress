@@ -3497,6 +3497,20 @@ button.mfp-close {
     border: 1px solid #ddd;
     border-left-width: 0;
 }
+.page .pagination a {
+    float: left;
+    padding: 0 14px;
+    line-height: 34px;
+    color: #f52a6e;
+    text-decoration: none;
+    border: 2px solid #f52a6e;
+    border-left: 2px solid #f52a6e;
+    border-radius: 4px;
+}
+.page .pagination a:hover {
+    color: #ffffff;
+    background: #f52a6e !important;
+}
 
 .pagination a:hover,
 .pagination .active a {

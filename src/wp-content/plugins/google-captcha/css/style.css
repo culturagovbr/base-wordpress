@@ -1,0 +1,14 @@
+/*
+* styles for settings page
+*/
+.gglcptch_verified {
+	color: #03AA03;
+}
+.gglcptch_error_msg {
+	color: #dc3232;
+}
+.gglcptch_whitelist_form > div:first-of-type > input[type="text"],
+.gglcptch_whitelist_form > div:first-of-type > label {
+	display: inline-block;
+	margin-bottom: 10px;
+}

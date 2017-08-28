@@ -1623,7 +1623,9 @@ body:not(.home) .menu-metas-container #menu-metas a:before {
     font-weight: bold;
 }
 .category h4.widgettitle {
-    opacity: 0;
+    color: #00445d;
+    border-top: none;
+    background: none;
 }
 .et_pb_widget_area_left {
   padding-right: 0;

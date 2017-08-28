@@ -229,7 +229,9 @@ jQuery(document).ready(function() {
           var bottom_of_object = jQuery(this).offset().top + jQuery(this).outerHeight();
           var bottom_of_window = jQuery(window).scrollTop() + jQuery(window).height();
           if (bottom_of_window > bottom_of_object) {
-            jQuery(this).show().delay(600).animate({'opacity':'1'},600);
+            jQuery(this).animate({
+              'opacity': '1'
+            }, 500);
           }
         });
       });

@@ -3143,6 +3143,9 @@ table.cart th, #main-content table.cart th, table.cart td, #main-content table.c
     width: 100%;
 }
 /*Redes sociais*/
+.social-icones {
+  padding-top: 20px;
+}
 .social-icones a {
   font-size: 20px;
   line-height: 40px;

@@ -1,0 +1,132 @@
+#software-catalog-repos .title{
+	margin-bottom: 15px;
+	padding-bottom: 15px;
+}
+
+#software-catalog-repos .software-catalog-project{
+	width: 33.33333333%;
+	float: left;
+	position: relative;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	height: 220px;
+	text-align: left;
+}
+
+#software-catalog-repos.layout-columns-1 .software-catalog-project{
+	width: 100%;
+}
+
+#software-catalog-repos.layout-columns-2 .software-catalog-project{
+	width: 50%;
+}
+
+#software-catalog-repos.layout-columns-3 .software-catalog-project{
+	width: 33.33333333%;
+}
+
+#software-catalog-repos.layout-columns-4 .software-catalog-project{
+	width: 25%;
+}
+
+#software-catalog-repos .software-catalog-project .container-inner{
+	-webkit-box-flex: 1;
+	-webkit-flex: 1 1 auto;
+	-ms-flex: 1 1 auto;
+	flex: 1 1 auto;
+	padding: 1.25rem 1.25rem 3.75rem;
+	background-color: #fff;
+	border: 1px solid rgba(0,0,0,.125);
+	border-radius: .25rem;
+	margin: 0 15px 15px;
+	position: relative;
+}
+
+#software-catalog-repos .software-catalog-project .container-inner h2{
+	font-size: 18px;
+	min-height: 35px;
+	margin-top: 0;
+}
+
+#software-catalog-repos .software-catalog-project .container-inner .btn{
+	position: absolute;
+	bottom: 0.75rem;
+	right: 1.25rem;
+	background: #2ea3f2;
+	color: #fff;
+	padding: 5px 10px;
+	font-size: 12px;
+}
+
+#software-catalog-repos .software-catalog-project .container-inner .language{
+	position: absolute;
+	bottom: 1rem;
+	left: 1.25rem;
+	font-size: 12px;
+}
+
+#software-catalog-repos .software-catalog-project .container-inner .btn:hover,
+#software-catalog-repos .software-catalog-project .container-inner .btn:focus,
+#software-catalog-repos .software-catalog-project .container-inner .btn:active{
+	background: #1e81c3;
+}
+
+#software-catalog-repos .software-catalog-project .container-inner .description{
+	max-height: 90px;
+	overflow-y: auto;
+	font-size: 12px;
+}
+
+#software-catalog-repos .software-catalog-project .project-avatar{
+	float: left;
+	margin-right: 5px;
+	margin-top: -5px;
+}
+
+#software-catalog-repos .row{
+	margin-left: -15px;
+	margin-right: -15px;
+}
+
+#software-catalog-repos .row:before,
+#software-catalog-repos .row:after{
+	display: table;
+	content: " ";
+	box-sizing: border-box;
+	clear: both;
+	overflow: auto;
+}
+
+#software-catalog-repos .thumbnails.members{
+	margin: 0 15px;
+	padding: 0;
+	list-style-type: none;
+	text-align: center;
+}
+
+#software-catalog-repos .software-catalog-member{
+	float: left;
+	width: 16.666%;
+	position: relative;
+	margin-bottom: 15px;
+	text-align: left;
+}
+
+#software-catalog-repos .software-catalog-member .url{
+	position: absolute;
+	top: 5px;
+	left: 55px;
+	padding-right: 10px;
+	line-height: 18px;
+}
+
+#software-catalog-repos .repos.row{
+	margin-bottom: 30px;
+}

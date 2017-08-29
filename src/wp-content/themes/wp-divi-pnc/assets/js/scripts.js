@@ -218,3 +218,21 @@ function openModal(botao,url) {
 
 openModal(jQuery("#top-menu-nav a.et_pb_button"),jQuery("div#stc_widget-2"));
 
+
+//Função para a carregar os cards de metas sob demanda
+jQuery(document).ready(function() {
+      jQuery(window).scroll(function() {
+        jQuery('ul#menu-lista-de-metas li').each(function(i) {
+          if (i > 10) {
+            jQuery('ul#menu-lista-de-metas li').addClass("hideme");
+          }
+          var bottom_of_object = jQuery(this).offset().top + jQuery(this).outerHeight();
+          var bottom_of_window = jQuery(window).scrollTop() + jQuery(window).height();
+          if (bottom_of_window > bottom_of_object) {
+            jQuery(this).animate({
+              'opacity': '1'
+            }, 500);
+          }
+        });
+      });
+});

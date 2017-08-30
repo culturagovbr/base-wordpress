@@ -51,12 +51,13 @@ $permalink = get_permalink($post->ID);
 		      <?php endforeach; ?>
 		    </div>
 		  </div>
+		  <div class="et_pb_widget_area et_pb_widget_area_left clearfix et_pb_module et_pb_bg_layout_light et_pb_sidebar_0">
+		    <div id="nav_menu-9" class="et_pb_widget widget_nav_menu">
+		      <?php dynamic_sidebar('sidebar-1'); ?>
+		    </div>
+		  </div>
 		</div>
 	      </div>
-	    </div>
-
-	    <div class="et_pb_widget_area et_pb_widget_area_left clearfix et_pb_module et_pb_bg_layout_light et_pb_sidebar_0">
-	      <?php dynamic_sidebar('sidebar-1'); ?>
 	    </div>
       </article>
     </div>

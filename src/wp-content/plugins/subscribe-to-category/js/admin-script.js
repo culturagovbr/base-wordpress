@@ -41,6 +41,43 @@
       return false;
 
     });
+
+    $('.select-all-categories-to-include, .select-all-categories-to-exclude').on('click', function(e){
+      e.preventDefault();
+      $(this).parent().prev('div').find('input:checkbox').trigger('click'); 
+    });
+
+    $('.select-all-categories-to-export').on('click', function(e){
+      e.preventDefault();
+      $('.export-table').find('input:checkbox').trigger('click'); 
+    });
+
+    $('#link-posts-to-send').on('click', function(e){
+      e.preventDefault();
+      $('.posts-to-send').slideToggle();
+    });
+
+    $('.posts-to-send .stc-remove-from-sending').on('click', function(e){
+      e.preventDefault();
+      var listItem = $(this).closest('li');
+
+      console.log( $(this).attr('data-post-id'), listItem );
+      var data = {
+        action: 'remove_post_from_sending',
+        post_id: $(this).attr('data-post-id'),
+        nonce: ajax_object.ajax_nonce
+      };
+
+      $.post( ajax_object.ajaxurl, data, function(response) {
+        if( response.length ){
+          console.log( response );
+          $('#stc-posts-in-que').text( parseInt( $('#stc-posts-in-que').text() ) -1 );
+          $(listItem).hide('slow');
+        }
+      }).error(function(){
+        alert ("Problem calling: " + action + "\nCode: " + this.status + "\nException: " + this.statusText);
+      });
+    });
 		
 
 	});

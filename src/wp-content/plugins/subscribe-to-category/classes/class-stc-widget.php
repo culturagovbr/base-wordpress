@@ -72,6 +72,9 @@ class STC_Widget extends WP_Widget {
 				<label><input type="checkbox" id="<?php echo $this->get_field_id( 'categories_include' ) . $key; ?>" name="<?php echo $this->get_field_name( 'categories_include' );?>[<?php echo $key ?>]" value="<?php echo $category->term_id;?>" <?php echo checked( $in_category_id, $category->term_id); ?>><?php echo $category->name; ?></label>
 			<?php endforeach; ?>
 			</div>
+			<p>
+				<a href="#" class="select-all-categories-to-include"><small><?php _e( 'Select/Deselect all', 'stc_textdomain' ); ?></small></a>
+			</p>
 		<?php endif; ?>
 		
 		<p><label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Excluded selectable categories for subscription:', 'stc_textdomain' ); ?></label></p>
@@ -84,6 +87,9 @@ class STC_Widget extends WP_Widget {
 				<label><input type="checkbox" id="<?php echo $this->get_field_id( 'categories_exclude' ) . $key; ?>" name="<?php echo $this->get_field_name( 'categories_exclude' );?>[<?php echo $key ?>]" value="<?php echo $category->term_id;?>" <?php echo checked( $in_category_id, $category->term_id); ?>><?php echo $category->name; ?></label>
 			<?php endforeach; ?>
 			</div>
+			<p>
+				<a href="#" class="select-all-categories-to-exclude"><small><?php _e( 'Select/Deselect all', 'stc_textdomain' ); ?></small></a>
+			</p>
 		<?php endif; ?>
 
 

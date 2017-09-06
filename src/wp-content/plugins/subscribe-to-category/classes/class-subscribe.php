@@ -78,6 +78,10 @@ if( class_exists( 'STC_Subscribe' ) ) {
       if( isset( $this->settings['resend_option'] ) && $this->settings['resend_option'] == 1 )
         add_action( 'post_submitbox_misc_actions', array( $this, 'resend_post_option' ) );
 
+      // adding checkbox to publish meta box if activated
+      if( isset( $this->settings['exclude_from_send_option'] ) && $this->settings['exclude_from_send_option'] == 1 )
+        add_action( 'post_submitbox_misc_actions', array( $this, 'exclude_from_send_post_option' ) );
+
   	}
 
     /**
@@ -95,14 +99,40 @@ if( class_exists( 'STC_Subscribe' ) ) {
         return false;
 
       $time_in_seconds_i18n = strtotime( date_i18n( 'Y-m-d H:i:s' ) ) + STC_Settings::get_next_cron_time( 'stc_schedule_email' );
+      $next_run = gmdate( get_option('date_format') .' '. get_option('time_format'), $time_in_seconds_i18n ); 
+      ?>
+        <div class="misc-pub-section stc-section">
+          <span class="dashicons dashicons-controls-repeat"></span> 
+          <label>
+            <input id="stc-resend" type="checkbox" name="stc_resend"> 
+            <?php _e('Resend post to subscribers', 'stc_textdomain' ); ?>
+          </label>
+          <div id="stc-resend-info" style="display:none;">
+            <p><i><?php printf( __( 'This post update will be re-sent to subscribers %s', 'stc_textdomain' ), $next_run ); ?></i></p>
+          </div>
+        </div>
+      <?php
+    }
+
+    /**
+     * Adding checkbox to publish meta box with an option to exclude post from send
+     *
+     * @since 1.9.0
+     * 
+     */
+    public function exclude_from_send_post_option(){
+      global $post;
+      $stc_status = get_post_meta( $post->ID, '_stc_notifier_status', true );
+
+      $time_in_seconds_i18n = strtotime( date_i18n( 'Y-m-d H:i:s' ) ) + STC_Settings::get_next_cron_time( 'stc_schedule_email' );
       $next_run = gmdate( 'Y-m-d H:i:s', $time_in_seconds_i18n ); 
 
       ?>
         <div class="misc-pub-section stc-section">
-          <span class="dashicons dashicons-groups"></span> <label><?php _e('Resend post to subscribers', 'stc_textdomain' ); ?> <input id="stc-resend" type="checkbox" name="stc_resend"></label>
-          <div id="stc-resend-info" style="display:none;">
-            <p><i><?php printf( __( 'This post update will be re-sent to subscribers %s', 'stc_textdomain' ), $next_run ); ?></i></p>
-          </div>
+          <span class="dashicons dashicons-dismiss"></span> 
+          <label>
+            <input id="stc-resend" type="checkbox" name="stc_block_from_sending" <?php echo ( $stc_status == 'blocked' ) ? 'checked="checked"' : ''; ?>> <?php _e('Remove post from send', 'stc_textdomain' ); ?>
+          </label>
         </div>
       <?php
     }
@@ -269,6 +299,12 @@ if( class_exists( 'STC_Subscribe' ) ) {
       }else{
 
         if( isset( $_POST['stc_resend'] ) && $_POST['stc_resend'] == 'on' ) {
+          update_post_meta( $post_id, '_stc_notifier_status', 'outbox' ); // updating post meta
+        }
+
+        if( isset( $_POST['stc_block_from_sending'] ) && $_POST['stc_block_from_sending'] == 'on' ) {
+          update_post_meta( $post_id, '_stc_notifier_status', 'blocked' ); // updating post meta
+        } else {
           update_post_meta( $post_id, '_stc_notifier_status', 'outbox' ); // updating post meta
         }
         
@@ -936,8 +972,19 @@ if( class_exists( 'STC_Subscribe' ) ) {
         'post_type'   => 'post',
         'post_status' => 'publish',
         'numberposts' => -1,
-        'meta_key'    => $meta_key,
-        'meta_value'  => $meta_value
+        'meta_query' => array(
+            'relation' => 'AND',
+            array(
+              'key'     => $meta_key,
+              'value'   => $meta_value,
+              'compare' => '=',
+            ),
+            array(
+              'key'     => $meta_key,
+              'value'   => 'blocked',
+              'compare' => '!=',
+            ),
+          )
       );
 
       $posts = get_posts( $args );
@@ -969,6 +1016,11 @@ if( class_exists( 'STC_Subscribe' ) ) {
      */
     private function send_notifier( $outbox = '' ){
       $subscribers = $this->get_subscribers();
+
+      add_filter( 'wp_mail_content_type', 'set_html_content_type' );
+      function set_html_content_type() {
+        return 'text/html';
+      }
 
       $i = 0;
       $emails = array();
@@ -1015,14 +1067,18 @@ if( class_exists( 'STC_Subscribe' ) ) {
       if( !is_email( $email_from ) )
         $email_from = get_option( 'admin_email' ); // set admin email if email settings is not valid
 
+      $stc_options = get_option( 'stc_settings' );
+      $developer_mode = $stc_options['developer_mode'];
+
       $headers  = 'MIME-Version: 1.0' . "\r\n";
       $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
       $headers .= 'From: '. $website_name.' <'.$email_from.'>' . "\r\n";
 
+      $headers = 'From: '. $website_name.' <'.$email_from.'>' . "\r\n";
+      
       // loop through subscribers and send notice
       $i = 1; // loop counter
       foreach ($emails as $email ) {
-
         ob_start(); // start buffering and get content
         $this->email_html_content( $email );
         $message = ob_get_contents();
@@ -1034,16 +1090,21 @@ if( class_exists( 'STC_Subscribe' ) ) {
 
         // add updated to title if its an update for post
         if( $this->is_stc_resend( $email['post_id'] ) )
-          $email_subject = __('Update | ', 'stc_textdomain' ) . $email_subject;
+          $email_subject = __('Post updated | ', 'stc_textdomain' ) . $email_subject;
 
         $subject = '=?UTF-8?B?'.base64_encode( $email_subject ).'?=';
 
-
-        if( STC_DEV_MODE === true ){
+        if( STC_DEV_MODE === true || $developer_mode ){
+          var_dump($email);
           echo $subject . '<br>' . $message;
           die();
         }else{
-          wp_mail( $email['email'], $subject, $message, $headers );  
+          if( !wp_mail( $email['email'], $subject, $message, $headers ) ){
+              error_log('Sending email to ' . $email['email'] . ', failed!', 0);
+              error_log('Email subject ' . $subject, 0);
+              error_log('Email message ' . $message, 0);
+              error_log('Email headers ' . $headers, 0);
+          }
         }
 
 
@@ -1094,7 +1155,9 @@ if( class_exists( 'STC_Subscribe' ) ) {
      * @param  object $email
      */    
     private function email_html_content( $email ){
-      $sum_of_words = 130;
+      $stc_options = get_option( 'stc_settings' );
+      $email_content_length = $stc_options['email_content_length'];
+      $sum_of_words = ( $email_content_length ) ? $email_content_length : 200;
 
       $output['title']        = '<h3><a href="' . get_permalink( $email['post_id'] ) . '">' . $email['post']->post_title . '</a></h3>';
       $output['link_to_post'] = '<div style="border-bottom: 1px solid #cccccc; padding-bottom: 10px;"><a href="' . get_permalink( $email['post_id'] ) .'">' . __('Click here to read full story', 'stc_textdomain' ) . '</a></div>';
@@ -1108,7 +1171,8 @@ if( class_exists( 'STC_Subscribe' ) ) {
       <?php do_action( 'stc_after_message_title', $email['post_id'], $email['subscriber_id'] ); ?>
 
       <?php do_action( 'stc_before_message_content', $email['post_id'], $email['subscriber_id'] ); ?>
-      <div><?php echo apply_filters('the_content', $this->string_cut( $email['post']->post_content, apply_filters( 'stc_message_length_sum_of_words', $sum_of_words ) ) );?></div>
+      <?php $excerpt = get_the_excerpt($email['post_id']); ?>
+      <div><?php echo apply_filters('the_content', $this->string_cut( ( $excerpt ) ? $excerpt : $email['post']->post_content, apply_filters( 'stc_message_length_sum_of_words', $sum_of_words ) ) );?></div>
       <?php do_action( 'stc_after_message_content', $email['post_id'], $email['subscriber_id'] ); ?>
 
       <?php echo apply_filters( 'stc_message_link_to_post_html', $output['link_to_post'] ); ?>

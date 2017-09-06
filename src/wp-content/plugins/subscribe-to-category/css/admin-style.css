@@ -11,7 +11,81 @@
 	float: left;
 }
 
+.stc-section span{
+	position: relative;
+}
+
 .stc-section span:before {
-    content: "\f307";
-    top: -1px;
+    color: #82878c;
+    position: absolute;
+    top: -3px;
+    left: 0;
+}
+
+.stc-category-include,
+.stc-category-exclude {
+	max-height: 200px; 
+	overflow-y: scroll; 
+	overflow-x: hidden;
+}
+
+.stc-category-include label,
+.stc-category-exclude label{
+	display: block;
+	margin: 5px 0;
+}
+
+.select-all-categories-to-include,
+.select-all-categories-to-exclude{
+	display: block;
+	text-align: right;
+}
+
+.select-all-categories-to-export{
+	margin-top: 5px;
+}
+
+.stc-info{
+	margin: 30px 0;
+}
+
+#link-posts-to-send{
+	text-transform: none;
+	display: inline-block;
+}
+
+.posts-to-send{
+	text-transform: none;
+	background: #f9f9f9;
+	border: 1px solid rgb(229, 229, 229);
+	display: none;
+	max-height: 400px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+.posts-to-send ul{
+	margin: 0;
+}
+
+.posts-to-send ul li{
+	padding: 10px;
+}
+
+.posts-to-send ul li:nth-child(even) {
+	background: #fff;
+}
+
+#cron_recurrence_hourly,
+#cron_recurrence_twicedaily,
+#cron_recurrence_daily {
+	display: inline-block;
+	margin-bottom: 5px;
+}
+
+.export-table label{
+	display: block;
+	float: left;
+	width: 20%;
+	margin: 5px 0;
 }

@@ -2,91 +2,131 @@
 # This file is distributed under the same license as the Subscribe to Category package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Subscribe to Category 1.7.0\n"
+"Project-Id-Version: Subscribe to Category 1.9.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/subscribe-to-"
 "category\n"
-"POT-Creation-Date: 2016-01-13 20:36:15+00:00\n"
+"POT-Creation-Date: 2017-09-06 16:55-0300\n"
+"PO-Revision-Date: 2017-09-06 16:56-0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-08-10 10:59-0300\n"
-"Language-Team: \n"
 "X-Generator: Poedit 2.0.3\n"
-"Last-Translator: \n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"Language: pt_BR\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#: classes/class-settings.php:55
+#: classes/class-settings.php:56
 msgid "Scheduled event successfully executed"
 msgstr "Evento agendado executado com sucesso"
 
-#. Plugin Name of the plugin/theme
-#: classes/class-settings.php:79 classes/class-stc-widget.php:11
+#: classes/class-settings.php:71
+msgid "Post removed from queue of sending"
+msgstr "Post removido da lista de envio"
+
+#: classes/class-settings.php:96 classes/class-stc-widget.php:11
 msgid "Subscribe to Category"
 msgstr "Assinar categoria"
 
-#: classes/class-settings.php:80 classes/class-stc-widget.php:47
-#: classes/class-subscribe.php:1190
+#: classes/class-settings.php:97 classes/class-stc-widget.php:47
+#: classes/class-subscribe.php:1261
 msgid "Subscribe"
-msgstr "Inscrições"
+msgstr "Inscrições para categorias"
 
-#: classes/class-settings.php:103
+#: classes/class-settings.php:121
 msgid "Settings for subscribe to category"
-msgstr "Configurações para subscribe to category"
+msgstr "Configurações"
 
-#: classes/class-settings.php:109
-msgid "Schedule: "
-msgstr "Agendamento: "
+#: classes/class-settings.php:125
+msgid "Attention, developer mode is active, no email will be sent."
+msgstr ""
+"Atenção, o modo de desenvolvedor está ativo, nenhum e-mail será enviado."
 
-#: classes/class-settings.php:109
-msgid "E-mail is scheduled to be sent once every hour."
-msgstr "E-mail agendado para envio a cada uma hora."
+#: classes/class-settings.php:136
+msgid "There are no posts in queue to be sent"
+msgstr "Não existem postagens na fila para serem enviadas"
 
-#: classes/class-settings.php:111
+#: classes/class-settings.php:142
+#, php-format
+msgid ""
+"Next run is going to be: <strong>%s</strong> and will include <strong>%s "
+"posts</strong>."
+msgstr ""
+"A próxima execução será em <strong>%s</strong> e inclui <strong>%s</strong> "
+"postagens."
+
+#: classes/class-settings.php:147
 msgid "Click here to run this action right now"
 msgstr "Clique aqui para executar essa ação agora"
 
-#: classes/class-settings.php:114
-msgid "Next run is going to be <strong>%s</strong> and will include %s posts."
-msgstr "A próxima execução será em <strong>%s</strong> e inclui %s postagens."
+#: classes/class-settings.php:256
+msgid "General settings"
+msgstr "Configurações gerais"
 
-#: classes/class-settings.php:190
+#: classes/class-settings.php:264
 msgid "E-mail settings"
 msgstr "Configurações de e-mail"
 
-#: classes/class-settings.php:197
+#: classes/class-settings.php:271
+msgid "Recurrence of sending: "
+msgstr "Recorrência do envio: "
+
+#: classes/class-settings.php:279
 msgid "E-mail from: "
 msgstr "E-mail remetente: "
 
-#: classes/class-settings.php:205
+#: classes/class-settings.php:287
 msgid "Email subject: "
 msgstr "Assunto: "
 
-#: classes/class-settings.php:215
+#: classes/class-settings.php:295
+msgid "Quantidade de caracteres: "
+msgstr "Number of characters: "
+
+#: classes/class-settings.php:306
+msgid "Email template: "
+msgstr "Template de email: "
+
+#: classes/class-settings.php:316
 msgid "Resend post on update"
 msgstr "Reenviar post ao atualizar"
 
-#: classes/class-settings.php:222
+#: classes/class-settings.php:323
 msgid "Resend:"
 msgstr "Reenviar:"
 
-#: classes/class-settings.php:232
+#: classes/class-settings.php:331
+msgid "Exclude from send:"
+msgstr "Excluir do envio:"
+
+#: classes/class-settings.php:341
 msgid "Stylesheet (CSS) settings"
 msgstr "Configurações de estilo (CSS)"
 
-#: classes/class-settings.php:239
+#: classes/class-settings.php:348
 msgid "Custom CSS: "
 msgstr "CSS personalizado: "
 
-#: classes/class-settings.php:249
+#: classes/class-settings.php:357
+msgid "Developer settings"
+msgstr "Configurações do desenvolvedor"
+
+#: classes/class-settings.php:364
+msgid "Enable developer mode: "
+msgstr "Ativar o modo de desenvolvedor: "
+
+#: classes/class-settings.php:374
 msgid "On plugin deactivation"
 msgstr "Ao desativar plugin"
 
-#: classes/class-settings.php:256
+#: classes/class-settings.php:381
 msgid "Subscribers: "
 msgstr "Assinantes: "
 
-#: classes/class-settings.php:280
+#: classes/class-settings.php:404
 msgid ""
 "The plugin will remove all data in database created by this plugin but there "
 "is an option regarding subscribers"
@@ -94,15 +134,32 @@ msgstr ""
 "O plugin irá remover todos os dados armazenados no banco de dados criados "
 "por este plugin, mas há uma opção em relação aos assinantes"
 
-#: classes/class-settings.php:301
+#: classes/class-settings.php:430
 msgid "You have entered an invalid email."
 msgstr "O email que você inseriu é inválido."
 
-#: classes/class-settings.php:332
+#: classes/class-settings.php:477
 msgid "Add your E-mail settings"
 msgstr "Adicione suas configurações de e-mail"
 
-#: classes/class-settings.php:345
+#: classes/class-settings.php:491
+msgid "Hourly"
+msgstr "De hora em hora"
+
+#: classes/class-settings.php:495
+msgid "Twicedaily"
+msgstr "Duas vezes ao dia"
+
+#: classes/class-settings.php:499
+msgid "Daily"
+msgstr "Diariamente"
+
+#: classes/class-settings.php:501
+msgid "Set recurrence for sending emails."
+msgstr "Defina a recorrência para o envio de emails."
+
+#: classes/class-settings.php:515
+#, php-format
 msgid ""
 "Enter the e-mail address for the sender, if empty the admin e-mail address "
 "%s is going to be used as sender."
@@ -110,7 +167,7 @@ msgstr ""
 "Insira o endereço de e-mail para o remetente, se vazio, o email de "
 "administrador %s será usado como remetente."
 
-#: classes/class-settings.php:358
+#: classes/class-settings.php:528 classes/class-settings.php:554
 msgid ""
 "Enter e-mail subject for the e-mail notification, leave empty if you wish to "
 "use post title as email subject."
@@ -118,11 +175,15 @@ msgstr ""
 "Digite o assunto do e-mail para a notificação por e-mail, deixe vazio se "
 "desejar usar o título da postagem como assunto do e-mail."
 
-#: classes/class-settings.php:376
+#: classes/class-settings.php:541
+msgid "Enter the max length for the content body when sending emails"
+msgstr "Digite o comprimento máximo para o corpo do conteúdo ao enviar e-mails"
+
+#: classes/class-settings.php:571
 msgid "Enable resend post option"
 msgstr "Habilitar a opção de reenvio de postagem"
 
-#: classes/class-settings.php:377
+#: classes/class-settings.php:572
 msgid ""
 "Gives an option on edit post (in the publish panel) to resend a post on "
 "update."
@@ -130,11 +191,23 @@ msgstr ""
 "Oferece uma opção na publicação/edição (no painel de publicação das "
 "postagens) para reenviar uma postagem na atualização."
 
-#: classes/class-settings.php:394
+#: classes/class-settings.php:589
+msgid "Enable exclude from send post option"
+msgstr "Habilitar a opção para remoção de envio de postagem"
+
+#: classes/class-settings.php:590
+msgid ""
+"Gives an option on edit post (in the publish panel) to exclude post from "
+"send."
+msgstr ""
+"Oferece uma opção na publicação/edição (no painel de publicação das "
+"postagens) para excluir uma postagem de envio durante a atualização."
+
+#: classes/class-settings.php:607
 msgid "Exclude custom CSS"
 msgstr "Excluir CSS personalizado"
 
-#: classes/class-settings.php:395
+#: classes/class-settings.php:608
 msgid ""
 "Check this option if your theme supports Bootstrap framework or if you want "
 "to place your own CSS for Subscribe to Category in your theme."
@@ -142,23 +215,27 @@ msgstr ""
 "Marque esta opção se o seu tema suportar a estrutura do Bootstrap ou se "
 "desejar colocar seu próprio CSS no seu tema."
 
-#: classes/class-settings.php:413
+#: classes/class-settings.php:626
 msgid "Delete all subscribers on deactivation"
 msgstr "Deletar todas as inscrições ao desativar"
 
-#: classes/class-settings.php:426
+#: classes/class-settings.php:644
+msgid "Yes"
+msgstr "Sim"
+
+#: classes/class-settings.php:657
 msgid "Export to excel"
 msgstr "Exportar para Excel"
 
-#: classes/class-settings.php:431
+#: classes/class-settings.php:663
 msgid "Filter by categories"
 msgstr "Filtrar por categoria"
 
-#: classes/class-settings.php:438
+#: classes/class-settings.php:672
 msgid "There are no categories to list yet"
 msgstr "Não existem categorias para listar"
 
-#: classes/class-settings.php:509
+#: classes/class-settings.php:742
 msgid "Filtered by: "
 msgstr "Filtrado por: "
 
@@ -184,27 +261,36 @@ msgstr ""
 msgid "Selectable categories for subscription: "
 msgstr "Categorias selecionáveis para inscrição: "
 
-#: classes/class-stc-widget.php:77
+#: classes/class-stc-widget.php:76 classes/class-stc-widget.php:91
+msgid "Select/Deselect all"
+msgstr "Selecionar/Deselecionar"
+
+#: classes/class-stc-widget.php:80
 msgid "Excluded selectable categories for subscription:"
 msgstr "Exclui categorias selecionáveis para inscrição:"
 
-#: classes/class-subscribe.php:102
+#: classes/class-subscribe.php:108
 msgid "Resend post to subscribers"
 msgstr "Reenviar postagem para os inscritos"
 
-#: classes/class-subscribe.php:104
+#: classes/class-subscribe.php:111
+#, php-format
 msgid "This post update will be re-sent to subscribers %s"
-msgstr "Esta postagem será reenviada para on inscritos em %s"
+msgstr "Esta postagem será reenviada para os inscritos em %s"
 
-#: classes/class-subscribe.php:158
+#: classes/class-subscribe.php:134
+msgid "Remove post from send"
+msgstr "Remover post da lista de envio"
+
+#: classes/class-subscribe.php:188
 msgid "Take me to start page"
 msgstr "Leve-em para a página inicial"
 
-#: classes/class-subscribe.php:187
+#: classes/class-subscribe.php:217
 msgid "Thanks for your subscription!"
 msgstr "Obrigado pela sua inscrição!"
 
-#: classes/class-subscribe.php:188
+#: classes/class-subscribe.php:218
 msgid ""
 "If you want to unsubscribe there is a link for unsubscription attached in "
 "the email."
@@ -212,32 +298,34 @@ msgstr ""
 "Se você deseja cancelar sua inscrição, há um link para cancelamento no e-"
 "mail."
 
-#: classes/class-subscribe.php:216
+#: classes/class-subscribe.php:246
 msgid "We are sorry but something went wrong with your unsubscription."
 msgstr "Sintimos muito, mas parece que algo deu errado com sua inscrição."
 
-#: classes/class-subscribe.php:226
+#: classes/class-subscribe.php:256
+#, php-format
 msgid "We have successfully removed your email %s from our database."
 msgstr "Seu email %s foi removdio com sucesso do nosso banco de dados."
 
-#: classes/class-subscribe.php:312 classes/class-subscribe.php:338
+#: classes/class-subscribe.php:348 classes/class-subscribe.php:374
+#, php-format
 msgid "Unsubscribe from %s"
 msgstr "Cancelar inscrição de %s"
 
-#: classes/class-subscribe.php:339
+#: classes/class-subscribe.php:375
 msgid "Follow this link to confirm your unsubscription"
 msgstr "Siga esse link para confirmar seu cancelamento"
 
-#: classes/class-subscribe.php:363 classes/class-subscribe.php:396
-#: classes/class-subscribe.php:544
+#: classes/class-subscribe.php:399 classes/class-subscribe.php:432
+#: classes/class-subscribe.php:580
 msgid "You need to enter a valid email address"
 msgstr "Você precisa inserir um endereço de email válido"
 
-#: classes/class-subscribe.php:372
+#: classes/class-subscribe.php:408
 msgid "Email address not found in database"
 msgstr "Endereço de email não encontrado no nosso banco de dados"
 
-#: classes/class-subscribe.php:380
+#: classes/class-subscribe.php:416
 msgid ""
 "We have received your request to unsubscribe from our newsfeed. Please check "
 "your email and confirm your unsubscription."
@@ -245,100 +333,105 @@ msgstr ""
 "Recebemos o seu pedido para cancelar a sua inscrição do nosso newsletter. "
 "Verifique seu e-mail e confirme o cancelamento de sua inscrição."
 
-#: classes/class-subscribe.php:408
+#: classes/class-subscribe.php:444
 msgid "You need to select some categories"
 msgstr "Você precisa selecionar alguma categoria"
 
-#: classes/class-subscribe.php:551
+#: classes/class-subscribe.php:587
 msgid "E-mail address already exists"
 msgstr "Endereço de email em uso"
 
-#: classes/class-subscribe.php:555
+#: classes/class-subscribe.php:591
 msgid "No categories are selected"
 msgstr "Nenhuma categoria selecionada"
 
-#: classes/class-subscribe.php:597
+#: classes/class-subscribe.php:633
 msgid " - this post is set to draft"
 msgstr " - essa postagem é um rascunho"
 
-#: classes/class-subscribe.php:861
+#: classes/class-subscribe.php:904
 msgid "E-mail Address: "
 msgstr "Endereço de email: "
 
-#: classes/class-subscribe.php:868 classes/class-subscribe.php:1094
+#: classes/class-subscribe.php:911 classes/class-subscribe.php:1164
 msgid "Unsubscribe me"
 msgstr "Cancelar minha inscrição"
 
-#: classes/class-subscribe.php:875
+#: classes/class-subscribe.php:918
 msgid "Categories"
 msgstr "Categoria"
 
-#: classes/class-subscribe.php:880
+#: classes/class-subscribe.php:923
 msgid "All categories"
 msgstr "Todas as categorias"
 
-#: classes/class-subscribe.php:905
+#: classes/class-subscribe.php:948
 msgid "Subscribe me"
 msgstr "Inscreva-me"
 
-#: classes/class-subscribe.php:906
+#: classes/class-subscribe.php:949
 msgid "Unsubscribe"
 msgstr "Cancelar inscrição"
 
-#: classes/class-subscribe.php:1030
-msgid "Update | "
-msgstr "Atualizar | "
-
 #: classes/class-subscribe.php:1093
+msgid "Post updated | "
+msgstr "Postagem Atualizada | "
+
+#: classes/class-subscribe.php:1163
 msgid "Click here to read full story"
 msgstr "Clique aqui para visualizar"
 
-#: classes/class-subscribe.php:1189 classes/class-subscribe.php:1199
+#: classes/class-subscribe.php:1260 classes/class-subscribe.php:1270
 msgid "Subscribers"
-msgstr "Inscrições"
+msgstr "Inscritos"
 
-#: classes/class-subscribe.php:1191 classes/class-subscribe.php:1192
+#: classes/class-subscribe.php:1262 classes/class-subscribe.php:1263
 msgid "Add new subscriber"
 msgstr "Adicionar inscrição"
 
-#: classes/class-subscribe.php:1193
+#: classes/class-subscribe.php:1264
 msgid "Edit subscriber"
 msgstr "Editar inscrição"
 
-#: classes/class-subscribe.php:1194
+#: classes/class-subscribe.php:1265
 msgid "New subscriber"
 msgstr "Nova inscrição"
 
-#: classes/class-subscribe.php:1195
+#: classes/class-subscribe.php:1266
 msgid "Show subscriber"
 msgstr "Mostrar inscritos"
 
-#: classes/class-subscribe.php:1196
+#: classes/class-subscribe.php:1267
 msgid "Search subscribers"
 msgstr "Pesquisar por inscritos"
 
-#: classes/class-subscribe.php:1197
+#: classes/class-subscribe.php:1268
 msgid "Not found"
 msgstr "Nada encontrado"
 
-#: classes/class-subscribe.php:1198
+#: classes/class-subscribe.php:1269
 msgid "Nothing found in trash"
 msgstr "Nada encontrado na lixeira"
 
-#. Plugin URI of the plugin/theme
-msgid "http://dcweb.nu"
-msgstr "http://dcweb.nu"
+#~ msgid "Schedule: "
+#~ msgstr "Agendamento: "
 
-#. Description of the plugin/theme
-msgid "Lets your visitor subscribe to posts for one or several categories."
-msgstr ""
-"Permite aos seus usuários se inscrever para receber atualizações sobre "
-"postagens em diferentes categorias."
+#~ msgid "E-mail is scheduled to be sent once every hour."
+#~ msgstr "E-mail agendado para envio a cada uma hora."
 
-#. Author of the plugin/theme
-msgid "Daniel Söderström"
-msgstr "Daniel Söderström"
+#~ msgid "Y-m-d H:i:s"
+#~ msgstr "d/m/Y H:i:s"
 
-#. Author URI of the plugin/theme
-msgid "http://dcweb.nu/"
-msgstr "http://dcweb.nu/"
+#~ msgid "http://dcweb.nu"
+#~ msgstr "http://dcweb.nu"
+
+#~ msgid "Lets your visitor subscribe to posts for one or several categories."
+#~ msgstr ""
+#~ "Permite aos seus usuários se inscrever para receber atualizações sobre "
+#~ "postagens em diferentes categorias."
+
+#~ msgid "Daniel Söderström"
+#~ msgstr "Daniel Söderström"
+
+#~ msgid "http://dcweb.nu/"
+#~ msgstr "http://dcweb.nu/"

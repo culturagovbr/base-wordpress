@@ -282,3 +282,86 @@ input[type=radio]:checked:before, input[type=checkbox]:checked:before {
 		text-align: center;
 	}
 }
+
+
+#header {
+    padding: 14px 0 0 0;
+    background-color: #e4e4f5;
+    background-image: -moz-radial-gradient(center, ellipse cover, #1074BC 1%, #34378F 100%);
+    background-image: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(1%, #1074BC), color-stop(100%, #34378F));
+    background-image: -webkit-radial-gradient(ellipse at center, #ffffff 1%, #e4e4e4 100%);
+    background-image: -o-radial-gradient(center, ellipse cover, #1074BC 1%, #34378F 100%);
+    background-image: -ms-radial-gradient(center, ellipse cover, #1074BC 1%, #34378F 100%);
+    background-image: radial-gradient(ellipse at center, #ffffff 1%, #e4e4e4 100%);
+    color: #fff;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1074BC", endColorstr="#34378F", GradientType=1);
+    min-height: 170px;
+}
+#header a {
+	color: #000;
+
+	}
+#portal-title {
+    margin: 0;
+    margin: 14px 0 -6px;
+    color: #292929;
+    font-size: 3.35em;
+    font-family: open_sansbold,Arial,Helvetica,sans-serif;
+    line-height: 1em;
+}
+#portal-description {
+    bottom: 8px;
+    font-size: 1.2em;
+    color: #000 !important;
+    margin-top: 5px;
+}
+#logo-header-tema {
+    float: left;
+    padding: 0;
+    width: 70%;
+}
+#portal-siteactions {
+    display: block;
+    float: right;
+    clear: none;
+    padding-bottom: 2px;
+}
+#logo-header-tema a {
+    text-decoration: none;
+    color: #000;
+}
+#accessibility {
+    display: block!important;
+    float: left;
+    font-size: .8em;
+    margin-left: 0px;
+    font-family: Arial,Helvetica,sans-serif;
+    padding-left: 0;
+}
+#accessibility li {
+    display: inline;
+}
+#accessibility a {
+    color: #000;
+    text-decoration: none;
+}
+#portal-siteactions li {
+    display: inline;
+}
+#portal-siteactions a {
+    padding: 4px 0 4px 10px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 11px;
+}
+#header > div {
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    max-width: 1060px;
+}
+#accessibility span {
+    padding: 0 3px;
+    background: #000;
+    color: #fff;
+}

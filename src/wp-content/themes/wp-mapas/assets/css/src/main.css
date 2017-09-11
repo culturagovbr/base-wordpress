@@ -426,3 +426,9 @@ body.alto-contraste-ativo .entry-content{
 div#wrapper-barra-brasil{
 	max-width: 1060px;
 }
+
+body.alto-contraste-ativo #main-form input,
+body.alto-contraste-ativo #main-form select,
+body.alto-contraste-ativo #main-form textarea {
+	color: #000;
+}

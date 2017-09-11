@@ -306,14 +306,14 @@ input[type=radio]:checked:before, input[type=checkbox]:checked:before {
     margin: 14px 0 -6px;
     color: #292929;
     font-size: 3.35em;
-    font-family: open_sansbold,Arial,Helvetica,sans-serif;
-    line-height: 1em;
+    font-family: 'Open Sans',Arial,Helvetica,sans-serif;
+    font-weight: 800;
 }
 #portal-description {
-    bottom: 8px;
     font-size: 1.2em;
-    color: #000 !important;
     margin-top: 5px;
+    color: #000;
+    text-transform: uppercase;
 }
 #logo-header-tema {
     float: left;
@@ -364,4 +364,65 @@ input[type=radio]:checked:before, input[type=checkbox]:checked:before {
     padding: 0 3px;
     background: #000;
     color: #fff;
+}
+
+div[data-name="unidade"]{
+	display: none;
+}
+
+body.alto-contraste-ativo{
+	background: #000;
+	color: #fff;
+}
+body.alto-contraste-ativo #header{
+	background: #000;
+}
+
+body.alto-contraste-ativo #header *{
+	color: #fff;
+}
+
+body.alto-contraste-ativo #accessibility span{
+	color: #000;
+	background: #f1f1f1;
+}
+body.alto-contraste-ativo #main-form-wrapper .aside, 
+body.alto-contraste-ativo main > .container{
+	color: #fff;
+}
+
+body.alto-contraste-ativo #main-form-wrapper .main-form-title{
+	color: #000;
+	background: #f1f1f1;
+}
+
+body.alto-contraste-ativo #main-form-wrapper .main-form-title h2{
+	color: #000;
+}
+
+body.alto-contraste-ativo #main-form .acf-form-submit input[type=submit]{
+	background: #fff;
+	color: #000;
+}
+
+body.alto-contraste-ativo #main-form-wrapper .aside, 
+body.alto-contraste-ativo main>.container{
+	filter: invert(100%);
+	-webkit-filter: invert(100%);
+	-moz-filter: invert(100%);
+	-o-filter: invert(100%);
+	-ms-filter: invert(100%);
+}
+
+body.alto-contraste-ativo .entry-title,
+body.alto-contraste-ativo .entry-content{
+	filter: invert(100%);
+	-webkit-filter: invert(100%);
+	-moz-filter: invert(100%);
+	-o-filter: invert(100%);
+	-ms-filter: invert(100%);
+}
+
+div#wrapper-barra-brasil{
+	max-width: 1060px;
 }

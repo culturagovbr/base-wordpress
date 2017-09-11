@@ -18,7 +18,7 @@ get_header();
 			</div>
 		</div>
 	</div>
-	<div class="container">
+	<div id="content-wrap" class="container">
 		<div class="row">
 			<aside class="col-sm-3"></aside>
 			<div class="col-sm-8">

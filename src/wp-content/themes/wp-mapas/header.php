@@ -18,70 +18,47 @@
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-
-<!-- <header id="site-header" class="logged-user">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6">
-                <h1>
-                    <a href="<?php echo home_url(); ?>">
-                        <span class="sr-only"><?php bloginfo('name'); ?></span>
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-mapas-culturais.png">
-                    </a>
-                </h1>
-
-            </div>
-            <div class="col-sm-6 text-right">
-                <a href="http://www.cultura.gov.br/" target="_blank">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-ministerio-da-cultura.png">
-                </a>
-            </div>
-        </div>
-    </div>
-</header> -->
-
 <div id="header" role="banner">
     <div class="clearfix">
         <ul id="accessibility">
             <li>
-                <a accesskey="1" href="#div-conteudo" id="link-conteudo">
-                    Ir para o conte&uacute;do
+                <a accesskey="1" href="#content-wrap" id="link-conteudo">
+                    Ir para o conteúdo
                     <span>1</span>
                 </a>
             </li>
             <li>
-                <a accesskey="3" href="#portal-searchbox" id="link-buscar">
-                    Ir para a busca
+                <a accesskey="2" href="#site-footer" id="link-rodape">
+                    Ir para o rodapé
                     <span>2</span>
                 </a>
             </li>
             <li>
-                <a accesskey="4" href="#main-footer" id="link-rodape">
-                    Ir para o rodap&eacute;
+                <a accesskey="3" href="#main-form" id="link-formulario">
+                    Ir para o formulário
                     <span>3</span>
                 </a>
             </li>
         </ul>
 
         <ul id="portal-siteactions">
-            <li>
+            <!--<li>
                 <a href="<?php echo home_url(); ?>/acessibilidade">Acessibilidade</a>
-            </li>
+            </li>-->
             <li>
-                <a href="#" class="alto_contraste">Alto Contraste</a>
-            </li>
-            <li>
-                <a href="<?php echo home_url(); ?>/mapa-do-site">Mapa do Site</a>
+                <a href="#" id="toggle-high-contrast" class="alto_contraste">Alto Contraste</a>
             </li>
         </ul>
-
-        <div id="logo-header-tema">
-            <a href="<?php echo home_url(); ?>" title="<?php bloginfo('name'); ?>">
-                <div id="portal-title"><?php bloginfo('name'); ?></div>
-                <div id="portal-description" style="color:#FFF">
-                    <?php bloginfo('description'); ?>
-                </div>
-            </a>
+		
+		<div id="logo-header-tema">
+            <h1 id="portal-title">
+                <a href="<?php echo home_url(); ?>" title="<?php bloginfo('name'); ?>">
+                    <?php bloginfo('name'); ?>
+                </a>
+            </h1>
+            <p id="portal-description">
+                <?php bloginfo('description'); ?>
+            </p>
         </div>
 
         

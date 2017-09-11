@@ -42,7 +42,7 @@ add_action( 'after_setup_theme', 'mapasculturais_setup' );
  * Enqueue scripts and styles.
  */
 function mapasculturais_scripts() {
-    wp_enqueue_style( 'google-fonts--open-sans', 'https://fonts.googleapis.com/css?family=Open+Sans:300,400' );
+    wp_enqueue_style( 'open-sans-font', 'https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' );
     wp_enqueue_style( 'mapasculturais-styles', get_template_directory_uri() . '/assets/css/dist/main.min.css' );
 
     wp_enqueue_script( 'mapasculturais-scripts', get_template_directory_uri() . '/assets/js/dist/main.min.js', array('jquery'), false, true );

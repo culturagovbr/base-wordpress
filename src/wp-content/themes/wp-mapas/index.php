@@ -13,7 +13,7 @@ get_header();
 				</div>
 				<div class="col-md-6 text-center">
 					<h2>Promova a cultura no seu município com a plataforma livre Mapas Culturais</h2>
-					<a href="#main-form-wrapper" class="btn">Solicitar instância</a>
+					<a href="#main-form-wrapper" class="btn">Solicitar instalação</a>
 				</div>
 			</div>
 		</div>

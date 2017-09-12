@@ -189,10 +189,26 @@ function process_main_oscar_form( $post_id ) {
         error_log("O envio de email para: " . $to . ', Falhou!', 0);
     }
 
-    $name = 'Nova inscrição realizada em Mapas Culturais';
+    $name = 'Nova solicitação de instalação do Mapas Culturais';
     $to = $mapasculturais_options['mapasculturais_monitoring_emails'];
-    $subject = 'Nova inscrição realizada em Mapas Culturais';
-    $body = 'Uma nova inscrição ao Mapas Culturais acaba de ser concluída. Para visualiza-la, clique <a href="'. admin_url( 'post.php?post='. $post_id .'&action=edit' ) .'">aqui</a>.';
+    $subject = 'Nova solicitação de instalação do Mapas Culturais';
+    $body = '<p>Uma nova solicitação de instalação do Mapas Culturais acaba de ser recebida.</p>';
+    $i = 0;
+    $labels = array(
+        'Estado ou UF/Município',
+        'Nome',
+        'Email',
+        'Cargo',
+        'Telefone',
+        'À qual unidade você pertence?',
+        'Outras?',
+        'Qual seu nível de conhecimento do software Mapas Culturais?'
+    );
+    foreach ($_POST['acf'] as $key => $val) {
+        $body .= '<p><b>'. $labels[$i] .':</b> '. $val .'</p>';
+        $i++;
+    }
+    $body .= '<p>Para visualiza-la, clique <a href="'. admin_url( 'post.php?post='. $post_id .'&action=edit' ) .'">aqui</a>.<p>';
     
     if( !wp_mail($to, $subject, $body ) ){
         error_log("O envio de email de monitormanento para: " . $to . ', Falhou!', 0);

@@ -77,6 +77,21 @@ get_header();
 				</div>
 			</div>
 		</div>
+		<div id="modal-inscricao" class="modal fade" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					</div>
+					<div class="modal-body">
+						<h3>Sua inscrição foi realizada com sucesso!</h3>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </main>
 

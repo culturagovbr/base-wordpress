@@ -146,6 +146,32 @@ function my_deregister_styles() {
 remove_filter( 'wp_signup_location', 'custom_register_redirect' );
 
 /**
+ * Set the mail content to accept HTML
+ */
+add_filter( 'wp_mail_content_type', 'set_content_type' );
+function set_content_type( $content_type ) {
+    return 'text/html';
+}
+
+/**
+ * * Set sender email
+ */
+add_filter('wp_mail_from','mapas_wp_mail_from');
+function mapas_wp_mail_from($content_type) {
+    $mapasculturais_options = get_option('mapasculturais_options');
+    return $mapasculturais_options['mapasculturais_email_from'];
+}
+
+/**
+ * Set sender name for emails
+ */
+add_filter('wp_mail_from_name','mapas_wp_mail_from_name');
+function mapas_wp_mail_from_name($name) {
+    $mapasculturais_options = get_option('mapasculturais_options');
+    return $mapasculturais_options['mapasculturais_email_from_name'];
+}
+
+/**
  * Process the subscription form
  */
 // add_action('acf/pre_save_post', 'process_main_oscar_form');
@@ -177,16 +203,13 @@ function process_main_oscar_form( $post_id ) {
     
     $post = get_post( $post_id );
     $name = 'Inscrição Mapas Culturais';
-    $user_email = $_POST['acf'][ $mapasculturais_options['acf_email_id_option'] ];
-    // $user_email = get_field('email', $post_id);
-    // $user_email = get_post_meta($post_id, 'email', true);
-
-    $to = $user_email;
+    $to = $_POST['acf'][ $mapasculturais_options['acf_email_id_option'] ];
     $subject = $post->post_title;
     $body = $mapasculturais_options['mapasculturais_email_body'];
+    $headers[] = 'Reply-To: '. $mapasculturais_options['mapasculturais_email_from_name'] .' <'. $mapasculturais_options['mapasculturais_email_from'] .'>';
     
-    if( !wp_mail($to, $subject, $body ) ){
-        error_log("O envio de email para: " . $to . ', Falhou!', 0);
+    if( !wp_mail($to, $subject, $body, $headers) ){
+        error_log("ERRO: O email para: " . $to . ' com a confirmação do envio de formulário, falhou!', 0);
     }
 
     $name = 'Nova solicitação de instalação do Mapas Culturais';
@@ -210,8 +233,8 @@ function process_main_oscar_form( $post_id ) {
     }
     $body .= '<p>Para visualiza-la, clique <a href="'. admin_url( 'post.php?post='. $post_id .'&action=edit' ) .'">aqui</a>.<p>';
     
-    if( !wp_mail($to, $subject, $body ) ){
-        error_log("O envio de email de monitormanento para: " . $to . ', Falhou!', 0);
+    if( !wp_mail($to, $subject, $body, $headers ) ){
+        error_log("ERRO: O envio de email de monitormanento para: " . $to . ', Falhou!', 0);
     }
     // Return the new ID
     return $post_id;
@@ -219,8 +242,36 @@ function process_main_oscar_form( $post_id ) {
 
 add_action( 'admin_notices', 'theme_plugin_dependencies' );
 function theme_plugin_dependencies() {
-    // if( ! function_exists('plugin_function') )
     if( !class_exists('acf') ){
         echo '<div class="error"><p><b>Aviso:</b> Este tema necessita do plugin <a href="https://www.advancedcustomfields.com/" target="_blank">Advanced Custom Fields</a> para funcionar!</p></div>';
     }
 }
+
+/**
+ * Add a custom JS to load on site
+ */
+add_action('wp_head', 'form_custom_js');
+function form_custom_js() { 
+
+    if( !isset($_GET['updated']) ){
+        return;
+    }
+    ?>
+    <script type="text/javascript">
+        (function($) {
+            $(document).ready(function() {
+                $('#modal-inscricao').modal('show');
+            });
+        })(jQuery);
+    </script>
+<?php }
+
+/**
+ * Debug email sent (but prevent from sending)
+ */
+function test_wp_mail($args)
+{
+    $debug = "<pre>" . var_export($args, true) . "</pre>";
+    wp_die($debug);
+}
+// add_filter('wp_mail', 'test_wp_mail');

@@ -100,6 +100,18 @@ function oscar_settings_init() {
     );
 
     add_settings_field(
+        'mapasculturais_email_from_name',
+        'Remetente',
+        'mapasculturais_email_from_name',
+        'mapasculturais',
+        'oscar_mail_confirmation_section',
+        [
+            'label_for' => 'mapasculturais_email_from_name',
+            'class' => 'form-field',
+        ]
+    );
+
+    add_settings_field(
         'mapasculturais_email_from',
         'Email de remetente',
         'mapasculturais_email_from',
@@ -153,6 +165,13 @@ function acf_email_id_option( $args ) {
     <p class="description">
         Insira o slug para do campo email do formulário
     </p>
+    <?php
+}
+
+function mapasculturais_email_from_name( $args ) {
+    $options = get_option( 'mapasculturais_options' ); ?>
+
+    <input id="<?php echo esc_attr( $args['label_for'] ); ?>" name="mapasculturais_options[<?php echo esc_attr( $args['label_for'] ); ?>]" type="text" value="<?php echo $options['mapasculturais_email_from_name']; ?>">
     <?php
 }
 

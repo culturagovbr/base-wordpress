@@ -2,7 +2,7 @@
 // adicionando css que faz a função do divi custom css (Carrega por último)
 function divi_child_enqueue_styles() {
     wp_enqueue_style( 'open-sans-font', 'https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' );
-	wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
+    wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
     wp_enqueue_style( 'custom-style', get_stylesheet_directory_uri() . '/assets/css/custom.css');
     wp_enqueue_style( 'alto-contraste', get_stylesheet_directory_uri() . '/assets/css/alto-contraste.css');
     wp_enqueue_script( 'alto-contraste', get_stylesheet_directory_uri() . '/assets/js/alto-contraste.js');
@@ -14,7 +14,7 @@ function divi_child_enqueue_styles() {
         'ajax_url' => admin_url('admin-ajax.php'),
         'post_id' => get_the_ID(),
         'post_name' => get_the_title( get_the_ID() ),
-    );
+        );
 
     wp_localize_script( 'scripts', 'pdaJSObj', $pdaJSObj );
 }
@@ -32,17 +32,17 @@ function get_minc_option( $option ) {
 /**
  * Register our options_page to the admin_menu action hook
  */
-add_action( 'admin_menu', 'oscar_options_page' );
-function oscar_options_page() {
+add_action( 'admin_menu', 'minc_simpletheme_options_page' );
+function minc_simpletheme_options_page() {
     // add top level menu page
     add_submenu_page(
         'themes.php',
         'Configurações do tema',
         'Configurações do tema',
         'manage_options',
-        'inscricao-options-page',
+        'minc_simpletheme-options-page',
         'options_page_html' 
-    );
+        );
 }
 
 /**
@@ -97,14 +97,14 @@ function minc_simpletheme_settings_init() {
         'Geral',
         '',
         'minc_simpletheme'
-    );
+        );
 
     add_settings_section(
         'minc_simpletheme_header_options_section',
         'Cabeçalho',
         '',
         'minc_simpletheme'
-    );
+        );
 
     // Fields
     add_settings_field(
@@ -114,10 +114,10 @@ function minc_simpletheme_settings_init() {
         'minc_simpletheme',
         'minc_simpletheme_general_options_section',
         [
-            'label_for' => 'theme_color',
-            'class' => 'form-field',
+        'label_for' => 'theme_color',
+        'class' => 'form-field',
         ]
-    );
+        );
 
     add_settings_field(
         'minc_simpletheme_show_searchbar',
@@ -126,10 +126,10 @@ function minc_simpletheme_settings_init() {
         'minc_simpletheme',
         'minc_simpletheme_header_options_section',
         [
-            'label_for' => 'show_searchbar',
-            'class' => 'form-field',
+        'label_for' => 'show_searchbar',
+        'class' => 'form-field',
         ]
-    );
+        );
 
     add_settings_field(
         'minc_simpletheme_show_social_links',
@@ -138,10 +138,22 @@ function minc_simpletheme_settings_init() {
         'minc_simpletheme',
         'minc_simpletheme_header_options_section',
         [
-            'label_for' => 'show_social_links',
-            'class' => 'form-field',
+        'label_for' => 'show_social_links',
+        'class' => 'form-field',
         ]
-    );
+        );
+
+    add_settings_field(
+        'minc_simpletheme_social_links',
+        'Redes sociais',
+        'minc_simpletheme_social_links',
+        'minc_simpletheme',
+        'minc_simpletheme_header_options_section',
+        [
+        'label_for' => 'social_links',
+        'class' => 'form-field',
+        ]
+        );
 }
 
 function minc_simpletheme_theme_color( $args ) {
@@ -180,12 +192,82 @@ function minc_simpletheme_show_social_links( $args ) {
     <?php
 }
 
-function minc_simpletheme_show_social_links_xxx( $args ) {
-    $options = get_option( 'minc_simpletheme_options' ); ?>
+function minc_simpletheme_social_links( $args ) {
+    $options = get_option( 'minc_simpletheme_options' );
+    $i = 0;
+    if( !empty( $options['social_links'] ) ): 
+        foreach (array_filter($options['social_links']) as $val) : ?>
+    <input 
+        id="<?php echo esc_attr( $args['label_for'] ); ?>" 
+        class="social-row"
+        name="minc_simpletheme_options[<?php echo esc_attr( $args['label_for'] ); ?>][<?php echo $i; ?>]" 
+        type="text" 
+        value="<?php echo esc_attr($val); ?>">
+    <?php $i++; endforeach; 
+    else: ?>
+    <input
+        id="<?php echo esc_attr( $args['label_for'] ); ?>" 
+        class="social-row"
+        name="minc_simpletheme_options[<?php echo esc_attr( $args['label_for'] ); ?>][0]" 
+        type="text" 
+        value="">
+<?php endif; ?>
 
-    <input id="<?php echo esc_attr( $args['label_for'] ); ?>" name="minc_simpletheme_options[<?php echo esc_attr( $args['label_for'] ); ?>]" type="text" value="<?php echo $options['oscar_movie_extensions']; ?>">
-    <p class="description">
-        Defina as extensões permitidas para os vídeos, separando as com vírgulas. Exemplo: mp4, avi, mkv, wmv.
-    </p>
-    <?php
+<p class="description">
+    <a href="#" class="minc-simpletheme-options-add-social-row">Adicionar nova linha</a>.<br>Ex de codigo para a rede social: <code>&lt;li&gt;&lt;a href=&quot;#&quot; title=&quot;Facebook&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;facebook.png&quot;&gt;&lt;/a&gt;&lt;/li&gt;</code>
+</p>
+<?php
 }
+
+add_action( 'pre_update_option_minc_simpletheme_options', 'check_settings', 10, 2 );
+function check_settings( $new_value, $old_value )
+{
+    return $new_arr = array(
+        'theme_color' => $new_value['theme_color'],
+        'show_searchbar' => $new_value['show_searchbar'],
+        'show_social_links' => $new_value['show_social_links'],
+        'social_links' => array_filter($new_value['social_links'])
+    );
+}
+
+/**
+ * Collapse field groups by default
+ */
+add_action('admin_head', 'minc_simpletheme_admin_scrips_on_page_options');
+function minc_simpletheme_admin_scrips_on_page_options() { 
+    $cur_page = get_current_screen();
+    if( $cur_page->id !== 'appearance_page_minc_simpletheme-options-page' ) {
+        return;
+    } ?>
+    <script type="text/javascript">
+        (function($) {
+            $(document).ready(function() {
+                if ( $('#show_social_links').prop('checked') == false ) {
+                    $('#show_social_links').closest('.form-field').next().hide();
+                }
+            });
+
+
+            $(document).on('change', '#show_social_links', function(e) {
+                if ( $(this).prop('checked') ) {
+                    // $(this).closest('.form-field').next().find('input').attr('disabled', 'disabled');
+                    $(this).closest('.form-field').next().show();
+                } else {
+                    // $(this).closest('.form-field').next().find('input').removeAttr('disabled');
+                    $(this).closest('.form-field').next().hide();
+                }
+            });
+
+
+            $(document).on('click', '.minc-simpletheme-options-add-social-row', function(e) {
+                e.preventDefault();
+                if( !$('#show_social_links').prop('checked') ){
+                    return false;
+                }
+                var i = $('.social-row').length;
+                var li = '<input id="social_links" class="social-row" name="minc_simpletheme_options[social_links]['+ i +']" type="text" value="">';
+                $(this).parent().parent().prepend(li);
+            })
+        })(jQuery);
+    </script>
+<?php }

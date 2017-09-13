@@ -1610,6 +1610,10 @@ h4.widgettitle {
   width: 100%;
   display: block;
 }
+.et_pb_bg_layout_light.lista-de-metas h4.widgettitle {
+  display: none;
+}
+
 body:not(.home) .menu-metas-container #menu-metas .current-menu-item a {
     background: #f52b6f;
     color: #fff;
@@ -2063,6 +2067,12 @@ body:not(.home) article article h2.entry-title {
     font-size: 18px !important;
 }
 /*Metas por assuntos interno*/
+.metas-por-assuntos-interna {
+    margin-top: -18px;
+    position: relative;
+    top: -41px;
+    border-right: 0;
+}
 body:not(.home) .metas-por-assuntos-interna div#nav_menu-9 {
     width: 100%;
 }
@@ -2202,7 +2212,7 @@ div#banner-topo-cinza ul#menu-metas li a {
     display: block;
     line-height: 38px;
     font-weight: lighter;
-    font-family: "Roboto";
+    font-family: 'Roboto', sans-serif;
 }
 div#banner-topo-cinza h2.et_pb_slide_title {
     display: block;
@@ -2219,6 +2229,7 @@ div#banner-topo-cinza .et_pb_slider .et_pb_slide {
     text-align: center;
     list-style: none !important;
 }
+
 div#banner-topo-cinza .et_pb_slide.et_pb_bg_layout_dark.et_pb_media_alignment_center.et_pb_slide_0.et-pb-active-slide {
     margin-left: 0;
     padding: 0;
@@ -2569,6 +2580,43 @@ p.comment-form-url.comment-form-attachment {
     margin-top: 0px; 
     margin-bottom: 16px;
 }
+.et_pb_bg_layout_light.lista-de-metas ul.menu {
+  display: block;
+  position: inherit;
+  margin-top: -32px;
+  background: #fff;
+}
+.et_pb_bg_layout_light.lista-de-metas ul.menu a {
+    display: block;
+    color: white;
+    background: #f52269;
+    font-size: 30px;
+    font-weight: lighter;
+    text-align: center;
+    width: 72px;
+    height: 70px;
+    line-height: 70px;
+    border-radius: 4px;
+    box-shadow: 0px 2px 1px #c15076;
+    font-family: "roboto";
+}
+.et_pb_bg_layout_light.lista-de-metas ul.menu a:before {
+  content: attr(title);
+  display: block;
+  position: absolute;
+  color: #004490;
+  background: #e2e2e2;
+  left: 70px;
+  width: 92%;
+  text-align: left;
+  border-radius: 0px 4px 4px 0px;
+  padding-left: 17px;
+  font-size: 18px;
+  height: 70px;
+  overflow: hidden;
+  font-family: "Open Sans", Arial, sans-serif;
+  box-shadow: 0px 2px 1px #ccc;
+}
 
 @media (max-width: 980px) {
   .et_pb_section_0.et_pb_section h1 {
@@ -2614,6 +2662,7 @@ p.comment-form-url.comment-form-attachment {
     padding-top: 0;
     display: none;
   }
+
   .menu-collapse ul.menu {
     position: relative;
     background: rgb(0, 68, 144);
@@ -2627,6 +2676,7 @@ p.comment-form-url.comment-form-attachment {
     height: auto;
     min-width: inherit !important;
   }
+
   .menu li {
     display: inline-block;
     padding-right: -16px;

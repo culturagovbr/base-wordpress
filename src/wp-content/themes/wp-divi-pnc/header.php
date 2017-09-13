@@ -25,7 +25,7 @@
     <!--[if lt IE 9]>
     <script src="<?php echo esc_url( $template_directory_uri . '/js/html5.js"' ); ?>" type="text/javascript"></script>
     <![endif]-->
-
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
     <script type="text/javascript">
         document.documentElement.className = 'js';
     </script>

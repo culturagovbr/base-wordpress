@@ -171,6 +171,7 @@ div#page-container {
   position: relative !important;
   top: 0 !important;
   display: block;
+  padding-top: 0 !important;
 }
 
 .item-central .link-videos,
@@ -1764,8 +1765,7 @@ span.com-autenticacao.et_pb_button.et_pb_custom_button_icon.et_pb_button_0.et_pb
   transition: all 0.4s ease-in-out;
 }
 
-.et_non_fixed_nav.et_transparent_nav.et_show_nav #page-container,
-.et_fixed_nav.et_show_nav #page-container {
+.et_non_fixed_nav.et_transparent_nav.et_show_nav #page-container{
   padding-top: 0 !important;
   height: 46px;
 }
@@ -3673,4 +3673,8 @@ display: none
 .category a.et_pb_button.et_pb_button_0.et_pb_module.et_pb_bg_layout_light {
     position: relative;
     top: -47px;
+}
+
+#footer-brasil.verde {
+  display: block;
 }

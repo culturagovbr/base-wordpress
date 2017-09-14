@@ -33,6 +33,7 @@
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
+<div id="barra-brasil"></div>
 <div id="header" role="banner">
     <div class="clearfix">
         <ul id="accessibility">

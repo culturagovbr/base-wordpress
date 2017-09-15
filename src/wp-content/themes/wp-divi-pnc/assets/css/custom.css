@@ -3446,6 +3446,11 @@ button.mfp-close {
     opacity: 1 ;
 }
 
+#footer-widgets .footer-widget.last.modal-oppen .stc-notice{
+  color: #333;
+  padding: 015px;
+}
+
 #footer-widgets .footer-widget.last.modal-oppen label[for="stc-email"] {
     display: none !important;
 }

@@ -48,6 +48,13 @@ if ( ! is_page_template( 'page-template-blank.php' ) ) : ?>
 
 	</div> <!-- #page-container -->
 	<?php wp_footer(); ?>
+	<script type="text/javascript">
+		<?php if( isset($_GET['stc_status']) && $_GET['stc_status'] == 'success' ){ ?>
+			jQuery(document).ready(function() {
+			    jQuery('#footer-widgets .footer-widget.last').addClass('modal-oppen');
+			});
+		<?php }; ?>
+	</script>
 	<!-- Piwik -->
 	<script type="text/javascript">
 		var _paq = _paq || [];

@@ -4,12 +4,16 @@
 if( !defined('WP_CONTENT_DIR') )
 	define( 'WP_CONTENT_DIR', ABSPATH . 'wp-content' );
 
-if( !include( WP_CONTENT_DIR . '/wp-cache-config.php' ) )
+if( !@include( WP_CONTENT_DIR . '/wp-cache-config.php' ) )
 	return false;
 
 if( !defined( 'WPCACHEHOME' ) )
 	define('WPCACHEHOME', dirname(__FILE__).'/');
 
+if ( defined( 'DISABLE_SUPERCACHE' ) ) {
+	wp_cache_debug( 'DISABLE_SUPERCACHE set, super_cache disabled.' );
+	$super_cache_enabled = 0;
+}
 
 include( WPCACHEHOME . 'wp-cache-base.php');
 
@@ -40,6 +44,13 @@ if( is_array( $plugins ) ) {
 	if( is_file( $plugin ) )
 		require_once( $plugin );
 	}
+}
+
+$wp_start_time = microtime();
+
+if ( $wp_cache_not_logged_in && wp_cache_get_cookies_values() ) {
+	wp_cache_debug( 'Caching disabled for logged in users on settings page.' );
+	return true;
 }
 
 if ( isset( $wp_cache_make_known_anon ) && $wp_cache_make_known_anon )
@@ -73,6 +84,9 @@ if ($cache_compression) {
 }
 
 add_cacheaction( 'supercache_filename_str', 'wp_cache_check_mobile' );
+if ( function_exists( 'add_filter' ) ) { // loaded since WordPress 4.6
+	add_filter( 'supercache_filename_str', 'wp_cache_check_mobile' );
+}
 
 $wp_cache_request_uri = $_SERVER[ 'REQUEST_URI' ]; // Cache this in case any plugin modifies it.
 
@@ -97,19 +111,17 @@ function setup_blog_cache_dir() {
 		@mkdir( $blog_cache_dir . 'meta' );
 }
 
-$wp_start_time = microtime();
-
 function get_wp_cache_key( $url = false ) {
 	global $wp_cache_request_uri, $wp_cache_gzip_encoding, $WPSC_HTTP_HOST;
 	if ( ! $url ) {
 		$url = $wp_cache_request_uri;
 	}
 	$server_port = isset( $_SERVER[ 'SERVER_PORT' ] ) ? intval( $_SERVER[ 'SERVER_PORT' ] ) : 0;
-	return do_cacheaction( 'wp_cache_key', $WPSC_HTTP_HOST . $server_port . preg_replace('/#.*$/', '', str_replace( '/index.php', '/', $url ) ) . $wp_cache_gzip_encoding . wp_cache_get_cookies_values() );
+	return do_cacheaction( 'wp_cache_key', wp_cache_check_mobile( $WPSC_HTTP_HOST . $server_port . preg_replace('/#.*$/', '', str_replace( '/index.php', '/', $url ) ) . $wp_cache_gzip_encoding . wp_cache_get_cookies_values() ) );
 }
 
 function wp_super_cache_init() {
-	global $wp_cache_key, $key, $blogcacheid, $wp_cache_request_uri, $file_prefix, $blog_cache_dir, $meta_file, $cache_file, $cache_filename, $meta_pathname, $wp_cache_gzip_encoding, $meta;
+	global $wp_cache_key, $key, $blogcacheid, $file_prefix, $blog_cache_dir, $meta_file, $cache_file, $cache_filename, $meta_pathname;
 
 	$wp_cache_key = get_wp_cache_key();
 	$key = $blogcacheid . md5( $wp_cache_key );
@@ -117,17 +129,20 @@ function wp_super_cache_init() {
 
 	$cache_filename = $file_prefix . $key . '.php';
 	$meta_file = $file_prefix . $key . '.php';
-	$cache_file = realpath( $blog_cache_dir . $cache_filename );
-	$meta_pathname = realpath( $blog_cache_dir . 'meta/' . $meta_file );
+	$cache_file = wpsc_get_realpath( $blog_cache_dir . $cache_filename );
+	$meta_pathname = wpsc_get_realpath( $blog_cache_dir . 'meta/' . $meta_file );
 	return compact( 'key', 'cache_filename', 'meta_file', 'cache_file', 'meta_pathname' );
 }
 
 function wp_cache_serve_cache_file() {
 	global $key, $blogcacheid, $wp_cache_request_uri, $file_prefix, $blog_cache_dir, $meta_file, $cache_file, $cache_filename, $meta_pathname, $wp_cache_gzip_encoding, $meta;
 	global $wp_cache_object_cache, $cache_compression, $wp_cache_slash_check, $wp_supercache_304, $wp_cache_home_path, $wp_cache_no_cache_for_get;
-	global $wp_cache_disable_utf8, $wp_cache_mfunc_enabled;
+	global $wp_cache_disable_utf8, $wp_cache_mfunc_enabled, $wpsc_served_header;
 
-	extract( wp_super_cache_init() );
+	if ( is_admin() ) {
+		wp_cache_debug( 'Not serving wp-admin requests.', 5 );
+		return false;
+	}
 
 	if ( wp_cache_user_agent_is_rejected() ) {
 		wp_cache_debug( "No wp-cache file served as user agent rejected.", 5 );
@@ -138,6 +153,8 @@ function wp_cache_serve_cache_file() {
 		wp_cache_debug( "Non empty GET request. Caching disabled on settings page. " . json_encode( $_GET ), 1 );
 		return false;
 	}
+
+	extract( wp_super_cache_init() ); // $key, $cache_filename, $meta_file, $cache_file, $meta_pathname
 
 	if ( $wp_cache_object_cache && wp_cache_get_cookies_values() == '' ) {
 		if ( !empty( $_GET ) ) {
@@ -157,7 +174,15 @@ function wp_cache_serve_cache_file() {
 			wp_cache_debug( "Meta array from object cache corrupt. Ignoring cache.", 1 );
 			return true;
 		}
-	} elseif ( file_exists( $cache_file ) ) {
+	} elseif ( ( $cache_file && file_exists( $cache_file ) ) || file_exists( get_current_url_supercache_dir() . 'meta-' . $cache_filename ) ) {
+		if ( file_exists( get_current_url_supercache_dir() . 'meta-' . $cache_filename ) ) {
+			$cache_file = get_current_url_supercache_dir() . $cache_filename;
+			$meta_pathname = get_current_url_supercache_dir() . 'meta-' . $cache_filename;
+		} elseif ( !file_exists( $cache_file ) ) {
+			wp_cache_debug( "wp_cache_serve_cache_file: found cache file but then it disappeared!" );
+			return false;
+		}
+
 		wp_cache_debug( "wp-cache file exists: $cache_file", 5 );
 		if ( !( $meta = json_decode( wp_cache_get_legacy_cache( $meta_pathname ), true ) ) ) {
 			wp_cache_debug( "couldn't load wp-cache meta file", 5 );
@@ -169,7 +194,24 @@ function wp_cache_serve_cache_file() {
 			@unlink( $cache_file );
 			return true;
 		}
-	} else {
+		// check for updated feed
+		if ( isset( $meta[ 'headers' ][ 'Content-Type' ] ) ) {
+			$rss_types = apply_filters( 'wpsc_rss_types', array( 'application/rss+xml', 'application/rdf+xml', 'application/atom+xml' ) );
+			foreach( $rss_types as $rss_type ) {
+				if ( strpos( $meta[ 'headers' ][ 'Content-Type' ], $rss_type ) ) {
+					global $wpsc_last_post_update;
+					if ( isset( $wpsc_last_post_update ) && filemtime( $meta_pathname ) < $wpsc_last_post_update ||
+						( isset( $meta[ 'ttl' ] ) && ( time() - filemtime( $meta_pathname ) ) > $meta[ 'ttl' ] ) ) {
+						wp_cache_debug( "wp_cache_serve_cache_file: feed out of date. deleting cache files: $meta_pathname, $cache_file" );
+						@unlink( $meta_pathname );
+						@unlink( $cache_file );
+						return true;
+					}
+				}
+			}
+		}
+	} else { // no $cache_file
+		global $wpsc_save_headers;
 		// last chance, check if a supercache file exists. Just in case .htaccess rules don't work on this host
 		$filename = supercache_filename();
 		$file = get_current_url_supercache_dir() . $filename;
@@ -181,6 +223,9 @@ function wp_cache_serve_cache_file() {
 			return false;
 		} elseif ( wp_cache_get_cookies_values() != '' ) {
 			wp_cache_debug( "Cookies found. Cannot serve a supercache file. " . wp_cache_get_cookies_values() );
+			return false;
+		} elseif ( isset( $wpsc_save_headers ) && $wpsc_save_headers ) {
+			wp_cache_debug( "Saving headers. Cannot serve a supercache file." );
 			return false;
 		}
 
@@ -223,28 +268,37 @@ function wp_cache_serve_cache_file() {
 
 			header( "Vary: Accept-Encoding, Cookie" );
 			header( "Cache-Control: max-age=3, must-revalidate" );
-			header( "WP-Super-Cache: Served supercache file from PHP" );
 			$size = function_exists( 'mb_strlen' ) ? mb_strlen( $cachefiledata, '8bit' ) : strlen( $cachefiledata );
 			if ( $wp_cache_gzip_encoding ) {
+				if ( isset( $wpsc_served_header ) && $wpsc_served_header ) {
+					header( "X-WP-Super-Cache: Served supercache gzip file from PHP" );
+				}
 				header( 'Content-Encoding: ' . $wp_cache_gzip_encoding );
 				header( 'Content-Length: ' . $size );
 			} elseif ( $wp_supercache_304 ) {
+				if ( isset( $wpsc_served_header ) && $wpsc_served_header ) {
+					header( "X-WP-Super-Cache: Served supercache 304 file from PHP" );
+				}
 				header( 'Content-Length: ' . $size );
+			} else {
+				if ( isset( $wpsc_served_header ) && $wpsc_served_header ) {
+					header( "X-WP-Super-Cache: Served supercache file from PHP" );
+				}
 			}
 
 			// don't try to match modified dates if using dynamic code.
 			if ( $wp_cache_mfunc_enabled == 0 && $wp_supercache_304 ) {
 				if ( function_exists( 'apache_request_headers' ) ) {
 					$request = apache_request_headers();
-					$remote_mod_time = ( isset ( $request[ 'If-Modified-Since' ] ) ) ? $request[ 'If-Modified-Since' ] : 0;
+					$remote_mod_time = ( isset ( $request[ 'If-Modified-Since' ] ) ) ? $request[ 'If-Modified-Since' ] : null;
 				} else {
 					if ( isset( $_SERVER[ 'HTTP_IF_MODIFIED_SINCE' ] ) )
 						$remote_mod_time = $_SERVER[ 'HTTP_IF_MODIFIED_SINCE' ];
 					else
-						$remote_mod_time = 0;
+						$remote_mod_time = null;
 				}
 				$local_mod_time = gmdate("D, d M Y H:i:s",filemtime( $file )).' GMT';
-				if ( $remote_mod_time != 0 && $remote_mod_time == $local_mod_time ) {
+				if ( !is_null($remote_mod_time) && $remote_mod_time == $local_mod_time ) {
 					header("HTTP/1.0 304 Not Modified");
 					exit();
 				}
@@ -271,7 +325,9 @@ function wp_cache_serve_cache_file() {
 		if( strpos( $header, 'Last-Modified:' ) === false )
 			header($header);
 	}
-	header( 'WP-Super-Cache: Served legacy cache file' );
+	if ( isset( $wpsc_served_header ) && $wpsc_served_header ) {
+		header( 'X-WP-Super-Cache: Served WPCache cache file' );
+	}
 	if ( $wp_cache_object_cache ) {
 		if ( $cache ) {
 			if ( $ungzip ) {
@@ -335,7 +391,7 @@ function wp_cache_get_legacy_cache( $cache_file ) {
 }
 
 if(defined('DOING_CRON')) {
-	extract( wp_super_cache_init() );
+	extract( wp_super_cache_init() ); // $key, $cache_filename, $meta_file, $cache_file, $meta_pathname
 	return true;
 }
 
@@ -372,11 +428,15 @@ function wp_cache_get_cookies_values() {
 		return $string;
 	}
 
-	$regex = "/^wp-postpass|^comment_author_";
+	if ( defined( 'COOKIEHASH' ) )
+		$cookiehash = preg_quote( constant( 'COOKIEHASH' ) );
+	else
+		$cookiehash = '';
+	$regex = "/^wp-postpass_$cookiehash|^comment_author_$cookiehash";
 	if ( defined( 'LOGGED_IN_COOKIE' ) )
 		$regex .= "|^" . preg_quote( constant( 'LOGGED_IN_COOKIE' ) );
 	else
-		$regex .= "|^wordpress_logged_in_";
+		$regex .= "|^wordpress_logged_in_$cookiehash";
 	$regex .= "/";
 	while ($key = key($_COOKIE)) {
 		if ( preg_match( $regex, $key ) ) {
@@ -615,12 +675,137 @@ function get_current_url_supercache_dir( $post_id = 0 ) {
 	return $dir;
 }
 
+/*
+ * Delete (or rebuild) all the files in one directory.
+ * Checks if it is in the cache directory but doesn't allow files in the following directories to be deleted:
+ * wp-content/cache/
+ * wp-content/cache/blogs/
+ * wp-content/cache/supercache/
+ *
+ */
+function wpsc_rebuild_files( $dir ) {
+	return wpsc_delete_files( $dir, false );
+}
+
+// realpath() doesn't always remove the trailing slash
+function wpsc_get_realpath( $directory ) {
+	if ( $directory == '/' ) {
+		return false;
+	}
+
+	$original_dir = $directory;
+	$directory = realpath( $directory );
+
+	if ( ! $directory ) {
+		wp_cache_debug( "wpsc_get_realpath: directory does not exist - $original_dir" );
+		return false;
+	}
+
+	if ( substr( $directory, -1 ) == '/' || substr( $directory, -1 ) == '\\' ) {
+		$directory = substr( $directory, 0, -1 ); // remove trailing slash
+	}
+
+	return $directory;
+}
+
+// return true if directory is in the cache directory
+function wpsc_is_in_cache_directory( $directory ) {
+	global $cache_path;
+	static $rp_cache_path = '';
+
+	if ( $directory == '' ) {
+		wp_cache_debug( "wpsc_is_in_cache_directory: exiting as directory is blank" );
+		return false;
+	}
+
+	if ( $cache_path == '' ) {
+		wp_cache_debug( "wpsc_is_in_cache_directory: exiting as cache_path is blank" );
+		return false;
+	}
+
+	if ( $rp_cache_path == '' ) {
+		$rp_cache_path = wpsc_get_realpath( $cache_path );
+	}
+
+	if ( ! $rp_cache_path ) {
+		wp_cache_debug( "wpsc_is_in_cache_directory: exiting as cache_path directory does not exist" );
+		return false;
+	}
+
+	$directory = wpsc_get_realpath( $directory );
+
+	if ( ! $directory ) {
+		wp_cache_debug( "wpsc_is_in_cache_directory: directory does not exist" );
+		return false;
+	}
+
+	if ( substr( $directory, 0, strlen( $rp_cache_path ) ) == $rp_cache_path ) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function wpsc_delete_files( $dir, $delete = true ) {
+	global $cache_path;
+	static $protected = '';
+
+	if ( $dir == '' ) {
+		wp_cache_debug( "wpsc_delete_files: directory is blank" );
+		return false;
+	}
+
+	// only do this once, this function will be called many times
+	if ( $protected == '' ) {
+		$protected = array( $cache_path, $cache_path . "blogs/", $cache_path . 'supercache' );
+		foreach( $protected as $id => $directory ) {
+			$protected[ $id ] = trailingslashit( wpsc_get_realpath( $directory ) );
+		}
+	}
+
+	$dir = wpsc_get_realpath( $dir );
+	if ( ! $dir ) {
+		wp_cache_debug( "wpsc_delete_files: directory does not exist" );
+		return false;
+	}
+
+	$dir = trailingslashit( $dir );
+
+	if ( ! wpsc_is_in_cache_directory( $dir ) ) {
+		return false;
+	}
+
+	if ( in_array( $dir, $protected ) )
+		return false;
+
+	if ( is_dir( $dir ) && $dh = @opendir( $dir ) ) {
+		while ( ( $file = readdir( $dh ) ) !== false ) {
+			if ( $file != '.' && $file != '..' && $file != '.htaccess' && is_file( $dir . $file ) )
+				if ( $delete )
+					@unlink( $dir . $file );
+				else
+					@wp_cache_rebuild_or_delete( $dir . $file );
+		}
+		closedir( $dh );
+
+		if ( $delete )
+			@rmdir( $dir );
+	}
+	return true;
+}
+
 function get_all_supercache_filenames( $dir = '' ) {
 	global $wp_cache_mobile_enabled, $cache_path;
 
-	$dir = realpath( $dir );
-	if ( substr( $dir, 0, strlen( $cache_path ) ) != $cache_path )
+	$dir = wpsc_get_realpath( $dir );
+	if ( ! $dir ) {
+		wp_cache_debug( "get_all_supercache_filenames: directory does not exist" );
 		return array();
+	}
+
+	if ( ! wpsc_is_in_cache_directory( $dir ) ) {
+		return array();
+	}
 
 	$filenames = array( 'index.html', 'index-https.html', 'index.html.php' );
 
@@ -650,6 +835,8 @@ function get_all_supercache_filenames( $dir = '' ) {
 }
 
 function supercache_filename() {
+	global $cached_direct_pages;
+
 	//Add support for https and http caching
 	$is_https = ( ( isset( $_SERVER[ 'HTTPS' ] ) && 'on' ==  strtolower( $_SERVER[ 'HTTPS' ] ) ) || ( isset( $_SERVER[ 'HTTP_X_FORWARDED_PROTO' ] ) && 'https' == strtolower( $_SERVER[ 'HTTP_X_FORWARDED_PROTO' ] ) ) ); //Also supports https requests coming from an nginx reverse proxy
 	$extra_str = $is_https ? '-https' : '';
@@ -658,6 +845,10 @@ function supercache_filename() {
 		$extra_str = apply_filters( 'supercache_filename_str', $extra_str );
 	} else {
 		$extra_str = do_cacheaction( 'supercache_filename_str', $extra_str );
+	}
+
+	if ( is_array( $cached_direct_pages ) && in_array( $_SERVER[ 'REQUEST_URI' ], $cached_direct_pages ) ) {
+		$extra_str = '';
 	}
 	$filename = 'index' . $extra_str . '.html';
 
@@ -699,6 +890,9 @@ function wp_supercache_cache_for_admins() {
 	if ( false == do_cacheaction( 'wp_supercache_remove_cookies', true ) )
 		return true;
 
+	if ( $_SERVER[ "REQUEST_METHOD" ] != 'GET' || strpos( $_SERVER[ 'REQUEST_URI' ], '/wp-json/' ) !== false )
+		return true;
+
 	$cookie_keys = array( 'wordpress_logged_in', 'comment_author_' );
 	if ( defined( 'LOGGED_IN_COOKIE' ) )
 		$cookie_keys[] = constant( 'LOGGED_IN_COOKIE' );
@@ -718,12 +912,30 @@ function wp_supercache_cache_for_admins() {
 function wp_cache_confirm_delete( $dir ) {
 	global $cache_path, $blog_cache_dir;
 	// don't allow cache_path, blog cache dir, blog meta dir, supercache.
-	$dir = realpath( $dir );
-	if ( 
-		$dir == $cache_path || 
-		$dir == $blog_cache_dir ||
-		$dir == $blog_cache_dir . "meta/" ||
-		$dir == $cache_path . "supercache"
+	$dir = wpsc_get_realpath( $dir );
+
+	if ( ! $dir ) {
+		wp_cache_debug( "wp_cache_confirm_delete: directory does not exist" );
+		return false;
+	}
+
+	if ( ! wpsc_is_in_cache_directory( $dir ) ) {
+		return false;
+	}
+
+	$rp_cache_path = wpsc_get_realpath( $cache_path );
+
+	if ( ! $rp_cache_path ) {
+		wp_cache_debug( "wp_cache_confirm_delete: cache_path does not exist: $cache_path" );
+		return false;
+	}
+
+	if (
+		$dir == '' ||
+		$dir == $rp_cache_path ||
+		$dir == wpsc_get_realpath( $blog_cache_dir ) ||
+		$dir == wpsc_get_realpath( $blog_cache_dir . "meta/" ) ||
+		$dir == wpsc_get_realpath( $cache_path . "supercache" )
 	) {
 		return false;
 	} else {
@@ -741,6 +953,20 @@ function wpsc_deep_replace( $search, $subject ) {
 	}
 
 	return $subject;
+}
+
+function wpsc_get_protected_directories() {
+	global $cache_path, $blog_cache_dir;
+	return apply_filters( 'wpsc_protected_directories', array(
+									$cache_path . '.htaccess',
+									$cache_path . "index.html",
+									$blog_cache_dir,
+									$blog_cache_dir . "index.html",
+									$blog_cache_dir . 'meta',
+									$blog_cache_dir . 'meta/index.html',
+									$cache_path . 'supercache/index.html',
+									$cache_path . 'supercache' )
+								);
 }
 
 ?>

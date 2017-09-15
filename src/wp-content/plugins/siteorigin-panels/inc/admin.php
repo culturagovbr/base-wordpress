@@ -172,7 +172,7 @@ class SiteOrigin_Panels_Admin {
 		) {
 			return;
 		}
-		$this->in_save_post     = true;
+		$this->in_save_post = true;
 		// Get post from db as it might have been changed and saved by other plugins.
 		$post = get_post( $post_id );
 		$old_panels_data = get_post_meta( $post_id, 'panels_data', true );
@@ -183,11 +183,12 @@ class SiteOrigin_Panels_Admin {
 			! empty( $old_panels_data['widgets'] ) ? $old_panels_data['widgets'] : false,
 			false
 		);
-		$panels_data            = SiteOrigin_Panels_Styles_Admin::single()->sanitize_all( $panels_data );
-		$panels_data            = apply_filters( 'siteorigin_panels_data_pre_save', $panels_data, $post, $post_id );
+		$panels_data = SiteOrigin_Panels_Styles_Admin::single()->sanitize_all( $panels_data );
+		$panels_data = apply_filters( 'siteorigin_panels_data_pre_save', $panels_data, $post, $post_id );
 
 		if ( ! empty( $panels_data['widgets'] ) || ! empty( $panels_data['grids'] ) ) {
-			update_post_meta( $post_id, 'panels_data', map_deep( $panels_data, array( 'SiteOrigin_Panels_Admin', 'double_slash_string' ) ) );
+			// Use `update_metadata` instead of `update_post_meta` to prevent saving to parent post when it's a revision, e.g. preview.
+			update_metadata( 'post', $post_id, 'panels_data', map_deep( $panels_data, array( 'SiteOrigin_Panels_Admin', 'double_slash_string' ) ) );
 
 			if( siteorigin_panels_setting( 'copy-content' ) ) {
 				// Store a version of the HTML in post_content
@@ -233,16 +234,22 @@ class SiteOrigin_Panels_Admin {
 		if ( $force || self::is_admin() ) {
 			// Media is required for row styles
 			wp_enqueue_media();
-			wp_enqueue_script( 'so-panels-admin', plugin_dir_url( __FILE__ ) . '../js/siteorigin-panels' . SITEORIGIN_PANELS_VERSION_SUFFIX . SITEORIGIN_PANELS_JS_SUFFIX . '.js', array(
-				'jquery',
-				'jquery-ui-resizable',
-				'jquery-ui-sortable',
-				'jquery-ui-draggable',
-				'underscore',
-				'backbone',
-				'plupload',
-				'plupload-all'
-			), SITEORIGIN_PANELS_VERSION, true );
+			wp_enqueue_script(
+				'so-panels-admin',
+				siteorigin_panels_url( 'js/siteorigin-panels' . SITEORIGIN_PANELS_VERSION_SUFFIX . SITEORIGIN_PANELS_JS_SUFFIX . '.js' ),
+				array(
+					'jquery',
+					'jquery-ui-resizable',
+					'jquery-ui-sortable',
+					'jquery-ui-draggable',
+					'underscore',
+					'backbone',
+					'plupload',
+					'plupload-all'
+				),
+				SITEORIGIN_PANELS_VERSION,
+				true
+			);
 			add_action( 'admin_footer', array( $this, 'js_templates' ) );
 
 			$widgets = $this->get_widgets();
@@ -272,6 +279,7 @@ class SiteOrigin_Panels_Admin {
 				'row_layouts'               => apply_filters( 'siteorigin_panels_row_layouts', array() ),
 				'directory_enabled'         => ! empty( $directory_enabled ),
 				'copy_content'              => siteorigin_panels_setting( 'copy-content' ),
+				'cache'						=> array(),
 
 				// Settings for the contextual menu
 				'contextual'                => array(
@@ -402,7 +410,7 @@ class SiteOrigin_Panels_Admin {
 					'error_message'       => __( 'Error uploading or importing file.', 'siteorigin-panels' ),
 				),
 				'wpColorPickerOptions'      => apply_filters( 'siteorigin_panels_wpcolorpicker_options', array() ),
-				'prebuiltDefaultScreenshot' => plugin_dir_url( __FILE__ ) . '../css/images/prebuilt-default.png',
+				'prebuiltDefaultScreenshot' => siteorigin_panels_url( 'css/images/prebuilt-default.png' ),
 				'loadOnAttach'              => siteorigin_panels_setting( 'load-on-attach' ),
 				'siteoriginWidgetRegex'     => str_replace( '*+', '*', get_shortcode_regex( array( 'siteorigin_widget' ) ) ),
 			) );
@@ -453,7 +461,12 @@ class SiteOrigin_Panels_Admin {
 	 */
 	function enqueue_admin_styles( $prefix = '', $force = false ) {
 		if ( $force || self::is_admin() ) {
-			wp_enqueue_style( 'so-panels-admin', plugin_dir_url( __FILE__ ) . '../css/admin.css', array( 'wp-color-picker' ), SITEORIGIN_PANELS_VERSION );
+			wp_enqueue_style(
+				'so-panels-admin',
+				siteorigin_panels_url( 'css/admin.css' ),
+				array( 'wp-color-picker' ),
+				SITEORIGIN_PANELS_VERSION
+			);
 			do_action( 'siteorigin_panel_enqueue_admin_styles' );
 		}
 	}
@@ -1045,7 +1058,7 @@ class SiteOrigin_Panels_Admin {
 		$lessons['page-builder-tips'] = array(
 			'title'            => __( '12 Page Builder Tips', 'siteorigin-panels' ),
 			'video'            => '212380146',
-			'poster'           => plugin_dir_url( __FILE__ ) . '../posters/page-builder-tips.svg',
+			'poster'           => siteorigin_panels_url( 'posters/page-builder-tips.svg' ),
 			'description'      => __( "Sign up to our newsletter and we'll send you this free Page Builder video course.", 'siteorigin-panels' ) . ' ' .
 								  __( "12 tips that'll help you get the most out of Page Builder.", 'siteorigin-panels' ) . ' ' .
 								  __( "Watch the video to find out more, then sign up below to get started.", 'siteorigin-panels' ),
@@ -1055,7 +1068,7 @@ class SiteOrigin_Panels_Admin {
 		$lessons['page-builder-animations'] = array(
 			'title'            => __( 'Free Page Builder Addons', 'siteorigin-panels' ),
 			'video'            => '212380210',
-			'poster'           => plugin_dir_url( __FILE__ ) . '../posters/addons.svg',
+			'poster'           => siteorigin_panels_url( 'posters/addons.svg' ),
 			'description'      => __( "The free animations addon allows you to add beautiful animations to Page Builder elements.", 'siteorigin-panels' ) . ' ' .
 								  __( "Sign up to our newsletter and we'll send you the addon as a free gift.", 'siteorigin-panels' ) . ' ' .
 								  __( "Plus, we'll send you even more powerful addons, for as long as you're subscribed.", 'siteorigin-panels' ),

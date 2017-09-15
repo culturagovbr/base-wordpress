@@ -2,8 +2,8 @@
 Contributors: takayukister, megumithemes
 Tags: bird, contact, mail, crm
 Requires at least: 4.7
-Tested up to: 4.8
-Stable tag: 1.6
+Tested up to: 4.8.1
+Stable tag: 1.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -28,6 +28,12 @@ For more detailed information, please refer to the [Contact Form 7 documentation
 
 == Changelog ==
 
+= 1.7 =
+
+* New filter: flamingo_add_inbound
+* New filter: flamingo_add_contact
+* New filter: flamingo_htmlize
+
 = 1.6 =
 
 * Tested up to WordPress 4.8.
@@ -37,10 +43,3 @@ For more detailed information, please refer to the [Contact Form 7 documentation
 * Removed inappropriate content from h1 headings.
 * Changed the default format of the export CSV.
 * Introduced the flamingo_csv_value_separator and flamingo_csv_quotation filter hooks to enable customizing CSV output.
-
-= 1.5 =
-
-* Tested up to WordPress 4.7.
-* Requires WordPress 4.5 or higher.
-* count() method added to Flamingo_Inbound_Message class.
-* All language files in the languages folder were removed. Translations have moved to translate.wordpress.org.

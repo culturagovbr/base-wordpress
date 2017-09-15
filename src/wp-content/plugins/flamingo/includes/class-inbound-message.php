@@ -124,7 +124,8 @@ class Flamingo_Inbound_Message {
 			'spam' => false,
 		);
 
-		$args = wp_parse_args( $args, $defaults );
+		$args = apply_filters( 'flamingo_add_inbound',
+			wp_parse_args( $args, $defaults ) );
 
 		$obj = new self();
 

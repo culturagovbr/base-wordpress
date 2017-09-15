@@ -41,7 +41,7 @@ function swpsmtp_settings() {
         $swpsmtp_options['smtp_settings']['type_encryption'] = ( isset($_POST['swpsmtp_smtp_type_encryption']) ) ? sanitize_text_field($_POST['swpsmtp_smtp_type_encryption']) : 'none';
         $swpsmtp_options['smtp_settings']['autentication'] = ( isset($_POST['swpsmtp_smtp_autentication']) ) ? sanitize_text_field($_POST['swpsmtp_smtp_autentication']) : 'yes';
         $swpsmtp_options['smtp_settings']['username'] = sanitize_text_field($_POST['swpsmtp_smtp_username']);
-        $smtp_password = sanitize_text_field($_POST['swpsmtp_smtp_password']);
+        $smtp_password = stripslashes($_POST['swpsmtp_smtp_password']);
         $swpsmtp_options['smtp_settings']['password'] = base64_encode($smtp_password);
 
         /* Check value from "SMTP port" option */

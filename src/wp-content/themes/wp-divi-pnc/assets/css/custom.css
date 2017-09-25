@@ -1390,6 +1390,9 @@ pre:hover {
 
 }
 
+article {
+    border: 0 none;
+}
 .markdown-body h2 a.anchor > svg {
   -webkit-transform: translate(0, 35%);
   -moz-transform: translate(0, 35%);

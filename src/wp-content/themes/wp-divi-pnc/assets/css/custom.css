@@ -1983,7 +1983,9 @@ nav#top-menu-nav {
 }
 
 /*Home*/
-
+.box-metas-assuntos-home > br {
+    display: none;
+}
 .box-metas-assuntos-home {
   padding: 0;
   margin: 0;
@@ -1997,17 +1999,25 @@ nav#top-menu-nav {
   justify-content: space-around;
 }
 
-.box-metas-assuntos-home a {
+.box-metas-assuntos-home {
+    display: block;
+    justify-content: space-around;
+    list-style: none outside none;
+    margin: 0;
     padding: 0;
-    width: 200px;
-    margin-top: 0;
+}
+.box-metas-assuntos-home a {
     color: #00385a;
+    float: left;
     font-size: 17px;
-    overflow: visible;
     font-weight: bold;
+    height: 200px;
+    margin: 0 2px 0 5px;
     min-height: 199px;
-    margin-bottom: 0px;
-    transition: all 0.3s ease;
+    overflow: hidden;
+    padding: 0;
+    transition: all 0.3s ease 0s;
+    width: 200px !important;
 }
 
 .box-metas-assuntos-home a:hover {

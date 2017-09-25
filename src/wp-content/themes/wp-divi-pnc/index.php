@@ -56,8 +56,10 @@
                                 }
                                 ?>
                             <?php endif; ?>
-                            
 
+                            <?php
+                            $withcomments = 1;
+                            comments_template( '', true );?>
                         </article> <!-- .et_pb_post -->
                         <?php
                     endwhile;

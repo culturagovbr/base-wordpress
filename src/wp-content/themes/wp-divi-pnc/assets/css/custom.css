@@ -1320,6 +1320,13 @@ pre:hover {
     margin-top: 0px;
     display: block;
 }
+/*Pagina metas*/
+#left-area h1.entry-title {
+    display: none;
+}
+#left-area .et_pb_module h1 {
+    display: block !important;
+}
 .markdown-body h1 {
   padding-bottom: 0.3em;
   font-size: 2em;
@@ -1385,11 +1392,17 @@ pre:hover {
 .markdown-body h1 a.anchor > svg {
   -webkit-transform: translate(0, 50%);
   -ms-transform: translate(0, 50%);
+  -moz-transform: translate(0, 50%);
   transform: translate(0, 50%);
+
 }
 
+article {
+    border: 0 none;
+}
 .markdown-body h2 a.anchor > svg {
   -webkit-transform: translate(0, 35%);
+  -moz-transform: translate(0, 35%);
   -ms-transform: translate(0, 35%);
   transform: translate(0, 35%);
 }
@@ -1399,6 +1412,7 @@ pre:hover {
 .markdown-body h5 a.anchor > svg,
 .markdown-body h6 a.anchor > svg {
   -webkit-transform: translate(0, 0);
+   -moz-transform:  translate(0, 0);
   -ms-transform: translate(0, 0);
   transform: translate(0, 0);
 }
@@ -1983,7 +1997,9 @@ nav#top-menu-nav {
 }
 
 /*Home*/
-
+.box-metas-assuntos-home > br {
+    display: none;
+}
 .box-metas-assuntos-home {
   padding: 0;
   margin: 0;
@@ -1997,17 +2013,25 @@ nav#top-menu-nav {
   justify-content: space-around;
 }
 
-.box-metas-assuntos-home a {
+.box-metas-assuntos-home {
+    display: block;
+    justify-content: space-around;
+    list-style: none outside none;
+    margin: 0;
     padding: 0;
-    width: 200px;
-    margin-top: 0;
+}
+.box-metas-assuntos-home a {
     color: #00385a;
+    float: left;
     font-size: 17px;
-    overflow: visible;
     font-weight: bold;
+    height: 200px;
+    margin: 0 2px 0 5px;
     min-height: 199px;
-    margin-bottom: 0px;
-    transition: all 0.3s ease;
+    /* overflow: hidden; */
+    padding: 0;
+    transition: all 0.3s ease 0s;
+    width: 200px !important;
 }
 
 .box-metas-assuntos-home a:hover {
@@ -2098,6 +2122,7 @@ body:not(.home) article article h2.entry-title {
     border: none !important;
     font-size: 18px !important;
 }
+
 /*Metas por assuntos interno*/
 .metas-por-assuntos-interna {
     margin-top: -18px;
@@ -3675,6 +3700,9 @@ button.mfp-close {
   top: 50%;
   margin: -20px 0 0 -20px;
   -webkit-transform: rotate(45deg);
+  -moz-transform:  rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
   border-left: none;
   border-top: none;
   border-right: 2px #8f8f91 solid;

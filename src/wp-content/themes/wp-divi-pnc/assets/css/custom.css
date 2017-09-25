@@ -2115,6 +2115,7 @@ body:not(.home) article article h2.entry-title {
     border: none !important;
     font-size: 18px !important;
 }
+
 /*Metas por assuntos interno*/
 .metas-por-assuntos-interna {
     margin-top: -18px;

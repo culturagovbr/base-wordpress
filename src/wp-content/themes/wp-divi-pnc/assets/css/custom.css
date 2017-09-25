@@ -1385,11 +1385,14 @@ pre:hover {
 .markdown-body h1 a.anchor > svg {
   -webkit-transform: translate(0, 50%);
   -ms-transform: translate(0, 50%);
+  -moz-transform: translate(0, 50%);
   transform: translate(0, 50%);
+
 }
 
 .markdown-body h2 a.anchor > svg {
   -webkit-transform: translate(0, 35%);
+  -moz-transform: translate(0, 35%);
   -ms-transform: translate(0, 35%);
   transform: translate(0, 35%);
 }
@@ -1399,6 +1402,7 @@ pre:hover {
 .markdown-body h5 a.anchor > svg,
 .markdown-body h6 a.anchor > svg {
   -webkit-transform: translate(0, 0);
+   -moz-transform:  translate(0, 0);
   -ms-transform: translate(0, 0);
   transform: translate(0, 0);
 }
@@ -3685,6 +3689,9 @@ button.mfp-close {
   top: 50%;
   margin: -20px 0 0 -20px;
   -webkit-transform: rotate(45deg);
+  -moz-transform:  rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
   border-left: none;
   border-top: none;
   border-right: 2px #8f8f91 solid;

@@ -1320,6 +1320,13 @@ pre:hover {
     margin-top: 0px;
     display: block;
 }
+/*Pagina metas*/
+#left-area h1.entry-title {
+    display: none;
+}
+#left-area .et_pb_module h1 {
+    display: block !important;
+}
 .markdown-body h1 {
   padding-bottom: 0.3em;
   font-size: 2em;
@@ -2021,7 +2028,7 @@ nav#top-menu-nav {
     height: 200px;
     margin: 0 2px 0 5px;
     min-height: 199px;
-    overflow: hidden;
+    /* overflow: hidden; */
     padding: 0;
     transition: all 0.3s ease 0s;
     width: 200px !important;

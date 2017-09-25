@@ -138,6 +138,7 @@ $is_page_builder_used = et_pb_is_pagebuilder_used( get_the_ID() );
 					
 
 					<?php
+						$withcomments = 1;
 						if ( ( comments_open() || get_comments_number() ) && 'on' == et_get_option( 'divi_show_postcomments', 'on' ) && ! $et_pb_has_comments_module ) {
 							comments_template( '', true );
 						}

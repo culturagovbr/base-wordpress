@@ -1329,7 +1329,7 @@ ul#menu-rodape-direito {
   }
   
   ul.ul-title {
-    padding-left: 0px
+    padding-left: 0px !important;
   }
   
   .controls button.toggle[data-toggle=prev] {
@@ -3247,7 +3247,7 @@ p.comment-form-url.comment-form-attachment {
   
   .post-template-default span.number,
   .category span.number {
-    width: 100%;
+    width: 100% !important;
   }
   
   .post-template-default span.title,

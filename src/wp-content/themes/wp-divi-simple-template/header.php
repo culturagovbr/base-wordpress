@@ -32,9 +32,9 @@
 
     <?php wp_head(); ?>
 </head>
-<body <?php body_class( ( get_minc_option('theme_color') ) ? 'tema-' . get_minc_option('theme_color') : ''  ); ?>>
+<body <?php body_class( ( get_minc_option('theme_color') ) ? 'tema-' . get_minc_option('theme_color') : ''  ); echo ( get_minc_option('theme_color') === 'custom' ) ? 'data-primary-color-palette="'. get_minc_option('color_schema') .'" data-secondary-color-palette="'. get_minc_option('color_schema_2') .'"' : ''; ?>>
 <div id="header" role="banner">
-    <div class="clearfix">
+    <div class="clearfix" <?php echo ( get_minc_option('header_bg') ) ? 'style="background: url('. get_minc_option('header_bg') . ') right bottom no-repeat;"' : ''; ?>>
         <ul id="accessibility">
             <li>
                 <a accesskey="1" href="#div-conteudo" id="link-conteudo">

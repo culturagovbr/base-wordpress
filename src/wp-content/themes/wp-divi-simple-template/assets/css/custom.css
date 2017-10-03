@@ -71,11 +71,11 @@ div#wrapper-footer-brasil{
     max-width: none;
     background: #0e4097;
     margin-top: 30px;
+    overflow: visible;
 }
 
 #header .menu{
     position: relative;
-    overflow: hidden;
     margin: 0 auto;
     max-width: 1060px;
     text-align: right;
@@ -84,12 +84,28 @@ div#wrapper-footer-brasil{
 #header .menu li {
     display: inline-block;
     margin-left: 10px;
+    position: relative;
 }
 
-#header .menu li a{
+#header .menu li a {
     color: #fff;
     display: block;
     padding: 5px;
+}
+
+#header .menu li ul {
+    display: none;
+    position: absolute;
+    top: 33px;
+    right: 0;
+    background: #0e4097;
+    z-index: 10;
+    width: 175px;
+    padding-top: 15px;
+}
+
+#header .menu li:hover ul {
+    display: block;
 }
 
 #accessibility a {
@@ -1359,6 +1375,11 @@ Animação - carregando
 
 .entry-title{
     display: none;
+}
+
+.et_pb_row.et_pb_row_fullwidth{
+    width: 100% !important;
+    max-width: 100% !important;
 }
 
 /**

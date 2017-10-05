@@ -442,23 +442,120 @@ body.page-theme-vermelho{
 	#site-header .navbar .nav{
 		margin: auto;
 	}
-
 	#site-header .menu-item{
 		margin-right: 20px;
 	}
-
 	.nav-support{
 		text-align: center;
 	}
-
 	.micsul-map img{
 		max-width: 100%;
 		height: auto;
 	}
+	.micsul-map .micsul-map-item.item-1{
+		top: 2px;
+		right: 150px;
+	}
+	.micsul-map .micsul-map-item.item-2{
+		right: 0;
+	}
+	.micsul-map .micsul-map-item.item-3{
+		right: -70px;
+	}
+	.micsul-map .micsul-map-item.item-4{
+		top: 513px;
+	    right: -114px;
+	}
+	.micsul-map .micsul-map-item.item-5{
+	    top: 583px;
+	    right: -10px;
+	}
+	.micsul-map .micsul-map-item.item-6{
+	    top: 644px;
+	    left: 55px;
+	}
+	.micsul-map .micsul-map-item.item-7{
+	    top: 553px;
+	    left: -10px;
+	}
+	.micsul-map .micsul-map-item.item-8{
+	    top: 342px;
+	    left: -50px;
+	}
+	.micsul-map .micsul-map-item.item-9{
+	    top: 183px;
+        left: -45px;
+	}
+	.micsul-map .micsul-map-item.item-10{
+	    top: 33px;
+	    left: -15px;
+	}
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
 	.nav-support{
 		text-align: right;
 	}
+	.micsul-map .micsul-map-item.item-1{
+		top: 2px;
+		right: 5px;
+	}
+	.micsul-map .micsul-map-item.item-2{
+		right: -60px;
+	}
+	.micsul-map .micsul-map-item.item-3{
+		right: -88px;
+		top: 68px;
+	}
+	.micsul-map .micsul-map-item.item-4{
+		top: 370px;
+		right: -136px;
+	}
+	.micsul-map .micsul-map-item.item-5{
+		top: 423px;
+		right: -77px;
+	}
+	.micsul-map .micsul-map-item.item-6{
+		top: 525px;
+	}
+	.micsul-map .micsul-map-item.item-7{
+		top: 398px;
+		left: -24px;
+	}
+	.micsul-map .micsul-map-item.item-8{
+	    top: 342px;
+	    left: -50px;
+	}
+	.micsul-map .micsul-map-item.item-9{
+	    top: 121px;
+	    left: -49px;
+	}
+	.micsul-map .micsul-map-item.item-10{
+	    top: 10px;
+    }
+	    
+}
+
+@media (max-width: 768px) {
+	#site-header .menu-item {
+	    margin-right: 0;
+	}
+	.nav-support{
+		text-align: right;
+		padding: 15px
+	}
+	.micsul-map .micsul-map-item.item-5{
+	    top: 477px;
+    }
+	.micsul-map .micsul-map-item.item-6{
+	    top: 599px;
+	    left: 66px;
+    }
+	.micsul-map .micsul-map-item.item-7{
+	    top: 449px;
+	    left: -20px;
+    }
+    .entry-meta--front-page .gov{
+    	display: block;
+    }
 }

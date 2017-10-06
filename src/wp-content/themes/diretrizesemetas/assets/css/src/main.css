@@ -121,7 +121,7 @@ main > .container,
 }
 
 label{
-	font-size: 18px;
+	font-size: 16px;
 	font-weight: lighter;
 	cursor: pointer;
 }
@@ -129,7 +129,7 @@ label{
 input, select, textarea {
 	background: #e6e6e6;
 	border: none;
-	padding: 14px 10px;
+	padding: 10px;
 	border-radius: 3px;
 	width: 100%;
 }
@@ -138,7 +138,8 @@ ul {
 	list-style-type: none;
 }
 
-input[type=radio], input[type=checkbox] {
+input[type="radio"], 
+input[type="checkbox"] {
     border: 1px solid #b4b9be;
     background: #fff;
     color: #555;
@@ -147,7 +148,7 @@ input[type=radio], input[type=checkbox] {
     display: inline-block;
     line-height: 0;
     height: 16px;
-    margin: -4px 4px 0 0;
+    margin: -4px 8px 0 0;
     outline: 0;
     padding: 0!important;
     text-align: center;
@@ -162,7 +163,16 @@ input[type=radio], input[type=checkbox] {
     border-radius: 50%;
 }
 
-input[type=radio]:checked:before {
+input[type="checkbox"] {
+	position: relative;
+}
+
+input[type="checkbox"] {
+	border-radius: 15%;
+}
+
+input[type="radio"]:checked:before,
+input[type="checkbox"]:checked:before {
     content: "\2022";
     text-indent: -9999px;
     -webkit-border-radius: 50%;
@@ -175,7 +185,8 @@ input[type=radio]:checked:before {
     background-color: #000;
 }
 
-input[type=radio]:checked:before, input[type=checkbox]:checked:before {
+input[type="radio"]:checked:before, 
+input[type="checkbox"]:checked:before {
     float: left;
     display: inline-block;
     vertical-align: middle;
@@ -183,6 +194,22 @@ input[type=radio]:checked:before, input[type=checkbox]:checked:before {
     speak: none;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+input[type="checkbox"]:checked:before {
+	content: "\2713";
+	-webkit-border-radius: 15%;
+	background: 0 0;
+	color: #000;
+	text-indent: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 0;
+	line-height: 10px;
+	font-size: 18px;
+	height: 16px;
+	width: 16px;
 }
 
 .acf-input {
@@ -581,12 +608,21 @@ body.browser-msie .acf-repeater .acf-row-handle .acf-icon.-minus {
 .acf-repeater .acf-row-handle.order {
 	background: #f4f4f4;
 	cursor: move;
-	color: #aaa;
+	color: #000;
 	text-shadow: #fff 0 1px 0;
 }
 .acf-repeater .acf-row-handle.order:hover {
 	color: #666;
 }
+.acf-repeater .acf-row-handle.order > span{
+	display: inline-block;
+	width: 22px;
+	text-align: center;
+	border: 1px solid;
+	border-radius: 50%;
+	line-height: 20px;
+}
+
 .acf-repeater .acf-row-handle.order + td {
 	border-left-color: #DFDFDF;
 }
@@ -766,7 +802,7 @@ body.browser-msie .acf-repeater .acf-row-handle .acf-icon.-minus {
   float: left;
   border-right-width: 0;
   border-radius: 3px 0 0 3px;
-  line-height: 40px;
+  line-height: 32px;
 }
 .acf-input-append {
   float: right;
@@ -810,4 +846,12 @@ html[dir="rtl"] input.acf-is-appended {
 }
 html[dir="rtl"] input.acf-is-prepended.acf-is-appended {
   border-radius: 0 !important;
+}
+
+.acf-checkbox-list li{
+	margin-bottom: 12px;
+}
+
+.acf-label > label {
+	font-weight: bold;
 }

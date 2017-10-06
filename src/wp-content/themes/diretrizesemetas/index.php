@@ -57,7 +57,7 @@ get_header();
 				<div class="row">
 					<div class="col-sm-3"></div>
 					<div class="col-sm-9">
-						<h2>Formulário de inscrição</h2>
+						<h2>Descreva a ação estratégica</h2>
 					</div>
 				</div>
 			</div>

@@ -123,7 +123,7 @@ function main_form($acf_group) {
             'post_status'   => 'publish'
         ),
         'uploader' => 'basic',
-        'updated_message' => __('Inscrição realizada.', 'acf'),
+        'updated_message' => __('Ação incluída com sucesso.', 'acf'),
         'return'        => home_url('/?updated=true#message'),
         'submit_value'  => 'Incluir nova ação',
     );
@@ -174,9 +174,8 @@ function mapas_wp_mail_from_name($name) {
 /**
  * Process the subscription form
  */
-// add_action('acf/pre_save_post', 'process_main_oscar_form');
-add_action('acf/pre_save_post', 'process_main_oscar_form');
-function process_main_oscar_form( $post_id ) {
+add_action('acf/pre_save_post', 'preprocess_main_form');
+function preprocess_main_form( $post_id ) {
     $diretrizesemetas_options = get_option('diretrizesemetas_options');
 
     if( $post_id != 'new_inscricao' ){
@@ -197,26 +196,88 @@ function process_main_oscar_form( $post_id ) {
 
     $inscricao = array(
         'ID'           => $post_id,
-        'post_title'   => 'Inscrição Mapas Culturais'
+        'post_title'   => 'Ação Estratégica - #' . $post_id
     );
     wp_update_post( $inscricao );
     
+    /*
     $post = get_post( $post_id );
     $name = 'Inscrição Mapas Culturais';
     $to = $_POST['acf'][ $diretrizesemetas_options['acf_email_id_option'] ];
     $subject = $post->post_title;
     $body = $diretrizesemetas_options['diretrizesemetas_email_body'];
     $headers[] = 'Reply-To: '. $diretrizesemetas_options['diretrizesemetas_email_from_name'] .' <'. $diretrizesemetas_options['diretrizesemetas_email_from'] .'>';
-    
-    if( !wp_mail($to, $subject, $body, $headers) ){
+    */
+   
+    /* if( !wp_mail($to, $subject, $body, $headers) ){
         error_log("ERRO: O email para: " . $to . ' com a confirmação do envio de formulário, falhou!', 0);
-    }
+    }*/ 
 
-    $name = 'Nova solicitação de instalação do Mapas Culturais';
+    // send_notification_about_subscriptions_received($post_id);
+    // Return the new ID
+    return $post_id;
+}
+
+function postprocess_main_form( $post_id ) {
+    $name = 'Nova ação estratégica recebida';
     $to = $diretrizesemetas_options['diretrizesemetas_monitoring_emails'];
-    $subject = 'Nova solicitação de instalação do Mapas Culturais';
-    $body = '<p>Uma nova solicitação de instalação do Mapas Culturais acaba de ser recebida.</p>';
-    $i = 0;
+    $subject = 'Nova ação estratégica recebida';
+    $body = '<p>Uma nova ação estratégica acaba de ser recebida.</p>';
+    
+    $unidade = get_field('unidade', $post_id);
+    $pilares = get_field('pilares', $post_id);
+    $natureza_da_entrega = get_field('natureza_da_entrega', $post_id);
+    $produto_entrega = get_field('produto_entrega', $post_id);
+    $descricao = get_field('descricao', $post_id);
+    $data_limite = get_field('data_limite', $post_id);
+    $custo = get_field('custo', $post_id);
+    $situacao = get_field('situacao', $post_id);
+    $percentual_execucao = get_field('percentual_execucao', $post_id);
+
+    $body .= "<p><b>ID:</b> $post_id</p>";
+    $body .= "<p><b>Unidade:</b> $unidade</p>";
+    $body .= "<p><b>Pilares:</b> $pilares</p>";
+    $body .= "<p><b>Natureza da entrega:</b> $natureza_da_entrega</p>";
+    $body .= "<p><b>Produto/Entrega:</b> $produto_entrega</p>";
+    $body .= "<p><b>Descrição:</b> $descricao</p>";
+    $body .= "<p><b>Data limite:</b> $data_limite</p>";
+    $body .= "<p><b>Custo:</b> $custo</p>";
+    $body .= "<p><b>Situação:</b> $situacao</p>";
+    $body .= "<p><b>Percentual de execução:</b> $percentual_execucao</p>";
+
+    if( have_rows('acoes_etapas', $post_id) ):
+        $body .= "<p><b>Ações/Etapas necessárias à execução do Produto/Entrega:</b></p>";
+        $body .= "<ul>";
+        while ( have_rows('acoes_etapas', $post_id) ) : the_row();
+            $body .= "<li>";
+            $body .= "<b>Ação/Etapa:</b> ". get_sub_field('acao_etapas') . "<br>";
+            $body .= "<b>Descrição:</b> ". get_sub_field('descricao') . "<br>";
+            $body .= "<b>Prazo:</b> ". get_sub_field('prazo') . "<br>";
+            $body .= "<b>Custo:</b> ". get_sub_field('custo') . "<br>";
+            $body .= "<b>Percentual de execução:</b> ". get_sub_field('percentual_execucao') . "<br>";
+            $body .= "</li>";
+        endwhile;
+        $body .= "</ul>";
+    endif;
+
+
+    $body .= '<p>Para visualiza-la, clique <a href="'. admin_url( 'post.php?post='. $post_id .'&action=edit' ) .'">aqui</a>.<p>';
+    
+    wp_die($body);
+    if( !wp_mail($to, $subject, $body, $headers ) ){
+        error_log("ERRO: O envio de email de monitormanento para: " . $to . ', Falhou!', 0);
+    }
+    
+}
+
+add_action('acf/save_post', 'postprocess_main_form', 20);
+
+function send_notification_about_subscriptions_received($post_id) {
+    $name = 'Nova ação estratégica recebida';
+    $to = $diretrizesemetas_options['diretrizesemetas_monitoring_emails'];
+    $subject = 'Nova ação estratégica recebida';
+    $body = '<p>Uma nova ação estratégica acaba de ser recebida.</p>';
+    /*$i = 0;
     $labels = array(
         'Estado ou UF/Município',
         'Nome',
@@ -230,14 +291,36 @@ function process_main_oscar_form( $post_id ) {
     foreach ($_POST['acf'] as $key => $val) {
         $body .= '<p><b>'. $labels[$i] .':</b> '. $val .'</p>';
         $i++;
-    }
+    }*/
+    $post = get_post($post_id);
+    $unidade = get_field('unidade', $post_id);
+    $pilares = get_field('pilares', $post_id);
+    $natureza_da_entrega = get_field('natureza_da_entrega', $post_id);
+    $produto_entrega = get_field('produto_entrega', $post_id);
+    $descricao = get_field('descricao', $post_id);
+    $data_limite = get_field('data_limite', $post_id);
+    $custo = get_field('custo', $post_id);
+    $situacao = get_field('situacao', $post_id);
+    $percentual_execucao = get_field('percentual_execucao', $post_id);
+
+    $body .= "<p>ID: $post_id</p>";
+    $body .= "<p>Unidade: $unidade</p>";
+    $body .= "<p>Pilares: $pilares</p>";
+    $body .= "<p>Natureza da entrega: $natureza_da_entrega</p>";
+    $body .= "<p>Produto/Entrega: $produto_entrega</p>";
+    $body .= "<p>Descrição: $descricao</p>";
+    $body .= "<p>Data limite: $data_limite</p>";
+    $body .= "<p>Custo: $custo</p>";
+    $body .= "<p>Situação: $situacao</p>";
+    $body .= "<p>Percentual de execução: $percentual_execucao</p>";
+
+
     $body .= '<p>Para visualiza-la, clique <a href="'. admin_url( 'post.php?post='. $post_id .'&action=edit' ) .'">aqui</a>.<p>';
     
+    wp_die($body);
     if( !wp_mail($to, $subject, $body, $headers ) ){
         error_log("ERRO: O envio de email de monitormanento para: " . $to . ', Falhou!', 0);
     }
-    // Return the new ID
-    return $post_id;
 }
 
 add_action( 'admin_notices', 'theme_plugin_dependencies' );
@@ -274,4 +357,4 @@ function test_wp_mail($args)
     $debug = "<pre>" . var_export($args, true) . "</pre>";
     wp_die($debug);
 }
-// add_filter('wp_mail', 'test_wp_mail');
+add_filter('wp_mail', 'test_wp_mail');

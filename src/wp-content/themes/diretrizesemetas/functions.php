@@ -199,28 +199,17 @@ function preprocess_main_form( $post_id ) {
         'post_title'   => 'Ação Estratégica - #' . $post_id
     );
     wp_update_post( $inscricao );
-    
-    /*
-    $post = get_post( $post_id );
-    $name = 'Inscrição Mapas Culturais';
-    $to = $_POST['acf'][ $diretrizesemetas_options['acf_email_id_option'] ];
-    $subject = $post->post_title;
-    $body = $diretrizesemetas_options['diretrizesemetas_email_body'];
-    $headers[] = 'Reply-To: '. $diretrizesemetas_options['diretrizesemetas_email_from_name'] .' <'. $diretrizesemetas_options['diretrizesemetas_email_from'] .'>';
-    */
-   
-    /* if( !wp_mail($to, $subject, $body, $headers) ){
-        error_log("ERRO: O email para: " . $to . ' com a confirmação do envio de formulário, falhou!', 0);
-    }*/ 
-
-    // send_notification_about_subscriptions_received($post_id);
     // Return the new ID
     return $post_id;
 }
 
+add_action('acf/save_post', 'postprocess_main_form', 20);
 function postprocess_main_form( $post_id ) {
+    $diretrizesemetas_options = get_option('diretrizesemetas_options');
+
     $name = 'Nova ação estratégica recebida';
-    $to = $diretrizesemetas_options['diretrizesemetas_monitoring_emails'];
+    $monitoring_emails = explode(',', $diretrizesemetas_options['diretrizesemetas_monitoring_emails']);
+    $to = array_map('trim', $monitoring_emails);
     $subject = 'Nova ação estratégica recebida';
     $body = '<p>Uma nova ação estratégica acaba de ser recebida.</p>';
     
@@ -260,67 +249,14 @@ function postprocess_main_form( $post_id ) {
         $body .= "</ul>";
     endif;
 
-
     $body .= '<p>Para visualiza-la, clique <a href="'. admin_url( 'post.php?post='. $post_id .'&action=edit' ) .'">aqui</a>.<p>';
+    $headers[] = 'From: Diretrizes e Metas <automatico@cultura.gov.br>';
     
-    wp_die($body);
+    // wp_die( var_dump($to) );
     if( !wp_mail($to, $subject, $body, $headers ) ){
-        error_log("ERRO: O envio de email de monitormanento para: " . $to . ', Falhou!', 0);
+        error_log("ERRO: O envio de email de monitoramento para: " . $to . ', Falhou!', 0);
     }
     
-}
-
-add_action('acf/save_post', 'postprocess_main_form', 20);
-
-function send_notification_about_subscriptions_received($post_id) {
-    $name = 'Nova ação estratégica recebida';
-    $to = $diretrizesemetas_options['diretrizesemetas_monitoring_emails'];
-    $subject = 'Nova ação estratégica recebida';
-    $body = '<p>Uma nova ação estratégica acaba de ser recebida.</p>';
-    /*$i = 0;
-    $labels = array(
-        'Estado ou UF/Município',
-        'Nome',
-        'Email',
-        'Cargo',
-        'Telefone',
-        'À qual unidade você pertence?',
-        'Outras?',
-        'Qual seu nível de conhecimento do software Mapas Culturais?'
-    );
-    foreach ($_POST['acf'] as $key => $val) {
-        $body .= '<p><b>'. $labels[$i] .':</b> '. $val .'</p>';
-        $i++;
-    }*/
-    $post = get_post($post_id);
-    $unidade = get_field('unidade', $post_id);
-    $pilares = get_field('pilares', $post_id);
-    $natureza_da_entrega = get_field('natureza_da_entrega', $post_id);
-    $produto_entrega = get_field('produto_entrega', $post_id);
-    $descricao = get_field('descricao', $post_id);
-    $data_limite = get_field('data_limite', $post_id);
-    $custo = get_field('custo', $post_id);
-    $situacao = get_field('situacao', $post_id);
-    $percentual_execucao = get_field('percentual_execucao', $post_id);
-
-    $body .= "<p>ID: $post_id</p>";
-    $body .= "<p>Unidade: $unidade</p>";
-    $body .= "<p>Pilares: $pilares</p>";
-    $body .= "<p>Natureza da entrega: $natureza_da_entrega</p>";
-    $body .= "<p>Produto/Entrega: $produto_entrega</p>";
-    $body .= "<p>Descrição: $descricao</p>";
-    $body .= "<p>Data limite: $data_limite</p>";
-    $body .= "<p>Custo: $custo</p>";
-    $body .= "<p>Situação: $situacao</p>";
-    $body .= "<p>Percentual de execução: $percentual_execucao</p>";
-
-
-    $body .= '<p>Para visualiza-la, clique <a href="'. admin_url( 'post.php?post='. $post_id .'&action=edit' ) .'">aqui</a>.<p>';
-    
-    wp_die($body);
-    if( !wp_mail($to, $subject, $body, $headers ) ){
-        error_log("ERRO: O envio de email de monitormanento para: " . $to . ', Falhou!', 0);
-    }
 }
 
 add_action( 'admin_notices', 'theme_plugin_dependencies' );
@@ -357,4 +293,4 @@ function test_wp_mail($args)
     $debug = "<pre>" . var_export($args, true) . "</pre>";
     wp_die($debug);
 }
-add_filter('wp_mail', 'test_wp_mail');
+// add_filter('wp_mail', 'test_wp_mail');

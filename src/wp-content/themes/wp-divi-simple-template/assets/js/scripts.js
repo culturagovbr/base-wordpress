@@ -1,5 +1,10 @@
 jQuery(document).ready(function ($) {
 
+	$('.menu-toggler').on('click', function(e){
+		e.preventDefault();
+		$('.menu-wrapper').toggleClass('menu-active');
+	});
+
 	var modal = $('<div id="modal" style="display:none;"/>');
 	    modal.css({
 	        'position':'fixed',

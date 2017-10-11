@@ -1,11 +1,11 @@
 <?php 
 /*
-Template Name: Largura 100%
+Template Name: Template Divi
 */
 get_header(); ?>
 
     <div id="main-content">
-        <div id="content-area" class="clearfix">
+        <div id="content-area" class="width-fluid clearfix">
             <?php
             if (have_posts()) :
                 while (have_posts()) : the_post();

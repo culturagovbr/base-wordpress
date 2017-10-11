@@ -3,8 +3,12 @@
     <div id="main-content">
         <div id="content-area" class="clearfix">
             <?php
-            if (have_posts()) :
-                while (have_posts()) : the_post();
+            if (have_posts()) : ?>
+                <header class="page-header">
+                    <h1 class="page-title"><?php the_title(); ?></h1>
+                </header>
+
+                <?php while (have_posts()) : the_post();
                     $post_format = et_pb_post_format(); ?>
 
                     <article id="post-<?php the_ID(); ?>" <?php post_class('et_pb_post'); ?>>

@@ -339,11 +339,18 @@ function minc_simpletheme_color_palette() {
             color: <?php echo $options['color_schema_links']; ?> !important;
         }
 
+        body.tema-custom #header > .menu-wrapper{
+            background-color: <?php echo $options['color_schema_2']; ?> !important;
+        }
+
         body.tema-custom #portal-title,
         body.tema-custom #portal-description,
         body.tema-custom #accessibility a,
         body.tema-custom #portal-siteactions a,
-        body.tema-custom #header .menu li a{
+        body.tema-custom #header .menu li a,
+        body.tema-custom .footer-widget,
+        body.tema-custom .footer-widget .title,
+        body.tema-custom #footer-widgets .footer-widget li a{
             color: <?php echo $options['color_schema_links']; ?>;
         }
 
@@ -356,8 +363,12 @@ function minc_simpletheme_color_palette() {
             background-color: <?php echo $options['color_schema_links']; ?>;
         }
 
-        body.tema-custom #footer-brasil {
+        body.tema-custom #main-footer {
             background-color: <?php echo $options['color_schema']; ?>  !important;;
+        }
+        
+        body.tema-custom #footer-brasil {
+            background-color: <?php echo $options['color_schema_2']; ?>  !important;;
         }
     </style>
 <?php }

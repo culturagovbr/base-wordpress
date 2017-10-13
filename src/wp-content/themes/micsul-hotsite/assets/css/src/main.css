@@ -517,7 +517,30 @@ body.page-theme-vermelho{
 	}
 	.micsul-map .micsul-map-item.item-6{
 		top: 525px;
+	}@media (max-width: 768px) {
+	#site-header .menu-item {
+	    margin-right: 0;
 	}
+	.nav-support{
+		text-align: right;
+		padding: 15px
+	}
+	.micsul-map .micsul-map-item.item-5{
+	    top: 477px;
+    }
+	.micsul-map .micsul-map-item.item-6{
+	    top: 599px;
+	    left: 66px;
+    }
+	.micsul-map .micsul-map-item.item-7{
+	    top: 449px;
+	    left: -20px;
+    }
+    .entry-meta--front-page .gov{
+    	display: block;
+    }
+}
+
 	.micsul-map .micsul-map-item.item-7{
 		top: 398px;
 		left: -24px;

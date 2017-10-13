@@ -293,3 +293,54 @@ function custom_breadcrumbs() {
     }
        
 }
+
+/**
+ * Includes - Shortcodes for authentication
+ * 
+ */
+require 'includes/auth-form.php';
+
+/**
+ * Remove itens desncessários da barra de administracao para usuários assinantes
+ * 
+ */
+function remove_toolbar_nodes($wp_admin_bar) {
+    $user = wp_get_current_user();
+    if ( $user->roles[0] === 'subscriber') {
+        $wp_admin_bar->remove_node('wp-logo');
+        $wp_admin_bar->remove_node('my-sites');
+        $wp_admin_bar->remove_node('site-name');
+        $wp_admin_bar->remove_node('menu-posts');
+        $wp_admin_bar->remove_node('new-content');
+        $wp_admin_bar->remove_node('comments');
+        $wp_admin_bar->remove_menu('edit-profile');
+    }
+}
+add_action('admin_bar_menu', 'remove_toolbar_nodes', 999);
+
+/**
+* Disable WordPress Admin Bar for all users but admins.
+* 
+*/
+if ( !current_user_can( 'manage_options' ) ) {
+    show_admin_bar( false );
+}
+
+/**
+ * Apply Custom CSS and JS to Admin Bar
+ */
+function geg_custom_style() {
+    $user = wp_get_current_user();
+    if ( $user->roles[0] === 'subscriber') {
+        echo '<style>
+        #wp-admin-bar-search{
+            display: none !important;
+        }
+        </style>';
+
+        echo '<script>
+            jQuery("#wp-admin-bar-user-info a").attr("href", "#");
+        </script>';
+    }
+}
+add_action('wp_head', 'geg_custom_style');

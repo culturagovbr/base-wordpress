@@ -234,7 +234,7 @@ function consulta_comment($comment, $args, $depth) {
 endif; 
 
 ////////////////////
-
+if( !function_exists('print_msgs') ):
 function print_msgs($msg, $extra_class='', $id=''){
     if (!is_array($msg)) {
         return false;
@@ -257,7 +257,7 @@ function print_msgs($msg, $extra_class='', $id=''){
         echo "</ul></div>";
     }
 }
-
+endif;
 
 if (!function_exists('_oi')) {
 

@@ -887,67 +887,99 @@ if( class_exists( 'STC_Subscribe' ) ) {
 
   		<div class="stc-subscribe-wrapper well">
 
-  			<?php if(!empty( $this->error )) : //printing error if exists ?>
-  				<?php foreach( $this->error as $error ) : ?>
-  					<div class="stc-error"><?php echo $error; ?></div>
-  				<?php endforeach; ?>
-  			<?php endif; ?>
+        <?php if( $this->settings['user_logged_requirement'] && !is_user_logged_in() ): ?>
 
-        <?php if(!empty( $this->notice )) : //printing notice if exists ?>
-          <?php foreach( $this->notice as $notice ) : ?>
-            <div class="stc-notice"><?php echo $notice; ?></div>
-          <?php endforeach; ?>
+          <div class="user-not-logged">
+            <p><?php _e( 'Only logged users can subscribe to categories.', 'stc_textdomain' ); ?></p>
+            <?php 
+              $register_url = $this->settings['user_logged_requirement_register_page'] ? $this->settings['user_logged_requirement_register_page'] : home_url('/wp-login.php?action=register'); 
+              $login_url = $this->settings['user_logged_requirement_login_page'] ? $this->settings['user_logged_requirement_login_page'] : home_url('/wp-login.php'); ?>
+            <p><?php echo sprintf( __( '<a href="%s">Register</a> or <a href="%s">login</a> to continue.', 'stc_textdomain' ), esc_url( $register_url ), esc_url( $login_url ) ); ?></p>
+          </div>
+
         <?php else: ?>
 
-  			<form role="form" method="post">
-          <div class="form-group">
-  				  <label for="stc-email"><?php _e( 'E-mail Address: ', 'stc_textdomain' ); ?></label>
-  				  <input type="text" id="stc-email" class="form-control" name="stc_email" value="<?php echo !empty( $email ) ? $email : NULL; ?>"/>
-          </div>
+    			<?php if(!empty( $this->error )) : //printing error if exists ?>
+    				<?php foreach( $this->error as $error ) : ?>
+    					<div class="stc-error"><?php echo $error; ?></div>
+    				<?php endforeach; ?>
+    			<?php endif; ?>
 
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" id="stc-unsubscribe-checkbox" name="stc-unsubscribe" value="1" <?php checked( '1', $post_stc_unsubscribe ); ?>>
-              <?php _e( 'Unsubscribe me', 'stc_textdomain' ) ?>
-            </label>
-          </div>
+          <?php if(!empty( $this->notice )) : //printing notice if exists ?>
+            <?php foreach( $this->notice as $notice ) : ?>
+              <div class="stc-notice"><?php echo $notice; ?></div>
+            <?php endforeach; ?>
+          <?php else: ?>
 
-          <div class="stc-categories"<?php echo $post_stc_unsubscribe == 1 ? ' style="display:none;"' : NULL; ?>>
-            <?php if(! empty( $cats )) :?>
-              <?php if (count ($cats) > 1 ) : ?>
-                <h3><?php _e('Categories', 'stc_textdomain' ); ?></h3>
-                <?php if( $this->show_all_categories === true ) : ?>
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" id="stc-all-categories" name="stc_all_categories" value="1">
-                      <?php _e('All categories', 'stc_textdomain' ); ?>
-                    </label>
-                  </div>
-                <?php endif; ?>
-              <?php endif; ?>
-              <div class="stc-categories-checkboxes">
-                <?php if(count($cats)>1 ) : ?>
-    	          <?php foreach ($cats as $cat ) : ?>
+    			<form role="form" method="post">
+            <div class="form-group">
+    				  <label for="stc-email"><?php _e( 'E-mail Address: ', 'stc_textdomain' ); ?></label>
+    				  <input type="text" id="stc-email" class="form-control" name="stc_email" value="<?php echo !empty( $email ) ? $email : NULL; ?>"/>
+            </div>
+
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" id="stc-unsubscribe-checkbox" name="stc-unsubscribe" value="1" <?php checked( '1', $post_stc_unsubscribe ); ?>>
+                <?php _e( 'Unsubscribe me', 'stc_textdomain' ) ?>
+              </label>
+            </div>
+
+            <div class="stc-categories"<?php echo $post_stc_unsubscribe == 1 ? ' style="display:none;"' : NULL; ?>>
+              <?php if(! empty( $cats )) :?>
+                <?php if (count ($cats) > 1 ) : ?>
+                  <h3><?php _e('Categories', 'stc_textdomain' ); ?></h3>
+                  <?php if( $this->show_all_categories === true ) : ?>
                     <div class="checkbox">
-      		      <label>
-      		        <input type="checkbox" name="stc_categories[]" value="<?php echo $cat->cat_ID ?>">
-      		        <?php echo $cat->cat_name; ?>
-      		      </label>
+                      <label>
+                        <input type="checkbox" id="stc-all-categories" name="stc_all_categories" value="1">
+                        <?php _e('All categories', 'stc_textdomain' ); ?>
+                      </label>
                     </div>
-                  <?php endforeach; ?>
-                <?php else: ?>
-                  <input type="hidden" name="stc_categories[]" value="<?php echo $cats[0]->cat_ID ?>">
+                  <?php endif; ?>
                 <?php endif; ?>
-              </div><!-- .stc-categories-checkboxes -->
+                <div class="stc-categories-checkboxes">
+                  <?php if(count($cats)>1 ) : ?>
+      	          <?php foreach ($cats as $cat ) : ?>
+                      <div class="checkbox">
+        		      <label>
+        		        <input type="checkbox" name="stc_categories[]" value="<?php echo $cat->cat_ID ?>">
+        		        <?php echo $cat->cat_name; ?>
+        		      </label>
+                      </div>
+                    <?php endforeach; ?>
+                  <?php else: ?>
+                    <input type="hidden" name="stc_categories[]" value="<?php echo $cats[0]->cat_ID ?>">
+                  <?php endif; ?>
+                </div><!-- .stc-categories-checkboxes -->
+              <?php endif; ?>
+            </div><!-- .stc-categories -->
+
+            <?php if( $this->settings['acceptance_terms'] ): ?>
+            <div class="acceptance-terms-box">
+            	<label for="terms-acceptance-option">
+            		<input type="checkbox" name="terms-acceptance-option" id="terms-acceptance-option">
+            		<?php
+                $acceptance_terms_url = $this->settings['acceptance_terms_page'] ? $this->settings['acceptance_terms_page'] : '#';
+                $item_class = $this->settings['acceptance_terms_page'] ? 'terms-link' : 'terms-link handler';
+                $link = sprintf( __( 'I have read and accept the  <a href="%s" class="%s">terms</a>.', 'stc_textdomain' ), esc_url( $acceptance_terms_url ), $item_class );
+                echo $link;
+                ?>
+            	</label>
+              <?php if( !$this->settings['acceptance_terms_page'] ): ?>
+            	<div class="acceptance-terms">
+                <?php echo $this->settings['acceptance_terms_text']; ?>
+            	</div>
+              <?php endif; ?>
+            </div>
             <?php endif; ?>
-          </div><!-- .stc-categories -->
 
+    				<input type="hidden" name="action" value="stc_subscribe_me" />
+    				<?php wp_nonce_field( 'wp_nonce_stc', 'stc_nonce', true, true ); ?>
+            <button disabled="true" id="stc-subscribe-btn" type="submit" class="btn btn-default"<?php echo $post_stc_unsubscribe == 1 ? ' style="display:none;"' : NULL; ?>><?php _e( 'Subscribe me', 'stc_textdomain' ) ?></button>
+            <button id="stc-unsubscribe-btn" type="submit" class="btn btn-default"<?php echo $post_stc_unsubscribe != 1 ? ' style="display:none;"' : NULL; ?>><?php _e( 'Unsubscribe', 'stc_textdomain' ) ?></button>
+    			</form>
+          <?php endif; ?>
 
-  				<input type="hidden" name="action" value="stc_subscribe_me" />
-  				<?php wp_nonce_field( 'wp_nonce_stc', 'stc_nonce', true, true ); ?>
-          <button id="stc-subscribe-btn" type="submit" class="btn btn-default"<?php echo $post_stc_unsubscribe == 1 ? ' style="display:none;"' : NULL; ?>><?php _e( 'Subscribe me', 'stc_textdomain' ) ?></button>
-          <button id="stc-unsubscribe-btn" type="submit" class="btn btn-default"<?php echo $post_stc_unsubscribe != 1 ? ' style="display:none;"' : NULL; ?>><?php _e( 'Unsubscribe', 'stc_textdomain' ) ?></button>
-  			</form>
         <?php endif; ?>
 
   		</div><!-- .stc-subscribe-wrapper -->

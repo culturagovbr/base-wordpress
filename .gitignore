@@ -32,3 +32,5 @@ scripts/update-wp.conf
 
 #PHPStorm
 .idea
+
+node_modules

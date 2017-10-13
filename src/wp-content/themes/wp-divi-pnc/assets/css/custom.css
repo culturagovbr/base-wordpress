@@ -3603,7 +3603,7 @@ span.fn > a {
   transition: all 0.2s ease-in-out 0s;
 }
 #footer-widgets .footer-widget.last.modal .widget_stc_widget {
-  margin: 0 auto !important;
+  margin: 15px auto 30px !important;
   width: 503px;
   max-width: 90%;
   background: #ffffff;
@@ -3628,6 +3628,7 @@ span.fn > a {
 }
 button.mfp-close {
   color: #f52a6e;
+  top: 6px;
 }
 #footer-widgets .footer-widget.last.modal input#stc-email {
   padding: 10px;
@@ -3674,12 +3675,11 @@ button.mfp-close {
   color: #4275ad;
   background: #eeeff1;
   border-top: 6px solid;
-  padding-top: 11px;
   font-weight: lighter;
   margin-top: 0px;
-  padding-left: 10px;
+  padding: 15px;
   width: 100%;
-  font-size: 34px;
+  font-size: 30px;
   display: block;
   background: transparent;
 }
@@ -3979,4 +3979,47 @@ ul#menu-planos-territoriais li {
 }
 .pnc-children {
   margin-left: 100px;
+}
+
+#footer-widgets .footer-widget.last.modal-oppen{
+  overflow-x: auto;
+}
+
+body.modal-is-open{
+  overflow: hidden;
+}
+
+.acceptance-terms-box{
+  text-align: left;
+  margin: 15px auto;
+  width: 85%;
+  color: #525252;
+}
+
+.acceptance-terms-box > label a {
+  color: #f52a6e;
+  text-decoration: underline;
+}
+
+.acceptance-terms{
+  margin-top: 15px;
+  padding: 15px;
+  background-color: #e4e4e4;
+  border: 1px solid #4275ad;
+  display: none;
+}
+
+#stc-subscribe-btn[disabled],
+#stc-subscribe-btn[disabled]:hover{
+  color: gray !important;
+  border-color: gray !important;
+  cursor: not-allowed;
+  background-color: #fff !important;
+  padding: 0 20px 0 20px !important;
+}
+
+.user-not-logged {
+  margin: 15px auto;
+  width: 85%;
+  color: #525252;
 }

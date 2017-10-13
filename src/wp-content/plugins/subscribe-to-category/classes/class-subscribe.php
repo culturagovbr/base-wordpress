@@ -975,7 +975,7 @@ if( class_exists( 'STC_Subscribe' ) ) {
 
     				<input type="hidden" name="action" value="stc_subscribe_me" />
     				<?php wp_nonce_field( 'wp_nonce_stc', 'stc_nonce', true, true ); ?>
-            <button disabled="true" id="stc-subscribe-btn" type="submit" class="btn btn-default"<?php echo $post_stc_unsubscribe == 1 ? ' style="display:none;"' : NULL; ?>><?php _e( 'Subscribe me', 'stc_textdomain' ) ?></button>
+            <button <?php echo( $this->settings['acceptance_terms'] ) ? 'disabled="true"' : ''; ?> id="stc-subscribe-btn" type="submit" class="btn btn-default"<?php echo $post_stc_unsubscribe == 1 ? ' style="display:none;"' : NULL; ?>><?php _e( 'Subscribe me', 'stc_textdomain' ) ?></button>
             <button id="stc-unsubscribe-btn" type="submit" class="btn btn-default"<?php echo $post_stc_unsubscribe != 1 ? ' style="display:none;"' : NULL; ?>><?php _e( 'Unsubscribe', 'stc_textdomain' ) ?></button>
     			</form>
           <?php endif; ?>

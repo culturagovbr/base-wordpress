@@ -23,6 +23,9 @@ get_header();
 
 					<?php $i++; endwhile;
 				endif; ?>
+				<div class="mapa-content">
+				    <h1> A Cultura conecta os povos e gera bons negócios.</h1>
+				</div>
 			</div>
 		</div>
 		<div class="col-md-4 content-area">
@@ -72,7 +75,19 @@ get_header();
 							<?php if ( is_front_page() ) : ?>
 								<div class="entry-meta--front-page">
 									<hr class="custom-hrow">
-									<img src="<?php echo get_template_directory_uri(); ?>/assets/images/bandeiras.png">
+									<img src="<?php echo get_template_directory_uri(); ?>/assets/images/bandeiras.png" usemap="#image-map">
+									<map name="image-map">
+											<area target="_blank" alt="link" title="link" href="#link" coords="0,20,22,-1" shape="rect">
+											<area target="_blank" alt="link" title="link" href="#link2" coords="48,1,27,20" shape="rect">
+											<area target="_blank" alt="link" title="link" href="#link3" coords="54,2,74,19" shape="rect">
+											<area target="_blank" alt="link" title="link" href="#link4" coords="86,11,10" shape="circle">
+											<area target="_blank" alt="link" title="link" href="#link5" coords="110,9,12" shape="circle">
+											<area target="_blank" alt="link" title="link" href="#link6" coords="124,-1,146,20" shape="rect">
+											<area target="_blank" alt="link" title="link" href="#link7" coords="160,12,11" shape="circle">
+											<area target="_blank" alt="link" title="link" href="#link8" coords="186,11,12" shape="circle">
+											<area target="_blank" alt="link" title="link" href="#link9" coords="211,11,12" shape="circle">
+											<area target="_blank" alt="link" title="link" href="#link10" coords="236,12,10" shape="circle">
+									</map>
 									<a href="http://www.cultura.gov.br/" class="gov">
 										<img src="<?php echo get_template_directory_uri(); ?>/assets/images/gov.png">
 									</a>

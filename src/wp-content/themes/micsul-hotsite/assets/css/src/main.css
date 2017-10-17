@@ -437,7 +437,17 @@ body.page-theme-vermelho{
 #footer-brasil{
 	display: none !important;
 }
-
+.mapa-content h1 {
+    position: absolute;
+    top: 248px;
+    font-size: 28px;
+    text-transform: uppercase;
+    width: 161px;
+    font-weight: bold;
+    color: #373738;
+    left: 283px;
+    text-align: left;
+}
 @media (max-width: 1200px) {
 	#site-header .navbar .nav{
 		margin: auto;
@@ -493,6 +503,17 @@ body.page-theme-vermelho{
 }
 
 @media (max-width: 992px) {
+	.mapa-content h1 {
+	    position: absolute;
+	    top: 181px;
+	    font-size: 18px;
+	    text-transform: uppercase;
+	    width: 161px;
+	    font-weight: bold;
+	    color: #373738;
+	    left: 162px;
+	    text-align: left;
+	}
 	.nav-support{
 		text-align: right;
 	}

@@ -9,12 +9,14 @@ get_header();
 				<?php
 				$cur_lang = pll_current_language();
 				if( $cur_lang !== 'pt' ){
-					$repeater = 'pontos_do_mapa_' . $cur_lang;
+					$map_title = get_field('titulo_para_o_mapa_' . $cur_lang, 'options');
+					$map_data = 'pontos_do_mapa_' . $cur_lang;
 				} else {
-					$repeater = 'pontos_do_mapa';
+					$map_title = get_field('titulo_para_o_mapa', 'options');
+					$map_data = 'pontos_do_mapa';
 				}
-				if( have_rows($repeater, 'options') ):
-					$i = 1; while( have_rows($repeater, 'options') ): the_row(); ?>
+				if( have_rows($map_data, 'options') ):
+					$i = 1; while( have_rows($map_data, 'options') ): the_row(); ?>
 
 						<div class="micsul-map-item item-<?php echo $i; ?>">
 							<a href="#"><?php the_sub_field('titulo'); ?></a>
@@ -24,7 +26,7 @@ get_header();
 					<?php $i++; endwhile;
 				endif; ?>
 				<div class="mapa-content">
-				    <h1> A Cultura conecta os povos e gera bons negócios.</h1>
+				    <h1><?php echo $map_title; ?></h1>
 				</div>
 			</div>
 		</div>
@@ -76,18 +78,28 @@ get_header();
 								<div class="entry-meta--front-page">
 									<hr class="custom-hrow">
 									<img src="<?php echo get_template_directory_uri(); ?>/assets/images/bandeiras.png" usemap="#image-map">
-									<map name="image-map">
-											<area target="_blank" alt="link" title="link" href="#link" coords="0,20,22,-1" shape="rect">
-											<area target="_blank" alt="link" title="link" href="#link2" coords="48,1,27,20" shape="rect">
-											<area target="_blank" alt="link" title="link" href="#link3" coords="54,2,74,19" shape="rect">
-											<area target="_blank" alt="link" title="link" href="#link4" coords="86,11,10" shape="circle">
-											<area target="_blank" alt="link" title="link" href="#link5" coords="110,9,12" shape="circle">
-											<area target="_blank" alt="link" title="link" href="#link6" coords="124,-1,146,20" shape="rect">
-											<area target="_blank" alt="link" title="link" href="#link7" coords="160,12,11" shape="circle">
-											<area target="_blank" alt="link" title="link" href="#link8" coords="186,11,12" shape="circle">
-											<area target="_blank" alt="link" title="link" href="#link9" coords="211,11,12" shape="circle">
-											<area target="_blank" alt="link" title="link" href="#link10" coords="236,12,10" shape="circle">
-									</map>
+									<?php
+									if( have_rows('link_para_as_bandeiras', 'options') ):
+										$coords = array(
+											"10,12,11",
+											"36,11,9",
+											"61,10,9",
+											"87,11,10",
+											"112,12,10",
+											"136,12,9",
+											"161,11,10",
+											"186,11,11",
+											"211,11,11",
+											"236,11,11"
+										);
+										echo '<map name="image-map">';
+										$i = 0; while( have_rows('link_para_as_bandeiras', 'options') ): the_row(); ?>
+
+											<area target="_blank" alt="<?php the_sub_field('titulo'); ?>" title="<?php the_sub_field('titulo'); ?>" href="<?php the_sub_field('link'); ?>" coords="<?php echo $coords[$i]; ?>" shape="circle">
+
+										<?php $i++; endwhile;
+										echo '</map>';
+									endif; ?>
 									<a href="http://www.cultura.gov.br/" class="gov">
 										<img src="<?php echo get_template_directory_uri(); ?>/assets/images/gov.png">
 									</a>

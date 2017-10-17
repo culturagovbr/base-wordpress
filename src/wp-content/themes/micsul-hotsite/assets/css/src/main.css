@@ -439,14 +439,15 @@ body.page-theme-vermelho{
 }
 .mapa-content h1 {
     position: absolute;
-    top: 248px;
+    top: 240px;
     font-size: 28px;
     text-transform: uppercase;
-    width: 161px;
-    font-weight: bold;
+    width: 200px;
+    font-weight: 700;
     color: #373738;
-    left: 283px;
+    left: 280px;
     text-align: left;
+    letter-spacing: 2px;
 }
 @media (max-width: 1200px) {
 	#site-header .navbar .nav{
@@ -500,6 +501,9 @@ body.page-theme-vermelho{
 	    top: 33px;
 	    left: -15px;
 	}
+	.mapa-content h1 {
+		left: 215px;
+	}
 }
 
 @media (max-width: 992px) {
@@ -538,7 +542,9 @@ body.page-theme-vermelho{
 	}
 	.micsul-map .micsul-map-item.item-6{
 		top: 525px;
-	}@media (max-width: 768px) {
+	}
+}
+@media (max-width: 768px) {
 	#site-header .menu-item {
 	    margin-right: 0;
 	}
@@ -560,8 +566,6 @@ body.page-theme-vermelho{
     .entry-meta--front-page .gov{
     	display: block;
     }
-}
-
 	.micsul-map .micsul-map-item.item-7{
 		top: 398px;
 		left: -24px;
@@ -601,5 +605,9 @@ body.page-theme-vermelho{
     }
     .entry-meta--front-page .gov{
     	display: block;
+    }
+    .mapa-content h1 {
+    	left: 190px;
+    	top: 205px;
     }
 }

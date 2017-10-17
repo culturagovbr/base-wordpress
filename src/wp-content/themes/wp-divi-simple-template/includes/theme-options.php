@@ -354,7 +354,8 @@ function minc_simpletheme_color_palette() {
             color: <?php echo $options['color_schema_links']; ?>;
         }
 
-        body.tema-custom #header .menu-menu-principal-container{
+        body.tema-custom #header .menu-menu-principal-container,
+        body.tema-custom #header .sub-menu{
             background-color: <?php echo $options['color_schema_2']; ?> !important;
         }
 

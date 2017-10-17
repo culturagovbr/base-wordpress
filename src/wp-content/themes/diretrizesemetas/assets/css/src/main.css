@@ -24,8 +24,8 @@ a{
 }
 
 #main-jumbotron{
-	background: #0c2b5f url(../../images/banner-background.png) center bottom no-repeat;
-	max-height: 392px;
+	background: #0c2b5f url(../../images/banner-background.png) center no-repeat;
+	min-height: 395px;
 	margin-bottom: 0;
 }
 

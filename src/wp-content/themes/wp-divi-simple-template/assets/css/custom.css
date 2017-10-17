@@ -15,8 +15,8 @@ ul {
 }
 div#wrapper-barra-brasil,
 div#wrapper-footer-brasil {
-    max-width: 1060px;
-    padding: 0;
+    max-width: 1140px;
+    padding: 0 15px;
 }
 #footer-brasil {
     background-color: #0042b2 !important;
@@ -50,7 +50,7 @@ div#wrapper-footer-brasil {
 #header .menu {
     position: relative;
     margin: 0 auto;
-    max-width: 1060px;
+    max-width: 1140px;
     text-align: right;
 }
 #header .menu li {
@@ -973,8 +973,11 @@ pre {
 .download_as_pdf--header {
     margin-top: 35px;
 }
-.entry-title {
-    display: none;
+#content-area > .et_pb_post > .entry-title {
+    display: none !important;
+}
+.et_pb_post .entry-title {
+    display: block;
 }
 .et_pb_row.et_pb_row_fullwidth {
     width: 100% !important;
@@ -990,6 +993,14 @@ pre {
 }
 #content-area.width-fluid{
     width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.et_pb_row{
+    max-width: 1140px;
+    padding: 0 15px;
 }
 .screen-reader-text {
     clip: rect(1px, 1px, 1px, 1px);
@@ -1048,6 +1059,23 @@ pre {
 #comments,
 #reply-title{
     font-size: 18px !important;
+}
+.section-title h1,
+.section-title h2,
+.section-title h3,
+.section-title h4,
+.section-title h5,
+.section-title h6 {
+    margin-top: 0;
+    border-top: 4px solid #3867b7;
+    border-bottom: none;
+    background: #eeeff1;
+    color: #3867b7;
+    letter-spacing: -0.05em;
+    line-height: 1em;
+    font-size: 20px;
+    font-weight: normal;
+    padding: 15px 15px 30px !important;
 }
 /**
  * Tema verde
@@ -1114,7 +1142,8 @@ body.tema-amarelo #portal-siteactions a,
 body.tema-amarelo #header .menu li a {
     color: #03316F;
 }
-body.tema-amarelo #header .menu-menu-principal-container {
+body.tema-amarelo #header .menu-menu-principal-container,
+body.tema-amarelo #header .sub-menu {
     background-color: #e8ab02;
 }
 body.tema-amarelo #accessibility span {
@@ -1163,7 +1192,8 @@ body.tema-branco #portal-siteactions a,
 body.tema-branco #header .menu li a {
     color: #2C66CE;
 }
-body.tema-branco #header .menu-menu-principal-container {
+body.tema-branco #header .menu-menu-principal-container,
+body.tema-branco #header .sub-menu {
     background-color: #cfd0d2;
 }
 body.tema-branco #accessibility span {

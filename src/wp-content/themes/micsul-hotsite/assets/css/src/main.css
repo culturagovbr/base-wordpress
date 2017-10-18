@@ -449,6 +449,12 @@ body.page-theme-vermelho{
     text-align: left;
     letter-spacing: 2px;
 }
+.micsul-map.sidebar .mapa-content h1 {
+	top: 130px;
+	font-size: 14px;
+	width: 120px;
+	left: 125px;
+}
 @media (max-width: 1200px) {
 	#site-header .navbar .nav{
 		margin: auto;

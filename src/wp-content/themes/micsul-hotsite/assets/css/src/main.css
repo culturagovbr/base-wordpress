@@ -469,6 +469,9 @@ body.page-theme-vermelho{
 .navigation .older{
 	float: right;
 }
+.lang-switcher{
+	text-transform: uppercase;
+}
 @media (max-width: 1200px) {
 	#site-header .navbar .nav{
 		margin: auto;

@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Mapa na barra lateral
+ * Template Name: Blog
  *
  */
 
@@ -8,18 +8,28 @@ get_header(); ?>
 <main class="container">
 	<div class="row">
 		<div class="col-md-8 content-area">
+			<h1 class="entry-title page">
+				<?php if ( is_single() ) : ?>
+					<?php the_title(); ?>
+				<?php else : ?>
+					<a href="<?php the_permalink(); ?>">
+						<?php the_title(); ?>
+					</a>
+				<?php endif; ?>
+			</h1>
+			<?php query_posts('post_type=post&post_status=publish&posts_per_page=10&paged='. get_query_var('paged')); ?>
 			<?php if ( have_posts() ) : ?>
 				<?php while ( have_posts() ) : the_post(); ?>
 
 					<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-						<header class="entry-header">
+						<header class="entry-header blog-item">
 							<?php if ( has_post_thumbnail() && ! post_password_required() && ! is_attachment() ) : ?>
 								<div class="entry-thumbnail">
 									<?php the_post_thumbnail(); ?>
 								</div>
 							<?php endif; ?>
 
-							<h1 class="entry-title page">
+							<h1 class="entry-title">
 								<?php if ( is_single() ) : ?>
 									<?php the_title(); ?>
 								<?php else : ?>
@@ -81,6 +91,11 @@ get_header(); ?>
 					</article>
 
 				<?php endwhile; ?>
+
+				<div class="navigation">
+					<span class="newer"><?php previous_posts_link(__('« Próximas notícias','example')) ?></span> 
+					<span class="older"><?php next_posts_link(__('Notícias anteriores »','example')) ?></span>
+				</div><!-- /.navigation -->
 
 			<?php else : ?>
 				<?php get_template_part( 'content', 'none' ); ?>

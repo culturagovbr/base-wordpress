@@ -50,12 +50,10 @@
             </div>
             <div class="col-lg-3 col-md-12 nav-support">
                 <?php if ( get_field('facebook', 'option') ): ?>
-                <a href="<?php the_field('facebook', 'option'); ?>" class="facebook" target="_blank">f</a>
-            <?php endif; ?>
-                <ul>
-                    <li><a href="<?php echo home_url('/pt'); ?>">PT</a></li>
-                    <li><a href="<?php echo home_url('/es'); ?>">ES</a></li>
-                    <li><a href="<?php echo home_url('/en'); ?>">EN</a></li>
+                    <a href="<?php the_field('facebook', 'option'); ?>" class="facebook" target="_blank">f</a>
+                <?php endif; ?>
+                <ul class="lang-switcher">
+                    <?php pll_the_languages( array( 'display_names_as' => 'slug' ) ); ?>
                 </ul>
             </div>
         </div>

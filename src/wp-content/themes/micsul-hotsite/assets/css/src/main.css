@@ -328,8 +328,11 @@ body.page-theme-vermelho{
 	height: auto;
 }
 
-.content-area .entry-thumbnail{
+.content-area .entry-thumbnail img{
 	margin-bottom: 15px;
+	width: 100%;
+	height: auto;
+	max-width: none !important;
 }
 
 .h1, h1 {
@@ -342,7 +345,12 @@ body.page-theme-vermelho{
 	border-bottom: 1px solid #78b834;
 	padding-bottom: 5px;
 }
-
+.entry-title.page{
+	margin-bottom: 15px;
+}
+.blog-item .entry-title{
+	text-transform: none;
+}
 .entry-title a,
 .entry-title a:hover{
 	color: #212529;
@@ -454,6 +462,12 @@ body.page-theme-vermelho{
 	font-size: 14px;
 	width: 120px;
 	left: 125px;
+}
+.navigation .newer{
+	float: left;
+}
+.navigation .older{
+	float: right;
 }
 @media (max-width: 1200px) {
 	#site-header .navbar .nav{

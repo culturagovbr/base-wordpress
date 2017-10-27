@@ -140,27 +140,27 @@ ul {
 
 input[type="radio"], 
 input[type="checkbox"] {
-    border: 1px solid #b4b9be;
-    background: #fff;
-    color: #555;
-    clear: none;
-    cursor: pointer;
-    display: inline-block;
-    line-height: 0;
-    height: 16px;
-    margin: -4px 8px 0 0;
-    outline: 0;
-    padding: 0!important;
-    text-align: center;
-    vertical-align: middle;
-    width: 16px;
-    min-width: 16px;
-    -webkit-appearance: none;
-    -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
-    box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
-    -webkit-transition: .05s border-color ease-in-out;
-    transition: .05s border-color ease-in-out;
-    border-radius: 50%;
+	border: 1px solid #b4b9be;
+	background: #fff;
+	color: #555;
+	clear: none;
+	cursor: pointer;
+	display: inline-block;
+	line-height: 0;
+	height: 16px;
+	margin: -4px 8px 0 0;
+	outline: 0;
+	padding: 0!important;
+	text-align: center;
+	vertical-align: middle;
+	width: 16px;
+	min-width: 16px;
+	-webkit-appearance: none;
+	-webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+	box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+	-webkit-transition: .05s border-color ease-in-out;
+	transition: .05s border-color ease-in-out;
+	border-radius: 50%;
 }
 
 input[type="checkbox"] {
@@ -173,27 +173,27 @@ input[type="checkbox"] {
 
 input[type="radio"]:checked:before,
 input[type="checkbox"]:checked:before {
-    content: "\2022";
-    text-indent: -9999px;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-    font-size: 24px;
-    width: 10px;
-    height: 10px;
-    margin: 2px;
-    line-height: 16px;
-    background-color: #000;
+	content: "\2022";
+	text-indent: -9999px;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+	font-size: 24px;
+	width: 10px;
+	height: 10px;
+	margin: 2px;
+	line-height: 16px;
+	background-color: #000;
 }
 
 input[type="radio"]:checked:before, 
 input[type="checkbox"]:checked:before {
-    float: left;
-    display: inline-block;
-    vertical-align: middle;
-    font: 400 21px/1 dashicons;
-    speak: none;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+	float: left;
+	display: inline-block;
+	vertical-align: middle;
+	font: 400 21px/1 dashicons;
+	speak: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 input[type="checkbox"]:checked:before {
@@ -213,7 +213,7 @@ input[type="checkbox"]:checked:before {
 }
 
 .acf-input {
-    margin-bottom: 25px;
+	margin-bottom: 25px;
 }
 
 .acf-input ul {
@@ -312,85 +312,85 @@ input[type="checkbox"]:checked:before {
 
 
 #header {
-    padding: 14px 0 0 0;
-    background-color: #e4e4f5;
-    background-image: -moz-radial-gradient(center, ellipse cover, #1074BC 1%, #34378F 100%);
-    background-image: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(1%, #1074BC), color-stop(100%, #34378F));
-    background-image: -webkit-radial-gradient(ellipse at center, #ffffff 1%, #e4e4e4 100%);
-    background-image: -o-radial-gradient(center, ellipse cover, #1074BC 1%, #34378F 100%);
-    background-image: -ms-radial-gradient(center, ellipse cover, #1074BC 1%, #34378F 100%);
-    background-image: radial-gradient(ellipse at center, #ffffff 1%, #e4e4e4 100%);
-    color: #fff;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1074BC", endColorstr="#34378F", GradientType=1);
-    min-height: 170px;
+	padding: 14px 0 0 0;
+	background-color: #e4e4f5;
+	background-image: -moz-radial-gradient(center, ellipse cover, #1074BC 1%, #34378F 100%);
+	background-image: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(1%, #1074BC), color-stop(100%, #34378F));
+	background-image: -webkit-radial-gradient(ellipse at center, #ffffff 1%, #e4e4e4 100%);
+	background-image: -o-radial-gradient(center, ellipse cover, #1074BC 1%, #34378F 100%);
+	background-image: -ms-radial-gradient(center, ellipse cover, #1074BC 1%, #34378F 100%);
+	background-image: radial-gradient(ellipse at center, #ffffff 1%, #e4e4e4 100%);
+	color: #fff;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1074BC", endColorstr="#34378F", GradientType=1);
+	min-height: 170px;
 }
 #header a {
 	color: #000;
 
-	}
+}
 #portal-title {
-    margin: 0;
-    margin: 14px 0 -6px;
-    color: #292929;
-    font-size: 3.35em;
-    font-family: 'Open Sans',Arial,Helvetica,sans-serif;
-    font-weight: 800;
+	margin: 0;
+	margin: 14px 0 -6px;
+	color: #292929;
+	font-size: 3.35em;
+	font-family: 'Open Sans',Arial,Helvetica,sans-serif;
+	font-weight: 800;
 }
 #portal-description {
-    font-size: 1.2em;
-    margin-top: 5px;
-    color: #000;
-    text-transform: uppercase;
+	font-size: 1.2em;
+	margin-top: 5px;
+	color: #000;
+	text-transform: uppercase;
 }
 #logo-header-tema {
-    float: left;
-    padding: 0;
-    width: 70%;
+	float: left;
+	padding: 0;
+	width: 70%;
 }
 #portal-siteactions {
-    display: block;
-    float: right;
-    clear: none;
-    padding-bottom: 2px;
+	display: block;
+	float: right;
+	clear: none;
+	padding-bottom: 2px;
 }
 #logo-header-tema a {
-    text-decoration: none;
-    color: #000;
+	text-decoration: none;
+	color: #000;
 }
 #accessibility {
-    display: block!important;
-    float: left;
-    font-size: .8em;
-    margin-left: 0px;
-    font-family: Arial,Helvetica,sans-serif;
-    padding-left: 0;
+	display: block!important;
+	float: left;
+	font-size: .8em;
+	margin-left: 0px;
+	font-family: Arial,Helvetica,sans-serif;
+	padding-left: 0;
 }
 #accessibility li {
-    display: inline;
+	display: inline;
 }
 #accessibility a {
-    color: #000;
-    text-decoration: none;
+	color: #000;
+	text-decoration: none;
 }
 #portal-siteactions li {
-    display: inline;
+	display: inline;
 }
 #portal-siteactions a {
-    padding: 4px 0 4px 10px;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 11px;
+	padding: 4px 0 4px 10px;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 11px;
 }
 #header > div {
-    position: relative;
-    overflow: hidden;
-    margin: 0 auto;
-    max-width: 1060px;
+	position: relative;
+	overflow: hidden;
+	margin: 0 auto;
+	max-width: 1060px;
 }
 #accessibility span {
-    padding: 0 3px;
-    background: #000;
-    color: #fff;
+	padding: 0 3px;
+	background: #000;
+	color: #fff;
 }
 
 body.alto-contraste-ativo{
@@ -467,9 +467,9 @@ body.alto-contraste-ativo .acf-actions a{
 
 #modal-inscricao .modal-content{
 	color: #155724;
-    background-color: #d4edda;
-    border-color: #c3e6cb;
-    text-align: center;
+	background-color: #d4edda;
+	border-color: #c3e6cb;
+	text-align: center;
 }
 
 /*---------------------------------------------------------------------------------------------
@@ -794,58 +794,58 @@ body.browser-msie .acf-repeater .acf-row-handle .acf-icon.-minus {
 
 .acf-input-prepend,
 .acf-input-append {
-  padding: 3px 7px;
-  background: #F4F4F4;
-  border: #DFDFDF solid 1px;
+	padding: 3px 7px;
+	background: #F4F4F4;
+	border: #DFDFDF solid 1px;
 }
 .acf-input-prepend {
-  float: left;
-  border-right-width: 0;
-  border-radius: 3px 0 0 3px;
-  line-height: 32px;
+	float: left;
+	border-right-width: 0;
+	border-radius: 3px 0 0 3px;
+	line-height: 32px;
 }
 .acf-input-append {
-  float: right;
-  border-left-width: 0;
-  border-radius: 0 3px 3px 0;
+	float: right;
+	border-left-width: 0;
+	border-radius: 0 3px 3px 0;
 }
 .acf-input-wrap {
-  position: relative;
-  overflow: hidden;
+	position: relative;
+	overflow: hidden;
 }
 .acf-input-wrap input {
-  margin: 0;
+	margin: 0;
 }
 input.acf-is-prepended {
-  border-radius: 0 3px 3px 0 !important;
+	border-radius: 0 3px 3px 0 !important;
 }
 input.acf-is-appended {
-  border-radius: 3px 0 0 3px !important;
+	border-radius: 3px 0 0 3px !important;
 }
 input.acf-is-prepended.acf-is-appended {
-  border-radius: 0 !important;
+	border-radius: 0 !important;
 }
 /* rtl */
 html[dir="rtl"] .acf-input-prepend {
-  border-left-width: 0;
-  border-right-width: 1px;
-  border-radius: 0 3px 3px 0;
-  float: right;
+	border-left-width: 0;
+	border-right-width: 1px;
+	border-radius: 0 3px 3px 0;
+	float: right;
 }
 html[dir="rtl"] .acf-input-append {
-  border-left-width: 1px;
-  border-right-width: 0;
-  border-radius: 3px 0 0 3px;
-  float: left;
+	border-left-width: 1px;
+	border-right-width: 0;
+	border-radius: 3px 0 0 3px;
+	float: left;
 }
 html[dir="rtl"] input.acf-is-prepended {
-  border-radius: 3px 0 0 3px !important;
+	border-radius: 3px 0 0 3px !important;
 }
 html[dir="rtl"] input.acf-is-appended {
-  border-radius: 0 3px 3px 0 !important;
+	border-radius: 0 3px 3px 0 !important;
 }
 html[dir="rtl"] input.acf-is-prepended.acf-is-appended {
-  border-radius: 0 !important;
+	border-radius: 0 !important;
 }
 
 .acf-checkbox-list li{
@@ -854,4 +854,8 @@ html[dir="rtl"] input.acf-is-prepended.acf-is-appended {
 
 .acf-label > label {
 	font-weight: bold;
+}
+
+.hidden-by-conditional-logic{
+	display: none;
 }

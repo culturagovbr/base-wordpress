@@ -152,14 +152,28 @@ class PLL_Frontend_Auto_Translate {
 			}
 		}
 
-		// name, pagename can only take one slug
-		foreach ( array( 'name', 'pagename' ) as $key ) {
-			if ( ! empty( $qv[ $key ] ) ) {
-				// no function to get post by name except get_posts itself
-				$post_type = empty( $qv['post_type'] ) ? 'post' : $qv['post_type'];
-				$id = $wpdb->get_var( $wpdb->prepare( "SELECT ID from $wpdb->posts WHERE post_type=%s AND post_name=%s", $post_type, $qv[ $key ] ) );
-				$qv[ $key ] = ( $id && ( $tr_id = $this->get_post( $id ) ) && $tr = get_post( $tr_id ) ) ? $tr->post_name : $qv[ $key ];
+		// name, can only take one slug
+		if ( ! empty( $qv['name'] ) ) {
+			if ( empty( $qv['post_type'] ) ) {
+				$post_types = array( 'post' );
+			} elseif ( 'any' === $qv['post_type'] ) {
+				$post_types = get_post_types( array('exclude_from_search' => false) ); // May return a empty array
+			} else {
+				$post_types = (array) $qv['post_type'];
 			}
+
+			if ( ! empty( $post_types ) ) {
+				// no function to get post by name except get_posts itself
+				$where = "{$wpdb->posts}.post_type IN ('" . implode( "', '", esc_sql( $post_types ) ) . "')";
+				$id = $wpdb->get_var( $wpdb->prepare( "SELECT ID from {$wpdb->posts} WHERE {$where} AND post_name=%s", $qv['name'] ) );
+				$qv['name'] = ( $id && ( $tr_id = $this->get_post( $id ) ) && $tr = get_post( $tr_id ) ) ? $tr->post_name : $qv['name'];
+			}
+		}
+
+		// pagename, the page id is already available in queried_object_id
+		if ( ! empty( $qv['pagename'] ) && ! empty( $query->queried_object_id ) && $tr_id = $this->get_post( $query->queried_object_id ) ) {
+			$query->queried_object_id = $tr_id;
+			$qv['pagename'] = get_page_uri( $tr_id );
 		}
 
 		// array of post ids
@@ -194,7 +208,7 @@ class PLL_Frontend_Auto_Translate {
 	 * @return array modified $args
 	 */
 	public function get_terms_args( $args, $taxonomies ) {
-		if ( ! empty( $args['include'] ) && $this->model->is_translated_taxonomy( $taxonomies ) ) {
+		if ( ! empty( $args['include'] ) && ( empty( $taxonomies ) || $this->model->is_translated_taxonomy( $taxonomies ) ) ) {
 			foreach ( wp_parse_id_list( $args['include'] ) as $id ) {
 				$arr[] = ( $tr = $this->get_term( $id ) ) ? $tr : $id;
 			}

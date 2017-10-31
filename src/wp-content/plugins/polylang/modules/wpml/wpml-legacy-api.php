@@ -26,15 +26,15 @@ if ( ! function_exists( 'icl_get_languages' ) ) {
 	 *
 	 * list of paramaters accepted in $args
 	 *
-	 * skip_missing  => wether to skip missing translation or not, 0 or 1, defaults to 0
+	 * skip_missing  => whether to skip missing translation or not, 0 or 1, defaults to 0
 	 * orderby       => 'id', 'code', 'name', defaults to 'id'
 	 * order         => 'ASC' or 'DESC', defaults to 'ASC'
 	 * link_empty_to => link to use when the translation is missing {$lang} is replaced by the language code
 	 *
-	 * list of parameters returned per language:
+	 * List of parameters returned per language:
 	 *
 	 * id               => the language id
-	 * active           => wether this is the active language or no, 0 or 1
+	 * active           => whether this is the active language or no, 0 or 1
 	 * native_name      => the language name
 	 * missing          => wether the translation is missing or not, 0 or 1
 	 * translated_name  => empty, does not exist in Polylang
@@ -54,7 +54,15 @@ if ( ! function_exists( 'icl_get_languages' ) ) {
 
 		$arr = array();
 
-		foreach ( PLL()->model->get_languages_list( array( 'hide_empty' => true, 'orderby' => $orderby, 'order' => $order ) ) as $lang ) {
+		// NB: When 'skip_missing' is false, WPML returns all languages even if there is no content
+		$languages = PLL()->model->get_languages_list( array( 'hide_empty' => $args['skip_missing'] ) );
+
+		// FIXME: Backward compatibility with WP < 4.7
+		if ( function_exists( 'wp_list_sort' ) ) {
+			$languages = wp_list_sort( $languages, $orderby, $order ); // Since WP 4.7
+		}
+
+		foreach ( $languages as $lang ) {
 			// We can find a translation only on frontend
 			if ( method_exists( PLL()->links, 'get_translation_url' ) ) {
 				$url = PLL()->links->get_translation_url( $lang );
@@ -164,6 +172,23 @@ if ( ! function_exists( 'icl_object_id' ) ) {
 		$pll_type = ( 'post' === $type || pll_is_translated_post_type( $type ) ) ? 'post' : ( 'term' === $type || pll_is_translated_taxonomy( $type ) ? 'term' : false );
 		return $pll_type && ( $lang = $lang ? $lang : pll_current_language() ) && ( $tr_id = PLL()->model->$pll_type->get_translation( $id, $lang ) ) ? $tr_id :
 			( $return_original_if_missing ? $id : null );
+	}
+}
+
+if ( ! function_exists( 'wpml_object_id_filter' ) ) {
+	/**
+	 * Undocumented alias of `icl_object_id` introduced in WPML 3.2, used by Yith WooCommerce compare
+	 *
+	 * @since 2.2.4
+	 *
+	 * @param int    $id                         object id
+	 * @param string $type                       optional, post type or taxonomy name of the object, defaults to 'post'
+	 * @param bool   $return_original_if_missing optional, true if Polylang should return the original id if the translation is missing, defaults to false
+	 * @param string $lang                       optional, language code, defaults to current language
+	 * @return int|null the object id of the translation, null if the translation is missing and $return_original_if_missing set to false
+	 */
+	function wpml_object_id_filter( $id, $type = 'post', $return_original_if_missing = false, $lang = null ) {
+		return icl_object_id( $id, $type, $return_original_if_missing, $lang );
 	}
 }
 
@@ -328,5 +353,18 @@ if ( ! function_exists( 'wpml_get_default_language' ) ) {
 	 */
 	function wpml_get_default_language() {
 		return pll_default_language();
+	}
+}
+
+if ( ! function_exists( 'icl_get_current_language' ) ) {
+	/**
+	 * Undocumented function used by Ultimate Member
+	 *
+	 * @since 2.2.4
+	 *
+	 * @return string Current language code
+	 */
+	function icl_get_current_language() {
+		return pll_current_language();
 	}
 }

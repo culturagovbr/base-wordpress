@@ -1,14 +1,14 @@
 <?php
 /*
-Plugin Name: Easy WP SMTP
-Version: 1.2.6
-Plugin URI: https://wp-ecommerce.net/easy-wordpress-smtp-send-emails-from-your-wordpress-site-using-a-smtp-server-2197
-Author: wpecommerce
-Author URI: https://wp-ecommerce.net/
-Description: Send email via SMTP from your WordPress Blog
-Text Domain: easy-wp-smtp
-Domain Path: /languages
-*/
+  Plugin Name: Easy WP SMTP
+  Version: 1.3.0
+  Plugin URI: https://wp-ecommerce.net/easy-wordpress-smtp-send-emails-from-your-wordpress-site-using-a-smtp-server-2197
+  Author: wpecommerce
+  Author URI: https://wp-ecommerce.net/
+  Description: Send email via SMTP from your WordPress Blog
+  Text Domain: easy-wp-smtp
+  Domain Path: /languages
+ */
 
 //Prefix/Slug - swpsmtp
 
@@ -81,6 +81,36 @@ if (!function_exists('swpsmtp_admin_head')) {
 
 }
 
+function swpsmtp_clear_log() {
+    if (swpsmtp_write_to_log("Easy WP SMTP debug log file\r\n\r\n", true) !== false) {
+        echo '1';
+    } else {
+        echo 'Can\'t clear log - log file is not writeable.';
+    }
+    wp_die();
+}
+
+function swpsmtp_write_to_log($str, $overwrite = false) {
+    $swpsmtp_options = get_option('swpsmtp_options');
+    if (isset($swpsmtp_options['smtp_settings']['log_file_name'])) {
+        $log_file_name = $swpsmtp_options['smtp_settings']['log_file_name'];
+    } else {
+        // let's generate log file name
+        $log_file_name = uniqid() . '_debug_log.txt';
+        $swpsmtp_options['smtp_settings']['log_file_name'] = $log_file_name;
+        update_option('swpsmtp_options', $swpsmtp_options);
+        file_put_contents(plugin_dir_path(__FILE__) . $log_file_name, "Easy WP SMTP debug log file\r\n\r\n");
+    }
+    return(file_put_contents(plugin_dir_path(__FILE__) . $log_file_name, $str, (!$overwrite ? FILE_APPEND : 0)));
+}
+
+function base64_decode_maybe($str) {
+    if (mb_detect_encoding($str) === mb_detect_encoding(base64_decode(base64_encode(base64_decode($str))))) {
+        $str = base64_decode($str);
+    }
+    return $str;
+}
+
 /**
  * Function to add smtp options in the phpmailer_init
  * @return void
@@ -93,11 +123,71 @@ if (!function_exists('swpsmtp_init_smtp')) {
             return;
         }
         $swpsmtp_options = get_option('swpsmtp_options');
+        //check if Domain Check enabled
+        if (isset($swpsmtp_options['enable_domain_check']) && $swpsmtp_options['enable_domain_check']) {
+            //check if allowed domains list is not blank
+            if (isset($swpsmtp_options['allowed_domains']) && !empty($swpsmtp_options['allowed_domains'])) {
+                $swpsmtp_options['allowed_domains'] = base64_decode_maybe($swpsmtp_options['allowed_domains']);
+                //let's see if we have one domain or coma-separated domains
+                $domains_arr = explode(',', $swpsmtp_options['allowed_domains']);
+                if (is_array($domains_arr) && !empty($domains_arr)) {
+                    //we have coma-separated list
+                } else {
+                    //it's single domain
+                    unset($domains_arr);
+                    $domains_arr = array($swpsmtp_options['allowed_domains']);
+                }
+                $site_domain = parse_url(get_site_url(), PHP_URL_HOST);
+                $match_found = false;
+                foreach ($domains_arr as $domain) {
+                    if (strtolower(trim($domain)) === strtolower(trim($site_domain))) {
+                        $match_found = true;
+                        break;
+                    }
+                }
+                if (!$match_found) {
+                    swpsmtp_write_to_log(
+                            "\r\n-------------------------------------------------------------------------------------------------------\r\n" .
+                            "Domain check failed: website domain (" . $site_domain . ") is not in allowed domains list.\r\n" .
+                            "-------------------------------------------------------------------------------------------------------\r\n\r\n");
+                    return;
+                }
+            }
+        }
         /* Set the mailer type as per config above, this overrides the already called isMail method */
         $phpmailer->IsSMTP();
-        $from_email = $swpsmtp_options['from_email_field'];
-        $phpmailer->From = $from_email;
         $from_name = $swpsmtp_options['from_name_field'];
+        $from_email = $swpsmtp_options['from_email_field'];
+        //set ReplyTo option if needed
+        //this should be set before SetFrom, otherwise might be ignored
+        if (!empty($swpsmtp_options['reply_to_email'])) {
+            $phpmailer->AddReplyTo($swpsmtp_options['reply_to_email'], $from_name);
+        }
+        // let's see if we have email ignore list populated
+        if (isset($swpsmtp_options['email_ignore_list']) && !empty($swpsmtp_options['email_ignore_list'])) {
+            $emails_arr = explode(',', $swpsmtp_options['email_ignore_list']);
+            if (is_array($emails_arr) && !empty($emails_arr)) {
+                //we have coma-separated list
+            } else {
+                //it's single email
+                unset($emails_arr);
+                $emails_arr = array($swpsmtp_options['email_ignore_list']);
+            }
+            $from = $phpmailer->From;
+            $match_found = false;
+            foreach ($emails_arr as $email) {
+                if (strtolower(trim($email)) === strtolower(trim($from))) {
+                    $match_found = true;
+                    break;
+                }
+            }
+            if ($match_found) {
+                //we should not override From and Fromname
+                $from_email = $phpmailer->From;
+                $from_name = $phpmailer->FromName;
+            }
+        }
+        $phpmailer->From = $from_email;
         $phpmailer->FromName = $from_name;
         $phpmailer->SetFrom($phpmailer->From, $phpmailer->FromName);
         /* Set the SMTPSecure value */
@@ -117,6 +207,12 @@ if (!function_exists('swpsmtp_init_smtp')) {
         }
         //PHPMailer 5.2.10 introduced this option. However, this might cause issues if the server is advertising TLS with an invalid certificate.
         $phpmailer->SMTPAutoTLS = false;
+        if (isset($swpsmtp_options['smtp_settings']['enable_debug']) && $swpsmtp_options['smtp_settings']['enable_debug']) {
+            $phpmailer->Debugoutput = function($str, $level) {
+                swpsmtp_write_to_log($str);
+            };
+            $phpmailer->SMTPDebug = 1;
+        }
     }
 
 }
@@ -164,12 +260,21 @@ if (!function_exists('swpsmtp_test_mail')) {
         /* Set the other options */
         $mail->Host = $swpsmtp_options['smtp_settings']['host'];
         $mail->Port = $swpsmtp_options['smtp_settings']['port'];
+        if (!empty($swpsmtp_options['reply_to_email'])) {
+            $mail->AddReplyTo($swpsmtp_options['reply_to_email'], $from_name);
+        }
         $mail->SetFrom($from_email, $from_name);
         $mail->isHTML(true);
         $mail->Subject = $subject;
         $mail->MsgHTML($message);
         $mail->AddAddress($to_email);
-        $mail->SMTPDebug = 0;
+        global $debugMSG;
+        $debugMSG = '';
+        $mail->Debugoutput = function($str, $level) {
+            global $debugMSG;
+            $debugMSG .= $str;
+        };
+        $mail->SMTPDebug = 1;
 
         /* Send mail and return result */
         if (!$mail->Send())
@@ -177,6 +282,10 @@ if (!function_exists('swpsmtp_test_mail')) {
 
         $mail->ClearAddresses();
         $mail->ClearAllRecipients();
+
+        echo '<div class="swpsmtp-yellow-box"><h3>Debug Info</h3>';
+        echo '<textarea rows="20" style="width: 100%;">' . $debugMSG . '</textarea>';
+        echo '</div>';
 
         if (!empty($errors)) {
             return $errors;
@@ -253,11 +362,30 @@ if (!function_exists('swpsmtp_send_uninstall')) {
 
     function swpsmtp_send_uninstall() {
         /* Don't delete plugin options. It is better to retain the options so if someone accidentally deactivates, the configuration is not lost. */
-        
+
         //delete_site_option('swpsmtp_options');
         //delete_option('swpsmtp_options');
     }
 
+}
+
+function swpsmtp_activate() {
+    $swpsmtp_options = get_option('swpsmtp_options');
+    //add current domain to allowed domains list
+    if (!isset($swpsmtp_options['allowed_domains'])) {
+        $domain = parse_url(get_site_url(), PHP_URL_HOST);
+        if ($domain) {
+            $swpsmtp_options['allowed_domains'] = base64_encode($domain);
+            update_option('swpsmtp_options', $swpsmtp_options);
+        }
+    } else { // let's check if existing value should be base64 encoded
+        if (!empty($swpsmtp_options['allowed_domains'])) {
+            if (base64_decode_maybe($swpsmtp_options['allowed_domains']) === $swpsmtp_options['allowed_domains']) {
+                $swpsmtp_options['allowed_domains'] = base64_encode($swpsmtp_options['allowed_domains']);
+                update_option('swpsmtp_options', $swpsmtp_options);
+            }
+        }
+    }
 }
 
 /**
@@ -267,7 +395,7 @@ add_filter('plugin_action_links', 'swpsmtp_plugin_action_links', 10, 2);
 add_action('plugins_loaded', 'swpsmtp_plugins_loaded_handler');
 add_filter('plugin_row_meta', 'swpsmtp_register_plugin_links', 10, 2);
 
-add_action('phpmailer_init', 'swpsmtp_init_smtp');
+add_action('phpmailer_init', 'swpsmtp_init_smtp', 999);
 
 add_action('admin_menu', 'swpsmtp_admin_default_setup');
 
@@ -275,4 +403,5 @@ add_action('admin_init', 'swpsmtp_admin_init');
 add_action('admin_enqueue_scripts', 'swpsmtp_admin_head');
 add_action('admin_notices', 'swpsmtp_admin_notice');
 
+register_activation_hook(__FILE__, 'swpsmtp_activate');
 register_uninstall_hook(plugin_basename(__FILE__), 'swpsmtp_send_uninstall');

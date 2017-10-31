@@ -415,7 +415,7 @@ class AbstractContainerTest extends TestCase
         $subject->this()->_cacheService('three', $this->createDefinition(3));
         $expected = array('three' => $this->createDefinition(3));
 
-        $this->assertEquals($expected, $subject->this()->services);
+        $this->assertEquals($expected, $subject->this()->serviceCache);
     }
 
     /**

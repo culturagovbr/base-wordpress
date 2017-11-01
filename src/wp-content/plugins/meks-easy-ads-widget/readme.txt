@@ -3,8 +3,8 @@ Contributors: mekshq
 Donate link: http://mekshq.com/
 Tags: ad, ads, affiliate, niche, advertising, advertisement, marketing, sidebar, widget
 Requires at least: 3.0
-Tested up to: 4.7
-Stable tag: 2.0.1
+Tested up to: 4.8
+Stable tag: 2.0.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
@@ -22,7 +22,7 @@ With this plugin you can create unlimited number of ads inside your WordPress wi
 * Limit number of ads per view
 * Slide/rotate ads
 
-Meks Easy Ads Widget plugin is created by <a href="http://mekshq.com" target="_blank">MeksHQ</a>
+Meks Easy Ads Widget plugin is created by <a href="http://mekshq.com" target="_blank">Meks</a>
 
 ><strong>Live preview?</strong><br>
 >You can see Meks Easy Ads Widget live example on our <a href="http://mekshq.com/demo/herald" target="_blank">Herald theme demo website</a>
@@ -36,7 +36,7 @@ Meks Easy Ads Widget plugin is created by <a href="http://mekshq.com" target="_b
 
 == Frequently Asked Questions ==
 
-For any questions, error reports and suggestions please email support@mekshq.com or visit http://mekshq.com
+For any questions, error reports and suggestions please visit http://mekshq.com/contact
 
 == Screenshots ==
 
@@ -45,6 +45,10 @@ For any questions, error reports and suggestions please email support@mekshq.com
 3. Widget in action example
 
 == Changelog ==
+
+= 2.0.2 =
+* Improved: Some special characters in code ads were not rendered properly in special cases
+* Improved: Ad links are now sanitized so ads are always displayed even if link URL is not specified
 
 = 2.0.1 =
 * Fixed: Rotate (slide) option not working properly with code ads

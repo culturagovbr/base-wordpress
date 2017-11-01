@@ -1,0 +1,87 @@
+#diretrizesemetas-export-data {
+	width: 100%;
+	max-width: 100%;
+	margin-bottom: 1rem;
+	background-color: transparent;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+	-ms-overflow-style: -ms-autohiding-scrollbar;
+	display: block;
+}
+
+#diretrizesemetas-export-data th,
+#diretrizesemetas-export-data td {
+	padding: 0.75rem;
+	vertical-align: top;
+	border-top: 1px solid #e9ecef;
+}
+
+#diretrizesemetas-export-data thead th {
+	vertical-align: bottom;
+	border-bottom: 2px solid #e9ecef;
+}
+
+#diretrizesemetas-export-data tbody + tbody {
+	border-top: 2px solid #e9ecef;
+}
+
+#diretrizesemetas-export-data .table {
+	background-color: #fff;
+}
+
+#diretrizesemetas-export-data thead,
+#diretrizesemetas-export-data tbody{
+	display: none;
+}
+
+#diretrizesemetas-export-data .button {
+	margin-bottom: 5px;
+}
+
+@media print {
+	* {
+		background:transparent !important;
+		color:#000 !important;
+		text-shadow:none !important;
+		filter:none !important;
+		-ms-filter:none !important;
+	}
+
+	body {
+		margin:0;
+		padding:0;
+		line-height: 1.4em;
+	}
+
+	@page {
+		margin: 0.5cm;
+	}
+
+	#wpadminbar,
+	#adminmenuwrap,
+	.update-nag,
+	.wrap > h1,
+	.wrap form > h2,
+	#message,
+	.form-table:first-of-type,
+	.form-table:nth-of-type(2),
+	.form-table .form-field > th,
+	table > caption,
+	#adminmenuback,
+	#wpfooter,
+	.submit{
+		display: none;
+	}
+
+	/*.form-table + .form-table +.form-table{
+		display: block;
+	}*/
+
+	#wpcontent, #wpfooter{
+		margin: 0;
+	}
+
+	#diretrizesemetas-export-data {
+		
+	}	
+}

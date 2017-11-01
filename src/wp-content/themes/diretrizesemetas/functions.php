@@ -54,6 +54,20 @@ function diretrizesemetas_scripts() {
 add_action( 'wp_enqueue_scripts', 'diretrizesemetas_scripts' );
 
 /**
+ * Enqueue scripts and styles.
+ */
+function diretrizesemetas_admin_scripts() {
+    wp_enqueue_style( 'diretrizesemetas-admin-styles', get_template_directory_uri() . '/assets/css/dist/admin/admin.css' );
+
+    wp_enqueue_script( 'blob', get_template_directory_uri() . '/assets/js/dist/admin/Blob.js', false, false, true );
+    wp_enqueue_script( 'xlsx-core', get_template_directory_uri() . '/assets/js/dist/admin/xlsx.core.min.js', false, false, true );
+    wp_enqueue_script( 'FileSaver', get_template_directory_uri() . '/assets/js/dist/admin/FileSaver.min.js', false, false, true );
+    wp_enqueue_script( 'tableexport', get_template_directory_uri() . '/assets/js/dist/admin/tableexport.js', false, false, true );
+    wp_enqueue_script( 'diretrizesemetas-admin-scripts', get_template_directory_uri() . '/assets/js/dist/admin/admin.js', array('jquery', 'blob', 'xlsx-core', 'FileSaver', 'tableexport'), false, true );
+}
+add_action( 'admin_enqueue_scripts', 'diretrizesemetas_admin_scripts' );
+
+/**
 * Create a custom post type to manage subscriptions
 * 
 */

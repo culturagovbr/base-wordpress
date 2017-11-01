@@ -75,6 +75,13 @@ function oscar_settings_init() {
         'diretrizesemetas'
     );
 
+    add_settings_section(
+        'export_data_section',
+        'Exportação de dados',
+        '',
+        'diretrizesemetas'
+    );
+
     add_settings_field(
         'acf_group_id_option',
         'Identificação do grupo ACF',
@@ -146,6 +153,18 @@ function oscar_settings_init() {
             'class' => 'form-field',
         ]
     );
+
+    add_settings_field(
+        'diretrizesemetas_export_xls',
+        'Exportar',
+        'diretrizesemetas_export_xls',
+        'diretrizesemetas',
+        'export_data_section',
+        [
+            'label_for' => 'diretrizesemetas_export_xls',
+            'class' => 'form-field',
+        ]
+    );
 }
 
 function acf_group_id_option( $args ) {
@@ -208,4 +227,108 @@ function diretrizesemetas_monitoring_emails( $args ) {
         Estes emails receberão uma notificação sempre que for realizado uma inscrição através do formulário. Separe múltiplos emails com vírgulas.
     </p>
     <?php
+}
+
+function diretrizesemetas_export_xls( $args ) {
+    $options = get_option( 'diretrizesemetas_options' ); ?>
+
+    <?php
+    $args = array( 
+        'post_type' => 'inscricao'
+    );
+    $the_query = new WP_Query( $args );
+
+    if ( $the_query->have_posts() ) : ?>
+        <table id="diretrizesemetas-export-data">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Unidade</th>
+                    <th>Pilares</th>
+                    <th>Natureza da entrega</th>
+                    <th>Produto/Entrega</th>
+                    <th>Descrição</th>
+                    <th>Data limite</th>
+                    <th>Custo</th>
+                    <th>Situação</th>
+                    <th>Execução</th>
+                    <th>Ação/Etapas</th>
+                    <th>Localizador</th>
+                    <th>Outros</th>
+                    <th>Descrição</th>
+                    <th>Prazo</th>
+                    <th>Custo</th>
+                    <th>% Execução</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
+                <?php if ( count( get_field('acoes_etapas') ) > 1 ) { 
+
+                    while ( have_rows('acoes_etapas') ) : the_row(); ?>
+
+                        <tr>
+                            <td class="tableexport-string"><?php the_title(); ?></td>
+                            <td class="tableexport-string"><?php the_field('unidade'); ?></td>
+                            <td class="tableexport-string"><?php the_field('pilares'); ?></td>
+                            <td class="tableexport-string"><?php the_field('natureza_da_entrega'); ?></td>
+                            <td class="tableexport-string"><?php the_field('produto_entrega'); ?></td>
+                            <td class="tableexport-string"><?php the_field('descricao'); ?></td>
+                            <td class="tableexport-string"><?php the_field('data_limite'); ?></td>
+                            <td class="tableexport-string"><?php the_field('custo'); ?></td>
+                            <td class="tableexport-string"><?php the_field('situacao'); ?></td>
+                            <td class="tableexport-string"><?php the_field('percentual_execucao'); ?></td>
+                            <td class="tableexport-string"><?php the_sub_field('acao_etapas'); ?></td>
+                            <td class="tableexport-string"><?php the_sub_field('localizador'); ?></td>
+                            <td class="tableexport-string"><?php the_sub_field('outros'); ?></td>
+                            <td class="tableexport-string"><?php the_sub_field('descricao'); ?></td>
+                            <td class="tableexport-string"><?php the_sub_field('prazo'); ?></td>
+                            <td class="tableexport-string"><?php the_sub_field('custo'); ?></td>
+                            <td class="tableexport-string"><?php the_sub_field('percentual_execucao'); ?></td>
+                        </tr>
+
+                    <?php endwhile; ?>
+                <?php } else { ?>
+                    <tr>
+                        <td class="tableexport-string"><?php the_title(); ?></td>
+                        <td class="tableexport-string"><?php the_field('unidade'); ?></td>
+                        <td class="tableexport-string"><?php the_field('pilares'); ?></td>
+                        <td class="tableexport-string"><?php the_field('natureza_da_entrega'); ?></td>
+                        <td class="tableexport-string"><?php the_field('produto_entrega'); ?></td>
+                        <td class="tableexport-string"><?php the_field('descricao'); ?></td>
+                        <td class="tableexport-string"><?php the_field('data_limite'); ?></td>
+                        <td class="tableexport-string"><?php the_field('custo'); ?></td>
+                        <td class="tableexport-string"><?php the_field('situacao'); ?></td>
+                        <td class="tableexport-string"><?php the_field('percentual_execucao'); ?></td>
+                        <td class="tableexport-string">
+                            Só um registro
+                            <?php echo count( get_field('acoes_etapas') ); ?>
+                        </td>
+                        <td class="tableexport-string"></td>
+                        <td class="tableexport-string"></td>
+                        <td class="tableexport-string"></td>
+                        <td class="tableexport-string"></td>
+                        <td class="tableexport-string"></td>
+                        <td class="tableexport-string"></td>
+                    </tr>
+                <?php } ?>
+            <?php endwhile; ?>
+            </tbody>
+        </table>
+        <?php wp_reset_postdata();
+    else :
+        // no posts found
+    endif; ?>
+
+    <!-- <a href="#" id="diretrizesemetas-export-btn" class="button button-primary">Exportar dados</a>
+    <p class="description">
+        Estes emails receberão uma notificação sempre que for realizado uma inscrição através do formulário. Separe múltiplos emails com vírgulas.
+    </p> -->
+    <?php
+}
+
+if( !empty( $_POST['delete_user_video_sent_meta'] ) ){
+    if( !delete_user_meta($_POST['delete_user_video_sent_meta'], '_oscar_video_sent') ){
+        error_log("Não foi possível remover a limitação para envio de usuários do ID " . $_POST['delete_user_video_sent_meta']);
+    }
 }

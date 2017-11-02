@@ -319,11 +319,6 @@ function diretrizesemetas_export_xls( $args ) {
     else :
         // no posts found
     endif; ?>
-
-    <!-- <a href="#" id="diretrizesemetas-export-btn" class="button button-primary">Exportar dados</a>
-    <p class="description">
-        Estes emails receberão uma notificação sempre que for realizado uma inscrição através do formulário. Separe múltiplos emails com vírgulas.
-    </p> -->
     <?php
 }
 

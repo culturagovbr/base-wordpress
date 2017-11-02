@@ -5,6 +5,7 @@
 
     var admin = {
         init: function() {
+            // Config
             TableExport.prototype.defaultButton = "button button-primary";
             TableExport.prototype.xlsx = {
                 defaultClass: "xlsx",
@@ -26,7 +27,6 @@
                 trimWhitespace: true                        // (Boolean), remove all leading/trailing newlines, spaces, and tabs from cell text in the exported file(s) (default: false)
             });
 
-            // $('#diretrizesemetas-export-btn').on('click', function(e){
             $('table caption button').on('click', function(e){
                 e.preventDefault();
             })

@@ -300,10 +300,7 @@ function diretrizesemetas_export_xls( $args ) {
                         <td class="tableexport-string"><?php the_field('custo'); ?></td>
                         <td class="tableexport-string"><?php the_field('situacao'); ?></td>
                         <td class="tableexport-string"><?php the_field('percentual_execucao'); ?></td>
-                        <td class="tableexport-string">
-                            Só um registro
-                            <?php echo count( get_field('acoes_etapas') ); ?>
-                        </td>
+                        <td class="tableexport-string"></td>
                         <td class="tableexport-string"></td>
                         <td class="tableexport-string"></td>
                         <td class="tableexport-string"></td>

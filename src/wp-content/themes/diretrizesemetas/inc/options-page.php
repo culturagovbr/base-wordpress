@@ -234,7 +234,8 @@ function diretrizesemetas_export_xls( $args ) {
 
     <?php
     $args = array( 
-        'post_type' => 'inscricao'
+        'post_type' => 'inscricao',
+        'posts_per_page' => -1
     );
     $the_query = new WP_Query( $args );
 

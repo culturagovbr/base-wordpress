@@ -247,6 +247,7 @@ function diretrizesemetas_export_xls( $args ) {
                     <th>Unidade</th>
                     <th>Pilares</th>
                     <th>Natureza da entrega</th>
+                    <th>Classificação da entrega</th>
                     <th>Produto/Entrega</th>
                     <th>Descrição</th>
                     <th>Data limite</th>
@@ -273,6 +274,7 @@ function diretrizesemetas_export_xls( $args ) {
                             <td class="tableexport-string"><?php the_field('unidade'); ?></td>
                             <td class="tableexport-string"><?php the_field('pilares'); ?></td>
                             <td class="tableexport-string"><?php the_field('natureza_da_entrega'); ?></td>
+                            <td class="tableexport-string"><?php the_field('classificacao_da_entrega'); ?></td>
                             <td class="tableexport-string"><?php the_field('produto_entrega'); ?></td>
                             <td class="tableexport-string"><?php the_field('descricao'); ?></td>
                             <td class="tableexport-string"><?php the_field('data_limite'); ?></td>
@@ -295,6 +297,7 @@ function diretrizesemetas_export_xls( $args ) {
                         <td class="tableexport-string"><?php the_field('unidade'); ?></td>
                         <td class="tableexport-string"><?php the_field('pilares'); ?></td>
                         <td class="tableexport-string"><?php the_field('natureza_da_entrega'); ?></td>
+                        <td class="tableexport-string"><?php the_field('classificacao_da_entrega'); ?></td>
                         <td class="tableexport-string"><?php the_field('produto_entrega'); ?></td>
                         <td class="tableexport-string"><?php the_field('descricao'); ?></td>
                         <td class="tableexport-string"><?php the_field('data_limite'); ?></td>

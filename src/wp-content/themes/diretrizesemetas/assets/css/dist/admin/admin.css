@@ -69,19 +69,89 @@
 	table > caption,
 	#adminmenuback,
 	#wpfooter,
-	.submit{
-		display: none;
+	.submit,
+	#em_page_error,
+	.wrap h1.wp-heading-inline,
+	.page-title-action,
+	#screen-options-link-wrap,
+	#postbox-container-1,
+	#titlediv > .inside,
+	.acf-actions.acf-hl,
+	.acf-row-handle,
+	.hndle.ui-sortable-handle a,
+	.toggle-indicator,
+	.hide-for-print,
+	input[type=checkbox],
+	.acf-required {
+		display: none !important;
 	}
 
-	/*.form-table + .form-table +.form-table{
+	#poststuff #post-body.columns-2{
+		margin-right: 0;
+	}
+
+	input[type=text], 
+	input[type=search], 
+	input[type=radio], 
+	input[type=tel], 
+	input[type=time], 
+	input[type=url], 
+	input[type=week], 
+	input[type=password], 
+	input[type=checkbox], 
+	input[type=color], 
+	input[type=date], 
+	input[type=datetime], 
+	input[type=datetime-local], 
+	input[type=email], 
+	input[type=month], 
+	input[type=number], 
+	select, 
+	textarea,
+	.postbox .hndle, 
+	.stuffbox .hndle,
+	.postbox,
+	.acf-fields,
+	.acf-table {
+		border: none !important;
+		box-shadow: none !important;
+	}
+
+	.acf-field textarea{
+		height: 45px;
+	}
+
+	h2.hndle.ui-sortable-handle{
+		border-bottom: 1px solid;
+	}
+
+	.acf-repeater .acf-row {
+		page-break-after: always;
+		/*border-bottom: 1px solid #000 !important;*/
+		margin-bottom: 15px;
 		display: block;
-	}*/
+	}
+
+	.acf-repeater .acf-row .acf-fields {
+		width: 100%;
+		display: block;
+	}
+
+	.acf-repeater .acf-row .acf-fields .acf-field{
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	.acf-bl{
+		list-style-type: circle !important;
+	}
+
+	ul.acf-radio-list li, 
+	ul.acf-checkbox-list li{
+		margin-bottom: 5px !important;
+	}
 
 	#wpcontent, #wpfooter{
 		margin: 0;
 	}
-
-	#diretrizesemetas-export-data {
-		
-	}	
 }

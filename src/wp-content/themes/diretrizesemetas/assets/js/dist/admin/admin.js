@@ -5,7 +5,12 @@
 
     var admin = {
         init: function() {
-            // Config
+            $('div[data-name="pilares"]').find('input[type="checkbox"]').each(function(){
+                if( ! $(this).is(':checked') ){
+                    $(this).parent().parent().addClass('hide-for-print');
+                }
+            })
+
             TableExport.prototype.defaultButton = "button button-primary";
             TableExport.prototype.xlsx = {
                 defaultClass: "xlsx",

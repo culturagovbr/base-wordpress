@@ -308,3 +308,19 @@ function test_wp_mail($args)
     wp_die($debug);
 }
 // add_filter('wp_mail', 'test_wp_mail');
+
+function adding_print_meta_box( $post ) {
+    add_meta_box( 
+        'diretrizesemetas-print-metabox',
+        'Impressão',
+        'diretrizesemetas_print_post_meta_box',
+        'inscricao',
+        'side',
+        'default'
+    );
+}
+add_action( 'add_meta_boxes_inscricao', 'adding_print_meta_box' );
+
+function diretrizesemetas_print_post_meta_box( $post ) {
+    echo '<button id="diretrizesemetas-print-btn" class="button button-primary button-large" onclick="window.print(); return false;">Imprimir ação estratégica</button>';
+}

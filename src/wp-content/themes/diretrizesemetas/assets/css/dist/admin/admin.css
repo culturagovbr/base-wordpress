@@ -379,8 +379,6 @@
 		text-shadow:none !important;
 		filter:none !important;
 		-ms-filter:none !important;
-		/*page-break-after: avoid !important;
-	    page-break-inside: unset !important;*/
 	}
 
 	body {
@@ -389,9 +387,9 @@
 		line-height: 1.4em;
 	}
 
-	/*@page {
-		margin: 0.5cm;
-	}*/
+	@page {
+		margin: auto 0.5cm;
+	}
 
 	#wpadminbar,
 	#adminmenuwrap,

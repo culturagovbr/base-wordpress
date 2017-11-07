@@ -435,7 +435,7 @@ function diretrizesemetas_print_post_meta_box( $post ) { ?>
                                 <?php $i++; endwhile;
                             else : ?>
                                 <tr>
-                                    <td colspan="7"><?php echo $i; ?></td>
+                                    <td colspan="7">Sem ações/etapas definidas</td>
                                 </tr>
                             <?php endif; ?>
                         </tbody>

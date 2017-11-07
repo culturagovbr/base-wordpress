@@ -338,7 +338,11 @@ function diretrizesemetas_print_post_meta_box( $post ) { ?>
             <tr>
                 <td colspan="5">
                     <span class="diretrizesemetas-subtitle">Pilares</span>
-                    <span class="val"><?php the_field('pilares'); ?></span>
+                    <ul>
+                        <?php foreach( get_field('pilares') as $pilares ): ?>
+                            <li><span class="val"><?php echo $pilares; ?></span></li>
+                        <?php endforeach; ?>
+                    </ul>
                 </td>
             </tr>
             <tr>

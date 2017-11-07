@@ -321,6 +321,146 @@ function adding_print_meta_box( $post ) {
 }
 add_action( 'add_meta_boxes_inscricao', 'adding_print_meta_box' );
 
-function diretrizesemetas_print_post_meta_box( $post ) {
-    echo '<button id="diretrizesemetas-print-btn" class="button button-primary button-large" onclick="window.print(); return false;">Imprimir ação estratégica</button>';
-}
+function diretrizesemetas_print_post_meta_box( $post ) { ?>
+    <table id="diretrizesemetas-print-table" class="table table-responsiveX">
+        <thead>
+            <tr>
+                <th colspan="5"><?php the_title(); ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="5">
+                    <span class="diretrizesemetas-subtitle">Unidade</span>
+                    <span class="val"><?php the_field('unidade'); ?></span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <span class="diretrizesemetas-subtitle">Pilares</span>
+                    <span class="val"><?php the_field('pilares'); ?></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="diretrizesemetas-subtitle">Natureza da entrega</span>
+                    <span class="val"><?php the_field('natureza_da_entrega'); ?></span>
+                </td>
+                <td>
+                    <span class="diretrizesemetas-subtitle">Classificação da entrega</span>
+                    <span class="val"><?php the_field('classificacao_da_entrega'); ?></span>
+                </td>
+                <td colspan="3">
+                    <span class="diretrizesemetas-subtitle">Produto/Entrega</span>
+                    <span class="val"><?php the_field('produto_entrega'); ?></span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <span class="diretrizesemetas-subtitle">Justificativa</span>
+                    <span class="val"><?php the_field('justificativa'); ?></span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <span class="diretrizesemetas-subtitle">Descrição</span>
+                    <span class="val"><?php the_field('descricao'); ?></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="diretrizesemetas-subtitle">Data limite</span>
+                    <span class="val"><?php the_field('data_limite'); ?></span>
+                </td>
+                <td>
+                    <span class="diretrizesemetas-subtitle">Custo</span>
+                    <span class="val"><?php the_field('custo'); ?></span>
+                </td>
+                <td>
+                    <span class="diretrizesemetas-subtitle">Fonte Orçamentária</span>
+                    <span class="val"><?php the_field('fonte_orcamentaria'); ?></span>
+                </td>
+                <td>
+                    <span class="diretrizesemetas-subtitle">Situação</span>
+                    <span class="val"><?php the_field('situacao'); ?></span>
+                </td>
+                <td>
+                    <span class="diretrizesemetas-subtitle">% Execução</span>
+                    <span class="val"><?php the_field('percentual_execucao'); ?></span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5" class="has-table">
+                    <span class="diretrizesemetas-subtitle steps">Ações/Etapas necessárias à execução do Produto/Entrega</span>
+                    <table>
+                        <tbody>
+                            <?php
+                            if( have_rows('acoes_etapas') ): $i = 1;
+                                while ( have_rows('acoes_etapas') ) : the_row(); ?>
+                                    <tr>
+                                        <td><b>#<?php echo $i; ?></b></td>
+                                        <td>
+                                            <span class="diretrizesemetas-subtitle">Ação/Etapas</span>
+                                            <span class="val"><?php the_sub_field('acao_etapas'); ?></span>
+                                        </td>
+                                        <td>
+                                            <span class="diretrizesemetas-subtitle">Localizador</span>
+                                            <?php if( get_sub_field('localizador') == 'Outros' ): ?>
+                                                <span class="val">Outros - <?php the_sub_field('outros'); ?></span>
+                                            <?php else: ?>
+                                                <span class="val"><?php the_sub_field('localizador'); ?></span>
+                                            <?php endif; ?>
+                                        </td>
+                                        <td>
+                                            <span class="diretrizesemetas-subtitle">Descrição</span>
+                                            <span class="val"><?php the_sub_field('descricao'); ?></span>
+                                        </td>
+                                        <td>
+                                            <span class="diretrizesemetas-subtitle">Prazo</span>
+                                            <span class="val"><?php the_sub_field('prazo'); ?></span>
+                                        </td>
+                                        <td>
+                                            <span class="diretrizesemetas-subtitle">Custo</span>
+                                            <span class="val"><?php the_sub_field('custo'); ?></span>
+                                        </td>
+                                        <td>
+                                            <span class="diretrizesemetas-subtitle">% Execução</span>
+                                            <span class="val"><?php the_sub_field('percentual_execucao'); ?></span>
+                                        </td>
+                                    </tr>
+                                <?php $i++; endwhile;
+                            else : ?>
+                                <tr>
+                                    <td colspan="7"><?php echo $i; ?></td>
+                                </tr>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- <tr>
+        <td class="tableexport-string"><?php the_title(); ?></td>
+        <td class="tableexport-string"><?php the_field('unidade'); ?></td>
+        <td class="tableexport-string"><?php the_field('pilares'); ?></td>
+        <td class="tableexport-string"><?php the_field('natureza_da_entrega'); ?></td>
+        <td class="tableexport-string"><?php the_field('classificacao_da_entrega'); ?></td>
+        <td class="tableexport-string"><?php the_field('produto_entrega'); ?></td>
+        <td class="tableexport-string"><?php the_field('descricao'); ?></td>
+        <td class="tableexport-string"><?php the_field('data_limite'); ?></td>
+        <td class="tableexport-string"><?php the_field('custo'); ?></td>
+        <td class="tableexport-string"><?php the_field('situacao'); ?></td>
+        <td class="tableexport-string"><?php the_field('percentual_execucao'); ?></td>
+        <td class="tableexport-string"><?php the_sub_field('acao_etapas'); ?></td>
+        <td class="tableexport-string"><?php the_sub_field('localizador'); ?></td>
+        <td class="tableexport-string"><?php the_sub_field('outros'); ?></td>
+        <td class="tableexport-string"><?php the_sub_field('descricao'); ?></td>
+        <td class="tableexport-string"><?php the_sub_field('prazo'); ?></td>
+        <td class="tableexport-string"><?php the_sub_field('custo'); ?></td>
+        <td class="tableexport-string"><?php the_sub_field('percentual_execucao'); ?></td>
+    </tr> -->
+        
+    <button id="diretrizesemetas-print-btn" class="button button-primary button-large" onclick="window.print(); return false;">Imprimir ação estratégica</button>
+<?php }

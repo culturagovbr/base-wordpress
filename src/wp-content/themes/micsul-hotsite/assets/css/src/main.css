@@ -120,23 +120,38 @@ body.page-theme-vermelho{
 	text-align: right;
 }
 
-.nav-support .facebook{
+.nav-support .facebook,
+.nav-support .twitter{
 	display: inline-block;
 	width: 24px;
 	height: 24px;
-	line-height: 24px;
+	line-height: 22px;
 	text-align: center;
-	font-size: 18px;
+	font-size: 17px;
 	font-weight: bold;
 	border: 2px solid #3b3b2a;
 	border-radius: 50%;
 	color: #3b3b2a;
+	vertical-align: middle;
 }
 
-.nav-support .facebook:hover{
+.nav-support .facebook:hover,
+.nav-support .twitter:hover{
 	text-decoration: none;
 	color: #fff;
 	background-color: #3b3b2a;
+}
+
+.nav-support .twitter {
+	padding: 2px;
+}
+
+.nav-support .twitter svg{
+	fill: #3b3b2a;
+}
+
+.nav-support .twitter:hover svg{
+	fill: #fff;	
 }
 
 .nav-support ul {

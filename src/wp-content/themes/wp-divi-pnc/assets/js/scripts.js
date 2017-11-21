@@ -238,7 +238,7 @@ jQuery(document).ready(function() {
     jQuery('.terms-link.handler').click(function(e){
         e.preventDefault();
         jQuery('.acceptance-terms').slideToggle();
-    })
+    });
 
     jQuery('#terms-acceptance-option').on('change', function(){
         if (jQuery(this).is(':checked')) {
@@ -246,5 +246,23 @@ jQuery(document).ready(function() {
         } else {
             jQuery('#stc-subscribe-btn').attr('disabled', true);
         }
+    })
+
+    jQuery('#stc-subscribe-btn').on('click', function (e) {
+
+        if( !jQuery('#stc-email').val().length ){
+            e.preventDefault();
+
+            jQuery('.validation_alert').remove();
+            jQuery('#stc-subscribe-btn').before('<span class="validation_alert">Você precisa inserir um endereço de email válido</span>')
+        }
+
+        if( !jQuery('#stc-state').val().length || !jQuery('#stc-city').val().length ){
+            e.preventDefault();
+
+            jQuery('.validation_alert').remove();
+            jQuery('#stc-subscribe-btn').before('<span class="validation_alert">Selecione um Estado e Município</span>')
+        }
+
     })
 });

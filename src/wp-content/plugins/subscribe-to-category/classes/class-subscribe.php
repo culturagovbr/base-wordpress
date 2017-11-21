@@ -82,7 +82,44 @@ if( class_exists( 'STC_Subscribe' ) ) {
       if( isset( $this->settings['exclude_from_send_option'] ) && $this->settings['exclude_from_send_option'] == 1 )
         add_action( 'post_submitbox_misc_actions', array( $this, 'exclude_from_send_post_option' ) );
 
+      add_action( 'stc_after_update_subscriber', array( $this, 'stc_get_user_location' ), 10, 4 );
+      add_action( 'stc_after_insert_subscriber', array( $this, 'stc_get_user_location' ), 10, 4 );
+      
+      add_action( 'add_meta_boxes_stc', array( $this, 'stc_meta_box' ) );
+
   	}
+
+    public function stc_get_user_location($post_id, $categories, $all_categories, $user_location){
+      // do_action( 'stc_after_insert_subscriber', $post_id, $data['categories'], $data['all_categories'] == true ? '1' : '0', $user_location );
+      update_post_meta( $post_id, '_stc_user_location_state', $user_location['state'] );
+      update_post_meta( $post_id, '_stc_user_location_city', $user_location['city'] );
+    }
+
+    public function stc_meta_box(){
+      add_meta_box( 
+          'stc-user-location-metabox',
+          'Dados de localização do usuário',
+          array( $this, 'stc_user_location_metabox' ),
+          'stc',
+          'normal',
+          'default'
+      );
+    }
+    
+    public function stc_user_location_metabox( $post ){
+        $user_state = get_post_meta( $post->ID, '_stc_user_location_state', true );
+        $user_city = get_post_meta( $post->ID, '_stc_user_location_city', true ); ?>
+
+        <label for="stc_state" style="width: 80px; display: inline-block;">
+          <b>Estado:</b>
+        </label> 
+        <input type="text" id="stc_state" name="stc_state" value="<?php echo $user_state; ?>"></br>
+
+        <label for="stc_city" style="width: 80px; display: inline-block;">
+          <b>Cidade:</b>
+        </label> 
+        <input type="text" id="stc_city" name="stc_city" value="<?php echo $user_city; ?>">
+    <?php }
 
     /**
      * Adding checkbox to publish meta box with an option to resend a post 
@@ -431,6 +468,12 @@ if( class_exists( 'STC_Subscribe' ) ) {
  				else
  					$error[] = __( 'You need to enter a valid email address', 'stc_textdomain' );
 
+        // Check if user selected a state and city
+        $data['state'] = $_POST['stc_state'];
+        if( isset( $_POST['stc_city']) )
+          $data['city'] = $_POST['stc_city'];
+        else
+          $error[] = __( 'You need to enter a valid email address', 'stc_textdomain' );
         
         // subscribe for all categories
         $data['all_categories'] = false;
@@ -512,18 +555,23 @@ if( class_exists( 'STC_Subscribe' ) ) {
 			  'post_category' => $data['categories']
 			);		
 
+      $user_location = array(
+        'state' => $data['state'],
+        'city' => $data['city']
+      );
+
   		// update post if subscriber exist, else insert as new post
   		if(!empty( $post_id )){
   			$post_id = wp_update_post( $post_data );
 
         // hook after updating a subscriber
-        do_action( 'stc_after_update_subscriber', $post_id, $data['categories'], $data['all_categories'] == true ? '1' : '0' ); 
+        do_action( 'stc_after_update_subscriber', $post_id, $data['categories'], $data['all_categories'] == true ? '1' : '0', $user_location ); 
   		}else{
   			$post_id = wp_insert_post( $post_data );
         update_post_meta( $post_id, '_stc_hash', md5( $data['email'].time() ) );
         
         // hook after inserting a subscriber
-        do_action( 'stc_after_insert_subscriber', $post_id, $data['categories'], $data['all_categories'] == true ? '1' : '0' );
+        do_action( 'stc_after_insert_subscriber', $post_id, $data['categories'], $data['all_categories'] == true ? '1' : '0', $user_location );
   		}
 
       // update post meta if the user subscribes to all categories
@@ -915,6 +963,45 @@ if( class_exists( 'STC_Subscribe' ) ) {
             <div class="form-group">
     				  <label for="stc-email"><?php _e( 'E-mail Address: ', 'stc_textdomain' ); ?></label>
     				  <input type="text" id="stc-email" class="form-control" name="stc_email" value="<?php echo !empty( $email ) ? $email : NULL; ?>"/>
+            </div>
+
+            <div class="form-group">
+              <label for="stc-state"><?php _e( 'UF: ', 'stc_textdomain' ); ?></label>
+              <select id="stc-state" class="form-control" name="stc_state">
+                <option value="">Selecione seu estado</option>
+                <option value="AC">Acre</option>
+                <option value="AL">Alagoas</option>
+                <option value="AP">Amapá</option>
+                <option value="AM">Amazonas</option>
+                <option value="BA">Bahia</option>
+                <option value="CE">Ceará</option>
+                <option value="DF">Distrito Federal</option>
+                <option value="ES">Espírito Santo</option>
+                <option value="GO">Goiás</option>
+                <option value="MA">Maranhão</option>
+                <option value="MT">Mato Grosso</option>
+                <option value="MS">Mato Grosso do Sul</option>
+                <option value="MG">Minas Gerais</option>
+                <option value="PA">Pará</option>
+                <option value="PB">Paraíba</option>
+                <option value="PR">Paraná</option>
+                <option value="PE">Pernambuco</option>
+                <option value="PI">Piauí</option>
+                <option value="RJ">Rio de Janeiro</option>
+                <option value="RN">Rio Grande do Norte</option>
+                <option value="RS">Rio Grande do Sul</option>
+                <option value="RO">Rondônia</option>
+                <option value="RR">Roraima</option>
+                <option value="SC">Santa Catarina</option>
+                <option value="SP">São Paulo</option>
+                <option value="SE">Sergipe</option>
+                <option value="TO">Tocantins</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="stc-city"><?php _e( 'Município', 'stc_textdomain' ); ?></label>
+              <input type="text" id="stc-city" class="form-control" name="stc_city" value="" placeholder="<?php _e( 'Município', 'stc_textdomain' ); ?>"/>
             </div>
 
             <div class="checkbox">

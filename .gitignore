@@ -17,6 +17,7 @@ nbproject/
 .buildpath
 .settings
 src/wp-content/blogs.dir
+src/wp-content/debug.log
 
 # WordPress plugins
 src/wp-content/plugins/regenerate-thumbnails

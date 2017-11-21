@@ -3632,13 +3632,13 @@ button.mfp-close {
 }
 #footer-widgets .footer-widget.last.modal input#stc-email {
   padding: 10px;
-  font-size: 25px;
+  font-size: 18px;
   width: 85%;
   border-radius: 4px;
   margin-top: 20px;
   box-shadow: 0px 1px 4px #ccc inset;
   color: #6e7780;
-  margin-bottom: 27px;
+  margin-bottom: 15px;
 }
 #footer-widgets .footer-widget.last.modal .stc-categories {
   text-align: left;
@@ -4022,4 +4022,29 @@ body.modal-is-open{
   margin: 15px auto;
   width: 85%;
   color: #525252;
+}
+
+.stc-subscribe-wrapper .form-group label{
+  display: none !important;
+}
+
+#stc-state,
+#stc-city {
+  padding: 10px;
+  width: 85%;
+  border-radius: 4px;
+  box-shadow: 0 1px 4px #ccc inset;
+  color: #6e7780;
+  height: auto;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.stc-error,
+.validation_alert{
+  display: block;
+  text-align: center;
+  color: red;
+  font-size: 0.9em;
+  font-style: italic;
 }

@@ -876,31 +876,37 @@ class STC_Settings {
         $in_categories = substr( $c_name, 0, -2);
         $c_name = false; // unset variable
 
-        $export[$i]['id'] = $p->ID;
-        $export[$i]['email'] = $p->post_title;
-        $export[$i]['user_categories'] = $in_categories;
-        $export[$i]['subscription_date'] = $p->post_date;
-        
+        $user_state = get_post_meta( $p->ID, '_stc_user_location_state', true );
+        $user_city = get_post_meta( $p->ID, '_stc_user_location_city', true );
+
+        $export[$i][utf8_decode('Identificação do usuário')] = $p->ID;
+        $export[$i][utf8_decode('Email')] = $p->post_title;
+        $export[$i][utf8_decode('UF')] = $user_state;
+        $export[$i][utf8_decode('Município')] = $user_city;
+        $export[$i][utf8_decode('Data de inscrição')] = date("d/m/Y, \à\s H:i\h\s", strtotime($p->post_date));
+        $export[$i][utf8_decode('Categorias - Metas')] = $in_categories;
+
         $i++;
       }
       
       // filename for download 
       $time = date('Ymd_His'); 
-      $filename = STC_SLUG . '_' . $time . '.xls';
+      $filename = STC_SLUG . '_' . $time . '.xlsx';
 
       header("Content-Disposition: attachment; filename=\"$filename\""); 
       header("Content-Type:   application/vnd.ms-excel; ");
       header("Content-type:   application/x-msexcel; ");
+      header("Content-type:   application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; ");
 
       $flag = false; 
       // print out filtered categories if there is
       if(!empty( $in_category_name ))
-        echo "\r\n", utf8_decode( __('Filtered by: ', 'stc_textdomain' ) ) . utf8_decode( $in_category_name ); 
+        echo utf8_decode( __('Filtered by: ', 'stc_textdomain' ) ) . utf8_decode( $in_category_name );
       
       foreach ($export as $row ) {
         if(! $flag ) { 
           // display field/column names as first row 
-          echo "\r\n" . implode("\t", array_keys( $row )) . "\r\n"; 
+          echo "\r\n" . implode("\t", array_keys( $row )) . "\r\n";
           $flag = true; 
         } 
 

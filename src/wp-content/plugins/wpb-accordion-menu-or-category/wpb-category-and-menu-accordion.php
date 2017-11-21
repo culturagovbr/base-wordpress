@@ -4,7 +4,7 @@
  * Plugin Name:       WPB Accordion Menu or Category
  * Plugin URI:        http://wpbean.com/product/wpb-accordion-menu-or-category
  * Description:       WPB Accordion Menu or Category Plugin allow you to show WordPress menu or any category accordion with submenu / subcategory support. Specially optimized for WooCommerce or any other ecommerce categories. It's responsive and modern flat design.
- * Version:           1.04
+ * Version:           1.06
  * Author:            wpbean
  * Author URI:        http://wpbean.com/
  * License:           GPL-2.0+

@@ -79,10 +79,13 @@ class MKS_Ads_Widget extends WP_Widget {
 				if( $instance['size'] == 'custom' ){
 					$height = $instance['ad_height'] ? $instance['ad_height'].'px' : 'auto';
 					$ad_size = 'style="width:'.$instance['ad_width'].'px; height:'.$height.';" width="'.$instance['ad_width'].'"  height="'.$instance['ad_height'].'"';
+					$ad_code_size = 'style="width:'.$instance['ad_width'].'px; height:'.$height.';"';
 				} else if($instance['size'] == 'large'){
 					$ad_size = 'style="width:300px; height:250px;" width="300"  height="250"';
+					$ad_code_size = 'style="width:300px; height:250px;"';
 				} else if($instance['size'] == 'small'){
 					$ad_size = 'style="width:125px; height:125px;" width="125"  height="125"';
+					$ad_code_size = 'style="width:125px; height:125px;"';
 				}
 
 				$nofollow = $instance['nofollow'] ? 'rel="nofollow"' : '';
@@ -103,7 +106,7 @@ class MKS_Ads_Widget extends WP_Widget {
 		     		<?php else: ?>
 			     		<?php if( $ad['type'] === 'code' && !empty( $ad['code'] ) ) : ?>
 			     			<li data-showind="<?php echo $show_ind; ?>">
-				     			<div <?php echo $ad_size; ?>>
+				     			<div <?php echo $ad_code_size; ?>>
 				     				<?php echo do_shortcode($ad['code']); ?>	
 				     			</div>
 				     		</li>

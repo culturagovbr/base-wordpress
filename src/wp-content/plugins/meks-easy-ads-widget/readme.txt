@@ -3,8 +3,8 @@ Contributors: mekshq
 Donate link: http://mekshq.com/
 Tags: ad, ads, affiliate, niche, advertising, advertisement, marketing, sidebar, widget
 Requires at least: 3.0
-Tested up to: 4.8
-Stable tag: 2.0.2
+Tested up to: 4.9
+Stable tag: 2.0.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
@@ -14,18 +14,19 @@ Display unlimited number of ads inside your WordPress widget.
 
 With this plugin you can create unlimited number of ads inside your WordPress widget. There are several smart options provided to customize ads for your needs.
 
-### Features
+== Features ==
 
 * Create unlimited number of ads inside one widget
 * Choose from predefined sizes or define your custom size
-* Randomize ads order
-* Limit number of ads per view
-* Slide/rotate ads
+* Support for both image ads and script based ads
+* Randomize ads ordering
+* Limit number of ads per view (page load)
+* Autoplay rotate ads
 
-Meks Easy Ads Widget plugin is created by <a href="http://mekshq.com" target="_blank">Meks</a>
+Meks Easy Ads Widget plugin is created by [Meks](https://mekshq.com)
 
-><strong>Live preview?</strong><br>
->You can see Meks Easy Ads Widget live example on our <a href="http://mekshq.com/demo/herald" target="_blank">Herald theme demo website</a>
+== Live example? ==
+You can see Meks Easy Ads Widget live example on our [Herald theme demo website](https://mekshq.com/demo/herald)
 
 
 == Installation ==
@@ -36,7 +37,7 @@ Meks Easy Ads Widget plugin is created by <a href="http://mekshq.com" target="_b
 
 == Frequently Asked Questions ==
 
-For any questions, error reports and suggestions please visit http://mekshq.com/contact
+For any questions, error reports and suggestions please visit https://mekshq.com/contact
 
 == Screenshots ==
 
@@ -45,6 +46,10 @@ For any questions, error reports and suggestions please visit http://mekshq.com/
 3. Widget in action example
 
 == Changelog ==
+
+= 2.0.3 =
+* Improved: Avoid image stretching on front end (if user does not upload the proper image size)
+* Tested with WP 4.9
 
 = 2.0.2 =
 * Improved: Some special characters in code ads were not rendered properly in special cases

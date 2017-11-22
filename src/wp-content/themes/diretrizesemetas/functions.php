@@ -452,3 +452,4 @@ function jaiminho_login_page_style () { ?>
         }
     </style>
 <?php }
+add_action('login_enqueue_scripts', 'jaiminho_login_page_style');

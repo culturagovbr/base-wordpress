@@ -1,4 +1,9 @@
-<?php get_header(); ?>
+<?php
+/**
+ * Template Name: Formulário de Importação de usuários
+ *
+ */
+get_header(); ?>
 
     <div id="main-content">
         <div class="conteudo">
@@ -10,51 +15,105 @@
 
                         <article id="post-<?php the_ID(); ?>" <?php post_class('et_pb_post'); ?>>
 
+                            <?php the_content(); ?>
+
                             <?php
-                            $thumb = '';
+                                if( !empty( $_POST['users-json'] ) ) {
 
-                            $width = (int)apply_filters('et_pb_index_blog_image_width', 1080);
+									function pnc_save_users_to_stc($stc_title, $array_of_cats) {
+										// Check for user's email
+										if( null == get_page_by_title( $stc_title, '', 'stc' ) ) {
+											// Create stc post
+											$stc_post = array(
+												'post_type'   => 'stc',
+												'post_title'    => $stc_title,
+												'post_status'   => 'publish',
+												'post_author'   => 1,
+												'post_category' => $array_of_cats
+											);
 
-                            $height = (int)apply_filters('et_pb_index_blog_image_height', 675);
-                            $classtext = 'et_pb_post_main_image';
-                            $titletext = get_the_title();
-                            $thumbnail = get_thumbnail($width, $height, $classtext, $titletext, $titletext, false, 'Blogimage');
-                            $thumb = $thumbnail["thumb"];
+											// Insert the stc post into the database
+											if( wp_insert_post( $stc_post ) ){
+											    echo 'Usuário: ' . $stc_title . ' importado com sucesso<br>';
+                                            }
+										} else {
+											echo 'O usuário: ' . $stc_title . ' já está cadastrado para receber as metas<br>';
+											error_log("User already subscribing to some category!", 0);
+										}
+									}
 
-                            et_divi_post_format_content();
 
-                            if (!in_array($post_format, array('link', 'audio', 'quote'))) {
-                                if ('video' === $post_format && false !== ($first_video = et_get_first_video())) :
-                                    printf(
-                                        '<div class="et_main_video_container">
-                                %1$s
-                            </div>',
-                                        $first_video
-                                    );
-                                elseif (!in_array($post_format, array('gallery')) && 'on' === et_get_option('divi_thumbnails_index', 'on') && '' !== $thumb) : ?>
-                                    <a href="<?php the_permalink(); ?>">
-                                        <?php print_thumbnail($thumb, $thumbnail["use_timthumb"], $titletext, $width, $height); ?>
-                                    </a>
-                                    <?php
-                                elseif ('gallery' === $post_format) :
-                                    et_pb_gallery_images();
-                                endif;
-                            } ?>
+									function pnc_update_term_id( $term_id ) {
+										$new_term_id = '';
+										switch ($term_id) {
+											case '391':
+												$new_term_id = '18';
+												break;
+											case '392':
+												$new_term_id = '635';
+												break;
+											case '394':
+												$new_term_id = '15';
+												break;
+											case '396':
+												$new_term_id = '325';
+												break;
+											case '397':
+												$new_term_id = '270';
+												break;
+											case '398':
+												$new_term_id = '17';
+												break;
+											case '395':
+												$new_term_id = '17';
+												break;
+											case '393':
+												$new_term_id = '564';
+												break;
+											case '399':
+												$new_term_id = '23';
+												break;
+											case '400':
+												$new_term_id = '21';
+												break;
+											case '316':
+												$new_term_id = '317';
+												break;
+											case '579':
+												$new_term_id = '485';
+												break;
+											case '580':
+												$new_term_id = '401';
+												break;
+											case '840':
+												$new_term_id = '635';
+												break;
+										}
+										return $new_term_id;
+									}
 
-                            <?php if (!in_array($post_format, array('link', 'audio', 'quote'))) : ?>
-                                <?php if (!in_array($post_format, array('link', 'audio'))) : ?>
-                                    <h2 class="entry-title" style="display: none"><a
-                                                href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-                                <?php endif; ?>
+                                    $users_to_import_arr = [];
+                                    $obj = stripslashes($_POST['users-json']);
+                                    foreach ( json_decode ( $obj ) as $users_obj ){
+                                        foreach ( $users_obj as $user ){
+											$users_to_import_arr[$user->user_email]['cats'][] = pnc_update_term_id($user->meta_value);
+                                        }
+                                    }
 
-                                <?php
-                                // et_divi_post_meta();
+                                    $cats_arr = [];
+                                    foreach ( $users_to_import_arr as $user => $cats ){
+										pnc_save_users_to_stc($user, $cats['cats']);
+                                    }
 
-                                the_content();
-                                ?>
-                                
-                            <?php endif; ?>
-                                
+								} else { ?>
+                                    <form id="pnc-form-users-import" method="post">
+                                        <label for="users-json">Insira o JSON abaixo</label>
+                                        <textarea id="users-json" name="users-json" style="width: 100%" rows="10"></textarea><br>
+                                        <a href="#" class="validate-json-link">Validar JSON</a>
+                                        <input type="submit" value="Importar JSON" disabled="disabled" style="float: right">
+                                    </form>
+                                <?php }
+                            ?>
 
                         </article> <!-- .et_pb_post -->
                         <?php

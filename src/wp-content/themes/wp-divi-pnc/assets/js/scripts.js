@@ -265,4 +265,38 @@ jQuery(document).ready(function() {
         }
 
     })
+
+    // Scripts referentes ao importador de usuários
+    if( jQuery('#pnc-form-users-import').length ){
+        console.log( 'Scripts referentes ao importador de usuários' );
+
+        function isValidJson(json) {
+            try {
+                JSON.parse(json);
+                return true;
+            } catch (e) {
+                return false;
+            }
+        }
+
+        function formatJSON() {
+            if( isValidJson( jQuery(this).val() ) ){
+                var obj = jQuery.parseJSON( jQuery(this).val() );
+                jQuery(this).val( JSON.stringify(obj) );
+                jQuery('#pnc-form-users-import input[type="submit"]').removeAttr('disabled');
+                console.log(obj);
+            } else {
+                console.error('Ops...wrong JSON');
+                jQuery('#users-json').after('<p style="color: red;">O JSON inserido parece não ser válido</p>')
+            }
+        }
+
+        var jsonInput = jQuery('#users-json');
+
+        jsonInput.blur(formatJSON);
+        jQuery('.validate-json-link').click(function (e) {
+            e.preventDefault();
+        });
+
+    }
 });

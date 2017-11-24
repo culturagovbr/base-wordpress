@@ -68,6 +68,11 @@ class PLL_Frontend_Filters extends PLL_Filters {
 			add_filter( 'pre_option_blogname', 'pll__', 20 );
 			add_filter( 'pre_option_blogdescription', 'pll__', 20 );
 		}
+
+		// FIXME test get_user_locale for backward compatibility with WP < 4.7
+		if ( Polylang::is_ajax_on_front() && function_exists( 'get_user_locale' ) ) {
+			add_filter( 'load_textdomain_mofile', array( $this, 'load_textdomain_mofile' ) );
+		}
 	}
 
 	/**
@@ -294,31 +299,17 @@ class PLL_Frontend_Filters extends PLL_Filters {
 
 	/**
 	 * Translates biography
-	 * Makes sure that the correct locale is used for ajax calls when the user is logged in
 	 *
 	 * @since 0.9
 	 *
-	 * @param null   $return
+	 * @param null   $null
 	 * @param int    $id       User id
 	 * @param string $meta_key
 	 * @param bool   $single   Whether to return only the first value of the specified $meta_key
 	 * @return null|string
 	 */
-	public function get_user_metadata( $return, $id, $meta_key, $single ) {
-		switch ( $meta_key ) {
-			case 'description':
-				if ( $this->curlang->slug !== $this->options['default_lang'] ) {
-					$return = get_user_meta( $id, 'description_' . $this->curlang->slug, $single );
-				}
-				break;
-			case 'locale':
-				if ( Polylang::is_ajax_on_front() ) {
-					$return = get_locale();
-				}
-				break;
-		}
-
-		return $return;
+	public function get_user_metadata( $null, $id, $meta_key, $single ) {
+		return 'description' === $meta_key && $this->curlang->slug !== $this->options['default_lang'] ? get_user_meta( $id, 'description_' . $this->curlang->slug, $single ) : $null;
 	}
 
 	/**
@@ -377,5 +368,19 @@ class PLL_Frontend_Filters extends PLL_Filters {
 				$this->model->term->set_language( $term_id, $this->curlang );
 			}
 		}
+	}
+
+	/**
+	 * Filters the translation files to load when doing ajax on front
+	 * This is needed because WP the language files associated to the user locale when a user is logged in
+	 *
+	 * @since 2.2.6
+	 *
+	 * @param string $mofile Translation file name
+	 * @return string
+	 */
+	public function load_textdomain_mofile( $mofile ) {
+		$user_locale = get_user_locale();
+		return str_replace( "{$user_locale}.mo", "{$this->curlang->locale}.mo", $mofile );
 	}
 }

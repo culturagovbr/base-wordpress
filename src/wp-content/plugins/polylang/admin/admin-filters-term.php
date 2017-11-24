@@ -345,7 +345,7 @@ class PLL_Admin_Filters_Term {
 	 * @since 0.1
 	 *
 	 * @param int    $term_id
-	 * @param int    $tt_id    term taxononomy id
+	 * @param int    $tt_id    term taxonomy id
 	 * @param string $taxonomy
 	 */
 	public function save_term( $term_id, $tt_id, $taxonomy ) {
@@ -601,6 +601,7 @@ class PLL_Admin_Filters_Term {
 		}
 
 		if ( $lang = $this->get_queried_language( $taxonomies, $args ) ) {
+			$lang = is_string( $lang ) && strpos( $lang, ',' ) ? explode( ',', $lang ) : $lang;
 			$key = '_' . ( is_array( $lang ) ? implode( ',', $lang ) : $this->model->get_language( $lang )->slug );
 			$args['cache_domain'] = empty( $args['cache_domain'] ) ? 'pll' . $key : $args['cache_domain'] . $key;
 		}

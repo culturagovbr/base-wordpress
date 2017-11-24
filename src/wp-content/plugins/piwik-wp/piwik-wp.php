@@ -43,8 +43,10 @@ class PiwikWP {
 	* 
 	*/
 	public function piwik_script(){
-		$options = get_option( 'pwp_options');  ?>
-
+		$options = get_option( 'pwp_options');
+        
+        if (!empty($options)) {
+            if ($options['pwp_script'] != '') { ?>
 		<!-- Piwik -->
 		<script type="text/javascript">
 			var _paq = _paq || [];
@@ -61,6 +63,8 @@ class PiwikWP {
 		<noscript><p><img src="//analise.cultura.gov.br/piwik.php?idsite=<?php echo $options['pwp_script']; ?>" style="border:0;" alt="" /></p></noscript>
 		<!-- End Piwik Code -->
 		<?php
+             }
+        }
 	}
 
 }

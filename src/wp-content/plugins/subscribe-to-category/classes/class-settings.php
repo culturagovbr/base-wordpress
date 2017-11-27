@@ -849,6 +849,7 @@ class STC_Settings {
       $args = array(
         'post_type'     => 'stc',
         'post_status'   => 'publish',
+        'posts_per_page'=> -1,
         'category__in'  => $this->export_in_categories // Empty value returns all categories
       );
 
@@ -902,7 +903,7 @@ class STC_Settings {
       // print out filtered categories if there is
       if(!empty( $in_category_name ))
         echo utf8_decode( __('Filtered by: ', 'stc_textdomain' ) ) . utf8_decode( $in_category_name );
-      
+
       foreach ($export as $row ) {
         if(! $flag ) { 
           // display field/column names as first row 

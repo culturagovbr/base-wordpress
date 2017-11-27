@@ -20,26 +20,24 @@ get_header(); ?>
                             <?php
                                 if( !empty( $_POST['users-json'] ) ) {
 
-									function pnc_save_users_to_stc($stc_title, $array_of_cats) {
+									function pnc_save_users_to_stc($stc_title, $array_of_cats, $location) {
 										// Check for user's email
-										if( null == get_page_by_title( $stc_title, '', 'stc' ) ) {
+										$stc_post = get_page_by_title ($stc_title, '', 'stc');
+										if (null == $stc_post) {
 											// Create stc post
-											$stc_post = array(
-												'post_type'   => 'stc',
-												'post_title'    => $stc_title,
-												'post_status'   => 'publish',
-												'post_author'   => 1,
-												'post_category' => $array_of_cats
-											);
+											$stc_post = array('post_type' => 'stc', 'post_title' => $stc_title, 'post_status' => 'publish', 'post_author' => 1, 'post_category' => $array_of_cats);
 
 											// Insert the stc post into the database
-											if( wp_insert_post( $stc_post ) ){
-											    echo 'Usuário: ' . $stc_title . ' importado com sucesso<br>';
-                                            }
+											if (wp_insert_post ($stc_post)) {
+												echo 'Usuário: ' . $stc_title . ' importado com sucesso<br>';
+											}
 										} else {
 											echo 'O usuário: ' . $stc_title . ' já está cadastrado para receber as metas<br>';
-											error_log("User already subscribing to some category!", 0);
+											error_log ("User already subscribing to some category!", 0);
 										}
+
+										update_post_meta ($stc_post->ID, '_stc_user_location_state', $location['uf']);
+										update_post_meta ($stc_post->ID, '_stc_user_location_city', $location['municipio']);
 									}
 
 
@@ -96,13 +94,23 @@ get_header(); ?>
                                     $obj = stripslashes($_POST['users-json']);
                                     foreach ( json_decode ( $obj ) as $users_obj ){
                                         foreach ( $users_obj as $user ){
-											$users_to_import_arr[$user->user_email]['cats'][] = pnc_update_term_id($user->meta_value);
+                                            if( $user->meta_key == 'temas_followed' ){
+												$users_to_import_arr[$user->user_email]['cats'][] = pnc_update_term_id($user->meta_value);
+											}
+
+											if( $user->meta_key == 'estado' ){
+												$users_to_import_arr[$user->user_email]['location']['uf'] = $user->meta_value;
+											}
+
+											if( $user->meta_key == 'municipio' ){
+												$users_to_import_arr[$user->user_email]['location']['municipio'] = $user->meta_value;
+											}
                                         }
                                     }
 
                                     $cats_arr = [];
                                     foreach ( $users_to_import_arr as $user => $cats ){
-										pnc_save_users_to_stc($user, $cats['cats']);
+										pnc_save_users_to_stc($user, $cats['cats'], $cats['location']);
                                     }
 
 								} else { ?>

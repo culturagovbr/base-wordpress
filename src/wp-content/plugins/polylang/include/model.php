@@ -179,7 +179,7 @@ class PLL_Model {
 	 *
 	 * @param array  $clauses the list of sql clauses in terms query
 	 * @param object $lang    PLL_Language object
-	 * @return array modifed list of clauses
+	 * @return array modified list of clauses
 	 */
 	public function terms_clauses( $clauses, $lang ) {
 		if ( ! empty( $lang ) && false === strpos( $clauses['join'], 'pll_tr' ) ) {
@@ -250,7 +250,7 @@ class PLL_Model {
 	 *
 	 * @since 1.2
 	 *
-	 * @param bool $filter true if we should return only valid registered taxonmies
+	 * @param bool $filter true if we should return only valid registered taxonomies
 	 * @return array array of registered taxonomy names for which Polylang manages languages and translations
 	 */
 	public function get_translated_taxonomies( $filter = true ) {
@@ -459,7 +459,7 @@ class PLL_Model {
 			$select = "SELECT pll_tr.term_taxonomy_id, COUNT( * ) AS num_posts FROM {$wpdb->posts}";
 			$join = $this->post->join_clause();
 			$where = " WHERE post_status = 'publish'";
-			$where .= $wpdb->prepare( " AND {$wpdb->posts}.post_type IN ( %s )", join( "', '", $q['post_type'] ) );
+			$where .= sprintf( " AND {$wpdb->posts}.post_type IN ( '%s' )", join( "', '", esc_sql( $q['post_type'] ) ) );
 			$where .= $this->post->where_clause( $this->get_languages_list() );
 			$groupby = ' GROUP BY pll_tr.term_taxonomy_id';
 

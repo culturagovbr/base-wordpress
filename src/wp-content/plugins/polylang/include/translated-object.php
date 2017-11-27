@@ -71,7 +71,7 @@ abstract class PLL_Translated_Object {
 	}
 
 	/**
-	 * Tells wether to store a translation term
+	 * Tells whether to store a translation term
 	 *
 	 * @since 1.8
 	 *
@@ -176,7 +176,7 @@ abstract class PLL_Translated_Object {
 		$term = $this->get_object_term( $id, $this->tax_translations );
 		$translations = empty( $term ) ? array() : unserialize( $term->description );
 
-		// make sure we return only translations ( thus we allow plugins to store other informations in the array )
+		// make sure we return only translations ( thus we allow plugins to store other information in the array )
 		if ( is_array( $translations ) ) {
 			$translations = array_intersect_key( $translations, array_flip( $this->model->get_languages_list( array( 'fields' => 'slug' ) ) ) );
 		}
@@ -232,7 +232,7 @@ abstract class PLL_Translated_Object {
 	 *
 	 * @since 1.2
 	 *
-	 * @param object|array|string $lang a PLL_Language object or a comma separated list of languag slug or an array of language slugs
+	 * @param object|array|string $lang a PLL_Language object or a comma separated list of language slug or an array of language slugs
 	 * @return string where clause
 	 */
 	public function where_clause( $lang ) {
@@ -242,14 +242,14 @@ abstract class PLL_Translated_Object {
 		// $lang is an object
 		// generally the case if the query is coming from Polylang
 		if ( is_object( $lang ) ) {
-			return $wpdb->prepare( ' AND pll_tr.term_taxonomy_id = %d', $lang->$tt_id );
+			return ' AND pll_tr.term_taxonomy_id = ' . absint( $lang->$tt_id );
 		}
 
 		// $lang is a comma separated list of slugs ( or an array of slugs )
 		// generally the case is the query is coming from outside with 'lang' parameter
 		$slugs = is_array( $lang ) ? $lang : explode( ',', $lang );
 		foreach ( $slugs as $slug ) {
-			$languages[] = (int) $this->model->get_language( $slug )->$tt_id;
+			$languages[] = absint( $this->model->get_language( $slug )->$tt_id );
 		}
 
 		return ' AND pll_tr.term_taxonomy_id IN ( ' . implode( ',', $languages ) . ' )';

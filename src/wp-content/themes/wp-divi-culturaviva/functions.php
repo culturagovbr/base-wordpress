@@ -30,7 +30,7 @@ add_rewrite_rule('oportunidades(.*)', 'index.php?post_type=oportunidade$matches[
 global $wp_rewrite;
 $wp_rewrite->flush_rules();
 
-require get_template_directory() . '/includes/oportunidades/oportunidades.php';
+require get_template_directory_uri() . '/includes/oportunidades/oportunidades.php';
 
 
 /**

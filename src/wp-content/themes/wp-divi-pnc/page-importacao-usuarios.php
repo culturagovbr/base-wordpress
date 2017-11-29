@@ -44,16 +44,25 @@ get_header(); ?>
 									function pnc_update_term_id( $term_id ) {
 										$new_term_id = '';
 										switch ($term_id) {
+											case '316':
+												$new_term_id = '317';
+												break;
 											case '391':
 												$new_term_id = '18';
 												break;
 											case '392':
 												$new_term_id = '635';
 												break;
+											case '393':
+												$new_term_id = '564';
+												break;
 											case '394':
 												$new_term_id = '15';
 												break;
-											case '396':
+											case '395':
+												$new_term_id = '17';
+												break;
+											case '396': //
 												$new_term_id = '325';
 												break;
 											case '397':
@@ -62,20 +71,11 @@ get_header(); ?>
 											case '398':
 												$new_term_id = '17';
 												break;
-											case '395':
-												$new_term_id = '17';
-												break;
-											case '393':
-												$new_term_id = '564';
-												break;
 											case '399':
 												$new_term_id = '23';
 												break;
 											case '400':
 												$new_term_id = '21';
-												break;
-											case '316':
-												$new_term_id = '317';
 												break;
 											case '579':
 												$new_term_id = '485';

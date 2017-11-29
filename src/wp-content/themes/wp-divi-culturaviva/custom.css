@@ -1,0 +1,144 @@
+/*
+Você pode adicionar seu próprio CSS aqui.
+
+Clique no ícone de ajuda acima para saber mais.
+*/
+
+div#header-container {
+    background-position: right top !important;
+    padding-top: 8px !important;
+    margin-top: -15px !important;
+
+}
+body.tema-custom #accessibility span {
+    color: #fff;
+    background-color: #0d1f4a !important;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+#portal-title {
+    margin-top: 8px !important;
+    color: #fff;
+    font-size: 40px;
+    font-family: "Open Sans", Arial, sans-serif;
+    font-weight: 800;
+}
+
+#portal-searchbox {
+    float: right;
+    clear: right;
+    margin: 2.12em 0 0 0 !important;
+    padding: 2px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background: #fff;
+    text-align: right;
+    font-size: 80%;
+}
+body.tema-custom #header > .menu-wrapper {
+    background-color: #0d1f4a !important;
+    margin-top: -43px !important;
+    box-shadow: 0px 2px 6px #000;
+    position: relative;
+    z-index: 1;
+}
+h2#o-que-e-cultura {
+    color: #511c65;
+    font-weight: bold;
+    margin-top: 0;
+}
+
+
+
+
+
+div#destaque-home p {
+    font-size: 20px;
+    color: #000;
+}
+
+
+.botao-entrar-na-rede {
+    color: #fff !important;
+    background: #ff7e55 !important;
+    margin: 20px;
+    top: -33px;
+    border: none !important;
+    margin-bottom: -28px !important;
+    margin-top: -50px;
+}
+#titulo h1 {
+    background: #c3eae9;
+    padding-top: 10px;
+    padding-left: 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #102b6b;
+    font-size: 22px;
+    color: #102b6b;
+    font-weight: bold;
+}
+.et_pb_section.et_pb_section_parallax.et_pb_section_0.et_pb_with_background.et_section_regular {
+    padding: 40px 0 37px;
+}
+a.botao-saiba-mais {
+    text-align: right;
+    padding-top: 68px;
+    display: block;
+    color: #102b6b;
+    font-weight: bold;
+    text-decoration: underline;
+    text-transform: uppercase;
+}
+article.has-post-thumbnail {
+    background: transparent !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    border: 0 !important;
+}
+h2.entry-title a {
+    color: #511c65;
+    font-weight: bold;
+}
+p.post-meta, p.post-meta a {
+    color: #ff7e55 !important;
+    font-weight: bold;
+}
+.post-content p {
+    color: #000 !important;
+}
+#social-icons {
+    float: right;
+    clear: right;
+    margin: 0.467em 0px 2.6em !important;
+}
+#portal-searchbox {
+    margin: 1.12em 0 0 0 !important;
+}
+#oportunidades {
+    background: #e7ff94;
+    padding: 0 26px;
+    border-radius: 4px;
+}
+#oportunidades .post-content {
+    display: none;
+}
+#oportunidades h2.entry-title a {
+    font-size: 19px;
+    line-height: 0;
+    font-weight: inherit;
+}
+#oportunidades h2.entry-title {
+    margin-top: 0;
+}
+div#oportunidades:before {
+    content: "Oportunidades";
+    font-size: 31px;
+    font-weight: bold;
+    color: #00385a;
+    padding-top: 24px;
+    display: block;
+    padding-bottom: 15px;
+    text-indent: -2px;
+}

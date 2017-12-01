@@ -14,6 +14,7 @@
                     <article id="post-<?php the_ID(); ?>" <?php post_class('et_pb_post'); ?>>
 
                         <?php
+the_post_thumbnail();
                         the_content();
                         if ( ( comments_open() || get_comments_number() ) && 'on' == et_get_option( 'divi_show_postcomments', 'on' ) && ! $et_pb_has_comments_module ) {
                             comments_template( '', true );

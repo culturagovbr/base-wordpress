@@ -24,6 +24,7 @@ add_action( 'wp_head', 'divi_child_enqueue_styles' );
 
 // adicionando funcionalidades trazidas do antigo tema redeculturaviva
 add_theme_support( 'automatic-feed-links' );
+add_theme_support( 'post-thumbnails' );
 add_theme_support( 'title-tag' );
 add_rewrite_rule('oportunidades(.*)', 'index.php?post_type=oportunidade$matches[1]', 'top');
 

@@ -1,7 +1,45 @@
-/* 
-	Stylesheet for subscribe to category 
+/*
+	Stylesheet for subscribe to category
 */
 
-.stc-subscribe-wrapper{
-	margin-bottom: 20px;
+.stc-subscribe-wrapper {
+    margin-bottom: 20px;
+}
+
+.chosen-container {
+    text-align: left;
+    font-size: 18px;
+    width: 85%;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px #ccc inset;
+    color: #6e7780;
+    margin-bottom: 15px !important;
+}
+
+.chosen-container-active.chosen-with-drop .chosen-single,
+.chosen-container-single .chosen-single {
+    padding: 10px;
+    line-height: 22px;
+    height: 43px;
+    background: none;
+    color: #6e7780;
+}
+
+.chosen-container-single .chosen-single div b {
+    background: url(../img/chosen-sprite.png) no-repeat 0 10px;
+}
+
+.chosen-container .chosen-results {
+    padding: 10px 0 !important;
+    color: #6e7780 !important;
+    margin-left: 0 !important;
+}
+
+.chosen-container .chosen-results li.active-result,
+.chosen-container .chosen-results .no-results{
+    padding: 10px !important;
+}
+
+.chosen-container-single .chosen-drop{
+    margin-top: -3px;
 }

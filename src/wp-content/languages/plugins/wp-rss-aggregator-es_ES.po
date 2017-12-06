@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - WP RSS Aggregator - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2017-08-23 11:38:37+0000\n"
+"PO-Revision-Date: 2017-08-23 22:15:40+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -434,7 +434,7 @@ msgstr "Añadir nuevas fuentes de feed"
 
 #: includes/custom-post-types.php:23
 msgid "Add New"
-msgstr "Añadir nueva"
+msgstr "Añadir nuevo"
 
 #: includes/custom-post-types.php:22
 msgid "Feed Source"
@@ -663,6 +663,10 @@ msgstr "Sin límite"
 #: includes/admin-options.php:567
 msgid "PHP Date Format Reference"
 msgstr "Referencia de formato de fecha PHP"
+
+#: includes/admin-options.php:529
+msgid "Self"
+msgstr "Yo"
 
 #: includes/admin-options.php:528 includes/update.php:200
 msgid "New window"
@@ -954,6 +958,10 @@ msgstr "Umbral de nivel de registro"
 msgid "On the <a href=\"%1$simport.php\">Import</a> page, choose the previously created file and click the <strong>Upload file and import</strong> button."
 msgstr "En la página de <a href=\"%1$simport.php\">Importar</a> escoge el archivo creado previamente y haz clic en el botón <strong>Subir archivo e importar</strong>."
 
+#: includes/admin-import-export.php:236
+msgid "On the <a href=\"%1$sexport.php\">Export</a> page, check the <strong>Feed Sources</strong> radio button and click the <strong>Download Export File</strong> button. WordPress will then create an XML file containing all the feed sources."
+msgstr "En la página de <a href=\"%1$sexport.php\">Exportar</a> marca el botón de radio de las <strong>fuentes de feeds</strong> y haz clic en el botón <strong>Descargar archivo de exportación</strong>. WordPress creará entonces un archivo XML que contendrá todas las fuentes de feeds."
+
 #: includes/admin-import-export.php:235
 msgid "To import/export your feed sources, please use the standard WordPress <a href=\"%1$simport.php\">Import</a> and <a href=\"%1$sexport.php\">Export</a> functionality."
 msgstr "Para importar/exportar tus fuentes de feed, por favor utiliza las funcionalidades estándar de WordPress <a href=\"%1$simport.php\">Importar</a> y <a href=\"%1$sexport.php\">Exportar</a>"
@@ -1086,6 +1094,16 @@ msgstr "Si después de leer la documentación aún tienes preguntas, por favor e
 msgid "Frequently Asked Questions (FAQ)"
 msgstr "Preguntas frecuentes (FAQ)"
 
+#: includes/admin-help.php:15
+msgid ""
+"In the <a href=\"http://www.wprssaggregator.com/documentation/\">documentation area</a> on the WP RSS Aggregator website you will find comprehensive details on how to use the core plugin and all the add-ons.\n"
+"\t\t\t\t\n"
+"\t\t\t\tThere are also some videos to help you make a quick start to setting up and enjoying this plugin."
+msgstr ""
+"En el <a href=\"http://www.wprssaggregator.com/documentation/\">área de documentación</a> del sitio web de WP RSS Aggregator encontrarás detalles sobre cómo usar el plugin principal y sus extensiones.\n"
+"\t\t\t\t\n"
+"\t\t\t\tTambién hay algunos vídeos que te ayudarán a configurar el plugin rápidamente y disfrutarlo."
+
 #: includes/admin-help.php:14 includes/admin.php:112
 msgid "Documentation"
 msgstr "Documentación"
@@ -1141,6 +1159,10 @@ msgstr "Número máximo de elementos de feed en el feed personalizado."
 #: includes/admin-editor.php:139
 msgid "Add shortcode"
 msgstr "Añadir shortcode"
+
+#: includes/admin-editor.php:131
+msgid "Ignore"
+msgstr "Ignorar"
 
 #: includes/admin-editor.php:130
 msgid "Feed Limit:"
@@ -1391,7 +1413,7 @@ msgstr "Instalado"
 
 #: includes/admin-addons.php:73
 msgid "Each Add-on can be installed as a separate plugin. Note that activating the Feed to Post plugin will deactivate the Categories and Excerpts & Thumbnails add-ons."
-msgstr "Cada extensión puede instalarse como un plugin por separado. Ten en cuenta que al activar la extensión Feed a entrada se desactivarán las extensiones Categorías y Extractos y miniaturas."
+msgstr "Cada extensión puede instalarse como un plugin por separado. Ten en cuenta que al activar la extensión Feed to Post se desactivarán las extensiones Categories y Excerpts & Thumbnails."
 
 #: includes/admin-addons.php:72
 msgid "The following Add-ons are available to increase the functionality of the WP RSS Aggregator plugin."
@@ -1403,7 +1425,7 @@ msgstr "Extensiones"
 
 #: includes/admin-addons.php:59
 msgid "Allows you to spin the content for posts imported by Feed to Post using WordAi. Cleverly rewrite your posts without changing their meaning and maintaining human readability."
-msgstr "Te permite dar una vuelta al contenido de las publicaciones importadas por Feed a entrada utilizando WordAi. Reescribe inteligentemente tus publicaciones sin cambiar su significado y manteniendo la legibilidad."
+msgstr "Te permite dar una vuelta al contenido de las publicaciones importadas por Feed to Post utilizando WordAi. Reescribe inteligentemente tus publicaciones sin cambiar su significado y manteniendo la legibilidad."
 
 #: includes/admin-addons.php:58 includes/admin-welcome.php:108
 msgid "WordAi"
@@ -1423,7 +1445,7 @@ msgstr "Te permite importar elementos de feed a entradas o cualquier otro tipo d
 
 #: includes/admin-addons.php:40 includes/admin-welcome.php:103
 msgid "Feed to Post"
-msgstr "Feed a entrada"
+msgstr "Feed to Post"
 
 #: includes/admin-addons.php:32
 msgid "Import feeds that contain specific keywords in either the title or their content. Control what gets imported to your blog. You can use keywords, keyphrases and categories."
@@ -1443,7 +1465,7 @@ msgstr "Categorías"
 
 #: includes/admin-addons.php:14
 msgid "Adds the ability to display thumbnails and excerpts. Perfect for adding some life and color to your feed item display. For more flexibility Feed to Post is a better option."
-msgstr "Añade la posibilidad de mostrar miniaturas y extractos. Perfecto para dar un poco de vida y color a como se muestran los elementos del feed. Para más flexibilidad Feed a entrada es una opción mejor."
+msgstr "Añade la posibilidad de mostrar miniaturas y extractos. Perfecto para dar un poco de vida y color a como se muestran los elementos del feed. Para más flexibilidad Feed to Post es una opción mejor."
 
 #: includes/admin-addons.php:13
 msgid "Excerpts & Thumbnails"

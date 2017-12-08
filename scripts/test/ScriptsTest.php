@@ -5,9 +5,9 @@ class ScriptsTest extends TestCase
 {
     public function testCriaObjeto()
     {
-        $movimentaAmbiente = new MovimentaAmbiente();
+        $movimentaAmbiente = new MovimentarAmbiente();
         $this->assertInstanceOf(
-            MovimentaAmbiente::class,
+            MovimentarAmbiente::class,
             $movimentaAmbiente
         );
     }
@@ -16,7 +16,7 @@ class ScriptsTest extends TestCase
     {
         $urlOrigem = "http://base-wp.cultura.gov.br";
         
-        $movimentaAmbiente = new MovimentaAmbiente();
+        $movimentaAmbiente = new MovimentarAmbiente();
         $this->assertContains(
             $urlOrigem,
             $movimentaAmbiente->defineDominios($urlOrigem, '')
@@ -27,7 +27,7 @@ class ScriptsTest extends TestCase
     {
         $urlDestino = "http://base-wp.localhost";
         
-        $movimentaAmbiente = new MovimentaAmbiente();
+        $movimentaAmbiente = new MovimentarAmbiente();
         $this->assertContains(
             $urlDestino,
             $movimentaAmbiente->defineDominios('', $urlDestino)
@@ -36,15 +36,28 @@ class ScriptsTest extends TestCase
 
     public function testVerificaConexao()
     {
-        $movimentaAmbiente = new MovimentaAmbiente();
+        $movimentaAmbiente = new MovimentarAmbiente();
         $this->assertTrue($movimentaAmbiente->conexao());
     }    
 
     public function testDefineConexao()
     {
-        $movimentaAmbiente = new MovimentaAmbiente();
+        $movimentaAmbiente = new MovimentarAmbiente();
         $this->assertTrue($movimentaAmbiente->defineConexao(['host' => '', 'user' => '', 'pass' => '', 'database' => '']));
     }    
 
-    
+    public function testTentaConexao()
+    {
+        $movimentaAmbiente = new MovimentarAmbiente();
+        $movimentaAmbiente->defineConexao(['host' => 'localhost', 'user' => 'root', 'pass' => '', 'database' => '']);;
+        $this->assertTrue($movimentaAmbiente->conectar());
+    }
+
+    public function testExecuteQuery()
+    {
+        $movimentaAmbiente = new MovimentarAmbiente();
+        $movimentaAmbiente->defineConexao(['host' => 'localhost', 'user' => 'root', 'pass' => '', 'database' => 'wpbase']);;
+        $movimentaAmbiente->conectar();
+        $this->assertTrue($movimentaAmbiente->executeQuery("SELECT * FROM wpminc_users"));
+    }
 }

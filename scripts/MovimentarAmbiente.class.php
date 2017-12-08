@@ -1,16 +1,17 @@
 <?php
 
-class MovimentaAmbiente
+class MovimentarAmbiente
 {
     public $urlOrigem;
     public $urlDestino;
-    private $dadosConexao = array(
+    private $dadosConexaoDefault = array(
         'host'     => NULL,
         'database' => NULL,
         'user'     => NULL,
         'pass'     => NULL
     );
-    
+    private $dadosConexao = array();
+    private $conexao = NULL;
     private $protocolPattern = '/$[a-z]\:\/\//';
 
     public function __construct()
@@ -79,7 +80,7 @@ class MovimentaAmbiente
             return false;
         }
         
-        if (count(array_intersect_key($this->dadosConexao, $dadosConexao)) !== count($this->dadosConexao)) {           
+        if (count(array_intersect_key($this->dadosConexaoDefault, $dadosConexao)) !== count($this->dadosConexaoDefault)) {           
             return false;
         }
         
@@ -96,6 +97,31 @@ class MovimentaAmbiente
         
         return true;
     }
+
+    public function conectar()
+    {
+        if (!$this->__validaDadosConexao($this->dadosConexao)) {
+            return false;
+        }
+
+        $this->conexao = new mysqli($this->dadosConexao['host'], $this->dadosConexao['user'], $this->dadosConexao['pass'], $this->dadosConexao['database']);
+        
+        if (!$this->conexao) {
+            return false;
+        }
+        
+        return true;
+    }
+    
+    public function executeQuery($sql)
+    {
+        $this->conexao->query($sql);
+        if (!$this->conexao->query($sql)) {
+            return false;
+        }
+        return true;
+    }
+
 }
 
 

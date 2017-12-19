@@ -1,0 +1,42 @@
+{
+  "name": "pp-wp",
+  "version": "0.0.1",
+  "description": "Portal Padrão - WordPress Theme framework",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/culturagovbr/"
+  },
+  "scripts": {
+    "postinstall": "gulp"
+  },
+  "keywords": [
+    "wordpress",
+    "theme",
+    "framework",
+    "bootstrap",
+    "underscores"
+  ],
+  "author": "Ricardo Carvalho",
+  "dependencies": {
+    "bootstrap": "4.0.0-beta.2",
+    "browser-sync": "^2.18.13",
+    "font-awesome": "^4.7.0",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.9.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-livereload": "^3.8.1",
+    "gulp-notify": "^3.0.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rimraf": "^0.2.1",
+    "gulp-sass": "^3.1.0",
+    "gulp-sass-variables": "^1.1.1",
+    "gulp-sourcemaps": "2.6.1",
+    "gulp-uglify-es": "^0.1.8",
+    "gulp-watch": "^4.3.11",
+    "jquery": "^3.2.1",
+    "popper.js": "^1.12.6",
+    "run-sequence": "^2.2.0",
+    "uglify-es": "^3.2.2"
+  }
+}

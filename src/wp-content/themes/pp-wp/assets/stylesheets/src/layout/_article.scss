@@ -1,0 +1,7 @@
+article {
+	font-family: $font__sec;
+	margin-bottom: 45px;
+
+	@import "elements/entry-meta";
+	@import "elements/entry-footer";
+}

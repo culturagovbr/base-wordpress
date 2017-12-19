@@ -1,0 +1,19 @@
+footer {
+
+	&.site-footer {
+		background-color: $color__theme-support;
+		padding-top: 30px;
+		padding-bottom: 50px;
+		color: $color__text-on-dark-bg;
+		font-size: 12px;
+
+		a {
+			color: $color__link-alt;
+
+			&:hover {
+				text-decoration: none;
+			}
+		}
+	}
+
+}

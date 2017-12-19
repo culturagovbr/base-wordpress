@@ -1,0 +1,11 @@
+.entry-meta {
+	padding-top: 10px;
+	border-top: 1px solid #d7dcd8;
+	font-size: 12px;
+	margin-bottom: 30px;
+	color: $color__link;
+
+	& > span {
+		display: block;
+	}
+}

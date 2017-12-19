@@ -1,0 +1,87 @@
+/*--------------------------------------------------------------
+TABLE OF CONTENTS:
+----------------------------------------------------------------
+stylesheets/
+|-- dist/
+|   |-- bundle.min.css              # Minified version of all stylesheets
+|
+|-- src/
+|   |-- base/                       # Contains global styles, such as resets, typography, etc
+|   |   |-- _normalize.scss         # CSS Reset
+|   |   |-- _typography.scss        # Fonts used
+|
+|   |-- elements/                   # HTML elements
+|   |   |-- _elements.scss          # Common rules to all elements
+|   |   |-- _buttons.scss           # Buttons
+|   |   |-- _tables.scss            # Tables
+|
+|   |-- layout/                     # Modules
+|   |   |-- _header.scss            # Header
+|   |   |-- _footer.scss            # Footer
+|
+|   |-- pages/                      # Rules to specif pages
+|   |   |-- _fluid-container.scss   # 100% fluid layout with banner on top
+|
+|   |-- utils/                      # Global mixins, functions, helper selectors, etc
+|   |   |-- _mixins.scss            # Sass mixins
+|   |   |-- _functions.scss         # Sass functions
+|
+|   |-- variables/                  # Variables
+|   |   |-- _colors.scss            # Theme colors
+|
+|   |-- vendor/                     # Contains 3rd-party styles, mixins, etc
+|   |   |-- _colorpicker.scss       # Example
+|
+|   |-- main.scss                   # Base sass file
+
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# Bootstrap
+--------------------------------------------------------------*/
+@import "vendor/bootstrap/bootstrap";
+
+/*--------------------------------------------------------------
+# Variables
+--------------------------------------------------------------*/
+@import "variables/colors";
+@import "variables/typography";
+
+/*--------------------------------------------------------------
+# Utils
+--------------------------------------------------------------*/
+@import "utils/mixins";
+
+/*--------------------------------------------------------------
+# Normalize
+--------------------------------------------------------------*/
+@import "base/normalize";
+
+/*--------------------------------------------------------------
+# Typograph
+--------------------------------------------------------------*/
+@import "base/typography";
+
+/*--------------------------------------------------------------
+# Elements
+--------------------------------------------------------------*/
+@import "elements/accessibility_menu";
+@import "elements/breadcrumb";
+@import "elements/elements";
+@import "elements/footer-brasil";
+@import "elements/shortcut-bar";
+@import "elements/widgets";
+
+/*--------------------------------------------------------------
+# Layout
+--------------------------------------------------------------*/
+@import "layout/article";
+@import "layout/footer";
+@import "layout/header";
+
+/*--------------------------------------------------------------
+# Pages
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+# Vendor
+--------------------------------------------------------------*/

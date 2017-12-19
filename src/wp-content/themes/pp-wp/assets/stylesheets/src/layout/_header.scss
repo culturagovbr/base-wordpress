@@ -1,0 +1,53 @@
+@import "elements/barra-brasil";
+
+header {
+
+	&.site-header {
+
+		color: $color__text-on-dark-bg;
+		background-color: $color__theme-gradient-start;
+		@include gradient-vertical($color__theme-gradient-start, $color__theme-gradient-end);
+
+		a {
+			color: $color__link-alt;
+
+			&:hover {
+				text-decoration: none;
+			}
+		}
+
+		& > div.container {
+			padding: 15px 0;
+		}
+
+		.denomination {
+			font-size: 12px;
+		}
+
+		.site-title {
+			font-size: 40px;
+			line-height: 40px;
+			letter-spacing: -2px;
+		}
+
+		.site-description {
+			font-size: 14px;
+			text-transform: uppercase;
+		}
+
+		.service-bar-container {
+			background: $color__theme-secondary;
+
+			.navbar {
+				padding: 0;
+				text-align: right;
+			}
+
+			@import "elements/service-bar";
+		}
+
+		@import "elements/main-search";
+
+	}
+
+}

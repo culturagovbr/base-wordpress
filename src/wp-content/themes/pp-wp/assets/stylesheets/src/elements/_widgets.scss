@@ -1,0 +1,62 @@
+.widget {
+	margin-bottom: 30px;
+
+	.menu {
+		padding: 0;
+		margin: 0;
+		list-style-type: none;
+
+		li {
+
+			border-bottom: 1px solid #ccc;
+
+			a {
+				padding: 8px;
+				display: inline-block;
+				font-size: 14px;
+			}
+		}
+	}
+
+	ul {
+		padding: 0;
+		margin: 0;
+		list-style-type: none;
+	}
+
+	// Footer widgets
+	.site-footer & {
+		border-left: 1px dotted $color-_text-on-dark-bg;
+		padding-left: 15px;
+
+		.widget-title {
+			background: none;
+			padding: 0;
+			font-size: 18px;
+			text-transform: none;
+			border: none;
+			color: $color__theme-tertiary;
+			margin-bottom: 15px;
+		}
+
+		table {
+			th, td {
+				padding: .25rem;
+			}
+		}
+
+		ul, .menu {
+
+			li {
+
+				border-bottom: none;
+
+				a {
+					padding: 4px 0;
+					display: inline-block;
+					font-size: 12px;
+				}
+			}
+		}
+	}
+}

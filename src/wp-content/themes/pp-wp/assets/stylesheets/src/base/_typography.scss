@@ -1,0 +1,52 @@
+@font-face {
+	font-family: 'Open Sans';
+	src: url('../../fonts/opensans-regular-webfont.woff2') format('woff2'),
+	url('../../fonts/opensans-regular-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Open Sans';
+	src: url('../../fonts/opensans-bold-webfont.woff2') format('woff2'),
+	url('../../fonts/opensans-bold-webfont.woff') format('woff');
+	font-weight: 700;
+	font-style: normal;
+}
+
+h1 {
+	line-height: 32px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: $font__sec;
+}
+
+.site-title {
+	font-size: 40px;
+	line-height: 40px;
+	letter-spacing: -2px;
+	font-weight: 700;
+	margin: 0;
+	font-family: $font__main;
+}
+
+.entry-title,
+.page-title {
+	font-weight: 700;
+	margin: 0 0 15px 0;
+	font-size: 32px;
+	line-height: 32px;
+	letter-spacing: -2px;
+}
+
+.widget-title {
+	background: #edeff1;
+	padding: 8px 8px 24px 10px;
+	margin: 0;
+	font-size: 12px;
+	font-weight: 700;
+	text-transform: uppercase;
+	border-top: 4px solid $color__theme-primary;
+	border-bottom: 1px solid #ccc;
+}

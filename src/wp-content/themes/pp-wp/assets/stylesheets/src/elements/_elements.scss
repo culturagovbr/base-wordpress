@@ -1,0 +1,62 @@
+html {
+	box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
+body {
+	background: $color__background-body;
+	font-family: $font__main;
+}
+
+hr {
+	background-color: $color__background-hr;
+	border: 0;
+	height: 1px;
+	margin-bottom: 1.5em;
+}
+
+img {
+	height: auto;
+	max-width: 100%;
+}
+
+figure {
+	margin: 1em 0;
+}
+
+a {
+	color: $color__link;
+}
+
+table {
+	width: 100%;
+	max-width: 100%;
+	margin-bottom: 1rem;
+	background-color: transparent;
+	text-align: center;
+
+	th {
+		padding: .75rem;
+		vertical-align: bottom;
+		border-bottom: 2px solid #e9ecef;
+	}
+
+	td {
+		padding: .75rem;
+		vertical-align: top;
+		border-top: 1px solid #e9ecef;
+
+		&#prev{
+			text-align: left;
+		}
+
+		&#next{
+			text-align: right;
+		}
+	}
+}

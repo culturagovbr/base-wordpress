@@ -1,0 +1,16 @@
+#main-search {
+	padding-left: 25%;
+
+	.input-group-btn {
+		background: none;
+
+		button {
+			background: #fff;
+			border-top: 1px solid #ced4da;
+			border-right: 1px solid #ced4da;
+			border-bottom: 1px solid #ced4da;
+			border-top-right-radius: .25rem;
+			color: $color__theme-primary;
+		}
+	}
+}

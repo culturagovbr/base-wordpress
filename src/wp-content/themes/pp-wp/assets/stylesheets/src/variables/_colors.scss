@@ -1,0 +1,41 @@
+/*--------------------------------------------------------------
+MAIN THEME COLOR
+----------------------------------------------------------------
+green/
+|-- main:       #195128 / RGB(25,81,40)
+|-- secondary:  #01420A / RGB(25,81,40)
+|
+yellow/
+|-- main:       #F7C514 / RGB(247,197,20)
+|-- secondary:  #?????? / RGB(?,?,?)
+blue/
+|-- main:       #3E67B1 / RGB(62,103,177)
+|-- secondary:  #?????? / RGB(?,?,?)
+white/
+|-- main:       #ECEDF1 / RGB(231,237,241)
+|-- secondary:  #?????? / RGB(?,?,?)
+--------------------------------------------------------------*/
+
+$color__theme-primary: #195128;
+$color__theme-secondary: #01420A;
+$color__theme-tertiary: #9ed5ab;
+$color__theme-support: #00510f;
+
+$color__theme-gradient-start: #17882C;
+$color__theme-gradient-end: #00510F;
+
+$color__background-body: #fff;
+$color__background-hr: #ccc;
+$color__background-pre: #eee;
+
+$color__text: #21759b;
+$color__text-input: #666;
+$color__text-input-focus: #111;
+$color__text-on-dark-bg: #fff;
+
+$color__link: #195128;
+$color__link-visited: #195128;
+$color__link-hover: #195128;
+$color__link-alt: #fff;
+$color__link-visited-alt: #fff;
+$color__link-hover-alt: #fff;

@@ -1,0 +1,20 @@
+.service-bar {
+
+	li {
+
+		font-size: 12px;
+		padding: 8px 8px 8px 0;
+
+		a {
+			color: $color-_text-on-dark-bg;
+			padding: 0 0 0 7px;
+			border-left: 1px dotted $color-_text-on-dark-bg;
+		}
+
+		&:first-of-type a{
+			border-left: none;
+		}
+
+	}
+
+}

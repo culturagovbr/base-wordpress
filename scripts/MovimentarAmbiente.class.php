@@ -29,6 +29,10 @@ class MovimentarAmbiente
     
     public function defineDominios($urlOrigem, $urlDestino = null)
     {
+        if ($urlOrigem == $urlDestino) {
+            return false;
+        }
+        
         $this->__setPaths(
             $urlOrigem,
             $urlDestino
@@ -66,11 +70,6 @@ class MovimentarAmbiente
         if (!$validation) {
             return false;
         }
-        return true;
-    }
-
-    public function conexao()
-    {
         return true;
     }
 
@@ -122,6 +121,30 @@ class MovimentarAmbiente
         return true;
     }
 
+    public function atualizarMultisite($urlOrigem = '', $urlDestino = '')
+    {       
+        if ((!$urlOrigem && !defined($this->urlOrigem))
+        || (!$urlDestino && !defined($this->urlDestino))) {
+            return false;
+        }
+
+        if ($urlOrigem || $urlDestino) {
+            $this->defineDominios($urlOrigem, $urlDestino);
+        }
+
+        $this->__atualizar_wp_options();
+        
+        return true;
+    }
+
+    private function __atualizar_wp_options()
+    {
+        if (!isset($this->urlOrigem)
+        || !isset($this->urlDestino)) {
+            
+        }
+        return ;
+    }
 }
 
 

@@ -3,12 +3,17 @@ use PHPUnit\Framework\TestCase;
 
 class ScriptsTest extends TestCase
 {
+    protected function setUp()
+    {
+        $this->movimentarAmbiente = new MovimentarAmbiente();
+    }
+
     public function testCriaObjeto()
     {
-        $movimentaAmbiente = new MovimentarAmbiente();
+
         $this->assertInstanceOf(
             MovimentarAmbiente::class,
-            $movimentaAmbiente
+            $this->movimentarAmbiente
         );
     }
     
@@ -16,10 +21,9 @@ class ScriptsTest extends TestCase
     {
         $urlOrigem = "http://base-wp.cultura.gov.br";
         
-        $movimentaAmbiente = new MovimentarAmbiente();
         $this->assertContains(
             $urlOrigem,
-            $movimentaAmbiente->defineDominios($urlOrigem, '')
+            $this->movimentarAmbiente->defineDominios($urlOrigem, '')
         );
     }
 
@@ -27,37 +31,77 @@ class ScriptsTest extends TestCase
     {
         $urlDestino = "http://base-wp.localhost";
         
-        $movimentaAmbiente = new MovimentarAmbiente();
+        $this->movimentarAmbiente->defineDominios('', $urlDestino);
         $this->assertContains(
             $urlDestino,
-            $movimentaAmbiente->defineDominios('', $urlDestino)
+            $this->movimentarAmbiente->defineDominios('', $urlDestino)
         );
     }
 
-    public function testVerificaConexao()
+    public function testDefineDominiosDiferentes()
     {
-        $movimentaAmbiente = new MovimentarAmbiente();
-        $this->assertTrue($movimentaAmbiente->conexao());
+        $urlDestino = "http://base-wp.localhost";
+        $urlOrigem = "http://base-wp.cultura.gov.br";        
+        
+        $this->assertEquals(
+            array(
+                'urlOrigem' => $urlOrigem,
+                'urlDestino' => $urlDestino
+            ),
+            $this->movimentarAmbiente->defineDominios($urlOrigem, $urlDestino)
+        );
+    }
+
+    public function testDefineDominiosIguais()
+    {
+        $urlDestino = "http://base-wp.localhost";
+        $urlOrigem = "http://base-wp.localhost";
+        
+        $this->assertFalse(
+            $this->movimentarAmbiente->defineDominios($urlOrigem, $urlDestino)
+        );
     }    
 
     public function testDefineConexao()
     {
-        $movimentaAmbiente = new MovimentarAmbiente();
-        $this->assertTrue($movimentaAmbiente->defineConexao(['host' => '', 'user' => '', 'pass' => '', 'database' => '']));
-    }    
+        $this->assertTrue($this->movimentarAmbiente->defineConexao(['host' => '', 'user' => '', 'pass' => '', 'database' => '']));
+    }
 
+    public function testDefineConexaoIncompleta()
+    {
+        $this->assertFalse($this->movimentarAmbiente->defineConexao(['host' => '', 'pass' => '', 'database' => '']));
+    }
+    
     public function testTentaConexao()
     {
-        $movimentaAmbiente = new MovimentarAmbiente();
-        $movimentaAmbiente->defineConexao(['host' => 'localhost', 'user' => 'root', 'pass' => '', 'database' => '']);;
-        $this->assertTrue($movimentaAmbiente->conectar());
+        $this->movimentarAmbiente->defineConexao(['host' => 'localhost', 'user' => 'root', 'pass' => '', 'database' => '']);;
+        $this->assertTrue($this->movimentarAmbiente->conectar());
     }
 
+    /**
+     * @depends testTentaConexao
+     */
     public function testExecuteQuery()
     {
-        $movimentaAmbiente = new MovimentarAmbiente();
-        $movimentaAmbiente->defineConexao(['host' => 'localhost', 'user' => 'root', 'pass' => '', 'database' => 'wpbase']);;
-        $movimentaAmbiente->conectar();
-        $this->assertTrue($movimentaAmbiente->executeQuery("SELECT * FROM wpminc_users"));
+        $this->movimentarAmbiente->defineConexao(['host' => 'localhost', 'user' => 'root', 'pass' => '', 'database' => 'wpbase']);;
+        $this->movimentarAmbiente->conectar();
+        $this->assertTrue($this->movimentarAmbiente->executeQuery("SELECT * FROM wpminc_users"));
     }
+    
+    public function testMoveWebsiteSemOrigem()
+    {
+        $urlDestino = "http://base-wp.localhost";
+        $urlOrigem = "";      
+        
+        $this->assertFalse($this->movimentarAmbiente->atualizarMultisite($urlOrigem, $urlDestino));
+    }
+    
+    public function testMoveWebsite()
+    {
+        $urlDestino = "http://base-wp.localhost";
+        $urlOrigem = "http://base-wp.cultura.gov.br";
+        
+        $this->assertTrue($this->movimentarAmbiente->atualizarMultisite($urlOrigem, $urlDestino));        
+    }
+
 }

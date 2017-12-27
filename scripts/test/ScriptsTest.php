@@ -10,18 +10,24 @@ class ScriptsTest extends PHPUnit\DBUnit\TestCase
 {
     protected $db = null;
     protected $connection = null;
-    protected $dataSetXml = '/db/base-mysqldump.xml';
+    protected $dataSetXmlFile = '/db/base-mysqldump.xml';
+    protected $dataSetData = null;
     
     protected function setUp()
     {
-        $dbname = 'wpminc_unittest';
-        $hostname = 'localhost';
-        
-        $this->db = new PDO("mysql:dbname=$dbname;hostname=$hostname", 'root');
+        $this->db = new PDO( $GLOBALS['DB_DSN'], $GLOBALS['DB_USER'], $GLOBALS['DB_PASSWD'] );
         $this->getConnection();
-        $this->getDataSet();
+        $this->dataSetData = $this->getDataSet();
         
         $this->movimentarAmbiente = new MovimentarAmbiente();
+    }
+
+    public function tearDown()
+    {
+        $this->db = null;
+        $this->connection = null;
+        $this->dataSetData = null;
+        
     }
     
     public function getConnection()
@@ -34,7 +40,7 @@ class ScriptsTest extends PHPUnit\DBUnit\TestCase
     
     public function getDataSet()
     {
-        return $this->createMySQLXMLDataSet(dirname(__FILE__). $this->dataSetXml);
+        return $this->createMySQLXMLDataSet(dirname(__FILE__). $this->dataSetXmlFile);
     }
     
     public function testCriaObjeto()

@@ -2,6 +2,7 @@
 
 use PHPUnit\Framework\TestCase;
 use PHPUnit\DbUnit\TestCaseTrait;
+use PHPUnit\DbUnit\DataSet\QueryTable;
 
 require(dirname(__FILE__).'/../vendor/phpunit/dbunit/src/TestCaseTrait.php');
 require(dirname(__FILE__).'/../vendor/phpunit/dbunit/src/TestCase.php');
@@ -12,6 +13,7 @@ class ScriptsTest extends PHPUnit\DBUnit\TestCase
     protected $connection = null;
     protected $dataSetXmlFile = '/db/base-mysqldump.xml';
     protected $dataSetData = null;
+    protected $table;
     
     protected function setUp()
     {
@@ -41,6 +43,12 @@ class ScriptsTest extends PHPUnit\DBUnit\TestCase
     public function getDataSet()
     {
         return $this->createMySQLXMLDataSet(dirname(__FILE__). $this->dataSetXmlFile);
+    }
+
+    private function getFixtureRow($table, $index)
+    {
+        $fixtureTable = $this->getConnection()->createDataSet()->getTable($table);
+        return $fixtureTable->getRow($index);
     }
     
     public function testCriaObjeto()
@@ -140,11 +148,49 @@ class ScriptsTest extends PHPUnit\DBUnit\TestCase
     /**
      * @depends testTentaConexao
      */
-    public function testExecuteQuery()
+    public function testExecuteSimpleQuery()
     {
-        //$this->movimentarAmbiente->conectar();
-        //$this->assertTrue($this->db->executeQuery("SELECT * FROM wpminc_users"));
-        $this->assertFalse(false);
+        $queryTable = $this->getConnection()->createQueryTable('wpminc_site', 'SELECT * FROM wpminc_site');
+        $expectedTable = $this->getConnection()->createDataSet()->getTable('wpminc_site');
+        
+        $this->assertTablesEqual($expectedTable, $queryTable);        
+    }
+
+    /**
+     * @depends testExecuteSimpleQuery
+     */
+    public function testSimpleRowCount()
+    {
+        $this->assertEquals(1, $this->getConnection()->getRowCount('wpminc_site'));
+        $this->assertEquals(3, $this->getConnection()->getRowCount('wpminc_sitemeta'));
+    }
+
+    /**
+     * @depends testExecuteSimpleQuery
+     */
+    public function testAtualizarOptions()
+    {
+        //$expectedTable = $this->getConnection()->createDataSet()->getTable('wpminc_site');
+        //
+        // testar se a classe vai conseguir atualizar para valor correto
+        // 1- atualizar valor pela classe
+        // 2- verificar se o valor desejado é igual ao novo
+
+        $urlDestino = "http://base-wp.localhost";
+        $urlOrigem = "http://base-wp.cultura.gov.br";        
+        
+        $this->movimentarAmbiente->defineDominios($urlOrigem, $urlDestino);
+                
+        $this->assertTrue($this->movimentarAmbiente->atualizarOptions());
+
+        
+        /*
+        $queryTable = $this->getConnection()->createQueryTable('wpminc_site', 'SELECT * FROM wpminc_site');
+        $expectedTable = $this->getConnection()->createDataSet()->getTable('wpminc_site');
+        
+        $this->assertTablesEqual($expectedTable, $queryTable);        
+        */
+        
     }
     
     public function testMoveWebsiteSemOrigem()

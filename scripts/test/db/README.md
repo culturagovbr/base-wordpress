@@ -50,3 +50,6 @@ O XML deve ter o seguinte padrão:
     </dataset>
 
 
+## Referência:
+
+https://phpunit.de/manual/current/en/database.html

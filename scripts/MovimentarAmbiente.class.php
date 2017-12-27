@@ -134,18 +134,20 @@ class MovimentarAmbiente
             $this->defineDominios($urlOrigem, $urlDestino);
         }
 
-        $this->__atualizar_wp_options();
+        if (!$this->atualizarOptions()) {
+            return false;
+        }
         
         return true;
     }
 
-    private function __atualizar_wp_options()
+    public function atualizarOptions()
     {
         if (!isset($this->urlOrigem)
         || !isset($this->urlDestino)) {
-            
+            return false;
         }
-        return ;
+        return true;
     }
 }
 

@@ -1,0 +1,502 @@
+<?xml version="1.0"?>
+<mysqldump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<database name="wpminc_unittest">
+	<table_data name="wpminc_2_options">
+	<row>
+		<field name="option_id">1</field>
+		<field name="option_name">siteurl</field>
+		<field name="option_value">http://teste1.base-wp.cultura.gov.br</field>
+		<field name="autoload">yes</field>
+	</row>
+	<row>
+		<field name="option_id">2</field>
+		<field name="option_name">home</field>
+		<field name="option_value">http://teste1.base-wp.cultura.gov.br</field>
+		<field name="autoload">yes</field>
+	</row>
+	<row>
+		<field name="option_id">3</field>
+		<field name="option_name">blogname</field>
+		<field name="option_value">Teste 1</field>
+		<field name="autoload">yes</field>
+	</row>
+	<row>
+		<field name="option_id">4</field>
+		<field name="option_name">blogdescription</field>
+		<field name="option_value">Teste 1 blog é um teste</field>
+		<field name="autoload">yes</field>
+	</row>
+	<row>
+		<field name="option_id">5</field>
+		<field name="option_name">users_can_register</field>
+		<field name="option_value">0</field>
+		<field name="autoload">yes</field>
+	</row>
+	<row>
+		<field name="option_id">6</field>
+		<field name="option_name">admin_email</field>
+		<field name="option_value">teste1@cultura.gov.br</field>
+		<field name="autoload">yes</field>
+	</row>
+	</table_data>
+	<table_data name="wpminc_2_posts">
+	<row>
+		<field name="ID">1</field>
+		<field name="post_author">1</field>
+		<field name="post_date">2016-07-14 21:19:41</field>
+		<field name="post_date_gmt">2016-07-14 21:19:41</field>
+		<field name="post_content">Bem-vindo ao &lt;a href=&quot;http://teste1.cultura.gov.br/&quot;&gt;BaseWP MinC sites&lt;/a&gt;. Esse é o seu primeiro post. Edite-o ou exclua-o, e então comece a escrever!</field>
+		<field name="post_title">Olá, mundo!</field>
+		<field name="post_excerpt"></field>
+		<field name="post_status">publish</field>
+		<field name="comment_status">open</field>
+		<field name="ping_status">open</field>
+		<field name="post_password"></field>
+		<field name="post_name">ola-mundo</field>
+		<field name="to_ping"></field>
+		<field name="pinged"></field>
+		<field name="post_modified">2016-07-14 21:19:41</field>
+		<field name="post_modified_gmt">2016-07-14 21:19:41</field>
+		<field name="post_content_filtered"></field>
+		<field name="post_parent">0</field>
+		<field name="guid">http://artenarua.base-wp.cultura.gov.br/?p=1</field>
+		<field name="menu_order">0</field>
+		<field name="post_type">post</field>
+		<field name="post_mime_type"></field>
+		<field name="comment_count">1</field>
+	</row>
+	<row>
+		<field name="ID">2</field>
+		<field name="post_author">1</field>
+		<field name="post_date">2016-07-14 21:19:41</field>
+		<field name="post_date_gmt">2016-07-14 21:19:41</field>
+		<field name="post_content">Esta é uma página de exemplo. É diferente de um post porque ela ficará em um local e será exibida na navegação do seu site (na maioria dos temas). A maioria das pessoas começa com uma página de introdução aos potenciais visitantes do site. Ela pode ser assim:
+
+&lt;blockquote&gt;Olá! Eu sou um bike courrier de dia, ator amador à noite e este é meu blog. Eu moro em São Paulo, tenho um cachorro chamado Tonico e eu gosto de caipirinhas. (E de ser pego pela chuva.)&lt;/blockquote&gt;
+
+ou assim:
+
+&lt;blockquote&gt;A XYZ foi fundada em 1971 e desde então vem proporcionando produtos de qualidade a seus clientes. Localizada em Valinhos, XYZ emprega mais de 2.000 pessoas e faz várias contribuições para a comunidade local.&lt;/blockquote&gt;
+Como um novo usuário do WordPress, você deve ir até o &lt;a href=&quot;http://teste1.base-wp.cultura.gov.br/wp-admin/&quot;&gt;seu painel&lt;/a&gt; para excluir essa página e criar novas páginas com seu próprio conteúdo. Divirta-se!</field>
+		<field name="post_title">Página de Exemplo</field>
+		<field name="post_excerpt"></field>
+		<field name="post_status">publish</field>
+		<field name="comment_status">closed</field>
+		<field name="ping_status">open</field>
+		<field name="post_password"></field>
+		<field name="post_name">pagina-exemplo</field>
+		<field name="to_ping"></field>
+		<field name="pinged"></field>
+		<field name="post_modified">2016-07-14 21:19:41</field>
+		<field name="post_modified_gmt">2016-07-14 21:19:41</field>
+		<field name="post_content_filtered"></field>
+		<field name="post_parent">0</field>
+		<field name="guid">http://teste1.base-wp.cultura.gov.br/?page_id=2</field>
+		<field name="menu_order">0</field>
+		<field name="post_type">page</field>
+		<field name="post_mime_type"></field>
+		<field name="comment_count">0</field>
+	</row>
+	<row>
+		<field name="ID">3</field>
+		<field name="post_author">1</field>
+		<field name="post_date">2016-07-14 21:20:25</field>
+		<field name="post_date_gmt">0000-00-00 00:00:00</field>
+		<field name="post_content"></field>
+		<field name="post_title">Rascunho automático</field>
+		<field name="post_excerpt"></field>
+		<field name="post_status">auto-draft</field>
+		<field name="comment_status">open</field>
+		<field name="ping_status">open</field>
+		<field name="post_password"></field>
+		<field name="post_name"></field>
+		<field name="to_ping"></field>
+		<field name="pinged"></field>
+		<field name="post_modified">2016-07-14 21:20:25</field>
+		<field name="post_modified_gmt">0000-00-00 00:00:00</field>
+		<field name="post_content_filtered"></field>
+		<field name="post_parent">0</field>
+		<field name="guid">http://teste1.base-wp.cultura.gov.br/?p=3</field>
+		<field name="menu_order">0</field>
+		<field name="post_type">post</field>
+		<field name="post_mime_type"></field>
+		<field name="comment_count">0</field>
+	</row>
+	</table_data>
+	<table_data name="wpminc_3_options">
+	<row>
+		<field name="option_id">1</field>
+		<field name="option_name">siteurl</field>
+		<field name="option_value">http://teste2.base-wp.cultura.gov.br</field>
+		<field name="autoload">yes</field>
+	</row>
+	<row>
+		<field name="option_id">2</field>
+		<field name="option_name">home</field>
+		<field name="option_value">http://teste2.base-wp.cultura.gov.br</field>
+		<field name="autoload">yes</field>
+	</row>
+	<row>
+		<field name="option_id">3</field>
+		<field name="option_name">blogname</field>
+		<field name="option_value">Teste 2</field>
+		<field name="autoload">yes</field>
+	</row>
+	<row>
+		<field name="option_id">4</field>
+		<field name="option_name">blogdescription</field>
+		<field name="option_value">Teste 2 blog é um teste</field>
+		<field name="autoload">yes</field>
+	</row>
+	<row>
+		<field name="option_id">5</field>
+		<field name="option_name">users_can_register</field>
+		<field name="option_value">0</field>
+		<field name="autoload">yes</field>
+	</row>
+	<row>
+		<field name="option_id">6</field>
+		<field name="option_name">admin_email</field>
+		<field name="option_value">teste2@cultura.gov.br</field>
+		<field name="autoload">yes</field>
+	</row>
+	</table_data>
+	<table_data name="wpminc_3_posts">
+	<row>
+		<field name="ID">1</field>
+		<field name="post_author">1</field>
+		<field name="post_date">2016-07-14 21:19:41</field>
+		<field name="post_date_gmt">2016-07-14 21:19:41</field>
+		<field name="post_content">Bem-vindo ao &lt;a href=&quot;http://teste2.cultura.gov.br/&quot;&gt;BaseWP MinC sites&lt;/a&gt;. Esse é o seu primeiro post. Edite-o ou exclua-o, e então comece a escrever!</field>
+		<field name="post_title">Olá, mundo!</field>
+		<field name="post_excerpt"></field>
+		<field name="post_status">publish</field>
+		<field name="comment_status">open</field>
+		<field name="ping_status">open</field>
+		<field name="post_password"></field>
+		<field name="post_name">ola-mundo</field>
+		<field name="to_ping"></field>
+		<field name="pinged"></field>
+		<field name="post_modified">2016-07-14 21:19:41</field>
+		<field name="post_modified_gmt">2016-07-14 21:19:41</field>
+		<field name="post_content_filtered"></field>
+		<field name="post_parent">0</field>
+		<field name="guid">http://artenarua.base-wp.cultura.gov.br/?p=1</field>
+		<field name="menu_order">0</field>
+		<field name="post_type">post</field>
+		<field name="post_mime_type"></field>
+		<field name="comment_count">1</field>
+	</row>
+	<row>
+		<field name="ID">2</field>
+		<field name="post_author">1</field>
+		<field name="post_date">2016-07-14 21:19:41</field>
+		<field name="post_date_gmt">2016-07-14 21:19:41</field>
+		<field name="post_content">Esta é uma página de exemplo. É diferente de um post porque ela ficará em um local e será exibida na navegação do seu site (na maioria dos temas). A maioria das pessoas começa com uma página de introdução aos potenciais visitantes do site. Ela pode ser assim:
+
+&lt;blockquote&gt;Olá! Eu sou um bike courrier de dia, ator amador à noite e este é meu blog. Eu moro em São Paulo, tenho um cachorro chamado Tonico e eu gosto de caipirinhas. (E de ser pego pela chuva.)&lt;/blockquote&gt;
+
+ou assim:
+
+&lt;blockquote&gt;A XYZ foi fundada em 1971 e desde então vem proporcionando produtos de qualidade a seus clientes. Localizada em Valinhos, XYZ emprega mais de 2.000 pessoas e faz várias contribuições para a comunidade local.&lt;/blockquote&gt;
+Como um novo usuário do WordPress, você deve ir até o &lt;a href=&quot;http://teste2.base-wp.cultura.gov.br/wp-admin/&quot;&gt;seu painel&lt;/a&gt; para excluir essa página e criar novas páginas com seu próprio conteúdo. Divirta-se!</field>
+		<field name="post_title">Página de Exemplo</field>
+		<field name="post_excerpt"></field>
+		<field name="post_status">publish</field>
+		<field name="comment_status">closed</field>
+		<field name="ping_status">open</field>
+		<field name="post_password"></field>
+		<field name="post_name">pagina-exemplo</field>
+		<field name="to_ping"></field>
+		<field name="pinged"></field>
+		<field name="post_modified">2016-07-14 21:19:41</field>
+		<field name="post_modified_gmt">2016-07-14 21:19:41</field>
+		<field name="post_content_filtered"></field>
+		<field name="post_parent">0</field>
+		<field name="guid">http://teste2.base-wp.cultura.gov.br/?page_id=2</field>
+		<field name="menu_order">0</field>
+		<field name="post_type">page</field>
+		<field name="post_mime_type"></field>
+		<field name="comment_count">0</field>
+	</row>
+	<row>
+		<field name="ID">3</field>
+		<field name="post_author">1</field>
+		<field name="post_date">2016-07-14 21:20:25</field>
+		<field name="post_date_gmt">0000-00-00 00:00:00</field>
+		<field name="post_content"></field>
+		<field name="post_title">Rascunho automático</field>
+		<field name="post_excerpt"></field>
+		<field name="post_status">auto-draft</field>
+		<field name="comment_status">open</field>
+		<field name="ping_status">open</field>
+		<field name="post_password"></field>
+		<field name="post_name"></field>
+		<field name="to_ping"></field>
+		<field name="pinged"></field>
+		<field name="post_modified">2016-07-14 21:20:25</field>
+		<field name="post_modified_gmt">0000-00-00 00:00:00</field>
+		<field name="post_content_filtered"></field>
+		<field name="post_parent">0</field>
+		<field name="guid">http://teste2.base-wp.cultura.gov.br/?p=3</field>
+		<field name="menu_order">0</field>
+		<field name="post_type">post</field>
+		<field name="post_mime_type"></field>
+		<field name="comment_count">0</field>
+	</row>
+	</table_data>
+	<table_data name="wpminc_4_options">
+	<row>
+		<field name="option_id">1</field>
+		<field name="option_name">siteurl</field>
+		<field name="option_value">http://teste3.base-wp.cultura.gov.br</field>
+		<field name="autoload">yes</field>
+	</row>
+	<row>
+		<field name="option_id">2</field>
+		<field name="option_name">home</field>
+		<field name="option_value">http://teste3.base-wp.cultura.gov.br</field>
+		<field name="autoload">yes</field>
+	</row>
+	<row>
+		<field name="option_id">3</field>
+		<field name="option_name">blogname</field>
+		<field name="option_value">Teste 3</field>
+		<field name="autoload">yes</field>
+	</row>
+	<row>
+		<field name="option_id">4</field>
+		<field name="option_name">blogdescription</field>
+		<field name="option_value">Teste 3 blog é um teste</field>
+		<field name="autoload">yes</field>
+	</row>
+	<row>
+		<field name="option_id">5</field>
+		<field name="option_name">users_can_register</field>
+		<field name="option_value">0</field>
+		<field name="autoload">yes</field>
+	</row>
+	<row>
+		<field name="option_id">6</field>
+		<field name="option_name">admin_email</field>
+		<field name="option_value">teste2@cultura.gov.br</field>
+		<field name="autoload">yes</field>
+	</row>
+	</table_data>
+	<table_data name="wpminc_4_posts">
+	<row>
+		<field name="ID">1</field>
+		<field name="post_author">1</field>
+		<field name="post_date">2016-07-14 21:19:41</field>
+		<field name="post_date_gmt">2016-07-14 21:19:41</field>
+		<field name="post_content">Bem-vindo ao &lt;a href=&quot;http://teste3.cultura.gov.br/&quot;&gt;BaseWP MinC sites&lt;/a&gt;. Esse é o seu primeiro post. Edite-o ou exclua-o, e então comece a escrever!</field>
+		<field name="post_title">Olá, mundo!</field>
+		<field name="post_excerpt"></field>
+		<field name="post_status">publish</field>
+		<field name="comment_status">open</field>
+		<field name="ping_status">open</field>
+		<field name="post_password"></field>
+		<field name="post_name">ola-mundo</field>
+		<field name="to_ping"></field>
+		<field name="pinged"></field>
+		<field name="post_modified">2016-07-14 21:19:41</field>
+		<field name="post_modified_gmt">2016-07-14 21:19:41</field>
+		<field name="post_content_filtered"></field>
+		<field name="post_parent">0</field>
+		<field name="guid">http://artenarua.base-wp.cultura.gov.br/?p=1</field>
+		<field name="menu_order">0</field>
+		<field name="post_type">post</field>
+		<field name="post_mime_type"></field>
+		<field name="comment_count">1</field>
+	</row>
+	<row>
+		<field name="ID">2</field>
+		<field name="post_author">1</field>
+		<field name="post_date">2016-07-14 21:19:41</field>
+		<field name="post_date_gmt">2016-07-14 21:19:41</field>
+		<field name="post_content">Esta é uma página de exemplo. É diferente de um post porque ela ficará em um local e será exibida na navegação do seu site (na maioria dos temas). A maioria das pessoas começa com uma página de introdução aos potenciais visitantes do site. Ela pode ser assim:
+
+&lt;blockquote&gt;Olá! Eu sou um bike courrier de dia, ator amador à noite e este é meu blog. Eu moro em São Paulo, tenho um cachorro chamado Tonico e eu gosto de caipirinhas. (E de ser pego pela chuva.)&lt;/blockquote&gt;
+
+ou assim:
+
+&lt;blockquote&gt;A XYZ foi fundada em 1971 e desde então vem proporcionando produtos de qualidade a seus clientes. Localizada em Valinhos, XYZ emprega mais de 2.000 pessoas e faz várias contribuições para a comunidade local.&lt;/blockquote&gt;
+Como um novo usuário do WordPress, você deve ir até o &lt;a href=&quot;http://teste3.base-wp.cultura.gov.br/wp-admin/&quot;&gt;seu painel&lt;/a&gt; para excluir essa página e criar novas páginas com seu próprio conteúdo. Divirta-se!</field>
+		<field name="post_title">Página de Exemplo</field>
+		<field name="post_excerpt"></field>
+		<field name="post_status">publish</field>
+		<field name="comment_status">closed</field>
+		<field name="ping_status">open</field>
+		<field name="post_password"></field>
+		<field name="post_name">pagina-exemplo</field>
+		<field name="to_ping"></field>
+		<field name="pinged"></field>
+		<field name="post_modified">2016-07-14 21:19:41</field>
+		<field name="post_modified_gmt">2016-07-14 21:19:41</field>
+		<field name="post_content_filtered"></field>
+		<field name="post_parent">0</field>
+		<field name="guid">http://teste3.base-wp.cultura.gov.br/?page_id=2</field>
+		<field name="menu_order">0</field>
+		<field name="post_type">page</field>
+		<field name="post_mime_type"></field>
+		<field name="comment_count">0</field>
+	</row>
+	<row>
+		<field name="ID">3</field>
+		<field name="post_author">1</field>
+		<field name="post_date">2016-07-14 21:20:25</field>
+		<field name="post_date_gmt">0000-00-00 00:00:00</field>
+		<field name="post_content"></field>
+		<field name="post_title">Rascunho automático</field>
+		<field name="post_excerpt"></field>
+		<field name="post_status">auto-draft</field>
+		<field name="comment_status">open</field>
+		<field name="ping_status">open</field>
+		<field name="post_password"></field>
+		<field name="post_name"></field>
+		<field name="to_ping"></field>
+		<field name="pinged"></field>
+		<field name="post_modified">2016-07-14 21:20:25</field>
+		<field name="post_modified_gmt">0000-00-00 00:00:00</field>
+		<field name="post_content_filtered"></field>
+		<field name="post_parent">0</field>
+		<field name="guid">http://teste3.base-wp.cultura.gov.br/?p=3</field>
+		<field name="menu_order">0</field>
+		<field name="post_type">post</field>
+		<field name="post_mime_type"></field>
+		<field name="comment_count">0</field>
+	</row>
+	</table_data>
+	<table_data name="wpminc_blogs">
+	<row>
+		<field name="blog_id">1</field>
+		<field name="site_id">1</field>
+		<field name="domain">base-wp.cultura.gov.br</field>
+		<field name="path">/</field>
+		<field name="registered">2016-07-13 15:09:26</field>
+		<field name="last_updated">2017-02-17 13:44:53</field>
+		<field name="public">1</field>
+		<field name="archived">0</field>
+		<field name="mature">0</field>
+		<field name="spam">0</field>
+		<field name="deleted">0</field>
+		<field name="lang_id">0</field>
+	</row>
+	<row>
+		<field name="blog_id">2</field>
+		<field name="site_id">1</field>
+		<field name="domain">teste1.base-wp.cultura.gov.br</field>
+		<field name="path">/</field>
+		<field name="registered">2016-07-14 18:32:00</field>
+		<field name="last_updated">2016-12-27 18:33:23</field>
+		<field name="public">1</field>
+		<field name="archived">0</field>
+		<field name="mature">0</field>
+		<field name="spam">0</field>
+		<field name="deleted">0</field>
+		<field name="lang_id">0</field>
+	</row>
+	<row>
+		<field name="blog_id">3</field>
+		<field name="site_id">1</field>
+		<field name="domain">teste2.base-wp.cultura.gov.br</field>
+		<field name="path">/</field>
+		<field name="registered">2016-07-14 21:19:40</field>
+		<field name="last_updated">2016-07-14 21:19:41</field>
+		<field name="public">1</field>
+		<field name="archived">0</field>
+		<field name="mature">0</field>
+		<field name="spam">0</field>
+		<field name="deleted">0</field>
+		<field name="lang_id">0</field>
+	</row>
+	<row>
+		<field name="blog_id">4</field>
+		<field name="site_id">1</field>
+		<field name="domain">teste3.base-wp.cultura.gov.br</field>
+		<field name="path">/</field>
+		<field name="registered">2016-07-19 17:30:39</field>
+		<field name="last_updated">2017-02-24 15:23:12</field>
+		<field name="public">1</field>
+		<field name="archived">0</field>
+		<field name="mature">0</field>
+		<field name="spam">0</field>
+		<field name="deleted">0</field>
+		<field name="lang_id">0</field>
+	</row>
+	</table_data>
+	<table_data name="wpminc_domain_mapping">
+	<row>
+		<field name="id">1</field>
+		<field name="blog_id">2</field>
+		<field name="domain">teste1.cultura.gov.br</field>
+		<field name="active">0</field>
+	</row>
+	<row>
+		<field name="id">2</field>
+		<field name="blog_id">3</field>
+		<field name="domain">teste2.cultura.gov.br</field>
+		<field name="active">1</field>
+	</row>
+	<row>
+		<field name="id">3</field>
+		<field name="blog_id">4</field>
+		<field name="domain">teste3.cultura.gov.br</field>
+		<field name="active">1</field>
+	</row>
+	</table_data>
+	<table_data name="wpminc_options">
+	<row>
+		<field name="option_id">1</field>
+		<field name="option_name">siteurl</field>
+		<field name="option_value">http://base-wp.localhost</field>
+		<field name="autoload">yes</field>
+	</row>
+	<row>
+		<field name="option_id">2</field>
+		<field name="option_name">home</field>
+		<field name="option_value">http://base-wp.localhost</field>
+		<field name="autoload">yes</field>
+	</row>
+	<row>
+		<field name="option_id">3</field>
+		<field name="option_name">blogname</field>
+		<field name="option_value">Plataforma WordPress do MinC - teste</field>
+		<field name="autoload">yes</field>
+	</row>
+	<row>
+		<field name="option_id">4</field>
+		<field name="option_name">blogdescription</field>
+		<field name="option_value">Teste</field>
+		<field name="autoload">yes</field>
+	</row>
+	</table_data>
+	<table_data name="wpminc_site">
+	<row>
+		<field name="id">1</field>
+		<field name="domain">base-wp.cultura.gov.br</field>
+		<field name="path">/</field>
+	</row>
+	</table_data>
+	<table_data name="wpminc_sitemeta">
+	<row>
+		<field name="meta_id">1</field>
+		<field name="site_id">1</field>
+		<field name="meta_key">site_name</field>
+		<field name="meta_value">Fazenda Wordpress MinC </field>
+	</row>
+	<row>
+		<field name="meta_id">2</field>
+		<field name="site_id">1</field>
+		<field name="meta_key">siteurl</field>
+		<field name="meta_value">http://base-wp.cultura.gov.br/</field>
+	</row>
+	<row>
+		<field name="meta_id">3</field>
+		<field name="site_id">1</field>
+		<field name="meta_key">dm_cname</field>
+		<field name="meta_value">base-wp.cultura.gov.br</field>
+	</row>
+	</table_data>
+</database>
+</mysqldump>

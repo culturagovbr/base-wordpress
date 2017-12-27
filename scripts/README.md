@@ -3,11 +3,14 @@
 ## Testes
 
 ### Instalando PHP Unit
-    $ wget https://phar.phpunit.de/phpunit.phar
-    $ chmod +x phpunit.phar
-    $ sudo mv phpunit.phar /usr/local/bin/phpunit
-    $ phpunit --version
-    PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
+
+A alternativa mais simples e que funcionou é com php7.1 e utilizando composer:
+
+    # apt install php7.1 php7.1-xml php7.1-mysql php7.1-mbstring
+    # apt install composer
+	$ cd /path/to/project
+    $ composer require --dev phpunit/dbunit
 
 ### Rodando testes
-    phpunit --bootstrap MovimentarAmbiente.class.php test/ScriptsTest.php
+    cd test
+	../vendor/phpunit/phpunit/phpunit .

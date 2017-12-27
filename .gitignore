@@ -1,6 +1,7 @@
 wp-config.php
 .htaccess
 *~
+\#*\#
 *swp
 .DS*Store
 Thumbs.db
@@ -35,3 +36,5 @@ scripts/update-wp.conf
 .idea
 
 node_modules
+scripts/vendor
+scripts/composer.lock

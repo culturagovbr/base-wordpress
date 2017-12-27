@@ -10,6 +10,8 @@ class MovimentarAmbiente
         'user'     => NULL,
         'pass'     => NULL
     );
+
+    private $db;    
     private $dadosConexao = array();
     private $conexao = NULL;
     private $protocolPattern = '/$[a-z]\:\/\//';
@@ -102,10 +104,10 @@ class MovimentarAmbiente
         if (!$this->__validaDadosConexao($this->dadosConexao)) {
             return false;
         }
-
-        $this->conexao = new mysqli($this->dadosConexao['host'], $this->dadosConexao['user'], $this->dadosConexao['pass'], $this->dadosConexao['database']);
         
-        if (!$this->conexao) {
+        $this->db = new PDO("mysql:dbname=" . $this->dadosConexao['database'] . ";hostname=" . $this->dadosConexao['host'], $this->dadosConexao['user'], $this->dadosConexao['pass'] );
+        
+        if (!$this->db) {
             return false;
         }
         
@@ -114,8 +116,8 @@ class MovimentarAmbiente
     
     public function executeQuery($sql)
     {
-        $this->conexao->query($sql);
-        if (!$this->conexao->query($sql)) {
+        $this->db->exec($sql);
+        if (!$this->db->exec($sql)) {
             return false;
         }
         return true;

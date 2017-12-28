@@ -11,6 +11,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `wpminc_site`
 --
 
+DROP TABLE IF EXISTS `wpminc_site`;
 CREATE TABLE `wpminc_site` (
   `id` bigint(20) NOT NULL,
   `domain` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
@@ -49,7 +50,7 @@ ALTER TABLE `wpminc_site`
 --
 -- Table structure for table `wpminc_sitemeta`
 --
-
+DROP TABLE IF EXISTS `wpminc_sitemeta`;
 CREATE TABLE `wpminc_sitemeta` (
   `meta_id` bigint(20) NOT NULL,
   `site_id` bigint(20) NOT NULL DEFAULT '0',
@@ -93,7 +94,7 @@ ALTER TABLE `wpminc_sitemeta`
 --
 -- Table structure for table `wpminc_options`
 --
-
+DROP TABLE IF EXISTS `wpminc_options`;
 CREATE TABLE `wpminc_options` (
   `option_id` bigint(20) UNSIGNED NOT NULL,
   `option_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
@@ -106,8 +107,8 @@ CREATE TABLE `wpminc_options` (
 --
 
 INSERT INTO `wpminc_options` (`option_id`, `option_name`, `option_value`, `autoload`) VALUES
-(1, 'siteurl', 'http://base-wp.localhost', 'yes'),
-(2, 'home', 'http://base-wp.localhost', 'yes'),
+(1, 'siteurl', 'http://base-wp.cultura.gov.br', 'yes'),
+(2, 'home', 'http://base-wp.cultura.gov.br', 'yes'),
 (3, 'blogname', 'Plataforma WordPress do MinC - teste', 'yes'),
 (4, 'blogdescription', 'Teste', 'yes');
 
@@ -136,7 +137,7 @@ ALTER TABLE `wpminc_options`
 --
 -- Table structure for table `wpminc_blogs`
 --
-
+DROP TABLE IF EXISTS `wpminc_blogs`;
 CREATE TABLE `wpminc_blogs` (
   `blog_id` bigint(20) NOT NULL,
   `site_id` bigint(20) NOT NULL DEFAULT '0',
@@ -188,7 +189,7 @@ ALTER TABLE `wpminc_blogs`
 --
 -- Table structure for table `wpminc_domain_mapping`
 --
-
+DROP TABLE IF EXISTS `wpminc_domain_mapping`;
 CREATE TABLE `wpminc_domain_mapping` (
   `id` bigint(20) NOT NULL,
   `blog_id` bigint(20) NOT NULL,
@@ -229,7 +230,7 @@ ALTER TABLE `wpminc_domain_mapping`
 --
 -- Table structure for table `wpminc_2_options`
 --
-
+DROP TABLE IF EXISTS `wpminc_2_options`;
 CREATE TABLE `wpminc_2_options` (
   `option_id` bigint(20) UNSIGNED NOT NULL,
   `option_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
@@ -274,7 +275,7 @@ ALTER TABLE `wpminc_2_options`
 --
 -- Table structure for table `wpminc_3_options`
 --
-
+DROP TABLE IF EXISTS `wpminc_3_options`;
 CREATE TABLE `wpminc_3_options` (
   `option_id` bigint(20) UNSIGNED NOT NULL,
   `option_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
@@ -318,7 +319,7 @@ ALTER TABLE `wpminc_3_options`
 --
 -- Table structure for table `wpminc_4_options`
 --
-
+DROP TABLE IF EXISTS `wpminc_4_options`;
 CREATE TABLE `wpminc_4_options` (
   `option_id` bigint(20) UNSIGNED NOT NULL,
   `option_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
@@ -365,7 +366,7 @@ ALTER TABLE `wpminc_4_options`
 --
 -- Table structure for table `wpminc_2_posts`
 --
-
+DROP TABLE IF EXISTS `wpminc_2_posts`;
 CREATE TABLE `wpminc_2_posts` (
   `ID` bigint(20) UNSIGNED NOT NULL,
   `post_author` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
@@ -430,7 +431,7 @@ ALTER TABLE `wpminc_2_posts`
 --
 -- Table structure for table `wpminc_3_posts`
 --
-
+DROP TABLE IF EXISTS `wpminc_3_posts`;
 CREATE TABLE `wpminc_3_posts` (
   `ID` bigint(20) UNSIGNED NOT NULL,
   `post_author` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
@@ -496,7 +497,7 @@ ALTER TABLE `wpminc_3_posts`
 --
 -- Table structure for table `wpminc_4_posts`
 --
-
+DROP TABLE IF EXISTS `wpminc_4_posts`;
 CREATE TABLE `wpminc_4_posts` (
   `ID` bigint(20) UNSIGNED NOT NULL,
   `post_author` bigint(20) UNSIGNED NOT NULL DEFAULT '0',

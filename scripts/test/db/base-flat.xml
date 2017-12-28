@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <dataset>
-	<table_data name="wpminc_2_options">
+  <table_data name="wpminc_2_options">
 	<row>
 		<field name="option_id">1</field>
 		<field name="option_name">siteurl</field>
@@ -448,13 +448,13 @@ Como um novo usuário do WordPress, você deve ir até o &lt;a href=&quot;http:/
 	<row>
 		<field name="option_id">1</field>
 		<field name="option_name">siteurl</field>
-		<field name="option_value">http://base-wp.localhost</field>
+		<field name="option_value">http://base-wp.cultura.gov.br</field>
 		<field name="autoload">yes</field>
 	</row>
 	<row>
 		<field name="option_id">2</field>
 		<field name="option_name">home</field>
-		<field name="option_value">http://base-wp.localhost</field>
+		<field name="option_value">http://base-wp.cultura.gov.br</field>
 		<field name="autoload">yes</field>
 	</row>
 	<row>

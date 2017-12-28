@@ -25,7 +25,7 @@ get_header (); ?>
 
 					<?php get_sidebar (); ?>
 
-                    <div class="col-lg-9">
+                    <div id="content" class="col-md-9 col-lg-9">
 						<?php
 
 						if (have_posts ()) :

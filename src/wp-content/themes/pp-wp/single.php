@@ -36,9 +36,7 @@ get_header(); ?>
 
                     </div>
 
-                    <div class="col-lg-3">
-                        SIDEBAR II
-                    </div>
+					<?php get_sidebar('right'); ?>
                 </div>
             </div>
 

@@ -52,4 +52,9 @@
 		}
 	}
 
+	@include media-breakpoint-down(sm) {
+		float: none;
+		margin: 0 0 15px;
+	}
+
 }

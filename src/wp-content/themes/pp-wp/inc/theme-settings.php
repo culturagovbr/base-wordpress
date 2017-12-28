@@ -124,6 +124,7 @@ class PPThemeOptions {
 
 		if ( isset( $input['color_palette'] ) ) {
 			$sanitary_values['color_palette'] = $input['color_palette'];
+			update_option ('color_palette', $input['color_palette']);
 		}
 
 		if ( isset( $input['show_search'] ) ) {

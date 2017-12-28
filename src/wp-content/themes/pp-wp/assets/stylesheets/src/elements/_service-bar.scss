@@ -24,6 +24,13 @@
 				color: $theme-white__link-color;
 				border-left: 1px dotted $theme-white__link-color;
 			}
+
+			@include media-breakpoint-down(sm) {
+
+				border-left: none;
+				text-align: center;
+
+			}
 		}
 
 		&:first-of-type > a{

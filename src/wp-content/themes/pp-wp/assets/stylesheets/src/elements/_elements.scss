@@ -96,3 +96,18 @@ table {
 		}
 	}
 }
+
+@include media-breakpoint-down(sm) {
+	#content {
+		order: 1;
+	}
+
+	aside {
+		&#secondary {
+			order: 2;
+		}
+		&#tertiary {
+			order: 3;
+		}
+	}
+}

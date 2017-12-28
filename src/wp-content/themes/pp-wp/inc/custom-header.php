@@ -23,7 +23,6 @@ function pp_wp_custom_header_setup() {
 		'width'                  => 1140,
 		'height'                 => 160,
 		'flex-height'            => true,
-		'class'                  => 'xxx',
 		'wp-head-callback'       => 'pp_wp_header_style',
 	) ) );
 }

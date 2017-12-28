@@ -22,12 +22,20 @@
 	font-style: normal;
 }
 
+h1, h2, h3, h4, h5, h6 {
+	font-family: $font__sec;
+}
+
 h1 {
 	line-height: 32px;
 }
 
-h1, h2, h3, h4, h5, h6 {
-	font-family: $font__sec;
+@for $i from 1 through 8 {
+	$size: 34 - ( $i + $i );
+
+	h#{$i} {
+		font-size: $size + px;
+	}
 }
 
 .site-title {

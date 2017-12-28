@@ -12,6 +12,10 @@
  */
 function pp_wp_customize_register( $wp_customize ) {
 
+	// $wp_customize->remove_control('blogdescription');
+	$wp_customize->remove_section('static_front_page');
+	$wp_customize->remove_section('WpBarraBrasil');
+
 	$wp_customize->add_section( 'header_image' , array(
 		'title'      => 'Cabeçalho',
 	) );
@@ -31,18 +35,17 @@ function pp_wp_customize_register( $wp_customize ) {
 	) );
 
 	$wp_customize->add_setting( 'color_palette', array(
-		'default'     => get_option( 'pp_theme_options_option_name' )['color_palette'],
+		'default'     => get_option( 'color_palette' ) ? get_option( 'color_palette' ) : 'green',
 		'transport' => 'postMessage',
 		'type'       => 'option',
-		'capability'    => 'edit_theme_options',
-		// 'validate_callback' => 'pp_wp_customize_partial_color_palette',
+		'capability'    => 'edit_theme_options'
 	) );
 
 	$wp_customize->add_control( 'color_palette', array(
 		'label'      => 'Paleta de cores',
 		'type' 		=> 'select',
 		'section'    => 'colors',
-		// 'settings' => get_option( 'pp_theme_options_option_name' )['color_palette'],
+		'priority' => 0,
 		'settings' => 'color_palette',
 		'choices' => array(
 			'yellow' => 'Amarelo',
@@ -114,7 +117,7 @@ function pp_wp_customize_partial_blogdenomination() {
 function pp_wp_customize_partial_color_palette($data) {
 	die( var_dump ($data) );
 	// echo get_option( 'pp_theme_options_option_name' )['color_palette'];
-	$options = get_option( 'pp_theme_options_option_name' );
+	$options = get_option( 'color_palette' );
 	$options['color_palette'] = $data;
 	update_option( 'pp_theme_options_option_name', $data );
 

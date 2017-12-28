@@ -25,4 +25,9 @@
 			}
 		}
 	}
+
+	@include media-breakpoint-down(sm) {
+		padding-right: 15%;
+		padding-left: 15%;
+	}
 }

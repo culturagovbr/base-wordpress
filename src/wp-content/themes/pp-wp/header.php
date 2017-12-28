@@ -20,7 +20,7 @@
 	<?php wp_head (); ?>
 </head>
 <?php
-$theme_color = get_option( 'pp_theme_options_option_name' )['color_palette'] ? get_option( 'pp_theme_options_option_name' )['color_palette'] . '-theme' : 'green-theme';  ?>
+$theme_color = get_option( 'color_palette' ) ? get_option( 'color_palette' ) . '-theme' : 'green-theme';  ?>
 <body <?php body_class ($theme_color); ?>>
 <div id="page" class="site">
     <a class="skip-link screen-reader-text sr-only"
@@ -29,9 +29,9 @@ $theme_color = get_option( 'pp_theme_options_option_name' )['color_palette'] ? g
     <header id="header" class="site-header">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-md-6 col-lg-8 cf-1">
 
-                    <ul id="shortcut-bar">
+                    <ul id="shortcut-bar" class="d-none d-md-block">
                         <li>
                             <a accesskey="1" href="#main" id="main-link">
                                 Ir para o conteúdo
@@ -75,7 +75,7 @@ $theme_color = get_option( 'pp_theme_options_option_name' )['color_palette'] ? g
                     endif; ?>
                 </div>
 
-                <div class="col-lg-4">
+                <div class="col-md-6 col-lg-4 cf-2">
 
                     <ul id="accessibility">
                         <li>
@@ -98,7 +98,8 @@ $theme_color = get_option( 'pp_theme_options_option_name' )['color_palette'] ? g
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <nav class="navbar navbar-expand-md navbar-light">
+                        <nav class="navbar navbar-expand-md navbar-dark">
+                            <a class="navbar-brand invisible d-md-none" href="#">Menu de navegação</a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>

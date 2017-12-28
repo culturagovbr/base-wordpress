@@ -9,7 +9,7 @@ require(dirname(__FILE__).'/../vendor/phpunit/dbunit/src/TestCase.php');
 
 class ScriptsTest extends PHPUnit\DBUnit\TestCase
 {
-    protected $db = null;
+    protected $pdo = null;
     protected $connection = null;
     protected $dataSetXmlFile = '/db/base-mysqldump.xml';
     protected $dataSetData = null;
@@ -17,7 +17,6 @@ class ScriptsTest extends PHPUnit\DBUnit\TestCase
     
     protected function setUp()
     {
-        $this->db = new PDO( $GLOBALS['DB_DSN'], $GLOBALS['DB_USER'], $GLOBALS['DB_PASSWD'] );
         $this->getConnection();
         $this->dataSetData = $this->getDataSet();
         
@@ -26,7 +25,7 @@ class ScriptsTest extends PHPUnit\DBUnit\TestCase
 
     public function tearDown()
     {
-        $this->db = null;
+        $this->pdo = null;
         $this->connection = null;
         $this->dataSetData = null;
         
@@ -34,8 +33,10 @@ class ScriptsTest extends PHPUnit\DBUnit\TestCase
     
     public function getConnection()
     {
-        if ($this->connection === null) {           
-            $this->connection = $this->createDefaultDBConnection($this->db);
+        if ($this->connection === null) {
+            $this->pdo = new PDO( $GLOBALS['DB_DSN'], $GLOBALS['DB_USER'], $GLOBALS['DB_PASSWD'] );
+            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->connection = $this->createDefaultDBConnection($this->pdo, $GLOBALS['DB_DBNAME']);
         }
         return $this->connection;
     }
@@ -141,8 +142,7 @@ class ScriptsTest extends PHPUnit\DBUnit\TestCase
                 'database' => 'wpminc_unittest'
             ]
         );
-        $this->assertTrue($this->movimentarAmbiente->conectar());
-        
+        $this->assertInstanceOf(PDO::class, $this->movimentarAmbiente->conectar());        
     }
 
     /**
@@ -170,27 +170,75 @@ class ScriptsTest extends PHPUnit\DBUnit\TestCase
      */
     public function testAtualizarOptions()
     {
-        //$expectedTable = $this->getConnection()->createDataSet()->getTable('wpminc_site');
-        //
-        // testar se a classe vai conseguir atualizar para valor correto
-        // 1- atualizar valor pela classe
-        // 2- verificar se o valor desejado é igual ao novo
-
-        $urlDestino = "http://base-wp.localhost";
-        $urlOrigem = "http://base-wp.cultura.gov.br";        
+        $this->movimentarAmbiente->defineConexao(
+            [
+                'host' => 'localhost',
+                'user' => 'root',
+                'pass' => '',
+                'database' => 'wpminc_unittest'
+            ]
+        );
+                
+        $urlOrigem = "http://base-wp.localhost";
+        $urlDestino = "http://base-wp.cultura.gov.br";        
         
         $this->movimentarAmbiente->defineDominios($urlOrigem, $urlDestino);
-                
         $this->assertTrue($this->movimentarAmbiente->atualizarOptions());
 
+        $actualTable = $this->getConnection()->createQueryTable(
+            'wpminc_options',
+            'SELECT * FROM wpminc_options'
+        );
+
+        $expectedTable = $this->createFlatXmlDataSet(dirname(__FILE__) . '/db/expected-wpminc_options.xml')
+                              ->getTable('wpminc_options');
         
-        /*
-        $queryTable = $this->getConnection()->createQueryTable('wpminc_site', 'SELECT * FROM wpminc_site');
-        $expectedTable = $this->getConnection()->createDataSet()->getTable('wpminc_site');
+        $sqlUpdateOptions = "UPDATE wpminc_options SET option_value = '{$urlDestino}' WHERE option_name = 'siteurl'";            
+        $sqlUpdateOptions = "UPDATE wpminc_options SET option_value = '{$urlDestino}' WHERE option_name = 'home'";
         
-        $this->assertTablesEqual($expectedTable, $queryTable);        
-        */
+        $this->assertTablesEqual($actualTable, $expectedTable);
+    }
+
+    public function testGetOptionInexistente()
+    {
+        $this->movimentarAmbiente->defineConexao(
+            [
+                'host' => 'localhost',
+                'user' => 'root',
+                'pass' => '',
+                'database' => 'wpminc_unittest'
+            ]
+        );
+                
+        $urlOrigem = "http://base-wp.localhost";
+        $urlDestino = "http://base-wp.cultura.gov.br";        
         
+        $this->movimentarAmbiente->defineDominios($urlOrigem, $urlDestino);
+        
+        $inexistente = $this->movimentarAmbiente->getOptionValue('inexistente');
+        
+        $this->assertNull($inexistente);
+    }
+
+    public function testGetOptionSitename()
+    {
+        $this->movimentarAmbiente->defineConexao(
+            [
+                'host' => 'localhost',
+                'user' => 'root',
+                'pass' => '',
+                'database' => 'wpminc_unittest'
+            ]
+        );
+                
+        $urlOrigem = "http://base-wp.localhost";
+        $urlDestino = "http://base-wp.cultura.gov.br";        
+        
+        $this->movimentarAmbiente->defineDominios($urlOrigem, $urlDestino);
+        
+        $blogdescription = $this->movimentarAmbiente->getOptionValue('blogdescription');
+        
+        $this->assertEquals('Teste', $blogdescription);
     }
     
     public function testMoveWebsiteSemOrigem()
@@ -203,6 +251,15 @@ class ScriptsTest extends PHPUnit\DBUnit\TestCase
     
     public function testMoveWebsite()
     {
+        $this->movimentarAmbiente->defineConexao(
+            [
+                'host' => 'localhost',
+                'user' => 'root',
+                'pass' => '',
+                'database' => 'wpminc_unittest'
+            ]
+        );
+        
         $urlDestino = "http://base-wp.localhost";
         $urlOrigem = "http://base-wp.cultura.gov.br";
         

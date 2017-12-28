@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<dataset>
+  <wpminc_options
+      option_id="1"
+      option_name="siteurl"
+      option_value="http://base-wp.cultura.gov.br"
+      autoload="yes"
+      />
+  <wpminc_options
+      option_id="2"
+      option_name="home"
+      option_value="http://base-wp.cultura.gov.br"
+      autoload="yes"
+      />
+  <wpminc_options
+      option_id="3"
+      option_name="blogname"
+      option_value="Plataforma WordPress do MinC - teste"
+      autoload="yes"
+      />
+  <wpminc_options
+      option_id="4"
+      option_name="blogdescription"
+      option_value="Teste"
+      autoload="yes"
+      />
+</dataset>

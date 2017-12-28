@@ -14,8 +14,23 @@
 				display: inline-block;
 				padding: 0 2px;
 				line-height: 12px;
-				background: $color__theme-tertiary;
-				color: $color__theme-primary;
+				background: $theme-green__color-tertiary;
+				color: $theme-green__color-primary;
+
+				body.yellow-theme & {
+					background: $theme-yellow__link-color;
+					color: $theme-yellow__color-primary;
+				}
+
+				body.blue-theme & {
+					background: $theme-blue__color-secondary;
+					color: $theme-blue__link-alt-color;
+				}
+
+				body.white-theme & {
+					background: $theme-white__link-color;
+					color: $theme-blue__link-alt-color;
+				}
 			}
 		}
 	}

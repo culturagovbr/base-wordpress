@@ -9,15 +9,39 @@ html {
 }
 
 body {
-	background: $color__background-body;
+	background: $theme-green__background-body;
 	font-family: $font__main;
+
+	body.yellow-theme & {
+		background: $theme-yellow__background-body;
+	}
+
+	body.blue-theme & {
+		background: $theme-blue__background-body;
+	}
+
+	body.white-theme & {
+		background: $theme-white__background-body;
+	}
 }
 
 hr {
-	background-color: $color__background-hr;
+	background-color: $theme-green__background-hr;
 	border: 0;
 	height: 1px;
 	margin-bottom: 1.5em;
+
+	body.yellow-theme & {
+		background: $theme-yellow__background-hr;
+	}
+
+	body.blue-theme & {
+		background: $theme-blue__background-hr;
+	}
+
+	body.white-theme & {
+		background: $theme-white__background-hr;
+	}
 }
 
 img {
@@ -30,7 +54,19 @@ figure {
 }
 
 a {
-	color: $color__link;
+	color: $theme-green__link-color;
+
+	body.yellow-theme & {
+		color: $theme-yellow__link-color;
+	}
+
+	body.blue-theme & {
+		color: $theme-blue__link-color;
+	}
+
+	body.white-theme & {
+		color: $theme-white__link-color;
+	}
 }
 
 table {

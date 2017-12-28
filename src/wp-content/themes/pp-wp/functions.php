@@ -114,6 +114,11 @@ function pp_wp_scripts() {
 add_action( 'wp_enqueue_scripts', 'pp_wp_scripts' );
 
 /**
+ * Implement the theme settings
+ */
+require get_template_directory() . '/inc/theme-settings.php';
+
+/**
  * Register widgets area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar

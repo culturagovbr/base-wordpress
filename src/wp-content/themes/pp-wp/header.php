@@ -19,13 +19,14 @@
 
 	<?php wp_head (); ?>
 </head>
-
-<body <?php body_class (); ?>>
+<?php
+$theme_color = get_option( 'pp_theme_options_option_name' )['color_palette'] ? get_option( 'pp_theme_options_option_name' )['color_palette'] . '-theme' : 'green-theme';  ?>
+<body <?php body_class ($theme_color); ?>>
 <div id="page" class="site">
     <a class="skip-link screen-reader-text sr-only"
        href="#content"><?php esc_html_e ('Skip to content', 'pp-wp'); ?></a>
 
-    <header id="masthead" class="site-header">
+    <header id="header" class="site-header">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
@@ -38,7 +39,7 @@
                             </a>
                         </li>
                         <li>
-                            <a accesskey="2" href="#navigation" id="navigation-link">
+                            <a accesskey="2" href="#main-navbar" id="navigation-link">
                                 Ir para o menu
                                 <span>2</span>
                             </a>
@@ -57,7 +58,10 @@
                         </li>
                     </ul>
 
-                    <span class="denomination">Denominação</span>
+                    <?php $blog_denomination = get_option( 'blogdenomination' );
+                    if( $blog_denomination || is_customize_preview () ): ?>
+                        <span class="denomination"><?php echo $blog_denomination ?></span>
+                    <?php endif; ?>
                     <h1 class="site-title">
                         <a href="<?php echo esc_url (home_url ('/')); ?>" rel="home">
                             <?php the_custom_logo (); ?>
@@ -66,7 +70,7 @@
                     </h1>
                     <?php $description = get_bloginfo ('description', 'display');
                     if ($description || is_customize_preview ()) : ?>
-                        <span class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></span>
+                        <span class="site-description"><?php echo $description; ?></span>
                         <?php
                     endif; ?>
                 </div>
@@ -116,4 +120,9 @@
                 </div>
             </div>
         </div>
+		<?php if( get_header_image_tag() ): ?>
+            <div class="custom-header-bg">
+			<?php the_header_image_tag(); ?>
+            </div>
+        <?php endif; ?>
     </header>

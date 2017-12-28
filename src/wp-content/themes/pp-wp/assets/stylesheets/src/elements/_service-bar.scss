@@ -6,13 +6,28 @@
 		padding: 8px 8px 8px 0;
 
 		a {
-			color: $color-_text-on-dark-bg;
+			color: $theme-green__text-on-dark-bg-color;
 			padding: 0 0 0 7px;
-			border-left: 1px dotted $color-_text-on-dark-bg;
+			border-left: 1px dotted $theme-green__text-on-dark-bg-color;
+
+			body.yellow-theme & {
+				color: $theme-yellow__text-on-dark-bg-color;
+				border-left: 1px dotted $theme-yellow__text-on-dark-bg-color;
+			}
+
+			body.blue-theme & {
+				color: $theme-blue__link-alt-color;
+				border-left: 1px dotted $theme-blue__link-alt-color;
+			}
+
+			body.white-theme & {
+				color: $theme-white__link-color;
+				border-left: 1px dotted $theme-white__link-color;
+			}
 		}
 
-		&:first-of-type a{
-			border-left: none;
+		&:first-of-type > a{
+			border-left: none !important;
 		}
 
 	}

@@ -1,14 +1,41 @@
 footer {
 
 	&.site-footer {
-		background-color: $color__theme-support;
+		background-color: $theme-green__color-support;
 		padding-top: 30px;
 		padding-bottom: 50px;
-		color: $color__text-on-dark-bg;
+		color: $theme-green__text-on-dark-bg-color;
 		font-size: 12px;
 
+		body.yellow-theme & {
+			background-color: $theme-yellow__color-support;
+			color: $theme-yellow__text-on-dark-bg-color;
+		}
+
+		body.blue-theme & {
+			background-color: $theme-blue__color-tertiary;
+			color: $theme-blue__link-alt-color;
+		}
+
+		body.white-theme & {
+			background-color: $theme-white__color-tertiary;
+			color: $theme-white__link-color;
+		}
+
 		a {
-			color: $color__link-alt;
+			color: $theme-green__link-alt-color;
+
+			body.yellow-theme & {
+				color: $theme-yellow__link-alt-color;
+			}
+
+			body.blue-theme & {
+				color: $theme-blue__link-alt-color;
+			}
+
+			body.white-theme & {
+				color: $theme-white__link-color;
+			}
 
 			&:hover {
 				text-decoration: none;

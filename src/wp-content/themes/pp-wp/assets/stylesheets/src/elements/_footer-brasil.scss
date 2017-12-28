@@ -4,4 +4,16 @@
 		max-width: 1156px;
 	}
 
+	body.yellow-theme & {
+		background: $theme-yellow__color-tertiary;
+	}
+
+	body.blue-theme & {
+		background: $theme-blue__color-support;
+	}
+
+	body.white-theme & {
+		background: $theme-white__color-support;
+	}
+
 }

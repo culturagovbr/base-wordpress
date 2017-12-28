@@ -3,7 +3,19 @@
 	border-top: 1px solid #d7dcd8;
 	font-size: 12px;
 	margin-bottom: 30px;
-	color: $color__link;
+	color: $theme-green__link-color;
+
+	body.yellow-theme & {
+		color: $theme-yellow__link-color;
+	}
+
+	body.blue-theme & {
+		color: $theme-blue__link-color;
+	}
+
+	body.white-theme & {
+		color: $theme-white__link-color;
+	}
 
 	& > span {
 		display: block;

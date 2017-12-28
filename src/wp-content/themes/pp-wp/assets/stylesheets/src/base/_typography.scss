@@ -14,6 +14,14 @@
 	font-style: normal;
 }
 
+@font-face {
+	font-family: 'Open Sans';
+	src: url('../../fonts/opensans-extrabold-webfont.woff2') format('woff2'),
+	url('../../fonts/opensans-extrabold-webfont.woff') format('woff');
+	font-weight: 800;
+	font-style: normal;
+}
+
 h1 {
 	line-height: 32px;
 }
@@ -26,7 +34,7 @@ h1, h2, h3, h4, h5, h6 {
 	font-size: 40px;
 	line-height: 40px;
 	letter-spacing: -2px;
-	font-weight: 700;
+	font-weight: 800;
 	margin: 0;
 	font-family: $font__main;
 }
@@ -47,6 +55,21 @@ h1, h2, h3, h4, h5, h6 {
 	font-size: 12px;
 	font-weight: 700;
 	text-transform: uppercase;
-	border-top: 4px solid $color__theme-primary;
+	border-top: 4px solid $theme-green__color-primary;
 	border-bottom: 1px solid #ccc;
+
+	body.yellow-theme & {
+		color: $theme-yellow__link-color;
+		border-top: 4px solid $theme-yellow__link-color;
+	}
+
+	body.blue-theme & {
+		color: $theme-blue__link-color;
+		border-top: 4px solid $theme-blue__link-color;
+	}
+
+	body.white-theme & {
+		color: $theme-white__link-color;
+		border-top: 4px solid $theme-white__link-color;
+	}
 }

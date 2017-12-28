@@ -4,12 +4,46 @@ header {
 
 	&.site-header {
 
-		color: $color__text-on-dark-bg;
-		background-color: $color__theme-gradient-start;
-		@include gradient-vertical($color__theme-gradient-start, $color__theme-gradient-end);
+		color: $theme-green__text-on-dark-bg-color;
+		background-color: $theme-green__color-gradient-start;
+		position: relative;
+		@include gradient-vertical($theme-green__color-gradient-start, $theme-green__color-gradient-end);
+
+		body.yellow-theme & {
+			color: $theme-yellow__text-on-dark-bg-color;
+			background-color: $theme-yellow__color-gradient-start;
+			position: relative;
+			@include gradient-vertical($theme-yellow__color-gradient-start, $theme-yellow__color-gradient-end);
+		}
+
+		body.blue-theme & {
+			color: $theme-blue__text-on-dark-bg-color;
+			background-color: $theme-blue__color-gradient-start;
+			position: relative;
+			@include gradient-vertical($theme-blue__color-gradient-start, $theme-blue__color-gradient-end);
+		}
+
+		body.white-theme & {
+			color: $theme-white__link-color;
+			background-color: $theme-white__color-gradient-start;
+			position: relative;
+			@include gradient-vertical($theme-white__color-gradient-start, $theme-white__color-gradient-end);
+		}
 
 		a {
-			color: $color__link-alt;
+			color: $theme-green__link-alt-color;
+
+			body.yellow-theme & {
+				color: $theme-yellow__link-alt-color;
+			}
+
+			body.blue-theme & {
+				color: $theme-blue__link-alt-color;
+			}
+
+			body.white-theme & {
+				color: $theme-white__link-color;
+			}
 
 			&:hover {
 				text-decoration: none;
@@ -17,7 +51,10 @@ header {
 		}
 
 		& > div.container {
-			padding: 15px 0;
+			padding-top: 15px;
+			padding-bottom: 15px;
+			position: relative;
+			z-index: 1;
 		}
 
 		.denomination {
@@ -36,7 +73,19 @@ header {
 		}
 
 		.service-bar-container {
-			background: $color__theme-secondary;
+			background: $theme-green__color-secondary;
+
+			body.yellow-theme & {
+				background: $theme-yellow__color-secondary;
+			}
+
+			body.blue-theme & {
+				background: $theme-blue__color-secondary;
+			}
+
+			body.white-theme & {
+				background: $theme-white__color-secondary;
+			}
 
 			.navbar {
 				padding: 0;
@@ -47,6 +96,16 @@ header {
 		}
 
 		@import "elements/main-search";
+
+		.custom-header-bg {
+			position: absolute;
+			top: 0;
+			left: 0;
+			text-align: center;
+			margin: auto;
+			width: 100%;
+			z-index: 0;
+		}
 
 	}
 

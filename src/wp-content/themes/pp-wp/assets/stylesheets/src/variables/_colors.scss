@@ -15,27 +15,101 @@ white/
 |-- main:       #ECEDF1 / RGB(231,237,241)
 |-- secondary:  #?????? / RGB(?,?,?)
 --------------------------------------------------------------*/
+$theme-green__color-primary: #195128 !default;
+$theme-green__color-secondary: #01420A !default;
+$theme-green__color-tertiary: #9ed5ab !default;
+$theme-green__color-support: #00510f !default;
 
-$color__theme-primary: #195128;
-$color__theme-secondary: #01420A;
-$color__theme-tertiary: #9ed5ab;
-$color__theme-support: #00510f;
+$theme-green__color-gradient-start: #17882C !default;
+$theme-green__color-gradient-end: #00510F !default;
 
-$color__theme-gradient-start: #17882C;
-$color__theme-gradient-end: #00510F;
+$theme-green__background-body: #fff !default;
+$theme-green__background-hr: #ccc !default;
+$theme-green__background-pre: #eee !default;
 
-$color__background-body: #fff;
-$color__background-hr: #ccc;
-$color__background-pre: #eee;
+$theme-green__text-color: #21759b !default;
+$theme-green__text-input-color: #666 !default;
+$theme-green__text-input-focus-color: #111 !default;
+$theme-green__text-on-dark-bg-color: #fff !default;
 
-$color__text: #21759b;
-$color__text-input: #666;
-$color__text-input-focus: #111;
-$color__text-on-dark-bg: #fff;
+$theme-green__link-color: #195128 !default;
+$theme-green__link-color-visited: #195128 !default;
+$theme-green__link-color-hover: #195128 !default;
+$theme-green__link-alt-color: #fff !default;
+$theme-green__link-alt-color-visited: #fff !default;
+$theme-green__link-alt-color-hover: #fff !default;
 
-$color__link: #195128;
-$color__link-visited: #195128;
-$color__link-hover: #195128;
-$color__link-alt: #fff;
-$color__link-visited-alt: #fff;
-$color__link-hover-alt: #fff;
+// Yellow theme
+$theme-yellow__color-primary: #F7C514;
+$theme-yellow__color-secondary: #e8ab02;
+$theme-yellow__color-tertiary: #f28f00;
+$theme-yellow__color-support: #f8c300;
+
+$theme-yellow__color-gradient-start: #FCDD4E;
+$theme-yellow__color-gradient-end: #F9C404;
+
+$theme-yellow__background-body: #fff;
+$theme-yellow__background-hr: #ccc;
+$theme-yellow__background-pre: #eee;
+
+$theme-yellow__text-color: #03316F;
+$theme-yellow__text-input-color: #03316F;
+$theme-yellow__text-input-focus-color: #03316F;
+$theme-yellow__text-on-dark-bg-color: #03316F;
+
+$theme-yellow__link-color: #03316F;
+$theme-yellow__link-color-visited: #03316F;
+$theme-yellow__link-color-hover: #03316F;
+$theme-yellow__link-alt-color: #03316F;
+$theme-yellow__link-alt-color-visited: #03316F;
+$theme-yellow__link-alt-color-hover: #03316F;
+
+// Blue theme
+$theme-blue__color-primary: #3E67B1;
+$theme-blue__color-secondary: #0e4097;
+$theme-blue__color-tertiary: #1659BF;
+$theme-blue__color-support: #0042b2;
+
+$theme-blue__color-gradient-start: #3A72BC;
+$theme-blue__color-gradient-end: #2160BD;
+
+$theme-blue__background-body: #fff;
+$theme-blue__background-hr: #ccc;
+$theme-blue__background-pre: #eee;
+
+$theme-blue__text-color: #000;
+$theme-blue__text-input-color: #000;
+$theme-blue__text-input-focus-color: #000;
+$theme-blue__text-on-dark-bg-color: #000;
+
+$theme-blue__link-color: #2C66CE;
+$theme-blue__link-color-visited: #2C66CE;
+$theme-blue__link-color-hover: #2C66CE;
+$theme-blue__link-alt-color: #fff;
+$theme-blue__link-alt-color-visited: #fff;
+$theme-blue__link-alt-color-hover: #fff;
+
+// White theme
+$theme-white__color-primary: #ECEDF1;
+$theme-white__color-secondary: #cfd0d2;
+$theme-white__color-tertiary: #cfd0d2;
+$theme-white__color-support: #2C66CE;
+
+$theme-white__color-gradient-start: #F0F2F1;
+$theme-white__color-gradient-end: #ECEDF1;
+
+$theme-white__background-body: #fff;
+$theme-white__background-hr: #ccc;
+$theme-white__background-pre: #eee;
+
+$theme-white__text-color: #000;
+$theme-white__text-input-color: #000;
+$theme-white__text-input-focus-color: #000;
+$theme-white__text-on-dark-bg-color: #000;
+
+$theme-white__link-color: #2C66CE;
+$theme-white__link-color-visited: #2C66CE;
+$theme-white__link-color-hover: #2C66CE;
+$theme-white__link-alt-color: #fff;
+$theme-white__link-alt-color-visited: #fff;
+$theme-white__link-alt-color-hover: #fff;

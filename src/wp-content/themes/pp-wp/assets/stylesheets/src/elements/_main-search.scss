@@ -10,7 +10,19 @@
 			border-right: 1px solid #ced4da;
 			border-bottom: 1px solid #ced4da;
 			border-top-right-radius: .25rem;
-			color: $color__theme-primary;
+			color: $theme-green__color-primary;
+
+			body.yellow-theme & {
+				color: $theme-yellow__color-primary;
+			}
+
+			body.blue-theme & {
+				color: $theme-blue__color-primary;
+			}
+
+			body.white-theme & {
+				color: $theme-white__link-color;
+			}
 		}
 	}
 }

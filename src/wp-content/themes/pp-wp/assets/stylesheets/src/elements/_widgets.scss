@@ -24,10 +24,21 @@
 		list-style-type: none;
 	}
 
-	// Footer widgets
 	.site-footer & {
-		border-left: 1px dotted $color-_text-on-dark-bg;
+		border-left: 1px dotted $theme-green__text-on-dark-bg-color;
 		padding-left: 15px;
+
+		body.yellow-theme & {
+			border-left: 1px dotted $theme-yellow__text-on-dark-bg-color;
+		}
+
+		body.blue-theme & {
+			border-left: 1px dotted $theme-blue__color-primary;
+		}
+
+		body.white-theme & {
+			border-left: 1px dotted $theme-white__color-primary;
+		}
 
 		.widget-title {
 			background: none;
@@ -35,8 +46,20 @@
 			font-size: 18px;
 			text-transform: none;
 			border: none;
-			color: $color__theme-tertiary;
+			color: $theme-green__color-tertiary;
 			margin-bottom: 15px;
+
+			body.yellow-theme & {
+				color: $theme-yellow__link-color;
+			}
+
+			body.blue-theme & {
+				color: $theme-blue__link-alt-color;
+			}
+
+			body.white-theme & {
+				color: $theme-white__link-color;
+			}
 		}
 
 		table {

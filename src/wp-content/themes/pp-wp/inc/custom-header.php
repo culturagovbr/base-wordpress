@@ -20,9 +20,10 @@ function pp_wp_custom_header_setup() {
 	add_theme_support( 'custom-header', apply_filters( 'pp_wp_custom_header_args', array(
 		'default-image'          => '',
 		'default-text-color'     => '000000',
-		'width'                  => 1000,
-		'height'                 => 250,
+		'width'                  => 1140,
+		'height'                 => 160,
 		'flex-height'            => true,
+		'class'                  => 'xxx',
 		'wp-head-callback'       => 'pp_wp_header_style',
 	) ) );
 }

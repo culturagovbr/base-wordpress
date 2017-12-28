@@ -3,7 +3,19 @@
 	margin-top: 15px;
 	border-top: 4px solid #172937;
 	font-size: 12px;
-	color: $color__link;
+	color: $theme-green__link-color;
+
+	body.yellow-theme & {
+		color: $theme-yellow__link-color;
+	}
+
+	body.blue-theme & {
+		color: $theme-blue__link-color;
+	}
+
+	body.white-theme & {
+		color: $theme-white__link-color;
+	}
 
 	& > span {
 		display: block;
@@ -17,7 +29,19 @@
 			border-radius: 3px;
 			background-color: #e9e8ed;
 			display: inline-block;
-			color: $color__link;
+			color: $theme-green__link-color;
+
+			body.yellow-theme & {
+				color: $theme-yellow__link-color;
+			}
+
+			body.blue-theme & {
+				color: $theme-blue__link-color;
+			}
+
+			body.white-theme & {
+				color: $theme-white__link-color;
+			}
 		}
 
 	}

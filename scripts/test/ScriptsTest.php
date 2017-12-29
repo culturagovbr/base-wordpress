@@ -185,7 +185,7 @@ class ScriptsTest extends PHPUnit\DBUnit\TestCase
     /**
      * @depends testExecuteSimpleQuery
      */
-    public function testAtualizarOptions()
+    public function testAtualizarCampo()
     {
         $this->movimentarAmbiente->defineConexao(
             [
@@ -199,9 +199,35 @@ class ScriptsTest extends PHPUnit\DBUnit\TestCase
         $urlOrigem = "http://base-wp.localhost";
         $urlDestino = "http://base-wp.cultura.gov.br";        
         
-        $this->movimentarAmbiente->defineDominios($urlOrigem, $urlDestino);
-        $this->assertTrue($this->movimentarAmbiente->atualizarOptions());
+        $this->movimentarAmbiente->defineDominios(
+            $urlOrigem,
+            $urlDestino
+        );
+        
+        $this->assertTrue(
+            $this->movimentarAmbiente->atualizarCampo(
+                'wpminc_options',
+                array(
+                    array('option_value' => $urlDestino)
+                ),
+                array(
+                    array('option_name' => 'siteurl')
+                )
+            )
+        );
 
+        $this->assertTrue(
+            $this->movimentarAmbiente->atualizarCampo(
+                'wpminc_options',
+                array(
+                    array('option_value' => $urlDestino)
+                ),
+                array(
+                    array('option_name' => 'home')
+                )
+            )
+        );        
+        
         $actualTable = $this->getConnection()->createQueryTable(
             'wpminc_options',
             'SELECT * FROM wpminc_options'
@@ -211,7 +237,6 @@ class ScriptsTest extends PHPUnit\DBUnit\TestCase
                               ->getTable('wpminc_options');
         
         $sqlUpdateOptions = "UPDATE wpminc_options SET option_value = '{$urlDestino}' WHERE option_name = 'siteurl'";            
-        $sqlUpdateOptions = "UPDATE wpminc_options SET option_value = '{$urlDestino}' WHERE option_name = 'home'";
         
         $this->assertTablesEqual($actualTable, $expectedTable);
     }

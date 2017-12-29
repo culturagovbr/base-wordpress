@@ -114,7 +114,7 @@ class MovimentarAmbiente
         }
     }
     
-    public function executar($sql, $params = array())
+    public function executarSql($sql, $params = array())
     {
         $this->conectar();
         
@@ -144,7 +144,87 @@ class MovimentarAmbiente
         }
     }
     
+    private function __atualizacoesGeraisMU()
+    {
+        try {
+            // wpminc_options
+            $this->atualizarCampo(
+                'wpminc_options',
+                array(
+                    array('option_value' => $this->urlDestino)
+                ),
+                array(
+                    array('option_name' => 'siteurl')
+                )
+            );
+            $this->atualizarCampo(
+                'wpminc_options',
+                array(
+                    array('option_value' => $this->urlDestino)
+                ),
+                array(
+                    array('option_name' => 'home')
+                )
+            );
 
+            // wpminc_site
+            $this->atualizarCampo(
+                'wpminc_site',
+                array(
+                    array('domain' => $this->urlDestino)
+                ),
+                array(
+                    array('id' => '1')
+                )
+            );
+
+            // wpminc_sitemeta
+            $this->atualizarCampo(
+                'wpminc_sitemeta',
+                array(
+                    array('meta_value' => $this->urlDestino)
+                ),
+                array(
+                    array('meta_key' => 'siteurl')
+                )
+            );
+
+            // wpminc_blogs
+            $this->atualizarCampo(
+                'wpminc_blogs',
+                array(
+                    array('domain' => $this->urlDestino)
+                ),
+                array(
+                    array('blog_id' => '1')
+                )
+            );
+        } catch (Exception $error) {
+            print "Erro ao atualizar configurações gerais do WPMU:" . $error->getMessage();
+            return false;            
+        }            
+    }
+
+    /*    public function atualizarSite()
+    {
+        try {
+            // wpminc_options
+            $this->atualizarCampo(
+                'wpminc_options',
+                array(
+                    array('option_value' => $this->urlDestino)
+                ),
+                array(
+                    array('option_name' => 'siteurl')
+                )
+            );
+        } catch (Exception $error) {
+            print "Erro ao atualizar wpminc_options" . $error->getMessage();
+            return false;            
+        }            
+        }*/
+    
+    
     public function atualizarMultisite($urlOrigem = '', $urlDestino = '')
     {       
         if ((!$urlOrigem && !defined($this->urlOrigem))
@@ -156,37 +236,54 @@ class MovimentarAmbiente
             $this->defineDominios($urlOrigem, $urlDestino);
         }
 
-        if (!$this->atualizarOptions()) {
-            return false;
+        try {
+            $this->__atualizacoesGeraisMU();
+            
+            
+            return true;
+            
+        } catch (Exception $error) {
+            print "Erro ao atualizar multisite: " . $error->getMessage();
+            return false;            
         }
         
         return true;
     }
 
-    public function atualizarOptions()
+    public function atualizarCampo($tabela, $camposUpdate, $camposWhere)
     {
-        if (!isset($this->urlOrigem)
-        || !isset($this->urlDestino)) {
-            return false;
-        }
-
+        $sqlUpdate = "";
+        $sqlWhere = "";
+        $params = array();
+        
         try {
-            $params = array($this->urlDestino);
+            foreach ($camposUpdate as $campoUpdate) {
+                foreach ($campoUpdate as $chaveCampo => $valorCampo) {
+                    $sqlUpdate .= ($sqlUpdate != "") ? ", " : "";
+                    $sqlUpdate .= "{$chaveCampo} = ?";
+                    $params[] = $valorCampo;
+                }
+            }
             
-            $sqlUpdateOptions = "UPDATE wpminc_options SET option_value = ? WHERE option_name = 'siteurl'";            
-            $this->executar($sqlUpdateOptions, $params);
+            foreach ($camposWhere as $campoWhere) {
+                foreach ($campoWhere as $chaveWhere => $valorWhere) {
+                    $sqlWhere .= "{$chaveWhere} = ?";
+                    $params[] = $valorWhere;
+                }
+            }            
+
+            $sqlUpdate = "UPDATE {$tabela} SET {$sqlUpdate} WHERE " . $sqlWhere;
             
-            $sqlUpdateOptions = "UPDATE wpminc_options SET option_value = ? WHERE option_name = 'home'";
-            $this->executar($sqlUpdateOptions, $params);
+            $this->executarSql($sqlUpdate, $params);
             
             return true;
             
         } catch (Exception $error) {
             print "Erro ao atualizar wpminc_options" . $error->getMessage();
             return false;
-        }
+        }        
     }
-    
+
     public function getOptionValue($optionName = '*')
     {       
         $sqlUpdateOptions = "SELECT * FROM wpminc_options WHERE option_name = ?";
@@ -198,54 +295,7 @@ class MovimentarAmbiente
     }
 }
 
-
-//$movimentaAmbiente = new MovimentaAmbiente();
-//$movimentaAmbiente->defineConexao(['host' => '', 'user' => '', 'pass' => '', 'database' => '']);
-
 /*
-$urlOrigem = "http://base-wp.cultura.gov.br";
-$urlDestino = "http://base-wp.localhost";
-
-$movimentaAmbiente = new MovimentaAmbiente();
-
-$movimentaAmbiente->atualizarMultisite(
-    $urlOrigem,
-    $urlDestino
-);
-*/
-/*
-$urlOrigem = "http://base-wp.cultura.gov.br";
-$urlDestino = "http://base-wp.localhost";
-$dominioOrigem = "cultura.gov.br";
-$dominioDestino = "base-wp.localhost";
-
-print "<h3>Atualizando: de '{$urlOrigem}' para '{$urlDestino}'<h3>";
-print "<h4>Atualizações do blog 1</h4>";
-
-$sqlUpdateOptions = "UPDATE wpminc_options SET option_value = '{$urlDestino}' WHERE option_name = 'siteurl';<br>";
-$sqlUpdateOptions .= "UPDATE wpminc_options SET option_value = '{$urlDestino}' WHERE option_name = 'home';<br>";
-$sqlUpdateSiteDomain = "UPDATE wpminc_site SET domain = '{$dominioDestino}' WHERE id = 1;<br>";
-
-print $sqlUpdateOptions;
-print "<br/>";
-print $sqlUpdateSiteDomain;
-print "<br/>";
-
-$sqlUpdateSitemeta = "UPDATE wpminc_sitemeta SET meta_value = '{$urlDestino}' WHERE meta_key = 'siteurl';";
-print $sqlUpdateSitemeta;
-print "<br/>";
-
-$sqlUpdateBlogPrincipal ="UPDATE wpminc_blogs SET domain = '{$dominioDestino}') WHERE blog_id = 1;";
-print $sqlUpdateBlogPrincipal;
-print "<br/>";
-
-
-print "<hr>";
-
-
-print "<h4>Atualizando sites para endereço local</h4>";
-
-
 ### Atualizando configurações de cada site
 
 $idSite = 26;

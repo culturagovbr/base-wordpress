@@ -11,15 +11,20 @@ class MovimentarAmbiente
         'pass'     => NULL
     );
 
-    private $db;    
+    private $pdo;    
     private $dadosConexao = array();
     private $conexao = NULL;
-    private $protocolPattern = '/$[a-z]\:\/\//';
-
+    private $protocolPattern = '/[a-z]{4,5}\:{1}\/{2}/';
+    
     public function __construct()
     {
     }
 
+    public function getDadosConexao()
+    {
+        return $this->dadosConexao;
+    }
+    
     public function __setPaths($urlOrigem, $urlDestino)
     {
         $this->__verificarUrlValida($urlOrigem);
@@ -48,24 +53,13 @@ class MovimentarAmbiente
         return $output;
     }
 
-    /*
-    private function __stripProtocol($url)
+    public function stripProtocol($url)
     {
         $url = preg_replace($this->protocolPattern, '', $url);
         
         return $url;
     }
-    */
-
-    /*
-    private function __hasProtocol($url)
-    {
-        $response = (!empty(preg_match($this->protocolPattern, $url))) ? true : false;
-        
-        return $response;
-    }
-    */
-        
+    
     private function __verificarUrlValida($url)
     {
         $validation = filter_var($url, FILTER_VALIDATE_URL);
@@ -101,27 +95,55 @@ class MovimentarAmbiente
 
     public function conectar()
     {
+        if ($this->pdo) {
+            return $this->pdo;
+        }
+        
         if (!$this->__validaDadosConexao($this->dadosConexao)) {
             return false;
         }
         
-        $this->db = new PDO("mysql:dbname=" . $this->dadosConexao['database'] . ";hostname=" . $this->dadosConexao['host'], $this->dadosConexao['user'], $this->dadosConexao['pass'] );
-        
-        if (!$this->db) {
+        try {        
+            $this->pdo = new PDO("mysql:dbname=" . $this->dadosConexao['database'] . ";hostname=" . $this->dadosConexao['host'], $this->dadosConexao['user'], $this->dadosConexao['pass'], array(PDO::ATTR_PERSISTENT => true) );
+
+            return $this->pdo;
+            
+        } catch (Exception $error) {
+            var_dump($error);
             return false;
         }
-        
-        return true;
     }
     
-    public function executeQuery($sql)
+    public function executar($sql, $params = array())
     {
-        $this->db->exec($sql);
-        if (!$this->db->exec($sql)) {
+        $this->conectar();
+        
+        try {
+            $statement = $this->pdo->prepare($sql);
+            return $statement->execute($params);
+            
+        } catch (PDOException $error) {
+            print $error->getMessage();
             return false;
         }
-        return true;
     }
+
+    public function fetch($sql, $params = array())
+    {
+        $this->conectar();
+        
+        try {
+            $statement = $this->pdo->prepare($sql);
+            $statement->execute($params);
+            
+            return $statement->fetch();
+            
+        } catch (PDOException $error) {
+            print $error->getMessage();
+            return false;
+        }
+    }
+    
 
     public function atualizarMultisite($urlOrigem = '', $urlDestino = '')
     {       
@@ -147,7 +169,32 @@ class MovimentarAmbiente
         || !isset($this->urlDestino)) {
             return false;
         }
-        return true;
+
+        try {
+            $params = array($this->urlDestino);
+            
+            $sqlUpdateOptions = "UPDATE wpminc_options SET option_value = ? WHERE option_name = 'siteurl'";            
+            $this->executar($sqlUpdateOptions, $params);
+            
+            $sqlUpdateOptions = "UPDATE wpminc_options SET option_value = ? WHERE option_name = 'home'";
+            $this->executar($sqlUpdateOptions, $params);
+            
+            return true;
+            
+        } catch (Exception $error) {
+            print "Erro ao atualizar wpminc_options" . $error->getMessage();
+            return false;
+        }
+    }
+    
+    public function getOptionValue($optionName = '*')
+    {       
+        $sqlUpdateOptions = "SELECT * FROM wpminc_options WHERE option_name = ?";
+
+        $row =  $this->fetch($sqlUpdateOptions, array($optionName));
+        if (!empty($row)) {
+            return $row['option_value'];
+        }
     }
 }
 

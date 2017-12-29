@@ -104,7 +104,24 @@ class ScriptsTest extends PHPUnit\DBUnit\TestCase
         $this->assertFalse(
             $this->movimentarAmbiente->defineDominios($urlOrigem, $urlDestino)
         );
-    }    
+    }
+
+    public function testStripProtocol()
+    {
+        $url = "https://base-wp.localhost";
+        $urlExpected = "base-wp.localhost";
+
+        $this->assertEquals($urlExpected, $this->movimentarAmbiente->stripProtocol($url));
+    }
+    
+    
+    /*
+     *
+     *
+     *     DATABASE TESTS
+     *
+     *
+     */
 
     public function testDefineConexao()
     {
@@ -265,5 +282,5 @@ class ScriptsTest extends PHPUnit\DBUnit\TestCase
         
         $this->assertTrue($this->movimentarAmbiente->atualizarMultisite($urlOrigem, $urlDestino));        
     }
-
+    
 }

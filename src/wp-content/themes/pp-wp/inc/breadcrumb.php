@@ -16,6 +16,12 @@ function the_breadcrumb() {
 	// Get the query & post information
 	global $post,$wp_query;
 
+	$hide_breadcrumbs = get_post_meta( $post->ID, 'hide-breadcrumbs', true );
+
+	if( $hide_breadcrumbs ) {
+		return;
+	}
+
 	// Do not display on the homepage
 	if ( !is_front_page() ) {
 

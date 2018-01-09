@@ -243,3 +243,91 @@ if ( is_admin() )
  * $radioexample_4 = $pp_theme_options_options['radioexample_4']; // RadioExample
  */
 
+/**
+ * Adds a metabox with different options to pages
+ *
+ */
+add_action( 'add_meta_boxes', 'add_pp_wp_page_option_metabox' );
+add_action( 'save_post', 'pp_wp_page_save_options_from_metabox', 10, 2 );
+function add_pp_wp_page_option_metabox(){
+
+	add_meta_box (
+		'pp-wp-page-option',
+		'Opções de página',
+		'pp_wp_page_option_metabox',
+		'page',
+		'side',
+		'high'
+	);
+
+}
+function pp_wp_page_option_metabox ( $post ) { ?>
+
+	<?php
+        wp_nonce_field( basename( __FILE__ ), 'pp_wp_page_option_metabox_nonce' );
+        $hide_breadcrumbs = get_post_meta( $post->ID, 'hide-breadcrumbs', true );
+        $hide_page_title = get_post_meta( $post->ID, 'hide-page-title', true );
+        $remove_internal_padding = get_post_meta( $post->ID, 'remove-internal-padding', true );
+    ?>
+
+    <p>
+        <label for="hide-breadcrumbs">
+            <input id="hide-breadcrumbs" name="hide-breadcrumbs" type="checkbox" value="1" <?php echo $hide_breadcrumbs ? 'checked="true"' : ''; ?>> Remover trilha de navegação (breadcrumbs) da página
+        </label>
+    </p>
+    <p>
+        <label for="hide-page-title">
+            <input id="hide-page-title" name="hide-page-title" type="checkbox" value="1" <?php echo $hide_page_title ? 'checked="true"' : ''; ?>> Remover título principal da página
+        </label>
+    </p>
+    <p>
+        <label for="remove-internal-padding">
+            <input id="remove-internal-padding" name="remove-internal-padding" type="checkbox" value="1" <?php echo $remove_internal_padding? 'checked="true"' : ''; ?>> Remover espaçamento interno
+        </label>
+    </p>
+
+<?php }
+
+/**
+ * Saving the metabox with options
+ *
+ */
+function pp_wp_page_save_options_from_metabox( $post_id, $post ) {
+
+	/* Verify the nonce before proceeding. */
+	if ( !isset( $_POST['pp_wp_page_option_metabox_nonce'] ) || !wp_verify_nonce( $_POST['pp_wp_page_option_metabox_nonce'], basename( __FILE__ ) ) )
+		return $post_id;
+
+	$post_type = get_post_type_object( $post->post_type );
+
+	if ( !current_user_can( $post_type->cap->edit_post, $post_id ) )
+		return $post_id;
+
+	// $new_meta_value = ( isset( $_POST['hide-breadcrumbs'] ) ? sanitize_html_class( $_POST['hide-breadcrumbs'] ) : '' );
+	$hide_breadcrumbs = ( isset( $_POST['hide-breadcrumbs'] ) ? true : false );
+	$hide_page_title = ( isset( $_POST['hide-page-title'] ) ? true : false );
+	$remove_internal_padding = ( isset( $_POST['remove-internal-padding'] ) ? true : false );
+
+	update_post_meta( $post_id, 'hide-breadcrumbs', $hide_breadcrumbs );
+	update_post_meta( $post_id, 'hide-page-title', $hide_page_title );
+	update_post_meta( $post_id, 'remove-internal-padding', $remove_internal_padding);
+
+	/* Get the meta key. */
+	// $meta_key = 'smashing_post_class';
+
+	/* Get the meta value of the custom field key. */
+	// $meta_value = get_post_meta( $post_id, $meta_key, true );
+
+	/* If a new meta value was added and there was no previous value, add it. */
+	// if ( $new_meta_value && '' == $meta_value )
+    //		add_post_meta( $post_id, $meta_key, $new_meta_value, true );
+
+	/* If the new meta value does not match the old value, update it. */
+    // elseif ( $new_meta_value && $new_meta_value != $meta_value )
+    //		update_post_meta( $post_id, $meta_key, $new_meta_value );
+
+	/* If there is no new meta value but an old value exists, delete it. */
+    // elseif ( '' == $new_meta_value && $meta_value )
+    //		delete_post_meta( $post_id, $meta_key, $meta_value );
+
+}

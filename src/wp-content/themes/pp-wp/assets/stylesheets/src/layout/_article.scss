@@ -2,6 +2,10 @@ article {
 	font-family: $font__sec;
 	margin-bottom: 45px;
 
+	.no-gutters & {
+		margin-bottom: 0;
+	}
+
 	@import "elements/entry-meta";
 	@import "elements/entry-footer";
 }

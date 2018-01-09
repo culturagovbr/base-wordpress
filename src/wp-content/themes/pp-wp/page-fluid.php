@@ -11,13 +11,13 @@
 get_header (); ?>
 
     <main id="main" class="site-main">
-        <div class="container-fluid">
+        <div class="<?php echo ( !get_post_meta( get_the_ID (), 'remove-internal-padding', true ) ) ? 'container-fluid' : ''; ?>">
 
-            <div class="row">
+            <div class="row <?php echo ( get_post_meta( get_the_ID (), 'remove-internal-padding', true ) ) ? 'no-gutters' : ''; ?>">
 				<?php the_breadcrumb (); ?>
             </div>
 
-            <div class="row">
+            <div class="row <?php echo ( get_post_meta( get_the_ID (), 'remove-internal-padding', true ) ) ? 'no-gutters' : ''; ?>">
 
                 <div class="col-lg-12">
 					<?php

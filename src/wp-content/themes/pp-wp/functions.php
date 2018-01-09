@@ -44,7 +44,7 @@ if ( ! function_exists( 'pp_wp_setup' ) ) :
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
-			'service-menu' => esc_html__( 'Menu de serviços', 'pp-wp' ),
+			'service-menu' => esc_html__( 'Services menu', 'pp-wp' ),
 		) );
 
 		/*

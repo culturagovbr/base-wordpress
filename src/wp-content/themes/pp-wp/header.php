@@ -89,7 +89,27 @@ $theme_color = get_option( 'color_palette' ) ? get_option( 'color_palette' ) . '
                         </li>
                     </ul>
 
-					<?php get_search_form(); ?>
+					<?php
+					    $pp_theme_options_options = get_option( 'pp_theme_options_option_name' );
+					    if( $pp_theme_options_options['show_search'] ){
+							get_search_form();
+						}
+
+                        if( $pp_theme_options_options['show_social_links'] ):
+					        if( !empty( $pp_theme_options_options['social_links'] ) ){ ?>
+
+                            <ul class="social-media-links">
+                                <?php foreach ($pp_theme_options_options['social_links'] as $social_links): ?>
+                                <li>
+                                    <a href="<?php echo $social_links['url']; ?>" target="_blank" title="<?php echo $social_links['title']; ?>">
+                                        <i class="fa-ico-toggle fa <?php echo $social_links['icon']; ?>" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <?php endforeach; ?>
+                            </ul>
+
+                        <?php } ?>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

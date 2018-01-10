@@ -101,7 +101,7 @@ add_action( 'after_setup_theme', 'pp_wp_content_width', 0 );
 function pp_wp_scripts() {
 	wp_enqueue_style( 'pp-wp-style', get_template_directory_uri() . '/assets/stylesheets/dist/bundle.min.css' );
 
-	wp_enqueue_script( 'pp-wp-script', get_template_directory_uri() . '/assets/js/dist/bundle.min.js', array('jquery'), false, true );
+	wp_enqueue_script( 'pp-wp-scripts', get_template_directory_uri() . '/assets/js/dist/bundle.min.js', array('jquery'), false, true );
 
 	// wp_enqueue_script( 'pp-wp-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
@@ -165,8 +165,8 @@ require_once get_template_directory() . '/inc/breadcrumb.php';
 /**
  * Corrects the error while customizing the site in the frontend
  */
-add_action('wp_enqueue_scripts', 'wp_mediaelement_customize_javascript', 100);
 function wp_mediaelement_customize_javascript() {
 	wp_register_script('mediaelement', plugins_url('wp-mediaelement.min.js', __FILE__), array('jquery'), false, true);
 	wp_enqueue_script('mediaelement');
 }
+add_action('wp_enqueue_scripts', 'wp_mediaelement_customize_javascript', 100);

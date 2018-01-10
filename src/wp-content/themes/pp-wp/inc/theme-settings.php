@@ -8,16 +8,27 @@ class PPThemeOptions {
 	private $pp_theme_options_options;
 
 	public function __construct() {
+		add_action( 'admin_enqueue_scripts', array( $this , 'pp_theme_admin_scripts' ) );
 		add_action( 'admin_menu', array( $this, 'pp_theme_options_add_plugin_page' ) );
 		add_action( 'admin_init', array( $this, 'pp_theme_options_page_init' ) );
 		add_action( 'admin_init' , array( $this , 'pp_theme_add_blog_denomination_field' ) );
 	}
 
+	public function pp_theme_admin_scripts( $hook ) {
+		if($hook != 'appearance_page_pp-theme-options') {
+			return;
+		}
+		wp_enqueue_style('pp-theme-options-font-awesome', get_template_directory_uri().'/node_modules/font-awesome/css/font-awesome.css');
+		wp_enqueue_style('pp-theme-options-admin-styles', get_template_directory_uri().'/assets/stylesheets/dist/pp-theme-options.css');
+
+		wp_enqueue_script( 'pp-theme-options-admin-scripts', get_template_directory_uri() . '/assets/js/dist/pp-theme-options.js', array('jquery'), false, true );
+	}
+
 	public function pp_theme_options_add_plugin_page() {
 		add_submenu_page(
 			'themes.php',
-			'Configurações do tema',
-			'Configurações do tema',
+			__( 'Theme configurations', 'pp-wp' ),
+			__( 'Theme configurations', 'pp-wp' ),
 			'manage_options',
 			'pp-theme-options',
 			array( $this, 'pp_theme_options_create_admin_page' )
@@ -28,8 +39,9 @@ class PPThemeOptions {
 		$this->pp_theme_options_options = get_option( 'pp_theme_options_option_name' ); ?>
 
 		<div class="wrap">
-			<h2>Configurações do tema</h2>
+			<h2><?php _e( 'Theme configurations', 'pp-wp' ); ?></h2>
 			<p>@TODO</p>
+
 			<?php settings_errors(); ?>
 
 			<form method="post" action="options.php">
@@ -51,21 +63,21 @@ class PPThemeOptions {
 
 		add_settings_section(
 			'pp_theme_options_visual_section',
-			'Configurações visuais',
+			__( 'Visual configurations', 'pp-wp' ),
 			array( $this, 'pp_theme_options_visual_section_info' ),
 			'pp-theme-options-admin'
 		);
 
 		add_settings_section(
 			'pp_theme_options_header_section',
-			'Cabeçalhos',
+			__( 'Header area', 'pp-wp' ),
 			array( $this, 'pp_theme_options_header_section_info' ),
 			'pp-theme-options-admin'
 		);
 
 		add_settings_field(
 			'color_palette', 						// id
-			'Paleta de cores do tema', 				// title
+			__( 'Color palette', 'pp-wp' ), 			// title
 			array( $this, 'color_palette_callback' ), 	// callback
 			'pp-theme-options-admin', 				// page
 			'pp_theme_options_visual_section' 	// section
@@ -73,13 +85,13 @@ class PPThemeOptions {
 
 		add_settings_field(
 			'custom_color_palette', 							// id
-			'Paleta personalizada',							// title
+			__( 'Custom palette', 'pp-wp' ),							// title
 			array( $this, 'custom_color_palette_callback' ), 	// callback
 			'pp-theme-options-admin', 						// page
 			'pp_theme_options_visual_section' 			// section
 		);
 
-		add_settings_field(
+		/* add_settings_field(
 			'textareaexample_1', 						// id
 			'TextareaExample', 							// title
 			array( $this, 'textareaexample_1_callback' ), 	// callback
@@ -88,8 +100,16 @@ class PPThemeOptions {
 		);
 
 		add_settings_field(
+			'radioexample_4', 						// id
+			'RadioExample', 						// title
+			array( $this, 'radioexample_4_callback' ), 	// callback
+			'pp-theme-options-admin', 				// page
+			'pp_theme_options_visual_section' 	// section
+		); */
+
+		add_settings_field(
 			'show_search',
-			'Mostrar campo de busca',
+			__( 'Show search bar', 'pp-wp' ),
 			array( $this, 'show_search_callback' ),
 			'pp-theme-options-admin',
 			'pp_theme_options_header_section'
@@ -97,18 +117,18 @@ class PPThemeOptions {
 
 		add_settings_field(
 			'show_social_links',
-			'Mostrar links para redes sociais',
+			__( 'Show social media links', 'pp-wp' ),
 			array( $this, 'show_social_links_callback' ),
 			'pp-theme-options-admin',
 			'pp_theme_options_header_section'
 		);
 
 		add_settings_field(
-			'radioexample_4', 						// id
-			'RadioExample', 						// title
-			array( $this, 'radioexample_4_callback' ), 	// callback
-			'pp-theme-options-admin', 				// page
-			'pp_theme_options_visual_section' 	// section
+			'social_links',
+			__( 'Social media links', 'pp-wp' ),
+			array( $this, 'social_links_callback' ),
+			'pp-theme-options-admin',
+			'pp_theme_options_header_section'
 		);
 	}
 
@@ -131,6 +151,16 @@ class PPThemeOptions {
 			$sanitary_values['show_search'] = $input['show_search'];
 		}
 
+		if ( isset( $input['show_social_links'] ) ) {
+			$sanitary_values['show_social_links'] = $input['show_social_links'];
+		}
+
+		if ( isset( $input['social_links'] ) ) {
+		    /*echo '<pre>';
+		    wp_die( var_dump ( $input['social_links'] ) );*/
+			$sanitary_values['social_links'] = $input['social_links'];
+		}
+
 		if ( isset( $input['radioexample_4'] ) ) {
 			$sanitary_values['radioexample_4'] = $input['radioexample_4'];
 		}
@@ -143,10 +173,12 @@ class PPThemeOptions {
 	}
 
 	public function custom_color_palette_callback() {
-		printf(
+
+	    echo '@TODO';
+		/* printf(
 			'<input class="regular-text" type="text" name="pp_theme_options_option_name[custom_color_palette]" id="custom_color_palette" value="%s">',
 			isset( $this->pp_theme_options_options['custom_color_palette'] ) ? esc_attr( $this->pp_theme_options_options['custom_color_palette']) : ''
-		);
+		); */
 	}
 
 	public function textareaexample_1_callback() {
@@ -177,8 +209,8 @@ class PPThemeOptions {
 
 	public function show_search_callback() {
 		printf(
-			'<input type="checkbox" name="pp_theme_options_option_name[show_search]" id="show_search" value="show_search" %s> <label for="show_search">Sim</label>',
-			( isset( $this->pp_theme_options_options['show_search'] ) && $this->pp_theme_options_options['show_search'] === 'show_search' ) ? 'checked' : ''
+			'<input type="checkbox" name="pp_theme_options_option_name[show_search]" id="show_search" value="true" %s> <label for="show_search">Sim</label>',
+			( isset( $this->pp_theme_options_options['show_search'] ) && $this->pp_theme_options_options['show_search'] === 'true' ) ? 'checked' : ''
 		); ?>
 		<p class="description">
 			Marque esta opção para habilitar/desabilitar a visualização do campo de busca no cabeçalho
@@ -188,12 +220,103 @@ class PPThemeOptions {
 
 	public function show_social_links_callback() {
 		printf(
-			'<input type="checkbox" name="pp_theme_options_option_name[show_social_links]" id="show_social_links" value="show_social_links" %s> <label for="show_social_links">Sim</label>',
-			( isset( $this->pp_theme_options_options['show_social_links'] ) && $this->pp_theme_options_options['show_social_links'] === 'show_social_links' ) ? 'checked' : ''
+			'<input type="checkbox" name="pp_theme_options_option_name[show_social_links]" id="show_social_links" value="true" %s> <label for="show_social_links">Sim</label>',
+			( isset( $this->pp_theme_options_options['show_social_links'] ) && $this->pp_theme_options_options['show_social_links'] === 'true' ) ? 'checked' : ''
 		); ?>
 		<p class="description">
 			Marque esta opção para habilitar/desabilitar a visualização dos links para as redes sociais
 		</p>
+		<?php
+	}
+
+	public function social_links_callback() { ?>
+        <table id="pp-theme-options-social-media-links">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>URL</th>
+                    <th>Título</th>
+                    <th>Ícone</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if( isset( $this->pp_theme_options_options['social_links'] ) ) :
+                    $i = 0;
+                    foreach ($this->pp_theme_options_options['social_links'] as $social_links ) : ?>
+                        <tr>
+                            <td>
+                                <div class="actions">
+                                    <a href="#" title="Remover">
+                                        <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                                    </a>
+                                    <span><?php echo ( $i + 1 ); ?></span>
+                                </div>
+                            </td>
+                            <td>
+                                <input class="regular-text" type="text" name="pp_theme_options_option_name[social_links][<?php echo $i; ?>][url]" id="social_link_url_<?php echo $i; ?>" value="<?php echo $social_links['url']; ?>">
+                            </td>
+                            <td>
+                                <input class="regular-text" type="text" name="pp_theme_options_option_name[social_links][<?php echo $i; ?>][title]" id="social_link_title_<?php echo $i; ?>" value="<?php echo $social_links['title']; ?>">
+                            </td>
+                            <td>
+                                <select class="fa-ico-toggler">
+                                    <option data-icon="fa-facebook" <?php echo ( $social_links['icon'] == 'fa-facebook' ) ? 'selected="true"' : ''; ?>>Facebook</option>
+                                    <option data-icon="fa-youtube" <?php echo ( $social_links['icon'] == 'fa-youtube' ) ? 'selected="true"' : ''; ?>>Youtube</option>
+                                    <option data-icon="fa-instagram" <?php echo ( $social_links['icon'] == 'fa-instagram' ) ? 'selected="true"' : ''; ?>>Instagram</option>
+                                    <option data-icon="fa-twitter" <?php echo ( $social_links['icon'] == 'fa-twitter' ) ? 'selected="true"' : ''; ?>>Twitter</option>
+                                    <option data-icon="fa-pinterest" <?php echo ( $social_links['icon'] == 'fa-pinterest' ) ? 'selected="true"' : ''; ?>>Pinterest</option>
+                                    <option data-icon="fa-rss" <?php echo ( $social_links['icon'] == 'fa-rss' ) ? 'selected="true"' : ''; ?>>RSS</option>
+                                </select>
+                                <input class="fa-ico-selected" type="hidden" name="pp_theme_options_option_name[social_links][<?php echo $i; ?>][icon]" value="<?php echo $social_links['icon']; ?>">
+                            </td>
+                            <td>
+                                <i class="fa-ico-toggle fa <?php echo $social_links['icon']; ?>" aria-hidden="true"></i>
+                            </td>
+                        </tr>
+
+                    <?php $i++; endforeach;
+				else : ?>
+                    <tr class="fr">
+                        <td>
+                            <div class="actions">
+                                <a href="#">
+                                    <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                                </a>
+                                <span>1</span>
+                            </div>
+                        </td>
+                        <td>
+                            <input class="regular-text" type="text" name="pp_theme_options_option_name[social_links][0][url]" id="social_link_url_0" value="">
+                        </td>
+                        <td>
+                            <input class="regular-text" type="text" name="pp_theme_options_option_name[social_links][0][title]" id="social_link_title_0" value="">
+                        </td>
+                        <td>
+                            <select class="fa-ico-toggler">
+                                <option data-icon="fa-facebook">Facebook</option>
+                                <option data-icon="fa-youtube">Youtube</option>
+                                <option data-icon="fa-instagram">Instagram</option>
+                                <option data-icon="fa-twitter">Twitter</option>
+                                <option data-icon="fa-pinterest">Pinterest</option>
+                                <option data-icon="fa-rss">RSS</option>
+                            </select>
+                            <input class="fa-ico-selected" type="hidden" name="pp_theme_options_option_name[social_links][0][icon]" value="fa-facebook">
+                        </td>
+                        <td>
+                            <i class="fa-ico-toggle fa fa-facebook" aria-hidden="true"></i>
+                        </td>
+                    </tr>
+				<?php endif; ?>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5">
+                        <a href="#" id="pp-theme-options-social-media-links-add-row">Adicionar nova linha</a>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
 		<?php
 	}
 

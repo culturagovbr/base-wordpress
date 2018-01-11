@@ -25,10 +25,10 @@ if (!function_exists ('pp_wp_posted_on')) :
 			$time_string_updated = sprintf ($time_string_updated, esc_attr (get_the_date ('c')), esc_html (get_the_date ()), esc_attr (get_the_modified_date ('c')), esc_html (get_the_modified_date ()));
 		}
 
-		$posted_on = sprintf (esc_html_x ('Published: %s', 'post date', 'pp-wp'), $time_string);
-		$updated_on = sprintf (esc_html_x ('Last modification: %s', 'post date', 'pp-wp'), $time_string_updated);
+		$posted_on = sprintf (__ ('Published: %s', 'pp-wp'), $time_string);
+		$updated_on = sprintf (__ ('Last modification: %s', 'pp-wp'), $time_string_updated);
 
-		$byline = sprintf (esc_html_x ('By: %s', 'post author', 'pp-wp'), '<span class="author vcard"><a class="url fn n" href="' . esc_url (get_author_posts_url (get_the_author_meta ('ID'))) . '">' . esc_html (get_the_author ()) . '</a></span>');
+		$byline = sprintf (__ ('By: %s', 'pp-wp'), '<span class="author vcard"><a class="url fn n" href="' . esc_url (get_author_posts_url (get_the_author_meta ('ID'))) . '">' . esc_html (get_the_author ()) . '</a></span>');
 
 		echo '<span class="byline"> ' . $byline . '</span>';
 		echo '<span class="posted-on">' . $posted_on . '</span>';

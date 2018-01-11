@@ -191,18 +191,18 @@ class PPThemeOptions {
 	public function color_palette_callback() { ?>
 		<select name="pp_theme_options_option_name[color_palette]" id="color_palette">
 			<?php $selected = (isset( $this->pp_theme_options_options['color_palette'] ) && $this->pp_theme_options_options['color_palette'] === 'yellow') ? 'selected' : '' ; ?>
-			<option value="yellow" <?php echo $selected; ?>>Amarelo</option>
+			<option value="yellow" <?php echo $selected; ?>><?php _e( 'Yellow', 'pp-wp' ); ?></option>
 			<?php $selected = (isset( $this->pp_theme_options_options['color_palette'] ) && $this->pp_theme_options_options['color_palette'] === 'blue') ? 'selected' : '' ; ?>
-			<option value="blue" <?php echo $selected; ?>>Azul</option>
+			<option value="blue" <?php echo $selected; ?>><?php _e( 'Blue', 'pp-wp' ); ?></option>
 			<?php $selected = (isset( $this->pp_theme_options_options['color_palette'] ) && $this->pp_theme_options_options['color_palette'] === 'white') ? 'selected' : '' ; ?>
-			<option value="white" <?php echo $selected; ?>>Branco</option>
+			<option value="white" <?php echo $selected; ?>><?php _e( 'White', 'pp-wp' ); ?></option>
 			<?php $selected = (isset( $this->pp_theme_options_options['color_palette'] ) && $this->pp_theme_options_options['color_palette'] === 'green') ? 'selected' : '' ; ?>
-			<option value="green" <?php echo $selected; ?>>Verde</option>
+			<option value="green" <?php echo $selected; ?>><?php _e( 'Green', 'pp-wp' ); ?></option>
 			<?php $selected = (isset( $this->pp_theme_options_options['color_palette'] ) && $this->pp_theme_options_options['color_palette'] === 'custom') ? 'selected' : '' ; ?>
-			<option value="custom" <?php echo $selected; ?>>Personalizado</option>
+			<option value="custom" <?php echo $selected; ?>><?php _e( 'Custom', 'pp-wp' ); ?></option>
 		</select>
 		<p class="description">
-			Esta será a paleta de cores usada no visual do site
+			<?php _e( 'This will be the color palette used for the visual of the site', 'pp-wp' ); ?>
 		</p>
 		<?php
 	}
@@ -213,7 +213,7 @@ class PPThemeOptions {
 			( isset( $this->pp_theme_options_options['show_search'] ) && $this->pp_theme_options_options['show_search'] === 'true' ) ? 'checked' : ''
 		); ?>
 		<p class="description">
-			Marque esta opção para habilitar/desabilitar a visualização do campo de busca no cabeçalho
+			<?php _e( 'Check this option to enable/disable the search field display in the header', 'pp-wp' ); ?>
 		</p>
 		<?php
 	}
@@ -224,7 +224,7 @@ class PPThemeOptions {
 			( isset( $this->pp_theme_options_options['show_social_links'] ) && $this->pp_theme_options_options['show_social_links'] === 'true' ) ? 'checked' : ''
 		); ?>
 		<p class="description">
-			Marque esta opção para habilitar/desabilitar a visualização dos links para as redes sociais
+			<?php _e( 'Check this option to enable / disable viewing links to social networks', 'pp-wp' ); ?>
 		</p>
 		<?php
 	}
@@ -234,9 +234,9 @@ class PPThemeOptions {
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>URL</th>
-                    <th>Título</th>
-                    <th>Ícone</th>
+                    <th><?php _e( 'URL', 'pp-wp' ); ?></th>
+                    <th><?php _e( 'Title', 'pp-wp' ); ?></th>
+                    <th><?php _e( 'Icon', 'pp-wp' ); ?></th>
                     <th></th>
                 </tr>
             </thead>
@@ -262,10 +262,29 @@ class PPThemeOptions {
                             <td>
                                 <select class="fa-ico-toggler">
                                     <option data-icon="fa-facebook" <?php echo ( $social_links['icon'] == 'fa-facebook' ) ? 'selected="true"' : ''; ?>>Facebook</option>
+                                    <option data-icon="fa-facebook-official" <?php echo ( $social_links['icon'] == 'fa-facebook-official' ) ? 'selected="true"' : ''; ?>>Facebook 2</option>
                                     <option data-icon="fa-youtube" <?php echo ( $social_links['icon'] == 'fa-youtube' ) ? 'selected="true"' : ''; ?>>Youtube</option>
+                                    <option data-icon="fa-youtube-play" <?php echo ( $social_links['icon'] == 'fa-youtube-play' ) ? 'selected="true"' : ''; ?>>Youtube 2</option>
+                                    <option data-icon="fa-youtube-square" <?php echo ( $social_links['icon'] == 'fa-youtube-square' ) ? 'selected="true"' : ''; ?>>Youtube 3</option>
                                     <option data-icon="fa-instagram" <?php echo ( $social_links['icon'] == 'fa-instagram' ) ? 'selected="true"' : ''; ?>>Instagram</option>
                                     <option data-icon="fa-twitter" <?php echo ( $social_links['icon'] == 'fa-twitter' ) ? 'selected="true"' : ''; ?>>Twitter</option>
+                                    <option data-icon="fa-twitter-square" <?php echo ( $social_links['icon'] == 'fa-twitter-square' ) ? 'selected="true"' : ''; ?>>Twitter 2</option>
                                     <option data-icon="fa-pinterest" <?php echo ( $social_links['icon'] == 'fa-pinterest' ) ? 'selected="true"' : ''; ?>>Pinterest</option>
+                                    <option data-icon="fa-pinterest-p" <?php echo ( $social_links['icon'] == 'fa-pinterest-p' ) ? 'selected="true"' : ''; ?>>Pinterest 2</option>
+                                    <option data-icon="fa-pinterest-square" <?php echo ( $social_links['icon'] == 'fa-pinterest-square' ) ? 'selected="true"' : ''; ?>>Pinterest 3</option>
+                                    <option data-icon="fa-reddit" <?php echo ( $social_links['icon'] == 'fa-reddit' ) ? 'selected="true"' : ''; ?>>Reddit</option>
+                                    <option data-icon="fa-reddit-alien" <?php echo ( $social_links['icon'] == 'fa-reddit-alien' ) ? 'selected="true"' : ''; ?>>Reddit 2</option>
+                                    <option data-icon="fa-reddit-square" <?php echo ( $social_links['icon'] == 'fa-reddit-square' ) ? 'selected="true"' : ''; ?>>Reddit 3</option>
+                                    <option data-icon="fa-tumblr" <?php echo ( $social_links['icon'] == 'fa-tumblr' ) ? 'selected="true"' : ''; ?>>Tumblr</option>
+                                    <option data-icon="fa-tumblr-square" <?php echo ( $social_links['icon'] == 'fa-tumblr-square' ) ? 'selected="true"' : ''; ?>>Tumblr 2</option>
+                                    <option data-icon="fa-flickr" <?php echo ( $social_links['icon'] == 'fa-flickr' ) ? 'selected="true"' : ''; ?>>Flickr</option>
+                                    <option data-icon="fa-google-plus" <?php echo ( $social_links['icon'] == 'fa-google-plus' ) ? 'selected="true"' : ''; ?>>Google+</option>
+                                    <option data-icon="fa-google-plus-square" <?php echo ( $social_links['icon'] == 'fa-google-plus-square' ) ? 'selected="true"' : ''; ?>>Google+ 2</option>
+                                    <option data-icon="fa-linkedin" <?php echo ( $social_links['icon'] == 'fa-linkedin' ) ? 'selected="true"' : ''; ?>>LinkedIn</option>
+                                    <option data-icon="fa-linkedin-square" <?php echo ( $social_links['icon'] == 'fa-linkedin-square' ) ? 'selected="true"' : ''; ?>>LinkedIn 2</option>
+                                    <option data-icon="fa-github" <?php echo ( $social_links['icon'] == 'fa-github' ) ? 'selected="true"' : ''; ?>>Github</option>
+                                    <option data-icon="fa-github-alt" <?php echo ( $social_links['icon'] == 'fa-github-alt' ) ? 'selected="true"' : ''; ?>>Github 2</option>
+                                    <option data-icon="fa-github-square" <?php echo ( $social_links['icon'] == 'fa-github-square' ) ? 'selected="true"' : ''; ?>>Github 3</option>
                                     <option data-icon="fa-rss" <?php echo ( $social_links['icon'] == 'fa-rss' ) ? 'selected="true"' : ''; ?>>RSS</option>
                                 </select>
                                 <input class="fa-ico-selected" type="hidden" name="pp_theme_options_option_name[social_links][<?php echo $i; ?>][icon]" value="<?php echo $social_links['icon']; ?>">
@@ -295,10 +314,29 @@ class PPThemeOptions {
                         <td>
                             <select class="fa-ico-toggler">
                                 <option data-icon="fa-facebook">Facebook</option>
-                                <option data-icon="fa-youtube">Youtube</option>
+                                <option data-icon="fa-facebook-official">Facebook 2</option>
+                                <option data-icon="fa-youtube" selected="true">Youtube</option>
+                                <option data-icon="fa-youtube-play">Youtube 2</option>
+                                <option data-icon="fa-youtube-square">Youtube 3</option>
                                 <option data-icon="fa-instagram">Instagram</option>
                                 <option data-icon="fa-twitter">Twitter</option>
+                                <option data-icon="fa-twitter-square">Twitter 2</option>
                                 <option data-icon="fa-pinterest">Pinterest</option>
+                                <option data-icon="fa-pinterest-p">Pinterest 2</option>
+                                <option data-icon="fa-pinterest-square">Pinterest 3</option>
+                                <option data-icon="fa-reddit">Reddit</option>
+                                <option data-icon="fa-reddit-alien">Reddit 2</option>
+                                <option data-icon="fa-reddit-square">Reddit 3</option>
+                                <option data-icon="fa-tumblr">Tumblr</option>
+                                <option data-icon="fa-tumblr-square">Tumblr 2</option>
+                                <option data-icon="fa-flickr">Flickr</option>
+                                <option data-icon="fa-google-plus">Google+</option>
+                                <option data-icon="fa-google-plus-square">Google+ 2</option>
+                                <option data-icon="fa-linkedin">LinkedIn</option>
+                                <option data-icon="fa-linkedin-square">LinkedIn 2</option>
+                                <option data-icon="fa-github">Github</option>
+                                <option data-icon="fa-github-alt">Github 2</option>
+                                <option data-icon="fa-github-square">Github 3</option>
                                 <option data-icon="fa-rss">RSS</option>
                             </select>
                             <input class="fa-ico-selected" type="hidden" name="pp_theme_options_option_name[social_links][0][icon]" value="fa-facebook">
@@ -312,7 +350,7 @@ class PPThemeOptions {
             <tfoot>
                 <tr>
                     <td colspan="5">
-                        <a href="#" id="pp-theme-options-social-media-links-add-row">Adicionar nova linha</a>
+                        <a href="#" id="pp-theme-options-social-media-links-add-row"><?php _e( 'Add new row', 'pp-wp' ); ?></a>
                     </td>
                 </tr>
             </tfoot>

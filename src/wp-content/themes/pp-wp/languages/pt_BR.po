@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Padrão WP\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/tags/_s\n"
-"POT-Creation-Date: 2018-01-09 16:10-0200\n"
-"PO-Revision-Date: 2018-01-09 16:45-0200\n"
+"POT-Creation-Date: 2018-01-11 14:58-0200\n"
+"PO-Revision-Date: 2018-01-11 14:58-0200\n"
 "Last-Translator: \n"
 "Language-Team: Ricardo Carvalho <rickmanu@gmail.com>\n"
 "Language: pt_BR\n"
@@ -94,6 +94,92 @@ msgstr "Assunto(s): %1$s"
 #, php-format
 msgid "Leave a Comment<span class=\"screen-reader-text\"> on %s</span>"
 msgstr "Deixe um comentário<span class=\"screen-reader-text\"> em %s</span>"
+
+#: inc/theme-settings.php:30 inc/theme-settings.php:31
+#: inc/theme-settings.php:42
+msgid "Theme configurations"
+msgstr "Configurações do tema"
+
+#: inc/theme-settings.php:66
+msgid "Visual configurations"
+msgstr "Configurações visuais"
+
+#: inc/theme-settings.php:73
+msgid "Header area"
+msgstr "Cabeçalho"
+
+#: inc/theme-settings.php:80
+msgid "Color palette"
+msgstr "Paleta de cores"
+
+#: inc/theme-settings.php:88
+msgid "Custom palette"
+msgstr "Paleta personalizada"
+
+#: inc/theme-settings.php:112
+msgid "Show search bar"
+msgstr "Mostrar campo de busca"
+
+#: inc/theme-settings.php:120
+msgid "Show social media links"
+msgstr "Mostrar "
+
+#: inc/theme-settings.php:128
+msgid "Social media links"
+msgstr "Mostrar links para redes sociais"
+
+#: inc/theme-settings.php:194
+msgid "Yellow"
+msgstr "Amarelo"
+
+#: inc/theme-settings.php:196
+msgid "Blue"
+msgstr "Azul"
+
+#: inc/theme-settings.php:198
+msgid "White"
+msgstr "Branco"
+
+#: inc/theme-settings.php:200
+msgid "Green"
+msgstr "Verde"
+
+#: inc/theme-settings.php:202
+msgid "Custom"
+msgstr "Personalizado"
+
+#: inc/theme-settings.php:205
+msgid "This will be the color palette used for the visual of the site"
+msgstr "Esta será a paleta de cores usada no visual do site"
+
+#: inc/theme-settings.php:216
+msgid ""
+"Check this option to enable/disable the search field display in the header"
+msgstr ""
+"Marque esta opção para habilitar/desabilitar a visualização do campo de "
+"busca no cabeçalho"
+
+#: inc/theme-settings.php:227
+msgid "Check this option to enable / disable viewing links to social networks"
+msgstr ""
+"Marque esta opção para habilitar/desabilitar a visualização dos links para "
+"as redes sociais"
+
+#: inc/theme-settings.php:237
+msgid "URL"
+msgstr "URL"
+
+#: inc/theme-settings.php:238
+msgid "Title"
+msgstr "Título"
+
+#: inc/theme-settings.php:239
+msgid "Icon"
+msgstr "Ícone"
+
+#: inc/theme-settings.php:315
+msgid "Add new row"
+msgstr "Adicionar nova linha"
 
 #: inc/widgets-areas.php:4
 msgid "Sidebar"

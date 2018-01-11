@@ -36,12 +36,13 @@
         },
 
         addSocialLinkRow: function() {
+            var cloneIcoToggler  = $('.fa-ico-toggler:eq(0)').clone(),
+                cloneIcon  = $('.fa-ico-toggle:eq(0)').clone();
+
             $('#pp-theme-options-social-media-links-add-row').on('click', function (e) {
                 e.preventDefault();
                 var rows  = $('#pp-theme-options-social-media-links tbody tr').length,
-                    cloneIcoToggler  = $('.fa-ico-toggler:eq(0)').clone(),
                     cloneIconSelected  = '<input class="fa-ico-selected" type="hidden" name="pp_theme_options_option_name[social_links]['+ rows +'][icon]" value="fa-facebook">',
-                    cloneIcon  = $('.fa-ico-toggle:eq(0)').clone(),
                     newRow  = '<tr>';
                     newRow += '<td>';
                     newRow += '<div class="actions">';

@@ -258,10 +258,6 @@ function print_msgs($msg, $extra_class='', $id=''){
     }
 }
 endif;
-<<<<<<< HEAD
-
-=======
->>>>>>> 5ebe333936ff78647ada6ba7c2a9eb67a5f07d76
 
 if (!function_exists('_oi')) {
 

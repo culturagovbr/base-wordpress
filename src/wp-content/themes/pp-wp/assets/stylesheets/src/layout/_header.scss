@@ -30,6 +30,12 @@ header {
 			@include gradient-vertical($theme-white__color-gradient-start, $theme-white__color-gradient-end);
 		}
 
+		body.high-contrast & {
+			color: #fff;
+			background: #000;
+			position: relative;
+		}
+
 		a {
 			color: $theme-green__link-alt-color;
 
@@ -43,6 +49,10 @@ header {
 
 			body.white-theme & {
 				color: $theme-white__link-color;
+			}
+
+			body.high-contrast & {
+				color: #fff;
 			}
 
 			&:hover {
@@ -85,6 +95,10 @@ header {
 
 			body.white-theme & {
 				background: $theme-white__color-secondary;
+			}
+
+			body.high-contrast & {
+				background: #000;
 			}
 
 			.navbar {

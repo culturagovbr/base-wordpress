@@ -25,6 +25,11 @@
 				border-left: 1px dotted $theme-white__link-color;
 			}
 
+			body.high-contrast & {
+				color: #fff;
+				border-left: 1px dotted #fff;
+			}
+
 			@include media-breakpoint-down(sm) {
 
 				border-left: none;

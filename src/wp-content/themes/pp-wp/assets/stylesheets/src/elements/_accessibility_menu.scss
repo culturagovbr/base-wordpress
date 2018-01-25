@@ -18,6 +18,10 @@
 		border-bottom: 1px dotted $theme-white__color-secondary;
 	}
 
+	body.high-contrast & {
+		border-bottom: 1px dotted #fff;
+	}
+
 	li {
 		display: inline-block;
 		margin-right: 5px;

@@ -22,6 +22,11 @@ footer {
 			color: $theme-white__link-color;
 		}
 
+		body.high-contrast & {
+			background-color: #000;
+			color: #fff;
+		}
+
 		a {
 			color: $theme-green__link-alt-color;
 
@@ -35,6 +40,10 @@ footer {
 
 			body.white-theme & {
 				color: $theme-white__link-color;
+			}
+
+			body.high-contrast & {
+				color: #fff;
 			}
 
 			&:hover {

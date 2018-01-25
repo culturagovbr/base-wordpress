@@ -41,6 +41,10 @@
 			border-left: 1px dotted $theme-white__color-primary;
 		}
 
+		body.high-contrast & {
+			border-left: 1px dotted #fff;
+		}
+
 		.widget-title {
 			background: none;
 			padding: 0;
@@ -60,6 +64,10 @@
 
 			body.white-theme & {
 				color: $theme-white__link-color;
+			}
+
+			body.high-contrast & {
+				color: #fff;
 			}
 		}
 

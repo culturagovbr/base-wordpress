@@ -12,16 +12,21 @@ body {
 	background: $theme-green__background-body;
 	font-family: $font__main;
 
-	body.yellow-theme & {
+	&.yellow-theme {
 		background: $theme-yellow__background-body;
 	}
 
-	body.blue-theme & {
+	&.blue-theme {
 		background: $theme-blue__background-body;
 	}
 
-	body.white-theme & {
+	&.white-theme {
 		background: $theme-white__background-body;
+	}
+
+	&.high-contrast {
+		background: #000;
+		color: #fff;
 	}
 }
 
@@ -66,6 +71,10 @@ a {
 
 	body.white-theme & {
 		color: $theme-white__link-color;
+	}
+
+	body.high-contrast & {
+		color: #fff;
 	}
 }
 

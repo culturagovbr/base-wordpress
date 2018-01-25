@@ -80,6 +80,12 @@ h1 {
 		color: $theme-white__link-color;
 		border-top: 4px solid $theme-white__link-color;
 	}
+
+	body.high-contrast & {
+		color: #000;
+		border-top: 4px solid #fff;
+		background: #fff;
+	}
 }
 
 .screen-reader-text{

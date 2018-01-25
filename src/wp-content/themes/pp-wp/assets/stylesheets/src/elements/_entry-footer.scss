@@ -17,6 +17,10 @@
 		color: $theme-white__link-color;
 	}
 
+	body.high-contrast & {
+		color: #fff;
+	}
+
 	& > span {
 		display: block;
 		border-bottom: 1px solid #8b949b;
@@ -41,6 +45,10 @@
 
 			body.white-theme & {
 				color: $theme-white__link-color;
+			}
+
+			body.high-contrast & {
+				color: #000;
 			}
 		}
 

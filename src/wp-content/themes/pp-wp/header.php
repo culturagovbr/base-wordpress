@@ -20,8 +20,10 @@
 	<?php wp_head (); ?>
 </head>
 <?php
-$theme_color = get_option( 'color_palette' ) ? get_option( 'color_palette' ) . '-theme' : 'green-theme';  ?>
-<body <?php body_class ($theme_color); ?>>
+$theme_color = get_option( 'color_palette' ) ? get_option( 'color_palette' ) . '-theme' : 'green-theme';
+$high_contrast_cookie = $_COOKIE['high-contrast'] === 'on' ? 'high-contrast' : ''; ?>
+
+<body <?php body_class ($theme_color . ' ' . $high_contrast_cookie); ?>>
 <div id="page" class="site">
     <a class="skip-link screen-reader-text sr-only"
        href="#content"><?php esc_html_e ('Skip to content', 'pp-wp'); ?></a>
@@ -82,7 +84,7 @@ $theme_color = get_option( 'color_palette' ) ? get_option( 'color_palette' ) . '
                             <a href="#" title="Acessibilidade" accesskey="5">Acessibilidade</a>
                         </li>
                         <li>
-                            <a href="#" title="Alto Contraste" accesskey="6">Alto Contraste</a>
+                            <a href="#" title="Alto Contraste" accesskey="6" id="high-contrast">Alto Contraste</a>
                         </li>
                         <li>
                             <a href="#" title="Mapa do Site" accesskey="7">Mapa do Site</a>

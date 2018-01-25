@@ -31,6 +31,11 @@
 					background: $theme-white__link-color;
 					color: $theme-blue__link-alt-color;
 				}
+
+				body.high-contrast & {
+					background: #fff;
+					color: #000;
+				}
 			}
 		}
 	}

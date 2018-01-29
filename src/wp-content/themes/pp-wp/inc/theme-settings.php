@@ -75,6 +75,13 @@ class PPThemeOptions {
 			'pp-theme-options-admin'
 		);
 
+		add_settings_section(
+			'pp_theme_options_discussion_section',
+			__( 'Discussion', 'pp-wp' ),
+			array( $this, 'pp_theme_options_discussion_section_info' ),
+			'pp-theme-options-admin'
+		);
+
 		add_settings_field(
 			'color_palette', 						// id
 			__( 'Color palette', 'pp-wp' ), 			// title
@@ -130,6 +137,14 @@ class PPThemeOptions {
 			'pp-theme-options-admin',
 			'pp_theme_options_header_section'
 		);
+
+		add_settings_field(
+			'disable_comments',
+			__( 'Disable comments', 'pp-wp' ),
+			array( $this, 'disable_comments_callback' ),
+			'pp-theme-options-admin',
+			'pp_theme_options_discussion_section'
+		);
 	}
 
 	public function pp_theme_options_sanitize($input) {
@@ -163,6 +178,10 @@ class PPThemeOptions {
 
 		if ( isset( $input['radioexample_4'] ) ) {
 			$sanitary_values['radioexample_4'] = $input['radioexample_4'];
+		}
+
+		if ( isset( $input['disable_comments'] ) ) {
+			$sanitary_values['disable_comments'] = $input['disable_comments'];
 		}
 
 		return $sanitary_values;
@@ -355,6 +374,17 @@ class PPThemeOptions {
                 </tr>
             </tfoot>
         </table>
+		<?php
+	}
+
+	public function disable_comments_callback() {
+		printf(
+			'<input type="checkbox" name="pp_theme_options_option_name[disable_comments]" id="disable_comments" value="true" %s> <label for="disable_comments">Sim</label>',
+			( isset( $this->pp_theme_options_options['disable_comments'] ) && $this->pp_theme_options_options['disable_comments'] === 'true' ) ? 'checked' : ''
+		); ?>
+        <p class="description">
+			<?php _e( 'Check this option to override post options and disable comments for the whole site', 'pp-wp' ); ?>
+        </p>
 		<?php
 	}
 

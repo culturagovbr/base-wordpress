@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Padrão WP\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/tags/_s\n"
-"POT-Creation-Date: 2018-01-29 11:31-0200\n"
-"PO-Revision-Date: 2018-01-29 11:32-0200\n"
+"POT-Creation-Date: 2018-01-29 15:12-0200\n"
+"PO-Revision-Date: 2018-01-29 15:12-0200\n"
 "Last-Translator: \n"
 "Language-Team: Ricardo Carvalho <rickmanu@gmail.com>\n"
 "Language: pt_BR\n"
@@ -44,6 +44,11 @@ msgstr "Tente buscar no arquivo mensal. %1$s"
 #, php-format
 msgid "One thought on &ldquo;%1$s&rdquo;"
 msgstr "1 comentário em &ldquo;%1$s&rdquo;"
+
+#: comments.php:31
+#, php-format
+msgid "%1$s thought on &ldquo;%2$s&rdquo;"
+msgstr "%1$s comentários em &ldquo;%2$s&rdquo;"
 
 #: comments.php:55
 msgid "Comments are closed."
@@ -109,77 +114,91 @@ msgid "Header area"
 msgstr "Cabeçalho"
 
 #: inc/theme-settings.php:80
+msgid "Discussion"
+msgstr ""
+
+#: inc/theme-settings.php:87
 msgid "Color palette"
 msgstr "Paleta de cores"
 
-#: inc/theme-settings.php:88
+#: inc/theme-settings.php:95
 msgid "Custom palette"
 msgstr "Paleta personalizada"
 
-#: inc/theme-settings.php:112
+#: inc/theme-settings.php:119
 msgid "Show search bar"
 msgstr "Mostrar campo de busca"
 
-#: inc/theme-settings.php:120
+#: inc/theme-settings.php:127
 msgid "Show social media links"
 msgstr "Mostrar "
 
-#: inc/theme-settings.php:128
+#: inc/theme-settings.php:135
 msgid "Social media links"
 msgstr "Mostrar links para redes sociais"
 
-#: inc/theme-settings.php:194
+#: inc/theme-settings.php:143
+msgid "Disable comments"
+msgstr ""
+
+#: inc/theme-settings.php:213
 msgid "Yellow"
 msgstr "Amarelo"
 
-#: inc/theme-settings.php:196
+#: inc/theme-settings.php:215
 msgid "Blue"
 msgstr "Azul"
 
-#: inc/theme-settings.php:198
+#: inc/theme-settings.php:217
 msgid "White"
 msgstr "Branco"
 
-#: inc/theme-settings.php:200
+#: inc/theme-settings.php:219
 msgid "Green"
 msgstr "Verde"
 
-#: inc/theme-settings.php:202
+#: inc/theme-settings.php:221
 msgid "Custom"
 msgstr "Personalizado"
 
-#: inc/theme-settings.php:205
+#: inc/theme-settings.php:224
 msgid "This will be the color palette used for the visual of the site"
 msgstr "Esta será a paleta de cores usada no visual do site"
 
-#: inc/theme-settings.php:216
+#: inc/theme-settings.php:235
 msgid ""
 "Check this option to enable/disable the search field display in the header"
 msgstr ""
 "Marque esta opção para habilitar/desabilitar a visualização do campo de "
 "busca no cabeçalho"
 
-#: inc/theme-settings.php:227
+#: inc/theme-settings.php:246
 msgid "Check this option to enable / disable viewing links to social networks"
 msgstr ""
 "Marque esta opção para habilitar/desabilitar a visualização dos links para "
 "as redes sociais"
 
-#: inc/theme-settings.php:237
+#: inc/theme-settings.php:256
 msgid "URL"
 msgstr "URL"
 
-#: inc/theme-settings.php:238
+#: inc/theme-settings.php:257
 msgid "Title"
 msgstr "Título"
 
-#: inc/theme-settings.php:239
+#: inc/theme-settings.php:258
 msgid "Icon"
 msgstr "Ícone"
 
-#: inc/theme-settings.php:353
+#: inc/theme-settings.php:372
 msgid "Add new row"
 msgstr "Adicionar nova linha"
+
+#: inc/theme-settings.php:386
+msgid ""
+"Check this option to override post options and disable comments for the "
+"whole site"
+msgstr ""
 
 #: inc/widgets-areas.php:4
 msgid "Sidebar"

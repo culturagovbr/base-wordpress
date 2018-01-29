@@ -115,6 +115,7 @@ add_action( 'wp_enqueue_scripts', 'pp_wp_scripts' );
 
 /**
  * Implement the theme settings
+ *
  */
 require get_template_directory() . '/inc/theme-settings.php';
 
@@ -127,26 +128,31 @@ require get_template_directory() . '/inc/widgets-areas.php';
 
 /**
  * Implement the Custom Header feature.
+ *
  */
 require get_template_directory() . '/inc/custom-header.php';
 
 /**
  * Custom template tags for this theme.
+ *
  */
 require get_template_directory() . '/inc/template-tags.php';
 
 /**
  * Functions which enhance the theme by hooking into WordPress.
+ *
  */
 require get_template_directory() . '/inc/template-functions.php';
 
 /**
  * Customizer additions.
+ *
  */
 require get_template_directory() . '/inc/customizer.php';
 
 /**
  * Load Jetpack compatibility file.
+ *
  */
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
@@ -154,19 +160,35 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 
 /**
  * Register Custom Navigation Walker
+ *
  */
 require_once get_template_directory() . '/inc/wp-bootstrap-navwalker.php';
 
 /**
  * Custom Breadcrumb
+ *
  */
 require_once get_template_directory() . '/inc/breadcrumb.php';
 
 /**
  * Corrects the error while customizing the site in the frontend
+ *
  */
 function wp_mediaelement_customize_javascript() {
 	wp_register_script('mediaelement', plugins_url('wp-mediaelement.min.js', __FILE__), array('jquery'), false, true);
 	wp_enqueue_script('mediaelement');
 }
 add_action('wp_enqueue_scripts', 'wp_mediaelement_customize_javascript', 100);
+
+
+/**
+ * Based on the option defined, disable comments for whole site
+ *
+ */
+function disable_comments(){
+	$pp_theme_options_options = get_option( 'pp_theme_options_option_name' );
+	if( $pp_theme_options_options['disable_comments'] ){
+		require get_template_directory() . '/inc/disable-comments.php';
+	}
+}
+add_action('init', 'disable_comments');

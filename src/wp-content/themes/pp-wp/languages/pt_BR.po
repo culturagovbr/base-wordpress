@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Padrão WP\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/tags/_s\n"
-"POT-Creation-Date: 2018-01-29 15:12-0200\n"
-"PO-Revision-Date: 2018-01-29 15:12-0200\n"
+"POT-Creation-Date: 2018-01-29 15:30-0200\n"
+"PO-Revision-Date: 2018-01-29 15:30-0200\n"
 "Last-Translator: \n"
 "Language-Team: Ricardo Carvalho <rickmanu@gmail.com>\n"
 "Language: pt_BR\n"
@@ -29,7 +29,7 @@ msgstr "Oops! A página não pode ser encontrada."
 msgid ""
 "It looks like nothing was found at this location. Maybe try one of the links "
 "below or a search?"
-msgstr "Parece que nada foi encontrado aqui. Tentar a busca talvez?"
+msgstr "Deseja realizar uma busca?"
 
 #: 404.php:41
 msgid "Most Used Categories"
@@ -40,17 +40,11 @@ msgstr "Categorias mais utilizadas"
 msgid "Try looking in the monthly archives. %1$s"
 msgstr "Tente buscar no arquivo mensal. %1$s"
 
-#: comments.php:26
-#, php-format
-msgid "One thought on &ldquo;%1$s&rdquo;"
-msgstr "1 comentário em &ldquo;%1$s&rdquo;"
+#: comments.php:22
+msgid "Comments in"
+msgstr "Comentários em"
 
-#: comments.php:31
-#, php-format
-msgid "%1$s thought on &ldquo;%2$s&rdquo;"
-msgstr "%1$s comentários em &ldquo;%2$s&rdquo;"
-
-#: comments.php:55
+#: comments.php:41
 msgid "Comments are closed."
 msgstr "Comentário fechados"
 
@@ -115,7 +109,7 @@ msgstr "Cabeçalho"
 
 #: inc/theme-settings.php:80
 msgid "Discussion"
-msgstr ""
+msgstr "Discussão"
 
 #: inc/theme-settings.php:87
 msgid "Color palette"
@@ -139,7 +133,7 @@ msgstr "Mostrar links para redes sociais"
 
 #: inc/theme-settings.php:143
 msgid "Disable comments"
-msgstr ""
+msgstr "Desabilitar comentários"
 
 #: inc/theme-settings.php:213
 msgid "Yellow"
@@ -199,6 +193,8 @@ msgid ""
 "Check this option to override post options and disable comments for the "
 "whole site"
 msgstr ""
+"Marque esta opção para substituir as opções de postagens e, desativar "
+"comentários para todo o site"
 
 #: inc/widgets-areas.php:4
 msgid "Sidebar"
@@ -266,6 +262,18 @@ msgstr "Páginas:"
 #, php-format
 msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
 msgstr "Continue lendo<span class=\"screen-reader-text\"> \"%s\"</span>"
+
+#~ msgid "Comments in <span>\""
+#~ msgstr "Comentários em <span>\""
+
+#~ msgid "One thought on \"%1$s\""
+#~ msgstr "Um comentário em \"%1$s\""
+
+#~ msgid "%1$s thought on &ldquo;%2$s&rdquo;"
+#~ msgstr "%1$s comentários em &ldquo;%2$s&rdquo;"
+
+#~ msgid "One thought on &ldquo;%1$s&rdquo;"
+#~ msgstr "1 comentário em &ldquo;%1$s&rdquo;"
 
 #~ msgid "Posted in %1$s"
 #~ msgstr "Registrado em: %1$s"

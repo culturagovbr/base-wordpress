@@ -48,12 +48,28 @@ h1 {
 }
 
 .entry-title,
-.page-title {
+.page-title,
+.comments-title,
+.comment-reply-title {
 	font-weight: 700;
 	margin: 15px 0;
 	font-size: 32px;
 	line-height: 32px;
 	letter-spacing: -2px;
+}
+
+.comments-title {
+	font-size: 28px;
+	margin-bottom: 30px;
+}
+
+.comment-reply-title {
+	font-size: 26px;
+	margin: 0;
+
+	> small {
+		margin-left: 15px;
+	}
 }
 
 .widget-title {

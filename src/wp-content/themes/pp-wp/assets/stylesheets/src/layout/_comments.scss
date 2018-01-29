@@ -1,0 +1,123 @@
+#comments {
+
+	.comment-list {
+		list-style-type: none;
+		margin: 0 0 30px 0;
+		padding: 0;
+
+		ul {
+			list-style-type: none;
+
+			&.children{
+				padding-left: 64px;
+				border-bottom: 1px solid #d7dcd8;
+			}
+		}
+	}
+
+	.comment-body {
+		padding-left: 64px;
+		position: relative;
+		border-bottom: 1px solid #d7dcd8;
+		padding-bottom: 30px;
+		margin-bottom: 30px;
+	}
+
+	.comment-meta {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+
+		.comment-author {
+			img {
+				float: left;
+				margin-right: 15px;
+				padding: .25rem;
+				background-color: #fff;
+				border: 1px solid #dee2e6;
+				max-width: 100%;
+				height: auto;
+			}
+
+			.fn{
+				font-weight: 700;
+				margin: 15px 0;
+				font-size: 20px;
+				line-height: 32px;
+				letter-spacing: -1px;
+			}
+
+			.says {
+				display: none;
+			}
+		}
+
+		.comment-metadata {
+			font-size: 12px;
+			color: #195128;
+		}
+	}
+
+	.comment-content {
+		padding: 64px 15px 0 15px;
+	}
+
+	.children .comment-body {
+		border-bottom: none;
+	}
+
+	.comment-respond {
+
+		.logged-in-as {
+			font-size: 12px;
+		}
+
+		.comment-form-comment textarea{
+			display: block;
+			width: 100%;
+			padding: .375rem .75rem;
+			font-size: 1rem;
+			line-height: 1.5;
+			color: #495057;
+			background-color: #fff;
+			background-clip: padding-box;
+			border: 1px solid #ced4da;
+			border-radius: .25rem;
+			transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+			&:focus {
+				color: #495057;
+				background-color: #fff;
+				border-color: #80bdff;
+				outline: 0;
+				box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+			}
+		}
+
+		.form-submit {
+			input[type="submit"] {
+				cursor: pointer;
+				display: inline-block;
+				font-weight: 400;
+				text-align: center;
+				white-space: nowrap;
+				vertical-align: middle;
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+				border: 1px solid transparent;
+				padding: .375rem .75rem;
+				font-size: 1rem;
+				line-height: 1.5;
+				border-radius: .25rem;
+				transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+				background-color: $theme-green__color-primary;
+				color: #fff;
+			}
+		}
+
+	}
+
+}

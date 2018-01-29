@@ -25,5 +25,9 @@
 				'after'  => '</div>',
 			) );
 		?>
-	</div><!-- .entry-content -->
-</article><!-- #post-<?php the_ID(); ?> -->
+	</div>
+
+    <footer class="entry-footer">
+		<?php pp_wp_entry_footer (); ?>
+    </footer>
+</article>

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Padrão WP\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/tags/_s\n"
-"POT-Creation-Date: 2018-01-11 14:58-0200\n"
-"PO-Revision-Date: 2018-01-11 14:58-0200\n"
+"POT-Creation-Date: 2018-01-29 11:31-0200\n"
+"PO-Revision-Date: 2018-01-29 11:32-0200\n"
 "Last-Translator: \n"
 "Language-Team: Ricardo Carvalho <rickmanu@gmail.com>\n"
 "Language: pt_BR\n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Generator: Poedit 1.8.11\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-Basepath: ..\n"
-"X-Poedit-KeywordsList: _e;__;_;esc_html_e;esc_html_x;esc_html__\n"
+"X-Poedit-KeywordsList: _e;__;_;esc_html_e;esc_html_x;esc_html__;_nx\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: node_modules\n"
@@ -40,12 +40,12 @@ msgstr "Categorias mais utilizadas"
 msgid "Try looking in the monthly archives. %1$s"
 msgstr "Tente buscar no arquivo mensal. %1$s"
 
-#: comments.php:34
+#: comments.php:26
 #, php-format
 msgid "One thought on &ldquo;%1$s&rdquo;"
-msgstr "One thought on &ldquo;%1$s&rdquo;"
+msgstr "1 comentário em &ldquo;%1$s&rdquo;"
 
-#: comments.php:63
+#: comments.php:55
 msgid "Comments are closed."
 msgstr "Comentário fechados"
 
@@ -53,7 +53,7 @@ msgstr "Comentário fechados"
 msgid "Services menu"
 msgstr "Menu de serviços"
 
-#: header.php:27
+#: header.php:29
 msgid "Skip to content"
 msgstr "Pular para o conteúdo"
 
@@ -82,13 +82,13 @@ msgstr ", "
 
 #: inc/template-tags.php:51
 #, php-format
-msgid "Posted in %1$s"
-msgstr "Registrado em: %1$s"
+msgid "Posted in: <span class=\"link\">%1$s</span>"
+msgstr "Registrado em: <span class=\"link\">%1$s</span>"
 
 #: inc/template-tags.php:56
 #, php-format
-msgid "Tagged %1$s"
-msgstr "Assunto(s): %1$s"
+msgid "Tagged: %1$s"
+msgstr "Assuntos: %1$s"
 
 #: inc/template-tags.php:63
 #, php-format
@@ -177,7 +177,7 @@ msgstr "Título"
 msgid "Icon"
 msgstr "Ícone"
 
-#: inc/theme-settings.php:315
+#: inc/theme-settings.php:353
 msgid "Add new row"
 msgstr "Adicionar nova linha"
 
@@ -247,6 +247,12 @@ msgstr "Páginas:"
 #, php-format
 msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
 msgstr "Continue lendo<span class=\"screen-reader-text\"> \"%s\"</span>"
+
+#~ msgid "Posted in %1$s"
+#~ msgstr "Registrado em: %1$s"
+
+#~ msgid "Tagged %1$s"
+#~ msgstr "Assunto(s): %1$s"
 
 #~ msgid "<h2 class=\"entry-title\"><a href=\"%s\" rel=\"bookmark\">"
 #~ msgstr "<h2 class=\"entry-title\"><a href=\"%s\" rel=\"bookmark\">"

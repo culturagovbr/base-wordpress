@@ -26,7 +26,9 @@
 		border-bottom: 1px solid #8b949b;
 		padding: 15px 0;
 
-		a {
+		> .link,
+		&.tags-links a,
+		&.comments-link a {
 			margin: 0 5px;
 			padding: 4px 9px;
 			border: 1px solid #dadada;

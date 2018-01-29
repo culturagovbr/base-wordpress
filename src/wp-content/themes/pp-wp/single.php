@@ -20,16 +20,16 @@ get_header(); ?>
 
 					<?php get_sidebar(); ?>
 
-                    <div class="col-lg-6">
+                    <div class="<?php echo ( is_active_sidebar( 'sidebar-right' ) ) ? 'col-lg-6' : 'col-lg-9'; ?>">
 
 						<?php
 						while ( have_posts() ) : the_post();
 
 							get_template_part( 'template-parts/content', get_post_type() );
 
-							/* if ( comments_open() || get_comments_number() ) :
+							 if ( comments_open() || get_comments_number() ) :
 								comments_template();
-							endif; */
+							endif;
 
 						endwhile;
 						?>

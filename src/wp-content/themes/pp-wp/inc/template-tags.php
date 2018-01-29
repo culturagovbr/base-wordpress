@@ -48,12 +48,12 @@ if (!function_exists ('pp_wp_entry_footer')) :
 		if ('post' === get_post_type ()) {
 			$categories_list = get_the_category_list (esc_html__ (', ', 'pp-wp'));
 			if ($categories_list) {
-				printf ('<span class="cat-links">' . esc_html__ ('Posted in %1$s', 'pp-wp') . '</span>', $categories_list); // WPCS: XSS OK.
+				printf ('<span class="cat-links">' . __ ('Posted in: <span class="link">%1$s</span>', 'pp-wp') . '</span>', $categories_list); // WPCS: XSS OK.
 			}
 
 			$tags_list = get_the_tag_list ('', esc_html_x (', ', 'list item separator', 'pp-wp'));
 			if ($tags_list) {
-				printf ('<span class="tags-links">' . esc_html__ ('Tagged %1$s', 'pp-wp') . '</span>', $tags_list); // WPCS: XSS OK.
+				printf ('<span class="tags-links">' . esc_html__ ('Tagged: %1$s', 'pp-wp') . '</span>', $tags_list); // WPCS: XSS OK.
 			}
 		}
 

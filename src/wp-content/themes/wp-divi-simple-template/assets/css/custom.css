@@ -1213,6 +1213,50 @@ body.tema-branco .footer-widget a {
 body.tema-branco .footer-widget .title{
     color: #2C66CE;
 }
+ul.epracas-list {
+    position: absolute;
+    left: 0;
+    top: 56px;
+    z-index: 10;
+    background: #fff;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    overflow: hidden;
+    max-height: 300px;
+    overflow-y: scroll;
+    width: 100%;
+}
+ul.epracas-list li{
+    padding: 15px;
+    border-top: 1px solid #e5e5e5;
+}
+ul.epracas-list li h3,
+ul.epracas-list li h4{
+    margin: 0;
+}
+ul.epracas-list li h3 {
+    font-size: 18px;
+    font-weight: bold;
+}
+ul.epracas-list li h4 {
+    font-size: 13px;
+    text-transform: uppercase;
+    padding-bottom: 5px;
+}
+.icone.icone-fechar{
+    line-height: 35px;
+    height: 35px;
+    width: 35px;
+    display: inline-block;
+    position: relative;
+    font-size: 30px;
+    color: #219653;
+    cursor: pointer;
+}
+.icone.icone-fechar:before {
+    content: '✕';
+}
+
 /**
  * Responsividade
  */

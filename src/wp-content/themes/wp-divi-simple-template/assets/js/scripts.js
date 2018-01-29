@@ -244,4 +244,82 @@ jQuery(document).ready(function ($) {
 		$('#main-content .page').prepend(clone.addClass('download_as_pdf--header'));
 	}
 
+    if( $('#busca-epracas').length ){
+
+		$('body').on('click', function () {
+			$('.epracas-list').remove();
+        });
+
+		$('body').on('click', '.icone.icone-fechar', function () {
+			$('.epracas-list').remove();
+            $('#busca-epracas').val('');
+            $('.busca-epracas .icone').removeClass('icone-fechar').addClass('icone-busca');
+        });
+
+        $('#busca-epracas').on('keyup click', function(){
+        	var busca = $('#busca-epracas').val();
+
+            if( busca.length ){
+                $('.busca-epracas .icone').removeClass('icone-busca').addClass('icone-fechar');
+            } else {
+                $('.busca-epracas .icone').removeClass('icone-fechar').addClass('icone-busca');
+			}
+
+        	if( busca.length < 2 ){
+                $('.epracas-list').remove();
+        		return false;
+			} else {
+
+                var url = 'https://epracas.cultura.gov.br/api/v1/pracas/?search=' + busca;
+                $.ajax({
+                    url: url,
+                    cache: true,
+                    beforeSend: function() {
+                        $('.epracas-list').remove();
+                        var list  = '<ul class="epracas-list">';
+                        	list += '<li>Pesquisando...</li>';
+                        	list += '</ul>';
+                        $('.modulo-epracas .busca-epracas').append(list);
+                    },
+                    error: function(error) {
+                        console.error('Error :' + error);
+                        $('.epracas-list').remove();
+                        var list  = '<ul class="epracas-list">';
+							list += '<li>Houve um erro durante a busca.</li>';
+							list += '</ul>';
+                        $('.modulo-epracas .busca-epracas').append(list);
+                    },
+                    success: function(listObj) {
+
+                        $('.epracas-list').remove();
+                        var list  = '<ul class="epracas-list">';
+							console.table(listObj);
+                        	if( listObj.length ){
+                                $.each(listObj,function(i, epraca){
+
+                                    console.log(epraca);
+
+                                    list += '<li>';
+                                    list += '<a href="https://epracas.cultura.gov.br/pracas/'+ epraca.id_pub +'" target="_blank">';
+                                    list += '<h3>'+ epraca.nome +'</h3>';
+                                    list += '<h4>'+ epraca.municipio +' - '+ epraca.uf +'</h4>';
+                                    list += '<h4>Modelo: '+ epraca.modelo_descricao +'</h4>';
+                                    list += '<h4>Situação: '+ epraca.situacao_descricao +'</h4>';
+                                    list += '</a>';
+                                    list += '</li>';
+                                });
+							} else {
+                                list += '<li>Nada encontrado.</li>';
+							}
+
+                        	list += '</ul>';
+                        $('.modulo-epracas .busca-epracas').append(list);
+
+                    }
+                });
+			}
+
+        });
+    }
+
 });

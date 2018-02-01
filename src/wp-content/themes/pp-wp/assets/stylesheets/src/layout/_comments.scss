@@ -73,7 +73,10 @@
 			font-size: 12px;
 		}
 
-		.comment-form-comment textarea{
+		.comment-form-comment textarea,
+		.comment-form-author input[type="text"],
+		.comment-form-email input[type="email"],
+		.comment-form-url input[type="url"]{
 			display: block;
 			width: 100%;
 			padding: .375rem .75rem;
@@ -95,8 +98,7 @@
 			}
 		}
 
-		.form-submit {
-			input[type="submit"] {
+		.form-submit input[type="submit"] {
 				cursor: pointer;
 				display: inline-block;
 				font-weight: 400;
@@ -115,7 +117,6 @@
 				transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 				background-color: $theme-green__color-primary;
 				color: #fff;
-			}
 		}
 
 	}

@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Portal Padrão WP\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/tags/_s\n"
 "POT-Creation-Date: 2018-01-29 15:30-0200\n"
-"PO-Revision-Date: 2018-01-29 15:30-0200\n"
+"PO-Revision-Date: 2018-01-29 15:39-0200\n"
 "Last-Translator: \n"
 "Language-Team: Ricardo Carvalho <rickmanu@gmail.com>\n"
 "Language: pt_BR\n"
@@ -125,7 +125,7 @@ msgstr "Mostrar campo de busca"
 
 #: inc/theme-settings.php:127
 msgid "Show social media links"
-msgstr "Mostrar "
+msgstr "Mostrar link para redes sociais"
 
 #: inc/theme-settings.php:135
 msgid "Social media links"

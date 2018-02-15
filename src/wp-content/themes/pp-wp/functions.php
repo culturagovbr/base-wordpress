@@ -192,3 +192,15 @@ function disable_comments(){
 	}
 }
 add_action('init', 'disable_comments');
+
+/**
+ * Add unfiltered_html Capability to Admins or Editors in WordPress Multisite 
+ *
+ */
+function km_add_unfiltered_html_capability_to_editors( $caps, $cap, $user_id ) {
+	if ( 'unfiltered_html' === $cap && user_can( $user_id, 'editor' ) ) {
+		$caps = array( 'unfiltered_html' );
+	}
+	return $caps;
+}
+add_filter( 'map_meta_cap', 'km_add_unfiltered_html_capability_to_editors', 1, 3 );

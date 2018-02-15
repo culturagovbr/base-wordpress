@@ -198,7 +198,7 @@ add_action('init', 'disable_comments');
  *
  */
 function km_add_unfiltered_html_capability_to_editors( $caps, $cap, $user_id ) {
-	if ( 'unfiltered_html' === $cap && user_can( $user_id, 'editor' ) ) {
+	if ( 'unfiltered_html' === $cap && user_can( $user_id, 'editor' ) || 'unfiltered_html' === $cap && user_can( $user_id, 'administrator' ) ) {
 		$caps = array( 'unfiltered_html' );
 	}
 	return $caps;

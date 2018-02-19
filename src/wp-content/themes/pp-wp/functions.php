@@ -171,6 +171,12 @@ require_once get_template_directory() . '/inc/wp-bootstrap-navwalker.php';
 require_once get_template_directory() . '/inc/breadcrumb.php';
 
 /**
+ * Shortcodes
+ *
+ */
+require_once get_template_directory() . '/inc/shortcodes.php';
+
+/**
  * Corrects the error while customizing the site in the frontend
  *
  */

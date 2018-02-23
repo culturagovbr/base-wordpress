@@ -30,7 +30,7 @@
                         $.ajax({
                             url: ecwp.api_url + pageNumber,
                             beforeSend: function () {
-                                console.log("loading new items");
+                                // console.log("loading new items");
                             },
                             success: function (data) {
                                 if( data.length ){
@@ -75,14 +75,14 @@
                                     $('#editais-culturais').attr('data-page', pageNumber);
                                 } else {
                                     // console.log( 'No more!' );
-                                    setTimeout(function () {
+                                    setInterval(function () {
                                         $('#loader').removeClass('active');
                                     }, 3000)
                                 }
                             },
                             complete: function () {
                                 // console.log( 'Loaded!' );
-                                setTimeout(function () {
+                                setInterval(function () {
                                     $('#loader').removeClass('active');
                                 }, 3000)
                             },

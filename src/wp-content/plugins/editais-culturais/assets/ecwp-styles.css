@@ -1,0 +1,174 @@
+#editais-culturais {
+    margin-left: -8px;
+    margin-right: -8px;
+    float: none;
+    clear: both;
+}
+
+#editais-culturais:after {
+    content: ' ';
+    display: block;
+    width: 100%;
+    height: 1px;
+    float: none;
+    clear: both;
+}
+
+.card-wrapper {
+    float: left;
+    width: 33.33%;
+}
+
+.edital-card {
+    box-sizing: border-box;
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    margin: 8px;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
+}
+
+.edital-card a,
+.edital-card a:hover,
+.edital-card a:active {
+    text-decoration: none;
+}
+
+.edital-card .card-header {
+    padding: 24px 96px 16px 16px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    position: relative;
+    width: 100%;
+    min-height: 117px;
+    background-color: #f7f7f7;
+}
+
+.edital-card .card-header-text .headline{
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 26px;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.edital-card .card-header-text .subhead{
+    padding-top: 0;
+    font-size: 14px;
+    display: block;
+    color: rgba(0,0,0,0.54);
+}
+
+.edital-card .card-header-media {
+    height: 76px;
+    width: 76px;
+    position: absolute;
+    top: 24px;
+    right: 16px;
+    background-color: #999999;
+}
+
+.edital-card .card-header-media img{
+    max-width: 100%;
+    height: auto;
+}
+
+.edital-card .card-actions {
+    position: relative;
+}
+
+.edital-card .card-actions > span {
+    position: absolute;
+    color: rgba(0,0,0,0.54);
+    text-transform: uppercase;
+    top: 5px;
+    left: 5px;
+}
+
+.edital-card .card-actions > ul {
+    padding: 6px 16px;
+    list-style-type: none;
+    text-align: right;
+}
+
+.edital-card .card-actions > ul li {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    vertical-align: middle;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 2px;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    outline: none;
+    border: 0;
+    padding: 6px;
+    color: currentColor;
+    white-space: nowrap;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 12px;
+    font-style: inherit;
+    font-variant: inherit;
+    font-family: inherit;
+    text-decoration: none;
+    overflow: hidden;
+    -webkit-transition: box-shadow .4s cubic-bezier(.25,.8,.25,1),background-color .4s cubic-bezier(.25,.8,.25,1);
+    transition: box-shadow .4s cubic-bezier(.25,.8,.25,1),background-color .4s cubic-bezier(.25,.8,.25,1);
+    background-color: rgba(158,158,158,0.2);
+    margin: 2px;
+}
+.edital-card .card-actions > ul li a{
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    min-height: 36px;
+    min-width: 88px;
+    line-height: 36px;
+    vertical-align: middle;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 2px;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    outline: none;
+    border: 0;
+    padding: 0 6px;
+    margin: 6px 8px;
+    background: transparent;
+    color: currentColor;
+    white-space: nowrap;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 14px;
+    font-style: inherit;
+    font-variant: inherit;
+    font-family: inherit;
+    text-decoration: none;
+    overflow: hidden;
+    -webkit-transition: box-shadow .4s cubic-bezier(.25,.8,.25,1),background-color .4s cubic-bezier(.25,.8,.25,1);
+    transition: box-shadow .4s cubic-bezier(.25,.8,.25,1),background-color .4s cubic-bezier(.25,.8,.25,1);
+}
+
+#loader{
+    text-align: center;
+    margin: 15px 0;
+    display: none;
+}
+
+#loader.active {
+    display: block;
+}

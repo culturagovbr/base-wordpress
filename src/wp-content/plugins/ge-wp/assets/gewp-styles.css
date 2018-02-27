@@ -1,0 +1,127 @@
+#acoes-estrategicas .acao{
+    background-color: #F2F2F2;
+    padding: 0 0 15px 0;
+}
+
+#acoes-estrategicas .col-title{
+    background-color: #243850;
+    color: #fff;
+    margin: 0;
+    padding: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    height: 60px;
+}
+
+#acoes-estrategicas .col-title img {
+    margin-right: 15px;
+    line-height: 32px;
+    margin-top: -5px;
+}
+
+#acoes-estrategicas .card-wrapper{
+    float: none;
+    clear: both;
+    width: 100%;
+    max-height: 1000px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#acoes-estrategicas .ge-card{
+    margin: 15px 15px 0 15px;
+    background: #fff;
+}
+
+#acoes-estrategicas .ge-card a,
+#acoes-estrategicas .ge-card a:hover,
+#acoes-estrategicas .ge-card a:active,
+#acoes-estrategicas .ge-card a:focus {
+    text-decoration: none;
+    color: #000000de;
+}
+
+#acoes-estrategicas .ge-card .card-header{
+    padding: 15px;
+    background: #fff;
+    border: none;
+}
+
+#acoes-estrategicas .ge-card .card-header .headline {
+    font-size: 12px;
+    color: #0000008b;
+    font-weight: bold;
+}
+
+#acoes-estrategicas .ge-card .card-header .headline .img{
+    background-color: #243850;
+    width: 26px;
+    height: 26px;
+    text-align: center;
+    line-height: 26px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+#acoes-estrategicas .ge-card .card-header .headline .img img{
+    height: 100%;
+    width: auto;
+    padding: 4px;
+    margin-top: -3px;
+}
+
+#acoes-estrategicas .ge-card .card-header .meta {
+    float: right;
+    font-size: 18px;
+}
+
+#acoes-estrategicas .ge-card .card-desc{
+    padding: 0 15px 15px;
+    position: relative;
+}
+
+#acoes-estrategicas .ge-card .card-desc .text{
+    font-size: 16px;
+    padding-right: 80px;
+}
+
+#acoes-estrategicas .ge-card .card-desc .text h4 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#acoes-estrategicas .ge-card .card-desc .text p{
+    color: #0000008b;
+    font-size: 14px;
+}
+
+#acoes-estrategicas .ge-card .card-desc .card-media{
+    position: absolute;
+    right: 15px;
+    top: 0;
+    background-color: #D1D3D4;
+    width: 70px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 12px;
+    padding: 15px;
+}
+
+#acoes-estrategicas .ge-card .card-actions{
+    padding: 0 15px;
+}
+
+#acoes-estrategicas .ge-card .card-actions ul{
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    text-align: right;
+}
+
+#acoes-estrategicas .ge-card .card-actions ul li {
+    display: inline-block;
+    color: #0000008b;
+    font-size: 12px;
+    margin-left: 15px;
+}

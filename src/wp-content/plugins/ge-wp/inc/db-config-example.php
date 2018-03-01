@@ -8,5 +8,10 @@
 		'query'     => 'SELECT DISTINCT ID, 
                 	title, 
                 	description,
-				FROM books;'
+				FROM books;',
+		'query-single'=> 'SELECT ID, 
+                	title, 
+                	description,
+				FROM books
+				WHERE ID = 1;'
 	);

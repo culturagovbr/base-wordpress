@@ -20,11 +20,12 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
 	class GestaoEstrategicaWP{
 
 		public function __construct() {
-
 			add_action( 'wp_enqueue_scripts', array( $this, 'register_gewp_styles' ) );
 			// add_action( 'wp_enqueue_scripts', array( $this, 'register_gewp_scripts' ) );
 			add_shortcode( 'gestao-estrategica-acoes', array( $this, 'gewp_shortcodes' ) );
-
+			add_action( 'init', array( $this, 'cpt_acao_estrategica' ) );
+			add_filter( 'single_template', array( $this, 'cpt_acao_estrategica_template' ) );
+			add_action( 'init', array( $this, 'create_acao_estrategica_model' ) );
 		}
 
 		// Register our public styles
@@ -35,10 +36,8 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
 
 		// Register our public scripts
 		public function register_gewp_scripts() {
-
 			wp_register_script( 'gewp-scripts', plugins_url( 'ge-wp/assets/gewp-scripts.js' ) );
 			wp_enqueue_script( 'gewp-scripts' );
-
 		}
 
 		// check the current post for the existence of a short code
@@ -59,6 +58,49 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
 			// return our final results
 			return $found;
 		}
+
+		public function cpt_acao_estrategica() {
+			register_post_type( 'acoes-estrategicas',
+				array(
+					'labels'              => array(
+						'name'          => 'Ações estratégicas',
+						'singular_name' => 'Ações estratégicas',
+					),
+					'public'              => true,
+					'exclude_from_search' => true,
+					'show_in_nav_menus'   => false,
+					'show_ui'             => false,
+				)
+			);
+        }
+
+		public function cpt_acao_estrategica_template($single) {
+			global $wp_query, $post;
+			if ( $post->post_type == 'acoes-estrategicas' ) {
+				if ( file_exists( plugin_dir_path( __FILE__ ) . 'inc/single-acao-estrategica.php' ) ) {
+					return plugin_dir_path( __FILE__ ) . 'inc/single-acao-estrategica.php';
+				}
+			}
+
+			return $single;
+        }
+
+		public function create_acao_estrategica_model() {
+			$acao_estrategica_model = get_page_by_title('Ação estratégica', OBJECT, 'acoes-estrategicas' );
+
+
+			if( !$acao_estrategica_model ){
+				$acao_estrategica_model_post = array(
+					'post_type' => 'acoes-estrategicas',
+					'post_title' => 'Ação estratégica',
+					'post_status' => 'publish'
+				);
+				$acao_estrategica_model_post_id = wp_insert_post( $acao_estrategica_model_post, true );
+				if(is_wp_error($acao_estrategica_model_post_id)){
+					wp_die('Ocorreu um erro durante a geração do post "Ações estratégicas".');
+				}
+            }
+        }
 
 		public function limit_text( $text, $limit ) {
 			$excerpt = explode(' ', $text, $limit);
@@ -114,7 +156,7 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
 
 				foreach ( $axis as $i => $data ): ?>
                     <div id="card-<?php echo $i; ?>" class="ge-card">
-                        <a href="#<?php echo $data['id_acao']; ?>">
+                        <a href="<?php echo home_url('/acoes-estrategicas/acao-estrategica/?acao=') . $data['id_acao']; ?>">
                             <div class="card-header">
 									<span class="headline">
 										<span class="img">

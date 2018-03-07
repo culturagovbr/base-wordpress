@@ -172,7 +172,7 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
                     </div>
                     <div class="dropdown" style="float: left;">
                         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Objetivos estratégicos
+                            Objetivos Estratégicos
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <?php

@@ -146,40 +146,56 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
 
 			function filters ($objectives) { ?>
 
-                <div class="filter col-md-12">
-                    <h4 style="float: left;">Filtros</h4>
-                    <div class="dropdown" style="float: left;">
-                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Eixos
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?eixo=Gestão'); ?>">Gestão</a>
-                            <a class="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?eixo=Formulação'); ?>">Formulação</a>
-                            <a class="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?eixo=Realização'); ?>">Realização</a>
+                <div class="filter-wrap col-md-12">
+                    <div class="filter">
+                        <span>Filtros</span>
+                        <div class="dropdown d-inline">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="filter-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Eixos
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="filter-1">
+                                <h6 class="dropdown-header">Selecione um eixo</h6>
+                                <a class="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?eixo=Gestão'); ?>">Gestão</a>
+                                <a class="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?eixo=Formulação'); ?>">Formulação</a>
+                                <a class="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?eixo=Realização'); ?>">Realização</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="dropdown" style="float: left;">
-                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Diretrizes
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?diretriz='); ?>">Aprimorar a gestão interna</a>
-                            <a class="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?diretriz='); ?>">Reformas normativas</a>
-                            <a clas s="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?diretriz='); ?>">Alavancar resultados institucionais</a>
-                            <a class="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?diretriz='); ?>">Dar sustentabilidade ao processo de planejamento</a>
-                            <a class="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?diretriz='); ?>">Focar na dimensão econômica da cultura</a>
+                        <div class="dropdown d-inline">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="filter-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Diretrizes
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="filter-2">
+                                <h6 class="dropdown-header">Selecione uma diretriz</h6>
+                                <a class="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?diretriz='); ?>">Aprimorar a gestão interna</a>
+                                <a class="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?diretriz='); ?>">Reformas normativas</a>
+                                <a class="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?diretriz='); ?>">Alavancar resultados institucionais</a>
+                                <a class="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?diretriz='); ?>">Dar sustentabilidade ao processo de planejamento</a>
+                                <a class="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?diretriz='); ?>">Focar na dimensão econômica da cultura</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="dropdown" style="float: left;">
-                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Objetivos Estratégicos
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <div class="dropdown d-inline">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="filter-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Objetivos Estratégicos
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="filter-3">
+                                <h6 class="dropdown-header">Selecione um objetivo</h6>
+                                <?php
+                                foreach ( $objectives as $objective ) { ?>
+                                    <a class="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?objetivo=') . $objective['id_objetivo']; ?>"><?php echo $objective['nome_objetivo']; ?></a>
+                                <?php } ?>
+                            </div>
+                        </div>
+                        <?php if( !empty( $_GET['eixo'] ) || !empty( $_GET['objetivo'] ) || !empty( $_GET['diretriz'] ) ): ?>
+                        <div class="clearfix actives">
+                            <?php echo !empty( $_GET['eixo'] ) ? '<a href="'. home_url('/acoes-estrategicas/') .'" class="badge badge-secondary">Eixo: '. $_GET['eixo'] .' <i class="fa fa-close"></i></a>' : ''; ?>
+
                             <?php
-                            foreach ( $objectives as $objective ) { ?>
-                                <a class="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?objetivo=') . $objective['id_objetivo']; ?>"><?php echo $objective['nome_objetivo']; ?></a>
-                            <?php } ?>
+                            $objective = array_search($_GET['objetivo'], array_column($objectives, 'id_objetivo'));
+                            echo !empty( $objective ) ? '<a href="'. home_url('/acoes-estrategicas/') .'" class="badge badge-secondary">Objetivo Estratégico: '. $objectives[$objective]['nome_objetivo'] .' <i class="fa fa-close"></i></a>' : ''; ?>
+
+                            <?php echo !empty( $_GET['diretriz'] ) ? '<a href="'. home_url('/acoes-estrategicas/') .'" class="badge badge-secondary">Diretriz: '. $_GET['diretriz'] .' <i class="fa fa-close"></i></a>' : ''; ?>
                         </div>
+                        <?php endif; ?>
                     </div>
                 </div>
 
@@ -252,7 +268,7 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
                     if( empty( $_GET['eixo'] ) && empty( $_GET['objetivo'] ) ):
                 ?>
 
-                <?php // echo filters($objectives); ?>
+                <?php echo filters($objectives); ?>
 
 				<div class="col-md-4">
 					<div class="acao">
@@ -286,10 +302,9 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
                     elseif( !empty( $_GET['eixo'] ) && empty( $_GET['objetivo'] ) ):
                 ?>
 
-                <?php // echo filters($objectives); ?>
+                <?php echo filters($objectives); ?>
 
                 <div class="col-md-12">
-                    <a href="<?php echo home_url('/acoes-estrategicas'); ?>" class="all-axis-link">< Ver todos os eixos</a>
                     <div class="acao">
                         <?php
                         switch ( $_GET['eixo'] ) {
@@ -327,16 +342,14 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
 						$ge_data[$dado['nome_eixo']][] = $dado;
 					} ?>
 
-                <?php // echo filters($objectives); ?>
+                <?php echo filters($objectives); ?>
 
                 <div class="col-md-12">
-                    <a href="<?php echo home_url('/acoes-estrategicas'); ?>" class="all-axis-link">< Ver todos os objetivos</a>
                     <?php
 
                     $sql = $db_config['query-get-objective-by-id'] . $_GET['objetivo'];
                     $result = pg_query($conn, $sql);
                     $objective = pg_fetch_all($result); ?>
-                    <h3 class="objective"><b>Objetivo Estratégico:</b> <?php echo $objective[0]['nome_objetivo']; ?></h3><br>
                 </div>
                 <div class="col-md-4">
                     <div class="acao">

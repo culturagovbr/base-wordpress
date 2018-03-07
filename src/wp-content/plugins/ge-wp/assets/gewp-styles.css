@@ -212,3 +212,42 @@ article.acao-estrategica .card-media {
     font-size: 12px;
     text-transform: uppercase;
 }
+
+#acoes-estrategicas .filter {
+    background-color: #F6F6F7;
+    text-align: right;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-top: 3px solid #243850;
+}
+
+#acoes-estrategicas .filter > span{
+    color: #243850;
+    float: left;
+    display: inline-block;
+    font-size: 18px;
+    text-transform: uppercase;
+    line-height: 40px;
+}
+
+#acoes-estrategicas .filter .btn-primary{
+    background-color: #243850;
+    border-color: #243850;
+}
+
+#acoes-estrategicas .filter .btn-primary:hover,
+#acoes-estrategicas .filter .btn-primary:active,
+#acoes-estrategicas .filter .btn-primary:focus{
+    background-color: #486487;
+    border-color: #243850;
+}
+
+#acoes-estrategicas .filter .actives {
+    margin-top: 15px;
+    border-top: 1px solid #ccc;
+    padding-top: 15px;
+}
+
+#acoes-estrategicas .filter .actives .badge > .fa{
+    margin-left: 5px;
+}

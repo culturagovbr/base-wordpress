@@ -14,6 +14,14 @@
     height: 60px;
 }
 
+#acoes-estrategicas .col-title a,
+#acoes-estrategicas .col-title a:hover,
+#acoes-estrategicas .col-title a:active,
+#acoes-estrategicas .col-title a:focus {
+    color: #fff;
+    text-decoration: none;
+}
+
 #acoes-estrategicas .col-title img {
     margin-right: 15px;
     line-height: 32px;
@@ -27,10 +35,11 @@
     max-height: 1000px;
     overflow-y: auto;
     overflow-x: hidden;
+    margin: 0;
 }
 
 #acoes-estrategicas .ge-card{
-    margin: 15px 15px 0 15px;
+    margin: 15px 0 0;
     background: #fff;
 }
 
@@ -195,4 +204,11 @@ article.acao-estrategica .card-media {
     width: auto;
     right: auto;
     top: auto;
+}
+
+.all-axis-link {
+    display: block;
+    margin: -10px 0 15px;
+    font-size: 12px;
+    text-transform: uppercase;
 }

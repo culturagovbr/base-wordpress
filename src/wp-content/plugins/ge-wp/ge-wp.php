@@ -22,7 +22,8 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
 		public function __construct() {
 			add_action( 'wp_enqueue_scripts', array( $this, 'register_gewp_styles' ) );
 			// add_action( 'wp_enqueue_scripts', array( $this, 'register_gewp_scripts' ) );
-			add_shortcode( 'gestao-estrategica-acoes', array( $this, 'gewp_shortcodes' ) );
+			add_shortcode( 'gestao-estrategica-acoes', array( $this, 'gewp_shortcodes_acoes' ) );
+			add_shortcode( 'gestao-estrategica-objetivos', array( $this, 'gewp_shortcodes_objetivos' ) );
 			add_action( 'init', array( $this, 'cpt_acao_estrategica' ) );
 			add_filter( 'single_template', array( $this, 'cpt_acao_estrategica_template' ) );
 			add_action( 'init', array( $this, 'create_acao_estrategica_model' ) );
@@ -88,7 +89,6 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
 		public function create_acao_estrategica_model() {
 			$acao_estrategica_model = get_page_by_title('Ação estratégica', OBJECT, 'acoes-estrategicas' );
 
-
 			if( !$acao_estrategica_model ){
 				$acao_estrategica_model_post = array(
 					'post_type' => 'acoes-estrategicas',
@@ -114,7 +114,7 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
 			return $excerpt;
 		}
 
-		public function gewp_shortcodes() {
+		public function gewp_shortcodes_acoes() {
 			ob_start();
 
 			$db_config = include plugin_dir_path( __FILE__ ) . 'inc/db-config.php';
@@ -134,13 +134,58 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
 			$result = pg_query($conn, $sql);
 			$raw_data = pg_fetch_all($result);
 			$raw_data = $raw_data ? $raw_data : [];
-
 			$ge_data = [];
 			foreach($raw_data as $dado){
 				$ge_data[$dado['nome_eixo']][] = $dado;
 			}
 
-			function render_cards_by_axis ( $axis, $name ) {
+			$sql = $db_config['query-objetivos'];
+
+			$result = pg_query($conn, $sql);
+			$objectives = pg_fetch_all($result);
+
+			function filters ($objectives) { ?>
+
+                <div class="filter col-md-12">
+                    <h4 style="float: left;">Filtros</h4>
+                    <div class="dropdown" style="float: left;">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Eixos
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?eixo=Gestão'); ?>">Gestão</a>
+                            <a class="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?eixo=Formulação'); ?>">Formulação</a>
+                            <a class="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?eixo=Realização'); ?>">Realização</a>
+                        </div>
+                    </div>
+                    <div class="dropdown" style="float: left;">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Diretrizes
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?diretriz='); ?>">Aprimorar a gestão interna</a>
+                            <a class="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?diretriz='); ?>">Reformas normativas</a>
+                            <a clas s="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?diretriz='); ?>">Alavancar resultados institucionais</a>
+                            <a class="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?diretriz='); ?>">Dar sustentabilidade ao processo de planejamento</a>
+                            <a class="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?diretriz='); ?>">Focar na dimensão econômica da cultura</a>
+                        </div>
+                    </div>
+                    <div class="dropdown" style="float: left;">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Objetivos estratégicos
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <?php
+                            foreach ( $objectives as $objective ) { ?>
+                                <a class="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?objetivo=') . $objective['id_objetivo']; ?>"><?php echo $objective['nome_objetivo']; ?></a>
+                            <?php } ?>
+                        </div>
+                    </div>
+                </div>
+
+            <?php }
+
+			function render_cards_by_axis ( $axis, $name, $card_size = 1 ) {
                 $icon = '';
 				switch ($name) {
 					case 'Gestão':
@@ -154,36 +199,46 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
 						break;
 				}
 
+				if( $card_size == 3 ){
+				    $card_size = 'col-md-4';
+                } else if( $card_size == 2 ){
+					$card_size = 'col-md-6';
+                } else {
+					$card_size = 'col-md-12';
+                }
+
 				foreach ( $axis as $i => $data ): ?>
-                    <div id="card-<?php echo $i; ?>" class="ge-card">
-                        <a href="<?php echo home_url('/acoes-estrategicas/acao-estrategica/?acao=') . $data['id_acao']; ?>">
-                            <div class="card-header">
+                    <div class="<?php echo $card_size; ?>">
+                        <div id="card-<?php echo $i; ?>" class="ge-card">
+                            <a href="<?php echo home_url('/acoes-estrategicas/acao-estrategica/?acao=') . $data['id_acao']; ?>">
+                                <div class="card-header">
 									<span class="headline">
 										<span class="img">
 											<img src="<?php echo plugins_url( 'ge-wp/assets/' . $icon ); ?>">
 										</span>
 										<?php echo ( !empty( $data['nome_fonte_recurso'] ) ) ? $data['nome_fonte_recurso'] : ''; ?>
                                     </span>
-                                <?php echo ( !empty( $data['orcamento'] ) ) ? '<span class="meta">R$ '. number_format($data['orcamento'], 2, ',', '.') .'</span>' : ''; ?>
-                            </div>
-                            <div class="card-desc">
-                                <div class="text">
-                                    <h4><?php echo $data['nome_acao']; ?></h4>
-                                    <p><b>Objetivo:</b> <?php echo $data['nome_objetivo']; ?></p>
+				                    <?php echo ( !empty( $data['orcamento'] ) ) ? '<span class="meta">R$ '. number_format($data['orcamento'], 2, ',', '.') .'</span>' : ''; ?>
                                 </div>
-                                <div class="card-media">
-                                    <span><?php echo $data['nome_secretaria']; ?></span>
+                                <div class="card-desc">
+                                    <div class="text">
+                                        <h4><?php echo $data['nome_acao']; ?></h4>
+                                        <p><b>Objetivo estratégico:</b> <?php echo $data['nome_objetivo']; ?></p>
+                                    </div>
+                                    <div class="card-media">
+                                        <span><?php echo $data['nome_secretaria']; ?></span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="card-actions">
-                                <?php if ( !empty( $data['data'] ) ): ?>
-                                <ul>
-                                    <li><b>Início:</b> 03/18</li>
-                                    <li><b>Fim:</b> 03/19</li>
-                                </ul>
-						        <?php endif; ?>
-                            </div>
-                        </a>
+                                <div class="card-actions">
+				                    <?php if ( !empty( $data['data'] ) ): ?>
+                                        <ul>
+                                            <li><b>Início:</b> 03/18</li>
+                                            <li><b>Fim:</b> 03/19</li>
+                                        </ul>
+				                    <?php endif; ?>
+                                </div>
+                            </a>
+                        </div>
                     </div>
 				<?php endforeach;
             } ?>
@@ -192,10 +247,17 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
 
 			<div id="acoes-estrategicas" class="row">
 
+                <?php
+                    // Nenhum parametro informado
+                    if( empty( $_GET['eixo'] ) && empty( $_GET['objetivo'] ) ):
+                ?>
+
+                <?php // echo filters($objectives); ?>
+
 				<div class="col-md-4">
 					<div class="acao">
-						<h3 class="col-title"><img src="<?php echo plugins_url( 'ge-wp/assets/strategy.png' ); ?>">Gestão</h3>
-                        <div class="card-wrapper">
+                        <h3 class="col-title"><img src="<?php echo plugins_url( 'ge-wp/assets/strategy.png' ); ?>"><a href="<?php echo home_url('/acoes-estrategicas/?eixo=Gestão'); ?>">Gestão</a></h3>
+                        <div class="card-wrapper row">
 	                        <?php render_cards_by_axis( $ge_data['Gestão'], 'Gestão' ); ?>
                         </div>
 					</div>
@@ -203,8 +265,8 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
 
 				<div class="col-md-4">
 					<div class="acao">
-						<h3 class="col-title"><img src="<?php echo plugins_url( 'ge-wp/assets/brainstorming.png' ); ?>">Formulação</h3>
-                        <div class="card-wrapper">
+                        <h3 class="col-title"><img src="<?php echo plugins_url( 'ge-wp/assets/brainstorming.png' ); ?>"><a href="<?php echo home_url('/acoes-estrategicas/?eixo=Formulação'); ?>">Formulação</a></h3>
+                        <div class="card-wrapper row">
 						    <?php render_cards_by_axis( $ge_data['Formulação'], 'Formulação' ); ?>
                         </div>
 					</div>
@@ -212,19 +274,137 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
 
 				<div class="col-md-4">
 					<div class="acao">
-						<h3 class="col-title"><img src="<?php echo plugins_url( 'ge-wp/assets/achievement.png' ); ?>">Realização</h3>
-                        <div class="card-wrapper">
+                        <h3 class="col-title"><img src="<?php echo plugins_url( 'ge-wp/assets/achievement.png' ); ?>"><a href="<?php echo home_url('/acoes-estrategicas/?eixo=Realização'); ?>">Realização</a></h3>
+                        <div class="card-wrapper row">
 						    <?php render_cards_by_axis( $ge_data['Realização'], 'Realização' ); ?>
                         </div>
 					</div>
 				</div>
 
+				<?php
+                    // Apenas o eixo foi informado
+                    elseif( !empty( $_GET['eixo'] ) && empty( $_GET['objetivo'] ) ):
+                ?>
+
+                <?php // echo filters($objectives); ?>
+
+                <div class="col-md-12">
+                    <a href="<?php echo home_url('/acoes-estrategicas'); ?>" class="all-axis-link">< Ver todos os eixos</a>
+                    <div class="acao">
+                        <?php
+                        switch ( $_GET['eixo'] ) {
+                            case 'Gestão':
+                                $name = 'Gestão';
+                                $icon = 'strategy.png';
+                                break;
+                            case 'Formulação':
+                                $name = 'Formulação';
+                                $icon = 'brainstorming.png';
+                                break;
+                            case 'Realização':
+                                $name = 'Realização';
+                                $icon = 'achievement.png';
+                                break;
+                        }
+                        ?>
+                        <h3 class="col-title"><img src="<?php echo plugins_url( 'ge-wp/assets/' . $icon ); ?>"><?php echo $name; ?></h3>
+                        <div class="card-wrapper row">
+                            <?php render_cards_by_axis( $ge_data[$name], $name, 2 ); ?>
+                        </div>
+                    </div>
+                </div>
+
+				<?php
+                    // Filtro por objetivos
+                    elseif( empty( $_GET['eixo'] ) && !empty( $_GET['objetivo'] ) ):
+
+	                $sql = $db_config['query-by-objective'] . $_GET['objetivo'];
+					$result = pg_query($conn, $sql);
+					$raw_data = pg_fetch_all($result);
+					$raw_data = $raw_data ? $raw_data : [];
+					$ge_data = [];
+					foreach($raw_data as $dado){
+						$ge_data[$dado['nome_eixo']][] = $dado;
+					} ?>
+
+                <?php // echo filters($objectives); ?>
+
+                <div class="col-md-12">
+                    <a href="<?php echo home_url('/acoes-estrategicas'); ?>" class="all-axis-link">< Ver todos os objetivos</a>
+                    <?php
+
+                    $sql = $db_config['query-get-objective-by-id'] . $_GET['objetivo'];
+                    $result = pg_query($conn, $sql);
+                    $objective = pg_fetch_all($result); ?>
+                    <h3 class="objective"><b>Objetivo estratégico:</b> <?php echo $objective[0]['nome_objetivo']; ?></h3><br>
+                </div>
+                <div class="col-md-4">
+                    <div class="acao">
+                        <h3 class="col-title"><img src="<?php echo plugins_url( 'ge-wp/assets/strategy.png' ); ?>"><a href="<?php echo home_url('/acoes-estrategicas/?eixo=Gestão'); ?>">Gestão</a></h3>
+                        <div class="card-wrapper row">
+                            <?php render_cards_by_axis( $ge_data['Gestão'], 'Gestão' ); ?>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="acao">
+                        <h3 class="col-title"><img src="<?php echo plugins_url( 'ge-wp/assets/brainstorming.png' ); ?>"><a href="<?php echo home_url('/acoes-estrategicas/?eixo=Formulação'); ?>">Formulação</a></h3>
+                        <div class="card-wrapper row">
+                            <?php render_cards_by_axis( $ge_data['Formulação'], 'Formulação' ); ?>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="acao">
+                        <h3 class="col-title"><img src="<?php echo plugins_url( 'ge-wp/assets/achievement.png' ); ?>"><a href="<?php echo home_url('/acoes-estrategicas/?eixo=Realização'); ?>">Realização</a></h3>
+                        <div class="card-wrapper row">
+                            <?php render_cards_by_axis( $ge_data['Realização'], 'Realização' ); ?>
+                        </div>
+                    </div>
+                </div>
+
+			    <?php endif; ?>
 			</div>
 
 
 			<?php return ob_get_clean();
 
 		}
+
+		public function gewp_shortcodes_objetivos () {
+			ob_start();
+
+			$db_config = include plugin_dir_path( __FILE__ ) . 'inc/db-config.php';
+			if( !@$db_config ){
+				echo 'Ops...houve um erro durante o carregamento dos dados de configuração com o banco de dados.';
+				return;
+			}
+			$conn_str  = 'host='. $db_config['host'] .' ';
+			$conn_str .= 'port='. $db_config['port'] .' ';
+			$conn_str .= 'dbname='. $db_config['dbname'] .' ';
+			$conn_str .= 'user='. $db_config['user'] .' ';
+			$conn_str .= 'password='. $db_config['password'] .'';
+
+			$conn = pg_connect($conn_str);
+			$sql = $db_config['query-objetivos'];
+
+			$result = pg_query($conn, $sql);
+			$objectives = pg_fetch_all($result);
+
+			echo '<ul class="acoes-estrategicas-objetivos">';
+			foreach ( $objectives as $objective ) {
+                echo '<li><a href="'. home_url('/acoes-estrategicas/?objetivo=') . $objective['id_objetivo'] .'">'. $objective['nome_objetivo'] .'</a></li>';
+			}
+			echo '</ul>';
+
+			?>
+
+
+
+			<?php return ob_get_clean();
+        }
 
 	}
 

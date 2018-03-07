@@ -104,7 +104,7 @@ get_header(); ?>
 
                                     <div class="row action-data">
                                         <div class="col-md-9">
-                                            <p><b>Objetivo estratégico:</b><br>
+                                            <p><b>Objetivo Estratégico:</b><br>
                                             <?php echo $acao_data[0]['nome_objetivo']; ?></p>
 
                                             <p><b>Fonte de recurso:</b><br>

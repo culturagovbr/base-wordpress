@@ -223,7 +223,7 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
                                 <div class="card-desc">
                                     <div class="text">
                                         <h4><?php echo $data['nome_acao']; ?></h4>
-                                        <p><b>Objetivo estratégico:</b> <?php echo $data['nome_objetivo']; ?></p>
+                                        <p><b>Objetivo Estratégico:</b> <?php echo $data['nome_objetivo']; ?></p>
                                     </div>
                                     <div class="card-media">
                                         <span><?php echo $data['nome_secretaria']; ?></span>
@@ -336,7 +336,7 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
                     $sql = $db_config['query-get-objective-by-id'] . $_GET['objetivo'];
                     $result = pg_query($conn, $sql);
                     $objective = pg_fetch_all($result); ?>
-                    <h3 class="objective"><b>Objetivo estratégico:</b> <?php echo $objective[0]['nome_objetivo']; ?></h3><br>
+                    <h3 class="objective"><b>Objetivo Estratégico:</b> <?php echo $objective[0]['nome_objetivo']; ?></h3><br>
                 </div>
                 <div class="col-md-4">
                     <div class="acao">

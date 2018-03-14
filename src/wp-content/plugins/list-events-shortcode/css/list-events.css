@@ -1,5 +1,20 @@
+#states_list {
+    background: #fff;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    height: 32px;    
+}
+
 #date_listevents{
     background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc;margin-top: -40px;
+}
+.list_events{
+}
+
+.list_events .row.top{
+    margin-right: -30px;
+    margin-left: -30px;
 }
 .list_spaces{
     margin-top: 40px;
@@ -21,12 +36,17 @@
     width: 150px;
 }
 
+.list_events_item small{
+    font-size: 0.8em;
+    line-height: 1.5em;
+}
+
 .list_events_item ul{
     margin-left: 20px;
 }
 
 .list_events_item ul li{
-    list-style-type: none;
+    list-style-type: disc;
 }
 
 .spinner {
@@ -69,35 +89,4 @@
     -webkit-transform: scale(1.0);
     transform: scale(1.0);
   }
-}
-
-/*.list_spaces_item {
-    margin-bottom: 30px;
-
-}
-
-.list_spaces_item small {
-    display: block;
-}
-
-.list_spaces_item img {
-    float: left;
-    margin-right: 10px;
-}
-
-.space-title {
-    display: block;
-    font-size: 1.5em;
-    margin-bottom: 1em;
-    text-decoration: none;
-    border: none !important;
-}
-
-.list_spaces_item .space-description {
-    margin-bottom: 0.5em;
-}
-
-.list_spaces_item .meta {
-    font-size: 0.65em;
-    border-bottom: 1px solid #CCC;
 }

@@ -1,5 +1,7 @@
 jQuery( document ).ready(function() {
     jQuery('#date_listevents').daterangepicker({
+        startDate:  moment().format('DD/MM/YYYY'),
+        endDate:    moment().add(jQuery('#date_listevents').data('range'), 'days').format('DD/MM/YYYY'),
         locale: {
             format:         'DD/MM/YYYY',
             applyLabel:     'Buscar',
@@ -35,11 +37,15 @@ jQuery( document ).ready(function() {
     jQuery('#date_listevents').on('apply.daterangepicker', function(ev, picker) {
         getEvents();
     });
+    jQuery('select#states_list').on('change', function() {
+        getEvents();
+    });
 });
 
 function getEvents(){
     jQuery('.list_spaces').html('');
     jQuery('#loading').show('fast');
+    var states  =  jQuery('#states_list').val()
 
     var date_listevents = jQuery('#date_listevents').data('daterangepicker');
 
@@ -47,7 +53,10 @@ function getEvents(){
         '&@from='   + date_listevents.startDate.format('YYYY-MM-DD') +
         '&@to='     + date_listevents.endDate.format('YYYY-MM-DD');
 
-    console.log(url);
+    if (states!="") {
+        url+=`&space:En_Estado=IN(${states})`;
+    }
+    //console.log(url);
 
     jQuery('#date_listevents span').html(date_listevents.startDate.format('DD/MM/YYYY') + ' - ' + date_listevents.endDate.format('DD/MM/YYYY'));
 
@@ -67,10 +76,9 @@ function showEvents(events){
 
     html = '';
     for (var i = 0; i < events.length; i++) {
+        thumb = '';
         if(typeof events[i]['@files:avatar.avatarBig'] != 'undefined')
             thumb = '<img src="' + events[i]['@files:avatar.avatarBig'].url + '" style="float: left;">';
-        else
-            thumb = '';
 
         spaces = new Array();
 
@@ -78,29 +86,28 @@ function showEvents(events){
                     <div class="col-md-3">${thumb}</div>
                     <div class="col-md-9">
                         <h3><a href="${baseurl}/evento/${events[i].id}" target="_blank">${events[i].name}</a></h3>
-                        <p>${events[i].shortDescription}</p>`;
+                        <p>${events[i].shortDescription}</p><br>`;
 
+                        periods = new Array();
                         for (var y = 0; y < events[i].occurrences.length; y++) {
-                            if(typeof spaces[events[i].occurrences[y].space.name] == 'undefined'){
-                                spaces[events[i].occurrences[y].space.name] = '';
-                                html += `<a href="${baseurl}/espaco/${events[i].occurrences[y].space.id}" target="_blank">
-                                            <strong>${events[i].occurrences[y].space.name}</strong>
-                                        </a><br><small><b>${events[i].occurrences[y].space.endereco}</b><ul>`;
-                            }
+                            if(typeof periods[events[i].occurrences[y].space.name] == 'undefined')
+                                periods[events[i].occurrences[y].space.name] = '';
 
-                            spaces[events[i].occurrences[y].space.name] +=
+                            spaces[events[i].occurrences[y].space.name] = {
+                                name:events[i].occurrences[y].space.name,
+                            };
+
+                            periods[events[i].occurrences[y].space.name] +=
                                 `<li>
                                     ${events[i].occurrences[y].rule.description}, ${events[i].occurrences[y].rule.price}
                                 </li>`;
+                        }
 
-                            if(y == events[i].occurrences.length - 1){
-                                html += spaces[events[i].occurrences[y].space.name] + `</ul></small></div>`;
-                            }
+                        for (space in spaces) {
+                            html += `<small><ul><b>${spaces[space].name}</b>${periods[spaces[space].name]}</ul></small>`;
+                        }
 
-            }
-
-            html += '</div>';
-
+            html += '</div></div>';
     }
 
     jQuery('.list_spaces').append(html);

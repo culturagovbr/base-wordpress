@@ -3,14 +3,12 @@
 Plugin Name: List Events Shortcode
 Plugin URI:
 Description: Lista eventos da API do mapas culturais
-Author: midiaLab
+Author: ḾediaLab/BR
 Version: 1.0
 Text Domain:
 */
 
 class ListEventsShortcode {
-    public $url;
-
     function ListEventsShortcode() {
         add_shortcode('list_events', array(&$this, 'shortcode'));
         add_action( 'wp_enqueue_scripts', array(&$this, 'addScripts') );

@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Gestão Estratégica - WP
  * Plugin URI:        https://github.com/culturagovbr/
- * Description:       @TODO
+ * Description:       Plugin de integração do Portal estratégico do MinC com o SIMINC - Sistema de Informações do Ministério da Cultura
  * Version:           1.0.0
  * Author:            Ricardo Carvalho
  * Author URI:        https://github.com/culturagovbr/
@@ -144,7 +144,12 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
 			$result = pg_query($conn, $sql);
 			$objectives = pg_fetch_all($result);
 
-			function filters ($objectives) { ?>
+			$sql = $db_config['query-diretrizes'];
+
+			$result = pg_query($conn, $sql);
+			$diretrizes = pg_fetch_all($result);
+
+			function filters ($objectives, $diretrizes) { ?>
 
                 <div class="filter-wrap col-md-12">
                     <div class="filter">
@@ -166,11 +171,10 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
                             </button>
                             <div class="dropdown-menu" aria-labelledby="filter-2">
                                 <h6 class="dropdown-header">Selecione uma diretriz</h6>
-                                <a class="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?diretriz='); ?>">Aprimorar a gestão interna</a>
-                                <a class="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?diretriz='); ?>">Reformas normativas</a>
-                                <a class="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?diretriz='); ?>">Alavancar resultados institucionais</a>
-                                <a class="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?diretriz='); ?>">Dar sustentabilidade ao processo de planejamento</a>
-                                <a class="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?diretriz='); ?>">Focar na dimensão econômica da cultura</a>
+	                            <?php
+	                            foreach ( $diretrizes as $diretriz ) { ?>
+                                    <a class="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?diretriz=') . $diretriz['id_diretriz']; ?>"><?php echo $diretriz['nome_diretriz']; ?></a>
+	                            <?php } ?>
                             </div>
                         </div>
                         <div class="dropdown d-inline">
@@ -193,7 +197,9 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
                             $objective = array_search($_GET['objetivo'], array_column($objectives, 'id_objetivo'));
                             echo !empty( $objective ) ? '<a href="'. home_url('/acoes-estrategicas/') .'" class="badge badge-secondary">Objetivo Estratégico: '. $objectives[$objective]['nome_objetivo'] .' <i class="fa fa-close"></i></a>' : ''; ?>
 
-                            <?php echo !empty( $_GET['diretriz'] ) ? '<a href="'. home_url('/acoes-estrategicas/') .'" class="badge badge-secondary">Diretriz: '. $_GET['diretriz'] .' <i class="fa fa-close"></i></a>' : ''; ?>
+                            <?php
+                            $diretriz = array_search($_GET['diretriz'], array_column($diretrizes, 'id_diretriz'));
+                            echo !empty( $_GET['diretriz'] ) ? '<a href="'. home_url('/acoes-estrategicas/') .'" class="badge badge-secondary">Diretriz: '. $diretrizes[$diretriz]['nome_diretriz'] .' <i class="fa fa-close"></i></a>' : ''; ?>
                         </div>
                         <?php endif; ?>
                     </div>
@@ -265,10 +271,10 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
 
                 <?php
                     // Nenhum parametro informado
-                    if( empty( $_GET['eixo'] ) && empty( $_GET['objetivo'] ) ):
+                    if( empty( $_GET['eixo'] ) && empty( $_GET['objetivo'] ) && empty( $_GET['diretriz'] ) ):
                 ?>
 
-                <?php echo filters($objectives); ?>
+                <?php echo filters ($objectives, $diretrizes); ?>
 
 				<div class="col-md-4">
 					<div class="acao">
@@ -302,7 +308,7 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
                     elseif( !empty( $_GET['eixo'] ) && empty( $_GET['objetivo'] ) ):
                 ?>
 
-                <?php echo filters($objectives); ?>
+                <?php echo filters ($objectives, $diretrizes); ?>
 
                 <div class="col-md-12">
                     <div class="acao">
@@ -329,6 +335,52 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
                     </div>
                 </div>
 
+                <?php
+                    // Apenas a diretriz foi informada
+                    elseif( empty( $_GET['eixo'] ) && !empty( $_GET['diretriz'] ) ):
+                ?>
+
+                    <?php echo filters ($objectives, $diretrizes); ?>
+
+                    <div class="col-md-12">
+		                <?php
+
+		                $sql = $db_config['query-by-diretriz'] . $_GET['diretriz'];
+		                $result = pg_query($conn, $sql);
+		                $raw_data = pg_fetch_all($result);
+		                $raw_data = $raw_data ? $raw_data : [];
+		                $ge_data = [];
+		                foreach($raw_data as $dado){
+			                $ge_data[$dado['nome_eixo']][] = $dado;
+		                } ?>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="acao">
+                            <h3 class="col-title"><img src="<?php echo plugins_url( 'ge-wp/assets/strategy.png' ); ?>"><a href="<?php echo home_url('/acoes-estrategicas/?eixo=Gestão'); ?>">Gestão</a></h3>
+                            <div class="card-wrapper row">
+				                <?php render_cards_by_axis( $ge_data['Gestão'], 'Gestão' ); ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="acao">
+                            <h3 class="col-title"><img src="<?php echo plugins_url( 'ge-wp/assets/brainstorming.png' ); ?>"><a href="<?php echo home_url('/acoes-estrategicas/?eixo=Formulação'); ?>">Formulação</a></h3>
+                            <div class="card-wrapper row">
+				                <?php render_cards_by_axis( $ge_data['Formulação'], 'Formulação' ); ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="acao">
+                            <h3 class="col-title"><img src="<?php echo plugins_url( 'ge-wp/assets/achievement.png' ); ?>"><a href="<?php echo home_url('/acoes-estrategicas/?eixo=Realização'); ?>">Realização</a></h3>
+                            <div class="card-wrapper row">
+				                <?php render_cards_by_axis( $ge_data['Realização'], 'Realização' ); ?>
+                            </div>
+                        </div>
+                    </div>
+
 				<?php
                     // Filtro por objetivos
                     elseif( empty( $_GET['eixo'] ) && !empty( $_GET['objetivo'] ) ):
@@ -342,7 +394,7 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
 						$ge_data[$dado['nome_eixo']][] = $dado;
 					} ?>
 
-                <?php echo filters($objectives); ?>
+                <?php echo filters ($objectives, $diretrizes); ?>
 
                 <div class="col-md-12">
                     <?php

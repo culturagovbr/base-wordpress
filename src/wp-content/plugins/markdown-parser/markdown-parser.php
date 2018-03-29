@@ -33,6 +33,11 @@ function markdown_parser_scripts()
 }
 add_action( 'admin_enqueue_scripts', 'markdown_parser_scripts' );
 
+function markdown_parser_styles() {
+	wp_register_style( 'markdown-parser-styles', plugins_url( 'assets/css/markdown-parser-styles.css', __FILE__ ) );
+	wp_enqueue_style( 'markdown-parser-styles' );
+}
+add_action( 'wp_enqueue_scripts', 'markdown_parser_styles' );
 
 /**
  * Include the amazing Markdown Parser in PHP [http://parsedown.org/] *with modifications

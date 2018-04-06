@@ -63,6 +63,11 @@ get_header(); ?>
 	                                $result = pg_query($conn, $sql);
 	                                $acao_data = pg_fetch_all($result);
 
+	                                $sql = $db_config['query-subacoes'] . $_GET['acao'];
+
+	                                $result = pg_query($conn, $sql);
+	                                $subacoes_data = pg_fetch_all($result);
+
 	                                $icon = '';
 	                                switch ($acao_data[0]['nome_eixo']) {
 		                                case 'Gestão':
@@ -123,6 +128,29 @@ get_header(); ?>
 
 	                                <?php endif; ?>
 
+                                    <?php if( !empty( $subacoes_data[0]['id_subacao'] ) ) :  ?>
+                                    <h3 class="action-name subacao-title">Subações</h3>
+
+                                    <div id="acoes-estrategicas" class="subacoes row">
+                                        <?php foreach ( $subacoes_data as $subacao ) : ?>
+                                        <div class="col-md-4">
+                                            <div id="card-<?php echo $subacao['id_subacao']; ?>" class="ge-card">
+                                                <div class="card-desc">
+                                                    <div class="text">
+                                                        <h4><?php echo $subacao['nome_subacao']; ?></h4>
+                                                        <span class="when">
+                                                            <b>Início:</b> <?php $t = strtotime($subacao['data_inicio_subacao']); echo date('d/m/y',$t); ?> -
+                                                            <b>Fim:</b> <?php $t = strtotime($subacao['data_fim_subacao']); echo date('d/m/y',$t); ?>
+                                                        </span>
+                                                        <p><?php echo $subacao['texto_subacao']; ?></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <?php endforeach; ?>
+                                    </div>
+
+                                    <?php endif; ?>
                                 </div>
 
                                 <footer class="entry-footer">

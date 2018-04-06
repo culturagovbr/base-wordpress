@@ -251,3 +251,25 @@ article.acao-estrategica .card-media {
 #acoes-estrategicas .filter .actives .badge > .fa{
     margin-left: 5px;
 }
+
+#acoes-estrategicas.subacoes .ge-card{
+    -webkit-box-shadow: 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+    -moz-box-shadow:    0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+    box-shadow:         0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+}
+
+#acoes-estrategicas.subacoes .ge-card .card-desc {
+    padding: 15px;
+}
+
+#acoes-estrategicas.subacoes .ge-card .card-desc .when {
+    display: inline-block;
+    color: #0000008b;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+article.acao-estrategica .action-name.subacao-title {
+    border-top: none;
+    text-transform: none;
+}

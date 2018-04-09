@@ -17,11 +17,15 @@ class ListEventsShortcode {
     }
 
     function addScripts() {
-        wp_enqueue_style('bootst', plugin_dir_url( __FILE__ ) . 'css/bootstrap.css');
+	    global $post;
+	    if( is_a( $post, 'WP_Post' ) && !has_shortcode( $post->post_content, 'list_events') ) {
+		    return;
+	    }
+
+        // wp_enqueue_style('bootst', plugin_dir_url( __FILE__ ) . 'css/bootstrap.css');
         wp_enqueue_style('list-events-css-daterangepicker', plugin_dir_url( __FILE__ ) . '/css/daterangepicker.css');
         wp_enqueue_style('list-events-shortcode', plugin_dir_url( __FILE__ ) . '/css/list-events.css' );
 
-        wp_enqueue_script('jquery');
         wp_enqueue_script('moment', plugin_dir_url( __FILE__ ) . '/js/moment.min.js');
         wp_enqueue_script('list-events-js-daterangepicker', plugin_dir_url( __FILE__ ) . '/js/daterangepicker.js');
         wp_enqueue_script('listevents-ajax-script', plugin_dir_url( __FILE__ ) . '/js/app.js', array('jquery'));

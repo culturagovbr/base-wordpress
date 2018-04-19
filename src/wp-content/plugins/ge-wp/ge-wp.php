@@ -21,7 +21,7 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
 
 		public function __construct() {
 			add_action( 'wp_enqueue_scripts', array( $this, 'register_gewp_styles' ) );
-			// add_action( 'wp_enqueue_scripts', array( $this, 'register_gewp_scripts' ) );
+			add_action( 'wp_enqueue_scripts', array( $this, 'register_gewp_scripts' ) );
 			add_shortcode( 'gestao-estrategica-acoes', array( $this, 'gewp_shortcodes_acoes' ) );
 			add_shortcode( 'gestao-estrategica-objetivos', array( $this, 'gewp_shortcodes_objetivos' ) );
 			add_action( 'init', array( $this, 'cpt_acao_estrategica' ) );
@@ -37,6 +37,7 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
 
 		// Register our public scripts
 		public function register_gewp_scripts() {
+			wp_register_script( 'masonry', plugins_url( 'ge-wp/assets/masonry.pkgd.min.js' ) );
 			wp_register_script( 'gewp-scripts', plugins_url( 'ge-wp/assets/gewp-scripts.js' ) );
 			wp_enqueue_script( 'gewp-scripts' );
 		}

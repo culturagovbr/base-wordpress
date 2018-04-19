@@ -133,7 +133,7 @@ get_header(); ?>
 
                                     <div id="acoes-estrategicas" class="subacoes row">
                                         <?php foreach ( $subacoes_data as $subacao ) : ?>
-                                        <div class="col-md-4">
+                                        <div class="col-lg-4 col-md-6 col-sm-12 grid-item">
                                             <div id="card-<?php echo $subacao['id_subacao']; ?>" class="ge-card">
                                                 <div class="card-desc">
                                                     <div class="text">

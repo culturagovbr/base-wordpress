@@ -37,7 +37,7 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
 
 		// Register our public scripts
 		public function register_gewp_scripts() {
-			wp_register_script( 'masonry', plugins_url( 'ge-wp/assets/masonry.pkgd.min.js' ) );
+			wp_register_script( 'gewp-masonry', plugins_url( 'ge-wp/assets/masonry.pkgd.min.js' ) );
 			wp_register_script( 'gewp-scripts', plugins_url( 'ge-wp/assets/gewp-scripts.js' ) );
 			wp_enqueue_script( 'gewp-scripts' );
 		}

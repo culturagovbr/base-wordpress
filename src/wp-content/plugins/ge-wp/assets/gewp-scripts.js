@@ -9,8 +9,8 @@
         },
 
         initPlugins: function () {
-            if( $('#acoes-estrategicas').length ){
-                var $grid = $('#acoes-estrategicas').masonry({
+            if( $('#acoes-estrategicas.subacoes').length ){
+                var $grid = $('#acoes-estrategicas.subacoes').masonry({
                     itemSelector: '.grid-item'
                 });
             }

@@ -22,12 +22,20 @@ if ( ! class_exists( 'GetSiteHeader' ) ) :
 		public function __construct() {
             add_action( 'wp_ajax_nopriv_get_header', array($this, 'get_header'));
             add_action( 'wp_ajax_get_header', array($this, 'get_header'));
+            add_action( 'wp_ajax_nopriv_get_footer', array($this, 'get_footer'));
+            add_action( 'wp_ajax_get_footer', array($this, 'get_footer'));
 		}
 
 		public function get_header () {
             get_header();
             die;
 		}
+
+        public function get_footer () {
+            wp_head();
+            get_footer();
+            die;
+        }
 
     }
 

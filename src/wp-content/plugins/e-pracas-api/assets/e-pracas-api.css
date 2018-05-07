@@ -1,0 +1,130 @@
+.modulo-epracas {
+    background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%), #F2F2F2;
+    border: 1px solid #E0E0E0;
+    box-sizing: border-box;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    display: block;
+    padding: 15px;
+}
+
+.modulo-epracas h3.text-center {
+    color: #308786;
+    font-weight: bold;
+    margin-bottom: -11px;
+    font-size: 22px;
+}
+
+.modulo-epracas h3.text-center:before {
+    content: "";
+    width: 100%;
+    display: block;
+    background: #217C99;
+    height: 6px;
+    margin-bottom: 12px;
+    border-radius: 4px;
+}
+
+.modulo-epracas img.imagem-pracas {
+    text-align: center;
+    margin-top: -50px;
+    width: 100%;
+    margin-bottom: -30px;
+}
+
+.modulo-epracas p {
+    text-transform: uppercase;
+    color: #828282;
+    font-size: 15px;
+    text-align: center;
+    margin-top: -5px;
+}
+
+.modulo-epracas a {
+    color: #009688;
+    text-transform: uppercase;
+    text-decoration: underline;
+}
+
+.modulo-epracas input#busca-epracas {
+    background: #fff;
+    padding: 10px;
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+}
+
+.modulo-epracas a.programacao {
+    color: #A23983;
+}
+
+.modulo-epracas button.btn-busca-epracas {
+    width: 100%;
+    height: 45.65px;
+    left: 978.56px;
+    color: #fff;
+    top: 544.28px;
+    border: 0;
+    margin-top: 10px;
+    font-size: 20px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%), #01808F;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5.28232px;
+}
+
+.modulo-epracas .busca-epracas {
+    position: relative;
+}
+
+.modulo-epracas ul.epracas-list {
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    left: 0;
+    top: 46px;
+    z-index: 10;
+    background: #fff;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    overflow: hidden;
+    max-height: 300px;
+    overflow-y: scroll;
+    width: 100%;
+}
+
+.modulo-epracas ul.epracas-list li{
+    padding: 15px;
+    border-top: 1px solid #e5e5e5;
+}
+
+.modulo-epracas ul.epracas-list li h3,
+.modulo-epracas ul.epracas-list li h4{
+    margin: 0;
+}
+
+.modulo-epracas ul.epracas-list li h3 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.modulo-epracas ul.epracas-list li h4 {
+    font-size: 13px;
+    text-transform: uppercase;
+    padding-bottom: 5px;
+}
+
+.modulo-epracas .icone{
+    line-height: 46px;
+    height: 46px;
+    width: 46px;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.modulo-epracas .icone .fa.hidden{
+    display: none;
+}

@@ -24,11 +24,14 @@ if (!class_exists('OMC')) :
         {
             add_action('init', array($this, 'indicacao_cpt'));
             add_action ('acf/pre_save_post', array($this, 'preprocess_main_form'));
+            add_action ('acf/save_post', array($this, 'postprocess_main_form'));
             add_shortcode('omc', array($this, 'omc_shortcode'));
             add_action( 'get_header', 'acf_form_head' );
             add_action( 'wp_enqueue_scripts', array( $this, 'register_omc_styles' ) );
             add_action ('admin_enqueue_scripts', array( $this, 'register_omc_scripts' ) );
-            add_action( 'admin_head', array( $this, 'omc_admin_scripts' ) );
+			add_filter ('wp_mail_content_type', array( $this, 'set_email_content_type' ) );
+			add_filter ('wp_mail_from', array($this, 'omc_wp_mail_from') );
+			add_filter ('wp_mail_from_name', array($this, 'omc_wp_mail_from_name') );
 
             require_once dirname( __FILE__ ) . '/inc/options-page.php';
         }
@@ -111,73 +114,88 @@ if (!class_exists('OMC')) :
             return $post_id;
         }
 
+		/**
+		 * Notify the monitors about a new indication
+		 *
+		 * @param $post_id
+		 */
+		public function postprocess_main_form ($post_id)
+		{
+			$omc_options = get_option ('omc_options');
+			$monitoring_emails = explode (',', $omc_options['omc_monitoring_emails']);
+			$to = array_map ('trim', $monitoring_emails);
+			$headers[] = 'From: '. bloginfo('name') .' <automatico@cultura.gov.br>';
+			$headers[] = 'Reply-To: '. $omc_options['omc_email_from_name'] .' <'. $omc_options['omc_email_from'] .'>';
+			$subject = 'Nova indicação recebida.';
+
+			$body  = '<h1>Olá,</h1>';
+			$body .= '<p>Uma nova indicação foi recebida em '. bloginfo('name') .'</p><br>';
+			$body .= '<p><b>Nome do Indicado:'. get_field ('nome_completo_do_indicado', $post_id) .'</b></p>';
+			$body .= '<p><b>Nome de quem Indicou:'. get_field ('nome_completo_de_quem_indicou', $post_id) .'</b></p>';
+			$body .= '<p>Para visualiza-la, clique <a href="' . admin_url ('post.php?post=' . $post_id . '&action=edit') . '">aqui</a>.<p>';
+			$body .= '<br><br><p><small>Você recebeu este email pois está cadastrado para monitorar as indicações à Ordem do Mérito Cultural. Para deixar de monitorar, remova seu email das configurações, em: <a href="' . admin_url ('edit.php?post_type=indicacao&page=indicacao-options-page') . '">Configurações OMC</a></small><p>';
+
+			if (!wp_mail ($to, $subject, $body, $headers)) {
+				error_log ("ERRO: O envio de email de monitoramento para: " . $to . ', Falhou!', 0);
+			}
+
+		}
+
+		/**
+		 * Register stylesheet for our plugin
+		 *
+		 */
         public function register_omc_styles ()
         {
             wp_register_style( 'omc-styles', plugin_dir_url( __FILE__ ) . 'assets/omc.css' );
             wp_enqueue_style( 'omc-styles' );
         }
 
+		/**
+		 * Register JS for our plugin
+		 *
+		 */
         public function register_omc_scripts ()
         {
             wp_enqueue_script ('xlsx-core', plugin_dir_url( __FILE__ ) . 'assets/xlsx.core.min.js', false, false, true);
             wp_enqueue_script ('FileSaver', plugin_dir_url( __FILE__ ) . 'assets/FileSaver.min.js', false, false, true);
             wp_enqueue_script ('tableexport', plugin_dir_url( __FILE__ ) . 'assets/tableexport.js', false, false, true);
+            wp_enqueue_script ('omc-admin', plugin_dir_url( __FILE__ ) . 'assets/admin.js', false, false, true);
         }
 
-        function omc_admin_scripts() {
-            global $current_screen;
-            $user = wp_get_current_user();
-            $user_role = $user->roles[0];
+		/**
+		 * Set the mail content to accept HTML
+		 *
+		 * @param $content_type
+		 * @return string
+		 */
+		public function set_email_content_type ($content_type)
+		{
+			return 'text/html';
+		}
 
-            if ( $current_screen->id !== 'page' || $user_role === 'administrator' ) {
-                // return;
-            } ?>
-            <script>
-                (function($) {
-                    $(document).ready(function() {
-                        admin.init();
-                    });
+		/**
+		 * Set email sender
+		 *
+		 * @param $content_type
+		 * @return mixed
+		 */
+		public function omc_wp_mail_from ($content_type)
+		{
+			$omc_options = get_option ('omc_options');
+			return $omc_options['omc_email_from'];
+		}
 
-                    var admin = {
-                        init: function() {
-                            console.log('FOO');
-                            $('div[data-name="pilares"]').find('input[type="checkbox"]').each(function(){
-                                if( ! $(this).is(':checked') ){
-                                    $(this).parent().parent().addClass('hide-for-print');
-                                }
-                            })
-
-                            TableExport.prototype.defaultButton = "button button-primary";
-                            TableExport.prototype.xlsx = {
-                                defaultClass: "xlsx",
-                                buttonContent: "Exportar para xlsx",
-                                mimeType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                                fileExtension: ".xlsx"
-                            };
-
-                            $("#omc-export-data").tableExport({
-                                headers: true,                              // (Boolean), display table headers (th or td elements) in the <thead>, (default: true)
-                                footers: true,                              // (Boolean), display table footers (th or td elements) in the <tfoot>, (default: false)
-                                formats: ['xlsx'],                          // (String[]), filetype(s) for the export, (default: ['xls', 'csv', 'txt'])
-                                filename: 'id',                             // (id, String), filename for the downloaded file, (default: 'id')
-                                bootstrap: false,                           // (Boolean), style buttons using bootstrap, (default: true)
-                                exportButtons: true,                        // (Boolean), automatically generate the built-in export buttons for each of the specified formats (default: true)
-                                position: 'bottom',                         // (top, bottom), position of the caption element relative to table, (default: 'bottom')
-                                ignoreRows: null,                           // (Number, Number[]), row indices to exclude from the exported file(s) (default: null)
-                                ignoreCols: null,                           // (Number, Number[]), column indices to exclude from the exported file(s) (default: null)
-                                trimWhitespace: true                        // (Boolean), remove all leading/trailing newlines, spaces, and tabs from cell text in the exported file(s) (default: false)
-                            });
-
-                            $('table caption button').on('click', function(e){
-                                e.preventDefault();
-                            })
-                        }
-                    };
-                })(jQuery);
-            </script>
-
-        <?php }
-
+		/**
+		 * Set sender name for emails
+		 *
+		 * @param $name
+		 * @return mixed
+		 */
+		public function omc_wp_mail_from_name ($name) {
+			$omc_options = get_option ('omc_options');
+			return $omc_options['omc_email_from_name'];
+		}
 
     }
 

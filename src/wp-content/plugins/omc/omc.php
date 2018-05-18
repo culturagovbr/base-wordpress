@@ -126,13 +126,29 @@ if (!class_exists('OMC')) :
 			$to = array_map ('trim', $monitoring_emails);
 			$headers[] = 'From: '. bloginfo('name') .' <automatico@cultura.gov.br>';
 			$headers[] = 'Reply-To: '. $omc_options['omc_email_from_name'] .' <'. $omc_options['omc_email_from'] .'>';
-			$subject = 'Nova indicação recebida.';
+			$subject = 'Nova indicação recebida em Ordem do Mérito Cultural.';
 
 			$body  = '<h1>Olá,</h1>';
 			$body .= '<p>Uma nova indicação foi recebida em Ordem do Mérito Cultural.</p><br>';
-			$body .= '<p><b>Nome do Indicado:'. get_field ('nome_completo_do_indicado', $post_id) .'</b></p>';
-			$body .= '<p><b>Nome de quem Indicou:'. get_field ('nome_completo_de_quem_indicou', $post_id) .'</b></p>';
-			$body .= '<p>Para visualiza-la, clique <a href="' . admin_url ('post.php?post=' . $post_id . '&action=edit') . '">aqui</a>.<p>';
+			$body .= '<p>Segmentos Culturais: <b>'. get_field ('segmentos_culturais', $post_id) .'</b></p>';
+			$body .= '<p>Nome do Indicado: <b>'. get_field ('nome_completo_do_indicado', $post_id) .'</b></p>';
+			$body .= '<p>Nome Artístico do Indicado: <b>'. get_field ('nome_artistico_do_indicado', $post_id) .'</b></p>';
+			$body .= '<p>Indicação In Memoriam: <b>'. get_field ('indicacao_in_memoriam', $post_id) .'</b></p>';
+			$body .= '<p>Sexo: <b>'. get_field ('sexo', $post_id) .'</b></p>';
+			$body .= '<p>Endereço do Indicado: <b>'. get_field ('endereco_do_indicado', $post_id) .'</b></p>';
+			$body .= '<p>CEP do Indicado: <b>'. get_field ('cep_do_indicado', $post_id) .'</b></p>';
+			$body .= '<p>Telefone Residencial do Indicado: <b>'. get_field ('telefone_residencial_do_indicado', $post_id) .'</b></p>';
+			$body .= '<p>Telefone Celular do Indicado: <b>'. get_field ('telefone_celular_do_indicado', $post_id) .'</b></p>';
+			$body .= '<p>E-mail do Indicado: <b>'. get_field ('e-mail_do_indicado', $post_id) .'</b></p>';
+			$body .= '<p>Justificativa (Breve Currículo): <b>'. get_field ('justificativa_breve_curriculo', $post_id) .'</b></p>';
+			$body .= '<p>Nome de quem Indicou: <b>'. get_field ('nome_completo_de_quem_indicou', $post_id) .'</b></p>';
+			$body .= '<p>Sexo de quem Indicou: <b>'. get_field ('sexo_de_quem_indicou', $post_id) .'</b></p>';
+			$body .= '<p>Endereço de quem Indicou: <b>'. get_field ('endereco_de_quem_indicou', $post_id) .'</b></p>';
+			$body .= '<p>CEP de quem Indicou: <b>'. get_field ('cep_de_quem_indicou', $post_id) .'</b></p>';
+			$body .= '<p>Telefone Residencial de quem Indicou: <b>'. get_field ('telefone_residencial_de_quem_indicouTexto', $post_id) .'</b></p>';
+			$body .= '<p>Telefone Celular de quem Indicou: <b>'. get_field ('telefone_celular_de_quem_indicou', $post_id) .'</b></p>';
+			$body .= '<p>E-mail de quem Indicou: <b>'. get_field ('e-mail_de_quem_indicou', $post_id) .'</b></p>';
+			$body .= '<p><br>Para visualiza-la, clique <a href="' . admin_url ('post.php?post=' . $post_id . '&action=edit') . '">aqui</a>.<p>';
 			$body .= '<br><br><p><small>Você recebeu este email pois está cadastrado para monitorar as indicações à Ordem do Mérito Cultural. Para deixar de monitorar, remova seu email das configurações, em: <a href="' . admin_url ('edit.php?post_type=indicacao&page=indicacao-options-page') . '">Configurações OMC</a></small><p>';
 
 			if (!wp_mail ($to, $subject, $body, $headers)) {

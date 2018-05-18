@@ -1,0 +1,113 @@
+#omc-main-form .acf-fields > .acf-field{
+    padding: 15px 0;
+    clear: none;
+}
+
+#omc-main-form .acf-fields > .acf-field.col-md-4{
+    float: left;
+}
+
+#omc-main-form .acf-fields > .acf-field.col-md-12{
+    clear: both;
+}
+
+#omc-main-form .acf-field .acf-label label,
+#omc-main-form .acf-field .acf-input label{
+    font-weight: normal;
+    font-size: 14px;
+}
+
+#omc-main-form .acf-field-message{
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #959595;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#omc-main-form .acf-field input[type="text"],
+#omc-main-form .acf-field input[type="password"],
+#omc-main-form .acf-field input[type="number"],
+#omc-main-form .acf-field input[type="search"],
+#omc-main-form .acf-field input[type="email"],
+#omc-main-form .acf-field input[type="url"],
+#omc-main-form .acf-field textarea,
+#omc-main-form .acf-field select {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+#omc-main-form .acf-field input[type="text"]:focus,
+#omc-main-form .acf-field input[type="password"]:focus,
+#omc-main-form .acf-field input[type="number"]:focus,
+#omc-main-form .acf-field input[type="search"]:focus,
+#omc-main-form .acf-field input[type="email"]:focus,
+#omc-main-form .acf-field input[type="url"]:focus,
+#omc-main-form .acf-field textarea:focus,
+#omc-main-form .acf-field select:focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+}
+
+#omc-main-form .acf-field textarea{
+    min-height: 100px;
+}
+
+#omc-main-form .hide-label .acf-label{
+    display: none;
+}
+
+#omc-main-form .acf-form-submit .button{
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+#omc-main-form .col-md-4[data-name="cep_do_indicado"],
+#omc-main-form .col-md-4[data-name="cep_de_quem_indicou"]{
+    padding-right: 15px;
+}
+
+#omc-main-form .col-md-4[data-name="telefone_residencial_do_indicado"],
+#omc-main-form .col-md-4[data-name="telefone_residencial_de_quem_indicou"]{
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+#omc-main-form .col-md-4[data-name="telefone_celular_do_indicado"],
+#omc-main-form .col-md-4[data-name="telefone_celular_de_quem_indicou"]{
+    padding-left: 15px;
+}

@@ -129,7 +129,7 @@ if (!class_exists('OMC')) :
 			$subject = 'Nova indicação recebida.';
 
 			$body  = '<h1>Olá,</h1>';
-			$body .= '<p>Uma nova indicação foi recebida em '. bloginfo('name') .'</p><br>';
+			$body .= '<p>Uma nova indicação foi recebida em Ordem do Mérito Cultural.</p><br>';
 			$body .= '<p><b>Nome do Indicado:'. get_field ('nome_completo_do_indicado', $post_id) .'</b></p>';
 			$body .= '<p><b>Nome de quem Indicou:'. get_field ('nome_completo_de_quem_indicou', $post_id) .'</b></p>';
 			$body .= '<p>Para visualiza-la, clique <a href="' . admin_url ('post.php?post=' . $post_id . '&action=edit') . '">aqui</a>.<p>';

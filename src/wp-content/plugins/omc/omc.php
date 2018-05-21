@@ -3,7 +3,7 @@
  * Plugin Name:       Ordem do Mérito Cultural
  * Plugin URI:        https://github.com/culturagovbr/
  * Description:       Sistema para definição de indicados à Ordem do Mérito Cultural – OMC
- * Version:           1.0.0
+ * Version:           1.1.0
  * Author:            Ricardo Carvalho
  * Author URI:        https://github.com/darciro/
  * License:           GPL-2.0+
@@ -23,6 +23,8 @@ if (!class_exists('OMC')) :
         public function __construct()
         {
             add_action('init', array($this, 'indicacao_cpt'));
+			add_filter ('manage_indicacao_posts_columns', array($this, 'add_indicacao_columns'));
+			add_action ('manage_posts_custom_column', array($this, 'indicacao_custom_columns'), 10, 2);
             add_action ('acf/pre_save_post', array($this, 'preprocess_main_form'));
             add_action ('acf/save_post', array($this, 'postprocess_main_form'));
             add_shortcode('omc', array($this, 'omc_shortcode'));
@@ -86,6 +88,42 @@ if (!class_exists('OMC')) :
                 'menu_icon' => 'dashicons-clipboard')
             );
         }
+
+		/**
+		 * Add new columns to our custom post type
+		 *
+		 * @param $columns
+		 * @return array
+		 */
+        public function add_indicacao_columns ($columns) {
+			unset($columns['author']);
+
+			return array_merge ($columns, array(
+				'seg_cultural' => 'Segmento cultural',
+				'nome_indicado' => 'Nome do indicado',
+				'nome_indicou' => 'Nome de quem indicou'
+			));
+		}
+
+		/**
+		 * Fill custom columns with data
+		 *
+		 * @param $column
+		 * @param $post_id
+		 */
+		public function indicacao_custom_columns ($column, $post_id) {
+			switch ($column) {
+				case 'seg_cultural':
+					echo get_field ('segmentos_culturais', $post_id);
+					break;
+				case 'nome_indicado':
+					echo get_field ('nome_completo_do_indicado', $post_id);
+					break;
+				case 'nome_indicou':
+					echo get_field ('nome_completo_de_quem_indicou', $post_id);
+					break;
+			}
+		}
 
         /**
          * Process data before save indication post

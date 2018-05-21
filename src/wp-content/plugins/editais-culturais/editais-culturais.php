@@ -19,7 +19,9 @@ if( ! class_exists('EditaisCulturaisWP') ) :
 
 	class EditaisCulturaisWP {
 
-		private static $api_url = 'http://mapas.cultura.gov.br/api/opportunity/find/?&type=IN(9)&@select=id,singleUrl,name,subTitle,type,shortDescription,terms,project.name,project.singleUrl,num_sniic&@files=(avatar.avatarMedium):url&@order=name%20ASC&@limit=6&@page=';
+		// private static $api_url_editais_abertos = 'http://mapas.cultura.gov.br/api/opportunity/find/?&@select=id,singleUrl,name,subTitle,type,shortDescription,terms,project.name,project.singleUrl,num_sniic&@files=(avatar.avatarMedium):url&@order=name%20ASC&@limit=6&@page=';
+		private static $api_url_todos_os_editais = 'http://mapas.cultura.gov.br/api/opportunity/find/?&@select=id,singleUrl,name,subTitle,type,shortDescription,terms,project.name,project.singleUrl,num_sniic&@files=(avatar.avatarMedium):url&@order=name%20ASC&@limit=6&@page=';
+		private static $api_url_editais_abertos = 'http://mapas.cultura.gov.br/api/opportunity/find/?&registrationFrom=LTE(2018-04-02%2011:49)&registrationTo=GTE(2018-04-02%2011:49)&@select=id,singleUrl,name,subTitle,type,shortDescription,terms,project.name,project.singleUrl,num_sniic&@files=(avatar.avatarMedium):url&@order=name%20ASC&@limit=6&@page=';
 
 		public function __construct() {
 
@@ -49,7 +51,8 @@ if( ! class_exists('EditaisCulturaisWP') ) :
 			wp_enqueue_script( 'ecwp-scripts' );
 
 			$ecwp = array(
-				'api_url' => self::$api_url
+				'api_url_todos_os_editais' => self::$api_url_todos_os_editais,
+				'api_url_editais_abertos' => self::$api_url_editais_abertos
 			);
 
 			wp_localize_script( 'ecwp-scripts', 'ecwp', $ecwp );
@@ -88,12 +91,16 @@ if( ! class_exists('EditaisCulturaisWP') ) :
 		}
 
 		public function ecwp_shortcodes() {
-			$json = file_get_contents( self::$api_url . '1' );
+			$json = file_get_contents( self::$api_url_editais_abertos . '1' );
 			$editais_arr = json_decode($json);
 
 			ob_start(); ?>
+            <div class="editais-abertos-wrapper">
+                <input type="checkbox" id="editais-abertos-filter" checked>
+                <label for="editais-abertos-filter">Inscrições Abertas</label>
+            </div>
 
-            <div id="editais-culturais" data-page="1">
+            <div id="editais-culturais" class="editais-culturais-abertos" data-page="1">
 			<?php foreach ( $editais_arr as $i => $edital ){ ?>
 
 				<div class="card-wrapper">

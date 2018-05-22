@@ -396,7 +396,7 @@ function campanha_use_smtp($phpmailer)
 	    //$phpmailer->FromName   = 'Rede Livre'; -- Acho que podemos deixar isso inalterado, e manter o que foi colocado quando a wp_mail() foi chamada
 	}
 }
-add_action('phpmailer_init', 'campanha_use_smtp');
+// add_action('phpmailer_init', 'campanha_use_smtp');
 
 
 // custom admin login logo

@@ -8,7 +8,7 @@
 			</div>
 			<div class="col-md-6 text-right">
 				<a href="http://www.brasil.gov.br/" target="_blank">
-					<img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-brasil.png?v=2">
+					<!--<img src="<?php /*echo get_template_directory_uri(); */?>/assets/images/logo-brasil.png?v=2">-->
 				</a>
 			</div>
 		</div>

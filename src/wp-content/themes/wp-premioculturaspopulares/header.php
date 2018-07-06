@@ -44,7 +44,7 @@
     <div class="clearfix">
         <div id="logo-header-tema">
             <a href="<?php echo home_url(); ?>" title="<?php bloginfo('name'); ?>">
-                <img src="<?php echo esc_url( $template_directory_uri . '/../wp-premioculturaspopulares/assets/img/logo-premio-culturas-populares.png' ); ?>" alt="" />
+                <img src="<?php echo esc_url( $template_directory_uri . '/../wp-premioculturaspopulares/assets/img/populares-2018-header-2.png' ); ?>" alt="" />
             </a>
 
         </div>

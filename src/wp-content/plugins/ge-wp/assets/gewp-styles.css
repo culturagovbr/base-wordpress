@@ -1,0 +1,402 @@
+#acoes-estrategicas .acao{
+    background-color: #F2F2F2;
+    padding: 0 0 15px 0;
+}
+
+#acoes-estrategicas .col-title{
+    background-color: #243850;
+    color: #fff;
+    margin: 0;
+    padding: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    height: 60px;
+}
+
+#acoes-estrategicas .col-title a,
+#acoes-estrategicas .col-title a:hover,
+#acoes-estrategicas .col-title a:active,
+#acoes-estrategicas .col-title a:focus {
+    color: #fff;
+    text-decoration: none;
+}
+
+#acoes-estrategicas .col-title img {
+    margin-right: 15px;
+    line-height: 32px;
+    margin-top: -5px;
+}
+
+#acoes-estrategicas .card-wrapper{
+    float: none;
+    clear: both;
+    width: 100%;
+    max-height: 1000px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 0;
+}
+
+#acoes-estrategicas .ge-card{
+    margin: 15px 0 0;
+    background: #fff;
+}
+
+#acoes-estrategicas .ge-card a,
+#acoes-estrategicas .ge-card a:hover,
+#acoes-estrategicas .ge-card a:active,
+#acoes-estrategicas .ge-card a:focus {
+    text-decoration: none;
+    color: #000000de;
+}
+
+#acoes-estrategicas .ge-card .card-header{
+    padding: 15px;
+    background: #fff;
+    border: none;
+}
+
+#acoes-estrategicas .ge-card .card-header .headline {
+    font-size: 12px;
+    color: #0000008b;
+    font-weight: bold;
+}
+
+#acoes-estrategicas .ge-card .card-header .headline .img{
+    background-color: #243850;
+    width: 26px;
+    height: 26px;
+    text-align: center;
+    line-height: 26px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+#acoes-estrategicas .ge-card .card-header .headline .img img{
+    height: 100%;
+    width: auto;
+    padding: 4px;
+    margin-top: -3px;
+}
+
+#acoes-estrategicas .ge-card .card-header .meta {
+    float: right;
+    font-size: 18px;
+}
+
+#acoes-estrategicas .ge-card .card-desc{
+    padding: 0 15px 15px;
+    position: relative;
+}
+
+#acoes-estrategicas .ge-card .card-desc .text{
+    font-size: 16px;
+    padding-right: 80px;
+}
+
+#acoes-estrategicas .ge-card .card-desc .text h4 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#acoes-estrategicas .ge-card .card-desc .text p{
+    color: #0000008b;
+    font-size: 14px;
+}
+
+#acoes-estrategicas .ge-card .card-desc .card-media,
+article.acao-estrategica .card-media {
+    position: absolute;
+    right: 15px;
+    top: 0;
+    background-color: #D1D3D4;
+    width: 70px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 12px;
+    padding: 15px;
+}
+
+#acoes-estrategicas .ge-card .card-actions{
+    padding: 0 15px;
+}
+
+#acoes-estrategicas .ge-card .card-actions ul{
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    text-align: right;
+}
+
+#acoes-estrategicas .ge-card .card-actions ul li {
+    display: inline-block;
+    color: #0000008b;
+    font-size: 12px;
+    margin-left: 15px;
+}
+
+article.acao-estrategica .action-name{
+    background-color: #F6F6F7;
+    color: #243850;
+    text-transform: uppercase;
+    font-size: 24px;
+    padding: 15px;
+    border-top: 3px solid #243850;
+    -webkit-box-shadow: 0px 3px 3px 0px rgba(0,0,0,.20);
+    -moz-box-shadow: 0px 3px 3px 0px rgba(0,0,0,.20);
+    box-shadow: 0px 3px 3px 0px rgba(0,0,0,.20);
+    margin-bottom: 30px;
+}
+
+article.acao-estrategica .action-meta{
+    color: #0000008b;
+    min-height: 75px;
+}
+
+article.acao-estrategica .action-meta h4 {
+    position: relative;
+}
+
+article.acao-estrategica .action-meta .img {
+    background-color: #243850;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 45px;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+article.acao-estrategica .action-meta .text,
+article.acao-estrategica .action-meta .when {
+    display: block;
+    float: left;
+    width: 100%;
+    margin-left: 60px;
+}
+
+article.acao-estrategica .action-meta .when{
+    font-size: 14px;
+    display: block;
+}
+
+article.acao-estrategica .action-meta h5{
+    font-size: 26px;
+    color: #333;
+}
+
+article.acao-estrategica .action-data {
+    color: #0000008b;
+}
+
+article.acao-estrategica .action-data p {
+    margin: 0 0 15px 0;
+}
+
+article.acao-estrategica .card-media {
+    font-size: 18px;
+    color: #333;
+    position: relative;
+    width: auto;
+    right: auto;
+    top: auto;
+}
+
+.all-axis-link {
+    display: block;
+    margin: -10px 0 15px;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+#acoes-estrategicas .filter {
+    background-color: #F6F6F7;
+    text-align: right;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-top: 3px solid #243850;
+}
+
+#acoes-estrategicas .filter > span{
+    color: #243850;
+    float: left;
+    display: inline-block;
+    font-size: 18px;
+    text-transform: uppercase;
+    line-height: 40px;
+}
+
+#acoes-estrategicas .filter .btn-primary{
+    background-color: #243850;
+    border-color: #243850;
+}
+
+#acoes-estrategicas .filter .btn-primary:hover,
+#acoes-estrategicas .filter .btn-primary:active,
+#acoes-estrategicas .filter .btn-primary:focus{
+    background-color: #486487;
+    border-color: #243850;
+}
+
+#acoes-estrategicas .filter .actives {
+    margin-top: 15px;
+    border-top: 1px solid #ccc;
+    padding-top: 15px;
+}
+
+#acoes-estrategicas .filter .actives .badge > .fa{
+    margin-left: 5px;
+}
+
+#acoes-estrategicas.subacoes .ge-card{
+    -webkit-box-shadow: 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+    -moz-box-shadow:    0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+    box-shadow:         0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+}
+
+#acoes-estrategicas.subacoes .ge-card .card-desc {
+    padding: 15px;
+}
+
+#acoes-estrategicas.subacoes .ge-card .card-desc .when {
+    display: inline-block;
+    color: #0000008b;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+article.acao-estrategica .action-name.subacao-title {
+    border-top: none;
+    text-transform: none;
+}
+
+.acoes-estrategicas-resultados {
+    position: relative;
+    text-align: center;
+    min-height: 660px;
+    margin: 90px 0 45px;
+}
+
+.acoes-estrategicas-resultados .medal,
+.acoes-estrategicas-resultados .medal > div{
+    position: absolute;
+    width: 240px;
+    height: 260px;
+    margin-left: -120px;
+}
+
+.acoes-estrategicas-resultados .medal > div {
+    position: relative;
+    margin-left: 0;
+}
+
+.acoes-estrategicas-resultados .medal h3,
+.acoes-estrategicas-resultados .medal span {
+    position: absolute;
+    z-index: 2;
+    top: -30px;
+    left: 0;
+    width: 100%;
+    color: #243850;
+    text-transform: uppercase;
+    padding: 0 40px;
+}
+
+.acoes-estrategicas-resultados .medal span {
+    top: 42%;
+    color: #fff;
+    font-size: 45px;
+    line-height: 45px;
+    opacity: 0;
+    -webkit-transition: opacity 1s ease-out;
+    -moz-transition: opacity 1s ease-out;
+    -o-transition: opacity 1s ease-out;
+    transition: opacity 1s ease-out;
+}
+
+.acoes-estrategicas-resultados .medal span.active {
+    opacity: 1;
+}
+
+.acoes-estrategicas-resultados .medal img {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    max-width: 240px;
+}
+
+.acoes-estrategicas-resultados .medal-1,
+.acoes-estrategicas-resultados .medal-1 > div{
+    width: 310px;
+    height: 340px;
+    top: 15px;
+    left: 50%;
+    margin-left: -155px;
+}
+
+.acoes-estrategicas-resultados .medal-1 img {
+    max-width: none;
+}
+
+.acoes-estrategicas-resultados .medal-1 h3 {
+    top: -100px;
+}
+
+.acoes-estrategicas-resultados .medal-2 {
+    top: 340px;
+    left: 25%;
+}
+
+.acoes-estrategicas-resultados .medal-3 {
+    top: 410px;
+    left: 50%;
+}
+
+.acoes-estrategicas-resultados .medal-4 {
+    top: 340px;
+    right: 25%;
+    margin-left: 0;
+    margin-right: -120px;
+}
+
+.acoes-estrategicas-resultados-list a .fa{
+    float: right;
+}
+
+.acoes-estrategicas-resultados-table th,
+.acoes-estrategicas-resultados-table td{
+    text-align: left;
+}
+
+.acoes-estrategicas-resultados-table .bar-holder-header .ge-start{
+    float: left;
+}
+
+.acoes-estrategicas-resultados-table .bar-holder-header .ge-end{
+    float: right;
+}
+
+.acoes-estrategicas-resultados-table .bar-holder{
+    text-align: left !important;
+}
+
+.acoes-estrategicas-resultados-table .bar {
+    background: #243850 !important;
+    color: #243850 !important;
+    display: block !important;
+    height: 15px;
+    opacity: 0;
+    -webkit-transition: opacity 1s ease-out;
+    -moz-transition: opacity 1s ease-out;
+    -o-transition: opacity 1s ease-out;
+    transition: opacity 1s ease-out;
+}
+
+.acoes-estrategicas-resultados-table .bar.active {
+    opacity: 1;
+}

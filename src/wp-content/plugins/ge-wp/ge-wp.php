@@ -645,7 +645,7 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
                     <th scope="col" style="width: 25%;">Unidade</th>
                     <th scope="col" style="width: 15%;">Ações</th>
                     <th class="bar-holder-header" scope="col" style="width: 60%;">
-                        <span class="ge-start"><?php echo $bar_start; ?></span>
+                        <span class="ge-start">0</span>
                         <span class="ge-end"><?php echo $bar_end; ?></span>
                     </th>
                 </tr>
@@ -719,7 +719,7 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
                     <th scope="col" style="width: 25%;">Objetivo estratégico</th>
                     <th scope="col" style="width: 15%;">Ações</th>
                     <th class="bar-holder-header" scope="col" style="width: 60%;">
-                        <span class="ge-start"><?php echo $bar_start; ?></span>
+                        <span class="ge-start">0</span>
                         <span class="ge-end"><?php echo $bar_end; ?></span>
                     </th>
                 </tr>
@@ -775,7 +775,7 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
                     <th scope="col" style="width: 25%;">Unidade</th>
                     <th scope="col" style="width: 15%;">Orçamento</th>
                     <th class="bar-holder-header" scope="col" style="width: 60%;">
-                        <span class="ge-start">R$ <?php echo $bar_start; ?></span>
+                        <span class="ge-start">R$ 0</span>
                         <span class="ge-end">R$ <?php echo number_format($bar_end, 2, ',', '.'); ?></span>
                     </th>
                 </tr>

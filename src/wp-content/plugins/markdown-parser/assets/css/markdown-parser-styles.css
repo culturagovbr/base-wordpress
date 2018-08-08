@@ -1,7 +1,15 @@
+.markdown-body {
+    position: relative;
+}
+
 .markdown-body h1 {
     padding-bottom: 0.3em;
     font-size: 2em;
     border-bottom: 1px solid #eaecef;
+}
+
+.markdown-body h1:first-of-type {
+    padding-right: 105px;
 }
 
 .markdown-body h2 {
@@ -135,4 +143,21 @@
 
 .markdown-body table th{
     border-bottom: 2px solid #ddd;
+}
+
+.markdown-body .print-btn {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 2;
+    border: 1px solid;
+    padding: 5px 10px;
+    font-size: 12px;
+    text-transform: uppercase;
+    text-decoration: none;
+    -webkit-transition: background-color 0.5s ease-out;
+    -moz-transition: background-color 0.5s ease-out;
+    -o-transition: background-color 0.5s ease-out;
+    transition: background-color 0.5s ease-out;
 }

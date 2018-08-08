@@ -33,6 +33,12 @@ function markdown_parser_scripts()
 }
 add_action( 'admin_enqueue_scripts', 'markdown_parser_scripts' );
 
+function markdown_parser_frontend_scripts() {
+	wp_register_script( 'markdown-parser-scripts-front', plugins_url( 'assets/js/markdown-parser-scripts-front.js', __FILE__ ) );
+	wp_enqueue_script( 'markdown-parser-scripts-front' );
+}
+add_action( 'wp_enqueue_scripts', 'markdown_parser_frontend_scripts' );
+
 function markdown_parser_styles() {
 	wp_register_style( 'markdown-parser-styles', plugins_url( 'assets/css/markdown-parser-styles.css', __FILE__ ) );
 	wp_enqueue_style( 'markdown-parser-styles' );

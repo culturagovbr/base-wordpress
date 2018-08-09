@@ -53,7 +53,7 @@ get_header();
 			</div>
 		</div>
 	</div>
-	<div id="main-form-wrapper">
+	<!--<div id="main-form-wrapper">
 		<div class="main-form-title">
 			<div class="container">
 				<div class="row">
@@ -70,8 +70,10 @@ get_header();
 				<div class="col-sm-9 margin-left-25">
 					<div class="row">
 						<?php
+							/*
 							$mapasculturais_options = get_option('mapasculturais_options');
 							main_form( $mapasculturais_options['acf_group_id_option'] );
+							*/
 						?>
 					</div>
 				</div>
@@ -92,7 +94,7 @@ get_header();
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>-->
 </main>
 
 <?php get_footer(); ?>

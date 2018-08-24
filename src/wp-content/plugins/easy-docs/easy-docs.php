@@ -100,6 +100,7 @@ if( ! class_exists('EasyDocs') ) :
                         'singular_name' => 'Documento',
                     ),
                     'public' => true,
+                    'has_archive' => true,
                     'publicly_queryable' => true,
                     'supports' => array( 'title', 'editor' ),
                     'menu_icon' => 'dashicons-media-document'
@@ -133,7 +134,9 @@ if( ! class_exists('EasyDocs') ) :
         }
 
         /**
-         * Metabox contetn
+         * Metabox content
+         *
+         * @param $post
          */
         public function render_meta_box_content( $post )
         {
@@ -180,6 +183,7 @@ if( ! class_exists('EasyDocs') ) :
         /**
          * Sanitize and save our data
          *
+         * @param $post_id
          */
         public function easy_docs_save_postdata( $post_id )
         {
@@ -223,6 +227,12 @@ if( ! class_exists('EasyDocs') ) :
             return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$sz[$factor];
         }
 
+        /**
+         * Add a card with attachment info and a link to download
+         *
+         * @param $content
+         * @return string
+         */
         public function add_document_to_content ($content){
             $document_url = get_post_meta( get_the_ID(), '_document-url', true );
             if( !$document_url ){

@@ -1,0 +1,73 @@
+#easy-docs-metabox label {
+    display: block;
+    margin-bottom: 12px;
+}
+
+.document-url-wrapper {
+    position: relative;
+}
+
+.document-url-wrapper .document-url-footer{
+    margin: 12px -12px -12px -12px;
+    padding: 12px;
+    background: #f5f5f5;
+    border-top: 1px solid #dddddd;
+    text-align: right;
+    clear: both;
+    float: none;
+}
+
+.document-url-wrapper .document-url-footer > a {
+    float: left;
+}
+
+.document-url-meta {
+    clear: both;
+    float: none;
+    overflow: auto;
+    display: table-row;
+}
+
+.document-url-wrapper.no-doc .document-url-meta,
+.document-url-wrapper.no-doc #remove-document-url{
+    display: none;
+}
+
+.document-url-meta .thumbnail,
+.document-url-meta .data{
+    display: table-cell;
+    vertical-align: top;
+    width: 50%;
+}
+
+.document-url-meta .thumbnail.default-image {
+    padding: 15px;
+    background: #f1f1f1;
+}
+
+.document-url-meta .data {
+    padding-left: 6px;
+}
+
+.document-url-meta .thumbnail img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+}
+
+.document-url-meta .data span,
+.document-url-meta .data small {
+    display: block;
+}
+
+#document-url {
+    display: none;
+}
+
+#remove-document-url{
+    color: #a00;
+}
+
+#remove-document-url:hover {
+    color: #dc3232;
+}

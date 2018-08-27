@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Easy Docs
  * Plugin URI:        https://github.com/culturagovbr/
- * Description:       @TODO
+ * Description:       Adiciona um novo tipo de conteúdo denominado <strong>Documento</strong>, com suporte à categorias e shortcodes (Utilização: <strong>[easy-docs]</strong>; parâmetros disponíveis: <strong>category</strong>, <strong>items</strong>, <strong>all-items-label</strong>).
  * Version:           1.0.0
  * Author:            Ricardo Carvalho
  * Author URI:        https://github.com/culturagovbr/
@@ -35,7 +35,10 @@ if( ! class_exists('EasyDocs') ) :
             add_action( 'init', array( $this, 'cpt_docs' ) );
             add_action( 'add_meta_boxes', array( $this, 'easy_docs_add_meta_box' ) );
             add_action( 'save_post', array( $this, 'easy_docs_save_postdata' ) );
+
             add_filter( 'the_content', array( $this, 'add_document_to_content' ) );
+
+            add_shortcode( 'easy-docs', array( $this, 'easy_docs_shortcode' ) );
         }
 
         /**
@@ -102,7 +105,7 @@ if( ! class_exists('EasyDocs') ) :
                     'public' => true,
                     'has_archive' => true,
                     'publicly_queryable' => true,
-                    'supports' => array( 'title', 'editor' ),
+                    'supports' => array( 'title', 'editor', 'excerpt' ),
                     'menu_icon' => 'dashicons-media-document'
                 )
             );
@@ -253,6 +256,49 @@ if( ! class_exists('EasyDocs') ) :
                 $document_box .= '</div>';
                 return $content . $document_box;
             }
+        }
+
+        /**
+         * Shortcode to add a list of documents to show
+         *
+         * @param $atts
+         * @return string
+         */
+        public function easy_docs_shortcode ($atts){
+            $atts = shortcode_atts(array(
+                'category'          => '',
+                'items'             => '5',
+                'all-items-label'   => 'Todos os documentos',
+            ), $atts);
+
+            ob_start();
+            $easy_docs_query = new WP_Query( array(
+                'post_type'         => 'documents',
+                'posts_per_page'    => $atts['items'],
+                'tax_query'         => $atts['category'] ? array(
+                    array(
+                        'taxonomy'      => 'document-category',
+                        'field'         => 'slug',
+                        'terms'         => $atts['category'],
+                    ),
+                ) : ''
+            ) );
+
+            if ( $easy_docs_query->have_posts() ) {
+                echo '<ul>';
+                while ( $easy_docs_query->have_posts() ) {
+                    $easy_docs_query->the_post();
+                    echo '<li><a href="'. get_the_permalink() .'">' . get_the_title( $easy_docs_query->post->ID ) . '</a></li>';
+                }
+                echo '</ul>';
+
+                $link_to_all_docs = $atts['category'] ? home_url('/document-category/' . $atts['category']) : home_url('/documents');
+                echo '<a href="'. $link_to_all_docs .'" class="easy-docs-all-btn">'. $atts['all-items-label'] .' <span class="easy-docs-all-btn-plus-ico"></span></a>';
+
+                wp_reset_postdata();
+            }
+
+            return ob_get_clean();
         }
 
     }

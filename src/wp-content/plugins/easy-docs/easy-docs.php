@@ -285,7 +285,7 @@ if( ! class_exists('EasyDocs') ) :
             ) );
 
             if ( $easy_docs_query->have_posts() ) {
-                echo '<ul>';
+                echo '<ul class="easy-docs-list">';
                 while ( $easy_docs_query->have_posts() ) {
                     $easy_docs_query->the_post();
                     echo '<li><a href="'. get_the_permalink() .'">' . get_the_title( $easy_docs_query->post->ID ) . '</a></li>';

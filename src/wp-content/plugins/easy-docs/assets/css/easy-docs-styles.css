@@ -1,8 +1,11 @@
-.easy-document-box .card-title{
-    font-size: 22px;
-    border-bottom: 1px solid #dfdfdf;
-    margin-bottom: 20px;
-    padding-bottom: 15px;
+.easy-document-box .card-header{
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+.easy-document-box .card-title {
+    font-size: 18px;
+    margin: 0;
 }
 
 .easy-document-box .card-subtitle {
@@ -11,15 +14,15 @@
     line-height: 20px;
 }
 
-.easy-document-box .card-title .card-subtitle .dashicons{
-    line-height: 14px;
-    font-size: 20px;
+.easy-document-box .card-text{
+    margin: 0;
 }
 
-.easy-document-box .card-text {
-    margin-bottom: 0;
+.easy-document-box .btn{
+    margin: 15px 0;
 }
 
-.easy-document-box .btn {
-    margin-top: 15px;
+.easy-document-box .card-body .b-top {
+    padding-top: 15px;
+    border-top: 1px solid #dfdfdf;
 }

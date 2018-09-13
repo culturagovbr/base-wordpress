@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name:       Easy Docs
- * Plugin URI:        https://github.com/culturagovbr/
+ * Plugin URI:        https://github.com/darciro/
  * Description:       Adiciona um novo tipo de conteúdo denominado <strong>Documento</strong>, com suporte à categorias e shortcodes (Utilização: <strong>[easy-docs]</strong>; parâmetros disponíveis: <strong>category</strong>, <strong>items</strong>, <strong>all-items-label</strong>).
  * Version:           1.0.0
  * Author:            Ricardo Carvalho
- * Author URI:        https://github.com/culturagovbr/
+ * Author URI:        https://github.com/darciro/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
@@ -35,8 +35,11 @@ if( ! class_exists('EasyDocs') ) :
             add_action( 'init', array( $this, 'cpt_docs' ) );
             add_action( 'add_meta_boxes', array( $this, 'easy_docs_add_meta_box' ) );
             add_action( 'save_post', array( $this, 'easy_docs_save_postdata' ) );
+            add_action('manage_posts_custom_column', array($this, 'documents_custom_columns'), 10, 2);
 
             add_filter( 'the_content', array( $this, 'add_document_to_content' ) );
+            add_filter( 'manage_documents_posts_columns', array($this, 'add_documents_columns' ) );
+            add_filter( 'manage_posts_columns', array($this, 'reorder_columns_in_documents_posts_list' ) );
 
             add_shortcode( 'easy-docs', array( $this, 'easy_docs_shortcode' ) );
         }
@@ -101,6 +104,12 @@ if( ! class_exists('EasyDocs') ) :
                     'labels'              => array(
                         'name'          => 'Documentos',
                         'singular_name' => 'Documento',
+                        'add_new'       => 'Novo documento',
+                        'add_new_item'  => 'Novo documento',
+                        'edit_item'     => 'Editar documento',
+                        'search_items'  => 'Buscar documento',
+                        'not_found'     => 'Nada encontrado',
+                        'not_found_in_trash'  => 'Nada encontrado',
                     ),
                     'public' => true,
                     'has_archive' => true,
@@ -115,7 +124,11 @@ if( ! class_exists('EasyDocs') ) :
                 'documents',
                 array(
                     'label' => 'Tipo de documento',
-                    'hierarchical' => true
+                    'hierarchical' => true,
+                    'labels' => array(
+                        'add_new_item' => 'Adicionar novo tipo',
+                        'search_items' => 'Buscar tipo de documento'
+                    )
                 )
             );
         }
@@ -144,39 +157,60 @@ if( ! class_exists('EasyDocs') ) :
         public function render_meta_box_content( $post )
         {
             wp_nonce_field( plugin_basename( __FILE__ ), 'easy_docs_nonce' );
+            $documents_url = get_post_meta( $post->ID, '_document-url', false ); ?>
 
-            $document_url = get_post_meta( $post->ID, '_document-url', true ); ?>
-
-            <div class="document-url-wrapper <?php echo $document_url ? '' : 'no-doc'; ?>">
-                <label for="document-url">Selecione o arquivo para o documento</label>
-                <input type="text" id="document-url" name="document-url" value="<?php echo esc_attr($document_url) ?>"/>
+            <label for="document-url">Selecione os arquivos para anexar ao documento.</label>
+            <div class="document-url-wrapper <?php echo $documents_url ? '' : 'no-doc'; ?>">
                 <div class="document-url-meta" data-default-icon="<?php echo home_url('/wp-includes/images/media/document.png'); ?>">
-                    <div class="thumbnail default-image" >
+
                     <?php
-                    if( $document_url ){
-                        echo '<a href="#">';
-                    }
-
-                    $attachment = $this->get_attachment_id_by_url($document_url);
-                    if( wp_get_attachment_image( $attachment->ID, array('150', '150') ) ){
-                        echo wp_get_attachment_image( $attachment->ID, array('150', '150') );
-                    } else { ?>
-                        <img src="<?php echo home_url('/wp-includes/images/media/document.png'); ?>">
-                    <?php }
-
-                    if( $document_url ){
-                        echo '</a>';
-                    } ?>
-                    </div>
-                    <div class="data">
-                        <span class="doc-name"><b><?php echo $attachment->post_title; ?></b></span>
-                        <small class="doc-date"><?php echo strftime('%d de %B de %Y', strtotime($attachment->post_date)); ?></small>
-                        <small class="doc-size"><?php echo size_format( filesize( get_attached_file( $attachment->ID ) ) ); ?></small>
-                    </div>
+                    if( $documents_url ):
+                        foreach ($documents_url as $document_url): ?>
+                            <div class="t-row">
+                                <button type="button" class="remove-document-url" title="Excluir documento">
+                                    <span class="dashicons dashicons-dismiss"></span>
+                                </button>
+                                <input type="text" class="document-url-input" name="document-url[]" value="<?php echo esc_attr($document_url) ?>"/>
+                                <div class="thumbnail default-image" >
+                                    <a href="<?php echo $document_url; ?>" target="_blank">
+                                    <?php $attachment = $this->get_attachment_id_by_url($document_url);
+                                    if( wp_get_attachment_image( $attachment->ID, array('150', '150') ) ){
+                                        echo wp_get_attachment_image( $attachment->ID, array('150', '150') );
+                                    } else { ?>
+                                        <img src="<?php echo home_url('/wp-includes/images/media/document.png'); ?>">
+                                    <?php } ?>
+                                    </a>
+                                </div>
+                                <div class="data">
+                                    <span class="doc-name"><b><?php echo $attachment->post_title ? $attachment->post_title : $attachment->post_name; ?></b></span>
+                                    <small class="doc-date"><?php echo strftime('%d de %B de %Y', strtotime($attachment->post_date)); ?></small>
+                                    <small class="doc-size"><?php echo size_format( filesize( get_attached_file( $attachment->ID ) ) ); ?></small>
+                                </div>
+                            </div>
+                        <?php endforeach;
+                    else: ?>
+                        <div class="t-row">
+                            <button type="button" class="remove-document-url" title="Excluir documento">
+                                <span class="dashicons dashicons-dismiss"></span>
+                            </button>
+                            <input type="text" class="document-url-input" name="document-url[]" value=""/>
+                            <div class="thumbnail default-image" >
+                                <a href="#" target="_blank">
+                                    <img src="<?php echo home_url('/wp-includes/images/media/document.png'); ?>">
+                                </a>
+                            </div>
+                            <div class="data">
+                                <span class="doc-name"><b></b></span>
+                                <small class="doc-date"></small>
+                                <small class="doc-size"></small>
+                            </div>
+                        </div>
+                    <?php endif; ?>
                 </div>
+
                 <div class="document-url-footer">
-                    <a href="#" id="remove-document-url">Remover documento</a>
-                    <button id="upload-doc-button" class="button">Selecionar</button>
+                    <button class="add-new-doc button">Adicionar novo documento</button>
+                    <button id="upload-doc-button" class="button">Selecionar documento</button>
                 </div>
             </div>
 
@@ -201,8 +235,12 @@ if( ! class_exists('EasyDocs') ) :
             if ( ! isset( $_POST['easy_docs_nonce'] ) || ! wp_verify_nonce( $_POST['easy_docs_nonce'], plugin_basename( __FILE__ ) ) )
                 return;
 
-            $document_url = sanitize_text_field( $_POST['document-url'] );
-            update_post_meta($post_id, '_document-url', $document_url);
+            delete_post_meta( $post_id, '_document-url' );
+
+            foreach ($_POST['document-url'] as $doc_url) {
+                if( !empty($doc_url) )
+                    add_post_meta($post_id, '_document-url', $doc_url);
+            }
         }
 
         /**
@@ -214,7 +252,7 @@ if( ! class_exists('EasyDocs') ) :
          */
         public function get_attachment_id_by_url($image_url) {
             global $wpdb;
-            $attachment = $wpdb->get_row("SELECT ID, post_title, post_date FROM $wpdb->posts WHERE guid='$image_url';" );
+            $attachment = $wpdb->get_row("SELECT ID, post_title, post_name, post_date FROM $wpdb->posts WHERE guid='$image_url';" );
             return $attachment;
         }
 
@@ -237,24 +275,35 @@ if( ! class_exists('EasyDocs') ) :
          * @return string
          */
         public function add_document_to_content ($content){
-            $document_url = get_post_meta( get_the_ID(), '_document-url', true );
-            if( !$document_url ){
+            $documents_url = get_post_meta( get_the_ID(), '_document-url', false );
+            if( !$documents_url ){
                 return $content;
             } else {
-                $attachment = $this->get_attachment_id_by_url($document_url);
                 $doc_tax = get_the_terms( get_the_ID(), 'document-category' );
                 $attach_cat = $doc_tax[0]->name ? $doc_tax[0]->name : 'Anexo';
 
-                $document_box  = '<div class="easy-document-box card">';
-                $document_box .=    '<div class="card-body">';
-                $document_box .=        '<h5 class="card-title">'. $attachment->post_title .'</h5>';
-                $document_box .=        '<h6 class="card-subtitle mb-2 text-muted"><span class="dashicons dashicons-media-document"></span> '. $attach_cat .'</h6>';
-                $document_box .=        '<p class="card-text"><small>'. strftime('%d de %B de %Y', strtotime($attachment->post_date)) .'</small></p>';
-                $document_box .=        '<p class="card-text"><small>'. size_format( filesize( get_attached_file( $attachment->ID ) ) ) .'</small></p>';
-                $document_box .=        '<a href="'. $document_url .'" target="_blank" class="btn btn-primary">Download do arquivo</a>';
-                $document_box .=    '</div>';
-                $document_box .= '</div>';
-                return $content . $document_box;
+                ob_start(); ?>
+
+                <div class="easy-document-box">
+                    <div class="card">
+                        <h5 class="card-header"><span class="dashicons dashicons-media-document"></span> <?php echo $attach_cat; ?></h5>
+                        <div class="card-body">
+                            <?php
+                            for ($i = 0; $i < count($documents_url); $i++):
+                            $attachment = $this->get_attachment_id_by_url($documents_url[$i]); ?>
+                            <div class="<?php echo $i === 0 ? '' : 'b-top'; ?>">
+                                <h6 class="card-subtitle mb-2 text-muted">Anexos</h6>
+                                <h5 class="card-title"><?php echo $attachment->post_title; ?></h5>
+                                <p class="card-text"><small><?php echo strftime('%d de %B de %Y', strtotime($attachment->post_date)); ?></small></p>
+                                <p class="card-text"><small><?php echo size_format( filesize( get_attached_file( $attachment->ID ) ) ); ?></small></p>
+                                <a href="<?php echo $documents_url[$i]; ?>" class="btn btn-primary btn-sm" target="_blank">Download do arquivo</a>
+                            </div>
+                            <?php endfor; ?>
+                        </div>
+                    </div>
+                </div>
+
+                <?php return $content . ob_get_clean();
             }
         }
 
@@ -299,6 +348,71 @@ if( ! class_exists('EasyDocs') ) :
             }
 
             return ob_get_clean();
+        }
+
+        /**
+         * Add new columns to our custom post type
+         *
+         * @param $columns
+         * @return array
+         */
+        public function add_documents_columns($columns)
+        {
+            return array_merge($columns, array(
+                'author' => 'Autor',
+                'attachments' => 'Anexos'
+            ));
+        }
+
+        /**
+         * Fill custom columns with data
+         *
+         * @param $column
+         * @param $post_id
+         */
+        public function documents_custom_columns($column, $post_id)
+        {
+            switch ($column) {
+                case 'attachments':
+                    global $wpdb;
+                    $documents_url = get_post_meta( get_the_ID(), '_document-url', false );
+                    if( $documents_url ){
+                        echo '<ul class="documents-attachment-list">';
+                        foreach ( $documents_url as $doc_url ){
+                            $doc = $this->get_attachment_id_by_url($doc_url);
+                            echo '<li><a href="'. admin_url('/post.php?post='. $doc->ID .'&action=edit') .'"><small>'. $doc->post_title .'</small></a></li>';
+                        }
+                        echo '</ul>';
+                    } else {
+                        echo ' - ';
+                    }
+                    break;
+            }
+        }
+
+        /**
+         * Simple reorder for our custom columns
+         *
+         * @param $defaults
+         * @return array
+         */
+        function reorder_columns_in_documents_posts_list($defaults)
+        {
+            $new = array();
+            $attachments = $defaults['attachments'];
+            unset( $defaults['attachments'] );
+
+            foreach( $defaults as $key => $value ) {
+                if( $key == 'date' ) {
+                    $new['attachments'] = $attachments;
+                }
+                if( $key == 'date' ) {
+                    $new['author'] = $attachments;
+                }
+                $new[$key] = $value;
+            }
+
+            return $new;
         }
 
     }

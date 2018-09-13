@@ -21,15 +21,23 @@
     float: left;
 }
 
-.document-url-meta {
+.t-row {
     clear: both;
     float: none;
     overflow: auto;
-    display: table-row;
+    display: block;
+    margin-bottom: 6px;
+    position: relative;
 }
 
-.document-url-wrapper.no-doc .document-url-meta,
-.document-url-wrapper.no-doc #remove-document-url{
+.t-row:hover {
+    background: #f1f1f1;
+}
+.t-row:hover .remove-document-url{
+    display: block;
+}
+
+.document-url-wrapper.no-doc .document-url-meta{
     display: none;
 }
 
@@ -37,11 +45,15 @@
 .document-url-meta .data{
     display: table-cell;
     vertical-align: top;
-    width: 50%;
+    width: 25%;
+}
+
+.document-url-meta .data{
+    width: 75%;
 }
 
 .document-url-meta .thumbnail.default-image {
-    padding: 15px;
+    padding: 5px;
     background: #f1f1f1;
 }
 
@@ -60,14 +72,43 @@
     display: block;
 }
 
-#document-url {
+.document-url-input {
     display: none;
 }
 
-#remove-document-url{
+.remove-document-url{
     color: #a00;
+    position: absolute;
+    right: 2px;
+    top: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: none;
 }
 
-#remove-document-url:hover {
+.remove-document-url:hover {
     color: #dc3232;
+}
+
+.add-new-doc {
+    display: inline-block;
+    margin: 10px 0;
+}
+
+.document-url-wrapper.no-doc .add-new-doc {
+    display: none;
+}
+
+#upload-doc-button {
+    display: none;
+}
+
+.document-url-wrapper.no-doc #upload-doc-button {
+    display: inline-block;
+}
+
+.type-documents .documents-attachment-list {
+    margin: 0;
+    list-style-type: disc;
 }

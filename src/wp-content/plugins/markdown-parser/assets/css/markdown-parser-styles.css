@@ -161,3 +161,18 @@
     -o-transition: background-color 0.5s ease-out;
     transition: background-color 0.5s ease-out;
 }
+
+.markdown-body .item-level-2 {
+    margin-left: 20px;
+    list-style-type: circle !important;
+}
+
+.markdown-body .item-level-3 {
+    margin-left: 40px;
+    list-style-type: square !important;
+}
+
+.markdown-body .item-level-4 {
+    margin-left: 60px;
+    list-style-type: disc !important;
+}

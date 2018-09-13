@@ -1600,20 +1600,18 @@ class Parsedown
                 $idName = str_replace('*', '', $idName);
                 $this_el_level = intval( str_replace( 'h', '', $heading['heading_level'] ) );
                 $next_el_level = intval( str_replace( 'h', '', $this->heading_arr[($index + 1 )]['heading_level'] ) );
-                // $prev_el_level = intval( str_replace( 'h', '', $this->heading_arr[($index - 1 )]['heading_level'] ) );
 
-                $heading_toc .= '<li>';
-
+                $heading_toc .= '<li class="item-level-'. $this_el_level .'">';
                 $heading_toc .= '<a href="#'. $idName .'">'. $heading['heading_text'] .'</a>';
 
                 if( $next_el_level > $this_el_level ){
-                    $heading_toc .= '<ul class="submenu">';
+                    // $heading_toc .= '<ul class="submenu">';
                 }
 
                 $heading_toc .= '</li>';
 
                 if( $next_el_level < $this_el_level ){
-                    $heading_toc .= '</ul>';
+                    // $heading_toc .= '</ul>';
                 }
             }
             $heading_toc .= '</ul>';

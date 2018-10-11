@@ -13,6 +13,10 @@ get_header();
 	<main id="main" class="site-main">
 		<div class="container">
 			<div class="row">
+				<?php the_breadcrumb (); ?>
+			</div>
+
+			<div class="row">
 				<div class="col-12">
 					<?php
 					while ( have_posts() ) :

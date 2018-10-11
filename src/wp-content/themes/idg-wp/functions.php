@@ -162,3 +162,7 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+/**
+ * Breadcrumb functionality
+ */
+require get_template_directory() . '/inc/breadcrumb.php';

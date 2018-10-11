@@ -1,0 +1,29 @@
+html {
+	box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
+body {
+	background: $background__body;
+	font-family: $font__main;
+	position: relative;
+
+	&.high-contrast {
+		background: #000;
+		color: #fff;
+	}
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: 900;
+}

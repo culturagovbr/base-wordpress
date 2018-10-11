@@ -1,0 +1,50 @@
+/*--------------------------------------------------------------
+TABLE OF CONTENTS:
+----------------------------------------------------------------
+https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/
+
+Settings – used with preprocessors and contain font, colors definitions, etc.
+Tools – globally used mixins and functions. It’s important not to output any CSS in the first 2 layers.
+Generic – reset and/or normalize styles, box-sizing definition, etc. This is the first layer which generates actual CSS.
+Elements – styling for bare HTML elements (like H1, A, etc.). These come with default styling from the browser so we can redefine them here.
+Objects – class-based selectors which define undecorated design patterns, for example media object known from OOCSS
+Components – specific UI components. This is where majority of our work takes place and our UI components are often composed of Objects and Components
+Utilities – utilities and helper classes with ability to override anything which goes before in the triangle, eg. hide helper class
+--------------------------------------------------------------*/
+@import "vendor/bootstrap/bootstrap";
+@import "vendor/google-fonts/google-fonts";
+
+@import "settings/colors";
+@import "settings/typography";
+
+@import "tools/mixins";
+
+@import "generic/normalize";
+
+@import "elements/buttons";
+@import "elements/elements";
+
+@import "objects/buttons";
+@import "objects/feature-card";
+@import "objects/highlight-box";
+@import "objects/social-medias";
+@import "objects/titles";
+
+@import "components/accessibility-bar";
+@import "components/jumbotron-carousel";
+@import "components/main-header";
+
+// @import "variables/colors";
+// @import "utils/helpers";
+// @import "utils/mixins";
+// @import "base/typography";
+// @import "elements/accessibility_menu";
+// @import "elements/breadcrumb";
+// @import "elements/elements";
+// @import "elements/footer-brasil";
+// @import "elements/shortcut-bar";
+// @import "elements/widgets";
+// @import "layout/article";
+// @import "layout/comments";
+// @import "layout/footer";
+// @import "layout/header";

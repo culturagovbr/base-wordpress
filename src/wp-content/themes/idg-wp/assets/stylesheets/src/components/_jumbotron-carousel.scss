@@ -1,0 +1,56 @@
+#jumbotron-carousel {
+	margin-bottom: 45px;
+
+	.carousel-control-next,
+	.carousel-control-prev {
+		z-index: 2;
+	}
+
+	.carousel-indicators {
+		bottom: -45px;
+
+		li {
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			background-color: #DADADA;
+
+			&.active {
+				background-color: #333333;
+			}
+		}
+	}
+
+	.carousel-item {
+		.carousel-caption {
+			z-index: 2;
+			text-align: left;
+
+			a {
+				color: #fff;
+
+				&:hover {
+					color: #0094ff;
+					text-decoration: none;
+				}
+			}
+		}
+
+		&:before {
+			content: " ";
+			background-color: transparent;
+			background-image: -o-radial-gradient(transparent,#000);
+			background-image: radial-gradient(transparent,#000);
+			white-space: nowrap;
+			display: block;
+			position: absolute;
+			left: 0;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			opacity: .8;
+			z-index: 1;
+			text-indent: -3000px;
+		}
+	}
+}

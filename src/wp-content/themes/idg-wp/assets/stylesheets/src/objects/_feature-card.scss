@@ -1,0 +1,192 @@
+.feature-card {
+	background-color: #f1f1f1;
+	padding: 30px 15px;
+
+	.card-title {
+		font-size: 1rem;
+		font-weight: 900;
+		position: relative;
+		margin-top: 64px;
+
+		&:before {
+			content: '';
+			display: inline-block;
+			width: 64px;
+			height: 64px;
+			position: absolute;
+			top: -64px;
+			left: 50%;
+			margin-left: -32px;
+			background-image: url(../../img/cards_img_sprite.png);
+
+		}
+	}
+
+	.card-desc {
+		font-style: italic;
+		font-size: 0.85rem;
+	}
+
+	.card-btn {
+		font-size: 0.9rem;
+		padding: 5px 23px;
+	}
+
+	&.icon-law {
+		.card-title:before {
+			background-position: -590px -827px;
+		}
+	}
+
+	&.icon-edicts {
+		.card-title:before {
+			background-position: -339px -827px;
+		}
+	}
+
+	&.icon-rocket {
+		.card-title:before {
+			background-position: -84px -827px;
+		}
+	}
+
+	&.icon-patrimony {
+		.card-title:before {
+			background-position: -844px -831px;
+		}
+	}
+
+	&.icon-culture-center {
+		.card-title:before {
+			background-position: -1092px -831px;
+		}
+	}
+
+	&.icon-culture-points {
+		.card-title:before {
+			background-position: -1092px -646px;
+		}
+	}
+
+	&.icon-flag {
+		.card-title:before {
+			background-position: -84px -1025px;
+		}
+	}
+
+	&.icon-creative {
+		.card-title:before {
+			background-position: -844px -638px;
+		}
+	}
+
+	&.icon-talk-to-us {
+		.card-title:before {
+			background-position: -332px -474px;
+		}
+	}
+
+	&.icon-consultations {
+		.card-title:before {
+			background-position: -90px -648px;
+		}
+	}
+
+	&.icon-ombudsman {
+		.card-title:before {
+			background-position: -334px -644px;
+		}
+	}
+
+	&.icon-data {
+		.card-title:before {
+			background-position: -590px -644px;
+		}
+	}
+
+	&.card-2 {
+		.card-title {
+			margin-top: 200px;
+			font-size: 1.5rem;
+
+			&:before {
+				top: -200px;
+				width: 200px;
+				height: 200px;
+				margin-left: -100px;
+			}
+		}
+
+		&.icon-minister {
+			.card-title:before {
+				background-position: -272px 0;
+			}
+		}
+
+		&.icon-ministry {
+			.card-title:before {
+				background-position: -30px 0;
+			}
+		}
+
+		&.icon-secretaries {
+			.card-title:before {
+				background-position: -24px -194px;
+			}
+		}
+
+		&.icon-linkeds {
+			.card-title:before {
+				background-position: -273px -219px;
+			}
+		}
+
+		&.icon-internacional {
+			.card-title:before {
+				background-position: -990px -219px;
+			}
+		}
+
+		&.icon-actions {
+			.card-title:before {
+				background-position: -990px -27px;
+			}
+		}
+
+		&.icon-legislation {
+			.card-title:before {
+				background-position: -517px 1px;
+			}
+		}
+
+		&.icon-officers {
+			.card-title:before {
+				background-position: -754px -11px;
+			}
+		}
+
+		&.icon-advisory {
+			.card-title:before {
+				background-position: -21px -387px;
+			}
+		}
+
+		&.icon-news {
+			.card-title:before {
+				background-position: -494px -413px;
+			}
+		}
+
+		&.icon-publications {
+			.card-title:before {
+				background-position: -773px -390px;
+			}
+		}
+
+		&.icon-multimedia {
+			.card-title:before {
+				background-position: -986px -408px;
+			}
+		}
+	}
+}

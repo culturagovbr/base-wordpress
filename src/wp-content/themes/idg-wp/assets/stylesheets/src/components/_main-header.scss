@@ -1,0 +1,45 @@
+#main-header {
+	color: #fff;
+	background-color: #2969bd;
+	padding: 21px 0 0;
+	position: relative;
+	z-index: 100;
+
+	.home &{
+		position: absolute;
+		left: 0;
+		top: 0;
+		right: 0;
+		background: none;
+	}
+
+	.site-denomination {
+		font-size: .625rem;
+		font-weight: 700;
+		width: 100%;
+		opacity: .6;
+		text-transform: uppercase;
+	}
+
+	.site-title {
+		display: inline;
+		font-size: 1.625rem;
+		font-weight: 900;
+
+		a {
+			color: #fff;
+		}
+	}
+
+	> .container > .row:after {
+		content: '';
+		display: block;
+		height: 1px;
+		width: 100%;
+		border-bottom: 1px solid hsla(0,0%,100%,.2);
+		margin-top: 15px;
+	}
+
+	@import "../components/featured-links";
+	@import "../components/menu-wrapper";
+}

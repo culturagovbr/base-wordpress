@@ -1,0 +1,34 @@
+#featured-links {
+	margin-top: 15px;
+
+	ul {
+		padding-left: 15px;
+
+		li {
+			margin-right: 20px;
+			font-size: .875rem;
+			font-weight: 500;
+			line-height: 1.5rem;
+
+			a {
+				color: #fff;
+				padding: 0;
+			}
+		}
+	}
+
+	.menu-toggle {
+		float: left;
+		cursor: pointer;
+		text-indent: -3000px;
+		height: 25px;
+		-webkit-filter: none;
+		filter: none;
+		background-image: url(../../img/sprite.png);
+		background-position: -178px -159px;
+		width: 28px;
+		border: none;
+		background-color: transparent;
+	}
+
+}

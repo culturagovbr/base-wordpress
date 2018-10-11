@@ -22,9 +22,17 @@
 	}
 
 	.carousel-item {
+		max-height: 680px;
+
 		.carousel-caption {
 			z-index: 2;
 			text-align: left;
+			max-width: 1140px;
+			margin: auto;
+			padding-left: 15px;
+			padding-right: 15px;
+			left: 0;
+			right: 0;
 
 			a {
 				color: #fff;

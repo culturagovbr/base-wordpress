@@ -78,7 +78,7 @@
 				</nav>
 			</div>
 			<div class="col-sm-11 col-md-4 col-lg-4">
-				<input type="search" style="width: 100%;margin: 15px 0 0 0;padding: 0 15px 0 20px;border: 0;background: #fff;border-radius: 30px;border: 1px solid hsla(0,0%,100%,.2);line-height: 30px;">
+				<?php get_search_form(); ?>
 			</div>
 		</div>
 		<div id="menu-wrapper" class="collapse clearfix">

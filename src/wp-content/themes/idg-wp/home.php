@@ -18,33 +18,39 @@ get_header();
     <main id="main" class="site-main">
 
         <section class="mb-5">
-	        <div id="jumbotron-carousel" class="carousel slide" data-ride="carousel">
+	        <div id="jumbotron-carousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="5000">
 		        <div class="carousel-inner">
 			        <div class="carousel-item active">
-				        <img class="d-block w-100" src="<?php echo get_template_directory_uri(); ?>/assets/img/bg.jpeg" alt="First slide">
+				        <img class="d-block w-100" src="<?php echo get_template_directory_uri(); ?>/assets/img/teste-patrimonio.jpg" alt="First slide">
 				        <div class="carousel-caption d-none d-md-block">
-					        <a href="#">
-					            <h2>Título da notícia #1</h2>
-					            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-					        </a>
+					        <div class="container">
+						        <a href="#">
+							        <h2>Título da notícia #1</h2>
+							        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+						        </a>
+					        </div>
 				        </div>
 			        </div>
 			        <div class="carousel-item">
-				        <img class="d-block w-100" src="<?php echo get_template_directory_uri(); ?>/assets/img/bg.jpeg" alt="Second slide">
+				        <img class="d-block w-100" src="<?php echo get_template_directory_uri(); ?>/assets/img/teste-personagem.jpg" alt="Second slide">
 				        <div class="carousel-caption d-none d-md-block">
-					        <a href="#">
-						        <h2>Título da notícia #2</h2>
-						        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-					        </a>
+					        <div class="container">
+						        <a href="#">
+							        <h2>Título da notícia #2</h2>
+							        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+						        </a>
+					        </div>
 				        </div>
 			        </div>
 			        <div class="carousel-item">
-				        <img class="d-block w-100" src="<?php echo get_template_directory_uri(); ?>/assets/img/bg.jpeg" alt="Third slide">
+				        <img class="d-block w-100" src="<?php echo get_template_directory_uri(); ?>/assets/img/teste-reuniao.jpg" alt="Third slide">
 				        <div class="carousel-caption d-none d-md-block">
-					        <a href="#">
-						        <h2>Título da notícia #3</h2>
-						        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-					        </a>
+					        <div class="container">
+						        <a href="#">
+							        <h2>Título da notícia #3</h2>
+							        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+						        </a>
+					        </div>
 				        </div>
 			        </div>
 		        </div>

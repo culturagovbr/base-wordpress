@@ -1,0 +1,44 @@
+#main-search {
+	position: relative;
+	margin-top: 15px;
+
+	input[type="search"] {
+		width: 100%;
+		margin: 0;
+		padding: 0 50px 0 20px;
+		border: 0;
+		background: #fff;
+		border-radius: 30px;
+		line-height: 30px;
+	}
+
+	.input-group-append {
+		position: absolute;
+		right: 0;
+		top: 0;
+
+		button {
+			margin: 0;
+			border: none;
+			height: 38px;
+			width: 45px;
+			position: relative;
+			background: none;
+
+			&:before {
+				content: '';
+				position: absolute;
+				top: 7px;
+				left: 7px;
+				background-image: url(../../img/sprite.png);
+				background-position: -268px -68px;
+				width: 24px;
+				height: 22px;
+			}
+		}
+	}
+
+	.input-group > .form-control:focus {
+		z-index: auto;
+	}
+}

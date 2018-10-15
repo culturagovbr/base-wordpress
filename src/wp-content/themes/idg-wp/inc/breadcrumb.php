@@ -176,6 +176,10 @@ function the_breadcrumb() {
 			$get_term_slug  = $terms[0]->slug;
 			$get_term_name  = $terms[0]->name;
 
+			echo '<li class="item-tag">Tag</li>';
+
+			echo '<li class="separator"> ' . $separator . ' </li>';
+
 			// Display the tag name
 			echo '<li class="item-current item-tag-' . $get_term_id . ' item-tag-' . $get_term_slug . '"><strong class="bread-current bread-tag-' . $get_term_id . ' bread-tag-' . $get_term_slug . '">' . $get_term_name . '</strong></li>';
 
@@ -218,6 +222,10 @@ function the_breadcrumb() {
 			global $author;
 			$userdata = get_userdata( $author );
 
+			echo '<li class="item-tag">Autor</li>';
+
+			echo '<li class="separator"> ' . $separator . ' </li>';
+
 			// Display author name
 			echo '<li class="item-current item-current-' . $userdata->user_nicename . '"><strong class="bread-current bread-current-' . $userdata->user_nicename . '" title="' . $userdata->display_name . '">' . 'Author: ' . $userdata->display_name . '</strong></li>';
 
@@ -228,8 +236,12 @@ function the_breadcrumb() {
 
 		} else if ( is_search() ) {
 
+			echo '<li class="item-tag">Busca</li>';
+
+			echo '<li class="separator"> ' . $separator . ' </li>';
+
 			// Search results page
-			echo '<li class="item-current item-current-' . get_search_query() . '"><strong class="bread-current bread-current-' . get_search_query() . '" title="Busca: ' . get_search_query() . '">Busca: ' . get_search_query() . '</strong></li>';
+			echo '<li class="item-current item-current-' . get_search_query() . '"><strong class="bread-current bread-current-' . get_search_query() . '" title="Busca: ' . get_search_query() . '">' . get_search_query() . '</strong></li>';
 
 		} elseif ( is_404() ) {
 

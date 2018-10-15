@@ -8,10 +8,18 @@
   font-size: 3rem;
   font-weight: 900;
   color: $title__color;
+
+  &:first-letter {
+    text-transform: uppercase;
+  }
 }
 
 .subtitle-single {
   font-size: 1.1em;
   font-weight: normal;
   color: $grey__color;
+
+  &:first-letter {
+    text-transform: uppercase;
+  }
 }

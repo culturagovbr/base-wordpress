@@ -10,11 +10,12 @@
  */
 
 ?>
-	<footer id="main-footer" style="background-color: #f1f1f1; padding: 60px 20px;">
+	<footer id="main-footer">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<h3 class="section-title">Redes sociais</h3>
+					<h3 class="social-title text-uppercase">Redes sociais</h3>
+
 					<ul class="social-medias">
 						<li class="twitter">
 							<a href="#">Twitter</a>
@@ -31,10 +32,10 @@
 					</ul>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row menus">
 				<div class="col">
-					<h4 class="section-title" style="font-size: 1rem;">Acesso à informação</h4>
-					<ul style="list-style-type: none;padding: 0;margin: 0;">
+					<h4 class="section-title">Acesso à informação</h4>
+					<ul>
 						<li>
 							<a href="http://base-wp.cultura.localhost/ola-mundo">Item #1</a>
 						</li>
@@ -62,8 +63,8 @@
 					</ul>
 				</div>
 				<div class="col">
-					<h4 class="section-title" style="font-size: 1rem;">O Ministério</h4>
-					<ul style="list-style-type: none;padding: 0;margin: 0;">
+					<h4 class="section-title">O Ministério</h4>
+					<ul>
 						<li>
 							<a href="http://base-wp.cultura.localhost/ola-mundo">Item #1</a>
 						</li>
@@ -82,8 +83,8 @@
 					</ul>
 				</div>
 				<div class="col">
-					<h4 class="section-title" style="font-size: 1rem;">Editais e Apoios</h4>
-					<ul style="list-style-type: none;padding: 0;margin: 0;">
+					<h4 class="section-title">Editais e Apoios</h4>
+					<ul>
 						<li>
 							<a href="http://base-wp.cultura.localhost/ola-mundo">Item #1</a>
 						</li>
@@ -108,8 +109,8 @@
 					</ul>
 				</div>
 				<div class="col">
-					<h4 class="section-title" style="font-size: 1rem;">Notícias</h4>
-					<ul style="list-style-type: none;padding: 0;margin: 0;">
+					<h4 class="section-title">Notícias</h4>
+					<ul>
 						<li>
 							<a href="http://base-wp.cultura.localhost/ola-mundo">Item #1</a>
 						</li>
@@ -125,8 +126,8 @@
 					</ul>
 				</div>
 				<div class="col">
-					<h4 class="section-title" style="font-size: 1rem;">Imprensa</h4>
-					<ul style="list-style-type: none;padding: 0;margin: 0;">
+					<h4 class="section-title">Imprensa</h4>
+					<ul>
 						<li>
 							<a href="http://base-wp.cultura.localhost/ola-mundo">Item #1</a>
 						</li>
@@ -143,6 +144,11 @@
 							<a href="#">Item #5</a>
 						</li>
 					</ul>
+				</div>
+			</div>
+			<div class="row footer-brasil">
+				<div class="col-lg-12">
+					<a class="logo-acesso-footer" target="_blank" href="http://www.acessoainformacao.gov.br/" alt="Acesso à informação" title="Acesso à informação"></a>
 				</div>
 			</div>
 		</div>

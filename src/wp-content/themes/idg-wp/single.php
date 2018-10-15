@@ -20,7 +20,7 @@ get_header();
         <div class="col-12 pt-4 pb-4">
           <div class="align">
             <?php while ( have_posts() ) : ?>
-              <span class="category-single text-center d-block mb-3 text-uppercase"><?php the_category(get_the_ID()) ?></span>
+              <span class="category-single text-center d-block mb-3 text-uppercase"><?php the_category(', ') ?></span>
 
               <?php the_post(); ?>
 

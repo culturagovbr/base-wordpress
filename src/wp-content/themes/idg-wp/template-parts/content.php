@@ -16,7 +16,9 @@
 
 		<?php the_title( '<h1 class="entry-title text-center mt-1">', '</h1>' ); ?>
 
-		<h2 class="subtitle-single text-center mb-4">Subtítulo da notícia em até duas linhas. Se for em uma linha, usar 90 caracteres. Se em duas, aplicar 190 caracteres</h2>
+		<?php if ( has_excerpt( $id ) ) : ?>
+			<span class="subtitle-single text-center mb-4"><?php the_excerpt(); ?></span>
+		<?php endif; ?>
 
 		<div class="date-box mb-4">
 			<span>publicado: <?php the_date('d/m/Y'); ?> <?php the_time('H'); ?>h<?php the_time('i'); ?>, última modificação: <?php the_modified_date('d/m/Y'); ?> <?php the_modified_time('H'); ?>h<?php the_modified_time('i'); ?></span>

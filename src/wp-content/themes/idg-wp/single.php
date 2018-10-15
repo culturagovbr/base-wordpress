@@ -10,33 +10,32 @@
 get_header();
 ?>
 
-	<main id="main" class="site-main">
-		<div class="container">
-			<div class="row">
-				<?php the_breadcrumb (); ?>
-			</div>
+  <main id="main" class="site-main">
+    <div class="container">
+      <div class="row">
+        <?php the_breadcrumb (); ?>
+      </div>
 
-			<div class="row">
-				<div class="col-12">
-					<?php
-					while ( have_posts() ) :
-						the_post();
+      <div class="row">
+        <div class="col-12 pt-4 pb-4">
+          <?php while ( have_posts() ) : ?>
+            <span class="category-single text-center d-block mb-3 text-uppercase"><?php the_category(get_the_ID()) ?></span>
 
-						get_template_part( 'template-parts/content', get_post_type() );
+            <?php the_post(); ?>
 
-						the_post_navigation();
+            <?php get_template_part( 'template-parts/content', get_post_type() ); ?>
 
-						// If comments are open or we have at least one comment, load up the comment template.
-						if ( comments_open() || get_comments_number() ) :
-							comments_template();
-						endif;
+            <?php //the_post_navigation(); ?>
 
-					endwhile; // End of the loop.
-					?>
-				</div>
-			</div>
-		</div>
-	</main>
+            <?php if ( comments_open() || get_comments_number() ) : ?>
+              <?php //comments_template(); ?>
+            <?php endif; ?>
+
+          <?php endwhile; ?>
+        </div>
+      </div>
+    </div>
+  </main>
 
 <?php
 get_footer();

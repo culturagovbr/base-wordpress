@@ -27,3 +27,11 @@ h5,
 h6 {
 	font-weight: 900;
 }
+
+.entry-content {
+	> *:first-letter {
+		font-size: 40px;
+		display: block;
+		color: $light__color;
+	}
+}

@@ -1,0 +1,61 @@
+.alternative-headline {
+	font-size: 1.1em;
+	font-weight: 700;
+	color: $light__color;
+}
+
+.subtitle-single {
+	font-size: 1.1em;
+	font-weight: normal;
+	color: $grey__color;
+}
+
+.section-title {
+	font-size: 2.3rem;
+	font-weight: 900;
+}
+
+.page-title,
+.entry-title {
+	font-size: 3rem;
+	font-weight: 900;
+	color: $title__color;
+
+	&:first-letter {
+		text-transform: uppercase;
+	}
+}
+
+.subtitle-single {
+	font-size: 1.1em;
+	font-weight: normal;
+	color: $grey__color;
+
+	&:first-letter {
+		text-transform: uppercase;
+	}
+}
+
+.tags-list {
+	margin-bottom: 15px;
+
+	> span {
+		display: inline-block;
+		margin-right: 10px;
+		font-size: 1em !important;
+		color: #282828 !important;
+	}
+
+	a {
+		@include border-radius(30px);
+
+		display: inline-block;
+		background: #EEE;
+		padding: 8px 15px;
+		color: #222;
+		text-transform: uppercase;
+		margin: 0 10px 0 0;
+		font-size: .75rem;
+		font-weight: 600;
+	}
+}

@@ -10,50 +10,26 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+
+
 	<header class="entry-header">
-		<?php
-		if ( is_singular() ) :
-			the_title( '<h1 class="entry-title">', '</h1>' );
-		else :
-			the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
-		endif;
 
-		if ( 'post' === get_post_type() ) :
-			?>
-			<div class="entry-meta">
-				<?php
-				idg_wp_posted_on();
-				idg_wp_posted_by();
-				?>
-			</div><!-- .entry-meta -->
+		<?php the_title( '<h1 class="entry-title text-center mt-1">', '</h1>' ); ?>
+
+		<?php if ( has_excerpt( $id ) ) : ?>
+			<span class="subtitle-single text-center mb-4"><?php the_excerpt(); ?></span>
 		<?php endif; ?>
-	</header><!-- .entry-header -->
 
-	<?php idg_wp_post_thumbnail(); ?>
+		<div class="date-box mb-4">
+			<span>publicado: <?php the_date('d/m/Y'); ?> <?php the_time('H'); ?>h<?php the_time('i'); ?>, última modificação: <?php the_modified_date('d/m/Y'); ?> <?php the_modified_time('H'); ?>h<?php the_modified_time('i'); ?></span>
+		</div>
+	</header>
 
 	<div class="entry-content">
-		<?php
-		the_content( sprintf(
-			wp_kses(
-				/* translators: %s: Name of current post. Only visible to screen readers */
-				__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'idg-wp' ),
-				array(
-					'span' => array(
-						'class' => array(),
-					),
-				)
-			),
-			get_the_title()
-		) );
-
-		wp_link_pages( array(
-			'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'idg-wp' ),
-			'after'  => '</div>',
-		) );
-		?>
-	</div><!-- .entry-content -->
+		<?php the_content() ?>
+	</div>
 
 	<footer class="entry-footer">
-		<?php idg_wp_entry_footer(); ?>
+		<?php //idg_wp_entry_footer(); ?>
 	</footer><!-- .entry-footer -->
-</article><!-- #post-<?php the_ID(); ?> -->
+</article>

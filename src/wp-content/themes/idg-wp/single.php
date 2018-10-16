@@ -13,26 +13,23 @@ get_header();
 	<main id="main" class="site-main">
 		<div class="container">
 			<div class="row">
-				<?php the_breadcrumb (); ?>
+				<?php the_breadcrumb(); ?>
 			</div>
 
 			<div class="row">
-				<div class="col-12">
-					<?php
-					while ( have_posts() ) :
-						the_post();
+				<div class="col-12 pt-4 pb-4">
+					<?php while (have_posts()) : the_post(); ?>
+						<span class="alternative-headline text-center d-block mb-3 text-uppercase">Chapéu da notícia</span>
 
-						get_template_part( 'template-parts/content', get_post_type() );
+						<?php get_template_part('template-parts/content', get_post_type()); ?>
 
-						the_post_navigation();
+						<?php if (comments_open() || get_comments_number()) : ?>
+							<?php //comments_template(); ?>
+						<?php endif; ?>
 
-						// If comments are open or we have at least one comment, load up the comment template.
-						if ( comments_open() || get_comments_number() ) :
-							comments_template();
-						endif;
+					<?php endwhile; ?>
 
-					endwhile; // End of the loop.
-					?>
+					<?php get_template_part('template-parts/copyright'); ?>
 				</div>
 			</div>
 		</div>

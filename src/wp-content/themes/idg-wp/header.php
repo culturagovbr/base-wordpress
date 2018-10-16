@@ -58,23 +58,15 @@
 					<button class="menu-toggle" data-toggle="collapse" data-target="#menu-wrapper" aria-controls="primary-menu" aria-expanded="false">
 						<span class="sr-only"><?php esc_html_e( 'Primary Menu', 'idg-wp' ); ?></span>
 					</button>
-					<ul id="xfeatured-links" class="nav d-none d-md-flex">
-						<li class="nav-item">
-							<a class="nav-link" href="<?php echo home_url('/pagina-exemplo'); ?>">Acesso à informação</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">Editais</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">Outro Link</a>
-						</li>
-					</ul>
 					<?php
-					/* wp_nav_menu( array(
-						'theme_location' => 'menu-1',
-						'menu_id'        => 'primary-menu',
-					) );*/
-					?>
+					$menu_args = array(
+						'menu'              => 'featured-links',
+						'theme_location'    => 'featured-links',
+						'depth'             => 1,
+						'container'         => '',
+						'menu_class'   => 'nav d-none d-md-flex',
+					);
+					wp_nav_menu($menu_args); ?>
 				</nav>
 			</div>
 			<div class="col-sm-11 col-md-4 col-lg-4">
@@ -84,12 +76,17 @@
 		<div id="menu-wrapper" class="collapse clearfix">
 			<div class="menu-content container">
 				<div class="row">
-					<div class="col">
+					<?php
+					if ( is_active_sidebar( 'main-menu-area' ) ) :
+						dynamic_sidebar( 'main-menu-area' );
+					endif;
+					?>
+					<!--<div class="col">
 						<div class="menu-col">
 							<h3 class="menu-title">Ipsum Lorem</h3>
 							<ul>
 								<li>
-									<a href="<?php echo home_url('/ola-mundo'); ?>">Item #1</a>
+									<a href="<?php /*echo home_url('/ola-mundo'); */?>">Item #1</a>
 								</li>
 								<li>
 									<a href="#">Item #2</a>
@@ -207,7 +204,7 @@
 								</li>
 							</ul>
 						</div>
-					</div>
+					</div>-->
 				</div>
 			</div>
 		</div>

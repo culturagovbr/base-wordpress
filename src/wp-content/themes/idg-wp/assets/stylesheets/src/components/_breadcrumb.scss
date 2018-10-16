@@ -3,9 +3,14 @@
 	padding: 15px 0;
 	font-size: 1rem;
 	background: none;
+	margin: 0;
 
 	li {
 		line-height: 16px;
+
+		a {
+			color: #282828;
+		}
 
 		&.item-home {
 			a {

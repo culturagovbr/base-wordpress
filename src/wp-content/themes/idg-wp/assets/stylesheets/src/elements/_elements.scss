@@ -27,3 +27,27 @@ h5,
 h6 {
 	font-weight: 900;
 }
+
+img {
+	max-width: 100%;
+}
+
+.entry-content {
+	> p:first-child {
+		display: none;
+		&:first-letter {
+			color: $main__color;
+			font-size: 5rem;
+			display: block;
+			font-weight: 700;
+			float: left;
+			line-height: 4rem;
+			margin-right: 20px
+		}
+	}
+
+	p {
+    font-size: 1.1em;
+    line-height: 1.7em;
+	}
+}

@@ -29,9 +29,8 @@ h6 {
 }
 
 .entry-content {
-	> p:first-child {
-		display: none;
-		&:first-letter {
+	> p {
+		&:first-child:first-letter {
 			color: $main__color;
 			font-size: 5rem;
 			display: block;
@@ -43,7 +42,11 @@ h6 {
 	}
 
 	p {
-    font-size: 1.1em;
-    line-height: 1.7em;
+		font-size: 1.1em;
+		line-height: 1.7em;
 	}
+}
+
+.carousel-wrapper {
+	margin-bottom: 98px;
 }

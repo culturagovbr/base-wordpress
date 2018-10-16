@@ -145,39 +145,29 @@ get_header();
 	                <div class="col-lg-12">
 		                <h2 class="section-title text-center">Notícas</h2>
 	                </div>
-	                <div class="col-lg-4">
-		                <div class="highlight-box">
-			                <div class="box-body">
-				                <span class="cat">Agosto</span>
-				                <h3 class="box-title">
-					                <a href="#">Pomerode (SC) recebe projeto de requalificação do patrimônio</a>
-				                </h3>
-			                </div>
-			                <img class="box-image" src="<?php echo get_template_directory_uri(); ?>/assets/img/fake-img.jpg">
-		                </div>
-	                </div>
-	                <div class="col-lg-4">
-		                <div class="highlight-box">
-			                <div class="box-body">
-				                <span class="cat">Agosto</span>
-				                <h3 class="box-title">
-					                <a href="#">Pomerode (SC) recebe projeto de requalificação do patrimônio</a>
-				                </h3>
-			                </div>
-			                <img class="box-image" src="<?php echo get_template_directory_uri(); ?>/assets/img/fake-img.jpg">
-		                </div>
-	                </div>
-	                <div class="col-lg-4">
-		                <div class="highlight-box">
-			                <div class="box-body">
-				                <span class="cat">Agosto</span>
-				                <h3 class="box-title">
-					                <a href="#">Pomerode (SC) recebe projeto de requalificação do patrimônio</a>
-				                </h3>
-			                </div>
-			                <img class="box-image" src="<?php echo get_template_directory_uri(); ?>/assets/img/fake-img.jpg">
-		                </div>
-	                </div>
+	                <?php
+	                $args = array(
+                        'posts_per_page'    => 3,
+                        'category_name'     => 'noticias'
+	                );
+					$news_query = new WP_Query( $args );
+					if ( $news_query->have_posts() ):
+						while ( $news_query->have_posts() ) : $news_query->the_post(); ?>
+							<div class="col-lg-4">
+								<div class="highlight-box">
+									<div class="box-body">
+										<span class="cat"><?php echo get_the_date( 'F' ); ?></span>
+										<h3 class="box-title">
+											<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+										</h3>
+									</div>
+									<img class="box-image" src="<?php echo get_template_directory_uri(); ?>/assets/img/fake-img.jpg">
+								</div>
+							</div>
+						<?php
+						endwhile;
+						wp_reset_postdata();
+					endif; ?>
                 </div>
 	            <div class="col-lg-12 text-center">
 		            <a href="#" class="btn text-uppercase mt-5">Mais notícias</a>

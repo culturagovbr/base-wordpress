@@ -10,43 +10,54 @@
 get_header();
 ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main">
+	<main id="main" class="site-main">
+		<div class="container">
+			<div class="row">
+				<?php the_breadcrumb(); ?>
+			</div>
+			<div class="row">
+				<div class="col-12 pt-4 pb-4">
+					<?php if ( have_posts() ) : ?>
 
-		<?php if ( have_posts() ) : ?>
+						<header class="page-header">
+							<?php the_archive_title( '<h1 class="page-title text-center mt-1">', '</h1>' ); ?>
+						</header>
 
-			<header class="page-header">
-				<?php
-				the_archive_title( '<h1 class="page-title">', '</h1>' );
-				the_archive_description( '<div class="archive-description">', '</div>' );
-				?>
-			</header><!-- .page-header -->
+						<?php
+						while ( have_posts() ) : the_post(); ?>
 
-			<?php
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
+							<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+								<header class="entry-header">
+									<?php the_title( '<h2><a href="'. get_the_permalink() .'">', '</a></h2>' ); ?>
+								</header>
 
-				/*
-				 * Include the Post-Type-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_type() );
+								<div class="entry-content">
+									<?php the_excerpt(); ?>
+								</div>
 
-			endwhile;
+								<footer class="entry-footer">
+									<?php idg_wp_entry_footer(); ?>
+									<div class="date-box mb-4">
+										<span>publicado: <?php the_date('d/m/Y'); ?> <?php the_time('H'); ?>h<?php the_time('i'); ?>, última modificação: <?php the_modified_date('d/m/Y'); ?> <?php the_modified_time('H'); ?>h<?php the_modified_time('i'); ?></span>
+									</div>
+								</footer>
+							</article>
 
-			the_posts_navigation();
+						<?php
+						endwhile;
 
-		else :
+						the_posts_navigation();
 
-			get_template_part( 'template-parts/content', 'none' );
+					else :
 
-		endif;
-		?>
+						get_template_part( 'template-parts/content', 'none' );
 
-		</main><!-- #main -->
-	</div><!-- #primary -->
+					endif;
+					?>
+				</div>
+			</div>
+		</div>
+	</main>
 
 <?php
 get_sidebar();

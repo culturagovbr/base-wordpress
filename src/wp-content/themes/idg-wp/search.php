@@ -16,34 +16,16 @@ get_header();
 				<?php the_breadcrumb (); ?>
 			</div>
 
-			<div class="row">
+			<div id="content" class="row">
 				<div class="col-12">
-					<?php if ( have_posts() ) : ?>
 
-						<header class="page-header">
-							<h1 class="page-title text-center">
-								<?php
-								printf( esc_html__( 'Busca: %s', 'idg-wp' ), '<span>' . get_search_query() . '</span>' );
-								?>
-							</h1>
-						</header>
+					<h1 class="page-title text-center">
+						<?php printf( esc_html__( 'Busca: %s', 'idg-wp' ), '<span>' . get_search_query() . '</span>' ); ?>
+					</h1>
 
-						<?php
+					<?php get_template_part( 'template-parts/posts-list', 'search' ); ?>
 
-						while ( have_posts() ) :
-							the_post();
-
-							get_template_part( 'template-parts/content', 'search' );
-						endwhile;
-
-						the_posts_navigation();
-
-					else :
-
-						get_template_part( 'template-parts/content', 'none' );
-
-					endif;
-					?>
+					<?php get_template_part( 'template-parts/copyright' ); ?>
 				</div>
 			</div>
 		</div>

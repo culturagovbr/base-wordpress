@@ -29,9 +29,21 @@ h6 {
 }
 
 .entry-content {
-	> *:first-letter {
-		font-size: 40px;
-		display: block;
-		color: $light__color;
+	> p:first-child {
+		display: none;
+		&:first-letter {
+			color: $main__color;
+			font-size: 5rem;
+			display: block;
+			font-weight: 700;
+			float: left;
+			line-height: 4rem;
+			margin-right: 20px
+		}
+	}
+
+	p {
+    font-size: 1.1em;
+    line-height: 1.7em;
 	}
 }

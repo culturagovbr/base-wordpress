@@ -31,11 +31,16 @@ Utilities – utilities and helper classes with ability to override anything whi
 @import "objects/titles";
 @import "objects/date-box";
 @import "objects/typography";
+@import "objects/tags-list";
 
 @import "components/accessibility-bar";
 @import "components/breadcrumb";
 @import "components/jumbotron-carousel";
 @import "components/main-header";
+@import "components/copyright";
+@import "components/main-single";
+@import "components/main-footer";
+@import "components/posts-list";
 
 // @import "variables/colors";
 // @import "utils/helpers";

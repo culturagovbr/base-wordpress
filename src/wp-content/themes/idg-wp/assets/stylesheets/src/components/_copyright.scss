@@ -1,0 +1,47 @@
+.texto-copyright {
+  width: 100%;
+  border-color: $grey__color;
+  border-top: 1px solid rgba(0, 0, 0, .1);
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+  float: left;
+  clear: both;
+
+  span {
+    font-size: 1em;
+  }
+
+  .voltar-topo {
+    width: 210px;
+    text-align: right;
+
+    a {
+      color: #222;
+      font-size: 0.8em;
+      text-transform: uppercase;
+      font-weight: 700;
+      display: block;
+      padding-right: 50px;
+      position: relative;
+
+      &:after {
+        @include border-radius(50%);
+        @include transform(translateY(-50%));
+
+        content: "^";
+        background: #222;
+        font-size: 1.4em;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        display: block;
+        color: #FFF;
+        text-align: center;
+        font-weight: 700;
+        position: absolute;
+        right: 0;
+        text-align: center;
+        top: 50%;
+      }
+    }
+  }
+}

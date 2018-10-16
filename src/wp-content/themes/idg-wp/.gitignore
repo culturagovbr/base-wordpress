@@ -2,3 +2,4 @@
 .idea
 .htaccess
 node_modules/
+assets/**/dist/*

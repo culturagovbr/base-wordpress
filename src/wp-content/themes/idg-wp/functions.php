@@ -105,6 +105,24 @@ function idg_wp_scripts() {
 add_action( 'wp_enqueue_scripts', 'idg_wp_scripts' );
 
 /**
+ * Custom excerpt
+ */
+function idg_excerpt( $limit = 190 ) {
+	$excerpt = explode(' ', get_the_excerpt(), $limit);
+
+	if (count($excerpt) >= $limit) {
+		array_pop($excerpt);
+		$excerpt = implode(" ", $excerpt) . '...';
+	} else {
+		$excerpt = implode(" ", $excerpt);
+	}
+
+	$excerpt = preg_replace('`\[[^\]]*\]`', '', $excerpt);
+
+	return $excerpt;
+}
+
+/**
  * Load widgets areas
  */
 require get_template_directory() . '/inc/widgets-areas.php';

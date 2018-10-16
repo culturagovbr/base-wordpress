@@ -10,26 +10,26 @@
 get_header();
 ?>
 
-  <main id="main" class="site-main">
-    <div class="container">
-      <div class="row">
-        <?php the_breadcrumb (); ?>
-      </div>
+	<main id="main" class="site-main">
+		<div class="container">
+			<div class="row">
+				<?php the_breadcrumb(); ?>
+			</div>
 
-      <div id="content" class="row">
-        <div class="col-12">
+			<div id="content" class="row">
+				<div class="col-12">
 
-          <h1 class="page-title text-center">
-            <?php echo get_cat_name(get_query_var('cat')); ?>
-          </h1>
+					<h1 class="page-title text-center">
+						<?php echo get_cat_name(get_query_var('cat')); ?>
+					</h1>
 
-          <?php get_template_part( 'template-parts/posts-list', 'category' ); ?>
+					<?php get_template_part('template-parts/posts-list', 'category'); ?>
 
-          <?php get_template_part( 'template-parts/copyright' ); ?>
-        </div>
-      </div>
-    </div>
-  </main>
+					<?php get_template_part('template-parts/copyright'); ?>
+				</div>
+			</div>
+		</div>
+	</main>
 
 <?php
 get_footer();

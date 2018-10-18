@@ -1,22 +1,24 @@
 html {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 *,
 *:before,
 *:after {
-	box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 body {
-	background: $background__body;
-	font-family: $font__main;
-	position: relative;
+  background: $background__body;
+  font-family: $font__main;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 
-	&.high-contrast {
-		background: #000;
-		color: #fff;
-	}
+  &.high-contrast {
+    background: #000;
+    color: #fff;
+  }
 }
 
 h1,
@@ -25,32 +27,38 @@ h3,
 h4,
 h5,
 h6 {
-	font-weight: 900;
+  font-weight: 900;
 }
 
 img {
-	max-width: 100%;
+  max-width: 100%;
+}
+
+.entry-header,
+.entry-content {
+  max-width: 960px;
+  margin: 0 auto;
 }
 
 .entry-content {
-	> p {
-		&:first-child:first-letter {
-			color: $main__color;
-			font-size: 5rem;
-			display: block;
-			font-weight: 700;
-			float: left;
-			line-height: 4rem;
-			margin-right: 20px
-		}
-	}
+  > p {
+    &:first-child:first-letter {
+      color: $main__color;
+      font-size: 5rem;
+      display: block;
+      font-weight: 700;
+      float: left;
+      line-height: 4rem;
+      margin-right: 20px
+    }
+  }
 
-	p {
-		font-size: 1.1em;
-		line-height: 1.7em;
-	}
+  p {
+    font-size: 1.1em;
+    line-height: 1.7em;
+  }
 }
 
 .carousel-wrapper {
-	margin-bottom: 98px;
+  margin-bottom: 98px;
 }

@@ -76,56 +76,56 @@ get_header();
 										<div class="col-lg-12">
 											<h2 class="section-title mb-5 text-center">Serviços</h2>
 										</div>
-									<div class="col-sm-12 col-md-6 col-lg-3 text-center">
+									<div class="col-sm-12 col-md-6 col-lg-3 text-center mb-4">
 										<div class="feature-card icon-law">
-							<h3 class="card-title">Lei Rouanet</h3>
+											<h3 class="card-title">Lei Rouanet</h3>
 											<p class="card-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
 											<a class="card-btn btn" href="#">Acesse</a>
 										</div>
 									</div>
-									<div class="col-sm-12 col-md-6 col-lg-3 text-center">
+									<div class="col-sm-12 col-md-6 col-lg-3 text-center mb-4">
 										<div class="feature-card icon-edicts">
 											<h3 class="card-title">Editais</h3>
 											<p class="card-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
 											<a class="card-btn btn" href="#">Acesse</a>
 										</div>
 									</div>
-									<div class="col-sm-12 col-md-6 col-lg-3 text-center">
+									<div class="col-sm-12 col-md-6 col-lg-3 text-center mb-4">
 										<div class="feature-card icon-rocket">
 											<h3 class="card-title">Apoio à projetos</h3>
 											<p class="card-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
 											<a class="card-btn btn" href="#">Acesse</a>
 										</div>
 									</div>
-									<div class="col-sm-12 col-md-6 col-lg-3 text-center">
+									<div class="col-sm-12 col-md-6 col-lg-3 text-center mb-4">
 										<div class="feature-card icon-patrimony">
 											<h3 class="card-title">Patrimônio</h3>
 											<p class="card-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
 											<a class="card-btn btn" href="#">Acesse</a>
 										</div>
 									</div>
-									<div class="col-sm-12 col-md-6 col-lg-3 text-center">
+									<div class="col-sm-12 col-md-6 col-lg-3 text-center mb-4">
 										<div class="feature-card icon-culture-center">
 											<h3 class="card-title">Centros culturais</h3>
 											<p class="card-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
 											<a class="card-btn btn" href="#">Acesse</a>
 										</div>
 									</div>
-									<div class="col-sm-12 col-md-6 col-lg-3 text-center">
+									<div class="col-sm-12 col-md-6 col-lg-3 text-center mb-4">
 										<div class="feature-card icon-culture-points">
 											<h3 class="card-title">Pontos de cultura</h3>
 											<p class="card-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
 											<a class="card-btn btn" href="#">Acesse</a>
 										</div>
 									</div>
-									<div class="col-sm-12 col-md-6 col-lg-3 text-center">
+									<div class="col-sm-12 col-md-6 col-lg-3 text-center mb-4">
 										<div class="feature-card icon-flag">
 											<h3 class="card-title">SNC</h3>
 											<p class="card-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
 											<a class="card-btn btn" href="#">Acesse</a>
 										</div>
 									</div>
-									<div class="col-sm-12 col-md-6 col-lg-3 text-center">
+									<div class="col-sm-12 col-md-6 col-lg-3 text-center mb-4">
 										<div class="feature-card icon-creative">
 											<h3 class="card-title">Economia Criativa</h3>
 											<p class="card-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
@@ -145,36 +145,33 @@ get_header();
 										<h2 class="section-title mb-5 text-center">Notícias</h2>
 									</div>
 									<div class="col-lg-4">
-										<div class="highlight-box">
+										<div class="highlight-box" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/fake-img.jpg')">
 											<div class="box-body">
 												<span class="cat">Agosto</span>
 												<h3 class="box-title">
 													<a href="#">Pomerode (SC) recebe projeto de requalificação do patrimônio</a>
 												</h3>
 											</div>
-											<img class="box-image" src="<?php echo get_template_directory_uri(); ?>/assets/img/fake-img.jpg">
 										</div>
 									</div>
 									<div class="col-lg-4">
-										<div class="highlight-box">
+										<div class="highlight-box" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/fake-img.jpg')">
 											<div class="box-body">
 												<span class="cat">Agosto</span>
 												<h3 class="box-title">
 													<a href="#">Pomerode (SC) recebe projeto de requalificação do patrimônio</a>
 												</h3>
 											</div>
-											<img class="box-image" src="<?php echo get_template_directory_uri(); ?>/assets/img/fake-img.jpg">
 										</div>
 									</div>
 									<div class="col-lg-4">
-										<div class="highlight-box">
+										<div class="highlight-box" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/fake-img.jpg')">
 											<div class="box-body">
 												<span class="cat">Agosto</span>
 												<h3 class="box-title">
 													<a href="#">Pomerode (SC) recebe projeto de requalificação do patrimônio</a>
 												</h3>
 											</div>
-											<img class="box-image" src="<?php echo get_template_directory_uri(); ?>/assets/img/fake-img.jpg">
 										</div>
 									</div>
 								</div>
@@ -200,17 +197,17 @@ get_header();
 								<div class="col-lg-12">
 									<h2 class="section-title mb-5 text-center" style="color: #2D5A92">Conheça o ministério</h2>
 								</div>
-								<div class="col-sm-12 col-md-6 col-lg-3 text-center">
+								<div class="col-sm-12 col-md-6 col-lg-3 text-center mb-4">
 									<div class="feature-card card-2 icon-minister">
 										<h3 class="card-title"><a href="#">O Ministro</a></h3>
 									</div>
 								</div>
-								<div class="col-sm-12 col-md-6 col-lg-3 text-center">
+								<div class="col-sm-12 col-md-6 col-lg-3 text-center mb-4">
 									<div class="feature-card card-2 icon-ministry">
 										<h3 class="card-title"><a href="#">O Ministério</a></h3>
 									</div>
 								</div>
-								<div class="col-sm-12 col-md-6 col-lg-3 text-center">
+								<div class="col-sm-12 col-md-6 col-lg-3 text-center mb-4">
 									<div class="feature-card card-2 icon-secretaries">
 										<h3 class="card-title"><a href="#">Secretarias</a></h3>
 									</div>

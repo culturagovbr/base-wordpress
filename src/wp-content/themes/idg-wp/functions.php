@@ -158,3 +158,44 @@ if ( defined( 'JETPACK__VERSION' ) ) {
  * Breadcrumb functionality
  */
 require get_template_directory() . '/inc/breadcrumb.php';
+
+	/* ========================================================================================================================
+	
+	Comments
+	
+	======================================================================================================================== */
+	/**
+	 * Custom callback for outputting comments 
+	 *
+	 * @return void
+	 * @author Keir Whitaker
+	 */
+	function bootstrap_comment( $comment, $args, $depth ) {
+		$GLOBALS['comment'] = $comment; 
+		?>
+		<?php if ( $comment->comment_approved == '1' ): ?>
+		<li class="media">
+			<div class="media-left">
+				<?php echo get_avatar( $comment ); ?>
+			</div>
+			<div class="media-body">
+				<h4 class="media-heading"><?php comment_author_link() ?></h4>
+				<time><a href="#comment-<?php comment_ID() ?>" pubdate><?php comment_date() ?> at <?php comment_time() ?></a></time>
+				<?php comment_text() ?>
+			</div>
+		<?php endif;
+	}
+
+
+	/* ========================================================================================================================
+	
+	Add html 5 support to wordpress elements
+	
+	======================================================================================================================== */
+	add_theme_support( 'html5', array(
+		'comment-list',
+		'search-form',
+		'comment-form',
+		'gallery',
+		'caption',
+	) );

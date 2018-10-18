@@ -11,11 +11,12 @@ Objects – class-based selectors which define undecorated design patterns, for 
 Components – specific UI components. This is where majority of our work takes place and our UI components are often composed of Objects and Components
 Utilities – utilities and helper classes with ability to override anything which goes before in the triangle, eg. hide helper class
 --------------------------------------------------------------*/
-@import "vendor/bootstrap/bootstrap";
-@import "vendor/google-fonts/google-fonts";
-
+@import "settings/bootstrap";
 @import "settings/colors";
 @import "settings/typography";
+
+@import "vendor/bootstrap/bootstrap";
+@import "vendor/google-fonts/google-fonts";
 
 @import "tools/mixins";
 
@@ -28,7 +29,6 @@ Utilities – utilities and helper classes with ability to override anything whi
 @import "objects/feature-card";
 @import "objects/highlight-box";
 @import "objects/social-medias";
-@import "objects/titles";
 @import "objects/date-box";
 @import "objects/typography";
 @import "objects/tags-list";

@@ -12,11 +12,13 @@
  * @autor 		Babobski
  */
 ?>
-<div id="comments">
-	<?php if ( post_password_required() ) : ?>
-	<p>
-		This post is password protected. Enter the password to view any comments
-	</p>
+<div id="comments-wrapper">
+	<div class="container">
+		<?php if ( post_password_required() ) : ?>
+		<p>
+			This post is password protected. Enter the password to view any comments
+		</p>
+	</div>
 </div>
 
 	<?php
@@ -32,11 +34,9 @@
 
 	<?php if ( have_comments() ) : ?>
 
-		<h2>
-			<?php comments_number(); ?>
-		</h2>
-	
-		<ul class="media-list">
+		<h3>Comentários</h3>
+
+		<ul class="comments-list">
 			<?php wp_list_comments( array( 'callback' => 'bootstrap_comment' ) ); ?>
 		</ul>
 	
@@ -69,17 +69,17 @@
 			'class' => 'form-horizontal'
 			),
 		'fields' => apply_filters( 'comment_form_default_fields', array(
-				'autor' 				=> '<div class="form-group">' . '<label for="author">' . __( 'Name', 'wp_babobski' ) . '</label> ' . ( $req ? '<span>*</span>' : '' ) .
+				'autor' 				=> '<div class="form-group">' . '<label for="author">' . __( 'Nome', 'wp_babobski' ) . '</label> ' . ( $req ? '<span>*</span>' : '' ) .
 										'<input id="author" name="author" class="form-control" type="text" value="" size="30"' . $aria_req . ' />'.
 										'<p id="d1" class="text-danger"></p>' . '</div>',
-				'email'					=> '<div class="form-group">' .'<label for="email">' . __( 'Email', 'wp_babobski' ) . '</label> ' . ( $req ? '<span>*</span>' : '' ) .
+				'email'					=> '<div class="form-group">' .'<label for="email">' . __( 'E-mail', 'wp_babobski' ) . '</label> ' . ( $req ? '<span>*</span>' : '' ) .
 										'<input id="email" name="email" class="form-control" type="text" value="" size="30"' . $aria_req . ' />'.
 										'<p id="d2" class="text-danger"></p>' . '</div>',
 				'url'					=> '')),
-				'comment_field'			=> '<div class="form-group">' . '<label for="comment">' . __( 'Comment', 'wp_babobski' ) . '</label><span>*</span>' .
+				'comment_field'			=> '<div class="form-group">' . '<label for="comment">' . __( 'Comentário', 'wp_babobski' ) . '</label><span>*</span>' .
 										'<textarea id="comment" class="form-control" name="comment" rows="3" aria-required="true"></textarea><p id="d3" class="text-danger"></p>' . '</div>',
 				'comment_notes_after' 	=> '',
-				'class_submit'			=> 'btn btn-default'
+				'class_submit'			=> 'btn btn-default mt-4'
 			); ?>
 	<?php comment_form($comments_arg);
 	echo str_replace('class="comment-form"','class="comment-form" name="commentForm" onsubmit="return validateForm();"',ob_get_clean());
@@ -98,21 +98,21 @@
 				d3 		= document.getElementById("d3");
 				
 			if (x == null || x == "") {
-				d1.innerHTML = "<?php echo __('Name is required', 'wp_babobski'); ?>";
+				d1.innerHTML = "<?php echo __('O nome é obrigatório', 'wp_babobski'); ?>";
 				z = false;
 			} else {
 				d1.innerHTML = "";
 			}
 			
 			if (y == null || y == "") {
-				d2.innerHTML = "<?php echo __('Email is required', 'wp_babobski'); ?>";
+				d2.innerHTML = "<?php echo __('O E-mail é obrigatório', 'wp_babobski'); ?>";
 				z = false;
 			} else {
 				d2.innerHTML = "";
 			}
 			
 			if (z == null || z == "") {
-				d3.innerHTML = "<?php echo __('Comment is required', 'wp_babobski'); ?>";
+				d3.innerHTML = "<?php echo __('O comentário é obrigatório', 'wp_babobski'); ?>";
 				z = false;
 			} else {
 				d3.innerHTML = "";

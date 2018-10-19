@@ -8,6 +8,10 @@
 		position: relative;
 		margin-top: 64px;
 
+		a {
+			color: #2D5A92;
+		}
+
 		&:before {
 			content: '';
 			display: inline-block;
@@ -107,7 +111,8 @@
 	&.card-2 {
 		.card-title {
 			margin-top: 200px;
-			font-size: 1.5rem;
+			font-size: 1.4rem;
+			font-weight: 900;
 
 			&:before {
 				top: -200px;

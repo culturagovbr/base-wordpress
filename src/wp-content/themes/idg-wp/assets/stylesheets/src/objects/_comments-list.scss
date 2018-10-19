@@ -1,0 +1,111 @@
+#comments-wrapper {
+  overflow: hidden;
+  background: #FFF;
+  padding: 30px 0;
+
+  h3 {
+    display: block;
+    margin-bottom: 30px;
+  }
+
+  .comments-list {
+    margin: 0;
+    padding: 0;
+
+    li {
+      list-style: none;
+      margin: 0;
+      overflow: hidden;
+
+      .thumbnail {
+        @include border-radius(50%);
+        overflow: hidden;
+        border: 1px solid #CCC;
+        margin-right: 20px;
+        width: 80px;
+        height: 80px;
+        float: left;
+      }
+
+      .text-wrapper {
+        width: calc(100% - 100px);
+        float: left;
+        border: 1px solid #ddd;
+        margin-bottom: 20px;
+        border-radius: 4px;
+
+
+        .panel-heading {
+          padding: 10px 15px;
+          border-bottom: 1px solid transparent;
+          border-top-left-radius: 3px;
+          border-top-right-radius: 3px;
+          color: #333;
+          background-color: #f5f5f5;
+          border-color: #ddd;
+          position: relative;
+
+          &:after,
+          &:before {
+            position: absolute;
+            top: 11px;
+            left: -16px;
+            right: 100%;
+            width: 0;
+            height: 0;
+            display: block;
+            content: " ";
+            border-color: transparent;
+            border-style: solid solid outset;
+            pointer-events: none;
+          }
+
+          &:before {
+            border-right-color: #ddd;
+            border-width: 8px;
+          }
+
+          &:after {
+            border-width: 7px;
+            border-right-color: #f7f7f7;
+            margin-top: 1px;
+            margin-left: 2px;
+          }
+
+          strong {
+            a {
+              font-size: 1rem;
+              color: #232323;
+            }
+          }
+
+          .text-muted {
+            float: right;
+            font-size: .85rem;
+
+            a {
+              color: #666;
+            }
+          }
+        }
+
+        .panel-body {
+            padding: 15px;
+
+            p {
+              font-size: 1rem;
+              margin: 0;
+            }
+        }
+      }
+
+    }
+  }
+
+  #respond {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid #ddd;
+  }
+
+}

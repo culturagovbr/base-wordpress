@@ -23,16 +23,18 @@ get_header();
 
 						<?php get_template_part('template-parts/content', get_post_type()); ?>
 
-						<?php if (comments_open() || get_comments_number()) : ?>
-							<?php comments_template( '', true ); ?>
-						<?php endif; ?>
-
 					<?php endwhile; ?>
 
-					<?php get_template_part('template-parts/copyright'); ?>
+					<div class="entry-content">
+						<?php get_template_part('template-parts/copyright'); ?>
+					</div>
 				</div>
 			</div>
 		</div>
+
+		<?php if (comments_open() || get_comments_number()) : ?>
+			<?php comments_template( '', true ); ?>
+		<?php endif; ?>
 	</main>
 
 <?php

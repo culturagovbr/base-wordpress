@@ -36,7 +36,7 @@
 <header id="main-header">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-6 col-lg-8">
+			<div class="col-md-6 col-lg-8 title-wrapper">
 				<p class="site-denomination mb-0"><?php bloginfo( 'description' ); ?></p>
 				<h1 class="site-title mt-0 mb-0"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 			</div>
@@ -53,7 +53,7 @@
 		</div>
 
 		<div class="row">
-			<div class="col-sm-1 col-md-8 col-lg-8">
+			<div class="col-sm-1 col-md-8 col-lg-8 menu-wrapper">
 				<nav id="featured-links">
 					<button class="menu-toggle" data-toggle="collapse" data-target="#menu-wrapper" aria-controls="primary-menu" aria-expanded="false">
 						<span class="sr-only"><?php esc_html_e( 'Primary Menu', 'idg-wp' ); ?></span>
@@ -69,7 +69,7 @@
 					wp_nav_menu($menu_args); ?>
 				</nav>
 			</div>
-			<div class="col-sm-11 col-md-4 col-lg-4">
+			<div class="col-sm-11 col-md-4 col-lg-4 search-wrapper">
 				<?php get_search_form(); ?>
 			</div>
 		</div>

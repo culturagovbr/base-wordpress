@@ -1,0 +1,109 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../../fonts/icomoon.eot?bx25uh');
+  src:  url('../../fonts/icomoon.eot?bx25uh#iefix') format('embedded-opentype'),
+    url('../../fonts/icomoon.ttf?bx25uh') format('truetype'),
+    url('../../fonts/icomoon.woff?bx25uh') format('woff'),
+    url('../../fonts/icomoon.svg?bx25uh#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  font-size: 80px;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-editais .path1:before {
+  content: "\e900";
+  color: rgb(34, 34, 34);
+}
+.icon-editais .path2:before {
+  content: "\e901";
+  margin-left: -1em;
+  color: rgb(35, 31, 32);
+}
+.icon-editais .path3:before {
+  content: "\e902";
+  margin-left: -1em;
+  color: rgb(35, 31, 32);
+}
+.icon-economia-criativa:before {
+  content: "\e903";
+}
+.icon-dados-br:before {
+  content: "\e904";
+}
+.icon-ouvidoria:before {
+  content: "\e905";
+}
+.icon-consultas-publicas:before {
+  content: "\e906";
+}
+.icon-fale-conosco:before {
+  content: "\e907";
+}
+.icon-multimidia:before {
+  content: "\e908";
+}
+.icon-publicacoes:before {
+  content: "\e909";
+}
+.icon-noticias:before {
+  content: "\e90a";
+}
+.icon-assessoria:before {
+  content: "\e90b";
+}
+.icon-escritorios-regionais:before {
+  content: "\e90c";
+}
+.icon-legislacao:before {
+  content: "\e90d";
+}
+.icon-acoes-programadas:before {
+  content: "\e90e";
+}
+.icon-internacional:before {
+  content: "\e90f";
+}
+.icon-vinculadas:before {
+  content: "\e910";
+}
+.icon-secretarias:before {
+  content: "\e911";
+}
+.icon-ministerio:before {
+  content: "\e912";
+}
+.icon-ministro:before {
+  content: "\e913";
+}
+.icon-pontos-cultura:before {
+  content: "\e914";
+}
+.icon-centros-culturais:before {
+  content: "\e915";
+}
+.icon-patrimonio:before {
+  content: "\e916";
+}
+.icon-apoio:before {
+  content: "\e917";
+}
+.icon-lei-rouanet:before {
+  content: "\e918";
+}
+.icon-snc:before {
+  content: "\e919";
+}

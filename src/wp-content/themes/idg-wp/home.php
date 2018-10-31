@@ -70,66 +70,90 @@ get_header();
 					</div>
 				</section>
 
-				<section class="services mb-5 mt-5">
+				<section class="services mt-5 mb-5">
 						<div class="container">
 								<div class="row">
 										<div class="col-lg-12">
 											<h2 class="section-title mb-5 text-center">Serviços</h2>
 										</div>
 									<div class="col-sm-12 col-md-6 col-lg-3 text-center mb-4">
-										<div class="feature-card icon-law">
-											<h3 class="card-title">Lei Rouanet</h3>
-											<p class="card-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
-											<a class="card-btn btn" href="#">Acesse</a>
+										<div class="feature-card static-height">
+											<div class="align">
+												<div class="icon icon-lei-rouanet"></div>
+												<h3 class="card-title">Lei Rouanet</h3>
+											</div>
+<!-- 											<p class="card-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
+											<a class="card-btn btn" href="#">Acesse</a> -->
 										</div>
 									</div>
 									<div class="col-sm-12 col-md-6 col-lg-3 text-center mb-4">
-										<div class="feature-card icon-edicts">
-											<h3 class="card-title">Editais</h3>
-											<p class="card-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
-											<a class="card-btn btn" href="#">Acesse</a>
+										<div class="feature-card static-height">
+											<div class="align">
+												<div class="icon icon-editais"></div>
+												<h3 class="card-title">Editais</h3>
+											</div>
+<!-- 											<p class="card-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
+											<a class="card-btn btn" href="#">Acesse</a> -->
 										</div>
 									</div>
 									<div class="col-sm-12 col-md-6 col-lg-3 text-center mb-4">
-										<div class="feature-card icon-rocket">
-											<h3 class="card-title">Apoio à projetos</h3>
-											<p class="card-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
-											<a class="card-btn btn" href="#">Acesse</a>
+										<div class="feature-card static-height">
+											<div class="align">
+												<div class="icon icon-apoio"></div>
+												<h3 class="card-title">Apoio à projetos</h3>
+											</div>
+<!-- 											<p class="card-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
+											<a class="card-btn btn" href="#">Acesse</a> -->
 										</div>
 									</div>
 									<div class="col-sm-12 col-md-6 col-lg-3 text-center mb-4">
-										<div class="feature-card icon-patrimony">
-											<h3 class="card-title">Patrimônio</h3>
-											<p class="card-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
-											<a class="card-btn btn" href="#">Acesse</a>
+										<div class="feature-card static-height">
+											<div class="align">
+												<div class="icon icon-patrimonio"></div>
+												<h3 class="card-title">Patrimônio</h3>
+											</div>
+<!-- 											<p class="card-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
+											<a class="card-btn btn" href="#">Acesse</a> -->
 										</div>
 									</div>
 									<div class="col-sm-12 col-md-6 col-lg-3 text-center mb-4">
-										<div class="feature-card icon-culture-center">
-											<h3 class="card-title">Centros culturais</h3>
-											<p class="card-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
-											<a class="card-btn btn" href="#">Acesse</a>
+										<div class="feature-card static-height">
+											<div class="align">
+												<div class="icon icon-centros-culturais"></div>
+												<h3 class="card-title">Centros culturais</h3>
+											</div>
+<!-- 											<p class="card-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
+											<a class="card-btn btn" href="#">Acesse</a> -->
 										</div>
 									</div>
 									<div class="col-sm-12 col-md-6 col-lg-3 text-center mb-4">
-										<div class="feature-card icon-culture-points">
-											<h3 class="card-title">Pontos de cultura</h3>
-											<p class="card-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
-											<a class="card-btn btn" href="#">Acesse</a>
+										<div class="feature-card static-height">
+											<div class="align">
+												<div class="icon icon-pontos-cultura"></div>
+												<h3 class="card-title">Pontos de cultura</h3>
+											</div>
+<!-- 											<p class="card-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
+											<a class="card-btn btn" href="#">Acesse</a> -->
 										</div>
 									</div>
 									<div class="col-sm-12 col-md-6 col-lg-3 text-center mb-4">
-										<div class="feature-card icon-flag">
-											<h3 class="card-title">SNC</h3>
-											<p class="card-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
-											<a class="card-btn btn" href="#">Acesse</a>
+										<div class="feature-card static-height">
+											<div class="align">
+												<div class="icon icon-snc"></div>
+												<h3 class="card-title">SNC</h3>
+											</div>
+<!-- 											<p class="card-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
+											<a class="card-btn btn" href="#">Acesse</a> -->
 										</div>
 									</div>
 									<div class="col-sm-12 col-md-6 col-lg-3 text-center mb-4">
-										<div class="feature-card icon-creative">
-											<h3 class="card-title">Economia Criativa</h3>
-											<p class="card-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
-											<a class="card-btn btn" href="#">Acesse</a>
+										<div class="feature-card static-height">
+											<div class="align">
+												<div class="icon icon-economia-criativa"></div>
+												<h3 class="card-title">Economia Criativa</h3>
+											</div>
+<!-- 											<p class="card-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
+											<a class="card-btn btn" href="#">Acesse</a> -->
 										</div>
 									</div>
 									<div class="col-lg-12 text-center">
@@ -138,7 +162,7 @@ get_header();
 								</div>
 						</div>
 				</section>
-				<section class="mt-5 mb-5">
+				<section class="pb-5 pt-5" style="background-color: #EEE;">
 						<div class="container">
 								<div class="row">
 									<div class="col-lg-12">
@@ -191,80 +215,116 @@ get_header();
 						</div>
 				</section>
 
-				<section class="mb-4" style="background: url(<?php echo get_template_directory_uri() . '/assets/img/blue-circles.png'; ?>) #D1E6FF no-repeat left bottom; padding: 30px 0">
+				<section class="pt-5 pb-5 mb-5">
 						<div class="container">
 							<div class="row">
 								<div class="col-lg-12">
-									<h2 class="section-title mb-5 text-center" style="color: #2D5A92">Conheça o ministério</h2>
+									<h2 class="section-title mb-5 text-center">Conheça o Ministério</h2>
 								</div>
 								<div class="col-sm-12 col-md-6 col-lg-3 text-center mb-4">
-									<div class="feature-card card-2 icon-minister">
-										<h3 class="card-title"><a href="#">O Ministro</a></h3>
-									</div>
-								</div>
-								<div class="col-sm-12 col-md-6 col-lg-3 text-center mb-4">
-									<div class="feature-card card-2 icon-ministry">
-										<h3 class="card-title"><a href="#">O Ministério</a></h3>
+									<div class="feature-card static-height card-2">
+										<div class="align">
+											<div class="icon icon-ministro"></div>
+											<h3 class="card-title"><a href="#">O Ministro</a></h3>
+										</div>
 									</div>
 								</div>
 								<div class="col-sm-12 col-md-6 col-lg-3 text-center mb-4">
-									<div class="feature-card card-2 icon-secretaries">
-										<h3 class="card-title"><a href="#">Secretarias</a></h3>
+									<div class="feature-card static-height card-2">
+										<div class="align">
+											<div class="icon icon-ministerio"></div>
+											<h3 class="card-title"><a href="#">O Ministério</a></h3>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-12 col-md-6 col-lg-3 text-center mb-4">
+									<div class="feature-card static-height card-2">
+										<div class="align">
+											<div class="icon icon-secretarias"></div>
+											<h3 class="card-title"><a href="#">Secretarias</a></h3>
+										</div>
 									</div>
 								</div>
 								<div class="col-sm-12 col-md-6 col-lg-3 text-center">
-									<div class="feature-card card-2 icon-linkeds">
-										<h3 class="card-title"><a href="#">Vinculadas</a></h3>
+									<div class="feature-card static-height card-2">
+										<div class="align">
+											<div class="icon icon-vinculadas"></div>
+											<h3 class="card-title"><a href="#">Entidades Vinculadas</a></h3>
+										</div>
 									</div>
 								</div>
 								<div class="col-sm-12 col-md-6 col-lg-3 text-center">
-									<div class="feature-card card-2 icon-internacional">
-										<h3 class="card-title"><a href="#">Internacional</a></h3>
+									<div class="feature-card static-height card-2">
+										<div class="align">
+											<div class="icon icon-internacional"></div>
+											<h3 class="card-title"><a href="#">Internacional</a></h3>
+										</div>
 									</div>
 								</div>
 								<div class="col-sm-12 col-md-6 col-lg-3 text-center">
-									<div class="feature-card card-2 icon-actions">
-										<h3 class="card-title"><a href="#">Ações programas</a></h3>
+									<div class="feature-card static-height card-2">
+										<div class="align">
+											<div class="icon icon-acoes-programadas"></div>
+											<h3 class="card-title"><a href="#">Ações e Programas</a></h3>
+										</div>
 									</div>
 								</div>
 								<div class="col-sm-12 col-md-6 col-lg-3 text-center">
-									<div class="feature-card card-2 icon-legislation">
-										<h3 class="card-title"><a href="#">Legislação</a></h3>
+									<div class="feature-card static-height card-2">
+										<div class="align">
+											<div class="icon icon-legislacao"></div>
+											<h3 class="card-title"><a href="#">Legislação</a></h3>
+										</div>
 									</div>
 								</div>
 								<div class="col-sm-12 col-md-6 col-lg-3 text-center">
-									<div class="feature-card card-2 icon-officers">
-										<h3 class="card-title"><a href="#">Escritórios regionais</a></h3>
+									<div class="feature-card static-height card-2">
+										<div class="align">
+											<div class="icon icon-escritorios-regionais"></div>
+											<h3 class="card-title"><a href="#">Escritórios Regionais</a></h3>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 				</section>
 
-				<section class="mt-5 mb-5">
+				<section class="pt-5 pb-5" id="section-content">
 						<div class="container">
 								<div class="row">
 									<div class="col-lg-12">
 										<h2 class="section-title mb-5 text-center">Conteúdos</h2>
 									</div>
 									<div class="col-md-6 col-lg-3 text-center">
-										<div class="feature-card card-2 icon-advisory">
-											<h3 class="card-title"><a href="#">Assessoria</a></h3>
+										<div class="feature-card static-height active card-2">
+											<div class="align">
+												<div class="icon icon-assessoria"></div>
+												<h3 class="card-title"><a href="#">Imprensa</a></h3>
+											</div>
 										</div>
 									</div>
 									<div class="col-md-6 col-lg-3 text-center">
-										<div class="feature-card card-2 icon-news">
-											<h3 class="card-title"><a href="#">Notícias</a></h3>
+										<div class="feature-card static-height active card-2">
+											<div class="align">
+												<div class="icon icon-noticias"></div>
+												<h3 class="card-title"><a href="#">Notícias</a></h3>
+											</div>
 										</div>
 									</div>
 									<div class="col-md-6 col-lg-3 text-center">
-										<div class="feature-card card-2 icon-publications">
-											<h3 class="card-title"><a href="#">Publicações</a></h3>
+										<div class="feature-card static-height active card-2">
+											<div class="align">
+												<div class="icon icon-publicacoes"></div>
+												<h3 class="card-title"><a href="#">Publicações</a></h3>
+											</div>
 										</div>
 									</div>
 									<div class="col-md-6 col-lg-3 text-center">
-										<div class="feature-card card-2 icon-multimedia">
-											<h3 class="card-title"><a href="#">Multimídia</a></h3>
+										<div class="feature-card static-height active card-2">
+											<div class="align">
+												<div class="icon icon-multimidia"></div>
+												<h3 class="card-title"><a href="#">Multimídia</a></h3>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -278,32 +338,66 @@ get_header();
 							<h2 class="section-title mb-5 text-center">Participação Social</h2>
 						</div>
 						<div class="col-lg-3 mb-4 text-center">
-							<div class="feature-card icon-talk-to-us">
-								<h3 class="card-title">Fale conosco</h3>
-								<p class="card-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
-								<a class="card-btn btn" href="#">Acesse</a>
+							<div class="feature-card">
+								<div class="align">
+									<div class="icon icon-fale-conosco"></div>
+									<h3 class="card-title">Fale conosco</h3>
+									<p class="card-desc">Mande sua dúvida ou sugestão sobre o site do Ministério da Cultura</p>
+									<a class="card-btn btn" href="#">Acesse</a>
+								</div>
 							</div>
 						</div>
 						<div class="col-lg-3 mb-4 text-center">
-							<div class="feature-card icon-consultations">
-								<h3 class="card-title">Consultas públicas</h3>
-								<p class="card-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
-								<a class="card-btn btn" href="#">Acesse</a>
+							<div class="feature-card">
+								<div class="align">
+									<div class="icon icon-consultas-publicas"></div>
+									<h3 class="card-title">Consultas públicas</h3>
+									<p class="card-desc">Espaço de construção conjunta de políticas públicas entre governo e sociedade</p>
+									<a class="card-btn btn" href="#">Acesse</a>
+								</div>
 							</div>
 						</div>
 						<div class="col-lg-3 mb-4 text-center">
-							<div class="feature-card icon-ombudsman">
-								<h3 class="card-title">Ouvidoria</h3>
-								<p class="card-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
-								<a class="card-btn btn" href="#">Acesse</a>
+							<div class="feature-card">
+								<div class="align">
+									<div class="icon icon-ouvidoria"></div>
+									<h3 class="card-title">Ouvidoria</h3>
+									<p class="card-desc">Canal para envio de sugestões, elogios, solicitações e denúncias para o ministério</p>
+									<a class="card-btn btn" href="#">Acesse</a>
+								</div>
 							</div>
 						</div>
 						<div class="col-lg-3 mb-4 text-center">
-							<div class="feature-card icon-data">
-								<h3 class="card-title">Dados.br</h3>
-								<p class="card-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
-								<a class="card-btn btn" href="#">Acesse</a>
+							<div class="feature-card">
+								<div class="align">
+									<div class="icon icon-dados-br"></div>
+									<h3 class="card-title">Dados.br</h3>
+									<p class="card-desc">Ferramenta para obtenção de dados e as informações públicas do ministério</p>
+									<a class="card-btn btn" href="#">Acesse</a>
+								</div>
 							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="mt-5" id="multimidia">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<h2 class="section-title mb-5 text-center">Multimídia</h2>
+						</div>
+
+						<div class="video" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/video-thumb.png');"></div>
+
+						<div class="col-lg-4">
+							<div class="highlight-box" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/default.png')"></div>
+						</div>
+						<div class="col-lg-4">
+							<div class="highlight-box" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/default.png')"></div>
+						</div>
+						<div class="col-lg-4">
+							<div class="highlight-box" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/default.png')"></div>
 						</div>
 					</div>
 				</div>

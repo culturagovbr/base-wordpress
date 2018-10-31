@@ -12,8 +12,8 @@ body {
   background: $background__body;
   font-family: $font__main;
   position: relative;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  // -webkit-font-smoothing: antialiased;
+  // -moz-osx-font-smoothing: grayscale;
 
   &.high-contrast {
     background: #000;
@@ -60,5 +60,54 @@ img {
 }
 
 .carousel-wrapper {
-  margin-bottom: 98px;
+  margin-bottom: 85px;
+}
+
+#multimidia {
+  background-color: #222;
+  background-color: #222222;
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='12' viewBox='0 0 40 12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 6.172L6.172 0h5.656L0 11.828V6.172zm40 5.656L28.172 0h5.656L40 6.172v5.656zM6.172 12l12-12h3.656l12 12h-5.656L20 3.828 11.828 12H6.172zm12 0L20 10.172 21.828 12h-3.656z' fill='%23ffffff' fill-opacity='0.01' fill-rule='evenodd'/%3E%3C/svg%3E");
+  padding: 30px 0 60px;
+  color: #FFF;
+
+  .video {
+    width: calc(100% - 30px);
+    margin: 0 auto;
+    height: 500px;
+    padding: 0 20px;
+    margin-bottom: 30px;
+    background-size: cover;
+  }
+}
+
+#section-content {
+  background-color: #1FC86A;
+
+  .section-title {
+    color: #FFF;
+  }
+
+  .feature-card {
+    border: 4px solid #FFF;
+    background: none;
+    color: #FFF;
+
+    .card-title,
+    .card-desc,
+    .card-title a {
+      color: #FFF;
+    }
+
+  &:hover {
+    // background-color: #F8F8F8;
+    border-color: #222;
+    color: #222;
+
+    .card-title,
+    .card-desc,
+    .card-title a {
+      color: #222;
+    }
+  }
+  }
 }

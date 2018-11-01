@@ -1,0 +1,136 @@
+#agenda {
+
+	.daypicker-wrapper {
+		margin-bottom: 30px;
+
+		.daypicker {
+			margin: 0;
+			padding: 0;
+			list-style-type: none;
+			text-align: center;
+
+			li {
+				display: inline-block;
+				width: 95px;
+				height: 95px;
+				cursor: pointer;
+				color: #dbdbdb;
+				align-items: center;
+				justify-content: center;
+
+				a {
+					font-size: 50px;
+					font-weight: 800;
+					font-style: normal;
+					font-stretch: normal;
+					line-height: 95px;
+					width: 95px;
+					height: 95px;
+					letter-spacing: normal;
+					display: block;
+					color: hsla(0,0%,100%,.6);
+
+					span {
+						display: block;
+						line-height: 50px;
+						margin-top: 10px;
+					}
+
+					small {
+						display: block;
+						font-size: 20px;
+						font-weight: 800;
+						font-style: normal;
+						font-stretch: normal;
+						line-height: 20px;
+						letter-spacing: normal;
+						text-transform: uppercase;
+					}
+
+					&:hover {
+						text-decoration: none;
+					}
+				}
+
+				&.selected {
+					background-color: #56c75f;
+
+					a {
+						color: #fff;
+					}
+				}
+			}
+		}
+	}
+
+	.monthpicker-wrapper {
+		position: relative;
+		margin-bottom: 60px;
+
+		a {
+			color: #fff;
+
+			&:hover {
+				text-decoration: none;
+			}
+		}
+
+		&:before,
+		&:after {
+			position: absolute;
+			content: '';
+			height: 1px;
+			width: 40%;
+			background: rgba(255,255,255,.2);
+			left: 0;
+			top: 50%;
+			margin-top: -1px;
+		}
+
+		&:after {
+			left: auto;
+			right: 0;
+		}
+	}
+
+	.events {
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-pack: space-evenly;
+		-ms-flex-pack: space-evenly;
+		justify-content: space-evenly;
+
+		.event-item {
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-orient: vertical;
+			-webkit-box-direction: normal;
+			-ms-flex-direction: column;
+			flex-direction: column;
+			padding: 30px;
+			background: #fff;
+			color: #333;
+
+			h3 {
+				font-weight: 400;
+
+				a {
+					font-size: 24px;
+					color: #333;
+					cursor: pointer;
+					overflow: hidden;
+					border: none;
+				}
+			}
+		}
+	}
+
+	.agenda-footer {
+		.btn {
+			border-color: #fff;
+			color: #fff;
+		}
+	}
+}

@@ -522,7 +522,7 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
 			$conn_str .= 'password='. $db_config['password'] .'';
 
 			$conn = pg_connect($conn_str);
-			$sql = $db_config['query'];
+			$sql = $db_config['query-indicadores'];
 
 			$result = pg_query($conn, $sql);
 			$actions = pg_fetch_all($result);
@@ -605,11 +605,6 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
             $conn_str .= 'password='. $db_config['password'] .'';
 
             $conn = pg_connect($conn_str);
-            $sql = $db_config['query-acoes-por-unidades'];
-
-            $result = pg_query($conn, $sql);
-            $actions = pg_fetch_all($result);
-
             $sql = $db_config['query-unidades'];
             $result = pg_query($conn, $sql);
             $unidades = pg_fetch_all($result);
@@ -619,24 +614,11 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
                 array_push($values_to_check, $unidade['nome_secretaria']);
             }
 
-            $out = array();
-            foreach ($actions as $key => $value){
-                foreach ($value as $key2 => $value2){
-                    if( in_array($value2, $values_to_check) ){
-                        $index = $value2;
-                        if (array_key_exists($index, $out)){
-                            $out[$index]++;
-                        } else {
-                            $out[$index] = 1;
-                        }
-                    }
-                }
-            }
+            $out = array_count_values( $values_to_check );
             arsort($out);
             $bar_start = end($out);
             reset($out);
             $bar_end = current($out);
-
             ?>
 
             <table class="table acoes-estrategicas-resultados-table">

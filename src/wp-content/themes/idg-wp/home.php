@@ -209,70 +209,7 @@ get_header();
 					<div class="container">
 						<div class="row">
 							<div class="col-lg-12">
-								<h2 class="section-title mb-5 text-center text-uppercase" style="color: #fff;">Agenda Cultural</h2>
-								<div id="agenda">
-									<div class="daypicker-wrapper">
-										<ul class="daypicker">
-											<li>
-												<a href="#">
-													<span>19</span>
-													<small>Qua</small>
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													<span>20</span>
-													<small>Qui</small>
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													<span>21</span>
-													<small>Sex</small>
-												</a>
-											</li>
-											<li class="selected">
-												<a href="#">
-													<span>22</span>
-													<small>Sab</small>
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													<span>23</span>
-													<small>Dom</small>
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													<span>24</span>
-													<small>Seg</small>
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													<span>25</span>
-													<small>Ter</small>
-												</a>
-											</li>
-										</ul>
-									</div>
-									<div class="monthpicker-wrapper text-center">
-										<a href="#" class="monthpicker">NOV 2018</a>
-										<input type="text" id="datepicker" class="sr-only">
-									</div>
-									<div class="events">
-										<div class="event-item">
-											<h3>Despacho interno</h3>
-											<span class="location">Ministério da Cultura</span>
-											<span class="time">00h00</span>
-										</div>
-										<!--<p>Sem compromissos</p>-->
-									</div>
-									<div class="agenda-footer text-center">
-										<a href="#" class="btn text-uppercase mt-5">Agenda completa</a>
-									</div>
-								</div>
+								<?php echo do_shortcode('[gs-agenda]'); ?>
 							</div>
 						</div>
 					</div>

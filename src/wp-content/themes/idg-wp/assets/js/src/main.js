@@ -7,7 +7,7 @@
 		init: function () {
 			// this.accessibility();
 			// this.utils();
-			this.agenda();
+			// this.agenda();
 			console.log('App here!');
 		},
 

@@ -384,9 +384,6 @@ get_header();
 			<section class="mt-5" id="multimidia">
 				<div class="container">
 					<div class="row">
-						<div class="col-lg-12">
-							<h2 class="section-title mb-5 text-center">Multimídia</h2>
-						</div>
 
 						<div class="video" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/video-thumb.png');"></div>
 

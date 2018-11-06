@@ -24,19 +24,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.icon-editais .path1:before {
+
+.icon-editais:before {
   content: "\e900";
-  color: rgb(34, 34, 34);
-}
-.icon-editais .path2:before {
-  content: "\e901";
-  margin-left: -1em;
-  color: rgb(35, 31, 32);
-}
-.icon-editais .path3:before {
-  content: "\e902";
-  margin-left: -1em;
-  color: rgb(35, 31, 32);
 }
 .icon-economia-criativa:before {
   content: "\e903";

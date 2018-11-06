@@ -100,7 +100,7 @@ get_header();
 										<div class="feature-card static-height">
 											<div class="align">
 												<div class="icon icon-apoio"></div>
-												<h3 class="card-title">Apoio à projetos</h3>
+												<h3 class="card-title">Apoio à Projetos</h3>
 											</div>
 <!-- 											<p class="card-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
 											<a class="card-btn btn" href="#">Acesse</a> -->
@@ -120,7 +120,7 @@ get_header();
 										<div class="feature-card static-height">
 											<div class="align">
 												<div class="icon icon-centros-culturais"></div>
-												<h3 class="card-title">Centros culturais</h3>
+												<h3 class="card-title">Centros Culturais</h3>
 											</div>
 <!-- 											<p class="card-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
 											<a class="card-btn btn" href="#">Acesse</a> -->
@@ -130,7 +130,7 @@ get_header();
 										<div class="feature-card static-height">
 											<div class="align">
 												<div class="icon icon-pontos-cultura"></div>
-												<h3 class="card-title">Pontos de cultura</h3>
+												<h3 class="card-title">Pontos de Cultura</h3>
 											</div>
 <!-- 											<p class="card-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
 											<a class="card-btn btn" href="#">Acesse</a> -->
@@ -157,7 +157,7 @@ get_header();
 										</div>
 									</div>
 									<div class="col-lg-12 text-center">
-										<a href="#" class="btn text-uppercase mt-4">Acesse mais serviços</a>
+										<a href="#" class="btn text-uppercase mt-4">Mais Serviços</a>
 									</div>
 								</div>
 						</div>
@@ -404,8 +404,8 @@ get_header();
 							<div class="feature-card">
 								<div class="align">
 									<div class="icon icon-fale-conosco"></div>
-									<h3 class="card-title">Fale conosco</h3>
-									<p class="card-desc">Mande sua dúvida ou sugestão sobre o site do Ministério da Cultura</p>
+									<h3 class="card-title">Fale Conosco</h3>
+									<p class="card-desc">Mande sua dúvida ou sugestão sobre o site do MinC</p>
 									<a class="card-btn btn" href="#">Acesse</a>
 								</div>
 							</div>
@@ -414,8 +414,8 @@ get_header();
 							<div class="feature-card">
 								<div class="align">
 									<div class="icon icon-consultas-publicas"></div>
-									<h3 class="card-title">Consultas públicas</h3>
-									<p class="card-desc">Espaço de construção conjunta de políticas públicas entre governo e sociedade</p>
+									<h3 class="card-title">Consultas Públicas</h3>
+									<p class="card-desc">Espaço de construção conjunta entre governo e sociedade</p>
 									<a class="card-btn btn" href="#">Acesse</a>
 								</div>
 							</div>
@@ -425,7 +425,7 @@ get_header();
 								<div class="align">
 									<div class="icon icon-ouvidoria"></div>
 									<h3 class="card-title">Ouvidoria</h3>
-									<p class="card-desc">Canal para envio de sugestões, elogios, solicitações e denúncias para o ministério</p>
+									<p class="card-desc">Canal para envio de sugestões, elogios, solicitações e denúncias</p>
 									<a class="card-btn btn" href="#">Acesse</a>
 								</div>
 							</div>
@@ -435,7 +435,7 @@ get_header();
 								<div class="align">
 									<div class="icon icon-dados-br"></div>
 									<h3 class="card-title">Dados.br</h3>
-									<p class="card-desc">Ferramenta para obtenção de dados e as informações públicas do ministério</p>
+									<p class="card-desc">Ferramenta para obtenção de dados e as informações públicas</p>
 									<a class="card-btn btn" href="#">Acesse</a>
 								</div>
 							</div>

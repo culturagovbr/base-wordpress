@@ -1,5 +1,22 @@
 #agenda {
 
+	.agenda-cats {
+		margin-bottom: 15px;
+
+		a {
+			color: #fff;
+			padding: 15px;
+
+			&:hover {
+				text-decoration: none;
+			}
+
+			&.active {
+				background-color: #56c75f;
+			}
+		}
+	}
+
 	.daypicker-wrapper {
 		margin-bottom: 30px;
 
@@ -112,6 +129,7 @@
 			padding: 30px;
 			background: #fff;
 			color: #333;
+			width: 25%;
 
 			h3 {
 				font-weight: 400;

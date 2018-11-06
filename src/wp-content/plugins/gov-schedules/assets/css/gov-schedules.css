@@ -54,12 +54,12 @@
 	float: right;
 	text-align: right;
 }
-.ui-datepicker .ui-datepicker-prev:before {
+/*.ui-datepicker .ui-datepicker-prev:before {
 	content: "\e079";
 }
 .ui-datepicker .ui-datepicker-next:before {
 	content: "\e080";
-}
+}*/
 .ui-datepicker .ui-icon {
 	display: none;
 }

@@ -345,6 +345,10 @@ if (!class_exists('Gov_Schedules')) :
 			$c = $_POST['event_category'];
 			$daypicker = '';
 			$events = '';
+			$month = explode('-', $d);
+			$month = $month[1];
+			$dateObj   = DateTime::createFromFormat('!m', $month);
+			$month_name = strftime('%b', $dateObj->format('U') );
 
 			for($i = 3; $i >= 1; $i--) {
 				$date = date_create($d);
@@ -380,10 +384,32 @@ if (!class_exists('Gov_Schedules')) :
 					)
 				),
 				'meta_query'     => array(
+					'relation' => 'OR',
 					array(
 						'key'     => 'dados_do_evento_data-de-incio',
 						'value'   => $d,
-						'compare' => 'LIKE'
+						'compare' => '=',
+						'type'    => 'DATE'
+					),
+					array(
+						'relation' => 'AND',
+						array(
+							'key'     => 'dados_do_evento_data-de-incio',
+							'value'   => $d,
+							'compare' => '<=',
+							'type'    => 'DATE'
+						),
+						array(
+							'key'     => 'dados_do_evento_data-de-fim',
+							'value'   => $d,
+							'compare' => '>=',
+							'type'    => 'DATE'
+						),
+						array(
+							'key'     => 'dados_do_evento_data-de-fim',
+							'value'   => '',
+							'compare' => '!='
+						)
 					)
 				)
 			);
@@ -412,6 +438,7 @@ if (!class_exists('Gov_Schedules')) :
 			endif;
 
 			$data = array(
+				'month'  => $month_name,
 				'weeks'  => $daypicker,
 				'events' => $events
 			);

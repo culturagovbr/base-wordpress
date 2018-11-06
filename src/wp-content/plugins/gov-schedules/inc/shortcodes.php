@@ -66,7 +66,7 @@ class Gov_Schedules_Shortcodes
 				</ul>
 			</div>
 			<div class="monthpicker-wrapper text-center">
-				<a href="#" class="monthpicker">NOV 2018</a>
+				<a href="#" class="monthpicker"><span class="month-name text-uppercase">NOV</span> 2018</a>
 				<input type="text" id="datepicker" class="sr-only">
 			</div>
 			<div class="events">
@@ -82,11 +82,32 @@ class Gov_Schedules_Shortcodes
 						)
 					),
 					'meta_query'     => array(
+						'relation' => 'OR',
 						array(
 							'key'     => 'dados_do_evento_data-de-incio',
 							'value'   => date( 'Y-m-d' ),
-							'compare' => 'LIKE',
-							//'type'    => 'DATE'
+							'compare' => '=',
+							'type'    => 'DATE'
+						),
+						array(
+							'relation' => 'AND',
+							array(
+								'key'     => 'dados_do_evento_data-de-incio',
+								'value'   => date( 'Y-m-d' ),
+								'compare' => '<=',
+								'type'    => 'DATE'
+							),
+							array(
+								'key'     => 'dados_do_evento_data-de-fim',
+								'value'   => date( 'Y-m-d' ),
+								'compare' => '>=',
+								'type'    => 'DATE'
+							),
+							array(
+								'key'     => 'dados_do_evento_data-de-fim',
+								'value'   => '',
+								'compare' => '!='
+							)
 						)
 					)
 				);

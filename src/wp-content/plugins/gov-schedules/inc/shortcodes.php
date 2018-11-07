@@ -69,7 +69,7 @@ class Gov_Schedules_Shortcodes
 				<a href="#" class="monthpicker"><span class="month-name text-uppercase">NOV</span> 2018</a>
 				<input type="text" id="datepicker" class="sr-only">
 			</div>
-			<div class="events">
+			<div class="events row">
 
 				<?php
 				$args = array(
@@ -121,19 +121,27 @@ class Gov_Schedules_Shortcodes
 						$date = get_post_meta( get_the_ID(), 'dados_do_evento_data-de-incio', true );
 						$raw_date = explode(' ', $date ); ?>
 
-						<div class="event-item">
-							<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-							<span class="location"><?php echo $locaction; ?></span>
-							<span class="time"><?php echo $raw_date[1]; ?></span>
+						<div class="col-md-4 ml">
+							<div class="event-item">
+								<?php the_title( '<h2>', '</h2>' ); ?>
+
+								<div class="info">
+									<span class="time icon icon-clock"><?php echo $raw_date[1]; ?></span>
+									<span class="location icon icon-location"><?php echo $locaction; ?></span>
+									<a href="#">Adicionar ao meu calendário</a>
+								</div>
+							</div>
 						</div>
 
 					<?php
 
 					endwhile; wp_reset_query();
 				else: ?>
-					<div class="event-item">
-						<span class="location">Sem compromissos oficiais.</span>
+
+					<div class="event-item empty">
+						<span class="location">Sem compromissos oficiais nesta data.</span>
 					</div>
+
 				<?php endif;
 				?>
 			</div>

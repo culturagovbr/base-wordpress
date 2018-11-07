@@ -92,7 +92,39 @@
 		margin-bottom: 60px;
 
 		a {
+			font-size: 12px;
+			font-family: "Lucida Grande", Arial, FreeSans;
 			color: #fff;
+			font-weight: 500;
+			padding-right: 32px;
+
+			span {
+				position: relative;
+				display: inline-block;
+				font-size: 16px;
+
+				&:after {
+					@include transform(translateY(-50%));
+					@include border-radius(50%);
+
+					font-size: 16px;
+					content: map-get($icons, angle_down);
+					color: #19224d;
+					font-family: 'icomoon';
+					width: 20px;
+					height: 20px;
+					line-height: 23px;
+					font-size: 10px;
+					text-indent: -1px;
+					text-align: center;
+					// display: inline-block;
+					background: #FFF;
+					overflow: hidden;
+					position: absolute;
+					top: 50%;
+					right: -65px;
+				}
+			}
 
 			&:hover {
 				text-decoration: none;
@@ -126,27 +158,45 @@
 		justify-content: space-evenly;
 
 		.event-item {
-			display: -webkit-box;
-			display: -ms-flexbox;
-			display: flex;
-			-webkit-box-orient: vertical;
-			-webkit-box-direction: normal;
-			-ms-flex-direction: column;
-			flex-direction: column;
-			padding: 30px;
-			background: #fff;
-			color: #333;
-			width: 25%;
+			background: #EEE;
+			padding: 20px 20px 90px;
+			color: #222;
+			margin-bottom: 20px;
+			height: 100%;
+			position: relative;
 
-			h3 {
-				font-weight: 400;
+			&.empty {
+				height: auto;
+				padding: 20px;
+			}
+
+			h2 {
+				margin-bottom: 20px;
+				font-size: 1.8em;
+			}
 
 				a {
-					font-size: 24px;
-					color: #333;
-					cursor: pointer;
-					overflow: hidden;
-					border: none;
+					color: #222;
+				}
+
+			.info {
+				position: absolute;
+				bottom: 15px;
+				left: 15px;
+				height: 90px;
+
+				span {
+					display: block;
+					height: 15px;
+					line-height: 15px;
+					margin-bottom: 15px;
+
+					&.icon {
+						&:before {
+							margin-right: 10px;
+							font-size: 15px;
+						}
+					}
 				}
 			}
 		}
@@ -156,6 +206,51 @@
 		.btn {
 			border-color: #fff;
 			color: #fff;
+		}
+	}
+}
+
+#events-archive {
+	.event {
+		align-items: center;
+		background: #EEE;
+		padding: 20px;
+		margin-bottom: 20px;
+
+		.time {
+			position: relative;
+			text-align: center;
+			width: 20%;
+			padding-right: 20px;
+
+			&:after {
+				@include transform(translateY(-50%));
+				position: absolute;
+				content: '';
+				width: 1px;
+				height: 80px;
+				background: rgba(0,0,0,.2);
+				top: 50%;
+				right: -1px;
+			}
+
+			span {
+				font-size: 1.8em;
+
+				&:before {
+					font-size: 18px;
+					margin-right: 10px;
+				}
+			}
+		}
+
+		.info {
+			width: 80%;
+			padding-left: 70px;
+
+			h2 {
+				font-size: 1.8em;
+			}
 		}
 	}
 }

@@ -1,142 +1,27 @@
+$font-family-icomoon: 'icomoon' !important;
+$icomoon-font-path: "../../fonts/" !default;
+
+@each $key, $value in $icons {
+  .icon-#{$key} {
+    &:before {
+      content: $value;
+      font-family: $font-family-icomoon;
+      speak: none;
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none;
+      line-height: 1;
+      font-size: 32px;
+    }
+  }
+}
+
 @font-face {
   font-family: 'icomoon';
-  src:  url('../../fonts/icomoon.eot?bx25uh');
-  src:  url('../../fonts/icomoon.eot?bx25uh#iefix') format('embedded-opentype'),
-    url('../../fonts/icomoon.ttf?bx25uh') format('truetype'),
-    url('../../fonts/icomoon.woff?bx25uh') format('woff'),
-    url('../../fonts/icomoon.svg?bx25uh#icomoon') format('svg');
+  src: url('#{$icomoon-font-path}/icomoon.ttf?rydnse') format('truetype'),
+  url('#{$icomoon-font-path}/icomoon.woff?rydnse') format('woff'),
+  url('#{$icomoon-font-path}/icomoon.svg?rydnse#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
-
-[class^="icon-"], [class*=" icon-"] {
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icomoon' !important;
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  font-size: 80px;
-
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.icon-editais:before {
-  content: "\e900";
-}
-.icon-clock:before {
-  content: "\e901";
-}
-.icon-location:before {
-  content: "\e902";
-}
-.icon-search:before {
-  content: "\e903";
-}
-.icon-libras:before {
-  content: "\e904";
-}
-.icon-contrast:before {
-  content: "\e905";
-}
-.icon-play_btn:before {
-  content: "\e906";
-}
-.icon-arrow_down:before {
-  content: "\e907";
-}
-.icon-arrow_top:before {
-  content: "\e908";
-}
-.icon-arrow_left:before {
-  content: "\e909";
-}
-.icon-arrow_right:before {
-  content: "\e90a";
-}
-.icon-angle_left:before {
-  content: "\e90b";
-}
-.icon-angle_up:before {
-  content: "\e90c";
-}
-.icon-angle_right:before {
-  content: "\e90d";
-}
-.icon-angle_down:before {
-  content: "\e90e";
-}
-.icon-economia-criativa:before {
-  content: "\e90f";
-}
-.icon-dados-br:before {
-  content: "\e910";
-}
-.icon-ouvidoria:before {
-  content: "\e911";
-}
-.icon-consultas-publicas:before {
-  content: "\e912";
-}
-.icon-fale-conosco:before {
-  content: "\e913";
-}
-.icon-multimidia:before {
-  content: "\e914";
-}
-.icon-publicacoes:before {
-  content: "\e915";
-}
-.icon-noticias:before {
-  content: "\e916";
-}
-.icon-assessoria:before {
-  content: "\e917";
-}
-.icon-escritorios-regionais:before {
-  content: "\e918";
-}
-.icon-legislacao:before {
-  content: "\e919";
-}
-.icon-acoes-programadas:before {
-  content: "\e91a";
-}
-.icon-internacional:before {
-  content: "\e91b";
-}
-.icon-vinculadas:before {
-  content: "\e91c";
-}
-.icon-secretarias:before {
-  content: "\e91d";
-}
-.icon-ministerio:before {
-  content: "\e91e";
-}
-.icon-ministro:before {
-  content: "\e91f";
-}
-.icon-pontos-cultura:before {
-  content: "\e920";
-}
-.icon-centros-culturais:before {
-  content: "\e921";
-}
-.icon-patrimonio:before {
-  content: "\e922";
-}
-.icon-apoio:before {
-  content: "\e923";
-}
-.icon-lei-rouanet:before {
-  content: "\e924";
-}
-.icon-snc:before {
-  content: "\e925";
-}
-

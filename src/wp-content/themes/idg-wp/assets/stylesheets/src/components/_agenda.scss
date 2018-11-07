@@ -151,4 +151,10 @@
 			color: #fff;
 		}
 	}
+
+	@include transition(all ease-in-out .2s);
+
+	&.loading .events{
+		opacity: 0.5;
+	}
 }

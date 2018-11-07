@@ -47,11 +47,12 @@
 					date: d,
 					event_category: c,
 				},
-				error: function( jqXHR, textStatus, errorThrown ) {
-					console.log( jqXHR, textStatus, errorThrown );
+				beforeSend: function(){
+					agenda.addClass('loading');
 				},
 				success: function( res ) {
 					if( res.success ){
+						agenda.removeClass('loading');
 						agenda.find('ul').html(res.data.weeks);
 						agenda.find('.monthpicker .month-name').text(res.data.month);
 
@@ -61,7 +62,10 @@
 							agenda.find('.events').html('<div class="event-item"><span class="location">Sem compromissos oficiais.</span></div>');
 						}
 					}
-				}
+				},
+				error: function( jqXHR, textStatus, errorThrown ) {
+					console.log( jqXHR, textStatus, errorThrown );
+				},
 			} );
 		},
 

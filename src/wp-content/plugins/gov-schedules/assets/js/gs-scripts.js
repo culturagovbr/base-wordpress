@@ -8,6 +8,7 @@
 			this.createAgendaCalendar();
 			this.createDaypickerHandle();
 			this.toggleActiveAgenda();
+			this.agendaArchive();
 		},
 
 		createAgendaCalendar: function () {
@@ -78,6 +79,29 @@
 				var date = $('.daypicker li.selected a').data('day');
 				gs.getEvents( date, $(this).data('event-cat') );
 			})
+		},
+
+		agendaArchive: function () {
+			if( $('#archive-datepicker').length ){
+				var tempSelectedDate = '';
+
+				$( '#archive-datepicker' ).datepicker({
+					dateFormat : 'yy-mm-dd',
+					numberOfMonths: 3,
+					showCurrentAtPos: 1,
+					onSelect: function(date, inst) {
+						$(this).datepicker( 'option', 'showCurrentAtPos', 1 );
+						inst.drawMonth +=1;
+
+						var eventCat = $('.agenda-cats a.active').data('event-cat');
+						gs.getEvents( date, 'agenda-cultural' );
+					}
+				});
+
+				$(document).on('click', '.daypicker li a', function (e) {
+					$( '#archive-datepicker' ).datepicker('setDate', $(this).data('day') );
+				});
+			}
 		}
 	};
 })(jQuery);

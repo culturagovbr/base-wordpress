@@ -102,3 +102,28 @@
 	background-color: #fff;
 	cursor: default;
 }
+#archive-datepicker {
+	position: relative;
+}
+
+#archive-datepicker .ui-datepicker{
+	width: 100% !important;
+	max-width: 960px;
+	margin: 0 auto;
+	display: block;
+	border: none;
+	box-shadow: none;
+	padding: 15px;
+}
+
+#archive-datepicker .ui-datepicker-group{
+	flex: 0 0 33.33333%;
+	max-width: 33.33333%;
+	display: inline-block;
+	padding: 0 15px;
+	opacity: 0.4;
+}
+
+#archive-datepicker .ui-datepicker-group.ui-datepicker-group-middle{
+	opacity: 1;
+}

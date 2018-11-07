@@ -205,7 +205,7 @@ get_header();
 						</div>
 				</section>
 
-				<section class="pt-5 pb-5 mb-5" style="background-color: #19224d;">
+				<section class="pt-5 pb-5 mb-5" id="agenda">
 					<div class="container">
 						<div class="row">
 							<div class="col-lg-12">

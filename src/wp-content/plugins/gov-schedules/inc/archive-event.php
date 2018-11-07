@@ -16,6 +16,7 @@ get_header();
 				<?php the_breadcrumb(); ?>
 			</div>
 			<div class="row">
+
 				<div class="col-12 pt-4 pb-4">
 					<?php if ( have_posts() ) : ?>
 
@@ -23,10 +24,54 @@ get_header();
 							<h1 class="page-title text-center mt-1">Agenda</h1>
 						</header>
 
+						<div class="agenda-archive">
+							<div id="archive-datepicker"></div>
+
+							<div id="agenda" class="gs-agenda-container mt-5">
+								<div class="daypicker-wrapper">
+									<ul class="daypicker">
+										<?php
+										setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+										date_default_timezone_set('America/Sao_Paulo');
+
+										for($i = 3; $i >= 1; $i--) {
+											$date = date_create();
+											date_sub($date, date_interval_create_from_date_string( $i . ' days')); ?>
+
+											<li>
+												<a href="#" data-day="<?php echo date_format($date, 'Y-m-d'); ?>">
+													<span><?php echo date_format($date, 'd'); ?></span>
+													<small><?php echo strftime('%a', strtotime( date_format($date, 'Y-m-d') ) ); ?></small>
+												</a>
+											</li>
+
+											<?php
+										}
+
+										for($i = 0; $i <= 3; $i++) {
+											$date = date_create();
+											date_add($date, date_interval_create_from_date_string($i . ' days')); ?>
+
+											<li <?php echo $i === 0 ? 'class="selected"' : ''; ?>>
+												<a href="#" data-day="<?php echo date_format($date, 'Y-m-d'); ?>">
+													<span><?php echo date_format($date, 'd'); ?></span>
+													<small><?php echo strftime('%a', strtotime( date_format($date, 'Y-m-d') ) ); ?></small>
+												</a>
+											</li>
+
+											<?php
+										} ?>
+									</ul>
+								</div>
+								<div class="events"></div>
+							</div>
+						</div>
+
 						<?php
 						while ( have_posts() ) : the_post(); ?>
 
 							<article id="post-<?php the_ID(); ?>" <?php post_class('row mb-5'); ?>>
+
 								<?php
 
 								$locaction = get_post_meta( get_the_ID(), 'dados_do_evento_location', true );

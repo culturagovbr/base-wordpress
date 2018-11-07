@@ -58,7 +58,7 @@
 						if( res.data.events.length ){
 							agenda.find('.events').html(res.data.events);
 						} else {
-							agenda.find('.events').html('<div class="event-item"><span class="location">Sem compromissos oficiais.</span></div>');
+							agenda.find('.events').html('<div class="event-item empty"><span class="location">Sem compromissos oficiais nesta data.</span></div>');
 						}
 					}
 				}

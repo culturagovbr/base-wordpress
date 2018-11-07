@@ -51,7 +51,7 @@ get_header();
 
 											<div class="additional">
 													<span class="location icon icon-location"><?php echo $locaction; ?></span>
-													<a href="#">Adicionar ao meu calendário</a>
+													<span class="icon-calendar"><a href="#">Adicionar ao meu calendário</a></span>
 											</div>
 										</div>
 

@@ -175,9 +175,9 @@
 				font-size: 1.8em;
 			}
 
-				a {
-					color: #222;
-				}
+			a {
+				color: #222;
+			}
 
 			.info {
 				position: absolute;
@@ -211,10 +211,14 @@
 }
 
 #events-archive {
+	.row {
+		margin: 0;
+	}
+
 	.event {
 		align-items: center;
 		background: #EEE;
-		padding: 20px;
+		padding: 30px 20px;
 		margin-bottom: 20px;
 
 		.time {
@@ -228,7 +232,7 @@
 				position: absolute;
 				content: '';
 				width: 1px;
-				height: 80px;
+				height: 60px;
 				background: rgba(0,0,0,.2);
 				top: 50%;
 				right: -1px;
@@ -249,7 +253,46 @@
 			padding-left: 70px;
 
 			h2 {
+				margin-bottom: 10px;
 				font-size: 1.8em;
+			}
+
+			a {
+				color: #222;
+			}
+
+			.additional {
+				span {
+					position: relative;
+					display: inline-block;
+					padding-left: 20px;
+					margin-left: 20px;
+
+					&:first-child {
+						padding: 0;
+						margin: 0;
+
+						&:after {
+							display: none;
+						}
+					}
+
+					&:after {
+						@include transform(translateY(-50%));
+						position: absolute;
+						content: '';
+						width: 1px;
+						height: 100%;
+						background: rgba(0,0,0,.2);
+						top: 50%;
+						left: -1px;
+					}
+
+					&:before {
+						font-size: 15px;
+						margin-right: 10px;
+					}
+				}
 			}
 		}
 	}

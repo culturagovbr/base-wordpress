@@ -5,14 +5,19 @@
 
 	var gs = {
 		init: function () {
-			this.getWeekEvents();
-			this.agenda();
+			this.createAgendaCalendar();
+			this.createDaypickerHandle();
 			this.toggleActiveAgenda();
 		},
 
-		agenda: function () {
+		createAgendaCalendar: function () {
 			$('#datepicker').datepicker({
-				dayNamesMin: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab']
+				dayNamesMin: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+				dateFormat : 'yy-mm-dd',
+				onSelect: function(date) {
+					var eventCat = $('.agenda-cats a.active').data('event-cat');
+					gs.getEvents( date, eventCat );
+				},
 			});
 
 			$('.monthpicker').on('click', function (e) {
@@ -21,7 +26,7 @@
 			})
 		},
 
-		getWeekEvents: function () {
+		createDaypickerHandle: function () {
 			$(document).on('click', '.daypicker li a', function (e) {
 				e.preventDefault();
 				var date = $(this).data('day'),
@@ -48,6 +53,7 @@
 				success: function( res ) {
 					if( res.success ){
 						agenda.find('ul').html(res.data.weeks);
+						agenda.find('.monthpicker .month-name').text(res.data.month);
 
 						if( res.data.events.length ){
 							agenda.find('.events').html(res.data.events);

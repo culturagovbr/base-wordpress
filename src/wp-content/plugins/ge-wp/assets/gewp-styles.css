@@ -400,3 +400,39 @@ article.acao-estrategica .action-name.subacao-title {
 .acoes-estrategicas-resultados-table .bar.active {
     opacity: 1;
 }
+
+.acoes-estrategicas-resultados-table td.blue-bar{
+    color: #007bff;
+}
+
+.acoes-estrategicas-resultados-table td.blue-bar .progress{
+    height: .5rem;
+}
+
+.acoes-estrategicas-resultados-table td.blue-bar .progress-bar{
+    background-color: #007bff;;
+}
+
+.acoes-estrategicas-resultados-table td.green-bar{
+    color: #28a745;
+}
+
+.acoes-estrategicas-resultados-table td.green-bar .progress{
+    height: .5rem;
+}
+
+.acoes-estrategicas-resultados-table td.green-bar .progress-bar{
+    background-color: #28a745;;
+}
+
+.acoes-estrategicas-resultados-table td.red-bar{
+    color: #dc3545;
+}
+
+.acoes-estrategicas-resultados-table td.red-bar .progress{
+    height: .5rem;
+}
+
+.acoes-estrategicas-resultados-table td.red-bar .progress-bar{
+    background-color: #dc3545;;
+}

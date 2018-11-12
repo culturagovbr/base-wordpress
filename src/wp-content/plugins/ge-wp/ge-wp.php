@@ -31,6 +31,7 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
             add_shortcode( 'gestao-estrategica-resultados-acoes-por-unidade', array( $this, 'gewp_shortcodes_actions_by_unity' ) );
             add_shortcode( 'gestao-estrategica-resultados-acoes-por-objetivo', array( $this, 'gewp_shortcodes_actions_by_obj' ) );
             add_shortcode( 'gestao-estrategica-resultados-orcamento-por-unidade', array( $this, 'gewp_shortcodes_budget_by_unity' ) );
+            add_shortcode( 'gestao-estrategica-indicadores', array( $this, 'gewp_shortcodes_indicadores' ) );
 		}
 
 		// Register our public styles
@@ -776,6 +777,98 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
             </table>
 
             <?php return ob_get_clean();
+        }
+
+        public function gewp_shortcodes_indicadores ()
+        {
+			ob_start();
+
+			$db_config = include plugin_dir_path( __FILE__ ) . 'inc/db-config.php';
+			if( !@$db_config ){
+				echo 'Ops...houve um erro durante o carregamento dos dados de configuração com o banco de dados.';
+				return;
+			}
+			$conn_str  = 'host='. $db_config['host'] .' ';
+			$conn_str .= 'port='. $db_config['port'] .' ';
+			$conn_str .= 'dbname='. $db_config['dbname'] .' ';
+			$conn_str .= 'user='. $db_config['user'] .' ';
+			$conn_str .= 'password='. $db_config['password'] .'';
+
+			$conn = pg_connect($conn_str);
+			$sql = $db_config['query-indicardores-por-secretaria'];
+
+			$result = pg_query($conn, $sql);
+			$indicadores_por_secretaria = pg_fetch_all($result);
+
+			function _group_by($array, $key) {
+				$return = array();
+				foreach($array as $val) {
+					$return[$val[$key]][] = $val;
+				}
+				return $return;
+			}
+
+			function calculate_realization_over_meta ($realizado, $meta) {
+				$arr = [];
+				$percent = intval( ( intval( $realizado ) / intval( $meta ) ) * 100 );
+
+
+				switch ($percent) {
+					case ( $percent > 0 && $percent < 85 ):
+						$arr['color'] = 'red-bar';
+						break;
+					case ( $percent >= 85 && $percent <= 99 ):
+						$arr['color'] = 'blue-bar';
+						break;
+					case ( $percent > 99 ):
+						$arr['color'] = 'green-bar';
+						break;
+				}
+				$arr['percent'] = $percent;
+
+				return $arr;
+			}
+
+			$indicadores_por_secretaria = _group_by($indicadores_por_secretaria, 'secdsc'); ?>
+
+			<?php foreach( $indicadores_por_secretaria as $group => $indicadores ): ?>
+	        <table class="table acoes-estrategicas-resultados-table">
+	        <thead>
+	        <tr style="background: #243850;color: #fff;">
+		        <th scope="row" colspan="6"><?php echo $group; ?></th>
+	        </tr>
+	        <tr>
+		        <th scope="col" style="width: 35%">Nome</th>
+		        <th scope="col" class="text-center">Unidade</th>
+		        <th scope="col" class="text-center">Produto</th>
+		        <th scope="col" class="text-center">Orçamento</th>
+		        <th scope="col" class="text-center">Meta atual</th>
+		        <th scope="col" class="text-center">Realizado</th>
+	        </tr>
+	        </thead>
+	        <tbody>
+	            <?php foreach ($indicadores as $desc):  echo '<!--pre>'; print_r($desc); echo '</pre-->';?>
+		            <tr>
+			            <td scope="row"><?php echo $desc['nome']; ?></td>
+			            <td class="text-center"><?php echo $desc['unidade']; ?></td>
+			            <td class="text-center"><?php echo $desc['produto']; ?></td>
+			            <td class="text-center"><?php echo number_format( $desc['orcamento'], 2, ',', '.' ); ?></td>
+			            <td class="text-center"><?php echo $desc['meta'] ? $desc['meta'] : 0; ?></td>
+			            <?php $r = calculate_realization_over_meta( $desc['realizado'] ? $desc['realizado'] : 0, $desc['meta'] ? $desc['meta'] : 0 ); ?>
+			            <td class="text-center <?php echo $r['color'] ?>">
+				            <?php echo $desc['realizado'] ? $desc['realizado'] : 0; ?>
+				            <div class="progress">
+					            <div class="progress-bar" role="progressbar" style="width: <?php echo $r['percent'] ?>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+				            </div>
+			            </td>
+		            </tr>
+	            <?php endforeach; ?>
+	        </tbody>
+	        </table>
+			<?php endforeach; ?>
+
+
+			<?php return ob_get_clean();
         }
 
 	}

@@ -839,10 +839,9 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
 	        </tr>
 	        <tr>
 		        <th scope="col" style="width: 35%">Nome</th>
-		        <th scope="col" class="text-center">Unidade</th>
 		        <th scope="col" class="text-center">Produto</th>
 		        <th scope="col" class="text-center">Orçamento</th>
-		        <th scope="col" class="text-center">Meta atual</th>
+		        <th scope="col" class="text-center">Previsto</th>
 		        <th scope="col" class="text-center">Realizado</th>
 	        </tr>
 	        </thead>
@@ -850,7 +849,6 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
 	            <?php foreach ($indicadores as $desc):  echo '<!--pre>'; print_r($desc); echo '</pre-->';?>
 		            <tr>
 			            <td scope="row"><?php echo $desc['nome']; ?></td>
-			            <td class="text-center"><?php echo $desc['unidade']; ?></td>
 			            <td class="text-center"><?php echo $desc['produto']; ?></td>
 			            <td class="text-center"><?php echo number_format( $desc['orcamento'], 2, ',', '.' ); ?></td>
 			            <td class="text-center"><?php echo $desc['meta'] ? $desc['meta'] : 0; ?></td>

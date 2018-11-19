@@ -32,6 +32,7 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
             add_shortcode( 'gestao-estrategica-resultados-acoes-por-objetivo', array( $this, 'gewp_shortcodes_actions_by_obj' ) );
             add_shortcode( 'gestao-estrategica-resultados-orcamento-por-unidade', array( $this, 'gewp_shortcodes_budget_by_unity' ) );
             add_shortcode( 'gestao-estrategica-indicadores', array( $this, 'gewp_shortcodes_indicadores' ) );
+            add_shortcode( 'gestao-estrategica-pdf-viewer', array( $this, 'gewp_shortcodes_pdf_viewer' ) );
 		}
 
 		// Register our public styles
@@ -44,6 +45,8 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
 		public function register_gewp_scripts() {
 			wp_register_script( 'gewp-masonry', plugins_url( 'ge-wp/assets/masonry.pkgd.min.js' ) );
 			wp_enqueue_script( 'gewp-masonry' );
+			wp_register_script( 'jquery-media', plugins_url( 'ge-wp/assets/jquery.media.js' ) );
+			wp_enqueue_script( 'jquery-media' );
 			wp_register_script( 'gewp-scripts', plugins_url( 'ge-wp/assets/gewp-scripts.js' ) );
 			wp_enqueue_script( 'gewp-scripts' );
 		}
@@ -867,6 +870,15 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
 
 
 			<?php return ob_get_clean();
+        }
+
+        public function gewp_shortcodes_pdf_viewer ($atts)
+        {
+			$a = shortcode_atts( array(
+				'pdf' => 'something'
+			), $atts );
+
+			return '<a class="pdf-viewer" href="'. $a['pdf'] .'"></a>';
         }
 
 	}

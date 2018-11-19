@@ -8,6 +8,7 @@
             this.initPlugins();
             this.counterAnim();
             this.barAnim();
+            this.pdfViewer();
         },
 
         initPlugins: function () {
@@ -55,6 +56,15 @@
 
             if( $('.acoes-estrategicas-resultados-table').length ){
                 startBarAnim();
+            }
+        },
+
+	    pdfViewer: function () {
+	        if( $('.pdf-viewer').length ){
+		        $('a.pdf-viewer').media({
+			        width: 1100,
+			        height: 680
+		        });
             }
         }
     };

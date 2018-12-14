@@ -842,10 +842,10 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
 	        </tr>
 	        <tr>
 		        <th scope="col" style="width: 35%">Nome</th>
-		        <th scope="col" class="text-center">Produto</th>
-		        <th scope="col" class="text-center">Orçamento</th>
-		        <th scope="col" class="text-center">Previsto</th>
-		        <th scope="col" class="text-center">Realizado</th>
+		        <th scope="col" style="width: 20%" class="text-center">Produto</th>
+		        <th scope="col" style="width: 15%" class="text-center">Orçamento</th>
+		        <th scope="col" style="width: 15%" class="text-center">Previsto</th>
+		        <th scope="col" style="width: 15%" class="text-center">Realizado</th>
 	        </tr>
 	        </thead>
 	        <tbody>

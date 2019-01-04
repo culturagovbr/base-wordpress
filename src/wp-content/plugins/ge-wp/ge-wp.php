@@ -218,14 +218,11 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
                             <div class="dropdown-menu" aria-labelledby="filter-3">
                                 <h6 class="dropdown-header">Selecione uma unidade</h6>
 	                            <?php
-	                            foreach ( $unidades as $unidade ) { ?>
-                                <?php 
-                                  if ( !isset($unidade['id_secretaria']) ) {
-                                    break;
-                                  }
-                                ?>
 
-                                    <a class="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?unidade=') . $unidade['id_secretaria']; ?>"><?php echo $unidade['nome_secretaria']; ?></a>
+	                            foreach ( $unidades as $unidade ) { ?>
+                                <?php if ( $unidade['nome_secretaria'] !== '(SEM SECRETARIA VINCULADA)' ) : ?>
+                                  <a class="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?unidade=') . $unidade['id_secretaria']; ?>"><?php echo $unidade['nome_secretaria']; ?></a>
+                                <?php endif ?>
 	                            <?php } ?>
                             </div>			    
                         </div>

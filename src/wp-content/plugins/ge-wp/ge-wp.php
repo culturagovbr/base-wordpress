@@ -220,7 +220,7 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
 	                            <?php
 	                            foreach ( $unidades as $unidade ) { ?>
                                 <?php 
-                                  if ( isset($unidade['id_secretaria']) ) {
+                                  if ( !isset($unidade['id_secretaria']) ) {
                                     break;
                                   }
                                 ?>

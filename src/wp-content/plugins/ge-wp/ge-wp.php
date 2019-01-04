@@ -219,6 +219,12 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
                                 <h6 class="dropdown-header">Selecione uma unidade</h6>
 	                            <?php
 	                            foreach ( $unidades as $unidade ) { ?>
+                                <?php 
+                                  if (!$unidade['id_secretaria']) {
+                                    break;
+                                  }
+                                ?>
+
                                     <a class="dropdown-item" href="<?php echo home_url('/acoes-estrategicas/?unidade=') . $unidade['id_secretaria']; ?>"><?php echo $unidade['nome_secretaria']; ?></a>
 	                            <?php } ?>
                             </div>			    
@@ -498,11 +504,11 @@ if( ! class_exists('GestaoEstrategicaWP') ) :
 			$result = pg_query($conn, $sql);
 			$objectives = pg_fetch_all($result);
 
-			echo '<ul class="acoes-estrategicas-objetivos">';
-			foreach ( $objectives as $objective ) {
-                echo '<li><a href="'. home_url('/acoes-estrategicas/?objetivo=') . $objective['id_objetivo'] .'">'. $objective['nome_objetivo'] .'</a></li>';
-			}
-			echo '</ul>';
+			// echo '<ul class="acoes-estrategicas-objetivos">';
+			// foreach ( $objectives as $objective ) {
+   //              echo '<li><a href="'. home_url('/acoes-estrategicas/?objetivo=') . $objective['id_objetivo'] .'">'. $objective['nome_objetivo'] .'</a></li>';
+			// }
+			// echo '</ul>';
 
 			?>
 

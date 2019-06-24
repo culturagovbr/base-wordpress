@@ -2,7 +2,7 @@
 <ul class="et-social-icons">
 
 	<li class="et-social-icon et-social-facebook">
-		<a href="https://www.facebook.com/MinisterioDaCultura/?fref=ts" class="icon" target="_blank">
+		<a href="https://www.facebook.com/SecretariaEspecialDaCultura/" class="icon" target="_blank">
 			<span>Facebook</span>
 		</a>
 	</li>
@@ -12,7 +12,7 @@
 		</a>
 	</li>
 	<li class="et-social-icon et-social-youtube">
-		<a href="https://www.youtube.com/user/ministeriodacultura" class="icon" target="_blank">
+		<a href="http://www.youtube.com/c/SecretariaEspecialdaCultura class="icon" target="_blank">
 			<span>youtube</span>
 		</a>
 	</li>

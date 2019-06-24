@@ -12,7 +12,7 @@
 		</a>
 	</li>
 	<li class="et-social-icon et-social-youtube">
-		<a href="http://www.youtube.com/c/SecretariaEspecialdaCultura class="icon" target="_blank">
+		<a href="http://www.youtube.com/c/SecretariaEspecialdaCultura" class="icon" target="_blank">
 			<span>youtube</span>
 		</a>
 	</li>

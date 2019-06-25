@@ -34,23 +34,15 @@
     <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
 </head>
 <body <?php body_class(); ?>>
-<div id="barra-brasil" style="background:#7F7F7F; height: 20px; padding:0 0 0 10px;display:block;"> 
-    <ul id="menu-barra-temp" style="list-style:none;">
-        <li style="display:inline; float:left;padding-right:10px; margin-right:10px; border-right:1px solid #EDEDED"><a href="http://brasil.gov.br" style="font-family:sans,sans-serif; text-decoration:none; color:white;">Portal do Governo Brasileiro</a></li> 
-        <li><a style="font-family:sans,sans-serif; text-decoration:none; color:white;" href="http://epwg.governoeletronico.gov.br/barra/atualize.html">Atualize sua Barra de Governo</a></li>
-    </ul>
+<div id="barra-brasil" style="background:#7F7F7F; height: 20px; padding:0 0 0 10px;display:block;">
+  <ul id="menu-barra-temp" style="list-style:none;">
+    <li style="display:inline; float:left;padding-right:10px; margin-right:10px; border-right:1px solid #EDEDED">
+        <a href="http://brasil.gov.br" style="font-family:sans,sans-serif; text-decoration:none; color:white;">Portal do Governo Brasileiro</a>
+    </li>
+  </ul>
 </div>
-<div id="header" role="banner">
-    <div class="clearfix">
-        <div id="logo-header-tema">
-            <a href="<?php echo home_url(); ?>" title="<?php bloginfo('name'); ?>">
-                <img src="<?php echo esc_url( $template_directory_uri . '/../wp-premioculturaspopulares/assets/img/populares-2018-header-2.png' ); ?>" alt="" />
-            </a>
 
-        </div>
-    </div>
-
-</div>
+<div id="header" role="banner"></div>
 <!-- Menu -->
 
 <div id="page-container">

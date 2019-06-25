@@ -51,6 +51,10 @@ if (!is_page_template('page-template-blank.php')) : ?>
 
 <?php wp_footer(); ?>
 
+<script defer="defer" src="//barra.brasil.gov.br/barra_2.0.js" type="text/javascript"></script>
+
+
+
 
 </body>
 </html>

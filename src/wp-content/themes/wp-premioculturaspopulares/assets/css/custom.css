@@ -1584,7 +1584,7 @@ h2, .et_pb_post h2 {
 
 .posts-list li:first-child {
     margin: 0;
-    padding: 0;
+    padding: 20px;
     border: none;
 }
 

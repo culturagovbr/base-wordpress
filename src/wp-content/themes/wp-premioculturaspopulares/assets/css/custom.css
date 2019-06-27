@@ -1558,3 +1558,36 @@ h2, .et_pb_post h2 {
     margin-left: 0;
 }
 
+
+.category-title {
+    display: block;
+    text-align: center;
+    font-size: 40px;
+}
+
+.wrapper-align {
+    width: 1200px;
+    margin: 0 auto;
+    padding: 50px 0;
+}
+
+.posts-list {
+    margin: 0;
+    padding: 0;
+}
+
+.posts-list li {
+    margin-top: 20px;
+    padding: 20px;
+    border-top: 1px solid #CCC;
+}
+
+.posts-list li:first-child {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.posts-list li h2 {
+    margin: 0;
+}

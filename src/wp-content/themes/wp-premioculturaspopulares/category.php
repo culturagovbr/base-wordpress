@@ -1,21 +1,21 @@
 <?php get_header(); ?>
 
-    <div id="main-content">
-        <div class="container">
-            <div id="content-area" class="clearfix">
-                <h1 class="page-title text-center">
+<div id="main-content">
+    <div class="container">
+        <div id="content-area" class="clearfix">
+            <div class="wrapper-align">
+                <h1 class="category-title">
                     <?php echo get_cat_name(get_query_var('cat')); ?>
                 </h1>
 
-                <?php $paged = (get_query_var('paged')) ? get_query_var('paged') : 1; ?>
-
                 <?php if (have_posts()) : ?>
-                    <ul id="posts-list">
 
-                        <?php while (have_posts()) : ?>
-                            <?php the_post(); ?>
+                    <ul class="posts-list">
+
+                        <?php while ( have_posts() ) : the_post(); ?>
 
                             <li id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+
                                 <div class="categories">
                                     <?php
                                         $categories = get_the_category();
@@ -33,37 +33,25 @@
                                 </div>
 
                                 <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-                                <p><?php echo idg_excerpt(); ?></p>
 
-                                <?php if (get_the_tags()) : ?>
-                                    <div class="tags-list">
-                                        <?php the_tags('<span>tags:</span>', ''); ?>
-                                    </div>
-                                <?php endif; ?>
+                                <span class="excerpt"><?php the_excerpt(); ?></span>
 
-                                <span class="details">
-                          por Ascom
-                                    última modificação em <?php the_modified_date('d/m/Y'); ?> <?php the_modified_time('H'); ?>
-                                    h<?php the_modified_time('i'); ?>
-                        </span>
-                            </li>
+                            </li> <!-- .et_pb_post -->
 
                         <?php endwhile; ?>
-
-                        <?php if ( function_exists('wp_bootstrap_pagination') ){
-                            wp_bootstrap_pagination();
-                        }; ?>
-
 
                     </ul>
 
                 <?php else : ?>
 
-                    <?php get_template_part('template-parts/content', 'none'); ?>
+                    <p>Não há nenhum post.</p>
 
                 <?php endif; ?>
             </div>
-        </div>
-    </div>
+
+        </div> <!-- #content-area -->
+    </div> <!-- .container -->
+
+</div> <!-- #main-content -->
 
 <?php get_footer(); ?>

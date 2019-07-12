@@ -38,3 +38,8 @@ node_modules
 
 # For specific projects
 src/wp-content/plugins/ge-wp/inc/db-config.php
+
+# docker
+docker
+docker-compose.yml
+db/base_wp.sql

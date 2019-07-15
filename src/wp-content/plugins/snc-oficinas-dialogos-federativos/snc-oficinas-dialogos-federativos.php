@@ -26,8 +26,14 @@ class SNC_Oficinas_Dialogos_Federativos {
 		add_action('init', array($this, 'inscricao_oficina_cpt'));
 		add_action('init', array($this, 'set_shortcodes'));
 		add_action('get_header', array($this, 'add_acf_form_head'), 0);
-		add_action('acf/pre_save_post', array($this, 'preprocess_main_form'));
-		add_action('acf/save_post', array($this, 'postprocess_main_form'));
+
+//		add_action('acf/pre_save_post', array($this, 'preprocess_main_form'));
+//		add_action('acf/save_post', array($this, 'postprocess_main_form'));
+         add_action('acf/validate_save_post', array($this,'snc_acf_validate_save_post'), 10, 0);
+
+//        add_filter('acf/validate_value', array($this, 'snc_acf_validate_value'), 10, 4);
+//        add_action('acf/validate_save_post', array($this,'snc_acf_validate_save_post'));
+
 		add_action('wp_enqueue_scripts', array($this, 'register_plugin_styles'));
 		add_action('wp_enqueue_scripts', array($this, 'register_plugin_scripts'));
 		add_action('template_redirect', array($this, 'redirect_to_auth'));
@@ -84,6 +90,12 @@ class SNC_Oficinas_Dialogos_Federativos {
 	{
 		require_once SNC_ODF_PLUGIN_PATH . 'inc/shortcodes.php';
 		new SNC_Oficinas_Dialogos_Federativos_Shortcodes();
+
+        require_once SNC_ODF_PLUGIN_PATH . 'inc/snc-oficinas-formulario-inscricao-shortcode.php';
+        new SNC_Oficinas_Formulario_Inscricao_Shortcode();
+
+		require_once SNC_ODF_PLUGIN_PATH . 'inc/snc-oficinas-visualizar-inscricao-shortcode.php';
+		new SNC_Oficinas_Visualizar_Inscricao_Shortcode();
 	}
 
 	public function add_acf_form_head () {
@@ -91,6 +103,67 @@ class SNC_Oficinas_Dialogos_Federativos {
 			acf_form_head();
 		}
 	}
+
+    function snc_acf_validate_save_post() {
+
+        // check if user is an administrator
+        if( current_user_can('manage_options') ) {
+
+            // clear all errors
+            acf_reset_validation_errors();
+        }
+        // clear all errors
+//        acf_reset_validation_errors();
+//    echo 'asdsadasd';
+//    var_dump($_POST); die;
+        // check custom $_POST data
+        if($_POST['acf[field_5d125f7b8e05f]']) {
+//        $field = get_field_object($selector);
+            acf_add_validation_error( 'acf[field_5d125f7b8e05f]', 'Please check this input to proceed' );
+        }
+
+    }
+
+    public function snc_acf_validate_value( $valid, $value, $field, $input )
+    {
+        return 'aaaaaaa';
+//        acf_add_validation_error( 'acf[field_5d12728b631d5]', 'Please check this input to proceed' );
+//        acf_add_validation_error( $input, $message );
+
+
+//        return;
+//        return 'Image must be at least 960px wide';
+
+// echo 'aaaaaaa';
+//        var_dump($valid, $value, $field, $input);  die;
+        // bail early if value is already invalid
+//        if( !$valid ) {
+//
+//            return $valid;
+//
+//        }
+//
+//        return 'Image must be at least 960px wide';
+
+
+
+//        // load image data
+//        $data = wp_get_attachment_image_src( $value, 'full' );
+//        $width = $data[1];
+//        $height = $data[2];
+//
+//        if( $width < 960 ) {
+//
+//            $valid = 'Image must be at least 960px wide';
+//
+//        }
+
+
+        // return
+//        return $valid;
+
+
+    }
 
 	/**
 	 * Process data before save indication post
@@ -109,6 +182,10 @@ class SNC_Oficinas_Dialogos_Federativos {
 		}
 
 		$post = get_post($post_id);
+        $user = wp_get_current_user();
+        echo 'apos submissao e antes de salvar';
+        var_dump($user);
+        var_dump($post); die;
 		$post = array('post_type' => 'inscricao-oficina', 'post_status' => 'publish');
 		$post_id = wp_insert_post($post);
 
@@ -127,6 +204,9 @@ class SNC_Oficinas_Dialogos_Federativos {
 	public function postprocess_main_form($post_id)
 	{
 		$update = get_post_meta( $post_id, '_inscription_validated', true );
+
+		echo 'apos submissao e depois de salvar';
+		var_dump($update); die;
 		if ( $update ) {
 			return;
 		}
@@ -168,7 +248,7 @@ class SNC_Oficinas_Dialogos_Federativos {
 
 	}
 
-	public function get_email_template($user_type = 'user', $message)
+	private function get_email_template($user_type = 'user', $message)
 	{
 		$user = wp_get_current_user();
 		ob_start();

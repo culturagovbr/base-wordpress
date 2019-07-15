@@ -100,8 +100,34 @@
 	font-weight: bold;
 }
 
+.entry-content .updated p {
+	font-size: 14px !important;
+	line-height: 1.5;
+	margin: 0.5em 0;
+	padding: 2px;
+	text-shadow: none;
+	color: #fff;
+}
+
+.entry-content .updated {
+
+
+	position: relative;
+	display: block;
+	margin: 5px 0 15px;
+	padding: 1px 12px;
+	min-height: 0px;
+	background-color: #46b450;
+}
+
+.acf-error-message.-success {
+	background-color: #46b450;
+	border-color: #32973b;
+}
+																		 }
+
 #snc-main-form .acf-field-message {
-	display: none;
+	/*display: none;*/
 }
 
 #snc-main-form .acf-form-submit {

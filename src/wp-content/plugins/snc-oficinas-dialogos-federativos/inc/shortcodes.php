@@ -9,44 +9,9 @@ class SNC_Oficinas_Dialogos_Federativos_Shortcodes
 	public function __construct()
 	{
 		if( !is_admin() ){
-			add_shortcode('snc-subscription-form', array($this, 'snc_minc_subscription_form_shortcode')); // Inscrição
 			add_shortcode('snc-register', array($this, 'snc_minc_auth_form')); // Registro de usuário
 			add_shortcode('snc-login', array($this, 'snc_minc_login_form')); // Login
 		}
-	}
-
-	/**
-	 * Shortcode to show ACF form
-	 *
-	 * @param $atts
-	 * @return string
-	 */
-	public function snc_minc_subscription_form_shortcode($atts)
-	{
-		$atts = shortcode_atts(array(
-			'form-group-id' => '',
-			'return' => home_url('/inscricao/?sent=true#message')
-		), $atts);
-
-		ob_start();
-
-		$settings = array(
-			'field_groups' => array($atts['form-group-id']),
-			'id' => 'snc-main-form',
-			'post_id' => 'inscricao-oficina',
-			'new_post' => array(
-				'post_type' => 'inscricao-oficina',
-				'post_status' => 'publish'
-			),
-			'updated_message' => 'Inscrição enviada com sucesso.',
-			// 'return' => $atts['return'],
-			'return' =>  home_url('/inscricao'),
-			'uploader' => 'basic',
-			'submit_value' => 'Enviar inscrição'
-		);
-		acf_form($settings);
-
-		return ob_get_clean();
 	}
 
 	/**

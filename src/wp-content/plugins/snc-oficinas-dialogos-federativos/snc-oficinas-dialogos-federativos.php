@@ -45,9 +45,13 @@ class SNC_Oficinas_Dialogos_Federativos
         // add_action('wp_mail_failed', array($this, 'action_wp_mail_failed'), 10, 1);
         add_action('get_footer', array($this, 'debug_plugin'));
 
-        // extensions
+        // shortcodes
         require( SNC_ODF_PLUGIN_PATH . 'inc/snc-oficinas-registro-usuario-shortcode.php' );
         require(SNC_ODF_PLUGIN_PATH . 'inc/snc-oficinas-formulario-inscricao-shortcode.php');
+
+        // helpers
+        require( SNC_ODF_PLUGIN_PATH . 'helpers/snc-oficinas-filter.php' );
+        require(SNC_ODF_PLUGIN_PATH . 'helpers/snc-oficinas-validator.php');
 
     }
 

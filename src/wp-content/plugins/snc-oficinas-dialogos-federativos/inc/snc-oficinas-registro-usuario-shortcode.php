@@ -4,15 +4,15 @@
  * Class Oscar_Minc_Shortcodes
  *
  */
-class SNC_Oficinas_Dialogos_Federativos_Shortcodes
+class SNC_Oficinas_Registro_Usuario_Shortcode
 {
     public function __construct()
     {
         if (!is_admin()) {
-            add_shortcode('snc-subscription-form', array($this, 'snc_minc_subscription_form_shortcode')); // Inscrição
             add_shortcode('snc-register', array($this, 'snc_minc_auth_form')); // Registro de usuário
-            add_shortcode('snc-login', array($this, 'snc_minc_login_form')); // Login
         }
+
+        add_action( 'init', array( &$this, 'registration' ) );
 
         add_action('wp_ajax_nopriv_snc_get_cities_options', array($this, 'snc_print_cities_options'));
         add_action('wp_ajax_snc_get_cities_options', array($this, 'snc_print_cities_options'));
@@ -62,7 +62,7 @@ class SNC_Oficinas_Dialogos_Federativos_Shortcodes
 
         if ($_POST['reg_submit']) {
             $errors = $this->validation();
-            $this->registration();
+//            $this->registration();
         }
 
         $name = null;
@@ -72,7 +72,7 @@ class SNC_Oficinas_Dialogos_Federativos_Shortcodes
         $state = $_POST['state'];
         $county = $_POST['county'];
         $schooling = $_POST['schooling'];
-        $gender = $_POST['$gender'];
+        $gender = $_POST['gender'];
 
         if (is_user_logged_in()) {
             $current_user = wp_get_current_user();
@@ -208,11 +208,10 @@ class SNC_Oficinas_Dialogos_Federativos_Shortcodes
                 </div>
 
                 <div class="form-group col-md-8">
-                    <label class="login-field-icon fui-user" for="complement">Complemento <span
-                                style="color: red;">*</span></label>
+                    <label class="login-field-icon fui-user" for="complement">Complemento</label>
                     <input name="complement" type="text" class="form-control login-field"
                            value="<?php echo(isset($_POST['complement']) ? $_POST['complement'] : $complement); ?>"
-                           id="complement" <?= $required; ?>/>
+                           id="complement"/>
                 </div>
 
                 <div class="form-group col-md-4">
@@ -348,7 +347,6 @@ class SNC_Oficinas_Dialogos_Federativos_Shortcodes
                 empty($state) ||
                 empty($neighborhood) ||
                 empty($number) ||
-                empty($complement) ||
                 empty($zipcode) ||
                 empty($phone) ||
                 empty($celphone) ||
@@ -371,7 +369,6 @@ class SNC_Oficinas_Dialogos_Federativos_Shortcodes
                 empty($state) ||
                 empty($neighborhood) ||
                 empty($number) ||
-                empty($complement) ||
                 empty($zipcode) ||
                 empty($phone) ||
                 empty($celphone) ||
@@ -412,8 +409,12 @@ class SNC_Oficinas_Dialogos_Federativos_Shortcodes
      * Register user
      *
      */
-    private function registration()
+    public function registration()
     {
+        if (!$_POST['reg_submit']) {
+             return true;
+        }
+
         $username = $_POST['fullname'];
         $birthday = $_POST['birthday'];
         $schooling = $_POST['schooling'];
@@ -516,9 +517,38 @@ class SNC_Oficinas_Dialogos_Federativos_Shortcodes
                     add_user_meta($register_user, '_user_webpage', esc_attr($webpage), true);
                     add_user_meta($register_user, '_user_socials', esc_attr($socials), true);
 
-                    echo '<div class="alert alert-success">';
+                    $creds = array(
+                        'user_login' => $userdata['user_email'],
+                        'user_password' => $userdata['user_pass'],
+                        'remember' => true
+                    );
+
+                    $user = wp_signon( $creds, false );
+
+                    if ( is_wp_error($user) ) {
+                        echo $user->get_error_message();
+                    } else {
+                        wp_clear_auth_cookie();
+                        do_action('wp_login', $user->ID);
+                        wp_set_current_user($user->ID);
+                        wp_set_auth_cookie($user->ID, true);
+                        $redirect_to = home_url('/inscricao');
+                        wp_safe_redirect($redirect_to);
+                        exit;
+                    }
+
+                    if ( is_wp_error($user) )
+                        echo $user->get_error_message();
+
+                    echo '<div class="alert alert-success">';  var_dump($user);
                     echo 'Cadastro realizado com sucesso. Você será redirecionado para a tela de login em <b class="time-before-redirect">5</b> segundos, caso isso não ocorra automaticamente, clique <strong><a href="' . home_url('/login') . '">aqui</a></strong>!';
                     echo '</div>';
+
+//                    $url = home_url('/inscricao');
+//                    if (wp_redirect($url)) {
+//                        exit;
+//                    }
+
                     $_POST = array(); ?>
                     <script type="text/javascript">
                         jQuery('#snc-register-form').hide();
@@ -528,11 +558,29 @@ class SNC_Oficinas_Dialogos_Federativos_Shortcodes
                             jQuery('.time-before-redirect').text(counter);
                             if (counter === 0) {
                                 clearInterval(interval);
-                                window.location = '<?php echo home_url("/login"); ?>';
+                                window.location = '<?php echo home_url("/inscricao"); ?>';
                             }
                         }, 1000);
                     </script>
-                <?php } else {
+                    <?php
+//                    wp_new_user_notification($register_user);
+
+
+                    if (is_wp_error($user)) {
+                        echo '<div class="alert alert-danger">';
+                        echo '<strong>' . $user->get_error_message() . '</strong>';
+                        echo '</div>';
+                        return;
+                    }
+
+//                    sleep(4000);
+
+                    // redirect user
+//                    $url = home_url('/login');
+//                    wp_redirect( "{$url}?status=1" );
+//                    exit();
+
+                } else {
                     echo '<div class="alert alert-danger">';
                     echo '<strong>' . $register_user->get_error_message() . '</strong>';
                     echo '</div>';
@@ -600,42 +648,5 @@ class SNC_Oficinas_Dialogos_Federativos_Shortcodes
         die;
     }
 
-    /**
-     * Login form
-     *
-     */
-    public function snc_minc_login_form()
-    { ?>
-
-        <div class="text-right">
-            <p>Ainda não possui cadastro? Faça o seu <b><a href="<?php echo home_url('/registro'); ?>">aqui</a>.</b></p>
-        </div>
-
-        <?php if (isset($_GET['login']) && $_GET['login'] === 'failed') : ?>
-        <div class="alert alert-danger" role="alert">
-            Erro ao realizar o login. Por favor, verifique as informações e tente novamente
-        </div>
-    <?php endif;
-
-        if (isset($_GET['checkemail']) && $_GET['checkemail'] === 'confirm') : ?>
-            <div class="alert alert-success" role="alert">
-                Cheque seu email para recuperar sua senha.
-            </div>
-        <?php endif;
-
-        wp_login_form(
-            array(
-                'redirect' => home_url(),
-                'form_id' => 'snc-login-form',
-                'label_username' => __('Endereço de e-mail'),
-                'value_username' => isset($_COOKIE['log']) ? $_COOKIE['log'] : null
-            )
-        ); ?>
-
-        <!--<p><a href="<?php /*echo wp_lostpassword_url( home_url() ); */
-        ?>" class="forget-password-link" title="Esqueceu a senha?">Esqueceu a senha?</a></p>-->
-
-        <?php
-    }
-
 }
+new SNC_Oficinas_Registro_Usuario_Shortcode();

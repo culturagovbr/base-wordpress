@@ -201,3 +201,5 @@ class SNC_Oficinas_Visualizar_Inscricao_Shortcode
     }
 
 }
+
+new SNC_Oficinas_Visualizar_Inscricao_Shortcode();

@@ -139,7 +139,7 @@ class SNC_Oficinas_Dialogos_Federativos {
 		$to = 'rickmanu@gmail.com';
 		$headers[] = 'From: ' . bloginfo('name') . ' <automatico@cultura.gov.br>';
 		// $headers[] = 'Reply-To: ' . $oscar_minc_options['oscar_minc_email_from_name'] . ' <' . $oscar_minc_options['oscar_minc_email_from'] . '>';
-		$headers[] = 'Reply-To: Galdar Tec <contato@galdar.com.br>';
+//		$headers[] = 'Reply-To: Galdar Tec <contato@galdar.com.br>';
 		$subject = 'Nova inscrição ao SNC.';
 
 		$msg  = 'Uma nova inscrição foi recebida em Oscar.<br>';
@@ -198,6 +198,8 @@ class SNC_Oficinas_Dialogos_Federativos {
 	{
 		wp_enqueue_script('jquery-mask', SNC_ODF_PLUGIN_URL . 'assets/jquery.mask.min.js', array('jquery'), false, true);
 		wp_enqueue_script(SNC_ODF_SLUG . '-script', SNC_ODF_PLUGIN_URL . 'assets/'. SNC_ODF_SLUG . '-script.js', array('jquery'), false, true);
+        wp_localize_script(SNC_ODF_SLUG . '-script', 'vars', array( 'ajaxurl' => admin_url('admin-ajax.php')));
+
 	}
 
 	/**

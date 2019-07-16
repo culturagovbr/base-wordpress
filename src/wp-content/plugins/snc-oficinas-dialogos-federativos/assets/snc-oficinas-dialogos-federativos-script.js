@@ -2,6 +2,24 @@
     $(document).ready(function() {
         app.init();
         app.mainFormUtils();
+
+        $('#snc_state').change(function() {
+            if ($(this).val() != '') {
+                $('#snc_county').html('<option value="">Carregando...</option>');
+
+                $.ajax({
+                    url: vars.ajaxurl,
+                    type: 'post',
+                    data: {
+                        action: 'snc_get_cities_options',
+                        uf: $('#snc_state').val(),
+                        selected: $('#snc_county').val()},
+                    success: function(data) {
+                        $('#snc_county').html(data);
+                    }
+                });
+            }
+        })
     });
 
     var app = {

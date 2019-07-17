@@ -12,7 +12,7 @@ class SNC_Oficinas_Formulario_Inscricao_Shortcode
 
         add_action('acf/pre_save_post', array($this, 'preprocess_main_form'));
 //		add_action('acf/save_post', array($this, 'postprocess_main_form'));
-        add_action('acf/validate_save_post', array($this, 'snc_acf_validate_save_post'), 10, 0);
+//        add_action('acf/validate_save_post', array($this, 'snc_acf_validate_save_post'), 10, 0);
 
         add_filter('wp_mail_content_type', array($this, 'set_email_content_type'));
 //        add_filter('wp_mail_from', array($this, 'oscar_minc_wp_mail_from'));
@@ -190,8 +190,8 @@ class SNC_Oficinas_Formulario_Inscricao_Shortcode
 
         $to = 'cleber.santos@basis.com.br';
         $headers[] = 'From: ' . bloginfo('name') . ' <automatico@cultura.gov.br>';
-        $subject = 'Inscrição oficinas dos Diálogos Federativos - Cultura de Ponto à Ponta';
-        $body = "<h2>Olá, {$user->display_name}</h2>";
+        $subject = 'Ministério da Cidadania - Oficinas dos Diálogos Federativos - Cultura de Ponto à Ponta';
+        $body = "<h2>Prezado, {$user->display_name}</h2>";
         $body .= '<p>Você realizou sua inscrição na Oficina dos Diálogos Federativos - Cultura de Ponto à Ponta.</p><br>';
         $body .= '<p>Dados da inscrição:</p>';
         $body .= '<p>Localidade: ' . get_field('indique_a_unidade_da_federacao_onde_voce_participara_da_oficina', $post_id) . '</p><br>';

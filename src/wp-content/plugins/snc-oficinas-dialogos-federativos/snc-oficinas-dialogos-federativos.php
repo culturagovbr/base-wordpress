@@ -39,6 +39,8 @@ class SNC_Oficinas_Dialogos_Federativos
         add_action('template_redirect', array($this, 'redirect_to_auth'));
         add_action('login_redirect', array($this, 'login_redirect'), 10, 3);
         add_action('manage_posts_custom_column', array($this, 'fill_custom_columns'), 10, 2);
+        add_filter('page_template', array($this, 'wpa3396_page_template'));
+
 
         add_filter('manage_edit-inscricao-oficina_columns', array($this, 'add_custom_columns'));
 
@@ -46,11 +48,11 @@ class SNC_Oficinas_Dialogos_Federativos
         add_action('get_footer', array($this, 'debug_plugin'));
 
         // shortcodes
-        require( SNC_ODF_PLUGIN_PATH . 'inc/snc-oficinas-registro-usuario-shortcode.php' );
+        require(SNC_ODF_PLUGIN_PATH . 'inc/snc-oficinas-registro-usuario-shortcode.php');
         require(SNC_ODF_PLUGIN_PATH . 'inc/snc-oficinas-formulario-inscricao-shortcode.php');
 
         // helpers
-        require( SNC_ODF_PLUGIN_PATH . 'helpers/snc-oficinas-filter.php' );
+        require(SNC_ODF_PLUGIN_PATH . 'helpers/snc-oficinas-filter.php');
         require(SNC_ODF_PLUGIN_PATH . 'helpers/snc-oficinas-validator.php');
 
     }
@@ -71,6 +73,24 @@ class SNC_Oficinas_Dialogos_Federativos
 
     public function inscricao_oficina_cpt()
     {
+        register_post_type('oficinas', array(
+                'labels' => array(
+                    'name' => 'Oficinas',
+                    'singular_name' => 'Oficinas',
+                    'add_new' => 'Nova oficina',
+                    'add_new_item' => 'Nova oficina',
+                    'search_items' => 'Procurar oficina',
+                    'not_found' => 'Nenhuma oficina encontrada',
+                ),
+                'description' => 'Cadastro de Oficinas dos Diálogos Federativos',
+                'public' => true,
+                'exclude_from_search' => false,
+                'publicly_queryable' => false,
+                'supports' => array('title'),
+                'menu_icon' => 'dashicons-groups'
+            )
+        );
+
         register_post_type('inscricao-oficina', array(
                 'labels' => array(
                     'name' => 'Inscrições para as Oficinas',
@@ -234,6 +254,14 @@ class SNC_Oficinas_Dialogos_Federativos
                 echo get_user_meta($post_author_id, '_user_state', true);
                 break;
         }
+    }
+
+    public function wpa3396_page_template($page_template)
+    {
+        if (is_page('visualizar-email')) {
+            $page_template = SNC_ODF_PLUGIN_PATH . '/pages/custom-page-template.php';
+        }
+        return $page_template;
     }
 }
 

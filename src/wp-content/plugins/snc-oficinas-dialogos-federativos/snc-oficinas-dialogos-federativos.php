@@ -99,6 +99,8 @@ class SNC_Oficinas_Dialogos_Federativos
     public function set_shortcodes()
     {
         require_once SNC_ODF_PLUGIN_PATH . 'inc/snc-oficinas-login-shortcode.php';
+        require_once SNC_ODF_PLUGIN_PATH . 'inc/snc-oficinas-confirmacao-inscricao-shortcode.php';
+        require_once SNC_ODF_PLUGIN_PATH . 'inc/snc-oficinas-visualizar-email-shortcode.php';
 //        require_once SNC_ODF_PLUGIN_PATH . 'inc/snc-oficinas-visualizar-inscricao-shortcode.php';
 
     }

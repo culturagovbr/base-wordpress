@@ -56,6 +56,18 @@ class SNC_Oficinas_Formulario_Inscricao_Shortcode
         return ob_get_clean();
     }
 
+    private function get_message_header()
+    {
+        ?>
+        <p>
+            Tendo em vista que as vagas são limitadas, solicitamos que você faça sua inscrição somente se
+            tiver disponibilidade e interesse. Então, antes de se inscrever, confira as datas e horários na
+            programação disponibilizadas no <a
+                    href="http://portalsnc.cultura.gov.br/">http://portalsnc.cultura.gov.br</a>.
+        </p>
+        <?php
+    }
+
     private function get_message_register_success()
     {
         ?>
@@ -68,16 +80,27 @@ class SNC_Oficinas_Formulario_Inscricao_Shortcode
     private function get_message_subscription_pending($subscription)
     {
         ?>
-        <div style="margin-top: 50px; margin-bottom: 100px">
+        <div style="margin-bottom: 100px">
 
             <div class="alert alert-success" role="alert">
-                A inscrição foi realizada com sucesso!
-                Em breve você receberá um e-mail para confirmar a sua participação!
+                Inscrição cadastrada com sucesso!
             </div>
 
-            <div>
-                <b>Status da inscrição:</b> <?= $this->get_status_label_subscription($subscription->post_status); ?>
-            </div>
+            <?php if ($subscription->post_status != 'publish') : ?>
+                <div>
+
+                    <p>Você receberá um e-mail solicitando a confirmação na oficina dentro do prazo
+                        estipulado. A falta de confirmação automaticamente excluirá a sua inscrição, e sua vaga será
+                        disponibilizada para a próxima pessoa.</p>
+                    <p>Se no ato da sua inscrição não houver vagas disponíveis, uma vez que o número de inscritos
+                        superou o número de vagas disponíveis, o seu pedido ficará em lista de espera. Caso alguém
+                        desista e seja possível atendê-lo (a), a sua inscrição será efetivada. Você será notificado por
+                        e-
+                        mail. </p>
+                </div>
+            <?php endif; ?>
+
+            <b>Status da inscrição:</b> <?= $this->get_status_label_subscription($subscription->post_status); ?>
         </div>
         <?php
     }
@@ -100,7 +123,16 @@ class SNC_Oficinas_Formulario_Inscricao_Shortcode
 
     public function get_status_label_subscription($status)
     {
-        return $status;
+        $label = '';
+        switch ($status) {
+            case 'pending':
+                $label = 'Pendente';
+                break;
+            case 'publish':
+                $label = 'Confirmada';
+                break;
+        }
+        return $label;
     }
 
     public function add_acf_form_head()
@@ -125,9 +157,8 @@ class SNC_Oficinas_Formulario_Inscricao_Shortcode
 
     }
 
-
     /**
-     * Notify the monitors about a new indication
+     * Notify the monitors about a new subscription
      *
      * @param $post_id
      */
@@ -139,53 +170,29 @@ class SNC_Oficinas_Formulario_Inscricao_Shortcode
             return;
         }
 
+        $current_token = get_post_meta($post_id, 'token_cancelamento_inscricao');
+        $url_token = home_url('/confirmar-inscricao/?token=' . $current_token . '&id='. $post_id);
+
         $user = wp_get_current_user();
-        $user_cnpj = get_user_meta($user->ID, '_user_cnpj', true);
-        $oscar_minc_options = get_option('oscar_minc_options');
-        $monitoring_emails = explode(',', $oscar_minc_options['oscar_minc_monitoring_emails']);
-        // $to = array_map('trim', $monitoring_emails);
-        $to = 'rickmanu@gmail.com';
+//        $oscar_minc_options = get_option('oscar_minc_options');
+//        $monitoring_emails = explode(',', $oscar_minc_options['oscar_minc_monitoring_emails']);
+//         $to = array_map('trim', $monitoring_emails);
+//         $headers[] = 'Reply-To: ' . $oscar_minc_options['oscar_minc_email_from_name'] . ' <' . $oscar_minc_options['oscar_minc_email_from'] . '>';
+
+        $to = 'cleber.santos@basis.com.br';
         $headers[] = 'From: ' . bloginfo('name') . ' <automatico@cultura.gov.br>';
-        // $headers[] = 'Reply-To: ' . $oscar_minc_options['oscar_minc_email_from_name'] . ' <' . $oscar_minc_options['oscar_minc_email_from'] . '>';
-//		$headers[] = 'Reply-To: Galdar Tec <contato@galdar.com.br>';
-        $subject = 'Nova inscrição ao SNC.';
-
-        $msg = 'Uma nova inscrição foi recebida em Oscar.<br>';
-        $msg .= 'Proponente: <b>' . $user->display_name . '</b><br>';
-        // $msg .= 'CNPJ: <b>' . $this->mask($user_cnpj, '##.###.###/####-##') . '</b><br>';
-        $msg .= 'Filme: <b>' . get_field('titulo_do_filme', $post_id) . '</b>';
-        $msg .= '<br>Para visualiza-la, clique <a href="' . admin_url('post.php?post=' . $post_id . '&action=edit') . '" style="color: rgb(206, 188, 114); text-decoration: none">aqui</a>.';
-        $body = $this->get_email_template('admin', $msg);
-
+        $subject = 'Inscrição oficinas dos Diálogos Federativos - Cultura de Ponto à Ponta';
+        $body = "<h1>Olá, {$user->display_name}</h1>";
+        $body .= '<p>Você realizou sua inscrição na Oficina dos Diálogos Federativos - Cultura de Ponto à Ponta.</p><br>';
+        $body .= '<p>Dados da inscrição:</p>';
+        $body .= '<p>Localidade: ' . get_field('indique_a_unidade_da_federacao_onde_voce_participara_da_oficina', $post_id) . '</p><br>';
+        $body .= '<p><a href="' . $url_token . '" target="_blank">Clique aqui para confirmar sua participação.</a></p><br>';
+        //$to = $user->user_email;
         if (!wp_mail($to, $subject, $body, $headers)) {
-            error_log("ERRO: O envio de email de monitoramento para: " . $to . ', Falhou!', 0);
+            error_log("ERRO: O envio de email para: " . $to . ', Falhou!', 0);
         }
-
-        // add_post_meta($post_id, '_inscription_validated', true, true);
-
-        // Notify the user about its subscription sent
-        $to = $user->user_email;
-        $subject = 'Sua inscrição foi recebida.';
-
-        // $body = $this->get_email_template('user', $oscar_minc_options['oscar_minc_email_body']);
-        $body = $this->get_email_template('user', 'Some clever message here!!!');
-
-        if (!wp_mail($to, $subject, $body, $headers)) {
-            error_log("ERRO: O envio de email de monitoramento para: " . $to . ', Falhou!', 0);
-        }
-
-    }
-
-    private function get_email_template($user_type = 'user', $message)
-    {
-        $user = wp_get_current_user();
-        ob_start();
-        if ($user_type === 'user') {
-            require SNC_ODF_PLUGIN_PATH . '/email-templates/user-template.php';
-        } else {
-            require SNC_ODF_PLUGIN_PATH . '/email-templates/admin-template.php';
-        }
-        return ob_get_clean();
+        add_post_meta($post_id, '_inscription_validated', true, true);
+               var_dump($body);
     }
 
     /**
@@ -204,9 +211,11 @@ class SNC_Oficinas_Formulario_Inscricao_Shortcode
             return;
         }
 
-        $post = get_post($post_id);
         $post = array('post_type' => 'inscricao-oficina', 'post_status' => 'pending');
         $post_id = wp_insert_post($post);
+
+        $token = md5(uniqid(rand(), true));
+        add_post_meta($post_id, 'token_ativacao_inscricao', $token, true);
 
         $inscricao = array('ID' => $post_id, 'post_title' => 'Inscrição - (ID #' . $post_id . ')');
         wp_update_post($inscricao);

@@ -46,6 +46,7 @@ class SNC_Oficinas_Validator
      * @param String $s the step
      * @param String $f the field
      * @param String $v the values ...
+     * @return
      */
     function validate_field($s, $f, $v)
     {
@@ -146,7 +147,7 @@ class SNC_Oficinas_Validator
         global $wpdb;
 
         $result = $wpdb->get_var($wpdb->prepare("SELECT count(1) FROM {$wpdb->usermeta} WHERE"
-            . " meta_key='cpf' and meta_value='%s';", $c));
+            . " meta_key='_user_cpf' and meta_value='%s';", $c));
 
         if ($result > 0) {
             return __('Já existe um usuário cadastrado com este CPF. <a href="' . wp_lostpassword_url() . '">Recuperar senha?</a>');

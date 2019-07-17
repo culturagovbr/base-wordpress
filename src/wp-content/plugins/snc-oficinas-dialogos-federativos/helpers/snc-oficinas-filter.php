@@ -4,8 +4,8 @@ class SNC_Oficinas_Filter
 {
     public $fields_rules = array(
         'register' => array(
-            'user_birth' => array('remove_empty_mask', 'trim_spaces_and_undescore'),
-            'user_cpf' => array('remove_empty_mask', 'trim_spaces_and_undescore')
+            'birthday' => array('remove_empty_mask', 'trim_spaces_and_undescore'),
+            'cpf' => array('remove_empty_mask', 'trim_spaces_and_undescore')
         )
     );
 

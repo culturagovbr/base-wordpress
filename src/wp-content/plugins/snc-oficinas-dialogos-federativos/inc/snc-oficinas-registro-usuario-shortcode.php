@@ -35,6 +35,8 @@ class SNC_Oficinas_Registro_Usuario_Shortcode
             $errors = $this->snc_form_validation();
         }
 
+        $page_status = $_GET['status'];
+
         $name = null;
         $email = null;
         $cnpj = null;
@@ -43,6 +45,7 @@ class SNC_Oficinas_Registro_Usuario_Shortcode
         $county = $_POST['county'];
         $schooling = $_POST['schooling'];
         $gender = $_POST['gender'];
+
 
         if (is_user_logged_in()) {
             $current_user = wp_get_current_user();
@@ -76,6 +79,16 @@ class SNC_Oficinas_Registro_Usuario_Shortcode
         if (!is_user_logged_in()) : ?>
             <div class="text-right">
                 <p>Já possui cadastro? Faça login <b><a href="<?php echo home_url('/login'); ?>">aqui</a>.</b></p>
+            </div>
+            <div>
+                <p>
+                    Para .
+                </p>
+            </div>
+        <?php endif; ?>
+        <?php if($page_status == 'updated') : ?>
+            <div class="alert alert-success" role="alert">
+                Cadastro atualizado com sucesso! <b><a href="<?php echo home_url('/inscricao'); ?>">Ir para página da inscrição</a></b>
             </div>
         <?php endif; ?>
 
@@ -445,6 +458,8 @@ class SNC_Oficinas_Registro_Usuario_Shortcode
                     throw new Exception($user_id->get_error_message());
                 }
 
+
+
                 update_user_meta($user_id, '_user_birthday', esc_attr($birthday));
                 update_user_meta($user_id, '_user_schooling', esc_attr($schooling));
                 update_user_meta($user_id, '_user_gender', esc_attr($gender));
@@ -463,7 +478,8 @@ class SNC_Oficinas_Registro_Usuario_Shortcode
                 update_user_meta($user_id, '_user_webpage', esc_attr($webpage));
                 update_user_meta($user_id, '_user_socials', esc_attr($socials));
 
-                return true;
+                wp_safe_redirect(get_permalink() . '?status=updated');
+                exit;
             }
 
             // insert
@@ -572,12 +588,10 @@ class SNC_Oficinas_Registro_Usuario_Shortcode
     private function validation()
     {
         $errors = array();
-        $filter = new SNC_Oficinas_Filter();
+//        $filter = new SNC_Oficinas_Filter();
         $validator = new SNC_Oficinas_Validator();
 
         $type_user = isset($_POST['user_type']) ? $_POST['user_type'] : "";
-        $is_updating = isset($_POST['is-updating']);
-
         $fields_rules = is_user_logged_in() ? 'update' : 'register';
 
         foreach ($_POST as $stepfield => $value) {
@@ -586,7 +600,7 @@ class SNC_Oficinas_Registro_Usuario_Shortcode
 
                 $field = $stepfield;
 
-                $filter->apply($fields_rules, $field, $value);
+//                $filter->apply($fields_rules, $field, $value);
 
                 $response = $validator->validate_field($fields_rules, $field, $value, $type_user);
 

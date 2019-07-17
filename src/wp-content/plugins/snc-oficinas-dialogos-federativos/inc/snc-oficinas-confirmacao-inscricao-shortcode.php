@@ -48,7 +48,7 @@ class SNC_Oficinas_Confirmacao_Inscricao_Shortcode
             </div>
 
             <div>
-                <p>Parabéns! Sua inscrição para participa na foi confirmada! </p>
+                <p>Parabéns! Sua inscrição para participação na oficina foi confirmada! </p>
             </div>
         </div>
         <?php
@@ -60,7 +60,8 @@ class SNC_Oficinas_Confirmacao_Inscricao_Shortcode
         <div style="margin-bottom: 100px">
 
             <div class="alert alert-danger" role="alert">
-                Erro! Os dados informados são inválidos
+                Erro! Os dados informados são  ou a participação já foi confirmada!
+                <a href="<?= home_url('/inscricao/')?>">Clique aqui para consultar o status da inscrição</a>
             </div>
         </div>
         <?php
@@ -71,10 +72,10 @@ class SNC_Oficinas_Confirmacao_Inscricao_Shortcode
         $token = esc_attr($_GET['token']);
         $post_id = esc_attr($_GET['id']);
 
-        $current_token = get_post_meta($post_id, 'token_cancelamento_inscricao');
+        $current_token = get_post_meta($post_id, 'token_cancelamento_inscricao', true);
         $valid = false;
         if (!empty($current_token) && !empty($token) && $current_token == $token) {
-            $inscricao = array('ID' => $post_id, 'post_status' => 'publish');
+            $inscricao = array('ID' => $post_id, 'post_status' => 'trash');
             wp_update_post($inscricao);
 
             delete_post_meta($post_id, 'token_cancelamento_inscricao');

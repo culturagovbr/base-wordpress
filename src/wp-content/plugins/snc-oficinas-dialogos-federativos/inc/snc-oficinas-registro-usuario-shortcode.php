@@ -81,16 +81,20 @@ class SNC_Oficinas_Registro_Usuario_Shortcode
                 <p>Já possui cadastro? Faça login <b><a href="<?php echo home_url('/login'); ?>">aqui</a>.</b></p>
             </div>
             <div>
+                <p><b>Inscrição para as Oficinas dos Diálogos Federativos - Cultura de Ponto à Ponta</b></p>
                 <p>
-                    Para .
+                    Tendo em vista que as vagas são limitadas, solicitamos que você faça sua inscrição somente se
+                    tiver disponibilidade e interesse. Então, antes de se inscrever, confira as datas e horários na
+                    programação disponibilizadas no <a href="<?php echo home_url(); ?>">portalsnc.cultura.gov.br/</a>.
                 </p>
             </div>
         <?php endif; ?>
-        <?php if($page_status == 'updated') : ?>
-            <div class="alert alert-success" role="alert">
-                Cadastro atualizado com sucesso! <b><a href="<?php echo home_url('/inscricao'); ?>">Ir para página da inscrição</a></b>
-            </div>
-        <?php endif; ?>
+        <?php if ($page_status == 'updated') : ?>
+        <div class="alert alert-success" role="alert">
+            Cadastro atualizado com sucesso! <b><a href="<?php echo home_url('/inscricao'); ?>">Ir para página da
+                    inscrição</a></b>
+        </div>
+    <?php endif; ?>
 
         <?php if ($this->errors['general']) : ?>
         <div class="alert alert-danger">
@@ -184,7 +188,7 @@ class SNC_Oficinas_Registro_Usuario_Shortcode
                     <label class="login-field-icon fui-lock" for="state">UF <span style="color: red;">*</span></label>
                     <select id="snc_state"
                             class="form-control <?= strlen($errors['state']) > 1 ? 'is-invalid' : '' ?>"
-                            name="state" <?= $required; ?>>
+                            name="state">
                         <option value="">Selecione</option>
                         <?php foreach ($states as $state_item) : ?>
                             <option <?= ($state === $state_item->uf) ? 'selected="selected"' : ''; ?>
@@ -199,7 +203,7 @@ class SNC_Oficinas_Registro_Usuario_Shortcode
                         Município <span style="color: red;">*</span></label>
                     <select id="snc_county"
                             class="form-control  <?= strlen($errors['county']) > 1 ? 'is-invalid' : '' ?>"
-                            name="county" <?= $required; ?>>
+                            name="county">
                         <?= $this->snc_get_cities_options($state, $county); ?>
                     </select>
                     <div class="invalid-feedback"><?= $errors['county']; ?></div>
@@ -388,7 +392,6 @@ class SNC_Oficinas_Registro_Usuario_Shortcode
         }
 
 
-
         return $errors;
     }
 
@@ -457,7 +460,6 @@ class SNC_Oficinas_Registro_Usuario_Shortcode
                 if (is_wp_error($user_id)) {
                     throw new Exception($user_id->get_error_message());
                 }
-
 
 
                 update_user_meta($user_id, '_user_birthday', esc_attr($birthday));

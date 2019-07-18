@@ -268,5 +268,3 @@ class SNC_Oficinas_Formulario_Inscricao_Shortcode
         return $oscar_minc_options['oscar_minc_email_from_name'];
     }
 }
-
-new SNC_Oficinas_Formulario_Inscricao_Shortcode();

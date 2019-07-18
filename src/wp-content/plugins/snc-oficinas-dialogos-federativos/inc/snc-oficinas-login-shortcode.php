@@ -48,5 +48,3 @@ class SNC_Oficinas_Login_Shortcode
     }
 
 }
-
-new SNC_Oficinas_Login_Shortcode();

@@ -24,6 +24,9 @@ class SNC_Oficinas_Dialogos_Federativos
 
         register_activation_hook(__FILE__, array($this, 'activate_hook'));
 
+        // Register the autoloader
+        spl_autoload_register(array($this, 'autoloader'));
+
         add_action('init', array($this, 'inscricao_oficina_settings'));
         add_action('init', array($this, 'inscricao_oficina_cpt'));
         add_action('init', array($this, 'set_shortcodes'));
@@ -39,7 +42,7 @@ class SNC_Oficinas_Dialogos_Federativos
         add_action('template_redirect', array($this, 'redirect_to_auth'));
         add_action('login_redirect', array($this, 'login_redirect'), 10, 3);
         add_action('manage_posts_custom_column', array($this, 'fill_custom_columns'), 10, 2);
-        add_filter('page_template', array($this, 'wpa3396_page_template'));
+        add_filter('page_template', array($this, 'snc_oficinas_page_template'));
 
 
         add_filter('manage_edit-inscricao-oficina_columns', array($this, 'add_custom_columns'));
@@ -48,27 +51,41 @@ class SNC_Oficinas_Dialogos_Federativos
         add_action('get_footer', array($this, 'debug_plugin'));
 
         // shortcodes
-        require(SNC_ODF_PLUGIN_PATH . 'inc/snc-oficinas-registro-usuario-shortcode.php');
-        require(SNC_ODF_PLUGIN_PATH . 'inc/snc-oficinas-formulario-inscricao-shortcode.php');
-
-        // helpers
-        require(SNC_ODF_PLUGIN_PATH . 'helpers/snc-oficinas-filter.php');
-        require(SNC_ODF_PLUGIN_PATH . 'helpers/snc-oficinas-validator.php');
+        new SNC_Oficinas_Registro_Usuario_Shortcode();
+        new SNC_Oficinas_Formulario_Inscricao_Shortcode();
 
     }
 
     public function activate_hook()
     {
         if (!is_plugin_active('advanced-custom-fields-pro/acf.php') && !is_plugin_active('advanced-custom-fields/acf.php')) {
-            echo 'Para que este plugin funcione corretamente, é necessário a instalação e ativação do plugin ACF - <a href="http://advancedcustomfields.com/" target="_blank">Advanced custom fields</a>.';
+            echo 'Para que este plugin funcione corretamente, é necessário a instalação e ativação do plugin ACF - 
+            <a href="http://advancedcustomfields.com/" target="_blank">Advanced custom fields</a>.';
             die;
+        }
+    }
+
+    /**
+     * Autoload specific classses.
+     *
+     * @param $class
+     */
+    public static function autoloader($class)
+    {
+        $filename = false;
+        if (strpos($class, 'SNC_Oficinas_') === 0) {
+            $filename = str_replace('_', '-', $class);
+            $filename = plugin_dir_path(__FILE__) . 'inc/' . strtolower($filename) . '.php';
+        }
+
+        if (!empty($filename) && file_exists($filename)) {
+            include $filename;
         }
     }
 
     public function inscricao_oficina_settings()
     {
-        require_once SNC_ODF_PLUGIN_PATH . 'inc/settings.php';
-        new SNC_Oficinas_Dialogos_Federativos_Settings();
+        new SNC_Oficinas_Settings();
     }
 
     public function inscricao_oficina_cpt()
@@ -118,11 +135,9 @@ class SNC_Oficinas_Dialogos_Federativos
      */
     public function set_shortcodes()
     {
-        require_once SNC_ODF_PLUGIN_PATH . 'inc/snc-oficinas-login-shortcode.php';
-        require_once SNC_ODF_PLUGIN_PATH . 'inc/snc-oficinas-confirmacao-inscricao-shortcode.php';
-        require_once SNC_ODF_PLUGIN_PATH . 'inc/snc-oficinas-visualizar-email-shortcode.php';
-//        require_once SNC_ODF_PLUGIN_PATH . 'inc/snc-oficinas-visualizar-inscricao-shortcode.php';
-
+        new SNC_Oficinas_Login_Shortcode();
+        new SNC_Oficinas_Confirmacao_Inscricao_Shortcode();
+        new SNC_Oficinas_Visualizar_Email_Shortcode();
     }
 
     /**
@@ -256,7 +271,7 @@ class SNC_Oficinas_Dialogos_Federativos
         }
     }
 
-    public function wpa3396_page_template($page_template)
+    public function snc_oficinas_page_template($page_template)
     {
         if (is_page('visualizar-email')) {
             $page_template = SNC_ODF_PLUGIN_PATH . '/pages/custom-page-template.php';

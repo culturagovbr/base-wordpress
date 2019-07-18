@@ -8,7 +8,7 @@
 if (!defined('WPINC'))
     die();
 
-class SNC_Oficinas_Dialogos_Federativos_Settings
+class SNC_Oficinas_Settings
 {
 
     private $options; // holds the values to be used in the fields callbacks

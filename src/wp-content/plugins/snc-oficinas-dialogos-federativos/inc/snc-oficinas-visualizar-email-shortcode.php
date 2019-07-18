@@ -53,5 +53,3 @@ class SNC_Oficinas_Visualizar_Email_Shortcode
         return false;
     }
 }
-
-new SNC_Oficinas_Visualizar_Email_Shortcode();

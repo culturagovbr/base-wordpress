@@ -104,5 +104,3 @@ class SNC_Oficinas_Confirmacao_Inscricao_Shortcode
         <?php
     }
 }
-
-new SNC_Oficinas_Confirmacao_Inscricao_Shortcode();

@@ -1,9 +1,5 @@
 <?php
 
-/**
- * Class Oscar_Minc_Shortcodes
- *
- */
 class SNC_Oficinas_Registro_Usuario_Shortcode
 {
     private $errors = [];
@@ -623,5 +619,3 @@ class SNC_Oficinas_Registro_Usuario_Shortcode
         die; // or wordpress will print 0
     }
 }
-
-new SNC_Oficinas_Registro_Usuario_Shortcode();

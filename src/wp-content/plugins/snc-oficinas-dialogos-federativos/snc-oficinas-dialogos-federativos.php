@@ -31,12 +31,6 @@ class SNC_Oficinas_Dialogos_Federativos
         add_action('init', array($this, 'inscricao_oficina_cpt'));
         add_action('init', array($this, 'set_shortcodes'));
 
-//        add_action('get_header', array($this, 'add_acf_form_head'), 0);
-
-//		add_action('acf/pre_save_post', array($this, 'preprocess_main_form'));
-//		add_action('acf/save_post', array($this, 'postprocess_main_form'));
-//        add_action('acf/validate_save_post', array($this, 'snc_acf_validate_save_post'), 10, 0);
-
         add_action('wp_enqueue_scripts', array($this, 'register_plugin_styles'));
         add_action('wp_enqueue_scripts', array($this, 'register_plugin_scripts'));
         add_action('template_redirect', array($this, 'redirect_to_auth'));
@@ -47,7 +41,7 @@ class SNC_Oficinas_Dialogos_Federativos
 
         add_filter('manage_edit-inscricao-oficina_columns', array($this, 'add_custom_columns'));
 
-        // add_action('wp_mail_failed', array($this, 'action_wp_mail_failed'), 10, 1);
+//         add_action('wp_mail_failed', array($this, 'action_wp_mail_failed'), 10, 1);
         add_action('get_footer', array($this, 'debug_plugin'));
 
         // shortcodes

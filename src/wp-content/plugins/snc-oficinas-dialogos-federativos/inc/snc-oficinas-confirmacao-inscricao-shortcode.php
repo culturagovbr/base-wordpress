@@ -18,13 +18,18 @@ class SNC_Oficinas_Confirmacao_Inscricao_Shortcode
         $current_token = get_post_meta($post_id, 'token_ativacao_inscricao', true);
         $valid = false;
         if (!empty($current_token) && !empty($token) && $current_token == $token) {
+
             $inscricao = array('ID' => $post_id, 'post_status' => 'publish');
 
             wp_update_post($inscricao);
             delete_post_meta($post_id, 'token_ativacao_inscricao');
 
             $token = md5(uniqid(rand(), true));
-            add_post_meta($post_id, 'token_cancelamento_inscricao', $token, true);
+            add_post_meta($post_id, 'token_cancelar_inscricao', $token, true);
+
+            $oficinasEmail = new SNC_Oficinas_Email($post_id, 'snc_email_effectiveness_subscription');
+            $oficinasEmail->snc_send_mail_user();
+
             $valid = true;
         }
 
@@ -72,13 +77,13 @@ class SNC_Oficinas_Confirmacao_Inscricao_Shortcode
         $token = esc_attr($_GET['token']);
         $post_id = esc_attr($_GET['id']);
 
-        $current_token = get_post_meta($post_id, 'token_cancelamento_inscricao', true);
+        $current_token = get_post_meta($post_id, 'token_cancelar_inscricao', true);
         $valid = false;
         if (!empty($current_token) && !empty($token) && $current_token == $token) {
-            $inscricao = array('ID' => $post_id, 'post_status' => 'trash');
+            $inscricao = array('ID' => $post_id, 'post_status' => 'canceled');
             wp_update_post($inscricao);
 
-            delete_post_meta($post_id, 'token_cancelamento_inscricao');
+            delete_post_meta($post_id, 'token_cancelar_inscricao');
             $valid = true;
         }
 

@@ -91,27 +91,27 @@ class SNC_Oficinas_Settings
         );
 
         add_settings_section(
-            'snc_mail_confirmation_section',
+            'snc_email_confirmation_section',
             'Email de confirmação',
             '',
             SNC_ODF_SLUG
         );
 
-        add_settings_field(
-            'snc_monitoring_emails',
-            'Emails para monitoramento',
-            array($this, 'snc_monitoring_emails'),
-            SNC_ODF_SLUG,
-            'snc_mail_confirmation_section',
-            ['label_for' => 'snc_monitoring_emails', 'class' => 'form-field',]
-        );
+//        add_settings_field(
+//            'snc_monitoring_emails',
+//            'Emails para monitoramento',
+//            array($this, 'snc_monitoring_emails'),
+//            SNC_ODF_SLUG,
+//            'snc_email_confirmation_section',
+//            ['label_for' => 'snc_monitoring_emails', 'class' => 'form-field',]
+//        );
 
         add_settings_field(
             'snc_email_from_name',
             'Remetente',
             array($this, 'snc_email_from_name'),
             SNC_ODF_SLUG,
-            'snc_mail_confirmation_section',
+            'snc_email_confirmation_section',
             ['label_for' => 'snc_email_from_name', 'class' => 'form-field',]
         );
 
@@ -120,17 +120,61 @@ class SNC_Oficinas_Settings
             'Email de remetente',
             array($this, 'snc_email_from'),
             SNC_ODF_SLUG,
-            'snc_mail_confirmation_section',
+            'snc_email_confirmation_section',
             ['label_for' => 'snc_email_from', 'class' => 'form-field',]
         );
 
         add_settings_field(
-            'snc_email_body_confirm_subscription',
-            'Texto Confirmação de cadastro ',
-            array($this, 'snc_email_body_confirm_subscription'),
+            'snc_email_confirm_subscription',
+            'Texto Email Confirmação de Cadastro ',
+            array($this, 'snc_email_textarea'),
             SNC_ODF_SLUG,
-            'snc_mail_confirmation_section',
-            ['label_for' => 'snc_email_from', 'class' => 'form-field',]
+            'snc_email_confirmation_section',
+            [
+                'label_for' => 'snc_email_confirm_subscription',
+                'class' => 'form-field',
+                'description' => 'Mensagem recebida pelo usuário após realizar inscrição.'
+            ]
+        );
+
+        add_settings_field(
+            'snc_email_effectiveness_subscription',
+            'Texto Email Efetivação de Cadastro ',
+            array($this, 'snc_email_textarea'),
+            SNC_ODF_SLUG,
+            'snc_email_confirmation_section',
+            [
+                'label_for' => 'snc_email_effectiveness_subscription',
+                'class' => 'form-field',
+                'description' => 'Mensagem recebida pelo usuário após confirmar a inscrição.'
+            ]
+        );
+
+        add_settings_field(
+            'snc_email_waiting_list_subscription',
+            'Texto Email Lista de Espera',
+            array($this, 'snc_email_textarea'),
+            SNC_ODF_SLUG,
+            'snc_email_confirmation_section',
+            ['label_for' => 'snc_email_waiting_list_subscription', 'class' => 'form-field',]
+        );
+
+        add_settings_field(
+            'snc_email_reminder_workshop',
+            'Texto Email Lembrete da Oficina ',
+            array($this, 'snc_email_textarea'),
+            SNC_ODF_SLUG,
+            'snc_email_confirmation_section',
+            ['label_for' => 'snc_email_reminder_workshop', 'class' => 'form-field',]
+        );
+
+        add_settings_field(
+            'snc_email_vacancy_free',
+            'Texto Email Liberação de Vaga',
+            array($this, 'snc_email_textarea'),
+            SNC_ODF_SLUG,
+            'snc_email_confirmation_section',
+            ['label_for' => 'snc_email_vacancy_free', 'class' => 'form-field',]
         );
 
         register_setting(
@@ -153,6 +197,13 @@ class SNC_Oficinas_Settings
             // $output['pwp_script'] = stripslashes( wp_filter_post_kses( addslashes( $input['pwp_script'] ) ) );
             $output['pwp_script'] = $input['pwp_script'];
         }
+
+        $output['snc_email_confirm_subscription'] = $input['snc_email_confirm_subscription'];
+        $output['snc_email_effectiveness_subscription'] = $input['snc_email_effectiveness_subscription'];
+        $output['snc_email_waiting_list_subscription'] = $input['snc_email_waiting_list_subscription'];
+        $output['snc_email_reminder_workshop'] = $input['snc_email_reminder_workshop'];
+        $output['snc_email_vacancy_free'] = $input['snc_email_vacancy_free'];
+
         return $output;
     }
 
@@ -175,10 +226,11 @@ class SNC_Oficinas_Settings
 
     function snc_email_from_name($args)
     {
-        $options = get_option('snc_oficina_options'); ?>
+        $options = get_option(SNC_ODF_SLUG . '_settings'); ?>
 
         <input id="<?php echo esc_attr($args['label_for']); ?>"
-               name="omc_options[<?php echo esc_attr($args['label_for']); ?>]" type="text"
+               name="<?php echo SNC_ODF_SLUG . '_settings'; ?>[<?php echo esc_attr($args['label_for']); ?>]"
+               type="text"
                value="<?php echo $options['snc_email_from_name']; ?>">
         <p class="description">
             Nome do rementente do email, o padrão é: <b><?php echo bloginfo('name'); ?></b>
@@ -189,10 +241,11 @@ class SNC_Oficinas_Settings
 
     function snc_email_from($args)
     {
-        $options = get_option('snc_oficina_options'); ?>
+        $options = get_option(SNC_ODF_SLUG . '_settings'); ?>
 
         <input id="<?php echo esc_attr($args['label_for']); ?>"
-               name="omc_options[<?php echo esc_attr($args['label_for']); ?>]" type="text"
+               name="<?php echo SNC_ODF_SLUG . '_settings'; ?>[<?php echo esc_attr($args['label_for']); ?>]"
+               type="text"
                value="<?php echo $options['snc_email_from']; ?>">
         <p class="description">
             Endereço de email do rementente, o padrão é: <b><?php echo get_option('admin_email'); ?></b>
@@ -203,10 +256,11 @@ class SNC_Oficinas_Settings
 
     function snc_monitoring_emails($args)
     {
-        $options = get_option('snc_oficina_options'); ?>
+        $options = get_option(SNC_ODF_SLUG . '_settings'); ?>
 
         <input id="<?php echo esc_attr($args['label_for']); ?>"
-               name="omc_options[<?php echo esc_attr($args['label_for']); ?>]" type="text"
+               name="<?php echo SNC_ODF_SLUG . '_settings'; ?>[<?php echo esc_attr($args['label_for']); ?>]"
+               type="text"
                value="<?php echo $options['snc_monitoring_emails']; ?>">
         <p class="description">
             Estes emails receberão uma notificação sempre que for realizado uma indicação através do formulário. Separe
@@ -216,18 +270,16 @@ class SNC_Oficinas_Settings
     }
 
 
-    function snc_email_body_confirm_subscription($args)
+    function snc_email_textarea($args)
     {
-        $options = get_option('snc_oficina_options'); ?>
-        <textarea id="<?php echo esc_attr($args['label_for']); ?>"
-                  name="omc_options[<?php echo esc_attr($args['label_for']); ?>]"
-                  rows="10"><?php echo $options['snc_email_body_confirm_subscription']; ?></textarea>
-        <p class="description">
-            Mensagem recebida pelo usuário após realizar inscrição.
 
-            Exemplo: É com satisfação que recebemos sua solicitação de inscrição no evento Diálogos Federativos: Cultura
-            de Ponto à Ponta no período de {{periodo_oficina}}, no horário de {{horario_oficina}}, a ser realizado no
-            estado de {{estado_oficina}}, no {{local_oficina}}.
+        $options = get_option(SNC_ODF_SLUG . '_settings');
+        $name = esc_attr($args['label_for']); ?>
+        <textarea id="<?php echo $name; ?>"
+                  name="<?php echo SNC_ODF_SLUG . '_settings'; ?>[<?php echo $name; ?>]"
+                  rows="10"><?php echo $options[$name]; ?></textarea>
+        <p class="description">
+            <?php echo esc_attr($args['description']); ?>
         </p>
         <?php
     }

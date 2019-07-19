@@ -133,7 +133,7 @@
                                 <tr>
                                     <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">
                                         <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
-                                            Prezado(a), <?= $user_name; ?></p>
+                                            Prezado(a) <?= $user_name; ?>,</p>
 
                                         <?php
                                         preg_match_all("'<p>(.*?)</p>'si", $message, $matches);

@@ -504,7 +504,7 @@ class SNC_Oficinas_Registro_Usuario_Shortcode
             add_user_meta($register_user, '_user_webpage', esc_attr($webpage), true);
             add_user_meta($register_user, '_user_socials', esc_attr($socials), true);
 
-            wp_new_user_notification($register_user);
+            wp_new_user_notification($register_user, null, 'user');
 
             $creds = array(
                 'user_login' => $userdata['user_email'],

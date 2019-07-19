@@ -258,7 +258,6 @@ class SNC_Oficinas_Formulario_Inscricao_Shortcode
         $title = "<b>$title</b> Data:  $data_inicio a $data_final Local $local ";
 
         return $title;
-
     }
 
 }

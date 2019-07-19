@@ -14,11 +14,12 @@
 
 #snc-main-form .acf-field-message{
 	margin-top: 15px;
-	font-size: 14px;
+	/*font-size: 14px;*/
+	font-size: 13px;
 	font-weight: 700;
 	color: #202529;
-	text-transform: uppercase;
-	letter-spacing: 1px;
+	/*text-transform: uppercase;*/
+	/*letter-spacing: 1px;*/
 }
 
 #snc-main-form .acf-field input[type="text"],
@@ -96,7 +97,8 @@
 #snc-main-form .acf-field .acf-label label{
 	display: inline-block;
 	margin-bottom: .5rem;
-	font-size: .8em;
+	/*font-size: .8em;*/
+	font-size: 13px;
 	font-weight: bold;
 }
 

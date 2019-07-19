@@ -76,7 +76,7 @@ class SNC_Oficinas_Validator
     /** Return true if parameter is not empty or a message otherwise */
     static function not_empty($v)
     {
-        if (!isset($v) || empty($v)) {
+        if (!isset($v) || (empty($v) && $v !== "0")) {
             return __('Este item não pode ser vazio');
         }
         return true;
@@ -184,8 +184,9 @@ class SNC_Oficinas_Validator
         return true;
     }
 
-    static function password_length_more_than_5($v) {
-        if(strlen(utf8_decode($v)) < 5) { // php não sabe contar utf8
+    static function password_length_more_than_5($v)
+    {
+        if (strlen(utf8_decode($v)) < 5) { // php não sabe contar utf8
             return __('A senha deve conter mais que 5 caracteres.');
         }
         return true;

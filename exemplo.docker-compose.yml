@@ -1,0 +1,50 @@
+version: '3.1'
+services:
+  wordpress:
+    container_name: 'app_base_wp'
+    image: wordpress
+    restart: always
+    ports:
+    - 80:80
+    links:
+    - db
+    depends_on:
+    - db
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: exampleuser
+      WORDPRESS_DB_PASSWORD: examplepass
+      WORDPRESS_DB_NAME: base_wp
+      #      WORDPRESS_DEBUG: 1
+      WORDPRESS_TABLE_PREFIX: wpminc_
+      WORDPRESS_CONFIG_EXTRA: |
+        /* Multisite */
+        define('WP_ALLOW_MULTISITE', true );
+        define('MULTISITE', true);
+        define('SUBDOMAIN_INSTALL', false);
+        define('DOMAIN_CURRENT_SITE', 'base-wp.cultura.localhost'); // TODO: change to actual domain when deploying
+        define('PATH_CURRENT_SITE', '/');
+        define('SITE_ID_CURRENT_SITE', 1);
+        define('BLOG_ID_CURRENT_SITE', 1);
+        define('WP_HOME', 'http://base-wp.cultura.localhost/');
+        define('WP_SITEURL', 'http://base-wp.cultura.localhost/');
+        define('NOBLOGREDIRECT', 'http://base-wp.cultura.localhost');
+    volumes:
+    - ./src/wp-content:/var/www/html/wp-content
+  db:
+    container_name: 'banco_base_wp'
+    image: mysql:5.7
+    restart: always
+    ports:
+    - 3306:3306
+    expose:
+    - 3306
+    environment:
+      MYSQL_DATABASE: base_wp
+      MYSQL_USER: exampleuser
+      MYSQL_PASSWORD: examplepass
+      MYSQL_ROOT_PASSWORD: iec0Aediec5shoovoo5eiKaeliip8eCh
+    #      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+    - ./db:/docker-entrypoint-initdb.d
+    - ./docker/mysql:/var/lib/mysql

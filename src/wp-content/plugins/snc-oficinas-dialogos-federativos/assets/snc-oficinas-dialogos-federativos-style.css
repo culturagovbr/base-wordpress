@@ -1,0 +1,141 @@
+#snc-main-form .acf-repeater .acf-fields{
+	margin: 0;
+}
+
+#snc-main-form .acf-fields > .acf-field{
+	clear: none;
+	border: none;
+}
+
+#snc-main-form .acf-field .acf-label .description,
+#snc-main-form .acf-field p.description{
+	font-size: 12px;
+}
+
+#snc-main-form .acf-field-message{
+	margin-top: 15px;
+	font-size: 14px;
+	font-weight: 700;
+	color: #202529;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+#snc-main-form .acf-field input[type="text"],
+#snc-main-form .acf-field input[type="password"],
+#snc-main-form .acf-field input[type="number"],
+#snc-main-form .acf-field input[type="search"],
+#snc-main-form .acf-field input[type="email"],
+#snc-main-form .acf-field input[type="url"],
+#snc-main-form .acf-field textarea,
+#snc-main-form .acf-field select,
+#snc-login-form input[type="text"],
+#snc-login-form input[type="password"]{
+	/*display: block;*/
+	width: 100%;
+	height: 34px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+	-webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+	transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+#snc-main-form .acf-field input[type="text"]:focus,
+#snc-main-form .acf-field input[type="password"]:focus,
+#snc-main-form .acf-field input[type="number"]:focus,
+#snc-main-form .acf-field input[type="search"]:focus,
+#snc-main-form .acf-field input[type="email"]:focus,
+#snc-main-form .acf-field input[type="url"]:focus,
+#snc-main-form .acf-field textarea:focus,
+#snc-main-form .acf-field select:focus,
+#snc-login-form input[type="text"]:focus,
+#snc-login-form input[type="password"]:focus{
+	border-color: #66afe9;
+	outline: 0;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+}
+
+#snc-main-form .acf-field textarea{
+	min-height: 100px;
+}
+
+#snc-main-form .acf-form-submit .button,
+#wp-submit{
+	display: inline-block;
+	padding: 6px 12px;
+	margin-bottom: 0;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 1.42857143;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-image: none;
+	border: 1px solid transparent;
+	border-radius: 4px;
+}
+
+#snc-register-form label,
+#snc-main-form .acf-field .acf-label label{
+	display: inline-block;
+	margin-bottom: .5rem;
+	font-size: .8em;
+	font-weight: bold;
+}
+
+.entry-content .updated p {
+	font-size: 14px !important;
+	line-height: 1.5;
+	margin: 0.5em 0;
+	padding: 2px;
+	text-shadow: none;
+	color: #fff;
+}
+
+.entry-content .updated {
+
+
+	position: relative;
+	display: block;
+	margin: 5px 0 15px;
+	padding: 1px 12px;
+	min-height: 0px;
+	background-color: #46b450;
+}
+
+.acf-error-message.-success {
+	background-color: #46b450;
+	border-color: #32973b;
+}
+
+#snc-main-form .acf-field-message {
+	/*display: none;*/
+}
+
+#snc-main-form .acf-form-submit {
+	padding: 15px 12px;
+}
+
+#snc-login-form label{
+	display: block;
+	margin-bottom: .5rem;
+	font-size: .8em;
+	font-weight: bold;
+}

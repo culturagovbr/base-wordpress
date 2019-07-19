@@ -11,9 +11,9 @@ class SNC_Oficinas_Visualizar_Email_Shortcode
 
     public function snc_email_subscription($type_email = 'snc_email_confirm_subscription')
     {
-        if (!current_user_can('administrator')) {
-            return false;
-        }
+//        if (!current_user_can('administrator')) {
+//            return false;
+//        }
 
         $subscription = current($this->get_subscription_in_workshop());
         $post_id = $subscription->ID;

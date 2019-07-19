@@ -29,6 +29,7 @@ class SNC_Oficinas_Dialogos_Federativos
 
         add_action('init', array($this, 'inscricao_oficina_settings'));
         add_action('init', array($this, 'inscricao_oficina_cpt'));
+        add_action('init', array($this, 'custom_post_status'), 0);
         add_action('init', array($this, 'set_shortcodes'));
 
         add_action('wp_enqueue_scripts', array($this, 'register_plugin_styles'));
@@ -46,7 +47,6 @@ class SNC_Oficinas_Dialogos_Federativos
 
         // shortcodes
         new SNC_Oficinas_Registro_Usuario_Shortcode();
-        new SNC_Oficinas_Formulario_Inscricao_Shortcode();
 
     }
 
@@ -121,6 +121,27 @@ class SNC_Oficinas_Dialogos_Federativos
         );
     }
 
+    function custom_post_status()
+    {
+        register_post_status('waiting_list', array(
+            'label' => _x('Lista de espera', 'Status Lista de espera', 'text_domain'),
+            'public' => true,
+            'exclude_from_search' => false,
+            'show_in_admin_all_list' => true,
+            'show_in_admin_status_list' => true,
+            'label_count' => _n_noop('Lista de espera (%s)', 'Lista de espera (%s)'),
+        ));
+
+        register_post_status('canceled', array(
+            'label' => _x('Cancelado', 'Status Cancelado', 'text_domain'),
+            'public' => true,
+            'exclude_from_search' => false,
+            'show_in_admin_all_list' => true,
+            'show_in_admin_status_list' => true,
+            'label_count' => _n_noop('Cancelado (%s)', 'Cancelado (%s)'),
+        ));
+    }
+
     /**
      * Shortcode to show ACF form
      *
@@ -129,6 +150,7 @@ class SNC_Oficinas_Dialogos_Federativos
      */
     public function set_shortcodes()
     {
+        new SNC_Oficinas_Formulario_Inscricao_Shortcode();
         new SNC_Oficinas_Login_Shortcode();
         new SNC_Oficinas_Confirmacao_Inscricao_Shortcode();
         new SNC_Oficinas_Visualizar_Email_Shortcode();

@@ -6,14 +6,12 @@ class SNC_Oficinas_Formulario_Inscricao_Shortcode
     {
         if (!is_admin()) {
             add_shortcode('snc-subscription-form', array($this, 'snc_minc_subscription_form_shortcode')); // Inscrição
-
             add_action('acf/pre_save_post', array($this, 'preprocess_main_form'));
             add_action('acf/save_post', array($this, 'postprocess_main_form'));
-            add_action('acf/validate_save_post', array($this, 'snc_acf_validate_save_post'), 10, 0);
-//            add_action('acf/validate_value/key=field_5d2f47cbbb0b3', array($this, 'snc_acf_validate_value'), 10, 4);
         }
 
         add_action('get_header', array($this, 'add_acf_form_head'), 0);
+        add_action('acf/validate_save_post', array($this, 'snc_acf_validate_save_post'), 10, 0);
         add_filter('acf/fields/post_object/query/name=inscricao_oficina_uf', array($this, 'snc_filter_workshops'), 10, 3);
         add_filter('acf/fields/post_object/result/name=inscricao_oficina_uf', array($this, 'snc_filter_workshops_object_result'), 10, 4);
 
@@ -26,49 +24,28 @@ class SNC_Oficinas_Formulario_Inscricao_Shortcode
             // clear all errors
             acf_reset_validation_errors();
         }
+
         $acf = $_POST["acf"];
+
         $array_interesses = [
-            $acf['field_5d2f47cbbb0b3'], // interesse 1
-            $acf['field_5d2f48febb0b4'],  // interesse 2
-            $acf['field_5d2f490cbb0b5'],  // interesse 3
-            $acf['field_5d2f4919bb0b6'],  // interesse 4
-            $acf['field_5d2f4929bb0b7']   // interesse 5
+            'field_5d2f47cbbb0b3' => $acf['field_5d2f47cbbb0b3'], // interesse 1
+            'field_5d2f48febb0b4' => $acf['field_5d2f48febb0b4'],  // interesse 2
+            'field_5d2f490cbb0b5' => $acf['field_5d2f490cbb0b5'],  // interesse 3
+            'field_5d2f4919bb0b6' => $acf['field_5d2f4919bb0b6'],  // interesse 4
+            'field_5d2f4929bb0b7' => $acf['field_5d2f4929bb0b7']   // interesse 5
         ];
 
         $tem_duplicado = array_unique($array_interesses) != $array_interesses;
-        if ($tem_duplicado) {
-            acf_add_validation_error('acf[field_5d2f47cbbb0b3]', 'Interesse duplicado');
+        if (!empty($acf['field_5d2f47cbbb0b3']) && $tem_duplicado) {
+
+            $duplicado = key(array_diff_assoc($array_interesses, array_unique($array_interesses)));
+            acf_add_validation_error("acf[{$duplicado}]", 'Item duplicado! Selecione diferentes interesses por ordem de prioridade');
         }
+
         $inscrito = $this->get_subscription_in_workshop();
         if (!empty($inscrito)) {
             acf_add_validation_error('acf[field_5d125ee09caf3]', 'Você já possui uma inscrição');
         }
-
-    }
-
-    public function snc_acf_validate_value($valid, $value, $field, $input)
-    {
-        if (!$valid) {
-
-            return $valid;
-
-        }
-//
-//        if ($field == 'field_5d2f47cbbb0b3') {
-//            $acf = $_POST["acf"];
-//            // interesse 1 acf[field_5d2f47cbbb0b3]
-//            // interesse 2 acf[field_5d2f48febb0b4]
-//            // interesse 3 acf[field_5d2f490cbb0b5]
-//            // interesse 4 acf[field_5d2f4919bb0b6]
-//            // interesse 5 acf[field_5d2f4929bb0b7]
-//            $array_interesses = [
-//                $acf['field_5d2f47cbbb0b3'],
-//                $acf['field_5d2f48febb0b4'],
-//                $acf['field_5d2f490cbb0b5'],
-//                $acf['field_5d2f4919bb0b6'],
-//                $acf['field_5d2f4929bb0b7']
-//            ];
-//        }
 
     }
 

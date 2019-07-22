@@ -1,5 +1,8 @@
 <?php
 
+if (!defined('WPINC'))
+    die();
+
 class SNC_Oficinas_Registro_Usuario_Shortcode
 {
     private $errors = [];
@@ -518,7 +521,7 @@ class SNC_Oficinas_Registro_Usuario_Shortcode
                 throw new Exception("Seu cadastro foi realizado, mas houve um erro ao redirecionar. Tente fazer login");
             }
 
-            $redirect_to = home_url('/inscricao/?registered=true');
+            $redirect_to = home_url('/inscricao/?status=registered');
             wp_safe_redirect($redirect_to);
             exit;
 

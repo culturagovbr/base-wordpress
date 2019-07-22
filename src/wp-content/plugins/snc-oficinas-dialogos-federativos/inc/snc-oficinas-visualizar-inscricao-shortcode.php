@@ -1,9 +1,9 @@
 <?php
 
-/**
- * Class Oscar_Minc_Shortcodes
- *
- */
+if (!defined('WPINC'))
+    die();
+
+
 class SNC_Oficinas_Visualizar_Inscricao_Shortcode
 {
     public function __construct()

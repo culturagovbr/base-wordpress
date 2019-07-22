@@ -1,17 +1,20 @@
 <?php
 
+if (!defined('WPINC'))
+    die();
+
 class SNC_Oficinas_Formulario_Inscricao_Shortcode
 {
     public function __construct()
     {
         if (!is_admin()) {
+            add_action('get_header', array($this, 'add_acf_form_head'), 0);
             add_shortcode('snc-subscription-form', array($this, 'snc_minc_subscription_form_shortcode')); // Inscrição
             add_action('acf/pre_save_post', array($this, 'preprocess_main_form'));
             add_action('acf/save_post', array($this, 'postprocess_main_form'));
         }
 
-        add_action('get_header', array($this, 'add_acf_form_head'), 0);
-        add_action('acf/validate_save_post', array($this, 'snc_acf_validate_save_post'), 10, 0);
+        add_action('acf/validate_save_post', array($this, 'snc_acf_validate_save_post'), 10);
         add_filter('acf/fields/post_object/query/name=inscricao_oficina_uf', array($this, 'snc_filter_workshops'), 10, 3);
         add_filter('acf/fields/post_object/result/name=inscricao_oficina_uf', array($this, 'snc_filter_workshops_object_result'), 10, 4);
 
@@ -19,6 +22,10 @@ class SNC_Oficinas_Formulario_Inscricao_Shortcode
 
     function snc_acf_validate_save_post()
     {
+        if ($_POST['post_id'] != 'inscricao-oficina') {
+            return true;
+        }
+
         // check if user is an administrator
         if (current_user_can('manage_options')) {
             // clear all errors
@@ -46,7 +53,6 @@ class SNC_Oficinas_Formulario_Inscricao_Shortcode
         if (!empty($inscrito)) {
             acf_add_validation_error('acf[field_5d125ee09caf3]', 'Você já possui uma inscrição');
         }
-
     }
 
     /**

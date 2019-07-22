@@ -1,5 +1,8 @@
 <?php
 
+if (!defined('WPINC'))
+    die();
+
 class SNC_Oficinas_Visualizar_Email_Shortcode
 {
     public function __construct()

@@ -30,6 +30,10 @@
                 });
             }
         })
+
+        $("button.cancel-subscription").click(function (e) {
+            app.userCancelSubscription(this);
+        });
     });
 
     var app = {
@@ -62,17 +66,8 @@
 
             },
             verifyRegisterUserField: function (e) {
-
                 var $me = $(this);
-
-                var values = { 'action': 'snc_register_verify_field' };
-                // values['user_type'] = $('input[name="user_tipo"]:checked').val();
-                // //
-                // // // no checkbox o ajax pega o valor mesmo sem estar selecionado
-                // console.log('avvvvv', this.name, $me.val());
-                // if ($me.is('input[type="checkbox"]') && $me.prop("checked")) {
-                //     values[this.name] = $me.val();
-                // }
+                var values = {'action': 'snc_register_verify_field'};
                 values[this.name] = $me.val();
 
                 $.post(vars.ajaxurl, values,
@@ -80,19 +75,32 @@
                         if (data.length === 0 && $me.val().length > 0) {
                             $form.find("[name='" + $me.attr('name') + "']").removeClass('is-invalid').addClass('is-valid');
                         }
-
                         for (var field in data) {
                             if (data[field] === true && $me.val().length > 0) {
-                                $form.find("[name='"+ field + "']").removeClass('is-invalid').addClass('is-valid');
+                                $form.find("[name='" + field + "']").removeClass('is-invalid').addClass('is-valid');
                             } else {
-                                $form.find("[name='"+ field + "']").removeClass('is-valid').addClass('is-invalid');
-                                $form.find("[name='"+ field + "']").parent().find('.invalid-feedback').html(data[field])
+                                $form.find("[name='" + field + "']").removeClass('is-valid').addClass('is-invalid');
+                                $form.find("[name='" + field + "']").parent().find('.invalid-feedback').html(data[field])
                                 // $form.find('#' + field + '-error').html(data[field]).show();
                             }
                         }
                     },
                     'json'
                 );
+            },
+            userCancelSubscription: function (el) {
+                var pid = el.id.replace(/^[^0-9]+/, '');
+                if (confirm("Você realmente deseja cancelar a sua inscrição na oficina?")) {
+                    $.post(vars.ajaxurl, {'action': 'snc_cancel_subscription', 'pid': pid}, function (data) {
+                        if (data) {
+                            window.location.href = window.location.href + "?status=canceled";
+                        }
+                    }).fail(function (e) {
+                        alert(e.responseJSON.data);
+                    });
+                }
+
+                return false;
             }
         }
     ;

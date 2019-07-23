@@ -190,7 +190,7 @@ class SNC_Oficinas_Visualizar_Inscricao_Shortcode
                 'author'        =>  $current_user,
                 'orderby'       =>  'post_date',
                 'order'         =>  'ASC',
-                'post_type'     => 'inscricao-oficina',
+                'post_type'     => SNC_POST_TYPE_INSCRICOES,
                 'posts_per_page' => 1
             ]);
 

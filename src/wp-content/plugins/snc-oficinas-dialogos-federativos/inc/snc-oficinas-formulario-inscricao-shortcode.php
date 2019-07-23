@@ -22,7 +22,7 @@ class SNC_Oficinas_Formulario_Inscricao_Shortcode
 
     function snc_acf_validate_save_post()
     {
-        if ($_POST['post_id'] != 'inscricao-oficina') {
+        if ($_POST['post_id'] != SNC_POST_TYPE_INSCRICOES) {
             return true;
         }
 
@@ -72,9 +72,9 @@ class SNC_Oficinas_Formulario_Inscricao_Shortcode
         $settings = array(
             'field_groups' => array($atts['form-group-id']),
             'id' => 'snc-main-form',
-            'post_id' => 'inscricao-oficina',
+            'post_id' => SNC_POST_TYPE_INSCRICOES,
             'new_post' => array(
-                'post_type' => 'inscricao-oficina',
+                'post_type' => SNC_POST_TYPE_INSCRICOES,
                 'post_status' => 'pending'
             ),
             'updated_message' => 'Inscrição enviada com sucesso.',
@@ -83,14 +83,16 @@ class SNC_Oficinas_Formulario_Inscricao_Shortcode
             'submit_value' => 'Finalizar inscrição'
         );
 
+        $status = $_GET['status'];
         ob_start();
         $subscription = $this->get_subscription_in_workshop();
-        if (count($subscription) > 0) {
-//            $settings['post_id'] = current($subscription)->ID;
-            $this->get_message_subscription_pending(current($subscription));
-        } else {
+        if (count($subscription) == 0) {
             $this->get_message_register_success();
             acf_form($settings);
+        } else if ($status == 'updated') {
+            $this->get_message_subscription_pending(current($subscription));
+        } else {
+            $this->get_message_user_registered();
         }
 
         return ob_get_clean();
@@ -118,16 +120,28 @@ class SNC_Oficinas_Formulario_Inscricao_Shortcode
         <?php
     }
 
+    private function get_message_user_registered()
+    {
+        ?>
+        <div class="alert alert-danger" role="alert">
+            Você já possui uma inscrição!
+        </div>
+
+        Se desejar,
+        <a href="<?= home_url('/inscricoes/') ?>">clique aqui para acompanhar o status da inscrição</a>
+        <?php
+    }
+
     private function get_message_subscription_pending($subscription)
     {
         ?>
         <div style="margin-bottom: 100px">
-
             <div class="alert alert-success" role="alert">
                 Solicitação de inscrição enviada com sucesso. Confirme seu e-mail para prosseguir com a inscrição.
             </div>
 
-            <b>Status da inscrição:</b> <?= $this->get_status_label_subscription($subscription->post_status); ?>
+            Se desejar,
+            <a href="<?= home_url('/inscricoes/') ?>">clique aqui para acompanhar o status da inscrição</a>
         </div>
         <?php
     }
@@ -137,7 +151,7 @@ class SNC_Oficinas_Formulario_Inscricao_Shortcode
         if (is_user_logged_in()) {
             $post = get_posts([
                 'author' => get_current_user_id(),
-                'post_type' => 'inscricao-oficina',
+                'post_type' => SNC_POST_TYPE_INSCRICOES,
                 'post_status' => array('publish', 'pending', 'canceled', 'waiting_list'),
                 'posts_per_page' => 1
             ]);
@@ -148,34 +162,12 @@ class SNC_Oficinas_Formulario_Inscricao_Shortcode
         return false;
     }
 
-    public function get_status_label_subscription($status)
-    {
-
-        $label = '';
-        switch ($status) {
-            case 'pending':
-                $label = 'Pendente';
-                break;
-            case 'canceled':
-                $label = 'Cancelada';
-                break;
-            case 'waiting_list':
-                $label = 'Lista de espera';
-                break;
-            case 'publish':
-                $label = 'Confirmada';
-                break;
-        }
-        return $label;
-    }
-
     public function add_acf_form_head()
     {
         if (shortcode_exists('snc-subscription-form')) {
             acf_form_head();
         }
     }
-
 
     /**
      * Notify the monitors about a new subscription
@@ -204,7 +196,7 @@ class SNC_Oficinas_Formulario_Inscricao_Shortcode
      */
     public function preprocess_main_form($post_id)
     {
-        if ($post_id != 'inscricao-oficina') {
+        if ($post_id != SNC_POST_TYPE_INSCRICOES) {
             return $post_id;
         }
 
@@ -212,7 +204,7 @@ class SNC_Oficinas_Formulario_Inscricao_Shortcode
             return;
         }
 
-        $post = array('post_type' => 'inscricao-oficina', 'post_status' => 'pending');
+        $post = array('post_type' => SNC_POST_TYPE_INSCRICOES, 'post_status' => 'pending');
         $post_id = wp_insert_post($post);
 
         $token = SNC_Oficinas_Utils::generate_token();
@@ -221,7 +213,6 @@ class SNC_Oficinas_Formulario_Inscricao_Shortcode
         $inscricao = array('ID' => $post_id, 'post_title' => 'Inscrição - (ID #' . $post_id . ')');
         wp_update_post($inscricao);
 
-        // Return the new ID
         return $post_id;
     }
 
@@ -233,7 +224,6 @@ class SNC_Oficinas_Formulario_Inscricao_Shortcode
 
     function snc_filter_workshops_object_result($title, $post, $field, $post_id)
     {
-        //data e o local da oficina
         $fields = get_fields($post->ID, true);
         $data_inicio = $fields['oficina_data_inicio'];
         $data_final = $fields['oficina_data_final'];

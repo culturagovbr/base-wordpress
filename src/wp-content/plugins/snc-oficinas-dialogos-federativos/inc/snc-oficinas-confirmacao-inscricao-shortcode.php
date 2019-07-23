@@ -9,7 +9,6 @@ class SNC_Oficinas_Confirmacao_Inscricao_Shortcode
     {
         if (!is_admin()) {
             add_shortcode('snc-oficina-confirmar-inscricao', array($this, 'snc_confirm_token_subscription'));
-            add_shortcode('snc-oficina-cancelar-inscricao', array($this, 'snc_cancel_token_subscription'));
         }
     }
 
@@ -33,7 +32,7 @@ class SNC_Oficinas_Confirmacao_Inscricao_Shortcode
                 $this->get_message_subscription_waiting_list();
             }
 
-            $this->get_data_workshop($subscription_id);
+            $this->get_infos_workshop($subscription_id);
         } catch (Exception $e) {
             $this->get_message_subscription_error($e->getMessage());
         } finally {
@@ -76,7 +75,7 @@ class SNC_Oficinas_Confirmacao_Inscricao_Shortcode
     private function get_total_registered_in_workshop($workshop_id)
     {
         $query = new WP_Query(array(
-                'post_type' => 'inscricao-oficina',
+                'post_type' => SNC_POST_TYPE_INSCRICOES,
                 'post_status' => 'publish',
                 'meta_key' => 'inscricao_oficina_uf',
                 'meta_value' => $workshop_id)
@@ -91,9 +90,6 @@ class SNC_Oficinas_Confirmacao_Inscricao_Shortcode
         wp_update_post($subscription);
         delete_post_meta($subscription_id, 'token_ativacao_inscricao');
 
-        $token = SNC_Oficinas_Utils::generate_token();
-        add_post_meta($subscription_id, 'token_cancelar_inscricao', $token, true);
-
         $oficinasEmail = new SNC_Oficinas_Email($subscription_id, 'snc_email_effectiveness_subscription');
         $oficinasEmail->snc_send_mail_user();
     }
@@ -104,14 +100,11 @@ class SNC_Oficinas_Confirmacao_Inscricao_Shortcode
         wp_update_post($subscription);
         delete_post_meta($subscription_id, 'token_ativacao_inscricao');
 
-        $token = SNC_Oficinas_Utils::generate_token();
-        add_post_meta($subscription_id, 'token_cancelar_lista_espera', $token, true);
-
         $oficinasEmail = new SNC_Oficinas_Email($subscription_id, 'snc_email_waiting_list_subscription');
         $oficinasEmail->snc_send_mail_user();
     }
 
-    private function get_data_workshop($subscription_id)
+    private function get_infos_workshop($subscription_id)
     {
         $workshop = get_field('inscricao_oficina_uf', $subscription_id, true);
         $subscription = get_post($subscription_id);
@@ -164,10 +157,9 @@ class SNC_Oficinas_Confirmacao_Inscricao_Shortcode
     {
         ?>
         <div class="container-fluid">
-
             <div class="alert alert-danger" role="alert">
                 <?= $message; ?>
-                <a href="<?= home_url('/inscricao/') ?>">Clique aqui para consultar o status da inscrição</a>
+                <a href="<?= home_url('/inscricoes/') ?>">Clique aqui para consultar o status da inscrição</a>
             </div>
         </div>
         <?php
@@ -185,45 +177,8 @@ class SNC_Oficinas_Confirmacao_Inscricao_Shortcode
             <p>
                 Seu pedido ficará em lista de espera. Caso alguém desista e seja possível atendê-lo(a), efetivaremos sua
                 matrícula e entraremos em contato por e-mail. Se desejar,
-                <a href="<?= home_url('/inscricao/') ?>">clique aqui para acompanhar o status da inscrição</a>
+                <a href="<?= home_url('/inscricoes/') ?>">clique aqui para acompanhar o status da inscrição</a>
             </p>
-        </div>
-        <?php
-    }
-
-    public function snc_cancel_token_subscription()
-    {
-        $token = esc_attr($_GET['token']);
-        $post_id = esc_attr($_GET['id']);
-
-        $current_token = get_post_meta($post_id, 'token_cancelar_inscricao', true);
-        $valid = false;
-        if (!empty($current_token) && !empty($token) && $current_token == $token) {
-            $subscription = array('ID' => $post_id, 'post_status' => 'canceled');
-            wp_update_post($subscription);
-
-            delete_post_meta($post_id, 'token_cancelar_inscricao');
-            $valid = true;
-        }
-
-        ob_start();
-        if ($valid) {
-            $this->get_message_cancel_confirmation();
-        } else {
-            $this->get_message_subscription_error();
-        }
-
-        return ob_get_clean();
-    }
-
-    private function get_message_cancel_confirmation()
-    {
-        ?>
-        <div class="container-fluid">
-
-            <div class="alert alert-success" role="alert">
-                Sua inscrição foi cancelada com sucesso!
-            </div>
         </div>
         <?php
     }

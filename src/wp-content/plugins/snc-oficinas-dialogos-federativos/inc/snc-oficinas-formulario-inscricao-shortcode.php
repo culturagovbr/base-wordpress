@@ -215,7 +215,7 @@ class SNC_Oficinas_Formulario_Inscricao_Shortcode
         $post = array('post_type' => 'inscricao-oficina', 'post_status' => 'pending');
         $post_id = wp_insert_post($post);
 
-        $token = md5(uniqid(rand(), true));
+        $token = SNC_Oficinas_Utils::generate_token();
         add_post_meta($post_id, 'token_ativacao_inscricao', $token, true);
 
         $inscricao = array('ID' => $post_id, 'post_title' => 'Inscrição - (ID #' . $post_id . ')');

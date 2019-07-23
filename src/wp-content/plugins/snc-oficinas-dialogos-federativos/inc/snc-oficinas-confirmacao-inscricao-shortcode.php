@@ -17,7 +17,6 @@ class SNC_Oficinas_Confirmacao_Inscricao_Shortcode
     {
         $token = esc_attr($_GET['token']);
         $subscription_id = esc_attr($_GET['id']);
-        $post_status = false;
 
         try {
             ob_start();
@@ -92,7 +91,7 @@ class SNC_Oficinas_Confirmacao_Inscricao_Shortcode
         wp_update_post($subscription);
         delete_post_meta($subscription_id, 'token_ativacao_inscricao');
 
-        $token = md5(uniqid(rand(), true));
+        $token = SNC_Oficinas_Utils::generate_token();
         add_post_meta($subscription_id, 'token_cancelar_inscricao', $token, true);
 
         $oficinasEmail = new SNC_Oficinas_Email($subscription_id, 'snc_email_effectiveness_subscription');
@@ -105,7 +104,7 @@ class SNC_Oficinas_Confirmacao_Inscricao_Shortcode
         wp_update_post($subscription);
         delete_post_meta($subscription_id, 'token_ativacao_inscricao');
 
-        $token = md5(uniqid(rand(), true));
+        $token = SNC_Oficinas_Utils::generate_token();
         add_post_meta($subscription_id, 'token_cancelar_lista_espera', $token, true);
 
         $oficinasEmail = new SNC_Oficinas_Email($subscription_id, 'snc_email_waiting_list_subscription');

@@ -48,7 +48,7 @@ class SNC_Oficinas_Dialogos_Federativos
         add_action('get_footer', array($this, 'debug_plugin'));
 
         // shortcodes
-        new SNC_Oficinas_Registro_Usuario_Shortcode();
+        new SNC_Oficinas_Shortcode_Formulario_Usuario();
     }
 
     public function activate_hook()
@@ -151,11 +151,11 @@ class SNC_Oficinas_Dialogos_Federativos
      */
     public function set_shortcodes()
     {
-        new SNC_Oficinas_Inscricoes_Shortcode();
-        new SNC_Oficinas_Formulario_Inscricao_Shortcode();
-        new SNC_Oficinas_Login_Shortcode();
-        new SNC_Oficinas_Confirmacao_Inscricao_Shortcode();
-        new SNC_Oficinas_Visualizar_Email_Shortcode();
+        new SNC_Oficinas_Shortcode_Inscricoes();
+        new SNC_Oficinas_Shortcode_Formulario_Inscricao();
+        new SNC_Oficinas_Shortcode_Login();
+        new SNC_Oficinas_Shortcode_Confirmacao_Inscricao();
+        new SNC_Oficinas_Shortcode_Visualizar_Email();
     }
 
     /**
@@ -196,7 +196,7 @@ class SNC_Oficinas_Dialogos_Federativos
         }
 
         if (is_user_logged_in() && is_page('login')) {
-            wp_redirect(home_url('/perfil'));
+            wp_redirect(home_url('/inscricoes'));
             exit;
         }
 

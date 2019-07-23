@@ -1,6 +1,6 @@
 <?php
 
-class SNC_Oficinas_Login_Shortcode
+class SNC_Oficinas_Shortcode_Login
 {
     public function __construct()
     {

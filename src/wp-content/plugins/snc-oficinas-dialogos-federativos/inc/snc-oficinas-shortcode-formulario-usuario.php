@@ -3,7 +3,7 @@
 if (!defined('WPINC'))
     die();
 
-class SNC_Oficinas_Registro_Usuario_Shortcode
+class SNC_Oficinas_Shortcode_Formulario_Usuario
 {
     private $errors = [];
 

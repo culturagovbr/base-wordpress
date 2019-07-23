@@ -3,7 +3,7 @@
 if (!defined('WPINC'))
     die();
 
-class SNC_Oficinas_Formulario_Inscricao_Shortcode
+class SNC_Oficinas_Shortcode_Formulario_Inscricao
 {
     public function __construct()
     {
@@ -78,7 +78,7 @@ class SNC_Oficinas_Formulario_Inscricao_Shortcode
                 'post_status' => 'pending'
             ),
             'updated_message' => 'Inscrição enviada com sucesso.',
-            'return' => home_url('/inscricao/?updated=true'),
+            'return' => home_url('/inscricao/?status=updated'),
             'uploader' => 'basic',
             'submit_value' => 'Finalizar inscrição'
         );

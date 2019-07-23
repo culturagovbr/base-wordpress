@@ -3,7 +3,7 @@
 if (!defined('WPINC'))
     die();
 
-class SNC_Oficinas_Confirmacao_Inscricao_Shortcode
+class SNC_Oficinas_Shortcode_Confirmacao_Inscricao
 {
     public function __construct()
     {

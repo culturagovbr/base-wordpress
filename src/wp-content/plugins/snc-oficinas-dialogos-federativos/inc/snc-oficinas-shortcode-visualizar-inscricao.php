@@ -4,7 +4,7 @@ if (!defined('WPINC'))
     die();
 
 
-class SNC_Oficinas_Visualizar_Inscricao_Shortcode
+class SNC_Oficinas_Shortcode_Visualizar_Inscricao
 {
     public function __construct()
     {
@@ -202,4 +202,4 @@ class SNC_Oficinas_Visualizar_Inscricao_Shortcode
 
 }
 
-new SNC_Oficinas_Visualizar_Inscricao_Shortcode();
+new SNC_Oficinas_Shortcode_Visualizar_Inscricao();

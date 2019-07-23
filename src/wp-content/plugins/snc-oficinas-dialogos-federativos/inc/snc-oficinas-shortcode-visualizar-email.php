@@ -3,7 +3,7 @@
 if (!defined('WPINC'))
     die();
 
-class SNC_Oficinas_Visualizar_Email_Shortcode
+class SNC_Oficinas_Shortcode_Visualizar_Email
 {
     public function __construct()
     {

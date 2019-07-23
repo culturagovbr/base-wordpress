@@ -1,6 +1,6 @@
 <?php
 
-class SNC_Oficinas_Inscricoes_Shortcode
+class SNC_Oficinas_Shortcode_Inscricoes
 {
     public function __construct()
     {

@@ -31,7 +31,7 @@ class SNC_Oficinas_Settings
     {
 
         add_submenu_page(
-            'edit.php?post_type=inscricao-oficina',
+            'edit.php?post_type=' . SNC_POST_TYPE_INSCRICOES,
             'Configurações',
             'Configurações',
             'manage_options',

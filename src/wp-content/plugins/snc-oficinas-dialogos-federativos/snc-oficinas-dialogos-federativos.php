@@ -196,7 +196,7 @@ class SNC_Oficinas_Dialogos_Federativos
         }
 
         if (is_user_logged_in() && is_page('login')) {
-            wp_redirect(home_url('/perfil'));
+            wp_redirect(home_url('/inscricoes'));
             exit;
         }
 

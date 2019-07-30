@@ -104,7 +104,7 @@ class SNC_Oficinas_Registro_Usuario_Shortcode
                 <div class="form-group col-md-6">
                     <label class="login-field-icon fui-user" for="fullname">Nome completo <span
                                 style="color: red;">*</span></label>
-                    <input name="fullname" type="text"
+                    <input name="fullname" type="text" maxlength="255"
                            class="form-control login-field <?= strlen($errors['fullname']) > 1 ? 'is-invalid' : '' ?>"
                            value="<?php echo(isset($_POST['fullname']) ? $_POST['fullname'] : $name); ?>"
                            id="fullname" <?= $required; ?>
@@ -163,7 +163,7 @@ class SNC_Oficinas_Registro_Usuario_Shortcode
 
                 <div class="form-group col-md-3">
                     <label class="login-field-icon fui-user" for="rg">RG <span style="color: red;">*</span></label>
-                    <input name="rg" type="text"
+                    <input name="rg" type="text" maxlength="10"
                            class="form-control login-field <?= strlen($errors['rg']) > 1 ? 'is-invalid' : '' ?>"
                            value="<?php echo(isset($_POST['rg']) ? $_POST['rg'] : $rg); ?>"
                            id="rg" <?= $required; ?>/>
@@ -173,7 +173,7 @@ class SNC_Oficinas_Registro_Usuario_Shortcode
                 <div class="form-group col-md-12">
                     <label class="login-field-icon fui-lock" for="address">Endereço <span
                                 style="color: red;">*</span></label>
-                    <input name="address" type="text"
+                    <input name="address" type="text" maxlength="255"
                            class="form-control login-field <?= strlen($errors['address']) > 1 ? 'is-invalid' : '' ?>"
                            value="<?php echo(isset($_POST['address']) ? $_POST['address'] : $address); ?>"
                            id="address" <?= $required; ?>/>
@@ -206,8 +206,8 @@ class SNC_Oficinas_Registro_Usuario_Shortcode
                 </div>
                 <div class="form-group col-md-3">
                     <label class="login-field-icon fui-user" for="neighborhood">Bairro <span
-                                style="color: red;">*</span></label>
-                    <input name="neighborhood" type="text"
+                                style="color: red;" >*</span></label>
+                    <input name="neighborhood" type="text" maxlength="255"
                            class="form-control login-field <?= strlen($errors['neighborhood']) > 1 ? 'is-invalid' : '' ?>"
                            value="<?php echo(isset($_POST['neighborhood']) ? $_POST['neighborhood'] : $neighborhood); ?>"
                            id="neighborhood" <?= $required; ?>/>
@@ -217,7 +217,7 @@ class SNC_Oficinas_Registro_Usuario_Shortcode
                 <div class="form-group col-md-3">
                     <label class="login-field-icon fui-user" for="number">Número <span
                                 style="color: red;">*</span></label>
-                    <input name="number" type="text"
+                    <input name="number" type="text" maxlength="100"
                            class="form-control login-field <?= strlen($errors['number']) > 1 ? 'is-invalid' : '' ?>"
                            value="<?php echo(isset($_POST['number']) ? $_POST['number'] : $number); ?>"
                            id="number" <?= $required; ?>/>
@@ -226,7 +226,7 @@ class SNC_Oficinas_Registro_Usuario_Shortcode
 
                 <div class="form-group col-md-8">
                     <label class="login-field-icon fui-user" for="complement">Complemento</label>
-                    <input name="complement" type="text"
+                    <input name="complement" type="text" maxlength="255"
                            class="form-control login-field"
                            value="<?php echo(isset($_POST['complement']) ? $_POST['complement'] : $complement); ?>"
                            id="complement"/>
@@ -267,7 +267,7 @@ class SNC_Oficinas_Registro_Usuario_Shortcode
                 <div class="form-group col-md-6">
                     <label class="login-field-icon fui-mail" for="email">E-mail pessoal <span
                                 style="color: red;">*</span></label>
-                    <input name="email" type="email"
+                    <input name="email" type="email" maxlength="100"
                            class="form-control login-field <?= strlen($errors['email']) > 1 ? 'is-invalid' : '' ?>"
                            value="<?php echo(isset($_POST['email']) ? $_POST['email'] : $email); ?>"
                            id="email" <?= $required; ?>/>
@@ -278,7 +278,7 @@ class SNC_Oficinas_Registro_Usuario_Shortcode
                     <div class="form-group col-md-6">
                         <label class="login-field-icon fui-mail" for="email">Confirmar e-mail pessoal <span
                                     style="color: red;">*</span></label>
-                        <input name="email_repeat" type="email"
+                        <input name="email_repeat" type="email" maxlength="100"
                                class="form-control login-field <?= strlen($errors['email_repeat']) > 1 ? 'is-invalid' : '' ?>"
                                value="<?php echo(isset($_POST['email_repeat']) ? $_POST['email_repeat'] : $email); ?>"
                                id="email" <?= $required; ?>/>
@@ -289,7 +289,7 @@ class SNC_Oficinas_Registro_Usuario_Shortcode
                 <div class="form-group col-md-6">
                     <label class="login-field-icon fui-mail" for="institutional-email ">E-mail institucional (se
                         houver)</label>
-                    <input name="institutional-email" type="email"
+                    <input name="institutional-email" type="email" maxlength="100"
                            class="form-control login-field"
                            value="<?php echo(isset($_POST['institutional-email']) ? $_POST['institutional-email'] : $institutional_email); ?>"
                            id="institutional-email"/>
@@ -297,7 +297,7 @@ class SNC_Oficinas_Registro_Usuario_Shortcode
 
                 <div class="form-group col-md-6">
                     <label class="login-field-icon fui-mail" for="webpage">Página da internet (se houver)</label>
-                    <input name="webpage" type="text"
+                    <input name="webpage" type="text" maxlength="100"
                            class="form-control login-field"
                            value="<?php echo(isset($_POST['webpage']) ? $_POST['webpage'] : $webpage); ?>"
                            id="webpage"/>
@@ -306,10 +306,11 @@ class SNC_Oficinas_Registro_Usuario_Shortcode
                 <div class="form-group col-md-6">
                     <label class="login-field-icon fui-mail" for="socials">Indique outras ferramentas de comunicação
                         utilizadas</label>
-                    <input name="socials" type="text"
+                    <input name="socials" type="text" maxlength="255"
                            class="form-control login-field"
                            value="<?php echo(isset($_POST['socials']) ? $_POST['socials'] : $socials); ?>"
                            id="socials"/>
+                            <div class="invalid-feedback"><?= $errors['socials']; ?></div>
                 </div>
                 <?php if (!$is_user_logged_in) : ?>
                     <div class="form-group col-md-6"></div>
@@ -318,6 +319,7 @@ class SNC_Oficinas_Registro_Usuario_Shortcode
                     <label class="login-field-icon fui-lock"
                            for="password">Senha <?= $is_user_logged_in ? '' : '<span style="color: red;">*</span>'; ?></label>
                     <input name="password" type="password"
+                           maxlength="20"
                            class="form-control login-field <?= strlen($errors['password']) > 1 ? 'is-invalid' : '' ?>"
                            value="<?php echo(isset($_POST['password']) ? $_POST['password'] : null); ?>"
                            placeholder="" id="password" <?= $required; ?>/>
@@ -328,6 +330,7 @@ class SNC_Oficinas_Registro_Usuario_Shortcode
                     <label class="login-field-icon fui-lock" for="password-repeat">Confirmar a
                         senha <?php echo is_user_logged_in() ? '' : '<span style="color: red;">*</span>'; ?></label>
                     <input name="password-repeat" type="password"
+                           maxlength="20"
                            class="form-control login-field <?= strlen($errors['password-repeat']) > 1 ? 'is-invalid' : '' ?>"
                            value="<?php echo(isset($_POST['password-repeat']) ? $_POST['password-repeat'] : null); ?>"
                            placeholder="" id="password-repeat" <?= $required; ?>/>
@@ -515,7 +518,7 @@ class SNC_Oficinas_Registro_Usuario_Shortcode
             $user = wp_signon($creds, false);
 
             if (is_wp_error($user)) {
-                throw new Exception("Seu cadastro foi realizado, mas houve um erro ao redirecionar. Tente fazer login");
+                throw new Exception("Aconteceu um erro inesperado ao salvar: " . $user->get_error_message());
             }
 
             $redirect_to = home_url('/inscricao/?registered=true');

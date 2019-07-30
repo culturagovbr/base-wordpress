@@ -4,25 +4,29 @@ class SNC_Oficinas_Validator
 {
     public $fields_rules = array(
         'register' => array(
-            'fullname' => array('not_empty'),
+            'fullname' => array('not_empty', 'str_length_less_than_255'),
             'birthday' => array('not_empty', 'is_a_valid_date'),
             'schooling' => array('not_empty'),
             'gender' => array('not_empty'),
             'cpf' => array('not_empty', 'is_a_valid_cpf', 'user_cpf_does_not_exist'),
-            'rg' => array('not_empty'),
-            'address' => array('not_empty'),
-            'number' => array('not_empty'),
+            'rg' => array('not_empty', 'str_length_less_than_10'),
+            'address' => array('not_empty', 'str_length_less_than_255'),
+            'number' => array('not_empty', 'str_length_less_than_100'),
             'state' => array('not_empty'),
             'county' => array('not_empty'),
-            'neighborhood' => array('not_empty'),
+            'neighborhood' => array('not_empty', 'str_length_less_than_255'),
             'zipcode' => array('not_empty', 'is_a_valid_cep'),
             'phone' => array('not_empty'),
             'celphone' => array('not_empty'),
-            'email' => array('not_empty', 'is_valid_email', 'is_email_does_not_exist'),
-            'password' => array('not_empty', 'password_length_more_than_5'),
+            'email' => array('not_empty', 'is_valid_email', 'is_email_does_not_exist', 'str_length_less_than_100'),
+            'institutional-email' => array('str_length_less_than_100'),
+            'socials' => array('str_length_less_than_255'),
+            'webpage' => array('str_length_less_than_100'),
+            'complement' => array('str_length_less_than_255'),
+            'password' => array('not_empty', 'password_length_more_than_5', 'str_length_less_than_20'),
         ),
         'update' => array(
-            'fullname' => array('not_empty'),
+            'fullname' => array('not_empty', 'str_length_less_than_255'),
             'birthday' => array('not_empty', 'is_a_valid_date'),
             'schooling' => array('not_empty'),
             'gender' => array('not_empty'),
@@ -192,4 +196,32 @@ class SNC_Oficinas_Validator
         return true;
     }
 
+    private static function str_length_less_than($v, $max)
+    {
+        if (strlen(utf8_decode($v)) > $max) {
+            return __("O texto não deve exceder {$max} caracteres.");
+        }
+        return true;
+    }
+
+    //@todo melhorar esse tipo de verificacao
+    static function str_length_less_than_255($v)
+    {
+        return self::str_length_less_than($v, 255);
+    }
+
+    static function str_length_less_than_10($v)
+    {
+        return self::str_length_less_than($v, 10);
+    }
+
+    static function str_length_less_than_20($v)
+    {
+        return self::str_length_less_than($v, 20);
+    }
+
+    static function str_length_less_than_100($v)
+    {
+        return self::str_length_less_than($v, 100);
+    }
 }

@@ -2,7 +2,7 @@ version: '3.1'
 services:
   wordpress:
     container_name: 'app_base_wp'
-    image: wordpress
+    image: wordpress:4.9.8
     restart: always
     ports:
     - 80:80
@@ -15,13 +15,13 @@ services:
       WORDPRESS_DB_USER: exampleuser
       WORDPRESS_DB_PASSWORD: examplepass
       WORDPRESS_DB_NAME: base_wp
-      #      WORDPRESS_DEBUG: 1
+#      WORDPRESS_DEBUG: 1
       WORDPRESS_TABLE_PREFIX: wpminc_
       WORDPRESS_CONFIG_EXTRA: |
         /* Multisite */
         define('WP_ALLOW_MULTISITE', true );
         define('MULTISITE', true);
-        define('SUBDOMAIN_INSTALL', false);
+        define('SUBDOMAIN_INSTALL', true);
         define('DOMAIN_CURRENT_SITE', 'base-wp.cultura.localhost'); // TODO: change to actual domain when deploying
         define('PATH_CURRENT_SITE', '/');
         define('SITE_ID_CURRENT_SITE', 1);
@@ -29,8 +29,10 @@ services:
         define('WP_HOME', 'http://base-wp.cultura.localhost/');
         define('WP_SITEURL', 'http://base-wp.cultura.localhost/');
         define('NOBLOGREDIRECT', 'http://base-wp.cultura.localhost');
+         define('SUNRISE', 'on');
     volumes:
     - ./src/wp-content:/var/www/html/wp-content
+    - ./src/.htaccess:/var/www/html/.htaccess
   db:
     container_name: 'banco_base_wp'
     image: mysql:5.7

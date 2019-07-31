@@ -1,3 +1,10 @@
+#<IfModule mod_rewrite.c>
+#RewriteEngine On
+#RewriteCond %{HTTP_HOST} ^portalsnc.cultura.homologacao$
+#RewriteRule wp-content/uploads/(.*) \
+#http://portalsnc.cultura.gov.br/wp-content/uploads/$1 [NC,L]
+#</IfModule>
+
 RewriteEngine On
 RewriteBase /
 RewriteRule ^index\.php$ - [L]

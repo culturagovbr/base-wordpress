@@ -108,8 +108,8 @@ class SNC_Oficinas_Validator
     static function is_email_doest_not_exist_update($e)
     {
         $id_user_email = email_exists($e);
-        if (!is_user_logged_in() || $id_user_email != get_current_user_id()) {
-            return __('Já existe um usuário com o e-mail informadooo');
+        if (is_user_logged_in() && !empty($id_user_email ) && $id_user_email != get_current_user_id()) {
+            return __('Já existe um usuário com o e-mail informado');
         }
 
         return true;

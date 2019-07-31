@@ -37,6 +37,8 @@ class SNC_Oficinas_Dialogos_Federativos
 
         add_action('wp_enqueue_scripts', array($this, 'register_plugin_styles'));
         add_action('wp_enqueue_scripts', array($this, 'register_plugin_scripts'));
+        add_action( 'admin_enqueue_scripts', array($this, 'load_custom_wp_admin_scripts' ));
+
         add_action('template_redirect', array($this, 'redirect_to_auth'));
         add_action('login_redirect', array($this, 'login_redirect'), 10, 3);
         add_action('manage_posts_custom_column', array($this, 'fill_custom_columns'), 10, 2);
@@ -178,6 +180,14 @@ class SNC_Oficinas_Dialogos_Federativos
         wp_enqueue_script(SNC_ODF_SLUG . '-script', SNC_ODF_PLUGIN_URL . 'assets/' . SNC_ODF_SLUG . '-script.js', array('jquery'), false, true);
         wp_localize_script(SNC_ODF_SLUG . '-script', 'vars', array('ajaxurl' => admin_url('admin-ajax.php')));
 
+    }
+
+    function load_custom_wp_admin_scripts($hook) {
+        if(get_post_type() != 'oficinas') {
+            return;
+        }
+
+        wp_enqueue_script(SNC_ODF_SLUG . '-admin', SNC_ODF_PLUGIN_URL . 'assets/' . SNC_ODF_SLUG . '-admin.js', array('jquery'), false, true);
     }
 
     /**

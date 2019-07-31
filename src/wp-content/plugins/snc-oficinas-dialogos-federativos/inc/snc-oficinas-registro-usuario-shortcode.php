@@ -432,7 +432,7 @@ class SNC_Oficinas_Registro_Usuario_Shortcode
         $userdata = array(
             'first_name' => esc_attr($username),
             'display_name' => esc_attr($username),
-            'user_login' => esc_attr($email),
+            'user_login' => mb_strimwidth(esc_attr($email), 0 , 60),
             'user_email' => esc_attr($email),
             'user_pass' => esc_attr($password)
         );
@@ -450,7 +450,7 @@ class SNC_Oficinas_Registro_Usuario_Shortcode
                     'ID' => $user_id,
                     'first_name' => esc_attr($username),
                     'display_name' => esc_attr($username),
-                    'user_login' => esc_attr($email),
+                    'user_login' => mb_strimwidth(esc_attr($email), 0 , 60),
                     'user_email' => esc_attr($email),
                     'user_pass' => esc_attr($password)
                 );

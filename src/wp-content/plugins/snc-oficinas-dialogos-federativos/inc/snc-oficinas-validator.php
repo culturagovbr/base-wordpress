@@ -20,6 +20,7 @@ class SNC_Oficinas_Validator
             'celphone' => array('not_empty'),
             'email' => array('not_empty', 'is_valid_email', 'is_email_does_not_exist', 'str_length_less_than_100'),
             'institutional-email' => array('is_valid_email', 'str_length_less_than_100'),
+            'email-repeat' => array('is_valid_email', 'str_length_less_than_100'),
             'socials' => array('str_length_less_than_255'),
             'webpage' => array('str_length_less_than_100'),
             'complement' => array('str_length_less_than_255'),

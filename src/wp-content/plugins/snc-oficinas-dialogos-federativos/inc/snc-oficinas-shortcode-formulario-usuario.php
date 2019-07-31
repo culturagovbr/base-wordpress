@@ -281,11 +281,11 @@ class SNC_Oficinas_Shortcode_Formulario_Usuario
                     <div class="form-group col-md-6">
                         <label class="login-field-icon fui-mail" for="email">Confirmar e-mail pessoal <span
                                     style="color: red;">*</span></label>
-                        <input name="email_repeat" type="email" maxlength="100"
-                               class="form-control login-field <?= strlen($errors['email_repeat']) > 1 ? 'is-invalid' : '' ?>"
-                               value="<?php echo(isset($_POST['email_repeat']) ? $_POST['email_repeat'] : $email); ?>"
+                        <input name="email-repeat" type="email" maxlength="100"
+                               class="form-control login-field <?= strlen($errors['email-repeat']) > 1 ? 'is-invalid' : '' ?>"
+                               value="<?php echo(isset($_POST['email-repeat']) ? $_POST['email-repeat'] : $email); ?>"
                                id="email" <?= $required; ?>/>
-                        <div class="invalid-feedback"><?= $errors['email_repeat']; ?></div>
+                        <div class="invalid-feedback"><?= $errors['email-repeat']; ?></div>
                     </div>
                 <?php endif; ?>
 
@@ -367,7 +367,7 @@ class SNC_Oficinas_Shortcode_Formulario_Usuario
     {
         $errors = $this->validation();
         $email = $_POST['email'];
-        $email_repeat = $_POST['email_repeat'];
+        $email_repeat = $_POST['email-repeat'];
         $password = $_POST['password'];
         $password_repeat = $_POST['password-repeat'];
         $is_updating = isset($_POST['is-updating']) ? true : false;
@@ -386,12 +386,12 @@ class SNC_Oficinas_Shortcode_Formulario_Usuario
             }
 
             if ($email !== $email_repeat) {
-                $errors['email'] = 'Os emails não são iguais.';
+                $errors['email-repeat'] = 'Os e-mails informados devem ser iguais.';
             }
         }
 
         if ($password !== $password_repeat) {
-            $errors['password_repeat'] = 'As senhas inseridas são diferentes.';
+            $errors['password-repeat'] = 'As senhas informadas devem ser iguais.';
         }
 
 

@@ -19,7 +19,7 @@ class SNC_Oficinas_Validator
             'phone' => array('not_empty'),
             'celphone' => array('not_empty'),
             'email' => array('not_empty', 'is_valid_email', 'is_email_does_not_exist', 'str_length_less_than_100'),
-            'institutional-email' => array('str_length_less_than_100'),
+            'institutional-email' => array('is_valid_email', 'str_length_less_than_100'),
             'socials' => array('str_length_less_than_255'),
             'webpage' => array('str_length_less_than_100'),
             'complement' => array('str_length_less_than_255'),
@@ -89,7 +89,7 @@ class SNC_Oficinas_Validator
     /** Return true if supplied email is valid or give an error message otherwise */
     static function is_valid_email($e)
     {
-        if (is_email($e)) {
+        if (empty($e) || is_email($e)) {
             return true;
         }
         return __('O e-mail não tem um formato válido');

@@ -296,6 +296,7 @@ class SNC_Oficinas_Shortcode_Formulario_Usuario
                            class="form-control login-field"
                            value="<?php echo(isset($_POST['institutional-email']) ? $_POST['institutional-email'] : $institutional_email); ?>"
                            id="institutional-email"/>
+                    <div class="invalid-feedback"><?= $errors['institutional-email']; ?></div>
                 </div>
 
                 <div class="form-group col-md-6">

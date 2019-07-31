@@ -16,6 +16,9 @@ define('SNC_ODF_SLUG', 'snc-oficinas-dialogos-federativos');
 define('SNC_ODF_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('SNC_ODF_PLUGIN_PATH', plugin_dir_path(__FILE__));
 
+define('SNC_POST_TYPE_INSCRICOES', 'inscricao-oficina');
+define('SNC_POST_TYPE_OFICINA', 'oficinas');
+
 class SNC_Oficinas_Dialogos_Federativos
 {
 
@@ -42,12 +45,10 @@ class SNC_Oficinas_Dialogos_Federativos
 
         add_filter('manage_edit-inscricao-oficina_columns', array($this, 'add_custom_columns'));
 
-//         add_action('wp_mail_failed', array($this, 'action_wp_mail_failed'), 10, 1);
         add_action('get_footer', array($this, 'debug_plugin'));
 
         // shortcodes
-        new SNC_Oficinas_Registro_Usuario_Shortcode();
-
+        new SNC_Oficinas_Shortcode_Formulario_Usuario();
     }
 
     public function activate_hook()
@@ -84,7 +85,7 @@ class SNC_Oficinas_Dialogos_Federativos
 
     public function inscricao_oficina_cpt()
     {
-        register_post_type('oficinas', array(
+        register_post_type(SNC_POST_TYPE_OFICINA, array(
                 'labels' => array(
                     'name' => 'Oficinas',
                     'singular_name' => 'Oficinas',
@@ -102,7 +103,7 @@ class SNC_Oficinas_Dialogos_Federativos
             )
         );
 
-        register_post_type('inscricao-oficina', array(
+        register_post_type(SNC_POST_TYPE_INSCRICOES, array(
                 'labels' => array(
                     'name' => 'Inscrições para as Oficinas',
                     'singular_name' => 'Inscrição para as Oficinas',
@@ -150,10 +151,11 @@ class SNC_Oficinas_Dialogos_Federativos
      */
     public function set_shortcodes()
     {
-        new SNC_Oficinas_Formulario_Inscricao_Shortcode();
-        new SNC_Oficinas_Login_Shortcode();
-        new SNC_Oficinas_Confirmacao_Inscricao_Shortcode();
-        new SNC_Oficinas_Visualizar_Email_Shortcode();
+        new SNC_Oficinas_Shortcode_Inscricoes();
+        new SNC_Oficinas_Shortcode_Formulario_Inscricao();
+        new SNC_Oficinas_Shortcode_Login();
+        new SNC_Oficinas_Shortcode_Confirmacao_Inscricao();
+        new SNC_Oficinas_Shortcode_Visualizar_Email();
     }
 
     /**
@@ -186,6 +188,7 @@ class SNC_Oficinas_Dialogos_Federativos
     {
         if (
             !is_user_logged_in() && is_page('perfil') ||
+            !is_user_logged_in() && is_page('inscricoes') ||
             !is_user_logged_in() && is_page('inscricao')
         ) {
             wp_redirect(home_url('/login'));
@@ -193,7 +196,7 @@ class SNC_Oficinas_Dialogos_Federativos
         }
 
         if (is_user_logged_in() && is_page('login')) {
-            wp_redirect(home_url('/perfil'));
+            wp_redirect(home_url('/inscricoes'));
             exit;
         }
 
@@ -209,17 +212,17 @@ class SNC_Oficinas_Dialogos_Federativos
      */
     public function login_redirect($redirect_to, $request, $user)
     {
-        if (isset($user->roles) && is_array($user->roles)) :
+        if (isset($user->roles) && is_array($user->roles)) {
             if (in_array('administrator', $user->roles)) {
                 return admin_url();
             } elseif (in_array('editor', $user->roles)) {
                 return admin_url('edit.php?post_type=inscricao');
             } else {
-                return home_url('/inscricao');
+                return home_url('/inscricoes');
             }
-        else:
+        } else {
             return $redirect_to;
-        endif;
+        }
     }
 
     public function action_wp_mail_failed($wp_error)

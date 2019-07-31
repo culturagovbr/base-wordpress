@@ -1,6 +1,9 @@
 <?php
 
-class SNC_Oficinas_Registro_Usuario_Shortcode
+if (!defined('WPINC'))
+    die();
+
+class SNC_Oficinas_Shortcode_Formulario_Usuario
 {
     private $errors = [];
 
@@ -522,7 +525,7 @@ class SNC_Oficinas_Registro_Usuario_Shortcode
                 throw new Exception("Aconteceu um erro inesperado ao salvar: " . $user->get_error_message());
             }
 
-            $redirect_to = home_url('/inscricao/?registered=true');
+            $redirect_to = home_url('/inscricao/?status=registered');
             wp_safe_redirect($redirect_to);
             exit;
 

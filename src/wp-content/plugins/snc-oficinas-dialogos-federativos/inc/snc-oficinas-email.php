@@ -1,5 +1,8 @@
 <?php
 
+if (!defined('WPINC'))
+    die();
+
 class SNC_Oficinas_Email
 {
     private $post_id;

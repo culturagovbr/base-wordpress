@@ -1160,8 +1160,8 @@
                     "class": "",
                     "id": ""
                 },
-                "display_format": "H:i:s",
-                "return_format": "H:i:s"
+                "display_format": "H:i",
+                "return_format": "H:i"
             },
             {
                 "key": "field_5d30731e24b3e",
@@ -1176,12 +1176,12 @@
                     "class": "",
                     "id": ""
                 },
-                "display_format": "H:i:s",
-                "return_format": "H:i:s"
+                "display_format": "H:i",
+                "return_format": "H:i"
             },
             {
                 "key": "field_5d2f9d3556452",
-                "label": "Loca de realização",
+                "label": "Local de realização",
                 "name": "oficina_loca_de_realizacao",
                 "type": "text",
                 "instructions": "",
@@ -1205,27 +1205,6 @@
                 "type": "number",
                 "instructions": "",
                 "required": 1,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": 100,
-                "placeholder": "",
-                "prepend": "",
-                "append": "",
-                "min": "",
-                "max": "",
-                "step": ""
-            },
-            {
-                "key": "field_5d2f9fe726f3a",
-                "label": "Vagas disponíveis",
-                "name": "oficina_vagas_disponiveis",
-                "type": "number",
-                "instructions": "",
-                "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
                     "width": "",

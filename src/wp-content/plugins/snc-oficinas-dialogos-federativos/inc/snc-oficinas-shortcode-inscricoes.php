@@ -81,7 +81,7 @@ class SNC_Oficinas_Shortcode_Inscricoes
 
         try {
             if (empty($post_id)) {
-                throw new Exception("Oficina não informada!");
+                throw new Exception("Usuário não informada!");
             }
 
             if (!$this->current_user_is_the_author($post_id)) {
@@ -90,6 +90,9 @@ class SNC_Oficinas_Shortcode_Inscricoes
 
             $subscription = array('ID' => $post_id, 'post_status' => 'canceled');
             wp_update_post($subscription);
+
+            //SNC_Oficinas_Service::trigger_change_waiting_list($post_id);
+
             wp_send_json('Alteração realizada com sucesso!', 201);
         } catch (Exception $e) {
             wp_send_json_error($e->getMessage(), 412);

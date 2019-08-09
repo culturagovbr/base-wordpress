@@ -12,6 +12,8 @@ class SNC_Oficinas_Shortcode_Formulario_Inscricao
             add_shortcode('snc-subscription-form', array($this, 'snc_minc_subscription_form_shortcode')); // Inscrição
             add_action('acf/pre_save_post', array($this, 'preprocess_main_form'));
             add_action('acf/save_post', array($this, 'postprocess_main_form'));
+        } else {
+            add_action('acf/save_post', array($this, 'postprocess_main_form_update'));
         }
 
         add_action('acf/validate_save_post', array($this, 'snc_acf_validate_save_post'), 10);
@@ -189,6 +191,23 @@ class SNC_Oficinas_Shortcode_Formulario_Inscricao
     }
 
     /**
+     * Notify the monitors about a new subscription
+     *
+     * @param $post_id
+     */
+    public function postprocess_main_form_update($post_id)
+    {
+        $update = get_post_meta($post_id, '_inscription_validated', true);
+
+        if ($update) {
+            SNC_Oficinas_Service::trigger_change_waiting_list($post_id);
+            return;
+        }
+
+        add_post_meta($post_id, '_inscription_validated', true, true);
+    }
+
+    /**
      * Process data before save indication post
      *
      * @param $post_id
@@ -232,5 +251,4 @@ class SNC_Oficinas_Shortcode_Formulario_Inscricao
 
         return $title;
     }
-
 }

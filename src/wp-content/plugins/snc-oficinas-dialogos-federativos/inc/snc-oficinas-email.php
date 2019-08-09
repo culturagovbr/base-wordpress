@@ -62,6 +62,49 @@ class SNC_Oficinas_Email
         }
     }
 
+    public function snc_send_mail_relatorios()
+    {
+        try {
+
+            $headers[] = 'From: ' . get_bloginfo('name') . ' <automatico@cultura.gov.br>';
+            $subject = 'Ministério da Cidadania - Oficinas dos Diálogos Federativos';
+
+            $objects = SNC_Oficinas_Service::get_email_admin();
+            $to = "";
+
+            if (count((array)$objects) > 0) {
+                $arEmail = array();
+
+                foreach ($objects as $object) {
+                    $arEmail[] = "{$object->display_name} <{$object->user_email}>";
+                }
+                $to = implode(', ', $arEmail);
+            }
+
+//            $to = 'janilson.mendes@gmail.com, tallison.lemos@terceirizado.cidadania.gov.br';
+
+            if (empty($to)) {
+                throw new Exception("Destinatário não informado");
+            }
+
+            $body = $this->get_email_template_relatorio();
+            if (empty($body)) {
+                throw new Exception("Corpo do email vazio");
+            }
+
+            if (!wp_mail($to, $subject, $body, $headers)) {
+                throw new Exception("wp_mail falhou");
+            }
+
+            return true;
+        } catch (Exception $e) {
+            $mensagem = "ERRO: O envio de email para: {$to}, falhou! Tipo: " . $e->getMessage();
+
+            error_log($mensagem, 0);
+            return false;
+        }
+    }
+
     public function get_email_template($user_type = 'user')
     {
 
@@ -110,6 +153,53 @@ class SNC_Oficinas_Email
         } else {
             require SNC_ODF_PLUGIN_PATH . '/email-templates/admin-template.php';
         }
+        return ob_get_clean();
+    }
+
+    public function get_email_template_relatorio()
+    {
+        $objects = SNC_Oficinas_Service::get_quantitativo_inscritos();
+
+        $tr = '<tr><td colspan="6">Não há registros</td></tr>';
+
+        if (count((array)$objects) > 0) {
+            $arTr = array();
+
+            foreach ($objects as $object) {
+                $uf = substr($object->uf, -3,2);
+
+                $arTr[] = "<tr><td style=\"text-align: center;\">{$object->post_title}/{$uf}</td>" .
+                    "<td style=\"text-align: center;\">{$object->total_inscritos}</td>" .
+                    "<td style=\"text-align: center;\">{$object->total_confirmados}</td>" .
+                    "<td style=\"text-align: center;\">{$object->total_pendentes}</td>" .
+                    "<td style=\"text-align: center;\">{$object->total_cancelados}</td>" .
+                    "<td style=\"text-align: center;\">{$object->total_lista_espera}</td></tr>";
+            }
+            $tr = implode('', $arTr);
+        }
+
+        $message = '<h4>Quantitativo de Inscritos até ' . date("d/m/Y") . ':</h4>
+                    <table class="table table-sm" border="1" cellpadding="0" cellspacing="0" 
+                        style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
+                        <thead>
+                            <tr>
+                                <th scope="col" style="background-color: #d3d3d3;">Oficina/UF</th>
+                                <th scope="col" style="background-color: #d3d3d3;">Inscritos</th>
+                                <th scope="col" style="background-color: #d3d3d3;">Confirmados</th>
+                                <th scope="col" style="background-color: #d3d3d3;">Pendentes</th>
+                                <th scope="col" style="background-color: #d3d3d3;">Cancelados</th>
+                                <th scope="col" style="background-color: #d3d3d3;">Lista de Espera</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        ' . $tr . '
+                        </tbody>
+                    </table>';
+
+        ob_start();
+
+        require SNC_ODF_PLUGIN_PATH . '/email-templates/admin-template.php';
+
         return ob_get_clean();
     }
 

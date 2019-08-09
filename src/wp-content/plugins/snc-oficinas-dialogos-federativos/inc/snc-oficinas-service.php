@@ -1,0 +1,178 @@
+<?php
+
+final class SNC_Oficinas_Service
+{
+    public static function get_quantitativo_inscritos($postIdOficina = null)
+    {
+        global $wpdb;
+
+        $postTable = $wpdb->posts;
+        $postMetaTable = $wpdb->postmeta;
+
+        $conditionAnd = [];
+        $command = "get_results";
+
+        if (null != $postIdOficina) {
+            $conditionAnd[] = "o.ID = {$postIdOficina}";
+            $command = "get_row";
+        }
+
+        $where = (count($conditionAnd) > 0 ? " AND " : "") . implode(" AND ", $conditionAnd);
+
+        $query = "SELECT o.ID, 
+                         o.post_title, 
+                         uf.meta_value AS uf,
+                         nt.meta_value AS total_vagas,
+                         COUNT(insc.ID) AS total_inscritos,
+                         COUNT(conf.ID) AS total_confirmados,
+                         COUNT(canc.ID) AS total_cancelados,
+                         COUNT(list.ID) AS total_lista_espera,
+                         COUNT(pend.ID) AS total_pendentes
+                    FROM {$postTable} o 
+                    JOIN {$postMetaTable} uf
+                      ON uf.post_id = o.ID
+                     AND uf.meta_key = 'oficina_unidade_da_federacao' 
+                    JOIN {$postMetaTable} nt
+                      ON nt.post_id = o.ID
+                     AND nt.meta_key = 'oficina_numero_turma' 
+                    LEFT JOIN {$postMetaTable} io 
+                      ON io.meta_value = o.ID
+                     AND io.meta_key = 'inscricao_oficina_uf'
+                    LEFT JOIN {$postTable} insc
+                      ON insc.ID = io.post_id
+                     AND insc.post_status NOT IN ('auto-draft')
+                    LEFT JOIN {$postTable} conf
+                      ON conf.ID = io.post_id
+                     AND conf.post_status = 'publish'
+                    LEFT JOIN {$postTable} canc
+                      ON canc.ID = io.post_id
+                     AND canc.post_status = 'canceled'
+                    LEFT JOIN {$postTable} list
+                      ON list.ID = io.post_id
+                     AND list.post_status = 'waiting_list'
+                    LEFT JOIN {$postTable} pend
+                      ON pend.ID = io.post_id
+                     AND pend.post_status = 'pending'
+                   WHERE o.post_type = 'oficinas'
+                     AND o.post_status NOT IN ('auto-draft') 
+                     {$where}
+                   GROUP BY o.ID, 
+                            o.post_title,
+                            uf.meta_value,
+                            nt.meta_value";
+
+        return $wpdb->$command($query);
+    }
+
+    public static function get_email_admin()
+    {
+        global $wpdb;
+
+        $metakey = str_replace("_posts", "", $wpdb->posts);
+
+        $userTable = $wpdb->users;
+        $userMetaTable = $wpdb->usermeta;
+
+        $query = "SELECT u.user_email, u.display_name 
+                    FROM {$userTable} u 
+                    JOIN {$userMetaTable} um
+                      ON um.user_id = u.ID
+                   WHERE um.meta_key LIKE '%{$metakey}%' 
+                     AND um.meta_value LIKE '%administrator%'";
+
+        return $wpdb->get_results($query);
+    }
+
+    public static function get_oficina_insc_waiting($post_id, $limitVal = 0)
+    {
+        $limit = (int)$limitVal > 0 ? " LIMIT {$limitVal} " : "";
+
+        global $wpdb;
+
+        $postTable = $wpdb->posts;
+        $postMetaTable = $wpdb->postmeta;
+
+        $query = "SELECT o.ID, 
+                         o.post_title, 
+                         uf.meta_value AS uf,
+                         nt.meta_value AS total_vagas,
+                         list.ID AS post_id_lista_espera
+                    FROM {$postTable} o 
+                    JOIN {$postMetaTable} uf
+                      ON uf.post_id = o.ID
+                     AND uf.meta_key = 'oficina_unidade_da_federacao' 
+                    JOIN {$postMetaTable} nt 
+                      ON nt.post_id = o.ID 
+                     AND nt.meta_key = 'oficina_numero_turma'
+                    JOIN {$postMetaTable} io 
+                      ON io.meta_value = o.ID
+                     AND io.meta_key = 'inscricao_oficina_uf'
+                    JOIN {$postTable} list
+                      ON list.ID = io.post_id
+                     AND list.post_status = 'waiting_list'
+                   WHERE o.post_type = 'oficinas'
+                     AND o.post_status NOT IN ('auto-draft') 
+                     AND o.ID = {$post_id}
+                   ORDER BY list.post_date 
+                   {$limit}";
+
+        return $wpdb->get_results($query);
+    }
+
+    public static function update_list_waiting($post_id)
+    {
+        global $wpdb;
+
+        $postTable = $wpdb->posts;
+
+        return $wpdb->update($postTable, array('post_status' => 'publish',), array('ID' => $post_id), array('%s'), array('%d'));
+    }
+
+    public static function trigger_change_waiting_list($post_id)
+    {
+        $oficinaQuant = self::get_quantitativo_inscritos($post_id);
+        $vagasLiberadas = $oficinaQuant->total_vagas - $oficinaQuant->total_confirmados;
+
+        if ($oficinaQuant->total_lista_espera > 0 && $vagasLiberadas > 0) {
+            $listaEspera = self::get_oficina_insc_waiting($post_id, $vagasLiberadas);
+
+            foreach ((array)$listaEspera as $lista) {
+                if (self::update_list_waiting($lista->post_id_lista_espera)) {
+                    $oficinasEmail = new SNC_Oficinas_Email($lista->post_id_lista_espera, 'snc_email_effectiveness_subscription');
+                    $oficinasEmail->snc_send_mail_user();
+                }
+            }
+        }
+
+        return;
+    }
+
+    public static function snc_next_oficinas($numDiasAntes = 1)
+    {
+        global $wpdb;
+
+        $postTable = $wpdb->posts;
+        $postMetaTable = $wpdb->postmeta;
+        $date = date("Y-m-d");
+
+        $query = "SELECT o.ID, 
+                         o.post_title, 
+                         ini.meta_value AS data_inicio,
+                         conf.ID as post_id
+                    FROM {$postTable} o 
+                    JOIN {$postMetaTable} ini
+                      ON ini.post_id = o.ID
+                     AND ini.meta_key = 'oficina_data_inicio'
+                    JOIN {$postMetaTable} io 
+                      ON io.meta_value = o.ID
+                     AND io.meta_key = 'inscricao_oficina_uf'
+                    JOIN {$postTable} conf
+                      ON conf.ID = io.post_id
+                     AND conf.post_status = 'publish'
+                   WHERE o.post_type = 'oficinas'
+                     AND o.post_status NOT IN ('auto-draft')
+                     AND DATE_FORMAT(DATE_SUB(STR_TO_DATE(ini.meta_value, '%Y%m%d'), INTERVAL {$numDiasAntes} DAY), '%Y-%m-%d') = '{$date}'";
+
+        return $wpdb->get_results($query);
+    }
+}

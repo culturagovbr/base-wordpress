@@ -236,33 +236,4 @@ final class SNC_Oficinas_Service
 
         return $wpdb->get_results($query);
     }
-
-    public static function snc_next_oficinas($numDiasAntes = 1)
-    {
-        global $wpdb;
-
-        $postTable = $wpdb->posts;
-        $postMetaTable = $wpdb->postmeta;
-        $date = date("Y-m-d");
-
-        $query = "SELECT o.ID, 
-                         o.post_title, 
-                         ini.meta_value AS data_inicio,
-                         conf.ID as post_id
-                    FROM {$postTable} o 
-                    JOIN {$postMetaTable} ini
-                      ON ini.post_id = o.ID
-                     AND ini.meta_key = 'oficina_data_inicio'
-                    JOIN {$postMetaTable} io 
-                      ON io.meta_value = o.ID
-                     AND io.meta_key = 'inscricao_oficina_uf'
-                    JOIN {$postTable} conf
-                      ON conf.ID = io.post_id
-                     AND conf.post_status = 'publish'
-                   WHERE o.post_type = 'oficinas'
-                     AND o.post_status NOT IN ('auto-draft')
-                     AND DATE_FORMAT(DATE_SUB(STR_TO_DATE(ini.meta_value, '%Y%m%d'), INTERVAL {$numDiasAntes} DAY), '%Y-%m-%d') = '{$date}'";
-
-        return $wpdb->get_results($query);
-    }
 }

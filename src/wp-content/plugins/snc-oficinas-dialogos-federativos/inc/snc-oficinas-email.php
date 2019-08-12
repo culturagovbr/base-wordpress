@@ -76,9 +76,9 @@ class SNC_Oficinas_Email
                 $arEmail = array();
 
                 foreach ($objects as $object) {
-                    $arEmail[] = "{$object->display_name} <{$object->user_email}>";
+                    $arEmail[$object->display_name] = "{$object->user_email}";
                 }
-                $to = implode(', ', $arEmail);
+                $to = $arEmail;
             }
 
 //            $to = 'janilson.mendes@gmail.com';
@@ -99,7 +99,7 @@ class SNC_Oficinas_Email
             return true;
         } catch (Exception $e) {
             $mensagem = "ERRO: O envio de email para: {$to}, falhou! Tipo: " . $e->getMessage();
-
+echo $mensagem;
             error_log($mensagem, 0);
             return false;
         }

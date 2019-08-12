@@ -81,25 +81,24 @@ class SNC_Oficinas_Email
                 $to = $arEmail;
             }
 
-//            $to = 'janilson.mendes@gmail.com';
+//            $to[] = 'janilson.mendes@gmail.com';
 
             if (empty($to)) {
                 throw new Exception("Destinatário não informado");
             }
 
             $body = $this->get_email_template_relatorio();
-            if (empty($body)) {
-                throw new Exception("Corpo do email vazio");
-            }
 
-            if (!wp_mail($to, $subject, $body, $headers)) {
-                throw new Exception("wp_mail falhou");
+            foreach ($to as $value) {
+                if (!wp_mail($value, $subject, $body, $headers)) {
+                    throw new Exception("wp_mail falhou");
+                }
             }
 
             return true;
         } catch (Exception $e) {
             $mensagem = "ERRO: O envio de email para: {$to}, falhou! Tipo: " . $e->getMessage();
-echo $mensagem;
+            echo $mensagem;
             error_log($mensagem, 0);
             return false;
         }
@@ -166,7 +165,7 @@ echo $mensagem;
             $arTr = array();
 
             foreach ($objects as $object) {
-                $uf = substr($object->uf, -3,2);
+                $uf = substr($object->uf, -3, 2);
 
                 $arTr[] = "<tr><td style=\"text-align: center;\">{$object->post_title}/{$uf}</td>" .
                     "<td style=\"text-align: center;\">{$object->total_inscritos}</td>" .

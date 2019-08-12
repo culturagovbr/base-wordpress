@@ -18,6 +18,7 @@ define('SNC_ODF_PLUGIN_PATH', plugin_dir_path(__FILE__));
 
 define('SNC_POST_TYPE_INSCRICOES', 'inscricao-oficina');
 define('SNC_POST_TYPE_OFICINA', 'oficinas');
+define('SNC_POST_TYPE_PARTICIPACAO', 'participacao-oficina');
 
 class SNC_Oficinas_Dialogos_Federativos
 {
@@ -158,6 +159,7 @@ class SNC_Oficinas_Dialogos_Federativos
         new SNC_Oficinas_Shortcode_Login();
         new SNC_Oficinas_Shortcode_Confirmacao_Inscricao();
         new SNC_Oficinas_Shortcode_Visualizar_Email();
+//        new SNC_Oficinas_Shortcode_Formulario_Participacao();
     }
 
     /**
@@ -346,7 +348,7 @@ add_filter('cron_schedules', 'add_custom_cron_schedule');
 function add_custom_cron_schedule($schedules)
 {
     $schedules['minute'] = array(
-        'interval' => 60 * 5,
+        'interval' => 60 * 2,
         'display' => __('5 minutos')
     );
     return $schedules;

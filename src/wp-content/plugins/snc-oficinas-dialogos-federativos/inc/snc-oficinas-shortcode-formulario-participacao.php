@@ -3,7 +3,7 @@
 if (!defined('WPINC'))
     die();
 
-class SNC_Oficinas_Shortcode_Formulario_Inscricao
+class SNC_Oficinas_Shortcode_Formulario_Participacao
 {
     public function __construct()
     {
@@ -12,13 +12,11 @@ class SNC_Oficinas_Shortcode_Formulario_Inscricao
             add_shortcode('snc-subscription-form', array($this, 'snc_minc_subscription_form_shortcode')); // Inscrição
             add_action('acf/pre_save_post', array($this, 'preprocess_main_form'));
             add_action('acf/save_post', array($this, 'postprocess_main_form'));
-        } else {
-            add_action('acf/save_post', array($this, 'postprocess_main_form_update'));
         }
 
-        add_action('acf/validate_save_post', array($this, 'snc_acf_validate_save_post'), 10);
-        add_filter('acf/fields/post_object/query/name=inscricao_oficina_uf', array($this, 'snc_filter_workshops'), 10, 3);
-        add_filter('acf/fields/post_object/result/name=inscricao_oficina_uf', array($this, 'snc_filter_workshops_object_result'), 10, 4);
+//        add_action('acf/validate_save_post', array($this, 'snc_acf_validate_save_post'), 10);
+//        add_filter('acf/fields/post_object/query/name=inscricao_oficina_uf', array($this, 'snc_filter_workshops'), 10, 3);
+//        add_filter('acf/fields/post_object/result/name=inscricao_oficina_uf', array($this, 'snc_filter_workshops_object_result'), 10, 4);
 
     }
 

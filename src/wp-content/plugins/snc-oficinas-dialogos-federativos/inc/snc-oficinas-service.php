@@ -21,6 +21,8 @@ final class SNC_Oficinas_Service
 
         $query = "SELECT o.ID, 
                          o.post_title, 
+                         DATE_FORMAT(STR_TO_DATE(ini.meta_value, '%Y%m%d'), '%d/%m/%Y') AS data_inicio,
+                         DATE_FORMAT(STR_TO_DATE(fim.meta_value, '%Y%m%d'), '%d/%m/%Y') AS data_fim,
                          uf.meta_value AS uf,
                          nt.meta_value AS total_vagas,
                          COUNT(insc.ID) AS total_inscritos,
@@ -29,6 +31,12 @@ final class SNC_Oficinas_Service
                          COUNT(list.ID) AS total_lista_espera,
                          COUNT(pend.ID) AS total_pendentes
                     FROM {$postTable} o 
+                    JOIN {$postMetaTable} ini 
+                      ON ini.post_id = o.ID 
+                     AND ini.meta_key = 'oficina_data_inicio'
+                    JOIN {$postMetaTable} fim
+                      ON fim.post_id = o.ID 
+                     AND fim.meta_key = 'oficina_data_final'
                     JOIN {$postMetaTable} uf
                       ON uf.post_id = o.ID
                      AND uf.meta_key = 'oficina_unidade_da_federacao' 
@@ -54,10 +62,13 @@ final class SNC_Oficinas_Service
                       ON pend.ID = io.post_id
                      AND pend.post_status = 'pending'
                    WHERE o.post_type = 'oficinas'
-                     AND o.post_status NOT IN ('auto-draft') 
+                     AND o.post_status NOT IN ('auto-draft', 'canceled')
+                     AND STR_TO_DATE(fim.meta_value, '%Y%m%d') >= NOW()
                      {$where}
                    GROUP BY o.ID, 
                             o.post_title,
+                            ini.meta_value,
+                            fim.meta_value,
                             uf.meta_value,
                             nt.meta_value";
 
@@ -147,7 +158,7 @@ final class SNC_Oficinas_Service
         return;
     }
 
-    public static function snc_next_oficinas($numDiasAntes = 1)
+    public static function get_oficina_insc($post_id)
     {
         global $wpdb;
 
@@ -174,5 +185,23 @@ final class SNC_Oficinas_Service
                      AND DATE_FORMAT(DATE_SUB(STR_TO_DATE(ini.meta_value, '%Y%m%d'), INTERVAL {$numDiasAntes} DAY), '%Y-%m-%d') = '{$date}'";
 
         return $wpdb->get_results($query);
+    }
+
+    public static function get_oficina_by_insc($post_id)
+    {
+        global $wpdb;
+
+        $postTable = $wpdb->posts;
+        $postMetaTable = $wpdb->postmeta;
+
+        $query = "SELECT io.meta_value AS oficina_id 
+                    FROM {$postTable} insc  
+                    JOIN {$postMetaTable} io 
+                      ON io.post_id = insc.ID
+                     AND io.meta_key = 'inscricao_oficina_uf'
+                   WHERE insc.ID = {$post_id}
+                     AND insc.post_type = 'inscricao-oficina'";
+
+        return $wpdb->get_row($query);
     }
 }

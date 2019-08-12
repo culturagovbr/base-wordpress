@@ -88,10 +88,12 @@ class SNC_Oficinas_Shortcode_Inscricoes
                 throw new Exception("Você não tem autorização realizar esta operação!");
             }
 
+            $oficina = SNC_Oficinas_Service::get_oficina_by_insc($post_id);
+
             $subscription = array('ID' => $post_id, 'post_status' => 'canceled');
             wp_update_post($subscription);
 
-            //SNC_Oficinas_Service::trigger_change_waiting_list($post_id);
+            SNC_Oficinas_Service::trigger_change_waiting_list($oficina->oficina_id);
 
             wp_send_json('Alteração realizada com sucesso!', 201);
         } catch (Exception $e) {

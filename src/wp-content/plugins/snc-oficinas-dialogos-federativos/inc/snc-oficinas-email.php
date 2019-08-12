@@ -81,7 +81,7 @@ class SNC_Oficinas_Email
                 $to = implode(', ', $arEmail);
             }
 
-            $to = 'janilson.mendes@gmail.com';
+//            $to = 'janilson.mendes@gmail.com';
 
             if (empty($to)) {
                 throw new Exception("Destinatário não informado");

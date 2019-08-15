@@ -16,7 +16,18 @@ class SNC_Oficinas_Email
         $this->subscription = get_post($this->post_id);
 
         add_filter('wp_mail_content_type', array($this, 'set_email_content_type'));
+
+        if (null != $this->set_wp_mail_from()) {
+            add_filter('wp_mail_from', array($this, 'set_wp_mail_from'));
+            add_filter('from_email_field', array($this, 'set_wp_mail_from'));
+        }
+
+        if (null != $this->set_wp_mail_from_name()) {
+            add_filter('wp_mail_from_name', array($this, 'set_wp_mail_from_name'));
+            add_filter('from_name_field', array($this, 'set_wp_mail_from_name'));
+        }
     }
+
 
     public function snc_send_mail_user()
     {
@@ -81,8 +92,6 @@ class SNC_Oficinas_Email
                 $to = $arEmail;
             }
 
-//            $to[] = 'janilson.mendes@gmail.com';
-
             if (empty($to)) {
                 throw new Exception("Destinatário não informado");
             }
@@ -97,7 +106,7 @@ class SNC_Oficinas_Email
 
             return true;
         } catch (Exception $e) {
-            $mensagem = "ERRO: O envio de email para: {$to}, falhou! Tipo: " . $e->getMessage();
+            $mensagem = "ERRO: O envio de email para: {$value}, falhou! Tipo: " . $e->getMessage();
             echo $mensagem;
             error_log($mensagem, 0);
             return false;
@@ -272,5 +281,17 @@ class SNC_Oficinas_Email
     public function set_email_content_type($content_type)
     {
         return 'text/html';
+    }
+
+    public function set_wp_mail_from()
+    {
+        $settings = get_option(SNC_ODF_SLUG . '_settings');
+        return empty($settings['snc_email_from']) ? null : $settings['snc_email_from'];
+    }
+
+    public function set_wp_mail_from_name()
+    {
+        $settings = get_option(SNC_ODF_SLUG . '_settings');
+        return empty($settings['snc_email_from_name']) ? null : $settings['snc_email_from_name'];
     }
 }

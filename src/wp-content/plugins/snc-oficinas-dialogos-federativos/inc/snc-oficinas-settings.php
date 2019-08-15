@@ -198,6 +198,8 @@ class SNC_Oficinas_Settings
             $output['pwp_script'] = $input['pwp_script'];
         }
 
+        $output['snc_email_from_name'] = $input['snc_email_from_name'];
+        $output['snc_email_from'] = $input['snc_email_from'];
         $output['snc_email_confirm_subscription'] = $input['snc_email_confirm_subscription'];
         $output['snc_email_effectiveness_subscription'] = $input['snc_email_effectiveness_subscription'];
         $output['snc_email_waiting_list_subscription'] = $input['snc_email_waiting_list_subscription'];

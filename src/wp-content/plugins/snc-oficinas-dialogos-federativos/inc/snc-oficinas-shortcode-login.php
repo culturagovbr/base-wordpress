@@ -1,5 +1,8 @@
 <?php
 
+if (!defined('WPINC'))
+    die();
+
 class SNC_Oficinas_Shortcode_Login
 {
     public function __construct()

@@ -54,7 +54,7 @@ final class SNC_Oficinas_Service
                      AND insc.post_status NOT IN ('auto-draft')
                     LEFT JOIN {$postTable} conf
                       ON conf.ID = io.post_id
-                     AND conf.post_status = 'publish'
+                     AND conf.post_status = 'confirmed'
                     LEFT JOIN {$postTable} canc
                       ON canc.ID = io.post_id
                      AND canc.post_status = 'canceled'
@@ -133,34 +133,6 @@ final class SNC_Oficinas_Service
         return $wpdb->get_results($query);
     }
 
-    public static function update_list_waiting($post_id)
-    {
-        global $wpdb;
-
-        $postTable = $wpdb->posts;
-
-        return $wpdb->update($postTable, array('post_status' => 'publish',), array('ID' => $post_id), array('%s'), array('%d'));
-    }
-
-    public static function trigger_change_waiting_list($post_id)
-    {
-        $oficinaQuant = self::get_quantitativo_inscritos($post_id);
-        $vagasLiberadas = $oficinaQuant->total_vagas - $oficinaQuant->total_confirmados;
-
-        if ($oficinaQuant->total_lista_espera > 0 && $vagasLiberadas > 0) {
-            $listaEspera = self::get_oficina_insc_waiting($post_id, $vagasLiberadas);
-
-            foreach ((array)$listaEspera as $lista) {
-                if (self::update_list_waiting($lista->post_id_lista_espera)) {
-                    $oficinasEmail = new SNC_Oficinas_Email($lista->post_id_lista_espera, 'snc_email_effectiveness_subscription');
-                    $oficinasEmail->snc_send_mail_user();
-                }
-            }
-        }
-
-        return;
-    }
-
     public static function get_oficina_by_insc($post_id)
     {
         global $wpdb;
@@ -177,6 +149,46 @@ final class SNC_Oficinas_Service
                      AND insc.post_type = 'inscricao-oficina'";
 
         return $wpdb->get_row($query);
+    }
+
+    public static function get_oficina_insc($post_id)
+    {
+        global $wpdb;
+
+        $postTable = $wpdb->posts;
+        $postMetaTable = $wpdb->postmeta;
+
+        $query = "SELECT o.ID, 
+                         o.post_title, 
+                         ini.meta_value AS data_inicio,
+                         hini.meta_value AS hora_inicio,
+                         fim.meta_value AS data_fim,
+                         hfim.meta_value AS hora_fim,  
+                         wf.ID as post_id
+                    FROM {$postTable} o 
+                    JOIN {$postMetaTable} ini
+                      ON ini.post_id = o.ID
+                     AND ini.meta_key = 'oficina_data_inicio'
+                    JOIN {$postMetaTable} hini
+                      ON hini.post_id = o.ID
+                     AND hini.meta_key = 'oficina_horario_inicio'
+                    JOIN {$postMetaTable} fim
+                      ON fim.post_id = o.ID
+                     AND fim.meta_key = 'oficina_data_final'
+                    JOIN {$postMetaTable} hfim
+                      ON hfim.post_id = o.ID
+                     AND hfim.meta_key = 'oficina_horario_termino'
+                    JOIN {$postMetaTable} io 
+                      ON io.meta_value = o.ID
+                     AND io.meta_key = 'inscricao_oficina_uf'
+                    JOIN {$postTable} wf
+                      ON wf.ID = io.post_id
+                     AND wf.post_status = 'waiting_presence'
+                   WHERE o.post_type = 'oficinas'
+                     AND o.post_status NOT IN ('auto-draft')
+                     AND conf.ID = {$post_id}";
+
+        return $wpdb->get_results($query);
     }
 
     public static function snc_next_oficinas($numDiasAntes = 1)
@@ -200,11 +212,88 @@ final class SNC_Oficinas_Service
                      AND io.meta_key = 'inscricao_oficina_uf'
                     JOIN {$postTable} conf
                       ON conf.ID = io.post_id
-                     AND conf.post_status = 'publish'
+                     AND conf.post_status = 'confirmed'
                    WHERE o.post_type = 'oficinas'
                      AND o.post_status NOT IN ('auto-draft')
                      AND DATE_FORMAT(DATE_SUB(STR_TO_DATE(ini.meta_value, '%Y%m%d'), INTERVAL {$numDiasAntes} DAY), '%Y-%m-%d') = '{$date}'";
 
         return $wpdb->get_results($query);
+    }
+
+    public static function snc_next_oficinas_to_finish()
+    {
+        global $wpdb;
+
+        $postTable = $wpdb->posts;
+        $postMetaTable = $wpdb->postmeta;
+        $date = date("Y-m-d H:i:s");
+
+        $query = "SELECT o.ID, 
+                         o.post_title, 
+                         fim.meta_value AS data_fim,
+                         hfim.meta_value AS hora_fim,  
+                         conf.ID as post_id
+                    FROM {$postTable} o 
+                    JOIN {$postMetaTable} fim
+                      ON fim.post_id = o.ID
+                     AND fim.meta_key = 'oficina_data_final'
+                    JOIN {$postMetaTable} hfim
+                      ON hfim.post_id = o.ID
+                     AND hfim.meta_key = 'oficina_horario_termino'
+                    JOIN {$postMetaTable} io 
+                      ON io.meta_value = o.ID
+                     AND io.meta_key = 'inscricao_oficina_uf'
+                    JOIN {$postTable} conf
+                      ON conf.ID = io.post_id
+                     AND conf.post_status = 'confirmed'
+                   WHERE o.post_type = 'oficinas'
+                     AND o.post_status NOT IN ('auto-draft')
+                     AND CONVERT_TZ(
+                                    DATE_FORMAT(
+         						                STR_TO_DATE(
+         						                            CONCAT_WS(' ', fim.meta_value, hfim.meta_value), 
+         						                            '%Y%m%d %H:%i:%s'), 
+         						                '%Y-%m-%d %H:%i:%s'), 
+         						    'GMT', '+03:00') <= '{$date}'";
+
+        return $wpdb->get_results($query);
+    }
+
+    public static function update_list_waiting($post_id)
+    {
+        global $wpdb;
+
+        $postTable = $wpdb->posts;
+
+        return $wpdb->update($postTable, array('post_status' => 'confirmed',), array('ID' => $post_id), array('%s'), array('%d'));
+    }
+
+    public static function trigger_change_waiting_list($post_id)
+    {
+        $oficinaQuant = self::get_quantitativo_inscritos($post_id);
+        $vagasLiberadas = $oficinaQuant->total_vagas - $oficinaQuant->total_confirmados;
+
+        if ($oficinaQuant->total_lista_espera > 0 && $vagasLiberadas > 0) {
+            $listaEspera = self::get_oficina_insc_waiting($post_id, $vagasLiberadas);
+
+            foreach ((array)$listaEspera as $lista) {
+                if (self::update_list_waiting($lista->post_id_lista_espera)) {
+                    $oficinasEmail = new SNC_Oficinas_Email($lista->post_id_lista_espera, 'snc_email_effectiveness_subscription');
+                    $oficinasEmail->snc_send_mail_user();
+                }
+            }
+        }
+
+        return;
+    }
+
+    public static function trigger_change_waiting_presence()
+    {
+        $listaFinaliza = self::snc_next_oficinas_to_finish();
+
+        foreach ((array)$listaFinaliza as $lista) {
+            $subscription = array('ID' => $lista->post_id, 'post_status' => 'waiting_presence');
+            wp_update_post($subscription);
+        }
     }
 }

@@ -1,6 +1,9 @@
 <?php
 
-class SNC_Oficinas_Validator
+if (!defined('WPINC'))
+    die();
+
+final class SNC_Oficinas_Validator
 {
     public $fields_rules = array(
         'register' => array(
@@ -108,7 +111,7 @@ class SNC_Oficinas_Validator
     static function is_email_doest_not_exist_update($e)
     {
         $id_user_email = email_exists($e);
-        if (is_user_logged_in() && !empty($id_user_email ) && $id_user_email != get_current_user_id()) {
+        if (is_user_logged_in() && !empty($id_user_email) && $id_user_email != get_current_user_id()) {
             return __('Já existe um usuário com o e-mail informado');
         }
 
@@ -224,5 +227,20 @@ class SNC_Oficinas_Validator
     static function str_length_less_than_100($v)
     {
         return self::str_length_less_than($v, 100);
+    }
+
+    static function is_token_valid($id, $token, $type = 'token_ativacao_inscricao')
+    {
+        $current_token = get_post_meta($id, $type, true);
+
+        if (empty($current_token) || empty($token)) {
+            return false;
+        }
+
+        if ($current_token != $token) {
+            return false;
+        }
+
+        return true;
     }
 }

@@ -39,7 +39,7 @@ class SNC_Oficinas_Shortcode_Visualizar_Email
             $subscription = get_posts([
                 'author' => get_current_user_id(),
                 'post_type' => SNC_POST_TYPE_INSCRICOES,
-                'post_status' => array('publish', 'pending', 'canceled', 'waiting_list'),
+                'post_status' => array('confirmed', 'pending', 'canceled', 'waiting_list'),
                 'posts_per_page' => 1
             ]);
 

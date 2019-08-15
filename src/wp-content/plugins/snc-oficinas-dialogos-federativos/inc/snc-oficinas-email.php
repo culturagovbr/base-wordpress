@@ -136,9 +136,10 @@ class SNC_Oficinas_Email
             }
         }
 
-
         $message = str_replace('{confirmar_inscricao_button}', $this->get_button_activation(), $message);
         $message = str_replace('{cancelar_inscricao_button}', $this->get_button_unsubscribe(), $message);
+        $message = str_replace('{res_questions_button}', $this->get_button_questions(), $message);
+
         $message = preg_replace_callback('/\{link_login ?(text=[\'\"]([^\}]+)[\'\"])?\}/', function ($matches) {
             $url_login = home_url('/login');
             $text = !empty($matches[2]) ? $matches[2] : 'Clique aqui para efetuar o login';
@@ -224,6 +225,18 @@ class SNC_Oficinas_Email
 
         $url = home_url('/cancelar-inscricao/?token=' . $token . '&id=' . $this->post_id);
         return $this->get_button_action($url, 'Cancelar inscrição');
+    }
+
+    private function get_button_questions()
+    {
+        $token = get_post_meta($this->post_id, 'token_responder_questionario', true);
+
+        if (empty($token)) {
+            return false;
+        }
+
+        $url = home_url('/questionario/?token=' . $token . '&id=' . $this->post_id);
+        return $this->get_button_action($url, 'Responder Questionário');
     }
 
     private function get_button_action($url, $label)

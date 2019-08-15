@@ -127,6 +127,15 @@ class SNC_Oficinas_Dialogos_Federativos
 
     function custom_post_status()
     {
+        register_post_status('confirmed', array(
+            'label' => _x('Confirmado', 'Status Confirmado', 'text_domain'),
+            'public' => true,
+            'exclude_from_search' => false,
+            'show_in_admin_all_list' => true,
+            'show_in_admin_status_list' => true,
+            'label_count' => _n_noop('Confirmado (%s)', 'Confirmado  (%s)'),
+        ));
+
         register_post_status('waiting_list', array(
             'label' => _x('Lista de espera', 'Status Lista de espera', 'text_domain'),
             'public' => true,
@@ -144,6 +153,33 @@ class SNC_Oficinas_Dialogos_Federativos
             'show_in_admin_status_list' => true,
             'label_count' => _n_noop('Cancelado (%s)', 'Cancelado (%s)'),
         ));
+
+        register_post_status('waiting_presence', array(
+            'label' => _x('Aguardando Presença', 'Aguardando Presença', 'text_domain'),
+            'public' => true,
+            'exclude_from_search' => false,
+            'show_in_admin_all_list' => true,
+            'show_in_admin_status_list' => true,
+            'label_count' => _n_noop('Aguardando Presença (%s)', 'Aguardando Presença (%s)'),
+        ));
+
+        register_post_status('waiting_questions', array(
+            'label' => _x('Aguardando Questionário', 'Aguardando Questionário', 'text_domain'),
+            'public' => true,
+            'exclude_from_search' => false,
+            'show_in_admin_all_list' => true,
+            'show_in_admin_status_list' => true,
+            'label_count' => _n_noop('Aguardando Questionário (%s)', 'Aguardando Questionário (%s)'),
+        ));
+
+        register_post_status('finish', array(
+            'label' => _x('Concluído', 'Status Concluído', 'text_domain'),
+            'public' => true,
+            'exclude_from_search' => false,
+            'show_in_admin_all_list' => true,
+            'show_in_admin_status_list' => true,
+            'label_count' => _n_noop('Concluído (%s)', 'Concluído (%s)'),
+        ));
     }
 
     /**
@@ -159,7 +195,7 @@ class SNC_Oficinas_Dialogos_Federativos
         new SNC_Oficinas_Shortcode_Login();
         new SNC_Oficinas_Shortcode_Confirmacao_Inscricao();
         new SNC_Oficinas_Shortcode_Visualizar_Email();
-//        new SNC_Oficinas_Shortcode_Formulario_Participacao();
+        new SNC_Oficinas_Shortcode_Formulario_Participacao();
     }
 
     /**
@@ -168,6 +204,11 @@ class SNC_Oficinas_Dialogos_Federativos
      */
     public function register_plugin_styles()
     {
+        global $wp_scripts;
+
+        wp_enqueue_style('jquery-ui-dialog-style', '//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css');
+
+
         wp_register_style(SNC_ODF_SLUG . '-style', SNC_ODF_PLUGIN_URL . 'assets/' . SNC_ODF_SLUG . '-style.css');
         wp_enqueue_style(SNC_ODF_SLUG . '-style');
     }
@@ -178,10 +219,13 @@ class SNC_Oficinas_Dialogos_Federativos
      */
     public function register_plugin_scripts()
     {
+        wp_enqueue_script('jquery');
+        wp_enqueue_script('jquery-ui-core');
+        wp_enqueue_script('jquery-ui-dialog');
+
         wp_enqueue_script('jquery-mask', SNC_ODF_PLUGIN_URL . 'assets/jquery.mask.min.js', array('jquery'), false, true);
         wp_enqueue_script(SNC_ODF_SLUG . '-script', SNC_ODF_PLUGIN_URL . 'assets/' . SNC_ODF_SLUG . '-script.js', array('jquery'), false, true);
         wp_localize_script(SNC_ODF_SLUG . '-script', 'vars', array('ajaxurl' => admin_url('admin-ajax.php')));
-
     }
 
     function load_custom_wp_admin_scripts($hook)
@@ -316,7 +360,7 @@ class SNC_Oficinas_Dialogos_Federativos
         $oficinasEmail = new SNC_Oficinas_Email(null, null);
         $oficinasEmail->snc_send_mail_relatorios();
 
-        echo "Relatório enviado com sucesso!" , PHP_EOL;
+        echo "Relatório enviado com sucesso!", PHP_EOL;
     }
 
     public static function snc_proximas_oficinas($numDiasAntes = 1)
@@ -335,7 +379,7 @@ class SNC_Oficinas_Dialogos_Federativos
             $success[] = "Rotina próximo executado sucesso para o 'ID => {$object->post_id}!'";
         }
 
-        echo implode("<br />", $success) , PHP_EOL;
+        echo implode("<br />", $success), PHP_EOL;
     }
 }
 
@@ -348,8 +392,8 @@ add_filter('cron_schedules', 'add_custom_cron_schedule');
 function add_custom_cron_schedule($schedules)
 {
     $schedules['minute'] = array(
-        'interval' => 60 * 5,
-        'display' => __('5 minutos')
+        'interval' => 60 * 20,
+        'display' => __('20 minutos')
     );
     return $schedules;
 }

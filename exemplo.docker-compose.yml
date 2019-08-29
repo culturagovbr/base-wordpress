@@ -2,9 +2,6 @@ version: '3.1'
 services:
   wordpress:
     container_name: 'app_base_wp'
-    build:
-      context: ./
-      dockerfile: Dockerfile
     image: wordpress:4.9.8
     restart: always
     ports:
@@ -34,6 +31,8 @@ services:
         define('NOBLOGREDIRECT', 'http://base-wp.cultura.localhost');
         define('SUNRISE', 'on');
         define('ALTERNATE_WP_CRON', true);
+        define( 'WP_AUTO_UPDATE_CORE', fasle);
+        define('AUTOMATIC_UPDATER_DISABLED', true);
     volumes:
       - ./src/wp-content:/var/www/html/wp-content
       - ./src/.htaccess:/var/www/html/.htaccess

@@ -38,6 +38,16 @@
         $("button.confirm-presence").click(function (e) {
             app.userConfirmPresence(this);
         });
+
+        $("button.question-response").click(function (e) {
+            app.userQuestionResponse(this);
+        });
+
+        $('body').on('click', '.checkValidatorSncValid', function () {
+            if ($('.checkValidatorSncValid:checked').length != $('.checkValidatorSncValid').length) {
+                $('#confirmFinish').attr('checked', false);
+            }
+        });
     });
 
     var app = {
@@ -151,6 +161,21 @@
                 return dia + "/" + mes + "/" + ano;
             },
 
+            userQuestionResponse: function (el) {
+                var pid = el.id.replace(/^[^0-9]+/, '');
+                if (confirm("Você realmente responder o questionário da oficina?")) {
+                    $.post(vars.ajaxurl, {'action': 'snc_question_response', 'pid': pid}, function (data) {
+                        if (data) {
+                            window.location.href = data.url;
+                        }
+                    }).fail(function (e) {
+                        alert(e.responseJSON.data);
+                    });
+                }
+
+                return false;
+            },
+
             userConfirmPresence: function (el) {
                 var dataInicio = $(el).attr("data-dt-inicio");
                 var horaInicio = $(el).attr("data-hr-inicio");
@@ -192,15 +217,15 @@
                     thDatas += '<tr><th>' + app.dateFullFormat(objDataInicio) + '</th>';
 
                     if (turnoInicio) {
-                        thDatas += '<th><input name="matutino[' + i + ']" class="checkValidatorSnc" type="checkbox" /></th>';
+                        thDatas += '<th><input name="matutino[' + i + ']" class="checkValidatorSnc checkValidatorSncValid" type="checkbox" /></th>';
                     }
 
                     if (turnoMeio) {
-                        thDatas += '<th><input name="vespertino[' + i + ']" class="checkValidatorSnc" type="checkbox" /></th>';
+                        thDatas += '<th><input name="vespertino[' + i + ']" class="checkValidatorSnc checkValidatorSncValid" type="checkbox" /></th>';
                     }
 
                     if (turnoFim) {
-                        thDatas += '<th><input name="noturno[' + i + ']" class="checkValidatorSnc" type="checkbox" /></th>';
+                        thDatas += '<th><input name="noturno[' + i + ']" class="checkValidatorSnc checkValidatorSncValid" type="checkbox" /></th>';
                     }
 
                     thDatas += '</tr>';

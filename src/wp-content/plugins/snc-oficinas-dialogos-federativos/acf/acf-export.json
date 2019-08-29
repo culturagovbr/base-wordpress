@@ -1287,5 +1287,1784 @@
         "hide_on_screen": "",
         "active": 1,
         "description": ""
+    },
+    {
+        "key": "group_5d5ef53097160",
+        "title": "Questionário - Perfil Conselheiro de Cultura",
+        "fields": [
+            {
+                "key": "field_5d5ef56a40898",
+                "label": "O seu ente federado possui conselho de cultura?",
+                "name": "oficina_questionario_federado_cultura",
+                "type": "radio",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Sim",
+                    "0": "Não"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "vertical",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef62740899",
+                "label": "Se sim, está em funcionamento?",
+                "name": "oficina_questionario_funcionamento",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Sim",
+                    "0": "Não"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "vertical",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef65e4089a",
+                "label": "Qual forma de seleção dos representantes da sociedade civil no conselho?",
+                "name": "oficina_questionario_representantes",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Processo eleitoral aberto presencial",
+                    "2": "Processo eleitoral aberto digital",
+                    "3": "Indicação de entidades culturais",
+                    "4": "Indicação direta do gestor da pasta da cultura",
+                    "0": "Outros"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "vertical",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef6d04089b",
+                "label": "Qual segmento\/território você representa no Conselho?",
+                "name": "oficina_questionario_territorio_conselho",
+                "type": "textarea",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "maxlength": "",
+                "rows": "",
+                "new_lines": "wpautop"
+            },
+            {
+                "key": "field_5d5ef70b4089c",
+                "label": "Os conselheiros receberam algum tipo de capacitação?",
+                "name": "oficina_questionario_conselheiros_capacitacao",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Sim",
+                    "0": "Não"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "vertical",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef7464089d",
+                "label": "Qual a maior necessidade em capacitação identificada para os conselheiros?",
+                "name": "oficina_questionario_necessidade_capacitacao",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Papel do conselheiro",
+                    "2": "Legislação local",
+                    "3": "Elaboração de proposições (moções, recomendações, resoluções, etc)",
+                    "0": "Outros"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "vertical",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef8284089e",
+                "label": "O conselho realiza debates ou outras atividades em ambiente digital?",
+                "name": "oficina_questionario_debates_atividades",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Sim",
+                    "0": "Não"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "vertical",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef530ae975",
+                "label": "Como você ficou sabendo deste evento?",
+                "name": "oficina_questionario_saber_evento",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Divulgação do Ministério da Cidadania\/Secretaria Especial da Cultura\/Secretaria da Diversidade Cultural",
+                    "2": "Divulgação do Estado",
+                    "3": "Divulgação do meu município",
+                    "4": "Jornais",
+                    "5": "Internet",
+                    "6": "E-mail",
+                    "7": "Telefone",
+                    "8": "SMS",
+                    "9": "Amigos ou Conhecidos",
+                    "10": "Outros"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "vertical",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef530ae9b1",
+                "label": "É a primeira vez que você participa de um evento organizado pelo Ministério da Cidadania\/Secretaria Especial da Cultura\/Secretaria da Diversidade Cultural?",
+                "name": "oficina_questionario_primeira_vez",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Sim",
+                    "0": "Não"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "vertical",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef530ae9ee",
+                "label": "Por favor, avalie as afirmações seguintes segundo a sua opinião sobre o evento Diálogos Federativos: Cultura de Ponto à Ponta",
+                "name": "",
+                "type": "message",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "Para cada item, assinale a opção que melhor reflete sua opinião.",
+                "new_lines": "wpautop",
+                "esc_html": 0
+            },
+            {
+                "key": "field_5d5ef530aea2a",
+                "label": "-               1. Facilidade de inscrição",
+                "name": "oficina_questionario_facilidade",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Insuficiente",
+                    "2": "Ruim",
+                    "3": "Regular",
+                    "4": "Bom",
+                    "5": "Ótimo",
+                    "0": "Não se aplica"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "horizontal",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef530aea66",
+                "label": "-               2. Divulgação do Evento",
+                "name": "oficina_questionario_divulgacao",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Insuficiente",
+                    "2": "Ruim",
+                    "3": "Regular",
+                    "4": "Bom",
+                    "5": "Ótimo",
+                    "0": "Não se aplica"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "horizontal",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef530aeaa2",
+                "label": "-               3. Programação do Evento",
+                "name": "oficina_questionario_programacao",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Insuficiente",
+                    "2": "Ruim",
+                    "3": "Regular",
+                    "4": "Bom",
+                    "5": "Ótimo",
+                    "0": "Não se aplica"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "horizontal",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef530aeade",
+                "label": "-               4. Organização do Evento",
+                "name": "oficina_questionario_organizacao",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Insuficiente",
+                    "2": "Ruim",
+                    "3": "Regular",
+                    "4": "Bom",
+                    "5": "Ótimo",
+                    "0": "Não se aplica"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "horizontal",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef530aeb1a",
+                "label": "-               5. Tema(s) abordado(s)",
+                "name": "oficina_questionario_temas_abordados",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Insuficiente",
+                    "2": "Ruim",
+                    "3": "Regular",
+                    "4": "Bom",
+                    "5": "Ótimo",
+                    "0": "Não se aplica"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "horizontal",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef530aeb56",
+                "label": "-               6. Conhecimento do(s) ministrante(s) em relação ao(s) tema(s) da(s) atividade(s)",
+                "name": "oficina_questionario_conhecimento",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Insuficiente",
+                    "2": "Ruim",
+                    "3": "Regular",
+                    "4": "Bom",
+                    "5": "Ótimo",
+                    "0": "Não se aplica"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "horizontal",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef530aeb92",
+                "label": "-               7. Adequação das instalações à realização do evento",
+                "name": "oficina_questionario_adequacao",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Insuficiente",
+                    "2": "Ruim",
+                    "3": "Regular",
+                    "4": "Bom",
+                    "5": "Ótimo",
+                    "0": "Não se aplica"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "horizontal",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef530aebce",
+                "label": "-               8. Materiais disponibilizados",
+                "name": "oficina_questionario_materiais",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Insuficiente",
+                    "2": "Ruim",
+                    "3": "Regular",
+                    "4": "Bom",
+                    "5": "Ótimo",
+                    "0": "Não se aplica"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "horizontal",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef530aec0a",
+                "label": "Você recomendaria este evento para outras pessoas?",
+                "name": "oficina_questionario_recomendacao",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Sim",
+                    "0": "Não",
+                    "2": "Não sei"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "vertical",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef530aec46",
+                "label": "Por favor, fique à vontade para fazer algum comentário sobre o evento",
+                "name": "oficina_questionario_comentario",
+                "type": "textarea",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "maxlength": "",
+                "rows": "",
+                "new_lines": "wpautop"
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "participacao-oficina"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": 1,
+        "description": ""
+    },
+    {
+        "key": "group_5d5eedf86f166",
+        "title": "Questionário - Perfil Gestor de Cultura",
+        "fields": [
+            {
+                "key": "field_5d5ef18b3c87a",
+                "label": "Com base nos temas abordados neste evento, qual assunto possui maior necessidade em ser aprofundado?",
+                "name": "oficina_questionario_necessidade_aprofundamento",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Institucionalização e implementação dos componentes do Sistema de Cultura local (plano, conselho, fundo de cultura, entre outros)",
+                    "2": "Acessibilidade cultural",
+                    "3": "Política Nacional de Cultura Viva (Pontos, Pontões de Cultura)",
+                    "4": "Operacionalização dos sistemas de parcerias (Convênios, Consórcios, Termos de fomento, entre outros)",
+                    "5": "Elaboração de projetos culturais, no âmbito da diversidade cultural",
+                    "6": "Orientações para execução e prestação de contas",
+                    "7": "Outros"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "vertical",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5eedf885212",
+                "label": "Como você ficou sabendo deste evento?",
+                "name": "oficina_questionario_saber_evento",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Divulgação do Ministério da Cidadania\/Secretaria Especial da Cultura\/Secretaria da Diversidade Cultural",
+                    "2": "Divulgação do Estado",
+                    "3": "Divulgação do meu município",
+                    "4": "Jornais",
+                    "5": "Internet",
+                    "6": "E-mail",
+                    "7": "Telefone",
+                    "8": "SMS",
+                    "9": "Amigos ou Conhecidos",
+                    "10": "Outros"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "vertical",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5eedf885253",
+                "label": "É a primeira vez que você participa de um evento organizado pelo Ministério da Cidadania\/Secretaria Especial da Cultura\/Secretaria da Diversidade Cultural?",
+                "name": "oficina_questionario_primeira_vez",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Sim",
+                    "0": "Não"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "vertical",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5eedf88528f",
+                "label": "Por favor, avalie as afirmações seguintes segundo a sua opinião sobre o evento Diálogos Federativos: Cultura de Ponto à Ponta",
+                "name": "",
+                "type": "message",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "Para cada item, assinale a opção que melhor reflete sua opinião.",
+                "new_lines": "wpautop",
+                "esc_html": 0
+            },
+            {
+                "key": "field_5d5eedf8852cb",
+                "label": "-               1. Facilidade de inscrição",
+                "name": "oficina_questionario_facilidade",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Insuficiente",
+                    "2": "Ruim",
+                    "3": "Regular",
+                    "4": "Bom",
+                    "5": "Ótimo",
+                    "0": "Não se aplica"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "horizontal",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5eedf885307",
+                "label": "-               2. Divulgação do Evento",
+                "name": "oficina_questionario_divulgacao",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Insuficiente",
+                    "2": "Ruim",
+                    "3": "Regular",
+                    "4": "Bom",
+                    "5": "Ótimo",
+                    "0": "Não se aplica"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "horizontal",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5eedf885343",
+                "label": "-               3. Programação do Evento",
+                "name": "oficina_questionario_programacao",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Insuficiente",
+                    "2": "Ruim",
+                    "3": "Regular",
+                    "4": "Bom",
+                    "5": "Ótimo",
+                    "0": "Não se aplica"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "horizontal",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5eedf88537f",
+                "label": "-               4. Organização do Evento",
+                "name": "oficina_questionario_organizacao",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Insuficiente",
+                    "2": "Ruim",
+                    "3": "Regular",
+                    "4": "Bom",
+                    "5": "Ótimo",
+                    "0": "Não se aplica"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "horizontal",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5eedf8853bb",
+                "label": "-               5. Tema(s) abordado(s)",
+                "name": "oficina_questionario_temas_abordados",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Insuficiente",
+                    "2": "Ruim",
+                    "3": "Regular",
+                    "4": "Bom",
+                    "5": "Ótimo",
+                    "0": "Não se aplica"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "horizontal",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5eedf8853f7",
+                "label": "-               6. Conhecimento do(s) ministrante(s) em relação ao(s) tema(s) da(s) atividade(s)",
+                "name": "oficina_questionario_conhecimento",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Insuficiente",
+                    "2": "Ruim",
+                    "3": "Regular",
+                    "4": "Bom",
+                    "5": "Ótimo",
+                    "0": "Não se aplica"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "horizontal",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5eedf885433",
+                "label": "-               7. Adequação das instalações à realização do evento",
+                "name": "oficina_questionario_adequacao",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Insuficiente",
+                    "2": "Ruim",
+                    "3": "Regular",
+                    "4": "Bom",
+                    "5": "Ótimo",
+                    "0": "Não se aplica"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "horizontal",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5eedf88546f",
+                "label": "-               8. Materiais disponibilizados",
+                "name": "oficina_questionario_materiais",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Insuficiente",
+                    "2": "Ruim",
+                    "3": "Regular",
+                    "4": "Bom",
+                    "5": "Ótimo",
+                    "0": "Não se aplica"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "horizontal",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5eedf8854ab",
+                "label": "Você recomendaria este evento para outras pessoas?",
+                "name": "oficina_questionario_recomendacao",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Sim",
+                    "0": "Não",
+                    "2": "Não sei"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "vertical",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5eedf8854e6",
+                "label": "Por favor, fique à vontade para fazer algum comentário sobre o evento",
+                "name": "oficina_questionario_comentario",
+                "type": "textarea",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "maxlength": "",
+                "rows": "",
+                "new_lines": "wpautop"
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "participacao-oficina"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": 1,
+        "description": ""
+    },
+    {
+        "key": "group_5d5ef536d70a2",
+        "title": "Questionário - Perfil Ponteiro de Cultura",
+        "fields": [
+            {
+                "key": "field_5d5efbc8bd974",
+                "label": "É representante\/integrante de algum Ponto ou Pontão de Cultura certificado?",
+                "name": "oficina_questionario_ponto_cultura",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": [
+                    "Sim",
+                    "Não, já fiz meu cadastro na Plataforma Rede Cultura Viva e aguardo Certificação Simplificada",
+                    "Não, ainda não fiz meu cadastro na Plataforma Rede Cultura Viva"
+                ],
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "vertical",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5efc5ee989c",
+                "label": "Participou de ação de capacitação para entidades e coletivos culturais pelo estado \/ município?",
+                "name": "oficina_questionario_coletivos_culturais",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": [
+                    "Sim, e não tive dificuldade como participante da capacitação",
+                    "Sim, e tive dificuldade como participante da capacitação",
+                    "Não, e não soube de nenhuma capacitação",
+                    "Não, e não tive interesse em participar"
+                ],
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "vertical",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5efe06d4800",
+                "label": "Possui comunicação direta com outras as entidades e coletivos culturais da região?",
+                "name": "oficina_questionario_comunicacao_direta",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": [
+                    "Sim, a comunicação é efetiva",
+                    "Sim, a comunicação é falha",
+                    "Não, e tenho dificuldade para me comunicar com outras as entidades e coletivos culturais da região",
+                    "Não, e não tenho interesse em me comunicar com outras as entidades e coletivos culturais da região"
+                ],
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "vertical",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5efe83d4801",
+                "label": "Possui comunicação direta com a equipe da Secretaria da Diversidade Cultural \/ Secretaria Especial da Cultura \/ Ministério da Cidadania?",
+                "name": "oficina_questionario_comunicacao_cidadania",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": [
+                    "Sim, a comunicação é efetiva",
+                    "Sim, a comunicação é falha",
+                    "Não"
+                ],
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "vertical",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5efeaed4802",
+                "label": "Sente falta de plano de capacitação por parte da equipe da Secretaria da Diversidade Cultural \/ Secretaria Especial da Cultura \/ Ministério da Cidadania?",
+                "name": "oficina_questionario_plano_capacitacao",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Sim",
+                    "0": "Não"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "vertical",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef536ecfe0",
+                "label": "Como você ficou sabendo deste evento?",
+                "name": "oficina_questionario_saber_evento",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Divulgação do Ministério da Cidadania\/Secretaria Especial da Cultura\/Secretaria da Diversidade Cultural",
+                    "2": "Divulgação do Estado",
+                    "3": "Divulgação do meu município",
+                    "4": "Jornais",
+                    "5": "Internet",
+                    "6": "E-mail",
+                    "7": "Telefone",
+                    "8": "SMS",
+                    "9": "Amigos ou Conhecidos",
+                    "10": "Outros"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "vertical",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef536ed01d",
+                "label": "É a primeira vez que você participa de um evento organizado pelo Ministério da Cidadania\/Secretaria Especial da Cultura\/Secretaria da Diversidade Cultural?",
+                "name": "oficina_questionario_primeira_vez",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Sim",
+                    "0": "Não"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "vertical",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef536ed055",
+                "label": "Por favor, avalie as afirmações seguintes segundo a sua opinião sobre o evento Diálogos Federativos: Cultura de Ponto à Ponta",
+                "name": "",
+                "type": "message",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "Para cada item, assinale a opção que melhor reflete sua opinião.",
+                "new_lines": "wpautop",
+                "esc_html": 0
+            },
+            {
+                "key": "field_5d5ef536ed090",
+                "label": "-               1. Facilidade de inscrição",
+                "name": "oficina_questionario_facilidade",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Insuficiente",
+                    "2": "Ruim",
+                    "3": "Regular",
+                    "4": "Bom",
+                    "5": "Ótimo",
+                    "0": "Não se aplica"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "horizontal",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef536ed0cc",
+                "label": "-               2. Divulgação do Evento",
+                "name": "oficina_questionario_divulgacao",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Insuficiente",
+                    "2": "Ruim",
+                    "3": "Regular",
+                    "4": "Bom",
+                    "5": "Ótimo",
+                    "0": "Não se aplica"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "horizontal",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef536ed108",
+                "label": "-               3. Programação do Evento",
+                "name": "oficina_questionario_programacao",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Insuficiente",
+                    "2": "Ruim",
+                    "3": "Regular",
+                    "4": "Bom",
+                    "5": "Ótimo",
+                    "0": "Não se aplica"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "horizontal",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef536ed144",
+                "label": "-               4. Organização do Evento",
+                "name": "oficina_questionario_organizacao",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Insuficiente",
+                    "2": "Ruim",
+                    "3": "Regular",
+                    "4": "Bom",
+                    "5": "Ótimo",
+                    "0": "Não se aplica"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "horizontal",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef536ed17f",
+                "label": "-               5. Tema(s) abordado(s)",
+                "name": "oficina_questionario_temas_abordados",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Insuficiente",
+                    "2": "Ruim",
+                    "3": "Regular",
+                    "4": "Bom",
+                    "5": "Ótimo",
+                    "0": "Não se aplica"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "horizontal",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef536ed1bb",
+                "label": "-               6. Conhecimento do(s) ministrante(s) em relação ao(s) tema(s) da(s) atividade(s)",
+                "name": "oficina_questionario_conhecimento",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Insuficiente",
+                    "2": "Ruim",
+                    "3": "Regular",
+                    "4": "Bom",
+                    "5": "Ótimo",
+                    "0": "Não se aplica"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "horizontal",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef536ed1f7",
+                "label": "-               7. Adequação das instalações à realização do evento",
+                "name": "oficina_questionario_adequacao",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Insuficiente",
+                    "2": "Ruim",
+                    "3": "Regular",
+                    "4": "Bom",
+                    "5": "Ótimo",
+                    "0": "Não se aplica"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "horizontal",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef536ed233",
+                "label": "-               8. Materiais disponibilizados",
+                "name": "oficina_questionario_materiais",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Insuficiente",
+                    "2": "Ruim",
+                    "3": "Regular",
+                    "4": "Bom",
+                    "5": "Ótimo",
+                    "0": "Não se aplica"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "horizontal",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef536ed26f",
+                "label": "Você recomendaria este evento para outras pessoas?",
+                "name": "oficina_questionario_recomendacao",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Sim",
+                    "0": "Não",
+                    "2": "Não sei"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "vertical",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef536ed2ab",
+                "label": "Por favor, fique à vontade para fazer algum comentário sobre o evento",
+                "name": "oficina_questionario_comentario",
+                "type": "textarea",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "maxlength": "",
+                "rows": "",
+                "new_lines": "wpautop"
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "participacao-oficina"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": 1,
+        "description": ""
+    },
+    {
+        "key": "group_5d5ef53aef22e",
+        "title": "Questionário - Perfil Sociedade",
+        "fields": [
+            {
+                "key": "field_5d5ef53b23052",
+                "label": "Como você ficou sabendo deste evento?",
+                "name": "oficina_questionario_saber_evento",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Divulgação do Ministério da Cidadania\/Secretaria Especial da Cultura\/Secretaria da Diversidade Cultural",
+                    "2": "Divulgação do Estado",
+                    "3": "Divulgação do meu município",
+                    "4": "Jornais",
+                    "5": "Internet",
+                    "6": "E-mail",
+                    "7": "Telefone",
+                    "8": "SMS",
+                    "9": "Amigos ou Conhecidos",
+                    "10": "Outros"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "vertical",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef53b2308e",
+                "label": "É a primeira vez que você participa de um evento organizado pelo Ministério da Cidadania\/Secretaria Especial da Cultura\/Secretaria da Diversidade Cultural?",
+                "name": "oficina_questionario_primeira_vez",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Sim",
+                    "0": "Não"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "vertical",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef53b230c9",
+                "label": "Por favor, avalie as afirmações seguintes segundo a sua opinião sobre o evento Diálogos Federativos: Cultura de Ponto à Ponta",
+                "name": "",
+                "type": "message",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "Para cada item, assinale a opção que melhor reflete sua opinião.",
+                "new_lines": "wpautop",
+                "esc_html": 0
+            },
+            {
+                "key": "field_5d5ef53b23105",
+                "label": "-               1. Facilidade de inscrição",
+                "name": "oficina_questionario_facilidade",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Insuficiente",
+                    "2": "Ruim",
+                    "3": "Regular",
+                    "4": "Bom",
+                    "5": "Ótimo",
+                    "0": "Não se aplica"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "horizontal",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef53b23141",
+                "label": "-               2. Divulgação do Evento",
+                "name": "oficina_questionario_divulgacao",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Insuficiente",
+                    "2": "Ruim",
+                    "3": "Regular",
+                    "4": "Bom",
+                    "5": "Ótimo",
+                    "0": "Não se aplica"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "horizontal",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef53b2317d",
+                "label": "-               3. Programação do Evento",
+                "name": "oficina_questionario_programacao",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Insuficiente",
+                    "2": "Ruim",
+                    "3": "Regular",
+                    "4": "Bom",
+                    "5": "Ótimo",
+                    "0": "Não se aplica"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "horizontal",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef53b231b9",
+                "label": "-               4. Organização do Evento",
+                "name": "oficina_questionario_organizacao",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Insuficiente",
+                    "2": "Ruim",
+                    "3": "Regular",
+                    "4": "Bom",
+                    "5": "Ótimo",
+                    "0": "Não se aplica"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "horizontal",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef53b231f5",
+                "label": "-               5. Tema(s) abordado(s)",
+                "name": "oficina_questionario_temas_abordados",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Insuficiente",
+                    "2": "Ruim",
+                    "3": "Regular",
+                    "4": "Bom",
+                    "5": "Ótimo",
+                    "0": "Não se aplica"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "horizontal",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef53b23230",
+                "label": "-               6. Conhecimento do(s) ministrante(s) em relação ao(s) tema(s) da(s) atividade(s)",
+                "name": "oficina_questionario_conhecimento",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Insuficiente",
+                    "2": "Ruim",
+                    "3": "Regular",
+                    "4": "Bom",
+                    "5": "Ótimo",
+                    "0": "Não se aplica"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "horizontal",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef53b2326d",
+                "label": "-               7. Adequação das instalações à realização do evento",
+                "name": "oficina_questionario_adequacao",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Insuficiente",
+                    "2": "Ruim",
+                    "3": "Regular",
+                    "4": "Bom",
+                    "5": "Ótimo",
+                    "0": "Não se aplica"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "horizontal",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef53b232a9",
+                "label": "-               8. Materiais disponibilizados",
+                "name": "oficina_questionario_materiais",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Insuficiente",
+                    "2": "Ruim",
+                    "3": "Regular",
+                    "4": "Bom",
+                    "5": "Ótimo",
+                    "0": "Não se aplica"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "horizontal",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef53b232e6",
+                "label": "Você recomendaria este evento para outras pessoas?",
+                "name": "oficina_questionario_recomendacao",
+                "type": "radio",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Sim",
+                    "0": "Não",
+                    "2": "Não sei"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "save_other_choice": 0,
+                "default_value": "",
+                "layout": "vertical",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5d5ef53b23322",
+                "label": "Por favor, fique à vontade para fazer algum comentário sobre o evento",
+                "name": "oficina_questionario_comentario",
+                "type": "textarea",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "maxlength": "",
+                "rows": "",
+                "new_lines": "wpautop"
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "participacao-oficina"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": 1,
+        "description": ""
     }
 ]

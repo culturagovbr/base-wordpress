@@ -5,9 +5,9 @@ if (!defined('WPINC'))
 
 class SNC_Oficinas_Utils
 {
-    static function generate_token()
+    static function generate_token($add = null)
     {
-        return md5(uniqid(rand(), true));
+        return md5(uniqid(rand(), true) . $add);
     }
 
     static function get_status_label_subscription($status)

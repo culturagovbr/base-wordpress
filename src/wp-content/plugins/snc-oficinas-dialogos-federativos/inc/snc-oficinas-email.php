@@ -28,7 +28,6 @@ class SNC_Oficinas_Email
         }
     }
 
-
     public function snc_send_mail_user()
     {
         try {
@@ -52,17 +51,33 @@ class SNC_Oficinas_Email
             $subject = 'Ministério da Cidadania - Oficinas dos Diálogos Federativos';
 
             $to = get_the_author_meta('user_email', $this->subscription->post_author);
+
             if (empty($to)) {
                 throw new Exception("Destinatário não informado");
             }
 
             $body = $this->get_email_template('user');
+
             if (empty($body)) {
                 throw new Exception("Corpo do email vazio");
             }
 
-            if (!wp_mail($to, $subject, $body, $headers)) {
+            $attachments = [];
+            $file = null;
+
+            if ("snc_email_impress_cert" == $this->type_message) {
+                $certificado = new SNC_Oficinas_Shortcode_Certificado($this->post_id);
+
+                $file = $certificado->uploadPdf();
+                $attachments = $file;
+            }
+
+            if (!wp_mail($to, $subject, $body, $headers, $attachments)) {
                 throw new Exception("wp_mail falhou");
+            }
+
+            if (null != $file) {
+                unlink($file);
             }
 
             return true;
@@ -73,7 +88,7 @@ class SNC_Oficinas_Email
         }
     }
 
-    public function snc_send_mail_relatorios()
+    public function snc_send_mail_relatorios($type = "inscritos")
     {
         try {
 
@@ -96,10 +111,20 @@ class SNC_Oficinas_Email
                 throw new Exception("Destinatário não informado");
             }
 
-            $body = $this->get_email_template_relatorio();
+            $attachment = [];
+
+            switch ($type) {
+                case "concluidos":
+                    $body = $this->get_email_template_relatorio_concluidos();
+                    $attachment = $this->csv_concluidos();
+                    break;
+                default:
+                    $body = $this->get_email_template_relatorio_inscritos();
+                    break;
+            }
 
             foreach ($to as $value) {
-                if (!wp_mail($value, $subject, $body, $headers)) {
+                if (!wp_mail($value, $subject, $body, $headers, $attachment)) {
                     throw new Exception("wp_mail falhou");
                 }
             }
@@ -165,7 +190,7 @@ class SNC_Oficinas_Email
         return ob_get_clean();
     }
 
-    public function get_email_template_relatorio()
+    public function get_email_template_relatorio_inscritos()
     {
         $objects = SNC_Oficinas_Service::get_quantitativo_inscritos();
 
@@ -212,6 +237,56 @@ class SNC_Oficinas_Email
         return ob_get_clean();
     }
 
+    public function get_email_template_relatorio_concluidos()
+    {
+        $message = '<h4>Relatório de Participantes que concluiram o(s) Evento(s)</h4><br/><br/><br/>
+                    <p><i>Segue em anexo ao email.</i></p>';
+
+        ob_start();
+
+        require SNC_ODF_PLUGIN_PATH . '/email-templates/admin-template.php';
+
+        return ob_get_clean();
+    }
+
+    private function csv_concluidos()
+    {
+        $qtdOficinasInscritos = SNC_Oficinas_Service::get_quantitativo_inscritos_concluidos();
+        $inscritos = SNC_Oficinas_Service::get_all_inscritos_concluidos();
+
+        $oficinas = [];
+
+        foreach ($qtdOficinasInscritos AS $oficina) {
+            $oficinas[$oficina->ID] = $oficina;
+        }
+
+        $filename = SNC_ODF_PLUGIN_PATH . 'assets/relatorio_inscritos.csv';
+
+        $fp = fopen($filename, 'wb');
+
+        $idOficina = null;
+
+        foreach ($inscritos as $k => $inscrito) {
+
+            if ($idOficina != $inscrito->ID) {
+                if (0 < $k) {
+                    fputcsv($fp, array('', '', '', '', ''));
+                    fputcsv($fp, array('', '', '', '', ''));
+                }
+                fputcsv($fp, array("{$oficinas[$inscrito->ID]->post_title}", "", "Quantidade de Participantes", "{$oficinas[$inscrito->ID]->total_inscritos}", ""));
+                fputcsv($fp, array('UF', 'Município', 'Nome do Participante', 'CPF', 'E-mail'));
+            }
+
+            fputcsv($fp, array($inscrito->st_estado, $inscrito->st_municipio, $inscrito->display_name, $inscrito->nu_cpf, $inscrito->user_email));
+
+            $idOficina = $inscrito->ID;
+        }
+
+        fclose($fp);
+
+        return $filename;
+    }
+
     private function get_button_activation()
     {
         $token = get_post_meta($this->post_id, 'token_ativacao_inscricao', true);
@@ -244,7 +319,27 @@ class SNC_Oficinas_Email
             return false;
         }
 
-        $url = home_url('/questionario/?token=' . $token . '&id=' . $this->post_id);
+        $inscricaoPerfil = get_post_meta($this->post_id, 'inscricao_perfil', true);
+
+        $questionarioUrl = "questionario";
+
+        switch ($inscricaoPerfil) {
+            case 'Gestor de Cultura':
+                $questionarioUrl .= "-gestor";
+                break;
+            case 'Conselheiro de Cultura':
+                $questionarioUrl .= "-conselheiro";
+                break;
+            case 'Ponteiro de Cultura':
+                $questionarioUrl .= "-ponteiro";
+                break;
+            default:
+                $questionarioUrl .= "";
+                break;
+        }
+
+        $url = home_url("/{$questionarioUrl}/?token={$token}&id={$this->post_id}");
+
         return $this->get_button_action($url, 'Responder Questionário');
     }
 

@@ -14,8 +14,12 @@ class SNC_Oficinas_Shortcode_Inscricoes
         if (is_user_logged_in()) {
             add_action('wp_ajax_nopriv_snc_cancel_subscription', array($this, 'snc_cancel_subscription'));
             add_action('wp_ajax_snc_cancel_subscription', array($this, 'snc_cancel_subscription'));
+
             add_action('wp_ajax_nopriv_snc_confirm_presence', array($this, 'snc_confirm_presence'));
             add_action('wp_ajax_snc_confirm_presence', array($this, 'snc_confirm_presence'));
+
+            add_action('wp_ajax_nopriv_snc_question_response', array($this, 'snc_question_response'));
+            add_action('wp_ajax_snc_question_response', array($this, 'snc_question_response'));
         }
     }
 
@@ -103,6 +107,31 @@ class SNC_Oficinas_Shortcode_Inscricoes
                                         title="Responder Questionário">Responder
                                 </button>
                             <?php endif; ?>
+                            <?php if ('finish' == $registration->post_status) : ?>
+                                <?php
+                                $query = new WP_Query(array(
+                                        'post_type' => SNC_POST_TYPE_PARTICIPACAO,
+                                        'post_status' => 'publish',
+                                        'post_parent' => $registration->ID)
+                                );
+                                $questionarios = $query->get_posts();
+
+                                ?>
+                                <a id="pid-<?= $registration->ID ?>"
+                                   target="_blank"
+                                   href="<?= home_url("certificado?idOficina={$registration->ID}&idQuestion={$questionarios[0]->ID}") ?>"
+                                   type="button" class="impress-cert btn btn-success btn-sm" role="button"
+                                   aria-pressed="true"
+                                   data-id="<?= $registration->ID ?>"
+                                   data-dt-inicio="<?= $workshop_fields['oficina_data_inicio'] ?>"
+                                   data-hr-inicio="<?= $workshop_fields['oficina_horario_inicio'] ?>"
+                                   data-dt-fim="<?= $workshop_fields['oficina_data_final'] ?>"
+                                   data-hr-fim="<?= $workshop_fields['oficina_horario_termino'] ?>"
+                                   style="cursor: pointer;"
+                                   title="Imprimir Certificado">Imprimir
+                                </a>
+                                <?php unset($questionarios); ?>
+                            <?php endif; ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -115,7 +144,8 @@ class SNC_Oficinas_Shortcode_Inscricoes
                         <tr>
                             <td style="text-align: justify; border: 0; font-style: italic; vertical-align: text-top;">
                                 <p>
-                                    <input name="confirmFinish" id="confirmFinish" class="checkValidatorSnc" type="checkbox"/>
+                                    <input name="confirmFinish" id="confirmFinish"
+                                           class="checkValidatorSnc confirmFinish" type="checkbox"/>
                                     <?= $options['snc_legal_terms'] ?>
                                 </p>
                             </td>
@@ -174,13 +204,80 @@ class SNC_Oficinas_Shortcode_Inscricoes
 
             wp_update_post($subscription);
 
-            $token = SNC_Oficinas_Utils::generate_token();
+            $inscricaoPerfil = get_post_meta($post_id, 'inscricao_perfil', true);
+
+            $questionarioUrl = "questionario";
+
+            switch ($inscricaoPerfil) {
+                case 'Gestor de Cultura':
+                    $questionarioUrl .= "-gestor";
+                    break;
+                case 'Conselheiro de Cultura':
+                    $questionarioUrl .= "-conselheiro";
+                    break;
+                case 'Ponteiro de Cultura':
+                    $questionarioUrl .= "-ponteiro";
+                    break;
+                default:
+                    $questionarioUrl .= "";
+                    break;
+            }
+
+            $token = SNC_Oficinas_Utils::generate_token($questionarioUrl);
+
             add_post_meta($post_id, 'token_responder_questionario', $token, true);
 
-            $sncEmail = new SNC_Oficinas_Email($post_id, 'snc_email_questions');
+            $sncEmail = new SNC_Oficinas_Email($post_id, 'snc_email_impress_cert');
             $sncEmail->snc_send_mail_user();
 
             wp_send_json('Alteração realizada com sucesso!', 201);
+
+        } catch (Exception $e) {
+            wp_send_json_error($e->getMessage(), 412);
+        }
+    }
+
+    public function snc_question_response()
+    {
+        $post_id = sprintf("%d", $_POST['pid']);
+
+        try {
+            if (empty($post_id)) {
+                throw new Exception("Usuário não informada!");
+            }
+
+            if (!$this->current_user_is_the_author($post_id)) {
+                throw new Exception("Você não tem autorização realizar esta operação!");
+            }
+
+            $inscricaoPerfil = get_post_meta($post_id, 'inscricao_perfil', true);
+
+            $questionarioUrl = "questionario";
+
+            switch ($inscricaoPerfil) {
+                case 'Gestor de Cultura':
+                    $questionarioUrl .= "-gestor";
+                    break;
+                case 'Conselheiro de Cultura':
+                    $questionarioUrl .= "-conselheiro";
+                    break;
+                case 'Ponteiro de Cultura':
+                    $questionarioUrl .= "-ponteiro";
+                    break;
+                default:
+                    $questionarioUrl .= "";
+                    break;
+            }
+
+            $token = SNC_Oficinas_Utils::generate_token($questionarioUrl);
+
+            add_post_meta($post_id, 'token_responder_questionario', $token, true);
+
+            $token = get_post_meta($post_id, 'token_responder_questionario', true);
+
+            $url = home_url("/{$questionarioUrl}/?token={$token}&id={$post_id}");
+
+            wp_send_json(array("url" => $url), 201);
 
         } catch (Exception $e) {
             wp_send_json_error($e->getMessage(), 412);
@@ -213,7 +310,7 @@ class SNC_Oficinas_Shortcode_Inscricoes
         ?>
         <div class="container-fluid">
             <div class="alert alert-success" role="alert">
-                Suas presenças foram salvas e confirmadas com sucesso!
+                Suas presenças foram confirmadas com sucesso!
             </div>
         </div>
         <?php

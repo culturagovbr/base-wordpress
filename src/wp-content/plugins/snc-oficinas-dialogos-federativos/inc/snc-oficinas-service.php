@@ -32,7 +32,11 @@ final class SNC_Oficinas_Service
                          COUNT(conf.ID) AS total_confirmados,
                          COUNT(canc.ID) AS total_cancelados,
                          COUNT(list.ID) AS total_lista_espera,
-                         COUNT(pend.ID) AS total_pendentes
+                         COUNT(pend.ID) AS total_pendentes,
+                         COUNT(pres.ID) AS total_faltam_confimar_presenca,
+                         COUNT(quest.ID) AS total_faltam_responder_questionario,
+                         COUNT(finish.ID) AS total_finalizados,
+                         COUNT(quest.ID) + COUNT(finish.ID) AS total_concluidos
                     FROM {$postTable} o 
                     JOIN {$postMetaTable} ini 
                       ON ini.post_id = o.ID 
@@ -64,6 +68,15 @@ final class SNC_Oficinas_Service
                     LEFT JOIN {$postTable} pend
                       ON pend.ID = io.post_id
                      AND pend.post_status = 'pending'
+                     LEFT JOIN {$postTable} pres  
+                       ON pres.ID = io.post_id
+                      AND pres.post_status = 'waiting_presence'
+                    LEFT JOIN {$postTable} quest 
+                      ON quest.ID = io.post_id
+                     AND quest.post_status = 'waiting_questions'
+                    LEFT JOIN {$postTable} finish 
+                      ON finish.ID = io.post_id
+                     AND finish.post_status = 'finish'
                    WHERE o.post_type = 'oficinas'
                      AND o.post_status NOT IN ('auto-draft', 'canceled')
                      AND STR_TO_DATE(fim.meta_value, '%Y%m%d') >= NOW()
@@ -76,6 +89,101 @@ final class SNC_Oficinas_Service
                             nt.meta_value";
 
         return $wpdb->$command($query);
+    }
+
+    public static function get_quantitativo_inscritos_concluidos()
+    {
+        global $wpdb;
+
+        $postTable = $wpdb->posts;
+        $postMetaTable = $wpdb->postmeta;
+
+        $query = "SELECT o.ID, 
+                         o.post_title, 
+                         DATE_FORMAT(STR_TO_DATE(ini.meta_value, '%Y%m%d'), '%d/%m/%Y') AS data_inicio,
+                         DATE_FORMAT(STR_TO_DATE(fim.meta_value, '%Y%m%d'), '%d/%m/%Y') AS data_fim,
+                         uf.meta_value AS uf,
+                         nt.meta_value AS total_vagas,
+                         COUNT(insc.ID) AS total_inscritos
+                    FROM {$postTable} o 
+                    JOIN {$postMetaTable} ini 
+                      ON ini.post_id = o.ID 
+                     AND ini.meta_key = 'oficina_data_inicio'
+                    JOIN {$postMetaTable} fim
+                      ON fim.post_id = o.ID 
+                     AND fim.meta_key = 'oficina_data_final'
+                    JOIN {$postMetaTable} uf
+                      ON uf.post_id = o.ID
+                     AND uf.meta_key = 'oficina_unidade_da_federacao' 
+                    JOIN {$postMetaTable} nt
+                      ON nt.post_id = o.ID
+                     AND nt.meta_key = 'oficina_numero_turma' 
+                    LEFT JOIN {$postMetaTable} io 
+                      ON io.meta_value = o.ID
+                     AND io.meta_key = 'inscricao_oficina_uf'
+                    LEFT JOIN {$postTable} insc
+                      ON insc.ID = io.post_id
+                     AND insc.post_status IN ('waiting_questions', 'finish')
+                   WHERE o.post_type = 'oficinas'
+                     AND o.post_status NOT IN ('auto-draft', 'canceled')
+                   GROUP BY o.ID, 
+                            o.post_title,
+                            ini.meta_value,
+                            fim.meta_value,
+                            uf.meta_value,
+                            nt.meta_value
+                   ORDER BY o.ID, o.post_title";
+
+        return $wpdb->get_results($query);
+    }
+
+    public static function get_all_inscritos_concluidos()
+    {
+        global $wpdb;
+
+        $postTable = $wpdb->posts;
+        $postMetaTable = $wpdb->postmeta;
+        $userTable = $wpdb->users;
+        $userMetaTable = $wpdb->usermeta;
+
+        $query = "SELECT o.ID, 
+                         o.post_title, 
+                         u.display_name,
+                         u.user_email,
+                         cpf.meta_value AS nu_cpf,
+                         rg.meta_value AS nu_rg,
+                         endereco.meta_value AS st_endereco,
+                         estado.meta_value AS st_estado,
+                         municipio.meta_value AS st_municipio
+                    FROM {$postTable} o 
+                    LEFT JOIN {$postMetaTable} io 
+                      ON io.meta_value = o.ID
+                     AND io.meta_key = 'inscricao_oficina_uf'
+                    JOIN {$postTable} insc
+                      ON insc.ID = io.post_id
+                     AND insc.post_status IN ('waiting_questions', 'finish')
+                    JOIN {$userTable} u 
+                      ON u.ID = insc.post_author
+                    JOIN {$userMetaTable} cpf 
+                      ON cpf.user_id = u.ID
+                     AND cpf.meta_key = '_user_cpf'
+                    JOIN {$userMetaTable} rg 
+                      ON rg.user_id = u.ID
+                     AND rg.meta_key = '_user_rg'
+                    JOIN {$userMetaTable} endereco 
+                      ON endereco.user_id = u.ID
+                     AND endereco.meta_key = '_user_address'
+                    JOIN {$userMetaTable} estado 
+                      ON estado.user_id = u.ID
+                     AND estado.meta_key = '_user_state'
+                    JOIN {$userMetaTable} municipio 
+                      ON municipio.user_id = u.ID
+                     AND municipio.meta_key = '_user_county'
+                   WHERE o.post_type = 'oficinas'
+                     AND o.post_status NOT IN ('auto-draft', 'canceled')
+                   ORDER BY o.ID, o.post_title";
+
+        return $wpdb->get_results($query);
     }
 
     public static function get_email_admin()

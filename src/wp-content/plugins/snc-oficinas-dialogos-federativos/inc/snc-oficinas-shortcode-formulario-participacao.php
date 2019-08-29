@@ -9,14 +9,13 @@ class SNC_Oficinas_Shortcode_Formulario_Participacao
     {
         if (!is_admin()) {
             add_action('get_header', array($this, 'add_acf_form_head'), 0);
-//            add_shortcode('snc-subscription-form', array($this, 'snc_minc_subscription_form_shortcode'));
             add_shortcode('snc-oficina-response-questions', array($this, 'snc_response_questions_form'));
-//            add_action('acf/pre_save_post', array($this, 'preprocess_main_form'));
-//            add_action('acf/save_post', array($this, 'postprocess_main_form'));
+            add_action('acf/pre_save_post', array($this, 'preprocess_main_form'));
+            add_action('acf/save_post', array($this, 'postprocess_main_form_update'));
         }
     }
 
-    public function snc_response_questions_form()
+    public function snc_response_questions_form($atts)
     {
         $token = esc_attr($_GET['token']);
         $subscription_id = esc_attr($_GET['id']);
@@ -28,38 +27,54 @@ class SNC_Oficinas_Shortcode_Formulario_Participacao
                 throw new Exception("Erro! Os dados informados são inválidos.");
             }
 
+            $inscricaoPerfil = get_post_meta($subscription_id, 'inscricao_perfil', true);
+
+            $questionarioUrl = "questionario";
+
+            switch ($inscricaoPerfil) {
+                case 'Gestor de Cultura':
+                    $questionarioUrl .= "-gestor";
+                    break;
+                case 'Conselheiro de Cultura':
+                    $questionarioUrl .= "-conselheiro";
+                    break;
+                case 'Ponteiro de Cultura':
+                    $questionarioUrl .= "-ponteiro";
+                    break;
+                default:
+                    $questionarioUrl .= "";
+                    break;
+            }
+
+            $url = home_url("/{$questionarioUrl}/?token={$token}&id={$subscription_id}&sent=true#message");
+
             $atts = shortcode_atts(array(
                 'form-group-id' => '',
-                'return' => home_url('/inscricao/?sent=true#message')
+                'return' => $url
             ), $atts);
 
             $settings = array(
                 'field_groups' => array($atts['form-group-id']),
-                'id' => 'snc-main-form',
-                'post_id' => SNC_POST_TYPE_INSCRICOES,
+                'id' => 'snc-question-form',
+                'post_id' => SNC_POST_TYPE_PARTICIPACAO,
                 'new_post' => array(
-                    'post_type' => SNC_POST_TYPE_INSCRICOES,
-                    'post_status' => 'pending'
+                    'post_type' => SNC_POST_TYPE_PARTICIPACAO,
+                    'post_status' => 'publish'
                 ),
-                'updated_message' => 'Inscrição enviada com sucesso.',
-                'return' => home_url('/inscricao/?status=updated'),
+                'updated_message' => 'Questionário enviado com sucesso.',
+                'return' => home_url("/inscricoes/?status=finalizado&id={$subscription_id}"),
                 'uploader' => 'basic',
-                'submit_value' => 'Finalizar inscrição'
+                'submit_value' => 'Enviar'
             );
 
             $status = $_GET['status'];
 
             $subscription = $this->get_subscription_in_workshop();
             if (count($subscription) == 0) {
-                $this->get_message_register_success();
                 acf_form($settings);
-            } else if ($status == 'updated') {
-                $this->get_message_subscription_pending(current($subscription));
             } else {
                 $this->get_message_user_registered();
             }
-
-
         } catch (Exception $e) {
             $this->_get_message_subscription_error($e->getMessage());
         } finally {
@@ -76,96 +91,6 @@ class SNC_Oficinas_Shortcode_Formulario_Participacao
                 <a href="<?= home_url('/inscricoes/') ?>">Clique aqui para consultar o status da inscrição</a>
             </div>
         </div>
-        <?php
-    }
-
-    function snc_acf_validate_save_post()
-    {
-        if ($_POST['post_id'] != SNC_POST_TYPE_PARTICIPACAO) {
-            return true;
-        }
-
-        // check if user is an administrator
-        if (current_user_can('manage_options')) {
-            // clear all errors
-            acf_reset_validation_errors();
-        }
-
-        $acf = $_POST["acf"];
-
-        $array_interesses = [
-            'field_5d2f47cbbb0b3' => $acf['field_5d2f47cbbb0b3'], // interesse 1
-            'field_5d2f48febb0b4' => $acf['field_5d2f48febb0b4'],  // interesse 2
-            'field_5d2f490cbb0b5' => $acf['field_5d2f490cbb0b5'],  // interesse 3
-            'field_5d2f4919bb0b6' => $acf['field_5d2f4919bb0b6'],  // interesse 4
-            'field_5d2f4929bb0b7' => $acf['field_5d2f4929bb0b7']   // interesse 5
-        ];
-
-        $tem_duplicado = array_unique($array_interesses) != $array_interesses;
-        if (!empty($acf['field_5d2f47cbbb0b3']) && $tem_duplicado) {
-
-            $duplicado = key(array_diff_assoc($array_interesses, array_unique($array_interesses)));
-            acf_add_validation_error("acf[{$duplicado}]", 'Item duplicado! Selecione diferentes interesses por ordem de prioridade');
-        }
-
-        $inscrito = $this->get_subscription_in_workshop();
-        if (!empty($inscrito)) {
-            acf_add_validation_error('acf[field_5d125ee09caf3]', 'Você já possui uma inscrição');
-        }
-    }
-
-    /**
-     * Shortcode to show ACF form
-     *
-     * @param $atts
-     * @return string
-     */
-    public function snc_minc_subscription_form_shortcode($atts)
-    {
-
-        $atts = shortcode_atts(array(
-            'form-group-id' => '',
-            'return' => home_url('/questionario/?sent=true#message')
-        ), $atts);
-
-        $settings = array(
-            'field_groups' => array($atts['form-group-id']),
-            'id' => 'snc-main-form',
-            'post_id' => SNC_POST_TYPE_INSCRICOES,
-            'new_post' => array(
-                'post_type' => SNC_POST_TYPE_INSCRICOES,
-                'post_status' => 'pending'
-            ),
-            'updated_message' => 'Inscrição enviada com sucesso.',
-//            'return' => home_url('/inscricao/?status=updated'),
-            'uploader' => 'basic',
-            'submit_value' => 'Finalizar inscrição'
-        );
-
-        $status = $_GET['status'];
-        ob_start();
-        $subscription = $this->get_subscription_in_workshop();
-        if (count($subscription) == 0) {
-            $this->get_message_register_success();
-            acf_form($settings);
-        } else if ($status == 'updated') {
-            $this->get_message_subscription_pending(current($subscription));
-        } else {
-            $this->get_message_user_registered();
-        }
-
-        return ob_get_clean();
-    }
-
-    private function get_message_header()
-    {
-        ?>
-        <p>
-            Tendo em vista que as vagas são limitadas, solicitamos que você faça sua inscrição somente se
-            tiver disponibilidade e interesse. Então, antes de se inscrever, confira as datas e horários na
-            programação disponibilizadas no <a
-                    href="http://portalsnc.cultura.gov.br/">http://portalsnc.cultura.gov.br</a>.
-        </p>
         <?php
     }
 
@@ -198,8 +123,8 @@ class SNC_Oficinas_Shortcode_Formulario_Participacao
         if (is_user_logged_in()) {
             $post = get_posts([
                 'author' => get_current_user_id(),
-                'post_type' => SNC_POST_TYPE_INSCRICOES,
-                'post_status' => array('confirmed', 'pending', 'canceled', 'waiting_list'),
+                'post_type' => SNC_POST_TYPE_PARTICIPACAO,
+                'post_status' => array('waiting_questions'),
                 'posts_per_page' => 1
             ]);
 
@@ -211,7 +136,7 @@ class SNC_Oficinas_Shortcode_Formulario_Participacao
 
     public function add_acf_form_head()
     {
-        if (shortcode_exists('snc-subscription-form')) {
+        if (shortcode_exists('snc-question-form')) {
             acf_form_head();
         }
     }
@@ -221,37 +146,20 @@ class SNC_Oficinas_Shortcode_Formulario_Participacao
      *
      * @param $post_id
      */
-    public function postprocess_main_form($post_id)
-    {
-
-
-//        $update = get_post_meta($post_id, '_inscription_validated', true);
-
-//        if ($update) {
-//            return;
-//        }
-//
-//        $oficinasEmail = new SNC_Oficinas_Email($post_id, 'snc_email_confirm_subscription');
-//        $oficinasEmail->snc_send_mail_user();
-
-//        add_post_meta($post_id, '_inscription_validated', true, true);
-    }
-
-    /**
-     * Notify the monitors about a new subscription
-     *
-     * @param $post_id
-     */
     public function postprocess_main_form_update($post_id)
     {
-        $update = get_post_meta($post_id, '_inscription_validated', true);
+        $subscription_id = esc_attr($_GET['id']);
 
-        if ($update) {
-            SNC_Oficinas_Service::trigger_change_waiting_list($post_id);
-            return;
-        }
+        $subscription = array('ID' => $subscription_id, 'post_status' => 'finish');
 
-        add_post_meta($post_id, '_inscription_validated', true, true);
+
+
+        wp_update_post($subscription);
+
+        delete_post_meta($subscription_id, 'token_responder_questionario');
+
+        $sncEmail = new SNC_Oficinas_Email($subscription_id, 'snc_email_impress_cert');
+        $sncEmail->snc_send_mail_user();
     }
 
     /**
@@ -262,7 +170,9 @@ class SNC_Oficinas_Shortcode_Formulario_Participacao
      */
     public function preprocess_main_form($post_id)
     {
-        if ($post_id != SNC_POST_TYPE_INSCRICOES) {
+        $subscription_id = esc_attr($_GET['id']);
+
+        if ($post_id != SNC_POST_TYPE_PARTICIPACAO) {
             return $post_id;
         }
 
@@ -270,14 +180,14 @@ class SNC_Oficinas_Shortcode_Formulario_Participacao
             return;
         }
 
-        $post = array('post_type' => SNC_POST_TYPE_INSCRICOES, 'post_status' => 'pending');
+        $post = array('post_type' => SNC_POST_TYPE_PARTICIPACAO, 'post_status' => 'publish');
         $post_id = wp_insert_post($post);
 
-        $token = SNC_Oficinas_Utils::generate_token();
-        add_post_meta($post_id, 'token_ativacao_inscricao', $token, true);
+        $questionario = array('ID' => $post_id,
+            'post_title' => 'Questionário - (ID #' . $post_id . ')',
+            'post_parent' => $subscription_id);
 
-        $inscricao = array('ID' => $post_id, 'post_title' => 'Inscrição - (ID #' . $post_id . ')');
-        wp_update_post($inscricao);
+        wp_update_post($questionario);
 
         return $post_id;
     }

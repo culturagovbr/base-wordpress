@@ -97,15 +97,6 @@ class SNC_Oficinas_Settings
             SNC_ODF_SLUG
         );
 
-//        add_settings_field(
-//            'snc_monitoring_emails',
-//            'Emails para monitoramento',
-//            array($this, 'snc_monitoring_emails'),
-//            SNC_ODF_SLUG,
-//            'snc_email_confirmation_section',
-//            ['label_for' => 'snc_monitoring_emails', 'class' => 'form-field',]
-//        );
-
         add_settings_field(
             'snc_email_from_name',
             'Remetente',
@@ -139,7 +130,7 @@ class SNC_Oficinas_Settings
 
         add_settings_field(
             'snc_email_effectiveness_subscription',
-            'Texto Email Efetivação de Cadastro ',
+            'Texto para o Email Efetivação de Cadastro ',
             array($this, 'snc_email_textarea'),
             SNC_ODF_SLUG,
             'snc_email_confirmation_section',
@@ -152,16 +143,20 @@ class SNC_Oficinas_Settings
 
         add_settings_field(
             'snc_email_waiting_list_subscription',
-            'Texto Email Lista de Espera',
+            'Texto para o Email Lista de Espera',
             array($this, 'snc_email_textarea'),
             SNC_ODF_SLUG,
             'snc_email_confirmation_section',
-            ['label_for' => 'snc_email_waiting_list_subscription', 'class' => 'form-field',]
+            [
+                'label_for' => 'snc_email_waiting_list_subscription',
+                'class' => 'form-field',
+                'description' => 'Mensagem recebida pelo usuário avisando que está na lista de espera.'
+            ]
         );
 
         add_settings_field(
             'snc_email_reminder_workshop',
-            'Texto Email Lembrete da Oficina ',
+            'Texto para o Email Lembrete da Oficina ',
             array($this, 'snc_email_textarea'),
             SNC_ODF_SLUG,
             'snc_email_confirmation_section',
@@ -170,11 +165,28 @@ class SNC_Oficinas_Settings
 
         add_settings_field(
             'snc_email_questions',
-            'Texto Email Responder Questionário',
+            'Texto para o Email Responder Questionário',
             array($this, 'snc_email_textarea'),
             SNC_ODF_SLUG,
             'snc_email_confirmation_section',
-            ['label_for' => 'snc_email_questions', 'class' => 'form-field',]
+            [
+                'label_for' => 'snc_email_questions',
+                'class' => 'form-field',
+                'description' => 'Mensagem recebida pelo usuário para responder o questionário.'
+            ]
+        );
+
+        add_settings_field(
+            'snc_email_impress_cert',
+            'Texto para o Email Envio do Certificado',
+            array($this, 'snc_email_textarea'),
+            SNC_ODF_SLUG,
+            'snc_email_confirmation_section',
+            [
+                'label_for' => 'snc_email_impress_cert',
+                'class' => 'form-field',
+                'description' => 'Mensagem recebida pelo usuário para baixar o certificado.'
+            ]
         );
 
         add_settings_section(
@@ -190,7 +202,11 @@ class SNC_Oficinas_Settings
             array($this, 'snc_email_textarea'),
             SNC_ODF_SLUG,
             'snc_terms_section',
-            ['label_for' => 'snc_legal_terms', 'class' => 'form-field',]
+            [
+            'label_for' => 'snc_legal_terms',
+                'class' => 'form-field',
+                'description' => 'Mensagem para mostrar os termos na confimação de presença.'
+            ]
         );
 
         register_setting(
@@ -220,6 +236,7 @@ class SNC_Oficinas_Settings
         $output['snc_email_waiting_list_subscription'] = $input['snc_email_waiting_list_subscription'];
         $output['snc_email_reminder_workshop'] = $input['snc_email_reminder_workshop'];
         $output['snc_email_questions'] = $input['snc_email_questions'];
+        $output['snc_email_impress_cert'] = $input['snc_email_impress_cert'];
         $output['snc_legal_terms'] = $input['snc_legal_terms'];
 
         return $output;

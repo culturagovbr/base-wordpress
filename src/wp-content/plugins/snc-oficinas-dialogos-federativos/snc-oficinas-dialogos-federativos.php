@@ -15,6 +15,7 @@ if (!defined('WPINC'))
 define('SNC_ODF_SLUG', 'snc-oficinas-dialogos-federativos');
 define('SNC_ODF_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('SNC_ODF_PLUGIN_PATH', plugin_dir_path(__FILE__));
+define('SNC_UPLOAD', '/wp-content/uploads/');
 
 define('SNC_POST_TYPE_INSCRICOES', 'inscricao-oficina');
 define('SNC_POST_TYPE_OFICINA', 'oficinas');
@@ -22,10 +23,8 @@ define('SNC_POST_TYPE_PARTICIPACAO', 'participacao-oficina');
 
 class SNC_Oficinas_Dialogos_Federativos
 {
-
     public function __construct()
     {
-
         register_activation_hook(__FILE__, array($this, 'activate_hook'));
 
         // Register the autoloader
@@ -123,6 +122,24 @@ class SNC_Oficinas_Dialogos_Federativos
                 'menu_icon' => 'dashicons-clipboard'
             )
         );
+
+        register_post_type(SNC_POST_TYPE_PARTICIPACAO, array(
+                'labels' => array(
+                    'name' => 'Questionário para Pós-Oficinas',
+                    'singular_name' => 'Questionário para Pós-Oficinas',
+                    'add_new' => 'Novo questionário',
+                    'add_new_item' => 'Novo questionário',
+                    'search_items' => 'Procurar questionário',
+                    'not_found' => 'Nenhuma questionário encontrada',
+                ),
+                'description' => 'Questionário das Oficinas dos Diálogos Federativos',
+                'public' => true,
+                'exclude_from_search' => false,
+                'publicly_queryable' => false,
+                'supports' => array('title'),
+                'menu_icon' => 'dashicons-clipboard'
+            )
+        );
     }
 
     function custom_post_status()
@@ -196,6 +213,7 @@ class SNC_Oficinas_Dialogos_Federativos
         new SNC_Oficinas_Shortcode_Confirmacao_Inscricao();
         new SNC_Oficinas_Shortcode_Visualizar_Email();
         new SNC_Oficinas_Shortcode_Formulario_Participacao();
+        new SNC_Oficinas_Shortcode_Certificado();
     }
 
     /**
@@ -355,10 +373,10 @@ class SNC_Oficinas_Dialogos_Federativos
         return $page_template;
     }
 
-    public static function snc_relatorio_inscritos()
+    public static function snc_relatorio($type = "inscritos")
     {
         $oficinasEmail = new SNC_Oficinas_Email(null, null);
-        $oficinasEmail->snc_send_mail_relatorios();
+        $oficinasEmail->snc_send_mail_relatorios($type);
 
         echo "Relatório enviado com sucesso!", PHP_EOL;
     }
@@ -392,15 +410,16 @@ add_filter('cron_schedules', 'add_custom_cron_schedule');
 function add_custom_cron_schedule($schedules)
 {
     $schedules['minute'] = array(
-        'interval' => 60 * 20,
-        'display' => __('20 minutos')
+        'interval' => 60 * 5,
+        'display' => ('20 minutos')
     );
     return $schedules;
 }
 
 function snc_relatorio_inscritos_cron()
 {
-    SNC_Oficinas_Dialogos_Federativos::snc_relatorio_inscritos();
+    SNC_Oficinas_Dialogos_Federativos::snc_relatorio();
+    SNC_Oficinas_Dialogos_Federativos::snc_relatorio("concluidos");
 }
 
 function snc_proximas_oficinas_cron()

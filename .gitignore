@@ -38,8 +38,11 @@ node_modules
 
 # For specific projects
 src/wp-content/plugins/ge-wp/inc/db-config.php
+src/wp-content/plugins/snc-oficinas-dialogos-federativos/uploads/*
+/src/wp-content/plugins/snc-oficinas-dialogos-federativos/uploads/*
 
 # docker
 docker
 docker-compose.yml
 db/base_wp.sql
+

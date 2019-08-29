@@ -1115,7 +1115,7 @@
         "fields": [
             {
                 "key": "field_5d2f9baf37453",
-                "label": "Data início",
+                "label": "Data Início",
                 "name": "oficina_data_inicio",
                 "type": "date_picker",
                 "instructions": "",
@@ -1149,7 +1149,7 @@
             },
             {
                 "key": "field_5d307218439b7",
-                "label": "Horário de início",
+                "label": "Horário de Início",
                 "name": "oficina_horario_inicio",
                 "type": "time_picker",
                 "instructions": "",
@@ -1181,7 +1181,7 @@
             },
             {
                 "key": "field_5d2f9d3556452",
-                "label": "Local de realização",
+                "label": "Local de Realização",
                 "name": "oficina_loca_de_realizacao",
                 "type": "text",
                 "instructions": "",
@@ -1200,7 +1200,7 @@
             },
             {
                 "key": "field_5d2f9fa980211",
-                "label": "Tamanho da turma",
+                "label": "Tamanho da Turma",
                 "name": "oficina_numero_turma",
                 "type": "number",
                 "instructions": "",

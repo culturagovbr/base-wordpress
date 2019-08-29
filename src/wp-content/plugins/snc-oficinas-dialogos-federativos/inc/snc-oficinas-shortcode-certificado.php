@@ -30,6 +30,14 @@ class SNC_Oficinas_Shortcode_Certificado
             add_shortcode('snc-certificado', array($this, 'snc_impressao'));
         }
 
+        $uploadDir = wp_upload_dir();
+
+        if (!is_dir($uploadDir['path'])) {
+            mkdir($uploadDir['path'], 0777);
+        }
+
+        $this->configPdf['tempDir'] = $uploadDir['path'];
+
         $this->mpdf = new Mpdf\Mpdf($this->configPdf);
 
         add_filter('page_template', array($this, 'snc_oficinas_page_template'));

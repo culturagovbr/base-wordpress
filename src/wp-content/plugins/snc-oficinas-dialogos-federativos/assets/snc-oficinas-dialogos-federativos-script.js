@@ -29,14 +29,64 @@
                     }
                 });
             }
-        })
+        });
 
         $("button.cancel-subscription").click(function (e) {
             app.userCancelSubscription(this);
         });
+
+        $("button.confirm-presence").click(function (e) {
+            app.userConfirmPresence(this);
+        });
+
+        $("button.question-response").click(function (e) {
+            app.userQuestionResponse(this);
+        });
+
+        $('body').on('click', '.checkValidatorSncValid', function () {
+            if ($('.checkValidatorSncValid:checked').length != $('.checkValidatorSncValid').length) {
+                $('#confirmFinish').attr('checked', false);
+            }
+        });
     });
 
     var app = {
+            newDialog: function (field) {
+                return $(field).dialog({
+                    autoOpen: false,
+                    height: 480,
+                    width: 600,
+                    title: "Confirmação de Presença",
+                    buttons: {
+                        "Confirmar": function () {
+                            if ($('.checkValidatorSnc:checked').length != $('.checkValidatorSnc').length) {
+                                alert("Marque todos os 'Check List'!");
+                                return;
+                            }
+
+                            var pid = $("#sncIdOficina").val();
+
+                            if (confirm("Você realmente deseja confirmar sua(s) presença(s) na oficina?")) {
+                                $.post(vars.ajaxurl, {'action': 'snc_confirm_presence', 'pid': pid}, function (data) {
+                                    if (data) {
+                                        window.location.href = window.location.href + "?status=confirm";
+                                        $(field).dialog("close");
+                                    }
+                                }).fail(function (e) {
+                                    alert(e.responseJSON.data);
+                                });
+                            }
+                        },
+                        "Cancelar": function () {
+                            $(this).dialog("close");
+                        }
+                    },
+                    close: function () {
+                        $(this).dialog("destroy");
+                    }
+                });
+            },
+
             init: function () {
                 var SPMaskBehavior = function (val) {
                         return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
@@ -88,6 +138,111 @@
                     'json'
                 );
             },
+
+            daysBetween: function (date1, date2) {
+                // The number of milliseconds in one day
+                var ONE_DAY = 1000 * 60 * 60 * 24;
+
+                // Convert both dates to milliseconds
+                var date1_ms = date1.getTime();
+                var date2_ms = date2.getTime();
+
+                // Calculate the difference in milliseconds
+                var difference_ms = Math.abs(date1_ms - date2_ms);
+
+                // Convert back to days and return
+                return Math.round(difference_ms / ONE_DAY);
+            },
+
+            dateFullFormat: function (data) {
+                var dia = data.getDate().toString().padStart(2, '0'),
+                    mes = (data.getMonth() + 1).toString().padStart(2, '0'),
+                    ano = data.getFullYear();
+                return dia + "/" + mes + "/" + ano;
+            },
+
+            userQuestionResponse: function (el) {
+                var pid = el.id.replace(/^[^0-9]+/, '');
+                if (confirm("Você realmente responder o questionário da oficina?")) {
+                    $.post(vars.ajaxurl, {'action': 'snc_question_response', 'pid': pid}, function (data) {
+                        if (data) {
+                            window.location.href = data.url;
+                        }
+                    }).fail(function (e) {
+                        alert(e.responseJSON.data);
+                    });
+                }
+
+                return false;
+            },
+
+            userConfirmPresence: function (el) {
+                var dataInicio = $(el).attr("data-dt-inicio");
+                var horaInicio = $(el).attr("data-hr-inicio");
+
+                var arDataInicio = dataInicio.split('/');
+                var arHoraInicio = horaInicio.split(':');
+
+                var objDataInicio = new Date(parseInt(arDataInicio[2]), parseInt(arDataInicio[1]) - 1, parseInt(arDataInicio[0]));
+
+                var dataFim = $(el).attr("data-dt-fim");
+                var horaFim = $(el).attr("data-hr-fim");
+
+                var arDataFim = dataFim.split('/');
+                var arHorafim = horaFim.split(':');
+
+                var objDataFim = new Date(parseInt(arDataFim[2]), parseInt(arDataFim[1]) - 1, parseInt(arDataFim[0]));
+
+                var rangeDays = app.daysBetween(objDataFim, objDataInicio);
+
+                var table = '<table style="font-size: 10px;">';
+                var thDatas = '<tr style="font-size: 12px;"><th>Dias da Oficina</th>';
+
+                var tdMat = '<th>Matutino</th>';
+                var tdVesp = '<th>Vespertino</th>';
+                var tdNot = '<th>Noturno</th>';
+
+                var turnoInicio = arHoraInicio[0] >= 4 && arHoraInicio[0] < 12;
+                var turnoMeio = arHorafim[0] > 12 || (arHorafim[0] == 12 && arHorafim[1] > 0);
+                var turnoFim = arHorafim[0] > 18 || (arHorafim[0] == 18 && arHorafim[1] > 0);
+
+                thDatas += (turnoInicio ? tdMat : '')
+                    + (turnoMeio ? tdVesp : '')
+                    + (turnoFim ? tdNot : '')
+                    + '</tr>';
+
+                for (var i = 0; i <= rangeDays; i++) {
+                    objDataInicio.setDate(objDataInicio.getDate() + (i > 0 ? 1 : 0));
+
+                    thDatas += '<tr><th>' + app.dateFullFormat(objDataInicio) + '</th>';
+
+                    if (turnoInicio) {
+                        thDatas += '<th><input name="matutino[' + i + ']" class="checkValidatorSnc checkValidatorSncValid" type="checkbox" /></th>';
+                    }
+
+                    if (turnoMeio) {
+                        thDatas += '<th><input name="vespertino[' + i + ']" class="checkValidatorSnc checkValidatorSncValid" type="checkbox" /></th>';
+                    }
+
+                    if (turnoFim) {
+                        thDatas += '<th><input name="noturno[' + i + ']" class="checkValidatorSnc checkValidatorSncValid" type="checkbox" /></th>';
+                    }
+
+                    thDatas += '</tr>';
+                }
+
+                table += thDatas + '</table>';
+                table += '<input id="sncIdOficina" type="hidden" value="' + $(el).attr("data-id") + '" />';
+
+                $(".checkValidatorSnc").attr("checked", false);
+
+                $("#dialog-snc-label-table").html(table);
+
+                app.newDialog("#dialog-snc").dialog("open");
+
+                $(".ui-dialog-buttonset button").addClass('btn btn-secondary btn-sm');
+            },
+
             userCancelSubscription: function (el) {
                 var pid = el.id.replace(/^[^0-9]+/, '');
                 if (confirm("Você realmente deseja cancelar a sua inscrição na oficina?")) {

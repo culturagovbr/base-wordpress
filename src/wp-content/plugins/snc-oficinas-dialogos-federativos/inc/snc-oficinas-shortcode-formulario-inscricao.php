@@ -154,7 +154,7 @@ class SNC_Oficinas_Shortcode_Formulario_Inscricao
             $post = get_posts([
                 'author' => get_current_user_id(),
                 'post_type' => SNC_POST_TYPE_INSCRICOES,
-                'post_status' => array('publish', 'pending', 'canceled', 'waiting_list'),
+                'post_status' => array('confirmed', 'pending', 'canceled', 'waiting_list'),
                 'posts_per_page' => 1
             ]);
 
@@ -237,7 +237,7 @@ class SNC_Oficinas_Shortcode_Formulario_Inscricao
 
     function snc_filter_workshops($args)
     {
-        $args['post_status'] = 'publish';
+        $args['post_status'] = 'confirmed';
         return $args;
     }
 

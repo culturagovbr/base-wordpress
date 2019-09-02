@@ -314,7 +314,7 @@ class SNC_Oficinas_Shortcode_Formulario_Usuario
                            class="form-control login-field"
                            value="<?php echo(isset($_POST['socials']) ? $_POST['socials'] : $socials); ?>"
                            id="socials"/>
-                            <div class="invalid-feedback"><?= $errors['socials']; ?></div>
+                    <div class="invalid-feedback"><?= $errors['socials']; ?></div>
                 </div>
                 <?php if (!$is_user_logged_in) : ?>
                     <div class="form-group col-md-6"></div>

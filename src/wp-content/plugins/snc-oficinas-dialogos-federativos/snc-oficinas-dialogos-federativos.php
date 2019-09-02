@@ -121,24 +121,6 @@ class SNC_Oficinas_Dialogos_Federativos
                 'menu_icon' => 'dashicons-clipboard'
             )
         );
-
-        register_post_type(SNC_POST_TYPE_PARTICIPACAO, array(
-                'labels' => array(
-                    'name' => 'Questionário para Pós-Oficinas',
-                    'singular_name' => 'Questionário para Pós-Oficinas',
-                    'add_new' => 'Novo questionário',
-                    'add_new_item' => 'Novo questionário',
-                    'search_items' => 'Procurar questionário',
-                    'not_found' => 'Nenhuma questionário encontrada',
-                ),
-                'description' => 'Questionário das Oficinas dos Diálogos Federativos',
-                'public' => true,
-                'exclude_from_search' => false,
-                'publicly_queryable' => false,
-                'supports' => array('title'),
-                'menu_icon' => 'dashicons-clipboard'
-            )
-        );
     }
 
     function custom_post_status()
@@ -159,6 +141,33 @@ class SNC_Oficinas_Dialogos_Federativos
             'show_in_admin_all_list' => true,
             'show_in_admin_status_list' => true,
             'label_count' => _n_noop('Cancelado (%s)', 'Cancelado (%s)'),
+        ));
+
+        register_post_status('waiting_presence', array(
+            'label' => _x('Aguardando Presença', 'Aguardando Presença', 'text_domain'),
+            'public' => true,
+            'exclude_from_search' => false,
+            'show_in_admin_all_list' => true,
+            'show_in_admin_status_list' => true,
+            'label_count' => _n_noop('Aguardando Presença (%s)', 'Aguardando Presença (%s)'),
+        ));
+
+        register_post_status('waiting_questions', array(
+            'label' => _x('Aguardando Questionário', 'Aguardando Questionário', 'text_domain'),
+            'public' => true,
+            'exclude_from_search' => false,
+            'show_in_admin_all_list' => true,
+            'show_in_admin_status_list' => true,
+            'label_count' => _n_noop('Aguardando Questionário (%s)', 'Aguardando Questionário (%s)'),
+        ));
+
+        register_post_status('finish', array(
+            'label' => _x('Concluído', 'Status Concluído', 'text_domain'),
+            'public' => true,
+            'exclude_from_search' => false,
+            'show_in_admin_all_list' => true,
+            'show_in_admin_status_list' => true,
+            'label_count' => _n_noop('Concluído (%s)', 'Concluído (%s)'),
         ));
     }
 

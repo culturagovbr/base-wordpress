@@ -34,13 +34,13 @@ class SNC_Oficinas_Shortcode_Certificado
 
         $this->mpdf = new Mpdf\Mpdf($this->configPdf);
 
-        add_filter('page_template', array($this, 'snc_oficinas_page_template'));
-
         $this->idOficina = isset($_GET['idOficina']) ? $_GET['idOficina'] : $idOficina;
     }
 
     public function snc_impressao()
     {
+        add_filter('page_template', array($this, 'snc_oficinas_page_template'));
+
         $this->_generatePdf();
 
         $this->mpdf->Output('certificado_oficinas_snc.pdf', \Mpdf\Output\Destination::DOWNLOAD);
@@ -48,6 +48,8 @@ class SNC_Oficinas_Shortcode_Certificado
 
     public function uploadPdf()
     {
+        add_filter('page_template', array($this, 'snc_oficinas_page_template'));
+
         $this->_generatePdf();
 
         $uploadDir = wp_upload_dir();

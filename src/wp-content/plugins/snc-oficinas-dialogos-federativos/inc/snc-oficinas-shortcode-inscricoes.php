@@ -38,7 +38,7 @@ class SNC_Oficinas_Shortcode_Inscricoes
         $registrations = get_posts([
             'author' => get_current_user_id(),
             'post_type' => SNC_POST_TYPE_INSCRICOES,
-            'post_status' => array('pending', 'waiting_list', 'confirmed', 'waiting_presence', 'waiting_questions', 'finish', 'canceled'),
+            'post_status' => array('pending', 'waiting_list', 'confirmados', 'waiting_presence', 'waiting_questions', 'finish', 'canceled'),
         ]);
 
         if ($_GET['status'] == 'canceled') {

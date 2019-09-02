@@ -143,6 +143,15 @@ class SNC_Oficinas_Dialogos_Federativos
 
     function custom_post_status()
     {
+        register_post_status('confirmados', array(
+            'label' => _x('Confirmado', 'Status Confirmado', 'text_domain'),
+            'public' => true,
+            'exclude_from_search' => false,
+            'show_in_admin_all_list' => true,
+            'show_in_admin_status_list' => true,
+            'label_count' => _n_noop('Confirmado (%s)', 'Confirmado  (%s)'),
+        ));
+
         register_post_status('waiting_list', array(
             'label' => _x('Lista de espera', 'Status Lista de espera', 'text_domain'),
             'public' => true,

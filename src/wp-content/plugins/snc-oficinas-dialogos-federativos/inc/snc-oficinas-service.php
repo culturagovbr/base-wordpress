@@ -58,7 +58,7 @@ final class SNC_Oficinas_Service
                      AND insc.post_status NOT IN ('auto-draft')
                     LEFT JOIN {$postTable} conf
                       ON conf.ID = io.post_id
-                     AND conf.post_status = 'confirmed'
+                     AND conf.post_status = 'confirmados'
                     LEFT JOIN {$postTable} canc
                       ON canc.ID = io.post_id
                      AND canc.post_status = 'canceled'
@@ -320,7 +320,7 @@ final class SNC_Oficinas_Service
                      AND io.meta_key = 'inscricao_oficina_uf'
                     JOIN {$postTable} conf
                       ON conf.ID = io.post_id
-                     AND conf.post_status = 'confirmed'
+                     AND conf.post_status = 'confirmados'
                    WHERE o.post_type = 'oficinas'
                      AND o.post_status NOT IN ('auto-draft')
                      AND DATE_FORMAT(DATE_SUB(STR_TO_DATE(ini.meta_value, '%Y%m%d'), INTERVAL {$numDiasAntes} DAY), '%Y-%m-%d') = '{$date}'";
@@ -353,7 +353,7 @@ final class SNC_Oficinas_Service
                      AND io.meta_key = 'inscricao_oficina_uf'
                     JOIN {$postTable} conf
                       ON conf.ID = io.post_id
-                     AND conf.post_status = 'confirmed'
+                     AND conf.post_status = 'confirmados'
                    WHERE o.post_type = 'oficinas'
                      AND o.post_status NOT IN ('auto-draft')
                      AND CONVERT_TZ(
@@ -373,7 +373,7 @@ final class SNC_Oficinas_Service
 
         $postTable = $wpdb->posts;
 
-        return $wpdb->update($postTable, array('post_status' => 'confirmed',), array('ID' => $post_id), array('%s'), array('%d'));
+        return $wpdb->update($postTable, array('post_status' => 'confirmados',), array('ID' => $post_id), array('%s'), array('%d'));
     }
 
     public static function trigger_change_waiting_list($post_id)

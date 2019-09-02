@@ -76,7 +76,7 @@ class SNC_Oficinas_Shortcode_Confirmacao_Inscricao
     {
         $query = new WP_Query(array(
                 'post_type' => SNC_POST_TYPE_INSCRICOES,
-                'post_status' => 'confirmed',
+                'post_status' => 'confirmados',
                 'meta_key' => 'inscricao_oficina_uf',
                 'meta_value' => $workshop_id)
         );
@@ -86,7 +86,7 @@ class SNC_Oficinas_Shortcode_Confirmacao_Inscricao
 
     private function add_user_in_workshop($subscription_id)
     {
-        $subscription = array('ID' => $subscription_id, 'post_status' => 'confirmed');
+        $subscription = array('ID' => $subscription_id, 'post_status' => 'confirmados');
         wp_update_post($subscription);
         delete_post_meta($subscription_id, 'token_ativacao_inscricao');
 

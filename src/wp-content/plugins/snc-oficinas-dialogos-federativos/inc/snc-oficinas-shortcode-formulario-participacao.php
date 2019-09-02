@@ -194,7 +194,7 @@ class SNC_Oficinas_Shortcode_Formulario_Participacao
 
     function snc_filter_workshops($args)
     {
-        $args['post_status'] = 'confirmed';
+        $args['post_status'] = 'confirmados';
         return $args;
     }
 

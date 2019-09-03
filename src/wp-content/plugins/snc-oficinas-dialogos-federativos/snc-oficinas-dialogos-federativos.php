@@ -75,9 +75,6 @@ class SNC_Oficinas_Dialogos_Federativos
     {
         global $pagenow;
         if ($pagenow == 'admin.php' && $_GET['page'] == 'oficinas-relatorios-concluidos') {
-
-            $filename = SNC_Oficinas_Service::generate_relatorio_inscritos_csv();
-
             header('Pragma: public');
             header('Expires: 0');
             header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
@@ -85,7 +82,7 @@ class SNC_Oficinas_Dialogos_Federativos
             header('Content-Type: text/csv');
             header('Content-Disposition: attachment; filename=relatorio_concluidos.csv');
 
-            readfile($filename);
+            echo  SNC_Oficinas_Service::generate_relatorio_inscritos_admin_csv();
 
             exit();
         }

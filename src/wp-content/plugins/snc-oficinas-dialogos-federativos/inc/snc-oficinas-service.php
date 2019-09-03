@@ -438,12 +438,38 @@ final class SNC_Oficinas_Service
         $listaFinaliza = self::snc_oficinas_to_finish();
 
         foreach ((array)$listaFinaliza as $lista) {
-            $subscription = array('ID' => $lista->ID, 'post_status' => 'canceled');
+            $subscription = array('ID' => $lista->ID, 'post_status' => 'finish');
             wp_update_post($subscription);
         }
     }
 
     public static function generate_relatorio_inscritos_csv()
+    {
+        $filename = SNC_ODF_PLUGIN_PATH . 'assets/relatorio_inscritos.csv';
+
+        $fp = SNC_Oficinas_Service::generate_relatorio_inscritos_base_csv(fopen($filename, 'wb'));
+
+        fclose($fp);
+
+        return $filename;
+    }
+
+    public static function generate_relatorio_inscritos_admin_csv()
+    {
+        $handle = SNC_Oficinas_Service::generate_relatorio_inscritos_base_csv(fopen('php://temp', 'r+'));
+        $contents = "";
+
+        rewind($handle);
+        while (!feof($handle)) {
+
+            $contents .= fread($handle, 8192);
+        }
+
+        fclose($handle);
+        return $contents;
+    }
+
+    public static function generate_relatorio_inscritos_base_csv($fp)
     {
         $qtdOficinasInscritos = SNC_Oficinas_Service::get_quantitativo_inscritos_concluidos();
         $inscritos = SNC_Oficinas_Service::get_all_inscritos_concluidos();
@@ -453,10 +479,6 @@ final class SNC_Oficinas_Service
         foreach ($qtdOficinasInscritos AS $oficina) {
             $oficinas[$oficina->ID] = $oficina;
         }
-
-        $filename = SNC_ODF_PLUGIN_PATH . 'assets/relatorio_inscritos.csv';
-
-        $fp = fopen($filename, 'wb');
 
         $idOficina = null;
 
@@ -476,8 +498,6 @@ final class SNC_Oficinas_Service
             $idOficina = $inscrito->ID;
         }
 
-        fclose($fp);
-
-        return $filename;
+        return $fp;
     }
 }

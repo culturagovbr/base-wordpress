@@ -153,7 +153,6 @@ class SNC_Oficinas_Shortcode_Formulario_Participacao
         $subscription = array('ID' => $subscription_id, 'post_status' => 'finish');
 
 
-
         wp_update_post($subscription);
 
         delete_post_meta($subscription_id, 'token_responder_questionario');

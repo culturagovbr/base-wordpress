@@ -114,6 +114,7 @@ class SNC_Oficinas_Email
             $attachment = [];
 
             switch ($type) {
+
                 case "concluidos":
                     $body = $this->get_email_template_relatorio_concluidos();
                     $attachment = $this->csv_concluidos();

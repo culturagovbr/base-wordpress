@@ -44,13 +44,51 @@ class SNC_Oficinas_Dialogos_Federativos
         add_action('manage_posts_custom_column', array($this, 'fill_custom_columns'), 10, 2);
         add_filter('page_template', array($this, 'snc_oficinas_page_template'));
 
-
         add_filter('manage_edit-inscricao-oficina_columns', array($this, 'add_custom_columns'));
 
         add_action('get_footer', array($this, 'debug_plugin'));
 
+
+        add_action('admin_menu', array($this, 'snc_relatorio_menu'));
+        add_action('plugins_loaded', array($this, 'snc_ofinas_relatorio_concluidos'));
+
+        register_activation_hook(__FILE__, array(__CLASS__, 'activate'));
+
         // shortcodes
         new SNC_Oficinas_Shortcode_Formulario_Usuario();
+    }
+
+    static function activate()
+    {
+        $role = get_role('administrator');
+        $role->add_cap('download_csv');
+    }
+
+    public function snc_relatorio_menu()
+    {
+        add_menu_page('Oficinas - Relatórios', 'Oficinas - Relatórios', 'manage_options', 'oficinas-relatorios-concluidos', array($this, 'snc_ofinas_relatorio_concluidos'), '', 29);
+//        add_submenu_page('oficinas-relatorios', 'Submenu Page Title', 'Whatever You Want', 'manage_options', 'oficinas-relatorios-rel1');
+//        add_submenu_page('my-menu', 'Submenu Page Title2', 'Whatever You Want2', 'manage_options', 'my-menu2');
+    }
+
+    public function snc_ofinas_relatorio_concluidos()
+    {
+        global $pagenow;
+        if ($pagenow == 'admin.php' && $_GET['page'] == 'oficinas-relatorios-concluidos') {
+
+            $filename = SNC_Oficinas_Service::generate_relatorio_inscritos_csv();
+
+            header('Pragma: public');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+            header('Cache-Control: private', false);
+            header('Content-Type: text/csv');
+            header('Content-Disposition: attachment; filename=relatorio_concluidos.csv');
+
+            readfile($filename);
+
+            exit();
+        }
     }
 
     public function activate_hook()

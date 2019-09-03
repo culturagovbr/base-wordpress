@@ -442,4 +442,42 @@ final class SNC_Oficinas_Service
             wp_update_post($subscription);
         }
     }
+
+    public static function generate_relatorio_inscritos_csv()
+    {
+        $qtdOficinasInscritos = SNC_Oficinas_Service::get_quantitativo_inscritos_concluidos();
+        $inscritos = SNC_Oficinas_Service::get_all_inscritos_concluidos();
+
+        $oficinas = [];
+
+        foreach ($qtdOficinasInscritos AS $oficina) {
+            $oficinas[$oficina->ID] = $oficina;
+        }
+
+        $filename = SNC_ODF_PLUGIN_PATH . 'assets/relatorio_inscritos.csv';
+
+        $fp = fopen($filename, 'wb');
+
+        $idOficina = null;
+
+        foreach ($inscritos as $k => $inscrito) {
+
+            if ($idOficina != $inscrito->ID) {
+                if (0 < $k) {
+                    fputcsv($fp, array('', '', '', '', ''));
+                    fputcsv($fp, array('', '', '', '', ''));
+                }
+                fputcsv($fp, array("{$oficinas[$inscrito->ID]->post_title}", "", "Quantidade de Participantes", "{$oficinas[$inscrito->ID]->total_inscritos}", ""));
+                fputcsv($fp, array('UF', 'Município', 'Nome do Participante', 'CPF', 'E-mail'));
+            }
+
+            fputcsv($fp, array($inscrito->st_estado, $inscrito->st_municipio, $inscrito->display_name, $inscrito->nu_cpf, $inscrito->user_email));
+
+            $idOficina = $inscrito->ID;
+        }
+
+        fclose($fp);
+
+        return $filename;
+    }
 }

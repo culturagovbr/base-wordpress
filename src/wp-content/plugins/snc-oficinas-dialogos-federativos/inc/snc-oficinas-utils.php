@@ -24,7 +24,7 @@ class SNC_Oficinas_Utils
             case 'waiting_list':
                 $label = 'Lista de espera';
                 break;
-            case 'confirm':
+            case 'confirmed':
                 $label = 'Confirmada';
                 break;
             case 'waiting_presence':

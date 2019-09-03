@@ -367,6 +367,34 @@ final class SNC_Oficinas_Service
         return $wpdb->get_results($query);
     }
 
+    public static function snc_oficinas_to_finish()
+    {
+        global $wpdb;
+
+        $postTable = $wpdb->posts;
+        $postMetaTable = $wpdb->postmeta;
+        $date = date("Y-m-d H:i:s");
+
+        $query = "SELECT o.ID, 
+                         o.post_title, 
+                         ini.meta_value AS data_inicio
+                    FROM {$postTable} o 
+                    JOIN {$postMetaTable} ini
+                      ON ini.post_id = o.ID
+                     AND ini.meta_key = 'oficina_data_inicio'
+                   WHERE o.post_type = 'oficinas'
+                     AND o.post_status NOT IN ('auto-draft', 'canceled')
+                     AND CONVERT_TZ(
+                                    DATE_FORMAT(
+         						                STR_TO_DATE(
+         						                            CONCAT_WS(' ', ini.meta_value, '00:00:00'), 
+         						                            '%Y%m%d %H:%i:%s'), 
+         						                '%Y-%m-%d %H:%i:%s'), 
+         						    'GMT', '+03:00') <= '{$date}'";
+
+        return $wpdb->get_results($query);
+    }
+
     public static function update_list_waiting($post_id)
     {
         global $wpdb;
@@ -401,6 +429,16 @@ final class SNC_Oficinas_Service
 
         foreach ((array)$listaFinaliza as $lista) {
             $subscription = array('ID' => $lista->post_id, 'post_status' => 'waiting_presence');
+            wp_update_post($subscription);
+        }
+    }
+
+    public static function trigger_change_finish_offices()
+    {
+        $listaFinaliza = self::snc_oficinas_to_finish();
+
+        foreach ((array)$listaFinaliza as $lista) {
+            $subscription = array('ID' => $lista->ID, 'post_status' => 'canceled');
             wp_update_post($subscription);
         }
     }

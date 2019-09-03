@@ -420,6 +420,7 @@ function snc_relatorio_inscritos_cron()
 {
     SNC_Oficinas_Dialogos_Federativos::snc_relatorio();
     SNC_Oficinas_Dialogos_Federativos::snc_relatorio("concluidos");
+//    SNC_Oficinas_Service::trigger_change_finish_offices();
 }
 
 function snc_proximas_oficinas_cron()

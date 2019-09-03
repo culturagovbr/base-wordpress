@@ -191,21 +191,4 @@ class SNC_Oficinas_Shortcode_Formulario_Participacao
 
         return $post_id;
     }
-
-    function snc_filter_workshops($args)
-    {
-        $args['post_status'] = 'confirmed';
-        return $args;
-    }
-
-    function snc_filter_workshops_object_result($title, $post, $field, $post_id)
-    {
-        $fields = get_fields($post->ID, true);
-        $data_inicio = $fields['oficina_data_inicio'];
-        $data_final = $fields['oficina_data_final'];
-        $local = $fields['oficina_loca_de_realizacao'];
-        $title = "<b>$title</b> Data:  $data_inicio a $data_final Local $local ";
-
-        return $title;
-    }
 }

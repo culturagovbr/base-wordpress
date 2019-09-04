@@ -449,7 +449,7 @@ add_filter('cron_schedules', 'add_custom_cron_schedule');
 function add_custom_cron_schedule($schedules)
 {
     $schedules['minute'] = array(
-        'interval' => 60 * 1,
+        'interval' => 60 * 5,
         'display' => ('20 minutos')
     );
     return $schedules;

@@ -460,8 +460,8 @@ final class SNC_Oficinas_Service
         $contents = "";
 
         rewind($handle);
-        while (!feof($handle)) {
 
+        while (!feof($handle)) {
             $contents .= fread($handle, 8192);
         }
 

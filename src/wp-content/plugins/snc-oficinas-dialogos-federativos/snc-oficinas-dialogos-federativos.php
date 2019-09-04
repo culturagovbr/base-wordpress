@@ -74,18 +74,18 @@ class SNC_Oficinas_Dialogos_Federativos
     public function snc_ofinas_relatorio_concluidos()
     {
         global $pagenow;
-        if ($pagenow == 'admin.php' && $_GET['page'] == 'oficinas-relatorios-concluidos') {
-            header('Pragma: public');
-            header('Expires: 0');
-            header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-            header('Cache-Control: private', false);
-            header('Content-Type: text/csv');
-            header('Content-Disposition: attachment; filename=relatorio_concluidos.csv');
-
-            echo  SNC_Oficinas_Service::generate_relatorio_inscritos_admin_csv();
-
-            exit();
-        }
+//        if ($pagenow == 'admin.php' && $_GET['page'] == 'oficinas-relatorios-concluidos') {
+//            header('Pragma: public');
+//            header('Expires: 0');
+//            header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+//            header('Cache-Control: private', false);
+//            header('Content-Type: text/csv');
+//            header('Content-Disposition: attachment; filename=relatorio_concluidos.csv');
+//
+//            echo  SNC_Oficinas_Service::generate_relatorio_inscritos_admin_csv();
+//
+//            exit();
+//        }
     }
 
     public function activate_hook()

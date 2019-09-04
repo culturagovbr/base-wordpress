@@ -445,7 +445,9 @@ final class SNC_Oficinas_Service
 
     public static function generate_relatorio_inscritos_csv()
     {
-        $filename = SNC_UPLOAD . '/relatorio_inscritos.csv';
+        $filename = get_temp_dir() . 'relatorio_inscritos.csv';
+
+        file_put_contents($filename, '');
 
         $fp = SNC_Oficinas_Service::generate_relatorio_inscritos_base_csv(fopen($filename, 'w+'));
 

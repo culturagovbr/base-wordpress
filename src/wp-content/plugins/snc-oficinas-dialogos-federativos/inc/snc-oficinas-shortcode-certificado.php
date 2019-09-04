@@ -34,8 +34,6 @@ class SNC_Oficinas_Shortcode_Certificado
 
         $this->configPdf['tempDir'] = get_temp_dir();
 
-//        chmod ($this->configPdf['tempDir'], 0777);
-
         $this->mpdf = new Mpdf\Mpdf($this->configPdf);
 
         $this->idOficina = isset($_GET['idOficina']) ? $_GET['idOficina'] : $idOficina;

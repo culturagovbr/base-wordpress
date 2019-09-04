@@ -33,6 +33,7 @@ services:
     volumes:
     - ./src/wp-content:/var/www/html/wp-content
     - ./src/.htaccess:/var/www/html/.htaccess
+    - ./wp-scripts:/var/www/html/wp-scripts
   db:
     container_name: 'banco_base_wp'
     image: mysql:5.7

@@ -15,24 +15,24 @@ global $counter;
 $counter = 0;
 
 function check_and_unserialize($serialized) {
-  if (preg_match_all('/O:(\d+):"(\S+?)"/', $serialized, $m)) {
-    // print $serialized; 
-    //$len = $m[1][0];
-    //$class = substr($serialized, 4 + strlen($len), (int)$len);
-    // print_r($m); die;
-    $class = $m[2][0];
-    //print "aaaa"; var_dump( $class ); exit;
-    //echo $class; die;
-    eval ("if (!class_exists($class)) { class $class {}  }");
-  }
-  //echo $serialized;
-  $unserialized = unserialize($serialized);
-  return $unserialized;
-	 
+    if (preg_match_all('/O:(\d+):"(\S+?)"/', $serialized, $m)) {
+        // print $serialized;
+        //$len = $m[1][0];
+        //$class = substr($serialized, 4 + strlen($len), (int)$len);
+        // print_r($m); die;
+        $class = $m[2][0];
+        //print "aaaa"; var_dump( $class ); exit;
+        //echo $class; die;
+        eval ("if (!class_exists($class)) { class $class {}  }");
+    }
+    //echo $serialized;
+    $unserialized = unserialize($serialized);
+    return $unserialized;
+
 }
 
 function replace_recursive($data) {
-    global $oldUrl, $newUrl, $counter;  
+    global $oldUrl, $newUrl, $counter;
     if (is_array($data)) {
         foreach ($data as $key => $info) {
             if ( !is_array($info) && !is_object($info)) {
@@ -44,9 +44,9 @@ function replace_recursive($data) {
                 $data[$key] = replace_recursive($data[$key]);
             }
         }
-        
+
     } elseif (is_object($data)) {
-    
+
         foreach ($data as $key => $info) {
             if ( !is_array($info) && !is_object($info)) {
                 if (strpos($info, $oldUrl) !== false) {
@@ -58,7 +58,7 @@ function replace_recursive($data) {
             }
         }
     }
-    
+
     return $data;
 }
 
@@ -89,100 +89,102 @@ function is_serialized( $data ) {
 }
 
 
-$con = mysql_connect($db_host, $db_user, $db_pass);
-if (!$con)
-  die('Could not connect: ' . mysql_error());
+$con = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
+if (mysqli_connect_errno()) {
+    printf("Connect failed: %s\n", mysqli_connect_error());
+    exit();
+}
 
-mysql_select_db($db_name, $con);
+mysqli_select_db($con, $db_name);
 
-mysql_query("SET NAMES 'utf8'");
+mysqli_query($con,"SET NAMES 'utf8'");
 
-$oldUrl = mysql_query("SELECT option_value FROM {$tablePrefix}options WHERE option_name = 'siteurl'");
-if ($oldUrl) $oldUrl = mysql_fetch_object($oldUrl);
+$oldUrl = mysqli_query($con, "SELECT option_value FROM {$tablePrefix}options WHERE option_name = 'siteurl'");
+if ($oldUrl) $oldUrl = mysqli_fetch_object($oldUrl);
 if (is_object($oldUrl)) $oldUrl = $oldUrl->option_value;
 
 if (!$oldUrl) {
     // devemos estar em um wordpress MU
-    $oldUrl = mysql_query("SELECT domain FROM {$tablePrefix}site WHERE id = 1");
-    if ($oldUrl) $oldUrl = mysql_fetch_object($oldUrl);
+    $oldUrl = mysqli_query($con, "SELECT domain FROM {$tablePrefix}site WHERE id = 1");
+    if ($oldUrl) $oldUrl = mysqli_fetch_object($oldUrl);
     if (is_object($oldUrl)) $oldUrl = $oldUrl->domain;
     if (!$oldUrl) die('Nao foi encontrada a Url antiga do site');
-} 
+}
 
 $oldUrl = str_replace('http://', '', $oldUrl);
 
 if ($oldUrl == $newUrl) die('Site já aponta para dominio atual');
 
-$result = mysql_query('SHOW TABLES');
+$result = mysqli_query($con, 'SHOW TABLES');
 $tables = array();
-while ($row = mysql_fetch_array($result, MYSQL_NUM)) {
-    array_push($tables, $row[0]); 
+while ($row = mysqli_fetch_row($result)) {
+    array_push($tables, $row[0]);
 }
 
 foreach ($tables as $table) {
-	
-	$query_fields = mysql_query("DESC $table");
 
-	// descobre a chave primaria
-	while ($row = mysql_fetch_array($query_fields)) {
-		if ($row['Key'] == 'PRI') {
-			$primaryKey = $row['Field'];
-			break;
-		}
-	}
-    
-	
-	$query_fields = mysql_query("DESC $table");
-	
-	while ($field = mysql_fetch_array($query_fields)) {
-		
-		if (strpos($field['Type'], 'int') === false) {
-			
-            
-			echo '.';
-			$fieldName = $field['Field'];
-			
-            $records_query = mysql_query("SELECT $fieldName, $primaryKey FROM $table");
-			
-			if ($records_query) {
-				
-				while ($record = mysql_fetch_object($records_query)) {
-					
-					if (strpos($record->$fieldName, $oldUrl) !== false) {
+    $query_fields = mysqli_query($con, "DESC $table");
 
-						
-						if (is_serialized($record->$fieldName)) {
+    // descobre a chave primaria
+    while ($row = mysqli_fetch_array($query_fields)) {
+        if ($row['Key'] == 'PRI') {
+            $primaryKey = $row['Field'];
+            break;
+        }
+    }
 
 
-							
-							$uns = check_and_unserialize($record->$fieldName);
+    $query_fields = mysqli_query($con, "DESC $table");
+
+    while ($field = mysqli_fetch_array($query_fields)) {
+
+        if (strpos($field['Type'], 'int') === false) {
 
 
-							
-							if (is_array($uns)) {
+            echo '.';
+            $fieldName = $field['Field'];
+
+            $records_query = mysqli_query($con, "SELECT $fieldName, $primaryKey FROM $table");
+
+            if ($records_query) {
+
+                while ($record = mysqli_fetch_object($records_query)) {
+
+                    if (strpos($record->$fieldName, $oldUrl) !== false) {
+
+
+                        if (is_serialized($record->$fieldName)) {
+
+
+
+                            $uns = check_and_unserialize($record->$fieldName);
+
+
+
+                            if (is_array($uns)) {
 
 
                                 $uns = replace_recursive($uns);
-	                            $newRecord = serialize($uns);
-	                            $newRecord = addslashes($newRecord);
-	                            
-	                            mysql_query("UPDATE $table SET $fieldName = '$newRecord' WHERE $primaryKey = {$record->$primaryKey}");
-	                            echo mysql_error();
-							}
-							
-						} else {
-							if (strpos($record->$fieldName, $oldUrl) !== false) {
-	                            $newRecord = addslashes(str_replace($oldUrl, $newUrl, $record->$fieldName));
-							}
-							mysql_query("UPDATE $table SET $fieldName = '$newRecord' WHERE $primaryKey = {$record->$primaryKey}");
-							echo mysql_error();
+                                $newRecord = serialize($uns);
+                                $newRecord = addslashes($newRecord);
+
+                                mysqli_query($con, "UPDATE $table SET $fieldName = '$newRecord' WHERE $primaryKey = {$record->$primaryKey}");
+                                echo mysqli_error($con);
+                            }
+
+                        } else {
+                            if (strpos($record->$fieldName, $oldUrl) !== false) {
+                                $newRecord = addslashes(str_replace($oldUrl, $newUrl, $record->$fieldName));
+                            }
+                            mysqli_query($con, "UPDATE $table SET $fieldName = '$newRecord' WHERE $primaryKey = {$record->$primaryKey}");
+                            echo mysqli_error($con);
                             $counter ++;
-						}
-					}	
-				}
-			}	
-		}
-	}
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 echo "\nMigração finalizada. ", $counter, " ocorrencias substituídas\n";

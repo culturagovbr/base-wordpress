@@ -30,7 +30,11 @@ class SNC_Oficinas_Shortcode_Certificado
             add_shortcode('snc-certificado', array($this, 'snc_impressao'));
         }
 
+        add_filter('page_template', array($this, 'snc_oficinas_page_template'));
+
         $this->configPdf['tempDir'] = get_temp_dir();
+
+        chmod ($this->configPdf['tempDir'], 0777);
 
         $this->mpdf = new Mpdf\Mpdf($this->configPdf);
 
@@ -39,11 +43,9 @@ class SNC_Oficinas_Shortcode_Certificado
 
     public function snc_impressao()
     {
-        add_filter('page_template', array($this, 'snc_oficinas_page_template'));
-
         $this->_generatePdf();
 
-        $this->mpdf->Output('certificado_oficinas_snc.pdf', \Mpdf\Output\Destination::DOWNLOAD);
+        $this->mpdf->Output('certificado_oficinas_snc.pdf', 'D');
     }
 
     public function uploadPdf()
@@ -54,9 +56,11 @@ class SNC_Oficinas_Shortcode_Certificado
 
         $uploadDir = wp_upload_dir();
 
+        chmod ($uploadDir['path'], 0777);
+
         $local = "{$uploadDir['path']}/certificado_oficinas_snc_" . time() . ".pdf";
 
-        $this->mpdf->Output($local, \Mpdf\Output\Destination::FILE);
+        $this->mpdf->Output($local, 'F');
 
         return $local;
     }
@@ -104,11 +108,12 @@ class SNC_Oficinas_Shortcode_Certificado
 
         $mes = $this->_getMes((int)$dataFinal[1]);
         $textoData = "Brasília, {$dataFinal[0]} de {$mes} de $dataFinal[2].";
-        $url = SNC_ODF_PLUGIN_PATH . "assets/base_cert.png";
+        $url = SNC_UPLOAD . "/base_cert.png";
 
         ob_start();
 
         require_once SNC_ODF_PLUGIN_PATH . '/pages/certificado-pdf.php';
+
         $template = ob_get_contents();
 
         ob_end_clean();

@@ -15,7 +15,11 @@ if (!defined('WPINC'))
 define('SNC_ODF_SLUG', 'snc-oficinas-dialogos-federativos');
 define('SNC_ODF_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('SNC_ODF_PLUGIN_PATH', plugin_dir_path(__FILE__));
-define('SNC_UPLOAD', '/wp-content/uploads/');
+define('SNC_UPLOAD', trailingslashit( WP_CONTENT_DIR ) . 'uploads/snc');
+//
+//$baseUrl = wp_upload_dir();
+//var_dump($baseUrl);
+//exit;
 
 define('SNC_POST_TYPE_INSCRICOES', 'inscricao-oficina');
 define('SNC_POST_TYPE_OFICINA', 'oficinas');
@@ -48,11 +52,10 @@ class SNC_Oficinas_Dialogos_Federativos
 
         add_action('get_footer', array($this, 'debug_plugin'));
 
-
         add_action('admin_menu', array($this, 'snc_relatorio_menu'));
         add_action('plugins_loaded', array($this, 'snc_ofinas_relatorio_concluidos'));
 
-        register_activation_hook(__FILE__, array(__CLASS__, 'activate'));
+//        register_activation_hook(__FILE__, array(__CLASS__, 'activate'));
 
         // shortcodes
         new SNC_Oficinas_Shortcode_Formulario_Usuario();
@@ -60,8 +63,9 @@ class SNC_Oficinas_Dialogos_Federativos
 
     static function activate()
     {
-        $role = get_role('administrator');
-        $role->add_cap('download_csv');
+//        $role = get_role('administrator');
+//        $role->add_cap('download_csv');
+//        $role->add_cap('download_pdf');
     }
 
     public function snc_relatorio_menu()
@@ -74,18 +78,18 @@ class SNC_Oficinas_Dialogos_Federativos
     public function snc_ofinas_relatorio_concluidos()
     {
         global $pagenow;
-//        if ($pagenow == 'admin.php' && $_GET['page'] == 'oficinas-relatorios-concluidos') {
-//            header('Pragma: public');
-//            header('Expires: 0');
-//            header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-//            header('Cache-Control: private', false);
-//            header('Content-Type: text/csv');
-//            header('Content-Disposition: attachment; filename=relatorio_concluidos.csv');
-//
-//            echo  SNC_Oficinas_Service::generate_relatorio_inscritos_admin_csv();
-//
-//            exit();
-//        }
+        if ($pagenow == 'admin.php' && $_GET['page'] == 'oficinas-relatorios-concluidos') {
+            header('Pragma: public');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+            header('Cache-Control: private', false);
+            header('Content-Type: text/csv');
+            header('Content-Disposition: attachment; filename=relatorio_concluidos.csv');
+
+            echo  SNC_Oficinas_Service::generate_relatorio_inscritos_admin_csv();
+
+            exit();
+        }
     }
 
     public function activate_hook()
@@ -445,7 +449,7 @@ add_filter('cron_schedules', 'add_custom_cron_schedule');
 function add_custom_cron_schedule($schedules)
 {
     $schedules['minute'] = array(
-        'interval' => 60 * 5,
+        'interval' => 60 * 1,
         'display' => ('20 minutos')
     );
     return $schedules;

@@ -116,7 +116,7 @@ class SNC_Oficinas_Email
             switch ($type) {
                 case "concluidos":
                     $body = $this->get_email_template_relatorio_concluidos();
-                    $attachment = SNC_Oficinas_Service::generate_relatorio_inscritos_csv();
+//                    $attachment = SNC_Oficinas_Service::generate_relatorio_inscritos_csv();
                     break;
                 default:
                     $body = $this->get_email_template_relatorio_inscritos();

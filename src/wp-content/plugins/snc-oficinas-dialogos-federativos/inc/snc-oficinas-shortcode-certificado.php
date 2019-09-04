@@ -32,9 +32,9 @@ class SNC_Oficinas_Shortcode_Certificado
 
         add_filter('page_template', array($this, 'snc_oficinas_page_template'));
 
-        $this->configPdf['tempDir'] = get_temp_dir();
+        $uploadDir = wp_upload_dir();
 
-        chmod ($this->configPdf['tempDir'], 0777);
+        $this->configPdf['tempDir'] = $uploadDir['path'];
 
         $this->mpdf = new Mpdf\Mpdf($this->configPdf);
 
@@ -55,8 +55,6 @@ class SNC_Oficinas_Shortcode_Certificado
         $this->_generatePdf();
 
         $uploadDir = wp_upload_dir();
-
-        chmod ($uploadDir['path'], 0777);
 
         $local = "{$uploadDir['path']}/certificado_oficinas_snc_" . time() . ".pdf";
 

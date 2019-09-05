@@ -13,14 +13,14 @@ final class SNC_Oficinas_Service
         $postMetaTable = $wpdb->postmeta;
 
         $conditionAnd = [];
-        $command = "get_results";
+        $command = 'get_results';
 
         if (null != $postIdOficina) {
-            $conditionAnd[] = "o.ID = {$postIdOficina}";
-            $command = "get_row";
+            $conditionAnd[] = 'o.ID = {$postIdOficina}';
+            $command = 'get_row';
         }
 
-        $where = (count($conditionAnd) > 0 ? " AND " : "") . implode(" AND ", $conditionAnd);
+        $where = (count($conditionAnd) > 0 ? ' AND ' : '') . implode(' AND ', $conditionAnd);
 
         $query = "SELECT o.ID, 
                          o.post_title, 
@@ -190,7 +190,7 @@ final class SNC_Oficinas_Service
     {
         global $wpdb;
 
-        $metakey = str_replace("_posts", "", $wpdb->posts);
+        $metakey = str_replace('_posts', '', $wpdb->posts);
 
         $userTable = $wpdb->users;
         $userMetaTable = $wpdb->usermeta;
@@ -207,7 +207,7 @@ final class SNC_Oficinas_Service
 
     public static function get_oficina_insc_waiting($post_id, $limitVal = 0)
     {
-        $limit = (int)$limitVal > 0 ? " LIMIT {$limitVal} " : "";
+        $limit = (int)$limitVal > 0 ? ' LIMIT {$limitVal} ' : '';
 
         global $wpdb;
 
@@ -305,7 +305,7 @@ final class SNC_Oficinas_Service
 
         $postTable = $wpdb->posts;
         $postMetaTable = $wpdb->postmeta;
-        $date = date("Y-m-d");
+        $date = date('Y-m-d');
 
         $query = "SELECT o.ID, 
                          o.post_title, 
@@ -334,7 +334,7 @@ final class SNC_Oficinas_Service
 
         $postTable = $wpdb->posts;
         $postMetaTable = $wpdb->postmeta;
-        $date = date("Y-m-d H:i:s");
+        $date = date('Y-m-d H:i:s');
 
         $query = "SELECT o.ID, 
                          o.post_title, 
@@ -373,7 +373,7 @@ final class SNC_Oficinas_Service
 
         $postTable = $wpdb->posts;
         $postMetaTable = $wpdb->postmeta;
-        $date = date("Y-m-d H:i:s");
+        $date = date('Y-m-d H:i:s');
 
         $query = "SELECT o.ID, 
                          o.post_title, 
@@ -459,7 +459,7 @@ final class SNC_Oficinas_Service
     public static function generate_relatorio_inscritos_admin_csv()
     {
         $handle = SNC_Oficinas_Service::generate_relatorio_inscritos_base_csv(fopen('php://temp', 'r+'));
-        $contents = "";
+        $contents = '';
 
         rewind($handle);
 
@@ -488,14 +488,16 @@ final class SNC_Oficinas_Service
 
             if ($idOficina != $inscrito->ID) {
                 if (0 < $k) {
-                    fputcsv($fp, array('', '', '', '', ''));
-                    fputcsv($fp, array('', '', '', '', ''));
+                    fputcsv($fp, array('', '', '', '', ''), ';');
+                    fputcsv($fp, array('', '', '', '', ''), ';');
                 }
-                fputcsv($fp, array("{$oficinas[$inscrito->ID]->post_title}", "", "Quantidade de Participantes", "{$oficinas[$inscrito->ID]->total_inscritos}", ""));
-                fputcsv($fp, array('UF', 'Município', 'Nome do Participante', 'CPF', 'E-mail'));
+
+                fputcsv($fp, array(mb_convert_encoding($oficinas[$inscrito->ID]->post_title, 'ISO-8859-1', 'UTF-8'), '', 'Quantidade de Participantes', '', ''), ';');
+                fputcsv($fp, array('', '', '{$oficinas[$inscrito->ID]->total_inscritos}', '', ''), ';');
+                fputcsv($fp, array('UF', mb_convert_encoding('Município', 'ISO-8859-1', 'UTF-8'), 'Nome do Participante', 'CPF', 'E-mail'), ';');
             }
 
-            fputcsv($fp, array($inscrito->st_estado, $inscrito->st_municipio, $inscrito->display_name, $inscrito->nu_cpf, $inscrito->user_email));
+            fputcsv($fp, array($inscrito->st_estado, $inscrito->st_municipio, mb_convert_encoding($inscrito->display_name, 'ISO-8859-1', 'UTF-8'), $inscrito->nu_cpf, $inscrito->user_email), ';');
 
             $idOficina = $inscrito->ID;
         }

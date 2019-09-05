@@ -54,9 +54,9 @@ class SNC_Oficinas_Shortcode_Certificado
 
         $uploadDir = wp_upload_dir();
 
-        chmod ($uploadDir['path'], 0777);
-
         $local = "{$uploadDir['path']}/certificado_oficinas_snc_" . time() . ".pdf";
+
+        file_put_contents($local, '');
 
         $this->mpdf->Output($local, 'F');
 

@@ -493,7 +493,7 @@ final class SNC_Oficinas_Service
                 }
 
                 fputcsv($fp, array(mb_convert_encoding($oficinas[$inscrito->ID]->post_title, 'ISO-8859-1', 'UTF-8'), '', 'Quantidade de Participantes', '', ''), ';');
-                fputcsv($fp, array('', '', '{$oficinas[$inscrito->ID]->total_inscritos}', '', ''), ';');
+                fputcsv($fp, array('', '', $oficinas[$inscrito->ID]->total_inscritos, '', ''), ';');
                 fputcsv($fp, array('UF', mb_convert_encoding('Município', 'ISO-8859-1', 'UTF-8'), 'Nome do Participante', 'CPF', 'E-mail'), ';');
             }
 

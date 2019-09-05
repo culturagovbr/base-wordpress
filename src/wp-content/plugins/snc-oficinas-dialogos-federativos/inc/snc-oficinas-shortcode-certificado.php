@@ -52,9 +52,7 @@ class SNC_Oficinas_Shortcode_Certificado
     {
         $this->_generatePdf();
 
-        $uploadDir = wp_upload_dir();
-
-        $local = "{$uploadDir['path']}/certificado_oficinas_snc_" . time() . ".pdf";
+        $local = get_temp_dir() . "certificado_oficinas_snc_" . time() . ".pdf";
 
         file_put_contents($local, '');
 

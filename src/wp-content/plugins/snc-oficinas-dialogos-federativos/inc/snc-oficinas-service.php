@@ -497,7 +497,7 @@ final class SNC_Oficinas_Service
                 fputcsv($fp, array('UF', mb_convert_encoding('Município', 'ISO-8859-1', 'UTF-8'), 'Nome do Participante', 'CPF', 'E-mail'), ';');
             }
 
-            fputcsv($fp, array($inscrito->st_estado, $inscrito->st_municipio, mb_convert_encoding($inscrito->display_name, 'ISO-8859-1', 'UTF-8'), $inscrito->nu_cpf, $inscrito->user_email), ';');
+            fputcsv($fp, array($inscrito->st_estado, mb_convert_encoding($inscrito->st_municipio, 'ISO-8859-1', 'UTF-8'), mb_convert_encoding($inscrito->display_name, 'ISO-8859-1', 'UTF-8'), $inscrito->nu_cpf, $inscrito->user_email), ';');
 
             $idOficina = $inscrito->ID;
         }

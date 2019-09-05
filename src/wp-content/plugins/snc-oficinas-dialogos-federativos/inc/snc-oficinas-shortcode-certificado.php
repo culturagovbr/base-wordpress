@@ -30,7 +30,9 @@ class SNC_Oficinas_Shortcode_Certificado
             add_shortcode('snc-certificado', array($this, 'snc_impressao'));
         }
 
-        add_filter('page_template', array($this, 'snc_oficinas_page_template'));
+        if  (in_array('certificado', explode('/', $_SERVER['REQUEST_URI']))) {
+            add_filter('page_template', array($this, 'snc_oficinas_page_template'));
+        }
 
         $this->configPdf['tempDir'] = get_temp_dir();
 
@@ -48,8 +50,6 @@ class SNC_Oficinas_Shortcode_Certificado
 
     public function uploadPdf()
     {
-        add_filter('page_template', array($this, 'snc_oficinas_page_template'));
-
         $this->_generatePdf();
 
         $uploadDir = wp_upload_dir();
@@ -67,7 +67,7 @@ class SNC_Oficinas_Shortcode_Certificado
     {
         if (!is_user_logged_in()) {
             echo "Autenticação é obrigatória para acessar este recurso";
-            return false;
+            exit;
         }
 
         global $texto;

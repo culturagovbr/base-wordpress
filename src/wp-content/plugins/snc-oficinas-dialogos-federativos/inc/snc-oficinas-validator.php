@@ -1,28 +1,36 @@
 <?php
 
-class SNC_Oficinas_Validator
+if (!defined('WPINC'))
+    die();
+
+final class SNC_Oficinas_Validator
 {
     public $fields_rules = array(
         'register' => array(
-            'fullname' => array('not_empty'),
+            'fullname' => array('not_empty', 'str_length_less_than_255'),
             'birthday' => array('not_empty', 'is_a_valid_date'),
             'schooling' => array('not_empty'),
             'gender' => array('not_empty'),
             'cpf' => array('not_empty', 'is_a_valid_cpf', 'user_cpf_does_not_exist'),
-            'rg' => array('not_empty'),
-            'address' => array('not_empty'),
-            'number' => array('not_empty'),
+            'rg' => array('not_empty', 'str_length_less_than_10'),
+            'address' => array('not_empty', 'str_length_less_than_255'),
+            'number' => array('not_empty', 'str_length_less_than_100'),
             'state' => array('not_empty'),
             'county' => array('not_empty'),
-            'neighborhood' => array('not_empty'),
+            'neighborhood' => array('not_empty', 'str_length_less_than_255'),
             'zipcode' => array('not_empty', 'is_a_valid_cep'),
             'phone' => array('not_empty'),
             'celphone' => array('not_empty'),
-            'email' => array('not_empty', 'is_valid_email', 'is_email_does_not_exist'),
-            'password' => array('not_empty', 'password_length_more_than_5'),
+            'email' => array('not_empty', 'is_valid_email', 'is_email_does_not_exist', 'str_length_less_than_100'),
+            'institutional-email' => array('is_valid_email', 'str_length_less_than_100'),
+            'email-repeat' => array('is_valid_email', 'str_length_less_than_100'),
+            'socials' => array('str_length_less_than_255'),
+            'webpage' => array('str_length_less_than_100'),
+            'complement' => array('str_length_less_than_255'),
+            'password' => array('not_empty', 'password_length_more_than_5', 'str_length_less_than_20'),
         ),
         'update' => array(
-            'fullname' => array('not_empty'),
+            'fullname' => array('not_empty', 'str_length_less_than_255'),
             'birthday' => array('not_empty', 'is_a_valid_date'),
             'schooling' => array('not_empty'),
             'gender' => array('not_empty'),
@@ -85,7 +93,7 @@ class SNC_Oficinas_Validator
     /** Return true if supplied email is valid or give an error message otherwise */
     static function is_valid_email($e)
     {
-        if (is_email($e)) {
+        if (empty($e) || is_email($e)) {
             return true;
         }
         return __('O e-mail não tem um formato válido');
@@ -103,8 +111,8 @@ class SNC_Oficinas_Validator
     static function is_email_doest_not_exist_update($e)
     {
         $id_user_email = email_exists($e);
-        if (!is_user_logged_in() || $id_user_email != get_current_user_id()) {
-            return __('Já existe um usuário com o e-mail informadooo');
+        if (is_user_logged_in() && !empty($id_user_email) && $id_user_email != get_current_user_id()) {
+            return __('Já existe um usuário com o e-mail informado');
         }
 
         return true;
@@ -192,4 +200,47 @@ class SNC_Oficinas_Validator
         return true;
     }
 
+    private static function str_length_less_than($v, $max)
+    {
+        if (strlen(utf8_decode($v)) > $max) {
+            return __("O texto não deve exceder {$max} caracteres.");
+        }
+        return true;
+    }
+
+    //@todo melhorar esse tipo de verificacao
+    static function str_length_less_than_255($v)
+    {
+        return self::str_length_less_than($v, 255);
+    }
+
+    static function str_length_less_than_10($v)
+    {
+        return self::str_length_less_than($v, 10);
+    }
+
+    static function str_length_less_than_20($v)
+    {
+        return self::str_length_less_than($v, 20);
+    }
+
+    static function str_length_less_than_100($v)
+    {
+        return self::str_length_less_than($v, 100);
+    }
+
+    static function is_token_valid($id, $token, $type = 'token_ativacao_inscricao')
+    {
+        $current_token = get_post_meta($id, $type, true);
+
+        if (empty($current_token) || empty($token)) {
+            return false;
+        }
+
+        if ($current_token != $token) {
+            return false;
+        }
+
+        return true;
+    }
 }

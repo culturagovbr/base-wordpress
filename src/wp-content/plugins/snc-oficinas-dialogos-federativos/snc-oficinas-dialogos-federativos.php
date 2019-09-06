@@ -15,13 +15,20 @@ if (!defined('WPINC'))
 define('SNC_ODF_SLUG', 'snc-oficinas-dialogos-federativos');
 define('SNC_ODF_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('SNC_ODF_PLUGIN_PATH', plugin_dir_path(__FILE__));
+define('SNC_UPLOAD', trailingslashit( WP_CONTENT_DIR ) . 'uploads/snc');
+//
+//$baseUrl = wp_upload_dir();
+//var_dump($baseUrl);
+//exit;
+
+define('SNC_POST_TYPE_INSCRICOES', 'inscricao-oficina');
+define('SNC_POST_TYPE_OFICINA', 'oficinas');
+define('SNC_POST_TYPE_PARTICIPACAO', 'participacao-oficina');
 
 class SNC_Oficinas_Dialogos_Federativos
 {
-
     public function __construct()
     {
-
         register_activation_hook(__FILE__, array($this, 'activate_hook'));
 
         // Register the autoloader
@@ -34,20 +41,55 @@ class SNC_Oficinas_Dialogos_Federativos
 
         add_action('wp_enqueue_scripts', array($this, 'register_plugin_styles'));
         add_action('wp_enqueue_scripts', array($this, 'register_plugin_scripts'));
+        add_action('admin_enqueue_scripts', array($this, 'load_custom_wp_admin_scripts'));
+
         add_action('template_redirect', array($this, 'redirect_to_auth'));
         add_action('login_redirect', array($this, 'login_redirect'), 10, 3);
         add_action('manage_posts_custom_column', array($this, 'fill_custom_columns'), 10, 2);
         add_filter('page_template', array($this, 'snc_oficinas_page_template'));
 
-
         add_filter('manage_edit-inscricao-oficina_columns', array($this, 'add_custom_columns'));
 
-//         add_action('wp_mail_failed', array($this, 'action_wp_mail_failed'), 10, 1);
         add_action('get_footer', array($this, 'debug_plugin'));
 
-        // shortcodes
-        new SNC_Oficinas_Registro_Usuario_Shortcode();
+        add_action('admin_menu', array($this, 'snc_relatorio_menu'));
+        add_action('plugins_loaded', array($this, 'snc_ofinas_relatorio_concluidos'));
 
+//        register_activation_hook(__FILE__, array(__CLASS__, 'activate'));
+
+        // shortcodes
+        new SNC_Oficinas_Shortcode_Formulario_Usuario();
+    }
+
+    static function activate()
+    {
+//        $role = get_role('administrator');
+//        $role->add_cap('download_csv');
+//        $role->add_cap('download_pdf');
+    }
+
+    public function snc_relatorio_menu()
+    {
+        add_menu_page('Oficinas - Relatórios', 'Oficinas - Relatórios', 'manage_options', 'oficinas-relatorios-concluidos', array($this, 'snc_ofinas_relatorio_concluidos'), '', 29);
+//        add_submenu_page('oficinas-relatorios', 'Submenu Page Title', 'Whatever You Want', 'manage_options', 'oficinas-relatorios-rel1');
+//        add_submenu_page('my-menu', 'Submenu Page Title2', 'Whatever You Want2', 'manage_options', 'my-menu2');
+    }
+
+    public function snc_ofinas_relatorio_concluidos()
+    {
+        global $pagenow;
+        if ($pagenow == 'admin.php' && $_GET['page'] == 'oficinas-relatorios-concluidos') {
+            header('Pragma: public');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+            header('Cache-Control: private', false);
+            header('Content-Type: text/csv');
+            header('Content-Disposition: attachment; filename=relatorio_concluidos.csv');
+
+            echo  SNC_Oficinas_Service::generate_relatorio_inscritos_admin_csv();
+
+            exit();
+        }
     }
 
     public function activate_hook()
@@ -84,7 +126,7 @@ class SNC_Oficinas_Dialogos_Federativos
 
     public function inscricao_oficina_cpt()
     {
-        register_post_type('oficinas', array(
+        register_post_type(SNC_POST_TYPE_OFICINA, array(
                 'labels' => array(
                     'name' => 'Oficinas',
                     'singular_name' => 'Oficinas',
@@ -102,7 +144,7 @@ class SNC_Oficinas_Dialogos_Federativos
             )
         );
 
-        register_post_type('inscricao-oficina', array(
+        register_post_type(SNC_POST_TYPE_INSCRICOES, array(
                 'labels' => array(
                     'name' => 'Inscrições para as Oficinas',
                     'singular_name' => 'Inscrição para as Oficinas',
@@ -119,10 +161,37 @@ class SNC_Oficinas_Dialogos_Federativos
                 'menu_icon' => 'dashicons-clipboard'
             )
         );
+
+        register_post_type(SNC_POST_TYPE_PARTICIPACAO, array(
+                'labels' => array(
+                    'name' => 'Questionário para Pós-Oficinas',
+                    'singular_name' => 'Questionário para Pós-Oficinas',
+                    'add_new' => 'Novo questionário',
+                    'add_new_item' => 'Novo questionário',
+                    'search_items' => 'Procurar questionário',
+                    'not_found' => 'Nenhuma questionário encontrada',
+                ),
+                'description' => 'Questionário das Oficinas dos Diálogos Federativos',
+                'public' => true,
+                'exclude_from_search' => false,
+                'publicly_queryable' => false,
+                'supports' => array('title'),
+                'menu_icon' => 'dashicons-clipboard'
+            )
+        );
     }
 
     function custom_post_status()
     {
+        register_post_status('confirmed', array(
+            'label' => _x('Confirmado', 'Status Confirmado', 'text_domain'),
+            'public' => true,
+            'exclude_from_search' => false,
+            'show_in_admin_all_list' => true,
+            'show_in_admin_status_list' => true,
+            'label_count' => _n_noop('Confirmado (%s)', 'Confirmado  (%s)'),
+        ));
+
         register_post_status('waiting_list', array(
             'label' => _x('Lista de espera', 'Status Lista de espera', 'text_domain'),
             'public' => true,
@@ -140,6 +209,33 @@ class SNC_Oficinas_Dialogos_Federativos
             'show_in_admin_status_list' => true,
             'label_count' => _n_noop('Cancelado (%s)', 'Cancelado (%s)'),
         ));
+
+        register_post_status('waiting_presence', array(
+            'label' => _x('Aguardando Presença', 'Aguardando Presença', 'text_domain'),
+            'public' => true,
+            'exclude_from_search' => false,
+            'show_in_admin_all_list' => true,
+            'show_in_admin_status_list' => true,
+            'label_count' => _n_noop('Aguardando Presença (%s)', 'Aguardando Presença (%s)'),
+        ));
+
+        register_post_status('waiting_questions', array(
+            'label' => _x('Aguardando Questionário', 'Aguardando Questionário', 'text_domain'),
+            'public' => true,
+            'exclude_from_search' => false,
+            'show_in_admin_all_list' => true,
+            'show_in_admin_status_list' => true,
+            'label_count' => _n_noop('Aguardando Questionário (%s)', 'Aguardando Questionário (%s)'),
+        ));
+
+        register_post_status('finish', array(
+            'label' => _x('Concluído', 'Status Concluído', 'text_domain'),
+            'public' => true,
+            'exclude_from_search' => false,
+            'show_in_admin_all_list' => true,
+            'show_in_admin_status_list' => true,
+            'label_count' => _n_noop('Concluído (%s)', 'Concluído (%s)'),
+        ));
     }
 
     /**
@@ -150,10 +246,13 @@ class SNC_Oficinas_Dialogos_Federativos
      */
     public function set_shortcodes()
     {
-        new SNC_Oficinas_Formulario_Inscricao_Shortcode();
-        new SNC_Oficinas_Login_Shortcode();
-        new SNC_Oficinas_Confirmacao_Inscricao_Shortcode();
-        new SNC_Oficinas_Visualizar_Email_Shortcode();
+        new SNC_Oficinas_Shortcode_Inscricoes();
+        new SNC_Oficinas_Shortcode_Formulario_Inscricao();
+        new SNC_Oficinas_Shortcode_Login();
+        new SNC_Oficinas_Shortcode_Confirmacao_Inscricao();
+        new SNC_Oficinas_Shortcode_Visualizar_Email();
+        new SNC_Oficinas_Shortcode_Formulario_Participacao();
+        new SNC_Oficinas_Shortcode_Certificado();
     }
 
     /**
@@ -162,6 +261,11 @@ class SNC_Oficinas_Dialogos_Federativos
      */
     public function register_plugin_styles()
     {
+        global $wp_scripts;
+
+        wp_enqueue_style('jquery-ui-dialog-style', '//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css');
+
+
         wp_register_style(SNC_ODF_SLUG . '-style', SNC_ODF_PLUGIN_URL . 'assets/' . SNC_ODF_SLUG . '-style.css');
         wp_enqueue_style(SNC_ODF_SLUG . '-style');
     }
@@ -172,10 +276,22 @@ class SNC_Oficinas_Dialogos_Federativos
      */
     public function register_plugin_scripts()
     {
+        wp_enqueue_script('jquery');
+        wp_enqueue_script('jquery-ui-core');
+        wp_enqueue_script('jquery-ui-dialog');
+
         wp_enqueue_script('jquery-mask', SNC_ODF_PLUGIN_URL . 'assets/jquery.mask.min.js', array('jquery'), false, true);
         wp_enqueue_script(SNC_ODF_SLUG . '-script', SNC_ODF_PLUGIN_URL . 'assets/' . SNC_ODF_SLUG . '-script.js', array('jquery'), false, true);
         wp_localize_script(SNC_ODF_SLUG . '-script', 'vars', array('ajaxurl' => admin_url('admin-ajax.php')));
+    }
 
+    function load_custom_wp_admin_scripts($hook)
+    {
+        if (get_post_type() != 'oficinas') {
+            return;
+        }
+
+        wp_enqueue_script(SNC_ODF_SLUG . '-admin', SNC_ODF_PLUGIN_URL . 'assets/' . SNC_ODF_SLUG . '-admin.js', array('jquery'), false, true);
     }
 
     /**
@@ -186,6 +302,7 @@ class SNC_Oficinas_Dialogos_Federativos
     {
         if (
             !is_user_logged_in() && is_page('perfil') ||
+            !is_user_logged_in() && is_page('inscricoes') ||
             !is_user_logged_in() && is_page('inscricao')
         ) {
             wp_redirect(home_url('/login'));
@@ -193,7 +310,7 @@ class SNC_Oficinas_Dialogos_Federativos
         }
 
         if (is_user_logged_in() && is_page('login')) {
-            wp_redirect(home_url('/perfil'));
+            wp_redirect(home_url('/inscricoes'));
             exit;
         }
 
@@ -209,17 +326,17 @@ class SNC_Oficinas_Dialogos_Federativos
      */
     public function login_redirect($redirect_to, $request, $user)
     {
-        if (isset($user->roles) && is_array($user->roles)) :
+        if (isset($user->roles) && is_array($user->roles)) {
             if (in_array('administrator', $user->roles)) {
                 return admin_url();
             } elseif (in_array('editor', $user->roles)) {
                 return admin_url('edit.php?post_type=inscricao');
             } else {
-                return home_url('/inscricao');
+                return home_url('/inscricoes');
             }
-        else:
+        } else {
             return $redirect_to;
-        endif;
+        }
     }
 
     public function action_wp_mail_failed($wp_error)
@@ -294,7 +411,74 @@ class SNC_Oficinas_Dialogos_Federativos
         }
         return $page_template;
     }
+
+    public static function snc_relatorio($type = "inscritos")
+    {
+        $oficinasEmail = new SNC_Oficinas_Email(null, null);
+        $oficinasEmail->snc_send_mail_relatorios($type);
+
+        echo "Relatório enviado com sucesso!", PHP_EOL;
+    }
+
+    public static function snc_proximas_oficinas($numDiasAntes = 1)
+    {
+        $objects = SNC_Oficinas_Service::snc_next_oficinas($numDiasAntes);
+        $success = [];
+
+        foreach ((array)$objects as $object) {
+            $oficinasEmail = new SNC_Oficinas_Email($object->post_id, 'snc_email_reminder_workshop');
+
+            if (!$oficinasEmail->snc_send_mail_user()) {
+                $success[] = "Houve falha ao executar para o 'ID => {$object->post_id}'!";
+                break;
+            }
+
+            $success[] = "Rotina próximo executado sucesso para o 'ID => {$object->post_id}!'";
+        }
+
+        echo implode("<br />", $success), PHP_EOL;
+    }
 }
 
 // Instantiate our plugin
 new SNC_Oficinas_Dialogos_Federativos();
+
+// Cron - Relatório de Inscritos
+add_filter('cron_schedules', 'add_custom_cron_schedule');
+
+function add_custom_cron_schedule($schedules)
+{
+    $schedules['minute'] = array(
+        'interval' => 60 * 1440,
+        'display' => ('1 dia')
+    );
+    return $schedules;
+}
+
+function snc_relatorio_inscritos_cron()
+{
+    SNC_Oficinas_Dialogos_Federativos::snc_relatorio();
+    SNC_Oficinas_Dialogos_Federativos::snc_relatorio("concluidos");
+    SNC_Oficinas_Service::trigger_change_finish_offices();
+}
+
+function snc_proximas_oficinas_cron()
+{
+    SNC_Oficinas_Dialogos_Federativos::snc_proximas_oficinas(1);
+}
+
+// Cron - Relatório de Inscritos
+if (!wp_next_scheduled('snc_relatorio_inscritos_cron') || wp_next_scheduled('snc_relatorio_inscritos_cron') + 120 < time()) {
+    wp_clear_scheduled_hook('snc_relatorio_inscritos_cron');
+    wp_schedule_event(time(), 'minute', 'snc_relatorio_inscritos_cron');
+}
+
+add_action('snc_relatorio_inscritos_cron', 'snc_relatorio_inscritos_cron');
+
+// Cron - Próximas Oficinas
+if (!wp_next_scheduled('snc_proximas_oficinas_cron') || wp_next_scheduled('snc_proximas_oficinas_cron') + 120 < time()) {
+    wp_clear_scheduled_hook('snc_proximas_oficinas_cron');
+    wp_schedule_event(time(), 'minute', 'snc_proximas_oficinas_cron');
+}
+
+add_action('snc_proximas_oficinas_cron', 'snc_proximas_oficinas_cron');

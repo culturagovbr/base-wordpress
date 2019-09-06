@@ -11,7 +11,7 @@
         /* -------------------------------------
             RESPONSIVE AND MOBILE FRIENDLY STYLES
         ------------------------------------- */
-        @media only screen and (max-width: 620px) {
+        @media only screen and (max-width: 1000px) {
             table[class=body] h1 {
                 font-size: 28px !important;
                 margin-bottom: 10px !important;
@@ -114,9 +114,9 @@
     <tr>
         <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">&nbsp;</td>
         <td class="container"
-            style="font-family: sans-serif; font-size: 14px; vertical-align: top; display: block; Margin: 0 auto; max-width: 580px; padding: 10px; width: 580px;">
+            style="font-family: sans-serif; font-size: 14px; vertical-align: top; display: block; Margin: 0 auto; max-width: 800px; padding: 10px; width: 800px;">
             <div class="content"
-                 style="box-sizing: border-box; display: block; Margin: 0 auto; max-width: 580px; padding: 10px;">
+                 style="box-sizing: border-box; display: block; Margin: 0 auto; max-width: 800px; padding: 10px;">
 
                 <!-- START CENTERED WHITE CONTAINER -->
                 <span class="preheader"
@@ -132,15 +132,7 @@
                                    style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
                                 <tr>
                                     <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">
-                                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
-                                            Prezado(a) <?= $user_name; ?>,</p>
-
-                                        <?php
-                                        preg_match_all("'<p>(.*?)</p>'si", $message, $matches);
-                                        ?>
-                                        <?php foreach ($matches[0] as $match) : ?>
-                                            <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;"><?= $match; ?></p>
-                                        <?php endforeach; ?>
+                                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;"><?= $message; ?></p>
                                     </td>
                                 </tr>
                             </table>

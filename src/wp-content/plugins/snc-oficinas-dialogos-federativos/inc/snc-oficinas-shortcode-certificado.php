@@ -30,7 +30,7 @@ class SNC_Oficinas_Shortcode_Certificado
             add_shortcode('snc-certificado', array($this, 'snc_impressao'));
         }
 
-        if  (in_array('certificado', explode('/', $_SERVER['REQUEST_URI']))) {
+        if (in_array('certificado', explode('/', $_SERVER['REQUEST_URI']))) {
             add_filter('page_template', array($this, 'snc_oficinas_page_template'));
         }
 
@@ -74,18 +74,19 @@ class SNC_Oficinas_Shortcode_Certificado
         global $url;
         global $unidade;
         global $prefixo;
+        global $secretario;
+        global $orgao;
+        global $assinatura_img;
+        global $assinatura_logo;
+        global $margin_assinatura;
 
         $current_user = wp_get_current_user();
         $name = $current_user->display_name;
 
         $oficina = get_fields($this->idOficina);
         $oficina_campos = get_fields($oficina['inscricao_oficina_uf']->ID);
+        $assinatura_oficina = get_fields($oficina_campos["oficina_assinatura_oficina"]->ID);
 
-        $uf = $oficina_campos['oficina_unidade_da_federacao'];
-
-        $unidade = mb_substr($uf, 0, strpos($uf, " ("), "UTF-8");
-        $sigla = mb_substr($uf, strpos($uf, "(") + 1, 2, "UTF-8");
-        $prefixo = $this->_prefixo($sigla);
 
         $dataInicio = explode("/", $oficina_campos['oficina_data_inicio']);
         $dataFinal = explode("/", $oficina_campos['oficina_data_final']);
@@ -96,6 +97,33 @@ class SNC_Oficinas_Shortcode_Certificado
         $dias = $objDateFinal->diff($objDateIni)->days + 1;
         $horas = ($oficina_campos['oficina_horario_termino'] - $oficina_campos['oficina_horario_inicio']) * $dias;
 
+        $secretario = $assinatura_oficina['assinatura_oficina_nome_do_secretario'];
+        $orgao = $assinatura_oficina['assinatura_oficina_orgao'];
+
+        $urlAssinatura = $assinatura_oficina['assinatura_oficina_assinatura_digitalizada'];
+        $arAssinatura = array_reverse(explode("wp-content", $urlAssinatura));
+        $urlImageAssinatura = getcwd() . '/wp-content' . $arAssinatura[0];
+
+        $response = file_get_contents($urlImageAssinatura);
+        list($width, $height, $extension, $attr) = getimagesize($urlImageAssinatura);
+
+        $margin_assinatura = 150 - $height;
+        $assinatura_img = 'data:image/' . $extension . ';base64,' . base64_encode($response);
+
+        $urlLogo = $assinatura_oficina['assinatura_oficina_logotipo'];
+        $arLogo= array_reverse(explode("wp-content", $urlLogo));
+        $urlImageLogo = getcwd() . '/wp-content' . $arLogo[0];
+
+        $response = file_get_contents($urlImageLogo);
+        list($width, $height, $extension, $attr) = getimagesize($urlImageLogo);
+
+        $assinatura_logo = 'data:image/' . $extension . ';base64,' . base64_encode($response);
+
+        $uf = $assinatura_oficina['assinatura_oficina_unidade_da_federacao'];
+
+        $unidade = mb_substr($uf, 0, strpos($uf, " ("), "UTF-8");
+        $sigla = mb_substr($uf, strpos($uf, "(") + 1, 2, "UTF-8");
+        $prefixo = $this->_prefixo($sigla);
 
         $texto = "Certificamos que {$name} participou do evento “<b>Diálogos Federativos: Cultura de Ponto à Ponta</b>”";
         $texto .= ", realizado pela Secretaria da Diversidade Cultural em parceria com o Estado {$prefixo} ";

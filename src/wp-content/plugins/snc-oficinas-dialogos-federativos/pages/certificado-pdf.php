@@ -39,7 +39,7 @@
 
         #info-cert {
             position: relative;
-            margin: 35px 55px 35px 55px;
+            margin: 35px 55px 0px 55px;
             font-family: Arial;
         }
 
@@ -54,7 +54,7 @@
         }
 
         #footer {
-            margin-top: 60px;
+            margin-top: -58px;
         }
 
         #footer div {
@@ -72,6 +72,14 @@
             padding: 0;
             margin: 0;
         }
+
+        #secretario {
+            margin-top: <?php echo $margin_assinatura; ?>px;
+        }
+
+        #ministerio {
+            margin-top: 150px;
+        }
     </style>
 </head>
 <body>
@@ -85,9 +93,16 @@
     </div>
     <div id="footer">
         <div id="secretario">
-            <p>XXXXXXXXX</p>
-            <p>Secretário de Estado da Cultura</p>
+            <p>
+                <img src="<?php echo $assinatura_img;?>" />
+            </p>
+            <p style="text-transform: uppercase;"><?php echo $secretario;?></p>
+            <p><?php echo $orgao;?></p>
             <p>Governo <?php echo $prefixo;?> <?php echo $unidade;?></p>
+            <p>&nbsp;</p>
+            <p>
+                <img src="<?php echo $assinatura_logo;?>" />
+            </p>
         </div>
         <div id="ministerio">
             <p>GUSTAVO CARVALHO AMARAL</p>
@@ -95,6 +110,7 @@
             <p>Secretaria Especial da Cultura</p>
             <p>Ministério da Cidadania</p>
         </div>
+
     </div>
 </div>
 </body>

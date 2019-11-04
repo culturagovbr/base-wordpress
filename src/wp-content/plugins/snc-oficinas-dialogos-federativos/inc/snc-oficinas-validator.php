@@ -10,6 +10,7 @@ final class SNC_Oficinas_Validator
             'fullname' => array('not_empty', 'str_length_less_than_255'),
             'birthday' => array('not_empty', 'is_a_valid_date'),
             'schooling' => array('not_empty'),
+            'discipline' => array('is_superior'),
             'gender' => array('not_empty'),
             'cpf' => array('not_empty', 'is_a_valid_cpf', 'user_cpf_does_not_exist'),
             'rg' => array('not_empty', 'str_length_less_than_10'),
@@ -33,6 +34,7 @@ final class SNC_Oficinas_Validator
             'fullname' => array('not_empty', 'str_length_less_than_255'),
             'birthday' => array('not_empty', 'is_a_valid_date'),
             'schooling' => array('not_empty'),
+            'discipline' => array('is_superior'),
             'gender' => array('not_empty'),
             'rg' => array('not_empty'),
             'address' => array('not_empty'),
@@ -79,6 +81,22 @@ final class SNC_Oficinas_Validator
         return isset($this->fields_rules[$s])
             && isset($this->fields_rules[$s][$f])
             && in_array('not_empty', ($this->fields_rules[$s][$f]));
+    }
+
+    static function is_superior($v)
+    {
+        $superior = [
+            'Superior',
+            'Especialização',
+            'Mestrado',
+            'Doutorado'
+        ];
+
+        if (in_array($_POST['schooling'], $superior) && (!isset($v) || (empty($v) && $v !== "0"))) {
+            return __('Este item não pode ser vazio');
+        }
+
+        return true;
     }
 
     /** Return true if parameter is not empty or a message otherwise */

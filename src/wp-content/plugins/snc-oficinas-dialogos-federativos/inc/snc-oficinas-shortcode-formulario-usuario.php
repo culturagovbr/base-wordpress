@@ -503,7 +503,6 @@ class SNC_Oficinas_Shortcode_Formulario_Usuario
                     throw new Exception($user_id->get_error_message());
                 }
 
-
                 update_user_meta($user_id, '_user_birthday', esc_attr($birthday));
                 update_user_meta($user_id, '_user_schooling', esc_attr($schooling));
                 update_user_meta($user_id, '_user_discipline', esc_attr($discipline));

@@ -171,7 +171,7 @@ class SNC_Oficinas_Email
                     $message = str_replace('{' . $key . '}', $field, $message);
                 }
             }
-       }
+        }
 
         $message = str_replace('{confirmar_inscricao_button}', $this->get_button_activation(), $message);
         $message = str_replace('{cancelar_inscricao_button}', $this->get_button_unsubscribe(), $message);

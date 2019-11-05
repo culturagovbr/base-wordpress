@@ -25,7 +25,7 @@ class StreamReader
      */
     public static function createByString($content, $maxMemory = 2097152)
     {
-        $h = \fopen('php://temp/maxmemory:' . ((int) $maxMemory), 'r+b');
+        $h = \fopen('php://temp/maxmemory:' . ((int)$maxMemory), 'r+b');
         \fwrite($h, $content);
         \rewind($h);
 
@@ -176,7 +176,7 @@ class StreamReader
 
         $string = \substr($this->buffer, $this->offset);
 
-        return (string) $string;
+        return (string)$string;
     }
 
     /**
@@ -191,7 +191,7 @@ class StreamReader
      */
     public function getByte($position = null)
     {
-        $position = (int) ($position !== null ? $position : $this->offset);
+        $position = (int)($position !== null ? $position : $this->offset);
         if ($position >= $this->bufferLength &&
             (!$this->increaseLength() || $position >= $this->bufferLength)
         ) {
@@ -214,7 +214,7 @@ class StreamReader
     public function readByte($position = null)
     {
         if ($position !== null) {
-            $position = (int) $position;
+            $position = (int)$position;
             // check if needed bytes are available in the current buffer
             if (!($position >= $this->position && $position < $this->position + $this->bufferLength)) {
                 $this->reset($position);
@@ -249,7 +249,7 @@ class StreamReader
      */
     public function readBytes($length, $position = null)
     {
-        $length = (int) $length;
+        $length = (int)$length;
         if ($position !== null) {
             // check if needed bytes are available in the current buffer
             if (!($position >= $this->position && $position < $this->position + $this->bufferLength)) {
@@ -324,7 +324,7 @@ class StreamReader
             );
         }
 
-        $this->offset = (int) $offset;
+        $this->offset = (int)$offset;
     }
 
     /**

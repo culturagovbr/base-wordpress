@@ -111,7 +111,7 @@ class SNC_Oficinas_Shortcode_Certificado
         $assinatura_img = 'data:image/' . $extension . ';base64,' . base64_encode($response);
 
         $urlLogo = $assinatura_oficina['assinatura_oficina_logotipo'];
-        $arLogo= array_reverse(explode("wp-content", $urlLogo));
+        $arLogo = array_reverse(explode("wp-content", $urlLogo));
         $urlImageLogo = getcwd() . '/wp-content' . $arLogo[0];
 
         $response = file_get_contents($urlImageLogo);

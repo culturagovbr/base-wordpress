@@ -94,14 +94,14 @@
     <div id="footer">
         <div id="secretario">
             <p>
-                <img src="<?php echo $assinatura_img;?>" />
+                <img src="<?php echo $assinatura_img; ?>"/>
             </p>
-            <p style="text-transform: uppercase;"><?php echo $secretario;?></p>
-            <p><?php echo $orgao;?></p>
-            <p>Governo <?php echo $prefixo;?> <?php echo $unidade;?></p>
+            <p style="text-transform: uppercase;"><?php echo $secretario; ?></p>
+            <p><?php echo $orgao; ?></p>
+            <p>Governo <?php echo $prefixo; ?> <?php echo $unidade; ?></p>
             <p>&nbsp;</p>
             <p>
-                <img src="<?php echo $assinatura_logo;?>" />
+                <img src="<?php echo $assinatura_logo; ?>"/>
             </p>
         </div>
         <div id="ministerio">

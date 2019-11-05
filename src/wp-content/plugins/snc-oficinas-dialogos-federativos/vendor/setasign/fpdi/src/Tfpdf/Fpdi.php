@@ -148,10 +148,10 @@ class Fpdi extends FpdfTpl
     public function _newobj($n = null)
     {
         // Begin a new object
-        if($n === null)
+        if ($n === null)
             $n = ++$this->n;
         $this->offsets[$n] = $this->_getoffset();
-        $this->_put($n.' 0 obj');
+        $this->_put($n . ' 0 obj');
     }
 
     /**

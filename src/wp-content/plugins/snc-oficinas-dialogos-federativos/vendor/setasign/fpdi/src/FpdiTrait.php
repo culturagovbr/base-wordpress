@@ -104,7 +104,7 @@ trait FpdiTrait
             unset($this->readers[$id]);
         }
 
-        $this->createdReaders= [];
+        $this->createdReaders = [];
     }
 
     /**
@@ -147,7 +147,7 @@ trait FpdiTrait
     protected function getPdfReaderId($file)
     {
         if (\is_resource($file)) {
-            $id = (string) $file;
+            $id = (string)$file;
         } elseif (\is_string($file)) {
             $id = \realpath($file);
             if ($id === false) {
@@ -299,7 +299,7 @@ trait FpdiTrait
 
         if ($rotation !== 0) {
             $rotation *= -1;
-            $angle = $rotation * M_PI/180;
+            $angle = $rotation * M_PI / 180;
             $a = \cos($angle);
             $b = \sin($angle);
             $c = -$b;
@@ -333,7 +333,7 @@ trait FpdiTrait
         $pageDict = $page->getPageDictionary();
 
         $contentsObject = PdfType::resolve(PdfDictionary::get($pageDict, 'Contents'), $reader->getParser(), true);
-        $contents =  PdfType::resolve($contentsObject, $reader->getParser());
+        $contents = PdfType::resolve($contentsObject, $reader->getParser());
 
         // just copy the stream reference if it is only a single stream
         if (($contentsIsStream = ($contents instanceof PdfStream))
@@ -356,7 +356,7 @@ trait FpdiTrait
             $dict->value['Length'] = $length;
             $stream->value = $dict;
 
-        // otherwise extract it from the array and re-compress the whole stream
+            // otherwise extract it from the array and re-compress the whole stream
         } else {
             $streamContent = $this->compress
                 ? \gzcompress($page->getContentStream())
@@ -423,7 +423,7 @@ trait FpdiTrait
         }
 
         $this->_out(
-            // reset standard values, translate and scale
+        // reset standard values, translate and scale
             \sprintf(
                 'q 0 J 1 w 0 j 0 G 0 g %.4F 0 0 %.4F %.4F %.4F cm /%s Do Q',
                 ($newSize['width'] / $originalSize['width']),
@@ -460,7 +460,7 @@ trait FpdiTrait
                 $width = $height * $importedPage['width'] / $importedPage['height'];
             }
 
-            if ($height  === null) {
+            if ($height === null) {
                 $height = $width * $importedPage['height'] / $importedPage['width'];
             }
 

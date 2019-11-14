@@ -68,6 +68,7 @@ class SNC_Oficinas_Shortcode_Certificado
             exit;
         }
 
+        global $titulo;
         global $texto;
         global $textoData;
         global $horas;
@@ -85,6 +86,8 @@ class SNC_Oficinas_Shortcode_Certificado
 
         $oficina = get_fields($this->idOficina);
         $oficina_campos = get_fields($oficina['inscricao_oficina_uf']->ID);
+        $titulo = $oficina['inscricao_oficina_uf']->post_title;
+
         $assinatura_oficina = get_fields($oficina_campos["oficina_assinatura_oficina"]->ID);
 
 
@@ -125,7 +128,7 @@ class SNC_Oficinas_Shortcode_Certificado
         $sigla = mb_substr($uf, strpos($uf, "(") + 1, 2, "UTF-8");
         $prefixo = $this->_prefixo($sigla);
 
-        $texto = "Certificamos que {$name} participou do evento “<b>Diálogos Federativos: Cultura de Ponto à Ponta</b>”";
+        $texto = "Certificamos que {$name} participou do evento “<b>{$titulo}</b>”";
         $texto .= ", realizado pela Secretaria da Diversidade Cultural em parceria com o Estado {$prefixo} ";
         $texto .= " {$unidade}, no período de {$oficina_campos['oficina_data_inicio']}";
         $texto .= " à {$oficina_campos['oficina_data_final']}, com carga horária total de {$horas} horas.";

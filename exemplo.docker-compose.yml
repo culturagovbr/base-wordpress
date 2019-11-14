@@ -31,7 +31,7 @@ services:
         define('NOBLOGREDIRECT', 'http://base-wp.cultura.localhost');
         define('SUNRISE', 'on');
         define('ALTERNATE_WP_CRON', true);
-        define( 'WP_AUTO_UPDATE_CORE', fasle);
+        define('WP_AUTO_UPDATE_CORE', false);
         define('AUTOMATIC_UPDATER_DISABLED', true);
     volumes:
       - ./src/wp-content:/var/www/html/wp-content

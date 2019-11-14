@@ -203,7 +203,7 @@ class SNC_Oficinas_Settings
             SNC_ODF_SLUG,
             'snc_terms_section',
             [
-            'label_for' => 'snc_legal_terms',
+                'label_for' => 'snc_legal_terms',
                 'class' => 'form-field',
                 'description' => 'Mensagem para mostrar os termos na confimação de presença.'
             ]

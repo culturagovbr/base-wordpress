@@ -164,9 +164,12 @@ class SNC_Oficinas_Email
         }
 
         $workshop_fields = get_fields($workshop_post->ID);
+
         if ($workshop_fields) {
             foreach ($workshop_fields as $key => $field) {
-                $message = str_replace('{' . $key . '}', $field, $message);
+                if (!($field instanceof WP_Post)) {
+                    $message = str_replace('{' . $key . '}', $field, $message);
+                }
             }
         }
 

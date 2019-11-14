@@ -186,6 +186,400 @@ final class SNC_Oficinas_Service
         return $wpdb->get_results($query);
     }
 
+    public static function get_all_inscritos()
+    {
+        global $wpdb;
+
+        $postTable = $wpdb->posts;
+        $postMetaTable = $wpdb->postmeta;
+        $userTable = $wpdb->users;
+        $userMetaTable = $wpdb->usermeta;
+
+        $query = "SELECT o.ID, 
+                         o.post_title as oficina, 
+                         insc.ID AS num_inscricao,
+                         u.display_name AS nome,
+                         u.user_email AS email,
+                         cpf.meta_value AS nu_cpf,
+                         rg.meta_value AS nu_rg,
+                         fone.meta_value AS telefone,
+                         endereco.meta_value AS st_endereco,
+                         estado.meta_value AS st_estado,
+                         municipio.meta_value AS st_municipio,
+                         genero.meta_value AS sexo,
+                         escolar.meta_value AS escolaridade,
+                         insc_perfil.meta_value AS perfil,
+                         DATE_FORMAT(STR_TO_DATE(ini.meta_value, '%Y%m%d'), '%d/%m/%Y') AS data_inicio,
+                         DATE_FORMAT(STR_TO_DATE(fim.meta_value, '%Y%m%d'), '%d/%m/%Y') AS data_fim
+                    FROM {$postTable} o 
+                    JOIN {$postMetaTable} io 
+                      ON io.meta_value = o.ID
+                     AND io.meta_key = 'inscricao_oficina_uf'
+                    JOIN {$postMetaTable} ini 
+                      ON ini.post_id = o.ID 
+                     AND ini.meta_key = 'oficina_data_inicio'
+                    JOIN {$postMetaTable} fim
+                      ON fim.post_id = o.ID 
+                     AND fim.meta_key = 'oficina_data_final'
+                    JOIN {$postTable} insc
+                      ON insc.ID = io.post_id
+                    JOIN {$postMetaTable} insc_perfil
+                      ON insc_perfil.post_id = insc.ID
+                     AND insc_perfil.meta_key = 'inscricao_perfil'
+                    JOIN {$userTable} u 
+                      ON u.ID = insc.post_author
+                    JOIN {$userMetaTable} cpf 
+                      ON cpf.user_id = u.ID
+                     AND cpf.meta_key = '_user_cpf'
+                    JOIN {$userMetaTable} rg 
+                      ON rg.user_id = u.ID
+                     AND rg.meta_key = '_user_rg'
+                    JOIN {$userMetaTable} fone 
+                      ON fone.user_id = u.ID
+                     AND fone.meta_key = '_user_phone'
+                    JOIN {$userMetaTable} endereco 
+                      ON endereco.user_id = u.ID
+                     AND endereco.meta_key = '_user_address'
+                    JOIN {$userMetaTable} estado 
+                      ON estado.user_id = u.ID
+                     AND estado.meta_key = '_user_state'
+                    JOIN {$userMetaTable} municipio 
+                      ON municipio.user_id = u.ID
+                     AND municipio.meta_key = '_user_county'
+                    JOIN {$userMetaTable} genero 
+                      ON genero.user_id = u.ID
+                     AND genero.meta_key = '_user_gender'
+                     JOIN {$userMetaTable} escolar 
+                      ON escolar.user_id = u.ID
+                     AND escolar.meta_key = '_user_schooling'
+                   WHERE o.post_type = 'oficinas'
+                   ORDER BY STR_TO_DATE(ini.meta_value, '%Y%m%d'), 
+                            o.post_title, 
+                            u.display_name";
+
+        return $wpdb->get_results($query);
+    }
+
+    public static function get_all_interesses()
+    {
+        global $wpdb;
+
+        $postTable = $wpdb->posts;
+        $postMetaTable = $wpdb->postmeta;
+
+        $query = "SELECT a.total_inscritos,
+                       ROUND((100 * a.total_i_1_1) / a.total_inscritos, 2) AS percentual_i_1_1,
+                       ROUND((100 * a.total_i_1_2) / a.total_inscritos, 2) AS percentual_i_1_2,
+                       ROUND((100 * a.total_i_1_3) / a.total_inscritos, 2) AS percentual_i_1_3,
+                       ROUND((100 * a.total_i_1_4) / a.total_inscritos, 2) AS percentual_i_1_4,
+                       ROUND((100 * a.total_i_1_5) / a.total_inscritos, 2) AS percentual_i_1_5,
+                       ROUND((100 * a.total_i_1_6) / a.total_inscritos, 2) AS percentual_i_1_6,
+                       ROUND((100 * a.total_i_1_7) / a.total_inscritos, 2) AS percentual_i_1_7,
+                       ROUND((100 * a.total_i_1_8) / a.total_inscritos, 2) AS percentual_i_1_8,
+                       ROUND((100 * a.total_i_1_9) / a.total_inscritos, 2) AS percentual_i_1_9,
+                       ROUND((100 * a.total_i_1_10) / a.total_inscritos, 2) AS percentual_i_1_10,
+                       ROUND((100 * a.total_i_2_1) / a.total_inscritos, 2) AS percentual_i_2_1,
+                       ROUND((100 * a.total_i_2_2) / a.total_inscritos, 2) AS percentual_i_2_2,
+                       ROUND((100 * a.total_i_2_3) / a.total_inscritos, 2) AS percentual_i_2_3,
+                       ROUND((100 * a.total_i_2_4) / a.total_inscritos, 2) AS percentual_i_2_4,
+                       ROUND((100 * a.total_i_2_5) / a.total_inscritos, 2) AS percentual_i_2_5,
+                       ROUND((100 * a.total_i_2_6) / a.total_inscritos, 2) AS percentual_i_2_6,
+                       ROUND((100 * a.total_i_2_7) / a.total_inscritos, 2) AS percentual_i_2_7,
+                       ROUND((100 * a.total_i_2_8) / a.total_inscritos, 2) AS percentual_i_2_8,
+                       ROUND((100 * a.total_i_2_9) / a.total_inscritos, 2) AS percentual_i_2_9,
+                       ROUND((100 * a.total_i_2_10) / a.total_inscritos, 2) AS percentual_i_2_10,
+                       ROUND((100 * a.total_i_3_1) / a.total_inscritos, 2) AS percentual_i_3_1,
+                       ROUND((100 * a.total_i_3_2) / a.total_inscritos, 2) AS percentual_i_3_2,
+                       ROUND((100 * a.total_i_3_3) / a.total_inscritos, 2) AS percentual_i_3_3,
+                       ROUND((100 * a.total_i_3_4) / a.total_inscritos, 2) AS percentual_i_3_4,
+                       ROUND((100 * a.total_i_3_5) / a.total_inscritos, 2) AS percentual_i_3_5,
+                       ROUND((100 * a.total_i_3_6) / a.total_inscritos, 2) AS percentual_i_3_6,
+                       ROUND((100 * a.total_i_3_7) / a.total_inscritos, 2) AS percentual_i_3_7,
+                       ROUND((100 * a.total_i_3_8) / a.total_inscritos, 2) AS percentual_i_3_8,
+                       ROUND((100 * a.total_i_3_9) / a.total_inscritos, 2) AS percentual_i_3_9,
+                       ROUND((100 * a.total_i_3_10) / a.total_inscritos, 2) AS percentual_i_3_10,
+                       ROUND((100 * a.total_i_4_1) / a.total_inscritos, 2) AS percentual_i_4_1,
+                       ROUND((100 * a.total_i_4_2) / a.total_inscritos, 2) AS percentual_i_4_2,
+                       ROUND((100 * a.total_i_4_3) / a.total_inscritos, 2) AS percentual_i_4_3,
+                       ROUND((100 * a.total_i_4_4) / a.total_inscritos, 2) AS percentual_i_4_4,
+                       ROUND((100 * a.total_i_4_5) / a.total_inscritos, 2) AS percentual_i_4_5,
+                       ROUND((100 * a.total_i_4_6) / a.total_inscritos, 2) AS percentual_i_4_6,
+                       ROUND((100 * a.total_i_4_7) / a.total_inscritos, 2) AS percentual_i_4_7,
+                       ROUND((100 * a.total_i_4_8) / a.total_inscritos, 2) AS percentual_i_4_8,
+                       ROUND((100 * a.total_i_4_9) / a.total_inscritos, 2) AS percentual_i_4_9,
+                       ROUND((100 * a.total_i_4_10) / a.total_inscritos, 2) AS percentual_i_4_10,
+                       ROUND((100 * a.total_i_5_1) / a.total_inscritos, 2) AS percentual_i_5_1,
+                       ROUND((100 * a.total_i_5_2) / a.total_inscritos, 2) AS percentual_i_5_2,
+                       ROUND((100 * a.total_i_5_3) / a.total_inscritos, 2) AS percentual_i_5_3,
+                       ROUND((100 * a.total_i_5_4) / a.total_inscritos, 2) AS percentual_i_5_4,
+                       ROUND((100 * a.total_i_5_5) / a.total_inscritos, 2) AS percentual_i_5_5,
+                       ROUND((100 * a.total_i_5_6) / a.total_inscritos, 2) AS percentual_i_5_6,
+                       ROUND((100 * a.total_i_5_7) / a.total_inscritos, 2) AS percentual_i_5_7,
+                       ROUND((100 * a.total_i_5_8) / a.total_inscritos, 2) AS percentual_i_5_8,
+                       ROUND((100 * a.total_i_5_9) / a.total_inscritos, 2) AS percentual_i_5_9,
+                       ROUND((100 * a.total_i_5_10) / a.total_inscritos, 2) AS percentual_i_5_10
+                  FROM (SELECT COUNT(insc.ID) AS total_inscritos,
+                                 COUNT(i_1_1.post_id) AS total_i_1_1,
+                                 COUNT(i_1_2.post_id) AS total_i_1_2,
+                                 COUNT(i_1_3.post_id) AS total_i_1_3,
+                                 COUNT(i_1_4.post_id) AS total_i_1_4,
+                                 COUNT(i_1_5.post_id) AS total_i_1_5,
+                                 COUNT(i_1_6.post_id) AS total_i_1_6,
+                                 COUNT(i_1_7.post_id) AS total_i_1_7,
+                                 COUNT(i_1_8.post_id) AS total_i_1_8,
+                                 COUNT(i_1_9.post_id) AS total_i_1_9,
+                                 COUNT(i_1_10.post_id) AS total_i_1_10,
+                                 COUNT(i_2_1.post_id) AS total_i_2_1,
+                                 COUNT(i_2_2.post_id) AS total_i_2_2,
+                                 COUNT(i_2_3.post_id) AS total_i_2_3,
+                                 COUNT(i_2_4.post_id) AS total_i_2_4,
+                                 COUNT(i_2_5.post_id) AS total_i_2_5,
+                                 COUNT(i_2_6.post_id) AS total_i_2_6,
+                                 COUNT(i_2_7.post_id) AS total_i_2_7,
+                                 COUNT(i_2_8.post_id) AS total_i_2_8,
+                                 COUNT(i_2_9.post_id) AS total_i_2_9,
+                                 COUNT(i_2_10.post_id) AS total_i_2_10,
+                                 COUNT(i_3_1.post_id) AS total_i_3_1,
+                                 COUNT(i_3_2.post_id) AS total_i_3_2,
+                                 COUNT(i_3_3.post_id) AS total_i_3_3,
+                                 COUNT(i_3_4.post_id) AS total_i_3_4,
+                                 COUNT(i_3_5.post_id) AS total_i_3_5,
+                                 COUNT(i_3_6.post_id) AS total_i_3_6,
+                                 COUNT(i_3_7.post_id) AS total_i_3_7,
+                                 COUNT(i_3_8.post_id) AS total_i_3_8,
+                                 COUNT(i_3_9.post_id) AS total_i_3_9,
+                                 COUNT(i_3_10.post_id) AS total_i_3_10,
+                                 COUNT(i_4_1.post_id) AS total_i_4_1,
+                                 COUNT(i_4_2.post_id) AS total_i_4_2,
+                                 COUNT(i_4_3.post_id) AS total_i_4_3,
+                                 COUNT(i_4_4.post_id) AS total_i_4_4,
+                                 COUNT(i_4_5.post_id) AS total_i_4_5,
+                                 COUNT(i_4_6.post_id) AS total_i_4_6,
+                                 COUNT(i_4_7.post_id) AS total_i_4_7,
+                                 COUNT(i_4_8.post_id) AS total_i_4_8,
+                                 COUNT(i_4_9.post_id) AS total_i_4_9,
+                                 COUNT(i_4_10.post_id) AS total_i_4_10,
+                                 COUNT(i_5_1.post_id) AS total_i_5_1,
+                                 COUNT(i_5_2.post_id) AS total_i_5_2,
+                                 COUNT(i_5_3.post_id) AS total_i_5_3,
+                                 COUNT(i_5_4.post_id) AS total_i_5_4,
+                                 COUNT(i_5_5.post_id) AS total_i_5_5,
+                                 COUNT(i_5_6.post_id) AS total_i_5_6,
+                                 COUNT(i_5_7.post_id) AS total_i_5_7,
+                                 COUNT(i_5_8.post_id) AS total_i_5_8,
+                                 COUNT(i_5_9.post_id) AS total_i_5_9,
+                                 COUNT(i_5_10.post_id) AS total_i_5_10
+                            FROM {$postTable} o 
+                            JOIN {$postMetaTable} io 
+                              ON io.meta_value = o.ID
+                             AND io.meta_key = 'inscricao_oficina_uf'
+                            LEFT JOIN {$postTable} insc
+                              ON insc.ID = io.post_id 
+                            LEFT JOIN {$postMetaTable} i_1_1 
+                              ON i_1_1.post_id = insc.ID
+                             AND i_1_1.meta_key = 'inscricao_interesse_1'
+                             AND i_1_1.meta_value= 'Política Nacional de Cultura Viva (Pontos, Pontões de Cultura)'
+                            LEFT JOIN {$postMetaTable} i_1_2 
+                              ON i_1_2.post_id = insc.ID
+                             AND i_1_2.meta_key = 'inscricao_interesse_1'
+                             AND i_1_2.meta_value= 'Sistema Nacional de Cultura (Plano, Fundo de Cultura)'
+                            LEFT JOIN {$postMetaTable} i_1_3 
+                              ON i_1_3.post_id = insc.ID
+                             AND i_1_3.meta_key = 'inscricao_interesse_1'
+                             AND i_1_3.meta_value= 'Novo Plano Nacional de Cultura'
+                            LEFT JOIN {$postMetaTable} i_1_4 
+                              ON i_1_4.post_id = insc.ID
+                             AND i_1_4.meta_key = 'inscricao_interesse_1'
+                             AND i_1_4.meta_value= 'Gestão compartilhada e Participação Social (Conselho Nacional de Política Cultural e Conferência Nacional de Cultura)'
+                            LEFT JOIN {$postMetaTable} i_1_5 
+                              ON i_1_5.post_id = insc.ID
+                             AND i_1_5.meta_key = 'inscricao_interesse_1'
+                             AND i_1_5.meta_value= 'Operacionalização dos sistemas de parcerias (Convênios, Consórcios, Termos de fomento, entre outros)'
+                            LEFT JOIN {$postMetaTable} i_1_6 
+                              ON i_1_6.post_id = insc.ID
+                             AND i_1_6.meta_key = 'inscricao_interesse_1'
+                             AND i_1_6.meta_value= 'Orientações para elaboração de projetos culturais, no âmbito da diversidade cultural'
+                            LEFT JOIN {$postMetaTable} i_1_7 
+                              ON i_1_7.post_id = insc.ID
+                             AND i_1_7.meta_key = 'inscricao_interesse_1'
+                             AND i_1_7.meta_value= 'Orientações para execução e prestação de contas'
+                            LEFT JOIN {$postMetaTable} i_1_8 
+                              ON i_1_8.post_id = insc.ID
+                             AND i_1_8.meta_key = 'inscricao_interesse_1'
+                             AND i_1_8.meta_value= 'Acessibilidade Cultural'
+                            LEFT JOIN {$postMetaTable} i_1_9 
+                              ON i_1_9.post_id = insc.ID
+                             AND i_1_9.meta_key = 'inscricao_interesse_1'
+                             AND i_1_9.meta_value= 'Culturas Populares e Diversidade'
+                            LEFT JOIN {$postMetaTable} i_1_10 
+                              ON i_1_10.post_id = insc.ID
+                             AND i_1_10.meta_key = 'inscricao_interesse_1'
+                             AND i_1_10.meta_value= 'Cultura e Educação'
+                            LEFT JOIN {$postMetaTable} i_2_1 
+                              ON i_2_1.post_id = insc.ID
+                             AND i_2_1.meta_key = 'inscricao_interesse_2'
+                             AND i_2_1.meta_value= 'Política Nacional de Cultura Viva (Pontos, Pontões de Cultura)'
+                            LEFT JOIN {$postMetaTable} i_2_2 
+                              ON i_2_2.post_id = insc.ID
+                             AND i_2_2.meta_key = 'inscricao_interesse_2'
+                             AND i_2_2.meta_value= 'Sistema Nacional de Cultura (Plano, Fundo de Cultura)'
+                            LEFT JOIN {$postMetaTable} i_2_3 
+                              ON i_2_3.post_id = insc.ID
+                             AND i_2_3.meta_key = 'inscricao_interesse_2'
+                             AND i_2_3.meta_value= 'Novo Plano Nacional de Cultura'
+                            LEFT JOIN {$postMetaTable} i_2_4 
+                              ON i_2_4.post_id = insc.ID
+                             AND i_2_4.meta_key = 'inscricao_interesse_2'
+                             AND i_2_4.meta_value= 'Gestão compartilhada e Participação Social (Conselho Nacional de Política Cultural e Conferência Nacional de Cultura)'
+                            LEFT JOIN {$postMetaTable} i_2_5 
+                              ON i_2_5.post_id = insc.ID
+                             AND i_2_5.meta_key = 'inscricao_interesse_2'
+                             AND i_2_5.meta_value= 'Operacionalização dos sistemas de parcerias (Convênios, Consórcios, Termos de fomento, entre outros)'
+                            LEFT JOIN {$postMetaTable} i_2_6 
+                              ON i_2_6.post_id = insc.ID
+                             AND i_2_6.meta_key = 'inscricao_interesse_2'
+                             AND i_2_6.meta_value= 'Orientações para elaboração de projetos culturais, no âmbito da diversidade cultural'
+                            LEFT JOIN {$postMetaTable} i_2_7 
+                              ON i_2_7.post_id = insc.ID
+                             AND i_2_7.meta_key = 'inscricao_interesse_2'
+                             AND i_2_7.meta_value= 'Orientações para execução e prestação de contas'
+                            LEFT JOIN {$postMetaTable} i_2_8 
+                              ON i_2_8.post_id = insc.ID
+                             AND i_2_8.meta_key = 'inscricao_interesse_2'
+                             AND i_2_8.meta_value= 'Acessibilidade Cultural'
+                            LEFT JOIN {$postMetaTable} i_2_9 
+                              ON i_2_9.post_id = insc.ID
+                             AND i_2_9.meta_key = 'inscricao_interesse_2'
+                             AND i_2_9.meta_value= 'Culturas Populares e Diversidade'
+                            LEFT JOIN {$postMetaTable} i_2_10 
+                              ON i_2_10.post_id = insc.ID
+                             AND i_2_10.meta_key = 'inscricao_interesse_2'
+                             AND i_2_10.meta_value= 'Cultura e Educação'	
+                            LEFT JOIN {$postMetaTable} i_3_1 
+                              ON i_3_1.post_id = insc.ID
+                             AND i_3_1.meta_key = 'inscricao_interesse_3'
+                             AND i_3_1.meta_value= 'Política Nacional de Cultura Viva (Pontos, Pontões de Cultura)'
+                            LEFT JOIN {$postMetaTable} i_3_2 
+                              ON i_3_2.post_id = insc.ID
+                             AND i_3_2.meta_key = 'inscricao_interesse_3'
+                             AND i_3_2.meta_value= 'Sistema Nacional de Cultura (Plano, Fundo de Cultura)'
+                            LEFT JOIN {$postMetaTable} i_3_3 
+                              ON i_3_3.post_id = insc.ID
+                             AND i_3_3.meta_key = 'inscricao_interesse_3'
+                             AND i_3_3.meta_value= 'Novo Plano Nacional de Cultura'
+                            LEFT JOIN {$postMetaTable} i_3_4 
+                              ON i_3_4.post_id = insc.ID
+                             AND i_3_4.meta_key = 'inscricao_interesse_3'
+                             AND i_3_4.meta_value= 'Gestão compartilhada e Participação Social (Conselho Nacional de Política Cultural e Conferência Nacional de Cultura)'
+                            LEFT JOIN {$postMetaTable} i_3_5 
+                              ON i_3_5.post_id = insc.ID
+                             AND i_3_5.meta_key = 'inscricao_interesse_3'
+                             AND i_3_5.meta_value= 'Operacionalização dos sistemas de parcerias (Convênios, Consórcios, Termos de fomento, entre outros)'
+                            LEFT JOIN {$postMetaTable} i_3_6 
+                              ON i_3_6.post_id = insc.ID
+                             AND i_3_6.meta_key = 'inscricao_interesse_3'
+                             AND i_3_6.meta_value= 'Orientações para elaboração de projetos culturais, no âmbito da diversidade cultural'
+                            LEFT JOIN {$postMetaTable} i_3_7 
+                              ON i_3_7.post_id = insc.ID
+                             AND i_3_7.meta_key = 'inscricao_interesse_3'
+                             AND i_3_7.meta_value= 'Orientações para execução e prestação de contas'
+                            LEFT JOIN {$postMetaTable} i_3_8 
+                              ON i_3_8.post_id = insc.ID
+                             AND i_3_8.meta_key = 'inscricao_interesse_3'
+                             AND i_3_8.meta_value= 'Acessibilidade Cultural'
+                            LEFT JOIN {$postMetaTable} i_3_9 
+                              ON i_3_9.post_id = insc.ID
+                             AND i_3_9.meta_key = 'inscricao_interesse_3'
+                             AND i_3_9.meta_value= 'Culturas Populares e Diversidade'
+                            LEFT JOIN {$postMetaTable} i_3_10 
+                              ON i_3_10.post_id = insc.ID
+                             AND i_3_10.meta_key = 'inscricao_interesse_3'
+                             AND i_3_10.meta_value= 'Cultura e Educação'	
+                            LEFT JOIN {$postMetaTable} i_4_1 
+                              ON i_4_1.post_id = insc.ID
+                             AND i_4_1.meta_key = 'inscricao_interesse_4'
+                             AND i_4_1.meta_value= 'Política Nacional de Cultura Viva (Pontos, Pontões de Cultura)'
+                            LEFT JOIN {$postMetaTable} i_4_2 
+                              ON i_4_2.post_id = insc.ID
+                             AND i_4_2.meta_key = 'inscricao_interesse_4'
+                             AND i_4_2.meta_value= 'Sistema Nacional de Cultura (Plano, Fundo de Cultura)'
+                            LEFT JOIN {$postMetaTable} i_4_3 
+                              ON i_4_3.post_id = insc.ID
+                             AND i_4_3.meta_key = 'inscricao_interesse_4'
+                             AND i_4_3.meta_value= 'Novo Plano Nacional de Cultura'
+                            LEFT JOIN {$postMetaTable} i_4_4 
+                              ON i_4_4.post_id = insc.ID
+                             AND i_4_4.meta_key = 'inscricao_interesse_4'
+                             AND i_4_4.meta_value= 'Gestão compartilhada e Participação Social (Conselho Nacional de Política Cultural e Conferência Nacional de Cultura)'
+                            LEFT JOIN {$postMetaTable} i_4_5 
+                              ON i_4_5.post_id = insc.ID
+                             AND i_4_5.meta_key = 'inscricao_interesse_4'
+                             AND i_4_5.meta_value= 'Operacionalização dos sistemas de parcerias (Convênios, Consórcios, Termos de fomento, entre outros)'
+                            LEFT JOIN {$postMetaTable} i_4_6 
+                              ON i_4_6.post_id = insc.ID
+                             AND i_4_6.meta_key = 'inscricao_interesse_4'
+                             AND i_4_6.meta_value= 'Orientações para elaboração de projetos culturais, no âmbito da diversidade cultural'
+                            LEFT JOIN {$postMetaTable} i_4_7 
+                              ON i_4_7.post_id = insc.ID
+                             AND i_4_7.meta_key = 'inscricao_interesse_4'
+                             AND i_4_7.meta_value= 'Orientações para execução e prestação de contas'
+                            LEFT JOIN {$postMetaTable} i_4_8 
+                              ON i_4_8.post_id = insc.ID
+                             AND i_4_8.meta_key = 'inscricao_interesse_4'
+                             AND i_4_8.meta_value= 'Acessibilidade Cultural'
+                            LEFT JOIN {$postMetaTable} i_4_9 
+                              ON i_4_9.post_id = insc.ID
+                             AND i_4_9.meta_key = 'inscricao_interesse_4'
+                             AND i_4_9.meta_value= 'Culturas Populares e Diversidade'
+                            LEFT JOIN {$postMetaTable} i_4_10 
+                              ON i_4_10.post_id = insc.ID
+                             AND i_4_10.meta_key = 'inscricao_interesse_4'
+                             AND i_4_10.meta_value= 'Cultura e Educação'	
+                            LEFT JOIN {$postMetaTable} i_5_1 
+                              ON i_5_1.post_id = insc.ID
+                             AND i_5_1.meta_key = 'inscricao_interesse_5'
+                             AND i_5_1.meta_value= 'Política Nacional de Cultura Viva (Pontos, Pontões de Cultura)'
+                            LEFT JOIN {$postMetaTable} i_5_2 
+                              ON i_5_2.post_id = insc.ID
+                             AND i_5_2.meta_key = 'inscricao_interesse_5'
+                             AND i_5_2.meta_value= 'Sistema Nacional de Cultura (Plano, Fundo de Cultura)'
+                            LEFT JOIN {$postMetaTable} i_5_3 
+                              ON i_5_3.post_id = insc.ID
+                             AND i_5_3.meta_key = 'inscricao_interesse_5'
+                             AND i_5_3.meta_value= 'Novo Plano Nacional de Cultura'
+                            LEFT JOIN {$postMetaTable} i_5_4 
+                              ON i_5_4.post_id = insc.ID
+                             AND i_5_4.meta_key = 'inscricao_interesse_5'
+                             AND i_5_4.meta_value= 'Gestão compartilhada e Participação Social (Conselho Nacional de Política Cultural e Conferência Nacional de Cultura)'
+                            LEFT JOIN {$postMetaTable} i_5_5 
+                              ON i_5_5.post_id = insc.ID
+                             AND i_5_5.meta_key = 'inscricao_interesse_5'
+                             AND i_5_5.meta_value= 'Operacionalização dos sistemas de parcerias (Convênios, Consórcios, Termos de fomento, entre outros)'
+                            LEFT JOIN {$postMetaTable} i_5_6 
+                              ON i_5_6.post_id = insc.ID
+                             AND i_5_6.meta_key = 'inscricao_interesse_5'
+                             AND i_5_6.meta_value= 'Orientações para elaboração de projetos culturais, no âmbito da diversidade cultural'
+                            LEFT JOIN {$postMetaTable} i_5_7 
+                              ON i_5_7.post_id = insc.ID
+                             AND i_5_7.meta_key = 'inscricao_interesse_5'
+                             AND i_5_7.meta_value= 'Orientações para execução e prestação de contas'
+                            LEFT JOIN {$postMetaTable} i_5_8 
+                              ON i_5_8.post_id = insc.ID
+                             AND i_5_8.meta_key = 'inscricao_interesse_5'
+                             AND i_5_8.meta_value= 'Acessibilidade Cultural'
+                            LEFT JOIN {$postMetaTable} i_5_9 
+                              ON i_5_9.post_id = insc.ID
+                             AND i_5_9.meta_key = 'inscricao_interesse_5'
+                             AND i_5_9.meta_value= 'Culturas Populares e Diversidade'
+                            LEFT JOIN {$postMetaTable} i_5_10 
+                              ON i_5_10.post_id = insc.ID
+                             AND i_5_10.meta_key = 'inscricao_interesse_5'
+                             AND i_5_10.meta_value= 'Cultura e Educação'	
+                    ) a";
+
+        return $wpdb->get_row($query);
+    }
+
     public static function get_email_admin()
     {
         global $wpdb;
@@ -443,17 +837,32 @@ final class SNC_Oficinas_Service
         }
     }
 
-    public static function generate_relatorio_inscritos_csv()
+    public static function generate_relatorio_concluidos_csv()
     {
         $filename = get_temp_dir() . 'relatorio_inscritos.csv';
 
         file_put_contents($filename, '');
 
-        $fp = SNC_Oficinas_Service::generate_relatorio_inscritos_base_csv(fopen($filename, 'w+'));
+        $fp = SNC_Oficinas_Service::generate_relatorio_concluidos_base_csv(fopen($filename, 'w+'));
 
         fclose($fp);
 
         return $filename;
+    }
+
+    public static function generate_relatorio_concluidos_admin_csv()
+    {
+        $handle = SNC_Oficinas_Service::generate_relatorio_concluidos_base_csv(fopen('php://temp', 'r+'));
+        $contents = '';
+
+        rewind($handle);
+
+        while (!feof($handle)) {
+            $contents .= fread($handle, 8192);
+        }
+
+        fclose($handle);
+        return $contents;
     }
 
     public static function generate_relatorio_inscritos_admin_csv()
@@ -471,7 +880,22 @@ final class SNC_Oficinas_Service
         return $contents;
     }
 
-    public static function generate_relatorio_inscritos_base_csv($fp)
+    public static function generate_relatorio_interesses_admin_csv()
+    {
+        $handle = SNC_Oficinas_Service::generate_relatorio_interesses_base_csv(fopen('php://temp', 'r+'));
+        $contents = '';
+
+        rewind($handle);
+
+        while (!feof($handle)) {
+            $contents .= fread($handle, 8192);
+        }
+
+        fclose($handle);
+        return $contents;
+    }
+
+    public static function generate_relatorio_concluidos_base_csv($fp)
     {
         $qtdOficinasInscritos = SNC_Oficinas_Service::get_quantitativo_inscritos_concluidos();
         $inscritos = SNC_Oficinas_Service::get_all_inscritos_concluidos();
@@ -500,6 +924,82 @@ final class SNC_Oficinas_Service
             fputcsv($fp, array($inscrito->st_estado, mb_convert_encoding($inscrito->st_municipio, 'ISO-8859-1', 'UTF-8'), mb_convert_encoding($inscrito->display_name, 'ISO-8859-1', 'UTF-8'), $inscrito->nu_cpf, $inscrito->user_email), ';');
 
             $idOficina = $inscrito->ID;
+        }
+
+        return $fp;
+    }
+
+    public static function generate_relatorio_inscritos_base_csv($fp)
+    {
+        $inscritos = SNC_Oficinas_Service::get_all_inscritos();
+
+        fputcsv($fp, array('Oficina',
+            mb_convert_encoding('Nº da Inscrição', 'ISO-8859-1', 'UTF-8'),
+            'UF',
+            mb_convert_encoding('Município', 'ISO-8859-1', 'UTF-8'),
+            'Nome',
+            'CPF',
+            'RG',
+            'Telefone',
+            'E-mail',
+            mb_convert_encoding('Gênero', 'ISO-8859-1', 'UTF-8'),
+            'Escolaridade',
+            'Perfil'), ';');
+
+        foreach ($inscritos as $k => $inscrito) {
+            fputcsv($fp, array(mb_convert_encoding($inscrito->oficina, 'ISO-8859-1', 'UTF-8'),
+                mb_convert_encoding($inscrito->num_inscricao, 'ISO-8859-1', 'UTF-8'),
+                mb_convert_encoding($inscrito->st_estado, 'ISO-8859-1', 'UTF-8'),
+                mb_convert_encoding($inscrito->st_municipio, 'ISO-8859-1', 'UTF-8'),
+                mb_convert_encoding($inscrito->nome, 'ISO-8859-1', 'UTF-8'),
+                mb_convert_encoding($inscrito->nu_cpf, 'ISO-8859-1', 'UTF-8'),
+                mb_convert_encoding($inscrito->nu_rg, 'ISO-8859-1', 'UTF-8'),
+                mb_convert_encoding($inscrito->telefone, 'ISO-8859-1', 'UTF-8'),
+                mb_convert_encoding($inscrito->email, 'ISO-8859-1', 'UTF-8'),
+                mb_convert_encoding($inscrito->sexo, 'ISO-8859-1', 'UTF-8'),
+                mb_convert_encoding($inscrito->escolaridade, 'ISO-8859-1', 'UTF-8'),
+                mb_convert_encoding($inscrito->perfil, 'ISO-8859-1', 'UTF-8')), ';');
+        }
+
+        return $fp;
+    }
+
+    public static function generate_relatorio_interesses_base_csv($fp)
+    {
+        $interesses = SNC_Oficinas_Service::get_all_interesses();
+
+        $respostas = array('Política Nacional de Cultura Viva (Pontos, Pontões de Cultura)',
+            'Sistema Nacional de Cultura (Plano, Fundo de Cultura)',
+            'Novo Plano Nacional de Cultura',
+            'Gestão compartilhada e Participação Social (Conselho Nacional de Política Cultural e Conferência Nacional de Cultura)',
+            'Operacionalização dos sistemas de parcerias (Convênios, Consórcios, Termos de fomento, entre outros)',
+            'Orientações para elaboração de projetos culturais, no âmbito da diversidade cultural',
+            'Orientações para execução e prestação de contas',
+            'Acessibilidade Cultural',
+            'Culturas Populares e Diversidade',
+            'Cultura e Educação');
+
+        fputcsv($fp, array(mb_convert_encoding('Numere por ordem de prioridade até 5 áreas de interesse', 'ISO-8859-1', 'UTF-8'),
+            mb_convert_encoding('Interesse 1 (%)', 'ISO-8859-1', 'UTF-8'),
+            mb_convert_encoding('Interesse 2 (%)', 'ISO-8859-1', 'UTF-8'),
+            mb_convert_encoding('Interesse 3 (%)', 'ISO-8859-1', 'UTF-8'),
+            mb_convert_encoding('Interesse 4 (%)', 'ISO-8859-1', 'UTF-8'),
+            mb_convert_encoding('Interesse 5 (%)', 'ISO-8859-1', 'UTF-8'),), ';');
+
+        foreach ($respostas as $k => $resposta) {
+            $vetor = $k + 1;
+            $interesse1 = "percentual_i_1_{$vetor}";
+            $interesse2 = "percentual_i_2_{$vetor}";
+            $interesse3 = "percentual_i_3_{$vetor}";
+            $interesse4 = "percentual_i_4_{$vetor}";
+            $interesse5 = "percentual_i_5_{$vetor}";
+
+            fputcsv($fp, array(mb_convert_encoding($resposta, 'ISO-8859-1', 'UTF-8'),
+                mb_convert_encoding($interesses->$interesse1, 'ISO-8859-1', 'UTF-8'),
+                mb_convert_encoding($interesses->$interesse2, 'ISO-8859-1', 'UTF-8'),
+                mb_convert_encoding($interesses->$interesse3, 'ISO-8859-1', 'UTF-8'),
+                mb_convert_encoding($interesses->$interesse4, 'ISO-8859-1', 'UTF-8'),
+                mb_convert_encoding($interesses->$interesse5, 'ISO-8859-1', 'UTF-8'),), ';');
         }
 
         return $fp;

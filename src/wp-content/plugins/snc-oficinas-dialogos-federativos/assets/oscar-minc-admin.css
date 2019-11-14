@@ -1,5 +1,5 @@
 .column-movie,
-#oscar-video-post .inside{
+#oscar-video-post .inside {
     position: relative;
     overflow: hidden;
 }
@@ -12,18 +12,18 @@
     left: 9999px;
 }
 
-.oscar-thickbox-modal-body h3{
+.oscar-thickbox-modal-body h3 {
     margin-bottom: 0;
 }
 
-.oscar-thickbox-modal-body h3 a{
+.oscar-thickbox-modal-body h3 a {
     float: right;
     font-size: 10px;
     text-decoration: none;
     text-transform: uppercase;
 }
 
-.oscar-thickbox-modal-body p{
+.oscar-thickbox-modal-body p {
     margin: 0;
 }
 
@@ -33,6 +33,6 @@
     margin-top: 5px;
 }
 
-.post-type-inscricao #TB_window{
+.post-type-inscricao #TB_window {
     max-width: 630px !important;
 }

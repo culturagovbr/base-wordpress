@@ -24,10 +24,10 @@ class SNC_Oficinas_Shortcode_Login
         </div>
 
         <?php if (isset($_GET['login']) && $_GET['login'] === 'failed') : ?>
-            <div class="alert alert-danger" role="alert">
-                Erro ao realizar o login. Por favor, verifique as informações e tente novamente
-            </div>
-        <?php endif;
+        <div class="alert alert-danger" role="alert">
+            Erro ao realizar o login. Por favor, verifique as informações e tente novamente
+        </div>
+    <?php endif;
 
         if (isset($_GET['checkemail']) && $_GET['checkemail'] === 'confirm') : ?>
             <div class="alert alert-success" role="alert">
@@ -37,7 +37,7 @@ class SNC_Oficinas_Shortcode_Login
 
         wp_login_form(
             array(
-                'redirect' => site_url( '/inscricao/ '),
+                'redirect' => site_url('/inscricao/ '),
                 'form_id' => 'snc-login-form',
                 'label_username' => __('Endereço de e-mail'),
                 'value_username' => isset($_COOKIE['log']) ? $_COOKIE['log'] : null

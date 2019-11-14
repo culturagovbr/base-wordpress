@@ -142,22 +142,22 @@ class LineReader extends AbstractReader implements ReaderInterface
                 $c = \count($pieces);
                 switch ($c) {
                     case 2:
-                        $start = (int) $pieces[0];
-                        $entryCount += (int) $pieces[1];
+                        $start = (int)$pieces[0];
+                        $entryCount += (int)$pieces[1];
                         break;
 
                     /** @noinspection PhpMissingBreakStatementInspection */
                     case 3:
                         switch ($pieces[2]) {
                             case 'n':
-                                $offsets[$start] = [(int) $pieces[0], (int) $pieces[1]];
+                                $offsets[$start] = [(int)$pieces[0], (int)$pieces[1]];
                                 $start++;
                                 break 2;
                             case 'f':
                                 $start++;
                                 break 2;
                         }
-                        // fall through if pieces doesn't match
+                    // fall through if pieces doesn't match
 
                     default:
                         throw new CrossReferenceException(

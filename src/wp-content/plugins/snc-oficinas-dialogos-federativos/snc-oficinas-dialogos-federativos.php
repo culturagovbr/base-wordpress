@@ -50,6 +50,8 @@ class SNC_Oficinas_Dialogos_Federativos
 
         add_action('admin_menu', array($this, 'snc_relatorio_menu'));
         add_action('plugins_loaded', array($this, 'snc_ofinas_relatorio_concluidos'));
+        add_action('plugins_loaded', array($this, 'snc_ofinas_relatorio_inscritos'));
+        add_action('plugins_loaded', array($this, 'snc_ofinas_relatorio_interesses'));
 
         // shortcodes
         new SNC_Oficinas_Shortcode_Formulario_Usuario();
@@ -58,7 +60,9 @@ class SNC_Oficinas_Dialogos_Federativos
 
     public function snc_relatorio_menu()
     {
-        add_menu_page('Oficinas - Relatórios', 'Oficinas - Relatórios', 'manage_options', 'oficinas-relatorios-concluidos', array($this, 'snc_ofinas_relatorio_concluidos'), '', 29);
+        add_menu_page('Relatório dos Concluídos', 'Relatório dos Concluídos', 'manage_options', 'oficinas-relatorios-concluidos', array($this, 'snc_ofinas_relatorio_concluidos'), '', 30);
+        add_menu_page('Relatório dos Inscritos', 'Relatório dos Inscritos', 'manage_options', 'oficinas-relatorios-inscritos', array($this, 'snc_ofinas_relatorio_inscritos'), '', 30);
+        add_menu_page('Relatório dos Interesses', 'Relatório dos Interesses', 'manage_options', 'oficinas-relatorios-interesses', array($this, 'snc_ofinas_relatorio_interesses'), '', 30);
     }
 
     public function snc_ofinas_relatorio_concluidos()
@@ -72,7 +76,41 @@ class SNC_Oficinas_Dialogos_Federativos
             header('Content-Type: text/csv');
             header('Content-Disposition: attachment; filename=relatorio_concluidos.csv');
 
+            echo SNC_Oficinas_Service::generate_relatorio_concluidos_admin_csv();
+
+            exit();
+        }
+    }
+
+    public function snc_ofinas_relatorio_inscritos()
+    {
+        global $pagenow;
+        if ($pagenow == 'admin.php' && $_GET['page'] == 'oficinas-relatorios-inscritos') {
+            header('Pragma: public');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+            header('Cache-Control: private', false);
+            header('Content-Type: text/csv');
+            header('Content-Disposition: attachment; filename=relatorio_inscritos.csv');
+
             echo SNC_Oficinas_Service::generate_relatorio_inscritos_admin_csv();
+
+            exit();
+        }
+    }
+
+    public function snc_ofinas_relatorio_interesses()
+    {
+        global $pagenow;
+        if ($pagenow == 'admin.php' && $_GET['page'] == 'oficinas-relatorios-interesses') {
+            header('Pragma: public');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+            header('Cache-Control: private', false);
+            header('Content-Type: text/csv');
+            header('Content-Disposition: attachment; filename=relatorio_interesses.csv');
+
+            echo SNC_Oficinas_Service::generate_relatorio_interesses_admin_csv();
 
             exit();
         }

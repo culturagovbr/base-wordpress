@@ -43,6 +43,7 @@ class SNC_Oficinas_Shortcode_Formulario_Usuario
         $state = $_POST['state'];
         $county = $_POST['county'];
         $schooling = $_POST['schooling'];
+        $discipline = $_POST['discipline'];
         $gender = $_POST['gender'];
 
 
@@ -51,6 +52,7 @@ class SNC_Oficinas_Shortcode_Formulario_Usuario
             $name = $current_user->display_name;
             $birthday = get_user_meta($current_user->ID, '_user_birthday', true);
             $schooling = get_user_meta($current_user->ID, '_user_schooling', true);
+            $discipline = get_user_meta($current_user->ID, '_user_discipline', true);
             $gender = get_user_meta($current_user->ID, '_user_gender', true);
             $cpf = get_user_meta($current_user->ID, '_user_cpf', true);
             $rg = get_user_meta($current_user->ID, '_user_rg', true);
@@ -70,9 +72,13 @@ class SNC_Oficinas_Shortcode_Formulario_Usuario
         }
 
         $states = $this->get_states();
-        $required = is_user_logged_in() ? '' : 'required';
-        $disabled = is_user_logged_in() ? 'disabled' : '';
         $is_user_logged_in = is_user_logged_in();
+
+        $required = $is_user_logged_in ? '' : 'required';
+        $disabled = $is_user_logged_in ? 'disabled' : '';
+
+        $requiredDiscipline = $is_user_logged_in && $this->has_superior($discipline) ? 'required' : '';
+        $disabledDiscipline = !$this->has_superior($discipline) ? 'disabled' : '';
 
         ob_start();
         if (!is_user_logged_in()) : ?>
@@ -125,7 +131,7 @@ class SNC_Oficinas_Shortcode_Formulario_Usuario
                 </div>
 
                 <div class="form-group col-md-3">
-                    <label class="login-field-icon" for="schooling">Escolaridade <span
+                    <label class="login-field-icon" for="schooling">Escolaridade<span
                                 style="color: red;">*</span></label>
                     <select id="schooling" name="schooling"
                             class="form-control login-field <?= strlen($errors['fullname']) > 1 ? 'is-invalid' : '' ?>">
@@ -173,6 +179,20 @@ class SNC_Oficinas_Shortcode_Formulario_Usuario
                     <div class="invalid-feedback"><?= $errors['rg']; ?></div>
                 </div>
 
+                <div class="form-group col-md-6">
+                    <label class="login-field-icon fui-lock" for="discipline">Formação Superior<span
+                                style="color: red;">*</span></label>
+                    <input name="discipline" type="text" maxlength="255"
+                           class="form-control login-field <?= strlen($errors['discipline']) > 1 ? 'is-invalid' : '' ?>"
+                           value="<?php echo(isset($_POST['discipline']) ? $_POST['discipline'] : $discipline); ?>"
+                           id="discipline" <?= $required; ?> <?= $disabledDiscipline; ?> <?= $requiredDiscipline; ?>/>
+                    <div class="invalid-feedback"><?= $errors['discipline']; ?></div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    &nbsp;
+                </div>
+
                 <div class="form-group col-md-12">
                     <label class="login-field-icon fui-lock" for="address">Endereço <span
                                 style="color: red;">*</span></label>
@@ -209,7 +229,7 @@ class SNC_Oficinas_Shortcode_Formulario_Usuario
                 </div>
                 <div class="form-group col-md-3">
                     <label class="login-field-icon fui-user" for="neighborhood">Bairro <span
-                                style="color: red;" >*</span></label>
+                                style="color: red;">*</span></label>
                     <input name="neighborhood" type="text" maxlength="255"
                            class="form-control login-field <?= strlen($errors['neighborhood']) > 1 ? 'is-invalid' : '' ?>"
                            value="<?php echo(isset($_POST['neighborhood']) ? $_POST['neighborhood'] : $neighborhood); ?>"
@@ -355,6 +375,24 @@ class SNC_Oficinas_Shortcode_Formulario_Usuario
         <p class="text-right">
             <small>Campos marcados com <span style="color: red;">*</span> são obrigatórios.</small>
         </p>
+
+        <script type="text/javascript">
+            jQuery(document).ready(function () {
+                jQuery('#schooling').change(function () {
+                    var superior = ['Superior', 'Especialização', 'Mestrado', 'Doutorado'];
+                    var valid = superior.indexOf(jQuery(this).val()) >= 0;
+
+                    jQuery('#discipline').attr("disabled", !valid);
+
+                    if (!valid) {
+                        jQuery('#discipline').val("");
+                    }
+                });
+
+                jQuery('#schooling').trigger('change');
+            });
+        </script>
+
         <?php return ob_get_clean();
     }
 
@@ -411,6 +449,7 @@ class SNC_Oficinas_Shortcode_Formulario_Usuario
         $username = $_POST['fullname'];
         $birthday = $_POST['birthday'];
         $schooling = $_POST['schooling'];
+        $discipline = $_POST['discipline'];
         $gender = $_POST['gender'];
         $cpf = $_POST['cpf'];
         $rg = $_POST['rg'];
@@ -435,7 +474,7 @@ class SNC_Oficinas_Shortcode_Formulario_Usuario
         $userdata = array(
             'first_name' => esc_attr($username),
             'display_name' => esc_attr($username),
-            'user_login' => mb_strimwidth(esc_attr($email), 0 , 60),
+            'user_login' => mb_strimwidth(esc_attr($email), 0, 60),
             'user_email' => esc_attr($email),
             'user_pass' => esc_attr($password)
         );
@@ -453,7 +492,7 @@ class SNC_Oficinas_Shortcode_Formulario_Usuario
                     'ID' => $user_id,
                     'first_name' => esc_attr($username),
                     'display_name' => esc_attr($username),
-                    'user_login' => mb_strimwidth(esc_attr($email), 0 , 60),
+                    'user_login' => mb_strimwidth(esc_attr($email), 0, 60),
                     'user_email' => esc_attr($email),
                     'user_pass' => esc_attr($password)
                 );
@@ -464,9 +503,9 @@ class SNC_Oficinas_Shortcode_Formulario_Usuario
                     throw new Exception($user_id->get_error_message());
                 }
 
-
                 update_user_meta($user_id, '_user_birthday', esc_attr($birthday));
                 update_user_meta($user_id, '_user_schooling', esc_attr($schooling));
+                update_user_meta($user_id, '_user_discipline', esc_attr($discipline));
                 update_user_meta($user_id, '_user_gender', esc_attr($gender));
 //                update_user_meta($user_id, '_user_cpf', esc_attr($cpf));
                 update_user_meta($user_id, '_user_rg', esc_attr($rg));
@@ -495,6 +534,7 @@ class SNC_Oficinas_Shortcode_Formulario_Usuario
 
             add_user_meta($register_user, '_user_birthday', esc_attr($birthday), true);
             add_user_meta($register_user, '_user_schooling', esc_attr($schooling), true);
+            add_user_meta($register_user, '_user_discipline', esc_attr($discipline), true);
             add_user_meta($register_user, '_user_gender', esc_attr($gender), true);
             add_user_meta($register_user, '_user_cpf', esc_attr($cpf), true);
             add_user_meta($register_user, '_user_rg', esc_attr($rg), true);
@@ -556,6 +596,18 @@ class SNC_Oficinas_Shortcode_Formulario_Usuario
         ];
     }
 
+    private function has_superior($discipline)
+    {
+        $superior = [
+            'Superior',
+            'Especialização',
+            'Mestrado',
+            'Doutorado'
+        ];
+
+        return in_array($discipline, $superior);
+    }
+
     public function get_states()
     {
         global $wpdb;
@@ -595,7 +647,7 @@ class SNC_Oficinas_Shortcode_Formulario_Usuario
     private function validation()
     {
         $errors = array();
-//        $filter = new SNC_Oficinas_Filter();
+
         $validator = new SNC_Oficinas_Validator();
 
         $type_user = isset($_POST['user_type']) ? $_POST['user_type'] : "";
@@ -606,8 +658,6 @@ class SNC_Oficinas_Shortcode_Formulario_Usuario
             if ($stepfield != 'action' && $stepfield != 'user_type') {
 
                 $field = $stepfield;
-
-//                $filter->apply($fields_rules, $field, $value);
 
                 $response = $validator->validate_field($fields_rules, $field, $value, $type_user);
 

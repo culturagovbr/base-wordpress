@@ -71,7 +71,7 @@ class FixedReader extends AbstractReader implements ReaderInterface
                     return false;
                 }
 
-                return (int) \substr($line, 0, 10);
+                return (int)\substr($line, 0, 10);
             }
         }
 

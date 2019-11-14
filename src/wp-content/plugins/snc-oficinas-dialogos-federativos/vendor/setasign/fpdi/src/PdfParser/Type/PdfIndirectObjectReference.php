@@ -26,8 +26,8 @@ class PdfIndirectObjectReference extends PdfType
     public static function create($objectNumber, $generationNumber)
     {
         $v = new self;
-        $v->value = (int) $objectNumber;
-        $v->generationNumber = (int) $generationNumber;
+        $v->value = (int)$objectNumber;
+        $v->generationNumber = (int)$generationNumber;
 
         return $v;
     }

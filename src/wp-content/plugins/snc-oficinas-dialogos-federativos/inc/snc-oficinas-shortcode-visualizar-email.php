@@ -12,25 +12,17 @@ class SNC_Oficinas_Shortcode_Visualizar_Email
         }
     }
 
-    public function snc_email_subscription($type_email = 'snc_email_confirm_subscription')
+    public function snc_email_subscription()
     {
         if (!current_user_can('administrator')) {
             return false;
         }
 
         $subscription = current($this->get_subscription_in_workshop());
-        $post_id = $subscription->ID;
-        //snc_email_confirm_subscription
-        // snc_email_effectiveness_subscription
+
         $oficinasEmail = new SNC_Oficinas_Email($subscription->ID, 'snc_email_confirm_subscription');
         return $oficinasEmail->get_email_template();
 
-//        $response = $oficinasEmail->snc_send_mail_user();
-//        if($response) {
-//            return "email enviado";
-//        }
-
-//        return 'falhouu';
     }
 
     private function get_subscription_in_workshop()

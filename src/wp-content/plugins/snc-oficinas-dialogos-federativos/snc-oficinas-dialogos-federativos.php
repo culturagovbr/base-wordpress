@@ -52,6 +52,7 @@ class SNC_Oficinas_Dialogos_Federativos
         add_action('plugins_loaded', array($this, 'snc_ofinas_relatorio_concluidos'));
         add_action('plugins_loaded', array($this, 'snc_ofinas_relatorio_inscritos'));
         add_action('plugins_loaded', array($this, 'snc_ofinas_relatorio_interesses'));
+        add_action('plugins_loaded', array($this, 'snc_ofinas_relatorio_perfis'));
 
         // shortcodes
         new SNC_Oficinas_Shortcode_Formulario_Usuario();
@@ -60,60 +61,92 @@ class SNC_Oficinas_Dialogos_Federativos
 
     public function snc_relatorio_menu()
     {
-        add_menu_page('Relatório dos Concluídos', 'Relatório dos Concluídos', 'manage_options', 'oficinas-relatorios-concluidos', array($this, 'snc_ofinas_relatorio_concluidos'), '', 30);
-        add_menu_page('Relatório dos Inscritos', 'Relatório dos Inscritos', 'manage_options', 'oficinas-relatorios-inscritos', array($this, 'snc_ofinas_relatorio_inscritos'), '', 30);
-        add_menu_page('Relatório dos Interesses', 'Relatório dos Interesses', 'manage_options', 'oficinas-relatorios-interesses', array($this, 'snc_ofinas_relatorio_interesses'), '', 30);
+        add_menu_page('Relatórios', 'Relatórios', 'manage_options', 'oficinas-relatorios', array($this, 'snc_ofinas_relatorios'), '', 30);
+        add_submenu_page('oficinas-relatorios', 'Concluídos', 'Concluídos', 'manage_options', 'oficinas-relatorios-concluidos', array($this, 'snc_ofinas_relatorio_concluidos'));
+        add_submenu_page('oficinas-relatorios', 'Inscritos', 'Inscritos', 'manage_options', 'oficinas-relatorios-inscritos', array($this, 'snc_ofinas_relatorio_inscritos'));
+        add_submenu_page('oficinas-relatorios', 'Interesses', 'Interesses', 'manage_options', 'oficinas-relatorios-interesses', array($this, 'snc_ofinas_relatorio_interesses'));
+        add_submenu_page('oficinas-relatorios', 'Perfis', 'Perfis', 'manage_options', 'oficinas-relatorios-perfis', array($this, 'snc_ofinas_relatorio_perfis'));
+    }
+
+    public function snc_ofinas_relatorios()
+    {
+        global $pagenow;
+        if ($pagenow == 'admin.php' && $_GET['page'] == 'oficinas-relatorios') {
+            ?>
+            <div class="wrap">
+                <h1 class="wp-heading-inline">Relatórios</h1>
+
+                <hr class="wp-header-end">
+                <br/><br/>
+                <table class="wp-list-table widefat fixed striped posts">
+                    <thead>
+                    <tr>
+                        <th scope="col" class="manage-column">Clique para fazer o download</th>
+                    </tr>
+                    </thead>
+                    <tbody id="the-list">
+                    <tr class="no-items">
+                        <td class="title column-title has-row-actions column-primary page-title">
+                            <a href="<?= admin_url("admin.php?page=oficinas-relatorios-concluidos") ?>">Concluídos</a>
+                        </td>
+                    </tr>
+                    <tr class="no-items">
+                        <td class="title column-title has-row-actions column-primary page-title">
+                            <a href="<?= admin_url("admin.php?page=oficinas-relatorios-inscritos") ?>">Inscritos</a>
+                        </td>
+                    </tr>
+                    <tr class="no-items">
+                        <td class="title column-title has-row-actions column-primary page-title">
+                            <a href="<?= admin_url("admin.php?page=oficinas-relatorios-interesses") ?>">Interesses</a>
+                        </td>
+                    </tr>
+                    <tr class="no-items">
+                        <td class="title column-title has-row-actions column-primary page-title">
+                            <a href="<?= admin_url("admin.php?page=oficinas-relatorios-perfis") ?>">Perfis</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <?php
+        }
+    }
+
+    private function _generate_download_csv($page, $nameCsv, $function)
+    {
+        global $pagenow;
+        if ($pagenow == 'admin.php' && $_GET['page'] == $page) {
+            header('Pragma: public');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+            header('Cache-Control: private', false);
+            header('Content-Type: text/csv');
+            header('Content-Disposition: attachment; filename=' . $nameCsv . '.csv');
+
+            echo SNC_Oficinas_Service::generate_relatorio_admin_csv($function);
+
+            exit();
+        }
     }
 
     public function snc_ofinas_relatorio_concluidos()
     {
-        global $pagenow;
-        if ($pagenow == 'admin.php' && $_GET['page'] == 'oficinas-relatorios-concluidos') {
-            header('Pragma: public');
-            header('Expires: 0');
-            header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-            header('Cache-Control: private', false);
-            header('Content-Type: text/csv');
-            header('Content-Disposition: attachment; filename=relatorio_concluidos.csv');
-
-            echo SNC_Oficinas_Service::generate_relatorio_concluidos_admin_csv();
-
-            exit();
-        }
+        $this->_generate_download_csv('oficinas-relatorios-concluidos', 'relatorio_concluidos', 'generate_relatorio_concluidos_base_csv');
     }
 
     public function snc_ofinas_relatorio_inscritos()
     {
-        global $pagenow;
-        if ($pagenow == 'admin.php' && $_GET['page'] == 'oficinas-relatorios-inscritos') {
-            header('Pragma: public');
-            header('Expires: 0');
-            header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-            header('Cache-Control: private', false);
-            header('Content-Type: text/csv');
-            header('Content-Disposition: attachment; filename=relatorio_inscritos.csv');
-
-            echo SNC_Oficinas_Service::generate_relatorio_inscritos_admin_csv();
-
-            exit();
-        }
+        $this->_generate_download_csv('oficinas-relatorios-inscritos', 'relatorio_inscritos', 'generate_relatorio_inscritos_base_csv');
     }
 
     public function snc_ofinas_relatorio_interesses()
     {
-        global $pagenow;
-        if ($pagenow == 'admin.php' && $_GET['page'] == 'oficinas-relatorios-interesses') {
-            header('Pragma: public');
-            header('Expires: 0');
-            header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-            header('Cache-Control: private', false);
-            header('Content-Type: text/csv');
-            header('Content-Disposition: attachment; filename=relatorio_interesses.csv');
+        $this->_generate_download_csv('oficinas-relatorios-interesses', 'relatorio_interesses', 'generate_relatorio_interesses_base_csv');
+    }
 
-            echo SNC_Oficinas_Service::generate_relatorio_interesses_admin_csv();
-
-            exit();
-        }
+    public function snc_ofinas_relatorio_perfis()
+    {
+        $this->_generate_download_csv('oficinas-relatorios-perfis', 'relatorio_perfis', 'generate_relatorio_perfil_base_csv');
     }
 
     public function activate_hook()

@@ -210,7 +210,15 @@ final class SNC_Oficinas_Service
                          escolar.meta_value AS escolaridade,
                          insc_perfil.meta_value AS perfil,
                          DATE_FORMAT(STR_TO_DATE(ini.meta_value, '%Y%m%d'), '%d/%m/%Y') AS data_inicio,
-                         DATE_FORMAT(STR_TO_DATE(fim.meta_value, '%Y%m%d'), '%d/%m/%Y') AS data_fim
+                         DATE_FORMAT(STR_TO_DATE(fim.meta_value, '%Y%m%d'), '%d/%m/%Y') AS data_fim,
+                         interesse_1.meta_value AS interesse1,
+                         interesse_2.meta_value AS interesse2,
+                         interesse_3.meta_value AS interesse3,
+                         interesse_4.meta_value AS interesse4,
+                         interesse_5.meta_value AS interesse5,
+                         car.meta_value AS cargo,
+                         org.meta_value AS orgao,
+                         esf.meta_value AS esfera
                     FROM {$postTable} o 
                     JOIN {$postMetaTable} io 
                       ON io.meta_value = o.ID
@@ -252,6 +260,30 @@ final class SNC_Oficinas_Service
                      JOIN {$userMetaTable} escolar 
                       ON escolar.user_id = u.ID
                      AND escolar.meta_key = '_user_schooling'
+                    JOIN {$postMetaTable} interesse_1 
+                      ON interesse_1.post_id = insc.ID
+                     AND interesse_1.meta_key = 'inscricao_interesse_1'
+                    JOIN {$postMetaTable} interesse_2 
+                      ON interesse_2.post_id = insc.ID
+                     AND interesse_2.meta_key = 'inscricao_interesse_2'
+                    JOIN {$postMetaTable} interesse_3 
+                      ON interesse_3.post_id = insc.ID
+                     AND interesse_3.meta_key = 'inscricao_interesse_3'
+                    JOIN {$postMetaTable} interesse_4 
+                      ON interesse_4.post_id = insc.ID
+                     AND interesse_4.meta_key = 'inscricao_interesse_4'
+                    JOIN {$postMetaTable} interesse_5 
+                      ON interesse_5.post_id = insc.ID
+                     AND interesse_5.meta_key = 'inscricao_interesse_5'
+                    LEFT JOIN {$postMetaTable} car 
+                      ON car.post_id = insc.ID
+                     AND car.meta_key = 'inscricao_gestor_cargo'
+                    LEFT JOIN {$postMetaTable} org 
+                      ON org.post_id = insc.ID
+                     AND org.meta_key = 'inscricao_gestor_orgao'
+                    LEFT JOIN {$postMetaTable} esf 
+                      ON esf.post_id = insc.ID
+                     AND esf.meta_key = 'inscricao_gestor_tipo' 
                    WHERE o.post_type = 'oficinas'
                    ORDER BY STR_TO_DATE(ini.meta_value, '%Y%m%d'), 
                             o.post_title, 
@@ -850,39 +882,9 @@ final class SNC_Oficinas_Service
         return $filename;
     }
 
-    public static function generate_relatorio_concluidos_admin_csv()
+    public static function generate_relatorio_admin_csv($function)
     {
-        $handle = SNC_Oficinas_Service::generate_relatorio_concluidos_base_csv(fopen('php://temp', 'r+'));
-        $contents = '';
-
-        rewind($handle);
-
-        while (!feof($handle)) {
-            $contents .= fread($handle, 8192);
-        }
-
-        fclose($handle);
-        return $contents;
-    }
-
-    public static function generate_relatorio_inscritos_admin_csv()
-    {
-        $handle = SNC_Oficinas_Service::generate_relatorio_inscritos_base_csv(fopen('php://temp', 'r+'));
-        $contents = '';
-
-        rewind($handle);
-
-        while (!feof($handle)) {
-            $contents .= fread($handle, 8192);
-        }
-
-        fclose($handle);
-        return $contents;
-    }
-
-    public static function generate_relatorio_interesses_admin_csv()
-    {
-        $handle = SNC_Oficinas_Service::generate_relatorio_interesses_base_csv(fopen('php://temp', 'r+'));
+        $handle = SNC_Oficinas_Service::$function(fopen('php://temp', 'r+'));
         $contents = '';
 
         rewind($handle);
@@ -1000,6 +1002,45 @@ final class SNC_Oficinas_Service
                 mb_convert_encoding($interesses->$interesse3, 'ISO-8859-1', 'UTF-8'),
                 mb_convert_encoding($interesses->$interesse4, 'ISO-8859-1', 'UTF-8'),
                 mb_convert_encoding($interesses->$interesse5, 'ISO-8859-1', 'UTF-8'),), ';');
+        }
+
+        return $fp;
+    }
+
+    public static function generate_relatorio_perfil_base_csv($fp)
+    {
+        $inscritos = SNC_Oficinas_Service::get_all_inscritos();
+
+        fputcsv($fp, array('Oficina',
+            mb_convert_encoding('Nº da Inscrição', 'ISO-8859-1', 'UTF-8'),
+            'UF',
+            mb_convert_encoding('Município', 'ISO-8859-1', 'UTF-8'),
+            'Nome',
+            'Cargo',
+            mb_convert_encoding('Orgão', 'ISO-8859-1', 'UTF-8'),
+            'Esfera',
+            'Perfil',
+            'Interesse 1',
+            'Interesse 2',
+            'Interesse 3',
+            'Interesse 4',
+            'Interesse 5',), ';');
+
+        foreach ($inscritos as $k => $inscrito) {
+            fputcsv($fp, array(mb_convert_encoding($inscrito->oficina, 'ISO-8859-1', 'UTF-8'),
+                mb_convert_encoding($inscrito->num_inscricao, 'ISO-8859-1', 'UTF-8'),
+                mb_convert_encoding($inscrito->st_estado, 'ISO-8859-1', 'UTF-8'),
+                mb_convert_encoding($inscrito->st_municipio, 'ISO-8859-1', 'UTF-8'),
+                mb_convert_encoding($inscrito->nome, 'ISO-8859-1', 'UTF-8'),
+                mb_convert_encoding($inscrito->cargo, 'ISO-8859-1', 'UTF-8'),
+                mb_convert_encoding($inscrito->orgao, 'ISO-8859-1', 'UTF-8'),
+                mb_convert_encoding($inscrito->esfera, 'ISO-8859-1', 'UTF-8'),
+                mb_convert_encoding($inscrito->perfil, 'ISO-8859-1', 'UTF-8'),
+                mb_convert_encoding($inscrito->interesse1, 'ISO-8859-1', 'UTF-8'),
+                mb_convert_encoding($inscrito->interesse2, 'ISO-8859-1', 'UTF-8'),
+                mb_convert_encoding($inscrito->interesse3, 'ISO-8859-1', 'UTF-8'),
+                mb_convert_encoding($inscrito->interesse4, 'ISO-8859-1', 'UTF-8'),
+                mb_convert_encoding($inscrito->interesse5, 'ISO-8859-1', 'UTF-8')), ';');
         }
 
         return $fp;

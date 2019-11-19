@@ -3,6 +3,8 @@
 if (!defined('WPINC'))
     die();
 
+require_once SNC_ODF_PLUGIN_PATH . '/vendor/autoload.php';
+
 final class SNC_Oficinas_Service
 {
     public static function get_quantitativo_inscritos($postIdOficina = null)
@@ -350,263 +352,77 @@ final class SNC_Oficinas_Service
                        ROUND((100 * a.total_i_5_8) / a.total_inscritos, 2) AS percentual_i_5_8,
                        ROUND((100 * a.total_i_5_9) / a.total_inscritos, 2) AS percentual_i_5_9,
                        ROUND((100 * a.total_i_5_10) / a.total_inscritos, 2) AS percentual_i_5_10
-                  FROM (SELECT COUNT(insc.ID) AS total_inscritos,
-                                 COUNT(i_1_1.post_id) AS total_i_1_1,
-                                 COUNT(i_1_2.post_id) AS total_i_1_2,
-                                 COUNT(i_1_3.post_id) AS total_i_1_3,
-                                 COUNT(i_1_4.post_id) AS total_i_1_4,
-                                 COUNT(i_1_5.post_id) AS total_i_1_5,
-                                 COUNT(i_1_6.post_id) AS total_i_1_6,
-                                 COUNT(i_1_7.post_id) AS total_i_1_7,
-                                 COUNT(i_1_8.post_id) AS total_i_1_8,
-                                 COUNT(i_1_9.post_id) AS total_i_1_9,
-                                 COUNT(i_1_10.post_id) AS total_i_1_10,
-                                 COUNT(i_2_1.post_id) AS total_i_2_1,
-                                 COUNT(i_2_2.post_id) AS total_i_2_2,
-                                 COUNT(i_2_3.post_id) AS total_i_2_3,
-                                 COUNT(i_2_4.post_id) AS total_i_2_4,
-                                 COUNT(i_2_5.post_id) AS total_i_2_5,
-                                 COUNT(i_2_6.post_id) AS total_i_2_6,
-                                 COUNT(i_2_7.post_id) AS total_i_2_7,
-                                 COUNT(i_2_8.post_id) AS total_i_2_8,
-                                 COUNT(i_2_9.post_id) AS total_i_2_9,
-                                 COUNT(i_2_10.post_id) AS total_i_2_10,
-                                 COUNT(i_3_1.post_id) AS total_i_3_1,
-                                 COUNT(i_3_2.post_id) AS total_i_3_2,
-                                 COUNT(i_3_3.post_id) AS total_i_3_3,
-                                 COUNT(i_3_4.post_id) AS total_i_3_4,
-                                 COUNT(i_3_5.post_id) AS total_i_3_5,
-                                 COUNT(i_3_6.post_id) AS total_i_3_6,
-                                 COUNT(i_3_7.post_id) AS total_i_3_7,
-                                 COUNT(i_3_8.post_id) AS total_i_3_8,
-                                 COUNT(i_3_9.post_id) AS total_i_3_9,
-                                 COUNT(i_3_10.post_id) AS total_i_3_10,
-                                 COUNT(i_4_1.post_id) AS total_i_4_1,
-                                 COUNT(i_4_2.post_id) AS total_i_4_2,
-                                 COUNT(i_4_3.post_id) AS total_i_4_3,
-                                 COUNT(i_4_4.post_id) AS total_i_4_4,
-                                 COUNT(i_4_5.post_id) AS total_i_4_5,
-                                 COUNT(i_4_6.post_id) AS total_i_4_6,
-                                 COUNT(i_4_7.post_id) AS total_i_4_7,
-                                 COUNT(i_4_8.post_id) AS total_i_4_8,
-                                 COUNT(i_4_9.post_id) AS total_i_4_9,
-                                 COUNT(i_4_10.post_id) AS total_i_4_10,
-                                 COUNT(i_5_1.post_id) AS total_i_5_1,
-                                 COUNT(i_5_2.post_id) AS total_i_5_2,
-                                 COUNT(i_5_3.post_id) AS total_i_5_3,
-                                 COUNT(i_5_4.post_id) AS total_i_5_4,
-                                 COUNT(i_5_5.post_id) AS total_i_5_5,
-                                 COUNT(i_5_6.post_id) AS total_i_5_6,
-                                 COUNT(i_5_7.post_id) AS total_i_5_7,
-                                 COUNT(i_5_8.post_id) AS total_i_5_8,
-                                 COUNT(i_5_9.post_id) AS total_i_5_9,
-                                 COUNT(i_5_10.post_id) AS total_i_5_10
-                            FROM {$postTable} o 
+                  FROM (SELECT COUNT(DISTINCT insc.ID) AS total_inscritos,
+                                 COUNT(i_1.post_id) AS total_i,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_1' AND i_1.meta_value = 'Política Nacional de Cultura Viva (Pontos, Pontões de Cultura)' THEN 1 ELSE 0 END) AS total_i_1_1,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_1' AND i_1.meta_value = 'Sistema Nacional de Cultura (Plano, Fundo de Cultura)' THEN 1 ELSE 0 END) AS total_i_1_2,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_1' AND i_1.meta_value = 'Novo Plano Nacional de Cultura' THEN 1 ELSE 0 END) AS total_i_1_3,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_1' AND i_1.meta_value = 'Gestão compartilhada e Participação Social (Conselho Nacional de Política Cultural e Conferência Nacional de Cultura)' THEN 1 ELSE 0 END) AS total_i_1_4,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_1' AND i_1.meta_value = 'Operacionalização dos sistemas de parcerias (Convênios, Consórcios, Termos de fomento, entre outros)' THEN 1 ELSE 0 END) AS total_i_1_5,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_1' AND i_1.meta_value = 'Orientações para elaboração de projetos culturais, no âmbito da diversidade cultural' THEN 1 ELSE 0 END) AS total_i_1_6,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_1' AND i_1.meta_value = 'Orientações para execução e prestação de contas' THEN 1 ELSE 0 END) AS total_i_1_7,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_1' AND i_1.meta_value = 'Acessibilidade Cultural' THEN 1 ELSE 0 END) AS total_i_1_8,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_1' AND i_1.meta_value = 'Culturas Populares e Diversidade' THEN 1 ELSE 0 END) AS total_i_1_9,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_1' AND i_1.meta_value = 'Cultura e Educação' THEN 1 ELSE 0 END) AS total_i_1_10,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_2' AND i_1.meta_value = 'Política Nacional de Cultura Viva (Pontos, Pontões de Cultura)' THEN 1 ELSE 0 END) AS total_i_2_1,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_2' AND i_1.meta_value = 'Sistema Nacional de Cultura (Plano, Fundo de Cultura)' THEN 1 ELSE 0 END) AS total_i_2_2,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_2' AND i_1.meta_value = 'Novo Plano Nacional de Cultura' THEN 1 ELSE 0 END) AS total_i_2_3,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_2' AND i_1.meta_value = 'Gestão compartilhada e Participação Social (Conselho Nacional de Política Cultural e Conferência Nacional de Cultura)' THEN 1 ELSE 0 END) AS total_i_2_4,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_2' AND i_1.meta_value = 'Operacionalização dos sistemas de parcerias (Convênios, Consórcios, Termos de fomento, entre outros)' THEN 1 ELSE 0 END) AS total_i_2_5,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_2' AND i_1.meta_value = 'Orientações para elaboração de projetos culturais, no âmbito da diversidade cultural' THEN 1 ELSE 0 END) AS total_i_2_6,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_2' AND i_1.meta_value = 'Orientações para execução e prestação de contas' THEN 1 ELSE 0 END) AS total_i_2_7,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_2' AND i_1.meta_value = 'Acessibilidade Cultural' THEN 1 ELSE 0 END) AS total_i_2_8,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_2' AND i_1.meta_value = 'Culturas Populares e Diversidade' THEN 1 ELSE 0 END) AS total_i_2_9,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_2' AND i_1.meta_value = 'Cultura e Educação' THEN 1 ELSE 0 END) AS total_i_2_10,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_3' AND i_1.meta_value = 'Política Nacional de Cultura Viva (Pontos, Pontões de Cultura)' THEN 1 ELSE 0 END) AS total_i_3_1,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_3' AND i_1.meta_value = 'Sistema Nacional de Cultura (Plano, Fundo de Cultura)' THEN 1 ELSE 0 END) AS total_i_3_2,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_3' AND i_1.meta_value = 'Novo Plano Nacional de Cultura' THEN 1 ELSE 0 END) AS total_i_3_3,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_3' AND i_1.meta_value = 'Gestão compartilhada e Participação Social (Conselho Nacional de Política Cultural e Conferência Nacional de Cultura)' THEN 1 ELSE 0 END) AS total_i_3_4,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_3' AND i_1.meta_value = 'Operacionalização dos sistemas de parcerias (Convênios, Consórcios, Termos de fomento, entre outros)' THEN 1 ELSE 0 END) AS total_i_3_5,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_3' AND i_1.meta_value = 'Orientações para elaboração de projetos culturais, no âmbito da diversidade cultural' THEN 1 ELSE 0 END) AS total_i_3_6,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_3' AND i_1.meta_value = 'Orientações para execução e prestação de contas' THEN 1 ELSE 0 END) AS total_i_3_7,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_3' AND i_1.meta_value = 'Acessibilidade Cultural' THEN 1 ELSE 0 END) AS total_i_3_8,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_3' AND i_1.meta_value = 'Culturas Populares e Diversidade' THEN 1 ELSE 0 END) AS total_i_3_9,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_3' AND i_1.meta_value = 'Cultura e Educação' THEN 1 ELSE 0 END) AS total_i_3_10, 
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_4' AND i_1.meta_value = 'Política Nacional de Cultura Viva (Pontos, Pontões de Cultura)' THEN 1 ELSE 0 END) AS total_i_4_1,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_4' AND i_1.meta_value = 'Sistema Nacional de Cultura (Plano, Fundo de Cultura)' THEN 1 ELSE 0 END) AS total_i_4_2,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_4' AND i_1.meta_value = 'Novo Plano Nacional de Cultura' THEN 1 ELSE 0 END) AS total_i_4_3,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_4' AND i_1.meta_value = 'Gestão compartilhada e Participação Social (Conselho Nacional de Política Cultural e Conferência Nacional de Cultura)' THEN 1 ELSE 0 END) AS total_i_4_4,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_4' AND i_1.meta_value = 'Operacionalização dos sistemas de parcerias (Convênios, Consórcios, Termos de fomento, entre outros)' THEN 1 ELSE 0 END) AS total_i_4_5,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_4' AND i_1.meta_value = 'Orientações para elaboração de projetos culturais, no âmbito da diversidade cultural' THEN 1 ELSE 0 END) AS total_i_4_6,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_4' AND i_1.meta_value = 'Orientações para execução e prestação de contas' THEN 1 ELSE 0 END) AS total_i_4_7,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_4' AND i_1.meta_value = 'Acessibilidade Cultural' THEN 1 ELSE 0 END) AS total_i_4_8,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_4' AND i_1.meta_value = 'Culturas Populares e Diversidade' THEN 1 ELSE 0 END) AS total_i_4_9,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_4' AND i_1.meta_value = 'Cultura e Educação' THEN 1 ELSE 0 END) AS total_i_4_10,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_5' AND i_1.meta_value = 'Política Nacional de Cultura Viva (Pontos, Pontões de Cultura)' THEN 1 ELSE 0 END) AS total_i_5_1,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_5' AND i_1.meta_value = 'Sistema Nacional de Cultura (Plano, Fundo de Cultura)' THEN 1 ELSE 0 END) AS total_i_5_2,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_5' AND i_1.meta_value = 'Novo Plano Nacional de Cultura' THEN 1 ELSE 0 END) AS total_i_5_3,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_5' AND i_1.meta_value = 'Gestão compartilhada e Participação Social (Conselho Nacional de Política Cultural e Conferência Nacional de Cultura)' THEN 1 ELSE 0 END) AS total_i_5_4,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_5' AND i_1.meta_value = 'Operacionalização dos sistemas de parcerias (Convênios, Consórcios, Termos de fomento, entre outros)' THEN 1 ELSE 0 END) AS total_i_5_5,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_5' AND i_1.meta_value = 'Orientações para elaboração de projetos culturais, no âmbito da diversidade cultural' THEN 1 ELSE 0 END) AS total_i_5_6,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_5' AND i_1.meta_value = 'Orientações para execução e prestação de contas' THEN 1 ELSE 0 END) AS total_i_5_7,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_5' AND i_1.meta_value = 'Acessibilidade Cultural' THEN 1 ELSE 0 END) AS total_i_5_8,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_5' AND i_1.meta_value = 'Culturas Populares e Diversidade' THEN 1 ELSE 0 END) AS total_i_5_9,
+                                 SUM(CASE WHEN i_1.meta_key = 'inscricao_interesse_5' AND i_1.meta_value = 'Cultura e Educação' THEN 1 ELSE 0 END) AS total_i_5_10
+                            FROM {$postTable} o
                             JOIN {$postMetaTable} io 
                               ON io.meta_value = o.ID
                              AND io.meta_key = 'inscricao_oficina_uf'
                             LEFT JOIN {$postTable} insc
                               ON insc.ID = io.post_id 
-                            LEFT JOIN {$postMetaTable} i_1_1 
-                              ON i_1_1.post_id = insc.ID
-                             AND i_1_1.meta_key = 'inscricao_interesse_1'
-                             AND i_1_1.meta_value= 'Política Nacional de Cultura Viva (Pontos, Pontões de Cultura)'
-                            LEFT JOIN {$postMetaTable} i_1_2 
-                              ON i_1_2.post_id = insc.ID
-                             AND i_1_2.meta_key = 'inscricao_interesse_1'
-                             AND i_1_2.meta_value= 'Sistema Nacional de Cultura (Plano, Fundo de Cultura)'
-                            LEFT JOIN {$postMetaTable} i_1_3 
-                              ON i_1_3.post_id = insc.ID
-                             AND i_1_3.meta_key = 'inscricao_interesse_1'
-                             AND i_1_3.meta_value= 'Novo Plano Nacional de Cultura'
-                            LEFT JOIN {$postMetaTable} i_1_4 
-                              ON i_1_4.post_id = insc.ID
-                             AND i_1_4.meta_key = 'inscricao_interesse_1'
-                             AND i_1_4.meta_value= 'Gestão compartilhada e Participação Social (Conselho Nacional de Política Cultural e Conferência Nacional de Cultura)'
-                            LEFT JOIN {$postMetaTable} i_1_5 
-                              ON i_1_5.post_id = insc.ID
-                             AND i_1_5.meta_key = 'inscricao_interesse_1'
-                             AND i_1_5.meta_value= 'Operacionalização dos sistemas de parcerias (Convênios, Consórcios, Termos de fomento, entre outros)'
-                            LEFT JOIN {$postMetaTable} i_1_6 
-                              ON i_1_6.post_id = insc.ID
-                             AND i_1_6.meta_key = 'inscricao_interesse_1'
-                             AND i_1_6.meta_value= 'Orientações para elaboração de projetos culturais, no âmbito da diversidade cultural'
-                            LEFT JOIN {$postMetaTable} i_1_7 
-                              ON i_1_7.post_id = insc.ID
-                             AND i_1_7.meta_key = 'inscricao_interesse_1'
-                             AND i_1_7.meta_value= 'Orientações para execução e prestação de contas'
-                            LEFT JOIN {$postMetaTable} i_1_8 
-                              ON i_1_8.post_id = insc.ID
-                             AND i_1_8.meta_key = 'inscricao_interesse_1'
-                             AND i_1_8.meta_value= 'Acessibilidade Cultural'
-                            LEFT JOIN {$postMetaTable} i_1_9 
-                              ON i_1_9.post_id = insc.ID
-                             AND i_1_9.meta_key = 'inscricao_interesse_1'
-                             AND i_1_9.meta_value= 'Culturas Populares e Diversidade'
-                            LEFT JOIN {$postMetaTable} i_1_10 
-                              ON i_1_10.post_id = insc.ID
-                             AND i_1_10.meta_key = 'inscricao_interesse_1'
-                             AND i_1_10.meta_value= 'Cultura e Educação'
-                            LEFT JOIN {$postMetaTable} i_2_1 
-                              ON i_2_1.post_id = insc.ID
-                             AND i_2_1.meta_key = 'inscricao_interesse_2'
-                             AND i_2_1.meta_value= 'Política Nacional de Cultura Viva (Pontos, Pontões de Cultura)'
-                            LEFT JOIN {$postMetaTable} i_2_2 
-                              ON i_2_2.post_id = insc.ID
-                             AND i_2_2.meta_key = 'inscricao_interesse_2'
-                             AND i_2_2.meta_value= 'Sistema Nacional de Cultura (Plano, Fundo de Cultura)'
-                            LEFT JOIN {$postMetaTable} i_2_3 
-                              ON i_2_3.post_id = insc.ID
-                             AND i_2_3.meta_key = 'inscricao_interesse_2'
-                             AND i_2_3.meta_value= 'Novo Plano Nacional de Cultura'
-                            LEFT JOIN {$postMetaTable} i_2_4 
-                              ON i_2_4.post_id = insc.ID
-                             AND i_2_4.meta_key = 'inscricao_interesse_2'
-                             AND i_2_4.meta_value= 'Gestão compartilhada e Participação Social (Conselho Nacional de Política Cultural e Conferência Nacional de Cultura)'
-                            LEFT JOIN {$postMetaTable} i_2_5 
-                              ON i_2_5.post_id = insc.ID
-                             AND i_2_5.meta_key = 'inscricao_interesse_2'
-                             AND i_2_5.meta_value= 'Operacionalização dos sistemas de parcerias (Convênios, Consórcios, Termos de fomento, entre outros)'
-                            LEFT JOIN {$postMetaTable} i_2_6 
-                              ON i_2_6.post_id = insc.ID
-                             AND i_2_6.meta_key = 'inscricao_interesse_2'
-                             AND i_2_6.meta_value= 'Orientações para elaboração de projetos culturais, no âmbito da diversidade cultural'
-                            LEFT JOIN {$postMetaTable} i_2_7 
-                              ON i_2_7.post_id = insc.ID
-                             AND i_2_7.meta_key = 'inscricao_interesse_2'
-                             AND i_2_7.meta_value= 'Orientações para execução e prestação de contas'
-                            LEFT JOIN {$postMetaTable} i_2_8 
-                              ON i_2_8.post_id = insc.ID
-                             AND i_2_8.meta_key = 'inscricao_interesse_2'
-                             AND i_2_8.meta_value= 'Acessibilidade Cultural'
-                            LEFT JOIN {$postMetaTable} i_2_9 
-                              ON i_2_9.post_id = insc.ID
-                             AND i_2_9.meta_key = 'inscricao_interesse_2'
-                             AND i_2_9.meta_value= 'Culturas Populares e Diversidade'
-                            LEFT JOIN {$postMetaTable} i_2_10 
-                              ON i_2_10.post_id = insc.ID
-                             AND i_2_10.meta_key = 'inscricao_interesse_2'
-                             AND i_2_10.meta_value= 'Cultura e Educação'	
-                            LEFT JOIN {$postMetaTable} i_3_1 
-                              ON i_3_1.post_id = insc.ID
-                             AND i_3_1.meta_key = 'inscricao_interesse_3'
-                             AND i_3_1.meta_value= 'Política Nacional de Cultura Viva (Pontos, Pontões de Cultura)'
-                            LEFT JOIN {$postMetaTable} i_3_2 
-                              ON i_3_2.post_id = insc.ID
-                             AND i_3_2.meta_key = 'inscricao_interesse_3'
-                             AND i_3_2.meta_value= 'Sistema Nacional de Cultura (Plano, Fundo de Cultura)'
-                            LEFT JOIN {$postMetaTable} i_3_3 
-                              ON i_3_3.post_id = insc.ID
-                             AND i_3_3.meta_key = 'inscricao_interesse_3'
-                             AND i_3_3.meta_value= 'Novo Plano Nacional de Cultura'
-                            LEFT JOIN {$postMetaTable} i_3_4 
-                              ON i_3_4.post_id = insc.ID
-                             AND i_3_4.meta_key = 'inscricao_interesse_3'
-                             AND i_3_4.meta_value= 'Gestão compartilhada e Participação Social (Conselho Nacional de Política Cultural e Conferência Nacional de Cultura)'
-                            LEFT JOIN {$postMetaTable} i_3_5 
-                              ON i_3_5.post_id = insc.ID
-                             AND i_3_5.meta_key = 'inscricao_interesse_3'
-                             AND i_3_5.meta_value= 'Operacionalização dos sistemas de parcerias (Convênios, Consórcios, Termos de fomento, entre outros)'
-                            LEFT JOIN {$postMetaTable} i_3_6 
-                              ON i_3_6.post_id = insc.ID
-                             AND i_3_6.meta_key = 'inscricao_interesse_3'
-                             AND i_3_6.meta_value= 'Orientações para elaboração de projetos culturais, no âmbito da diversidade cultural'
-                            LEFT JOIN {$postMetaTable} i_3_7 
-                              ON i_3_7.post_id = insc.ID
-                             AND i_3_7.meta_key = 'inscricao_interesse_3'
-                             AND i_3_7.meta_value= 'Orientações para execução e prestação de contas'
-                            LEFT JOIN {$postMetaTable} i_3_8 
-                              ON i_3_8.post_id = insc.ID
-                             AND i_3_8.meta_key = 'inscricao_interesse_3'
-                             AND i_3_8.meta_value= 'Acessibilidade Cultural'
-                            LEFT JOIN {$postMetaTable} i_3_9 
-                              ON i_3_9.post_id = insc.ID
-                             AND i_3_9.meta_key = 'inscricao_interesse_3'
-                             AND i_3_9.meta_value= 'Culturas Populares e Diversidade'
-                            LEFT JOIN {$postMetaTable} i_3_10 
-                              ON i_3_10.post_id = insc.ID
-                             AND i_3_10.meta_key = 'inscricao_interesse_3'
-                             AND i_3_10.meta_value= 'Cultura e Educação'	
-                            LEFT JOIN {$postMetaTable} i_4_1 
-                              ON i_4_1.post_id = insc.ID
-                             AND i_4_1.meta_key = 'inscricao_interesse_4'
-                             AND i_4_1.meta_value= 'Política Nacional de Cultura Viva (Pontos, Pontões de Cultura)'
-                            LEFT JOIN {$postMetaTable} i_4_2 
-                              ON i_4_2.post_id = insc.ID
-                             AND i_4_2.meta_key = 'inscricao_interesse_4'
-                             AND i_4_2.meta_value= 'Sistema Nacional de Cultura (Plano, Fundo de Cultura)'
-                            LEFT JOIN {$postMetaTable} i_4_3 
-                              ON i_4_3.post_id = insc.ID
-                             AND i_4_3.meta_key = 'inscricao_interesse_4'
-                             AND i_4_3.meta_value= 'Novo Plano Nacional de Cultura'
-                            LEFT JOIN {$postMetaTable} i_4_4 
-                              ON i_4_4.post_id = insc.ID
-                             AND i_4_4.meta_key = 'inscricao_interesse_4'
-                             AND i_4_4.meta_value= 'Gestão compartilhada e Participação Social (Conselho Nacional de Política Cultural e Conferência Nacional de Cultura)'
-                            LEFT JOIN {$postMetaTable} i_4_5 
-                              ON i_4_5.post_id = insc.ID
-                             AND i_4_5.meta_key = 'inscricao_interesse_4'
-                             AND i_4_5.meta_value= 'Operacionalização dos sistemas de parcerias (Convênios, Consórcios, Termos de fomento, entre outros)'
-                            LEFT JOIN {$postMetaTable} i_4_6 
-                              ON i_4_6.post_id = insc.ID
-                             AND i_4_6.meta_key = 'inscricao_interesse_4'
-                             AND i_4_6.meta_value= 'Orientações para elaboração de projetos culturais, no âmbito da diversidade cultural'
-                            LEFT JOIN {$postMetaTable} i_4_7 
-                              ON i_4_7.post_id = insc.ID
-                             AND i_4_7.meta_key = 'inscricao_interesse_4'
-                             AND i_4_7.meta_value= 'Orientações para execução e prestação de contas'
-                            LEFT JOIN {$postMetaTable} i_4_8 
-                              ON i_4_8.post_id = insc.ID
-                             AND i_4_8.meta_key = 'inscricao_interesse_4'
-                             AND i_4_8.meta_value= 'Acessibilidade Cultural'
-                            LEFT JOIN {$postMetaTable} i_4_9 
-                              ON i_4_9.post_id = insc.ID
-                             AND i_4_9.meta_key = 'inscricao_interesse_4'
-                             AND i_4_9.meta_value= 'Culturas Populares e Diversidade'
-                            LEFT JOIN {$postMetaTable} i_4_10 
-                              ON i_4_10.post_id = insc.ID
-                             AND i_4_10.meta_key = 'inscricao_interesse_4'
-                             AND i_4_10.meta_value= 'Cultura e Educação'	
-                            LEFT JOIN {$postMetaTable} i_5_1 
-                              ON i_5_1.post_id = insc.ID
-                             AND i_5_1.meta_key = 'inscricao_interesse_5'
-                             AND i_5_1.meta_value= 'Política Nacional de Cultura Viva (Pontos, Pontões de Cultura)'
-                            LEFT JOIN {$postMetaTable} i_5_2 
-                              ON i_5_2.post_id = insc.ID
-                             AND i_5_2.meta_key = 'inscricao_interesse_5'
-                             AND i_5_2.meta_value= 'Sistema Nacional de Cultura (Plano, Fundo de Cultura)'
-                            LEFT JOIN {$postMetaTable} i_5_3 
-                              ON i_5_3.post_id = insc.ID
-                             AND i_5_3.meta_key = 'inscricao_interesse_5'
-                             AND i_5_3.meta_value= 'Novo Plano Nacional de Cultura'
-                            LEFT JOIN {$postMetaTable} i_5_4 
-                              ON i_5_4.post_id = insc.ID
-                             AND i_5_4.meta_key = 'inscricao_interesse_5'
-                             AND i_5_4.meta_value= 'Gestão compartilhada e Participação Social (Conselho Nacional de Política Cultural e Conferência Nacional de Cultura)'
-                            LEFT JOIN {$postMetaTable} i_5_5 
-                              ON i_5_5.post_id = insc.ID
-                             AND i_5_5.meta_key = 'inscricao_interesse_5'
-                             AND i_5_5.meta_value= 'Operacionalização dos sistemas de parcerias (Convênios, Consórcios, Termos de fomento, entre outros)'
-                            LEFT JOIN {$postMetaTable} i_5_6 
-                              ON i_5_6.post_id = insc.ID
-                             AND i_5_6.meta_key = 'inscricao_interesse_5'
-                             AND i_5_6.meta_value= 'Orientações para elaboração de projetos culturais, no âmbito da diversidade cultural'
-                            LEFT JOIN {$postMetaTable} i_5_7 
-                              ON i_5_7.post_id = insc.ID
-                             AND i_5_7.meta_key = 'inscricao_interesse_5'
-                             AND i_5_7.meta_value= 'Orientações para execução e prestação de contas'
-                            LEFT JOIN {$postMetaTable} i_5_8 
-                              ON i_5_8.post_id = insc.ID
-                             AND i_5_8.meta_key = 'inscricao_interesse_5'
-                             AND i_5_8.meta_value= 'Acessibilidade Cultural'
-                            LEFT JOIN {$postMetaTable} i_5_9 
-                              ON i_5_9.post_id = insc.ID
-                             AND i_5_9.meta_key = 'inscricao_interesse_5'
-                             AND i_5_9.meta_value= 'Culturas Populares e Diversidade'
-                            LEFT JOIN {$postMetaTable} i_5_10 
-                              ON i_5_10.post_id = insc.ID
-                             AND i_5_10.meta_key = 'inscricao_interesse_5'
-                             AND i_5_10.meta_value= 'Cultura e Educação'	
+                            LEFT JOIN {$postMetaTable} i_1 
+                              ON i_1.post_id = insc.ID
+                             AND i_1.meta_key IN ('inscricao_interesse_1', 'inscricao_interesse_2', 'inscricao_interesse_3', 'inscricao_interesse_4', 'inscricao_interesse_5')
+                             AND i_1.meta_value IN ('Política Nacional de Cultura Viva (Pontos, Pontões de Cultura)',
+                                                     'Sistema Nacional de Cultura (Plano, Fundo de Cultura)',
+                                                     'Novo Plano Nacional de Cultura',
+                                                     'Gestão compartilhada e Participação Social (Conselho Nacional de Política Cultural e Conferência Nacional de Cultura)',
+                                                     'Operacionalização dos sistemas de parcerias (Convênios, Consórcios, Termos de fomento, entre outros)', 
+                                                     'Orientações para elaboração de projetos culturais, no âmbito da diversidade cultural', 
+                                                     'Orientações para execução e prestação de contas', 
+                                                     'Acessibilidade Cultural', 
+                                                     'Culturas Populares e Diversidade', 
+                                                     'Cultura e Educação')
                     ) a";
 
         return $wpdb->get_row($query);
@@ -882,19 +698,11 @@ final class SNC_Oficinas_Service
         return $filename;
     }
 
-    public static function generate_relatorio_admin_csv($function)
+    public static function generate_relatorio_admin_xlsx($function)
     {
-        $handle = SNC_Oficinas_Service::$function(fopen('php://temp', 'r+'));
-        $contents = '';
+        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Html();
 
-        rewind($handle);
-
-        while (!feof($handle)) {
-            $contents .= fread($handle, 8192);
-        }
-
-        fclose($handle);
-        return $contents;
+        return $reader->loadFromString(SNC_Oficinas_Service::$function());
     }
 
     public static function generate_relatorio_concluidos_base_csv($fp)
@@ -931,42 +739,113 @@ final class SNC_Oficinas_Service
         return $fp;
     }
 
-    public static function generate_relatorio_inscritos_base_csv($fp)
+    public static function generate_relatorio_concluidos_base_xlsx()
     {
-        $inscritos = SNC_Oficinas_Service::get_all_inscritos();
+        $qtdOficinasInscritos = SNC_Oficinas_Service::get_quantitativo_inscritos_concluidos();
+        $inscritos = SNC_Oficinas_Service::get_all_inscritos_concluidos();
 
-        fputcsv($fp, array('Oficina',
-            mb_convert_encoding('Nº da Inscrição', 'ISO-8859-1', 'UTF-8'),
-            'UF',
-            mb_convert_encoding('Município', 'ISO-8859-1', 'UTF-8'),
-            'Nome',
-            'CPF',
-            'RG',
-            'Telefone',
-            'E-mail',
-            mb_convert_encoding('Gênero', 'ISO-8859-1', 'UTF-8'),
-            'Escolaridade',
-            'Perfil'), ';');
+        $oficinas = [];
 
-        foreach ($inscritos as $k => $inscrito) {
-            fputcsv($fp, array(mb_convert_encoding($inscrito->oficina, 'ISO-8859-1', 'UTF-8'),
-                mb_convert_encoding($inscrito->num_inscricao, 'ISO-8859-1', 'UTF-8'),
-                mb_convert_encoding($inscrito->st_estado, 'ISO-8859-1', 'UTF-8'),
-                mb_convert_encoding($inscrito->st_municipio, 'ISO-8859-1', 'UTF-8'),
-                mb_convert_encoding($inscrito->nome, 'ISO-8859-1', 'UTF-8'),
-                mb_convert_encoding($inscrito->nu_cpf, 'ISO-8859-1', 'UTF-8'),
-                mb_convert_encoding($inscrito->nu_rg, 'ISO-8859-1', 'UTF-8'),
-                mb_convert_encoding($inscrito->telefone, 'ISO-8859-1', 'UTF-8'),
-                mb_convert_encoding($inscrito->email, 'ISO-8859-1', 'UTF-8'),
-                mb_convert_encoding($inscrito->sexo, 'ISO-8859-1', 'UTF-8'),
-                mb_convert_encoding($inscrito->escolaridade, 'ISO-8859-1', 'UTF-8'),
-                mb_convert_encoding($inscrito->perfil, 'ISO-8859-1', 'UTF-8')), ';');
+        foreach ($qtdOficinasInscritos AS $oficina) {
+            $oficinas[$oficina->ID] = $oficina;
         }
 
-        return $fp;
+        $idOficina = null;
+
+        $htmlString = "<table>";
+
+        foreach ($inscritos as $k => $inscrito) {
+
+            if ($idOficina != $inscrito->ID) {
+                if (0 < $k) {
+                    $htmlString .= "<tr><td colspan='5'>&nbsp;</td></tr>
+                                    <tr><td colspan='5'>&nbsp;</td></tr>";
+                }
+
+                $htmlString .= "<tr>
+                                    <th>{$oficinas[$inscrito->ID]->post_title}</th>
+                                    <th>&nbsp;</th>
+                                    <th>Quantidade de Participantes</th>
+                                    <th>&nbsp;</th>
+                                    <th>&nbsp;</th>
+                                </tr>";
+
+                $htmlString .= "<tr>
+                                    <th>&nbsp;</th>
+                                    <th>&nbsp;</th>
+                                    <th>{$oficinas[$inscrito->ID]->total_inscritos}</th>
+                                    <th>&nbsp;</th>
+                                    <th>&nbsp;</th>
+                                </tr>";
+
+                $htmlString .= "<tr>
+                                    <th>UF</th>
+                                    <th>Município</th>
+                                    <th>Nome do Participante</th>
+                                    <th>CPF</th>
+                                    <th>E-mail</th>
+                                </tr>";
+            }
+
+            $htmlString .= "<tr>
+                                <td>{$inscrito->st_estado}</td>
+                                <td>{$inscrito->st_municipio}</td>
+                                <td>{$inscrito->display_name}</td>
+                                <td>{$inscrito->nu_cpf}</td>
+                                <td>{$inscrito->user_email}</td>
+                            </tr>";
+
+            $idOficina = $inscrito->ID;
+        }
+
+        $htmlString .= '</table>';
+
+        return $htmlString;
     }
 
-    public static function generate_relatorio_interesses_base_csv($fp)
+    public static function generate_relatorio_inscritos_base_xlsx()
+    {
+        $inscritos = SNC_Oficinas_Service::get_all_inscritos();
+        $htmlString = "<table>
+                            <tr>
+                                <td>Oficina</td>
+                                <td>Nº da Inscrição</td>
+                                <td>UF</td>
+                                <td>Município</td>
+                                <td>Nome</td>
+                                <td>CPF</td>
+                                <td>RG</td>
+                                <td>Telefone</td>
+                                <td>E-mail</td>
+                                <td>Gênero</td>
+                                <td>Escolaridade</td>
+                                <td>Perfil</td>
+                            </tr>";
+
+
+        foreach ($inscritos as $k => $inscrito) {
+            $htmlString .= "<tr>
+                                <td>{$inscrito->oficina}</td>
+                                <td>{$inscrito->num_inscricao}</td>
+                                <td>{$inscrito->st_estado}</td>
+                                <td>{$inscrito->st_municipio}</td>
+                                <td>{$inscrito->nome}</td>
+                                <td>{$inscrito->nu_cpf}</td>
+                                <td>{$inscrito->nu_rg}</td>
+                                <td>{$inscrito->telefone}</td>
+                                <td>{$inscrito->email}</td>
+                                <td>{$inscrito->sexo}</td>
+                                <td>{$inscrito->escolaridade}</td>
+                                <td>{$inscrito->perfil}</td>
+                            </tr>";
+        }
+
+        $htmlString .= '</table>';
+
+        return $htmlString;
+    }
+
+    public static function generate_relatorio_interesses_base_xlsx()
     {
         $interesses = SNC_Oficinas_Service::get_all_interesses();
 
@@ -981,12 +860,15 @@ final class SNC_Oficinas_Service
             'Culturas Populares e Diversidade',
             'Cultura e Educação');
 
-        fputcsv($fp, array(mb_convert_encoding('Numere por ordem de prioridade até 5 áreas de interesse', 'ISO-8859-1', 'UTF-8'),
-            mb_convert_encoding('Interesse 1 (%)', 'ISO-8859-1', 'UTF-8'),
-            mb_convert_encoding('Interesse 2 (%)', 'ISO-8859-1', 'UTF-8'),
-            mb_convert_encoding('Interesse 3 (%)', 'ISO-8859-1', 'UTF-8'),
-            mb_convert_encoding('Interesse 4 (%)', 'ISO-8859-1', 'UTF-8'),
-            mb_convert_encoding('Interesse 5 (%)', 'ISO-8859-1', 'UTF-8'),), ';');
+        $htmlString = "<table>
+                            <tr>
+                                <td>Numere por ordem de prioridade até 5 áreas de interesse</td>
+                                <td>Interesse 1 (%)</td>
+                                <td>Interesse 2 (%)</td>
+                                <td>Interesse 3 (%)</td>
+                                <td>Interesse 4 (%)</td>
+                                <td>Interesse 5 (%)</td>
+                            </tr>";
 
         foreach ($respostas as $k => $resposta) {
             $vetor = $k + 1;
@@ -996,53 +878,65 @@ final class SNC_Oficinas_Service
             $interesse4 = "percentual_i_4_{$vetor}";
             $interesse5 = "percentual_i_5_{$vetor}";
 
-            fputcsv($fp, array(mb_convert_encoding($resposta, 'ISO-8859-1', 'UTF-8'),
-                mb_convert_encoding($interesses->$interesse1, 'ISO-8859-1', 'UTF-8'),
-                mb_convert_encoding($interesses->$interesse2, 'ISO-8859-1', 'UTF-8'),
-                mb_convert_encoding($interesses->$interesse3, 'ISO-8859-1', 'UTF-8'),
-                mb_convert_encoding($interesses->$interesse4, 'ISO-8859-1', 'UTF-8'),
-                mb_convert_encoding($interesses->$interesse5, 'ISO-8859-1', 'UTF-8'),), ';');
+            $htmlString .= "<tr>
+                                <td>{$resposta}</td>
+                                <td>{$interesses->$interesse1}</td>
+                                <td>{$interesses->$interesse2}</td>
+                                <td>{$interesses->$interesse3}</td>
+                                <td>{$interesses->$interesse4}</td>
+                                <td>{$interesses->$interesse5}</td>
+                            </tr>";
         }
 
-        return $fp;
+        $htmlString .= '</table>';
+
+        return $htmlString;
     }
 
-    public static function generate_relatorio_perfil_base_csv($fp)
+    public static function generate_relatorio_perfil_base_xlsx()
     {
         $inscritos = SNC_Oficinas_Service::get_all_inscritos();
 
-        fputcsv($fp, array('Oficina',
-            mb_convert_encoding('Nº da Inscrição', 'ISO-8859-1', 'UTF-8'),
-            'UF',
-            mb_convert_encoding('Município', 'ISO-8859-1', 'UTF-8'),
-            'Nome',
-            'Cargo',
-            mb_convert_encoding('Orgão', 'ISO-8859-1', 'UTF-8'),
-            'Esfera',
-            'Perfil',
-            'Interesse 1',
-            'Interesse 2',
-            'Interesse 3',
-            'Interesse 4',
-            'Interesse 5',), ';');
+        $htmlString = "<table>
+                        <tr>
+                          <td>Oficina</td>
+                          <td>Nº da Inscrição</td>
+                          <td>UF</td>
+                          <td>Município</td>
+                          <td>Nome</td>
+                          <td>Cargo</td>
+                          <td>Orgão</td>
+                          <td>Esfera</td>
+                          <td>Perfil</td>
+                          <td>Interesse 1</td>
+                          <td>Interesse 2</td>
+                          <td>Interesse 3</td>
+                          <td>Interesse 4</td>
+                          <td>Interesse 5</td>
+                       </tr>";
 
         foreach ($inscritos as $k => $inscrito) {
-            fputcsv($fp, array(mb_convert_encoding($inscrito->oficina, 'ISO-8859-1', 'UTF-8'),
-                mb_convert_encoding($inscrito->num_inscricao, 'ISO-8859-1', 'UTF-8'),
-                mb_convert_encoding($inscrito->st_estado, 'ISO-8859-1', 'UTF-8'),
-                mb_convert_encoding($inscrito->st_municipio, 'ISO-8859-1', 'UTF-8'),
-                mb_convert_encoding($inscrito->nome, 'ISO-8859-1', 'UTF-8'),
-                mb_convert_encoding($inscrito->cargo, 'ISO-8859-1', 'UTF-8'),
-                mb_convert_encoding($inscrito->orgao, 'ISO-8859-1', 'UTF-8'),
-                mb_convert_encoding($inscrito->esfera, 'ISO-8859-1', 'UTF-8'),
-                mb_convert_encoding($inscrito->perfil, 'ISO-8859-1', 'UTF-8'),
-                mb_convert_encoding($inscrito->interesse1, 'ISO-8859-1', 'UTF-8'),
-                mb_convert_encoding($inscrito->interesse2, 'ISO-8859-1', 'UTF-8'),
-                mb_convert_encoding($inscrito->interesse3, 'ISO-8859-1', 'UTF-8'),
-                mb_convert_encoding($inscrito->interesse4, 'ISO-8859-1', 'UTF-8'),
-                mb_convert_encoding($inscrito->interesse5, 'ISO-8859-1', 'UTF-8')), ';');
+            $htmlString .= "<tr>
+                                <td>{$inscrito->oficina}</td>
+                                <td>{$inscrito->num_inscricao}</td>
+                                <td>{$inscrito->st_estado}</td>
+                                <td>{$inscrito->st_municipio}</td>
+                                <td>{$inscrito->nome}</td>
+                                <td>{$inscrito->cargo}</td>
+                                <td>{$inscrito->orgao}</td>
+                                <td>{$inscrito->esfera}</td>
+                                <td>{$inscrito->perfil}</td>
+                                <td>{$inscrito->interesse1}</td>
+                                <td>{$inscrito->interesse2}</td>
+                                <td>{$inscrito->interesse3}</td>
+                                <td>{$inscrito->interesse4}</td>
+                                <td>{$inscrito->interesse5}</td>
+                            </tr>";
+
         }
 
-        return $fp;
+        $htmlString .= '</table>';
+
+        return $htmlString;
     }
 }

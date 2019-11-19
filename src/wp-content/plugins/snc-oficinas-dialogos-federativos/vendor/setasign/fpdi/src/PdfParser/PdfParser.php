@@ -111,8 +111,8 @@ class PdfParser
     /**
      * Resolves the file header.
      *
-     * @return int
      * @throws PdfParserException
+     * @return int
      */
     protected function resolveFileHeader()
     {
@@ -187,7 +187,7 @@ class PdfParser
             }
         }
 
-        return [(int)$major, (int)$minor];
+        return [(int) $major, (int) $minor];
     }
 
     /**
@@ -219,7 +219,7 @@ class PdfParser
      */
     public function getIndirectObject($objectNumber, $cache = false)
     {
-        $objectNumber = (int)$objectNumber;
+        $objectNumber = (int) $objectNumber;
         if (isset($this->objects[$objectNumber])) {
             return $this->objects[$objectNumber];
         }

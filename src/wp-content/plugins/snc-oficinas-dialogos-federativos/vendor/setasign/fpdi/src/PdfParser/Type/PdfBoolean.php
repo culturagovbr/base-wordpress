@@ -25,7 +25,7 @@ class PdfBoolean extends PdfType
     public static function create($value)
     {
         $v = new self;
-        $v->value = (boolean)$value;
+        $v->value = (boolean) $value;
         return $v;
     }
 

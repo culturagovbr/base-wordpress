@@ -21,6 +21,8 @@ define('SNC_POST_TYPE_OFICINA', 'oficinas');
 define('SNC_POST_TYPE_PARTICIPACAO', 'participacao-oficina');
 define('SNC_POST_TYPE_ASSINATURAS', 'assinatura-oficina');
 
+//require_once SNC_ODF_PLUGIN_PATH . '/vendor/autoload.php';
+
 class SNC_Oficinas_Dialogos_Federativos
 {
     public function __construct()
@@ -124,29 +126,43 @@ class SNC_Oficinas_Dialogos_Federativos
             header('Content-Disposition: attachment; filename=' . $nameCsv . '.csv');
 
             echo SNC_Oficinas_Service::generate_relatorio_admin_csv($function);
+            exit();
+        }
+    }
 
+    private function _generate_download_xlsx($page, $nameCsv, $function)
+    {
+        global $pagenow;
+        if ($pagenow == 'admin.php' && $_GET['page'] == $page) {
+
+            $spreadsheet = SNC_Oficinas_Service::generate_relatorio_admin_xlsx($function);
+
+            $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, "Xlsx");
+            header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+            header('Content-Disposition: attachment; filename="' . $nameCsv . '.xlsx"');
+            $writer->save("php://output");
             exit();
         }
     }
 
     public function snc_ofinas_relatorio_concluidos()
     {
-        $this->_generate_download_csv('oficinas-relatorios-concluidos', 'relatorio_concluidos', 'generate_relatorio_concluidos_base_csv');
+        $this->_generate_download_xlsx('oficinas-relatorios-concluidos', 'relatorio_concluidos', 'generate_relatorio_concluidos_base_xlsx');
     }
 
     public function snc_ofinas_relatorio_inscritos()
     {
-        $this->_generate_download_csv('oficinas-relatorios-inscritos', 'relatorio_inscritos', 'generate_relatorio_inscritos_base_csv');
+        $this->_generate_download_xlsx('oficinas-relatorios-inscritos', 'relatorio_inscritos', 'generate_relatorio_inscritos_base_xlsx');
     }
 
     public function snc_ofinas_relatorio_interesses()
     {
-        $this->_generate_download_csv('oficinas-relatorios-interesses', 'relatorio_interesses', 'generate_relatorio_interesses_base_csv');
+        $this->_generate_download_xlsx('oficinas-relatorios-interesses', 'relatorio_interesses', 'generate_relatorio_interesses_base_xlsx');
     }
 
     public function snc_ofinas_relatorio_perfis()
     {
-        $this->_generate_download_csv('oficinas-relatorios-perfis', 'relatorio_perfis', 'generate_relatorio_perfil_base_csv');
+        $this->_generate_download_xlsx('oficinas-relatorios-perfis', 'relatorio_perfis', 'generate_relatorio_perfil_base_xlsx');
     }
 
     public function activate_hook()

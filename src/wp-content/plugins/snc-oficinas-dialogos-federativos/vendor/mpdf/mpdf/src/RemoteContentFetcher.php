@@ -9,118 +9,140 @@ use Mpdf\Log\Context as LogContext;
 class RemoteContentFetcher implements \Psr\Log\LoggerAwareInterface
 {
 
-    /**
-     * @var \Mpdf\Mpdf
-     */
-    private $mpdf;
+	/**
+	 * @var \Mpdf\Mpdf
+	 */
+	private $mpdf;
 
-    /**
-     * @var \Psr\Log\LoggerInterface
-     */
-    private $logger;
+	/**
+	 * @var \Psr\Log\LoggerInterface
+	 */
+	private $logger;
 
-    public function __construct(Mpdf $mpdf, LoggerInterface $logger)
-    {
-        $this->mpdf = $mpdf;
-        $this->logger = $logger;
-    }
+	public function __construct(Mpdf $mpdf, LoggerInterface $logger)
+	{
+		$this->mpdf = $mpdf;
+		$this->logger = $logger;
+	}
 
-    public function getFileContentsByCurl($url)
-    {
-        $this->logger->debug(sprintf('Fetching (cURL) content of remote URL "%s"', $url), ['context' => LogContext::REMOTE_CONTENT]);
+	public function getFileContentsByCurl($url)
+	{
+		$this->logger->debug(sprintf('Fetching (cURL) content of remote URL "%s"', $url), ['context' => LogContext::REMOTE_CONTENT]);
 
-        $ch = curl_init($url);
+		$ch = curl_init($url);
 
-        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:13.0) Gecko/20100101 Firefox/13.0.1'); // mPDF 5.7.4
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_NOBODY, 0);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->mpdf->curlTimeout);
+		curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:13.0) Gecko/20100101 Firefox/13.0.1'); // mPDF 5.7.4
+		curl_setopt($ch, CURLOPT_HEADER, 0);
+		curl_setopt($ch, CURLOPT_NOBODY, 0);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->mpdf->curlTimeout);
 
-        if ($this->mpdf->curlFollowLocation) {
-            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-        }
+		if ($this->mpdf->curlFollowLocation) {
+			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+		}
 
-        if ($this->mpdf->curlAllowUnsafeSslRequests) {
-            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        }
+		if ($this->mpdf->curlAllowUnsafeSslRequests) {
+			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		}
 
-        if (is_file($this->mpdf->curlCaCertificate)) {
-            curl_setopt($ch, CURLOPT_CAINFO, $this->mpdf->curlCaCertificate);
-        }
+		if (is_file($this->mpdf->curlCaCertificate)) {
+			curl_setopt($ch, CURLOPT_CAINFO, $this->mpdf->curlCaCertificate);
+		}
 
-        $data = curl_exec($ch);
+		if ($this->mpdf->curlProxy) {
+			curl_setopt($ch, CURLOPT_PROXY, $this->mpdf->curlProxy);
+			if ($this->mpdf->curlProxyAuth) {
+				curl_setopt($ch, CURLOPT_PROXYUSERPWD, $this->mpdf->curlProxyAuth);
+			}
+		}
 
-        if (curl_error($ch)) {
-            $this->logger->error(sprintf('cURL error: "%s"', curl_error($ch)), ['context' => LogContext::REMOTE_CONTENT]);
-        }
+		$data = curl_exec($ch);
 
-        curl_close($ch);
+		if (curl_error($ch)) {
+			$message = sprintf('cURL error: "%s"', curl_error($ch));
+			$this->logger->error($message, ['context' => LogContext::REMOTE_CONTENT]);
 
-        return $data;
-    }
+			if ($this->mpdf->debug) {
+				throw new \Mpdf\MpdfException($message);
+			}
+		}
 
-    public function getFileContentsBySocket($url)
-    {
-        $this->logger->debug(sprintf('Fetching (socket) content of remote URL "%s"', $url), ['context' => LogContext::REMOTE_CONTENT]);
-        // mPDF 5.7.3
+		$info = curl_getinfo($ch);
+		if (isset($info['http_code']) && $info['http_code'] !== 200) {
+			$message = sprintf('HTTP error: %d', $info['http_code']);
+			$this->logger->error($message, ['context' => LogContext::REMOTE_CONTENT]);
 
-        $timeout = 1;
-        $p = parse_url($url);
+			if ($this->mpdf->debug) {
+				throw new \Mpdf\MpdfException($message);
+			}
+		}
 
-        $file = Arrays::get($p, 'path', '');
-        $scheme = Arrays::get($p, 'scheme', '');
-        $port = Arrays::get($p, 'port', 80);
-        $prefix = '';
+		curl_close($ch);
 
-        if ($scheme === 'https') {
-            $prefix = 'ssl://';
-            $port = Arrays::get($p, 'port', 443);
-        }
+		return $data;
+	}
 
-        $query = Arrays::get($p, 'query', null);
-        if ($query) {
-            $file .= '?' . $query;
-        }
+	public function getFileContentsBySocket($url)
+	{
+		$this->logger->debug(sprintf('Fetching (socket) content of remote URL "%s"', $url), ['context' => LogContext::REMOTE_CONTENT]);
+		// mPDF 5.7.3
 
-        if (!($fh = @fsockopen($prefix . $p['host'], $port, $errno, $errstr, $timeout))) {
-            $this->logger->error(sprintf('Socket error "%s": "%s"', $errno, $errstr), ['context' => LogContext::REMOTE_CONTENT]);
-            return false;
-        }
+		$timeout = 1;
+		$p = parse_url($url);
 
-        $getstring = 'GET ' . $file . " HTTP/1.0 \r\n" .
-            'Host: ' . $p['host'] . " \r\n" .
-            "Connection: close\r\n\r\n";
+		$file = Arrays::get($p, 'path', '');
+		$scheme = Arrays::get($p, 'scheme', '');
+		$port = Arrays::get($p, 'port', 80);
+		$prefix = '';
 
-        fwrite($fh, $getstring);
+		if ($scheme === 'https') {
+			$prefix = 'ssl://';
+			$port = Arrays::get($p, 'port', 443);
+		}
 
-        // Get rid of HTTP header
-        $s = fgets($fh, 1024);
-        if (!$s) {
-            return false;
-        }
+		$query = Arrays::get($p, 'query', null);
+		if ($query) {
+			$file .= '?' . $query;
+		}
 
-        while (!feof($fh)) {
-            $s = fgets($fh, 1024);
-            if ($s === "\r\n") {
-                break;
-            }
-        }
+		if (!($fh = @fsockopen($prefix . $p['host'], $port, $errno, $errstr, $timeout))) {
+			$this->logger->error(sprintf('Socket error "%s": "%s"', $errno, $errstr), ['context' => LogContext::REMOTE_CONTENT]);
+			return false;
+		}
 
-        $data = '';
+		$getstring = 'GET ' . $file . " HTTP/1.0 \r\n" .
+			'Host: ' . $p['host'] . " \r\n" .
+			"Connection: close\r\n\r\n";
 
-        while (!feof($fh)) {
-            $data .= fgets($fh, 1024);
-        }
+		fwrite($fh, $getstring);
 
-        fclose($fh);
+		// Get rid of HTTP header
+		$s = fgets($fh, 1024);
+		if (!$s) {
+			return false;
+		}
 
-        return $data;
-    }
+		while (!feof($fh)) {
+			$s = fgets($fh, 1024);
+			if ($s === "\r\n") {
+				break;
+			}
+		}
 
-    public function setLogger(LoggerInterface $logger)
-    {
-        $this->logger = $logger;
-    }
+		$data = '';
+
+		while (!feof($fh)) {
+			$data .= fgets($fh, 1024);
+		}
+
+		fclose($fh);
+
+		return $data;
+	}
+
+	public function setLogger(LoggerInterface $logger)
+	{
+		$this->logger = $logger;
+	}
 }

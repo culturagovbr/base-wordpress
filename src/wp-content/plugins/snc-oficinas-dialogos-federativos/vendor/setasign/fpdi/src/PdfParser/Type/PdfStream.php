@@ -88,7 +88,7 @@ class PdfStream extends PdfType
     {
         $v = new self;
         $v->value = $dictionary;
-        $v->stream = (string)$stream;
+        $v->stream = (string) $stream;
 
         return $v;
     }

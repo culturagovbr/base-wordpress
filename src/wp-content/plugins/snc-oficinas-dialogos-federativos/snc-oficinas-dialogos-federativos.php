@@ -244,12 +244,12 @@ class SNC_Oficinas_Dialogos_Federativos
                     'search_items' => 'Procurar questionário',
                     'not_found' => 'Nenhum questionário encontrado',
                 ),
-                'description' => 'Questionário das Oficinas dos Diálogos Federativos',
-                'public' => true,
-                'exclude_from_search' => false,
-                'publicly_queryable' => false,
-                'supports' => array('title'),
-                'menu_icon' => 'dashicons-clipboard'
+//                'description' => 'Questionário das Oficinas dos Diálogos Federativos',
+//                'public' => true,
+//                'exclude_from_search' => false,
+//                'publicly_queryable' => false,
+//                'supports' => array('title'),
+//                'menu_icon' => 'dashicons-clipboard'
             )
         );
 

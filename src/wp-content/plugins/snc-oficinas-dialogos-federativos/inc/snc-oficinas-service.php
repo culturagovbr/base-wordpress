@@ -213,6 +213,11 @@ final class SNC_Oficinas_Service
                          insc_perfil.meta_value AS perfil,
                          DATE_FORMAT(STR_TO_DATE(ini.meta_value, '%Y%m%d'), '%d/%m/%Y') AS data_inicio,
                          DATE_FORMAT(STR_TO_DATE(fim.meta_value, '%Y%m%d'), '%d/%m/%Y') AS data_fim,
+                         interesse_1.meta_value AS interesse1,
+                         interesse_2.meta_value AS interesse2,
+                         interesse_3.meta_value AS interesse3,
+                         interesse_4.meta_value AS interesse4,
+                         interesse_5.meta_value AS interesse5,
                          car.meta_value AS cargo,
                          org.meta_value AS orgao,
                          esf.meta_value AS esfera,
@@ -334,6 +339,21 @@ final class SNC_Oficinas_Service
                      JOIN {$userMetaTable} escolar 
                       ON escolar.user_id = u.ID
                      AND escolar.meta_key = '_user_schooling'
+                    JOIN {$postMetaTable} interesse_1 
+                      ON interesse_1.post_id = insc.ID
+                     AND interesse_1.meta_key = 'inscricao_interesse_1'
+                    JOIN {$postMetaTable} interesse_2 
+                      ON interesse_2.post_id = insc.ID
+                     AND interesse_2.meta_key = 'inscricao_interesse_2'
+                    JOIN {$postMetaTable} interesse_3 
+                      ON interesse_3.post_id = insc.ID
+                     AND interesse_3.meta_key = 'inscricao_interesse_3'
+                    JOIN {$postMetaTable} interesse_4 
+                      ON interesse_4.post_id = insc.ID
+                     AND interesse_4.meta_key = 'inscricao_interesse_4'
+                    JOIN {$postMetaTable} interesse_5 
+                      ON interesse_5.post_id = insc.ID
+                     AND interesse_5.meta_key = 'inscricao_interesse_5'
                     LEFT JOIN {$postMetaTable} car 
                       ON car.post_id = insc.ID
                      AND car.meta_key = 'inscricao_gestor_cargo'
@@ -769,11 +789,38 @@ final class SNC_Oficinas_Service
         return $filename;
     }
 
-    public static function generate_relatorio_admin_xlsx($function)
+    public static function generate_relatorio_admin_xlsx($function, $nameXlsx)
     {
         $reader = new \PhpOffice\PhpSpreadsheet\Reader\Html();
 
-        return $reader->loadFromString(SNC_Oficinas_Service::$function());
+        $planilhas = SNC_Oficinas_Service::$function();
+
+        $spreadSheet = null;
+
+        if (!is_array($planilhas)) {
+            $spreadSheet = $reader->loadFromString($planilhas);
+            $spreadSheet->getSheet(0)
+                ->setTitle($nameXlsx);
+            return $spreadSheet;
+        }
+
+        $k = 0;
+
+        foreach ($planilhas as $tab => $planilha) {
+            if (0 == $k) {
+                $spreadSheet = $reader->loadFromString($planilha);
+                $spreadSheet->getSheet($k)
+                    ->setTitle($tab);
+            } else {
+                $spreadSheetNew = $reader->loadFromString($planilha);
+                $addNew = $spreadSheetNew->getSheet(0)->setTitle("{$tab}");
+                $spreadSheet->addSheet($addNew, $k);
+            }
+
+            $k++;
+        }
+
+        return $spreadSheet;
     }
 
     public static function generate_relatorio_concluidos_base_csv($fp)
@@ -852,7 +899,7 @@ final class SNC_Oficinas_Service
                 $htmlString .= "<tr>
                                     <th><b>UF</b></th>
                                     <th><b>Município</b></th>
-                                    <th<b>>Nome do Participante</b></th>
+                                    <th><b>Nome do Participante</b></th>
                                     <th><b>CPF</b></th>
                                     <th><b>E-mail</b></th>
                                 </tr>";
@@ -867,48 +914,6 @@ final class SNC_Oficinas_Service
                             </tr>";
 
             $idOficina = $inscrito->ID;
-        }
-
-        $htmlString .= '</table>';
-
-        return $htmlString;
-    }
-
-    public static function generate_relatorio_inscritos_base_xlsx()
-    {
-        $inscritos = SNC_Oficinas_Service::get_all_inscritos();
-        $htmlString = "<table>
-                            <tr>
-                                <td><b>Oficina</b></td>
-                                <td><b>Nº da Inscrição</b></td>
-                                <td><b>UF</b></td>
-                                <td><b>Município</b></td>
-                                <td><b>Nome</b></td>
-                                <td><b>CPF</b></td>
-                                <td><b>RG</b></td>
-                                <td><b>Telefone</b></td>
-                                <td><b>E-mail</b></td>
-                                <td><b>Gênero</b></td>
-                                <td><b>Escolaridade</b></td>
-                                <td><b>Perfil</b></td>
-                            </tr>";
-
-
-        foreach ($inscritos as $k => $inscrito) {
-            $htmlString .= "<tr>
-                                <td>{$inscrito->oficina}</td>
-                                <td>{$inscrito->num_inscricao}</td>
-                                <td>{$inscrito->st_estado}</td>
-                                <td>{$inscrito->st_municipio}</td>
-                                <td>{$inscrito->nome}</td>
-                                <td>{$inscrito->nu_cpf}</td>
-                                <td>{$inscrito->nu_rg}</td>
-                                <td>{$inscrito->telefone}</td>
-                                <td>{$inscrito->email}</td>
-                                <td>{$inscrito->sexo}</td>
-                                <td>{$inscrito->escolaridade}</td>
-                                <td>{$inscrito->perfil}</td>
-                            </tr>";
         }
 
         $htmlString .= '</table>';
@@ -931,18 +936,9 @@ final class SNC_Oficinas_Service
             'Culturas Populares e Diversidade',
             'Cultura e Educação');
 
-        $htmlString = "<table>
-                            <tr>
-                                <td><b>Rank</b></td>
-                                <td><b>Numere por ordem de prioridade até 5 áreas de interesse</b></td>
-                                <td><b>Interesse 1 (%)</b></td>
-                                <td><b>Interesse 2 (%)</b></td>
-                                <td><b>Interesse 3 (%)</b></td>
-                                <td><b>Interesse 4 (%)</b></td>
-                                <td><b>Interesse 5 (%)</b></td>
-                            </tr>";
-
         $arTd = array();
+        $arTdTotal = array();
+        $totalGeral = $interesses->total_inscritos;
 
         foreach ($respostas as $k => $resposta) {
             $vetor = $k + 1;
@@ -951,6 +947,12 @@ final class SNC_Oficinas_Service
             $interesse3 = "percentual_i_3_{$vetor}";
             $interesse4 = "percentual_i_4_{$vetor}";
             $interesse5 = "percentual_i_5_{$vetor}";
+
+            $total1 = "total_i_1_{$vetor}";
+            $total2 = "total_i_2_{$vetor}";
+            $total3 = "total_i_3_{$vetor}";
+            $total4 = "total_i_4_{$vetor}";
+            $total5 = "total_i_5_{$vetor}";
 
             $order = $interesses->$interesse1 + $interesses->$interesse2 + $interesses->$interesse3 + $interesses->$interesse4 + $interesses->$interesse5;
 
@@ -961,11 +963,31 @@ final class SNC_Oficinas_Service
                                     <td>{$interesses->$interesse4}</td>
                                     <td>{$interesses->$interesse5}</td>",
                 "order" => $order);
+
+            $arTdTotal[$k] = array("td" => "<td>{$resposta}</td>
+                                    <td>{$interesses->$total1}</td>
+                                    <td>{$interesses->$total2}</td>
+                                    <td>{$interesses->$total3}</td>
+                                    <td>{$interesses->$total4}</td>
+                                    <td>{$interesses->$total5}</td>",
+                "order" => $order);
         }
 
         $func = function ($v1, $v2) {
             return $v1['order'] < $v2['order'];
         };
+
+        $htmlString = '<table>
+                            <tr><td colspan="7" align="center"><b>Por Porcentagem de Interesses</b></td></tr>
+                            <tr>
+                                <td><b>Rank</b></td>
+                                <td><b>Numere por ordem de prioridade até 5 áreas de interesse</b></td>
+                                <td><b>Interesse 1 (%)</b></td>
+                                <td><b>Interesse 2 (%)</b></td>
+                                <td><b>Interesse 3 (%)</b></td>
+                                <td><b>Interesse 4 (%)</b></td>
+                                <td><b>Interesse 5 (%)</b></td>
+                            </tr>';
 
         usort($arTd, $func);
 
@@ -974,7 +996,29 @@ final class SNC_Oficinas_Service
             $htmlString .= "<tr><td>{$k}</td>{$td['td']}</tr>";
         }
 
-        $htmlString .= '</table>';
+        $htmlString .= '<tr><td colspan="7">&nbsp;</td></tr><tr><td colspan="7">&nbsp;</td></tr></table>';
+
+        $htmlString .= '<table>
+                            <tr><td colspan="7" align="center"><b>Por Quantitativo de Interesses</b></td></tr>
+                            <tr>
+                                <td><b>Rank</b></td>
+                                <td><b>Numere por ordem de prioridade até 5 áreas de interesse</b></td>
+                                <td><b>Qtd. Interesse 1</b></td>
+                                <td><b>Qtd. Interesse 2</b></td>
+                                <td><b>Qtd. Interesse 3</b></td>
+                                <td><b>Qtd. Interesse 4</b></td>
+                                <td><b>Qtd. Interesse 5</b></td>
+                            </tr>';
+
+        usort($arTdTotal, $func);
+
+        foreach ($arTdTotal as $k => $td) {
+            $k++;
+            $htmlString .= "<tr><td>{$k}</td>{$td['td']}</tr>";
+        }
+
+        $htmlString .= '<tr><td colspan="7">&nbsp;</td></tr><tr><td colspan="7">&nbsp;</td></tr>';
+        $htmlString .= '<tr><td colspan="2" style="text-align: right;"><b>Total de Inscritos:</b></td><td>' . $totalGeral . '</td><td colspan="4"></td></tr></table>';
 
         return $htmlString;
     }
@@ -983,22 +1027,11 @@ final class SNC_Oficinas_Service
     {
         $inscritos = SNC_Oficinas_Service::get_all_inscritos();
 
-        $htmlString = "";
+        $htmlString = [];
 
         foreach ($inscritos as $k => $inscrito) {
-            $htmlString .= "<tr>
-                                <td><b>Oficina</b></td>
-                                <td><b>Nº da Inscrição</b></td>
-                                <td><b>UF</b></td>
-                                <td><b>Município</b></td>
-                                <td><b>Nome</b></td>
-                                <td><b>Cargo</b></td>
-                                <td><b>Orgão</b></td>
-                                <td><b>Esfera</b></td>
-                                <td><b>Perfil</b></td>
-                           </tr>";
-
-            $htmlString .= "<tr>
+            $htmlString[$inscrito->perfil][] =
+                "<tr>
                                 <td>{$inscrito->oficina}</td>
                                 <td>{$inscrito->num_inscricao}</td>
                                 <td>{$inscrito->st_estado}</td>
@@ -1008,211 +1041,235 @@ final class SNC_Oficinas_Service
                                 <td>{$inscrito->orgao}</td>
                                 <td>{$inscrito->esfera}</td>
                                 <td>{$inscrito->perfil}</td>
-                            </tr>";
+                                <td>{$inscrito->interesse1}</td>
+                                <td>{$inscrito->interesse2}</td>
+                                <td>{$inscrito->interesse3}</td>
+                                <td>{$inscrito->interesse4}</td>
+                                <td>{$inscrito->interesse5}</td>" .
 
-            $htmlString .= self::generate_results_questions_xlsx($inscrito);
+                self::generate_results_resp_xlsx($inscrito) . "</tr>";
+
+            $htmlString['perguntas'][$inscrito->perfil] = self::get_array_questions($inscrito);
         }
 
-        return "<table border='1' cellspacing='0'>{$htmlString}</table>";
+        $cabecalhoPadrao = "<td><b>Oficina</b></td><td><b>Nº da Inscrição</b></td><td><b>UF</b></td>
+                            <td><b>Município</b></td><td><b>Nome</b></td><td><b>Cargo</b></td>
+                            <td><b>Orgão</b></td><td><b>Esfera</b></td><td><b>Perfil</b></td>
+                            <td><b>Interesse 1</b></td><td><b>Interesse 2</b></td><td><b>Interesse 3</b></td>
+                            <td><b>Interesse 4</b></td><td><b>Interesse 5</b></td>";
+
+        $planilhas["Dicionários"] = '<table border="1" cellspacing="0">';
+
+        if (isset($htmlString["Gestor de Cultura"])) {
+            self::get_html_planilha_perfil($planilhas, $cabecalhoPadrao, $htmlString, "Gestor de Cultura");
+        }
+
+        if (isset($htmlString["Conselheiro de Cultura"])) {
+            self::get_html_planilha_perfil($planilhas, $cabecalhoPadrao, $htmlString, "Conselheiro de Cultura");
+        }
+
+        if (isset($htmlString["Ponteiro de Cultura"])) {
+            self::get_html_planilha_perfil($planilhas, $cabecalhoPadrao, $htmlString, "Ponteiro de Cultura");
+        }
+
+        if (isset($htmlString["Sociedade Civil"])) {
+            self::get_html_planilha_perfil($planilhas, $cabecalhoPadrao, $htmlString, "Sociedade Civil");
+        }
+
+        $planilhas["Dicionários"] .= "</table>";
+
+        return $planilhas;
     }
 
-    final public static function generate_results_questions_xlsx($inscrito)
+    final public static function get_html_planilha_perfil(&$planilhas, $cabecalhoPadrao, $htmlString, $perfil)
     {
-        $perguntas = json_decode($inscrito->perguntas_perfil);
+        $cabecalho = "<td><b>" . implode("</b></td><td><b>", array_keys($htmlString['perguntas'][$perfil])) . "</b></td>";
+
+        $html = '<table border="1" cellspacing="0">';
+        $html .= "<tr>{$cabecalhoPadrao}{$cabecalho}</tr>";
+        $html .= implode("", $htmlString[$perfil]);
+        $html .= "</table>";
+
+        $planilhas[$perfil] = $html;
+
+        $planilhas["Dicionários"] .= '<tr><td colspan="2"><b>Aba ' . $perfil . ' - Dicionário</b></td></tr>';
+        $planilhas["Dicionários"] .= "<tr><td><b>Cód.</b></td><td><b>Perguntas</b></td></tr>";
+
+        foreach ($htmlString['perguntas'][$perfil] as $k => $pergunta) {
+            if ("CM-03" == $k) {
+                $planilhas["Dicionários"] .= '<tr><td></td><td><i><b>Por favor, avalie as afirmações seguintes segundo a sua opinião sobre o 
+                                            <br/>evento Diálogos Federativos: Cultura de Ponto à Ponta</b> (Ref: CM-03 à CM-10)</i></td></tr>';
+            }
+
+            $planilhas["Dicionários"] .= "<tr><td><b>{$k}</b></td><td>{$pergunta}</td></tr>";
+        }
+
+        $planilhas["Dicionários"] .= '<tr><td colspan="2"></td></tr><tr><td colspan="2"></td></tr>';
+    }
+
+    final public static function generate_results_resp_xlsx($inscrito)
+    {
         $respostas = json_decode($inscrito->respostas_perfil);
 
         switch ($inscrito->perfil) {
             case 'Gestor de Cultura' :
-                $return = self::generate_gestor_results_xlsx($perguntas, $respostas);
+                $return = self::generate_gestor_results_xlsx($respostas);
                 break;
             case 'Conselheiro de Cultura' :
-                $return = self::generate_conselheiro_results_xlsx($perguntas, $respostas);
+                $return = self::generate_conselheiro_results_xlsx($respostas);
                 break;
             case 'Ponteiro de Cultura':
-                $return = self::generate_ponteiro_results_xlsx($perguntas, $respostas);
+                $return = self::generate_ponteiro_results_xlsx($respostas);
                 break;
             default :
-                $return = self::generate_sociedade_results_xlsx($perguntas, $respostas);
+                $return = self::generate_sociedade_results_xlsx($respostas);
                 break;
         }
 
         return $return;
     }
 
-    final public static function generate_base_avaliacao_xlsx($perguntas, $respostas)
+    final public static function generate_base_avaliacao_xlsx($respostas)
     {
-        $html = '<tr>
-                    <td colspan="5"><b>' . SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_saber_evento, 60) . '</b></td>
-                    <td colspan="4">' . SNC_Oficinas_Utils::get_resp_oficina_questionario_saber_evento($respostas->oficina_questionario_saber_evento) . '</td>
-                  </tr>';
-
-        $html .= '<tr>
-                    <td colspan="5"><b>' . SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_primeira_vez, 60) . '</b></td>
-                    <td colspan="4">' . SNC_Oficinas_Utils::get_resp_oficina_sim_nao($respostas->oficina_questionario_primeira_vez) . '</td>
-                  </tr>';
-
-        $html .= '<tr><td colspan="9"><b>' . SNC_Oficinas_Utils::get_text_nl2br('Por favor, avalie as afirmações seguintes segundo a sua opinião sobre o evento Diálogos Federativos: Cultura de Ponto à Ponta') . '</b></td></tr>';
-
-        $html .= '<tr>
-                    <td colspan="5"><b>' . SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_facilidade, 60) . '</b></td>
-                    <td colspan="4">' . SNC_Oficinas_Utils::get_resp_oficina_satisfacao($respostas->oficina_questionario_facilidade) . '</td>
-                  </tr>';
-
-        $html .= '<tr>
-                    <td colspan="5"><b>' . SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_divulgacao, 60) . '</b></td>
-                    <td colspan="4">' . SNC_Oficinas_Utils::get_resp_oficina_satisfacao($respostas->oficina_questionario_divulgacao) . '</td>
-                  </tr>';
-
-        $html .= '<tr>
-                    <td colspan="5"><b>' . SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_programacao, 60) . '</b></td>
-                    <td colspan="4">' . SNC_Oficinas_Utils::get_resp_oficina_satisfacao($respostas->oficina_questionario_programacao) . '</td>
-                  </tr>';
-
-        $html .= '<tr>
-                    <td colspan="5"><b>' . SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_organizacao, 60) . '</b></td>
-                    <td colspan="4">' . SNC_Oficinas_Utils::get_resp_oficina_satisfacao($respostas->oficina_questionario_organizacao) . '</td>
-                  </tr>';
-        $html .= '<tr>
-                    <td colspan="5"><b>' . SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_temas_abordados, 60) . '</b></td>
-                    <td colspan="4">' . SNC_Oficinas_Utils::get_resp_oficina_satisfacao($respostas->oficina_questionario_temas_abordados) . '</td>
-                  </tr>';
-
-        $html .= '<tr>
-                    <td colspan="5"><b>' . SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_conhecimento, 60) . '</b></td>
-                    <td colspan="4">' . SNC_Oficinas_Utils::get_resp_oficina_satisfacao($respostas->oficina_questionario_conhecimento) . '</td>
-                  </tr>';
-
-        $html .= '<tr>
-                    <td colspan="5"><b>' . $perguntas->oficina_questionario_adequacao . '</b></td>
-                    <td colspan="4">' . SNC_Oficinas_Utils::get_resp_oficina_satisfacao($respostas->oficina_questionario_adequacao) . '</td>
-                  </tr>';
-
-        $html .= '<tr>
-                    <td colspan="5"><b>' . SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_materiais, 60) . '</b></td>
-                    <td colspan="4">' . SNC_Oficinas_Utils::get_resp_oficina_satisfacao($respostas->oficina_questionario_materiais) . '</td>
-                  </tr>';
-
-        $html .= '<tr>
-                    <td colspan="5"><b>' . SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_recomendacao, 60) . '</b></td>
-                    <td colspan="4">' . SNC_Oficinas_Utils::get_resp_oficina_satisfacao($respostas->oficina_questionario_recomendacao) . '</td>
-                  </tr>';
-
-        $html .= '<tr>
-                    <td colspan="5"><b>' . SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_comentario, 60) . '</b></td>
-                    <td colspan="4">' . SNC_Oficinas_Utils::get_text_nl2br($respostas->oficina_questionario_comentario, 60) . '</td>
-                  </tr>';
-
-        $html .= '<tr><td colspan="9" style="border: 0;">&nbsp;</td></tr><tr><td colspan="9" style="border: 0;">&nbsp;</td></tr>';
+        $html = '<td>' . SNC_Oficinas_Utils::get_resp_oficina_questionario_saber_evento($respostas->oficina_questionario_saber_evento) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_resp_oficina_sim_nao($respostas->oficina_questionario_primeira_vez) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_resp_oficina_satisfacao($respostas->oficina_questionario_facilidade) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_resp_oficina_satisfacao($respostas->oficina_questionario_divulgacao) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_resp_oficina_satisfacao($respostas->oficina_questionario_programacao) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_resp_oficina_satisfacao($respostas->oficina_questionario_organizacao) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_resp_oficina_satisfacao($respostas->oficina_questionario_temas_abordados) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_resp_oficina_satisfacao($respostas->oficina_questionario_conhecimento) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_resp_oficina_satisfacao($respostas->oficina_questionario_adequacao) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_resp_oficina_satisfacao($respostas->oficina_questionario_materiais) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_resp_oficina_satisfacao($respostas->oficina_questionario_recomendacao) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_text_nl2br($respostas->oficina_questionario_comentario, 60) . '</td>';
 
         return $html;
     }
 
-    final public static function generate_gestor_results_xlsx($perguntas, $respostas)
+    final public static function generate_gestor_results_xlsx($respostas)
     {
-        $html = '<tr><td colspan="9">&nbsp;</td></tr>';
+        $html = '<td>' . SNC_Oficinas_Utils::get_resp_oficina_questionario_necessidade_aprofundamento($respostas->oficina_questionario_necessidade_aprofundamento) . '</td>';
 
-        $html .= '<tr>
-                    <td colspan="5">
-                        <b>' . SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_necessidade_aprofundamento, 60) . '</b>
-                    </td>
-                    <td colspan="4">
-                        ' . SNC_Oficinas_Utils::get_resp_oficina_questionario_necessidade_aprofundamento($respostas->oficina_questionario_necessidade_aprofundamento) . '
-                    </td>
-                  </tr>';
-
-        $html .= self::generate_base_avaliacao_xlsx($perguntas, $respostas);
+        $html .= self::generate_base_avaliacao_xlsx($respostas);
 
         return $html;
     }
 
-    final public static function generate_conselheiro_results_xlsx($perguntas, $respostas)
+    final public static function generate_conselheiro_results_xlsx($respostas)
     {
-        $html = '<tr><td colspan="9">&nbsp;</td></tr>';
+        $html = '<td>' . SNC_Oficinas_Utils::get_resp_oficina_sim_nao($respostas->oficina_questionario_federado_cultura) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_resp_oficina_sim_nao($respostas->oficina_questionario_funcionamento) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_resp_oficina_representantes($respostas->oficina_questionario_representantes) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_text_nl2br($respostas->oficina_questionario_territorio_conselho) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_resp_oficina_sim_nao($respostas->oficina_questionario_conselheiros_capacitacao) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_resp_oficina_necessidade_capacitacao($respostas->oficina_questionario_necessidade_capacitacao) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_resp_oficina_sim_nao($respostas->oficina_questionario_debates_atividades) . '</td>';
 
-        $html .= '<tr>
-                    <td colspan="5">
-                        <b>' . SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_federado_cultura, 60) . '</b>
-                    </td>
-                    <td colspan="4">
-                        ' . SNC_Oficinas_Utils::get_resp_oficina_sim_nao($respostas->oficina_questionario_federado_cultura) . '
-                    </td>
-                  </tr>';
-
-        $html .= '<tr>
-                    <td colspan="5"><b>' . SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_funcionamento, 60) . '</b></td>
-                    <td colspan="4">' . SNC_Oficinas_Utils::get_resp_oficina_sim_nao($respostas->oficina_questionario_funcionamento) . '</td>
-                  </tr>';
-
-        $html .= '<tr>
-                    <td colspan="5"><b>' . SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_representantes, 60) . '</b></td>
-                    <td colspan="4">' . SNC_Oficinas_Utils::get_resp_oficina_representantes($respostas->oficina_questionario_representantes) . '</td>
-                  </tr>';
-
-        $html .= '<tr>
-                    <td colspan="5"><b>' . SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_territorio_conselho, 60) . '</b></td>
-                    <td colspan="4">' . SNC_Oficinas_Utils::get_text_nl2br($respostas->oficina_questionario_territorio_conselho) . '</td>
-                  </tr>';
-
-        $html .= '<tr>
-                    <td colspan="5"><b>' . SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_conselheiros_capacitacao, 60) . '</b></td>
-                    <td colspan="4">' . SNC_Oficinas_Utils::get_resp_oficina_sim_nao($respostas->oficina_questionario_conselheiros_capacitacao) . '</td>
-                  </tr>';
-
-        $html .= '<tr>
-                    <td colspan="5"><b>' . SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_necessidade_capacitacao, 60) . '</b></td>
-                    <td colspan="4">' . SNC_Oficinas_Utils::get_resp_oficina_necessidade_capacitacao($respostas->oficina_questionario_necessidade_capacitacao) . '</td>
-                  </tr>';
-
-        $html .= '<tr>
-                    <td colspan="5"><b>' . SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_debates_atividades, 60) . '</b></td>
-                    <td colspan="4">' . SNC_Oficinas_Utils::get_resp_oficina_sim_nao($respostas->oficina_questionario_debates_atividades) . '</td>
-                  </tr>';
-
-        $html .= self::generate_base_avaliacao_xlsx($perguntas, $respostas);
+        $html .= self::generate_base_avaliacao_xlsx($respostas);
 
         return $html;
     }
 
-    final public static function generate_ponteiro_results_xlsx($perguntas, $respostas)
+    final public static function generate_ponteiro_results_xlsx($respostas)
     {
-        $html = '<tr><td colspan="9">&nbsp;</td></tr>';
+        $html = '<td>' . SNC_Oficinas_Utils::get_resp_oficina_ponto_cultura($respostas->oficina_questionario_ponto_cultura) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_resp_oficina_coletivos_culturais($respostas->oficina_questionario_coletivos_culturais) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_resp_oficina_comunicacao_direta($respostas->oficina_questionario_comunicacao_direta) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_resp_oficina_comunicacao_cidadania($respostas->oficina_questionario_comunicacao_cidadania) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_resp_oficina_sim_nao($respostas->oficina_questionario_plano_capacitacao) . '</td>';
 
-        $html .= '<tr>
-                    <td colspan="5"><b>' . SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_ponto_cultura, 60) . '</b></td>
-                    <td colspan="4">' . SNC_Oficinas_Utils::get_resp_oficina_ponto_cultura($respostas->oficina_questionario_ponto_cultura) . '</td>
-                  </tr>';
-
-        $html .= '<tr>
-                    <td colspan="5"><b>' . SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_coletivos_culturais, 60) . '</b></td>
-                    <td colspan="4">' . SNC_Oficinas_Utils::get_resp_oficina_coletivos_culturais($respostas->oficina_questionario_coletivos_culturais) . '</td>
-                  </tr>';
-
-        $html .= '<tr>
-                    <td colspan="5"><b>' . SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_comunicacao_direta, 60) . '</b></td>
-                    <td colspan="4">' . SNC_Oficinas_Utils::get_resp_oficina_comunicacao_direta($respostas->oficina_questionario_comunicacao_direta) . '</td>
-                  </tr>';
-
-        $html .= '<tr>
-                    <td colspan="5"><b>' . SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_comunicacao_cidadania, 60) . '</b></td>
-                    <td colspan="4">' . SNC_Oficinas_Utils::get_resp_oficina_comunicacao_cidadania($respostas->oficina_questionario_comunicacao_cidadania) . '</td>
-                  </tr>';
-
-        $html .= '<tr>
-                    <td colspan="5"><b>' . SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_plano_capacitacao, 60) . '</b></td>
-                    <td colspan="4">' . SNC_Oficinas_Utils::get_resp_oficina_sim_nao($respostas->oficina_questionario_plano_capacitacao) . '</td>
-                  </tr>';
-
-        $html .= self::generate_base_avaliacao_xlsx($perguntas, $respostas);
+        $html .= self::generate_base_avaliacao_xlsx($respostas);
 
         return $html;
     }
 
-    final public static function generate_sociedade_results_xlsx($perguntas, $respostas)
+    final public static function get_array_questions($inscrito)
     {
-        $html = '<tr><td colspan="9">&nbsp;</td></tr>';
+        $perguntas = json_decode($inscrito->perguntas_perfil);
 
-        $html .= self::generate_base_avaliacao_xlsx($perguntas, $respostas);
+        switch ($inscrito->perfil) {
+            case 'Gestor de Cultura' :
+                $return = self::get_array_gestor_questions($perguntas);
+                break;
+            case 'Conselheiro de Cultura' :
+                $return = self::get_array_conselheiro_questions($perguntas);
+                break;
+            case 'Ponteiro de Cultura':
+                $return = self::get_array_ponteiro_questions($perguntas);
+                break;
+            default :
+                $return = self::get_array_sociedade_questions($perguntas);
+                break;
+        }
+
+        return $return;
+    }
+
+    final public static function generate_sociedade_results_xlsx($respostas)
+    {
+        $html = self::generate_base_avaliacao_xlsx($respostas);
 
         return $html;
+    }
+
+    final public static function get_array_base_avaliacao_questions($perguntas)
+    {
+        $array = [];
+        $array["CM-01"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_saber_evento);
+        $array["CM-02"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_primeira_vez);
+        $array["CM-03"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_facilidade);
+        $array["CM-04"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_divulgacao);
+        $array["CM-05"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_programacao);
+        $array["CM-06"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_organizacao);
+        $array["CM-07"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_temas_abordados);
+        $array["CM-08"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_conhecimento);
+        $array["CM-09"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_adequacao);
+        $array["CM-10"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_materiais);
+        $array["CM-11"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_recomendacao);
+        $array["CM-12"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_comentario);
+
+        return $array;
+    }
+
+    final public static function get_array_gestor_questions($perguntas)
+    {
+        $array = [];
+        $array["GE-01"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_necessidade_aprofundamento);
+
+        return array_merge($array, self::get_array_base_avaliacao_questions($perguntas));
+    }
+
+    final public static function get_array_conselheiro_questions($perguntas)
+    {
+        $array = [];
+        $array["CO-01"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_federado_cultura);
+        $array["CO-02"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_funcionamento);
+        $array["CO-03"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_representantes);
+        $array["CO-04"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_territorio_conselho);
+        $array["CO-05"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_conselheiros_capacitacao);
+        $array["CO-06"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_necessidade_capacitacao);
+        $array["CO-07"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_debates_atividades);
+
+        return array_merge($array, self::get_array_base_avaliacao_questions($perguntas));
+    }
+
+    final public static function get_array_ponteiro_questions($perguntas)
+    {
+        $array = [];
+        $array["PO-01"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_ponto_cultura);
+        $array["PO-02"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_coletivos_culturais);
+        $array["PO-03"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_comunicacao_direta);
+        $array["PO-04"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_comunicacao_cidadania);
+        $array["PO-05"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->oficina_questionario_plano_capacitacao);
+
+        return array_merge($array, self::get_array_base_avaliacao_questions($perguntas));
+    }
+
+    final public static function get_array_sociedade_questions($perguntas)
+    {
+        $array = [];
+
+        return array_merge($array, self::get_array_base_avaliacao_questions($perguntas));
     }
 }

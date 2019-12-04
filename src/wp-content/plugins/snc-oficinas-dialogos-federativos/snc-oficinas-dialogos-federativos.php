@@ -20,6 +20,7 @@ define('SNC_POST_TYPE_INSCRICOES', 'inscricao-oficina');
 define('SNC_POST_TYPE_OFICINA', 'oficinas');
 define('SNC_POST_TYPE_PARTICIPACAO', 'participacao-oficina');
 define('SNC_POST_TYPE_ASSINATURAS', 'assinatura-oficina');
+define('SNC_POST_TYPE_FEDERAL', 'federal-oficina');
 
 //require_once SNC_ODF_PLUGIN_PATH . '/vendor/autoload.php';
 
@@ -52,7 +53,6 @@ class SNC_Oficinas_Dialogos_Federativos
 
         add_action('admin_menu', array($this, 'snc_relatorio_menu'));
         add_action('plugins_loaded', array($this, 'snc_ofinas_relatorio_concluidos'));
-        add_action('plugins_loaded', array($this, 'snc_ofinas_relatorio_inscritos'));
         add_action('plugins_loaded', array($this, 'snc_ofinas_relatorio_interesses'));
         add_action('plugins_loaded', array($this, 'snc_ofinas_relatorio_perfis'));
 
@@ -65,7 +65,6 @@ class SNC_Oficinas_Dialogos_Federativos
     {
         add_menu_page('Relatórios', 'Relatórios', 'manage_options', 'oficinas-relatorios', array($this, 'snc_ofinas_relatorios'), '', 30);
         add_submenu_page('oficinas-relatorios', 'Concluídos', 'Concluídos', 'manage_options', 'oficinas-relatorios-concluidos', array($this, 'snc_ofinas_relatorio_concluidos'));
-        add_submenu_page('oficinas-relatorios', 'Inscritos', 'Inscritos', 'manage_options', 'oficinas-relatorios-inscritos', array($this, 'snc_ofinas_relatorio_inscritos'));
         add_submenu_page('oficinas-relatorios', 'Interesses', 'Interesses', 'manage_options', 'oficinas-relatorios-interesses', array($this, 'snc_ofinas_relatorio_interesses'));
         add_submenu_page('oficinas-relatorios', 'Perfis', 'Perfis', 'manage_options', 'oficinas-relatorios-perfis', array($this, 'snc_ofinas_relatorio_perfis'));
     }
@@ -89,22 +88,17 @@ class SNC_Oficinas_Dialogos_Federativos
                     <tbody id="the-list">
                     <tr class="no-items">
                         <td class="title column-title has-row-actions column-primary page-title">
-                            <a href="<?= admin_url("admin.php?page=oficinas-relatorios-concluidos") ?>">Concluídos</a>
+                            <a href="<?php echo admin_url("admin.php?page=oficinas-relatorios-concluidos"); ?>" target="_blank">Concluídos</a>
                         </td>
                     </tr>
                     <tr class="no-items">
                         <td class="title column-title has-row-actions column-primary page-title">
-                            <a href="<?= admin_url("admin.php?page=oficinas-relatorios-inscritos") ?>">Inscritos</a>
+                            <a href="<?php echo admin_url("admin.php?page=oficinas-relatorios-interesses"); ?>" target="_blank">Interesses</a>
                         </td>
                     </tr>
                     <tr class="no-items">
                         <td class="title column-title has-row-actions column-primary page-title">
-                            <a href="<?= admin_url("admin.php?page=oficinas-relatorios-interesses") ?>">Interesses</a>
-                        </td>
-                    </tr>
-                    <tr class="no-items">
-                        <td class="title column-title has-row-actions column-primary page-title">
-                            <a href="<?= admin_url("admin.php?page=oficinas-relatorios-perfis") ?>">Perfis</a>
+                            <a href="<?php echo admin_url("admin.php?page=oficinas-relatorios-perfis"); ?>" target="_blank">Perfis</a>
                         </td>
                     </tr>
                     </tbody>
@@ -130,16 +124,16 @@ class SNC_Oficinas_Dialogos_Federativos
         }
     }
 
-    private function _generate_download_xlsx($page, $nameCsv, $function)
+    private function _generate_download_xlsx($page, $nameXlsx, $function, $tabName)
     {
         global $pagenow;
         if ($pagenow == 'admin.php' && $_GET['page'] == $page) {
 
-            $spreadsheet = SNC_Oficinas_Service::generate_relatorio_admin_xlsx($function);
+            $spreadsheet = SNC_Oficinas_Service::generate_relatorio_admin_xlsx($function, $tabName);
 
             $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, "Xlsx");
             header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-            header('Content-Disposition: attachment; filename="' . $nameCsv . '.xlsx"');
+            header('Content-Disposition: attachment; filename="' . $nameXlsx . '.xlsx"');
             $writer->save("php://output");
             exit();
         }
@@ -147,22 +141,17 @@ class SNC_Oficinas_Dialogos_Federativos
 
     public function snc_ofinas_relatorio_concluidos()
     {
-        $this->_generate_download_xlsx('oficinas-relatorios-concluidos', 'relatorio_concluidos', 'generate_relatorio_concluidos_base_xlsx');
-    }
-
-    public function snc_ofinas_relatorio_inscritos()
-    {
-        $this->_generate_download_xlsx('oficinas-relatorios-inscritos', 'relatorio_inscritos', 'generate_relatorio_inscritos_base_xlsx');
+        $this->_generate_download_xlsx('oficinas-relatorios-concluidos', 'relatorio_concluidos', 'generate_relatorio_concluidos_base_xlsx', "Concluídos");
     }
 
     public function snc_ofinas_relatorio_interesses()
     {
-        $this->_generate_download_xlsx('oficinas-relatorios-interesses', 'relatorio_interesses', 'generate_relatorio_interesses_base_xlsx');
+        $this->_generate_download_xlsx('oficinas-relatorios-interesses', 'relatorio_interesses', 'generate_relatorio_interesses_base_xlsx', "Interesses");
     }
 
     public function snc_ofinas_relatorio_perfis()
     {
-        $this->_generate_download_xlsx('oficinas-relatorios-perfis', 'relatorio_perfis', 'generate_relatorio_perfil_base_xlsx');
+        $this->_generate_download_xlsx('oficinas-relatorios-perfis', 'relatorio_perfis', 'generate_relatorio_perfil_base_xlsx', "Perfis");
     }
 
     public function activate_hook()
@@ -255,14 +244,32 @@ class SNC_Oficinas_Dialogos_Federativos
 
         register_post_type(SNC_POST_TYPE_ASSINATURAS, array(
                 'labels' => array(
-                    'name' => 'Oficinas - Assinaturas',
-                    'singular_name' => 'Oficinas - Assinaturas',
+                    'name' => 'Assinaturas Secretários',
+                    'singular_name' => 'Assinaturas Secretários',
                     'add_new' => 'Nova assinatura',
                     'add_new_item' => 'Nova assinatura',
                     'search_items' => 'Procurar assinatura',
                     'not_found' => 'Nenhuma assinatura encontrada',
                 ),
-                'description' => 'Oficinas - Assinaturas',
+                'description' => 'Assinaturas Secretários',
+                'public' => true,
+                'exclude_from_search' => false,
+                'publicly_queryable' => false,
+                'supports' => array('title'),
+                'menu_icon' => 'dashicons-admin-generic'
+            )
+        );
+
+        register_post_type(SNC_POST_TYPE_FEDERAL, array(
+                'labels' => array(
+                    'name' => 'Assinaturas Federais',
+                    'singular_name' => 'Assinaturas Federais',
+                    'add_new' => 'Nova assinatura',
+                    'add_new_item' => 'Nova assinatura',
+                    'search_items' => 'Procurar assinatura',
+                    'not_found' => 'Nenhuma assinatura encontrada',
+                ),
+                'description' => 'Assinaturas Federais',
                 'public' => true,
                 'exclude_from_search' => false,
                 'publicly_queryable' => false,

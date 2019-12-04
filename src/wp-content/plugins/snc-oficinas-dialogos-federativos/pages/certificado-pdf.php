@@ -27,7 +27,7 @@
         #header {
             position: relative;
             text-align: center;
-            margin: 170px 55px 0 55px;
+            margin: 160px 55px 0 55px;
             border-top: 1px solid #000000;
         }
 
@@ -39,22 +39,24 @@
 
         #info-cert {
             position: relative;
-            margin: 35px 55px 0px 55px;
+            margin: 25px 55px 0px 55px;
             font-family: Arial;
         }
 
         #info-cert p {
             text-align: justify;
-            font-size: 20px;
+            font-size: 18px;
         }
 
         #info-cert #data-cert {
             text-align: right !important;
             float: right !important;
+            z-index: 100000;
+            font-size: 17px;
         }
 
         #footer {
-            margin-top: -58px;
+            margin-top: -45px;
         }
 
         #footer div {
@@ -78,12 +80,12 @@
         }
 
         #ministerio {
-            margin-top: 150px;
+            margin-top: <?php echo $margin_assinatura_federal; ?>px;
         }
     </style>
 </head>
 <body>
-<div id="main" style="">
+<div id="main">
     <div id="header">
         <h1>Certificado</h1>
     </div>
@@ -104,11 +106,19 @@
                 <img src="<?php echo $assinatura_logo; ?>"/>
             </p>
         </div>
+
         <div id="ministerio">
-            <p>GUSTAVO CARVALHO AMARAL</p>
-            <p>Secretário da Diversidade Cultural</p>
-            <p>Secretaria Especial da Cultura</p>
-            <p>Ministério da Cidadania</p>
+            <p>
+                <img src="<?php echo $assinatura_img_federal; ?>"/>
+            </p>
+            <p><?php echo $autoridade_federal; ?></p>
+            <p><?php echo $cargo_federal; ?></p>
+            <p><?php echo $setor_federal; ?></p>
+            <p><?php echo $orgao_federal; ?></p>
+            <p>&nbsp;</p>
+            <p>
+                <img src="<?php echo $assinatura_logo_federal; ?>"/>
+            </p>
         </div>
 
     </div>

@@ -81,6 +81,14 @@ class SNC_Oficinas_Shortcode_Certificado
         global $assinatura_logo;
         global $margin_assinatura;
 
+        global $autoridade_federal;
+        global $cargo_federal;
+        global $setor_federal;
+        global $orgao_federal;
+        global $assinatura_img_federal;
+        global $assinatura_logo_federal;
+        global $margin_assinatura_federal;
+
         $current_user = wp_get_current_user();
         $name = $current_user->display_name;
 
@@ -89,6 +97,7 @@ class SNC_Oficinas_Shortcode_Certificado
         $titulo = $oficina['inscricao_oficina_uf']->post_title;
 
         $assinatura_oficina = get_fields($oficina_campos["oficina_assinatura_oficina"]->ID);
+        $assinatura_federal = get_fields($oficina_campos["oficina_federal_oficina"]->ID);
 
 
         $dataInicio = explode("/", $oficina_campos['oficina_data_inicio']);
@@ -122,6 +131,30 @@ class SNC_Oficinas_Shortcode_Certificado
 
         $assinatura_logo = 'data:image/' . $extension . ';base64,' . base64_encode($response);
 
+        $autoridade_federal = $assinatura_federal['assinatura_federal_secretario'];
+        $cargo_federal = $assinatura_federal['assinatura_federal_cargo'];
+        $setor_federal = $assinatura_federal['assinatura_federal_setor'];
+        $orgao_federal = $assinatura_federal['assinatura_federal_orgao'];
+
+        $urlAssinatura = $assinatura_federal['assinatura_federal_assinatura_digitalizada'];
+        $arAssinatura = array_reverse(explode("wp-content", $urlAssinatura));
+        $urlImageAssinatura = getcwd() . '/wp-content' . $arAssinatura[0];
+
+        $response = file_get_contents($urlImageAssinatura);
+        list($width, $height, $extension, $attr) = getimagesize($urlImageAssinatura);
+
+        $margin_assinatura_federal = 150 - $height;
+        $assinatura_img_federal = 'data:image/' . $extension . ';base64,' . base64_encode($response);
+
+        $urlLogo = $assinatura_federal['assinatura_federal_logotipo'];
+        $arLogo = array_reverse(explode("wp-content", $urlLogo));
+        $urlImageLogo = getcwd() . '/wp-content' . $arLogo[0];
+
+        $response = file_get_contents($urlImageLogo);
+        list($width, $height, $extension, $attr) = getimagesize($urlImageLogo);
+
+        $assinatura_logo_federal = 'data:image/' . $extension . ';base64,' . base64_encode($response);
+
         $uf = $assinatura_oficina['assinatura_oficina_unidade_da_federacao'];
 
         $unidade = mb_substr($uf, 0, strpos($uf, " ("), "UTF-8");
@@ -144,7 +177,9 @@ class SNC_Oficinas_Shortcode_Certificado
         $template = ob_get_contents();
 
         ob_end_clean();
-
+//
+//        echo  $template;
+//        exit();
         $this->mpdf->WriteHTML($template);
     }
 

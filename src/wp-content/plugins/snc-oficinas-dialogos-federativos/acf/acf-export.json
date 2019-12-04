@@ -1110,6 +1110,153 @@
         "description": ""
     },
     {
+        "key": "group_5de043b518287",
+        "title": "Oficina - Assinaturas Federal \/ Autoridade",
+        "fields": [
+            {
+                "key": "field_5de043d530fe5",
+                "label": "Ministro(a) \/ Secretário(a) \/ Autoridade",
+                "name": "assinatura_federal_secretario",
+                "type": "text",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_5de800aa2d34a",
+                "label": "Cargo \/ Função",
+                "name": "assinatura_federal_cargo",
+                "type": "text",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_5de043d531062",
+                "label": "Secretaria \/ Divisão \/ Setor \/ Célula",
+                "name": "assinatura_federal_setor",
+                "type": "text",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_5de043d531026",
+                "label": "Orgão Federal",
+                "name": "assinatura_federal_orgao",
+                "type": "text",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_5de043d53109e",
+                "label": "Assinatura Digitalizada",
+                "name": "assinatura_federal_assinatura_digitalizada",
+                "type": "image",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "url",
+                "preview_size": "thumbnail",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": 300,
+                "max_height": 150,
+                "max_size": "",
+                "mime_types": "png,jpg,jpeg,gif"
+            },
+            {
+                "key": "field_5de043d5310da",
+                "label": "Logotipo",
+                "name": "assinatura_federal_logotipo",
+                "type": "image",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "url",
+                "preview_size": "thumbnail",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": 500,
+                "max_height": 150,
+                "max_size": "",
+                "mime_types": "png,jpg,jpeg,gif"
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "federal-oficina"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": 1,
+        "description": ""
+    },
+    {
         "key": "group_5db8b556131ac",
         "title": "Oficina - Assinaturas para os Certificados",
         "fields": [
@@ -1430,7 +1577,7 @@
             },
             {
                 "key": "field_5db99af31394a",
-                "label": "Assinatura",
+                "label": "Assinatura Estadual",
                 "name": "oficina_assinatura_oficina",
                 "type": "post_object",
                 "instructions": "",
@@ -1443,6 +1590,28 @@
                 },
                 "post_type": [
                     "assinatura-oficina"
+                ],
+                "taxonomy": [],
+                "allow_null": 0,
+                "multiple": 0,
+                "return_format": "object",
+                "ui": 1
+            },
+            {
+                "key": "field_5de801549a202",
+                "label": "Assinatura Federal",
+                "name": "oficina_federal_oficina",
+                "type": "post_object",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "federal-oficina"
                 ],
                 "taxonomy": [],
                 "allow_null": 0,

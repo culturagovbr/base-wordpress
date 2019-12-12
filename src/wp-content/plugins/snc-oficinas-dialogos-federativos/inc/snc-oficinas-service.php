@@ -872,40 +872,19 @@ final class SNC_Oficinas_Service
 
         $htmlString = "<table>";
 
+        $htmlString .= "<tr>
+                            <th><b>Oficina</b></th>
+                            <th><b>UF</b></th>
+                            <th><b>Município</b></th>
+                            <th><b>Nome do Participante</b></th>
+                            <th><b>CPF</b></th>
+                            <th><b>E-mail</b></th>
+                        </tr>";
+
         foreach ($inscritos as $k => $inscrito) {
-
-            if ($idOficina != $inscrito->ID) {
-                if (0 < $k) {
-                    $htmlString .= "<tr><td colspan='5'>&nbsp;</td></tr>
-                                    <tr><td colspan='5'>&nbsp;</td></tr>";
-                }
-
-                $htmlString .= "<tr>
-                                    <th><b>{$oficinas[$inscrito->ID]->post_title}</b></th>
-                                    <th>&nbsp;</th>
-                                    <th><b>Quantidade de Participantes</b></th>
-                                    <th>&nbsp;</th>
-                                    <th>&nbsp;</th>
-                                </tr>";
-
-                $htmlString .= "<tr>
-                                    <th>&nbsp;</th>
-                                    <th>&nbsp;</th>
-                                    <th>{$oficinas[$inscrito->ID]->total_inscritos}</th>
-                                    <th>&nbsp;</th>
-                                    <th>&nbsp;</th>
-                                </tr>";
-
-                $htmlString .= "<tr>
-                                    <th><b>UF</b></th>
-                                    <th><b>Município</b></th>
-                                    <th><b>Nome do Participante</b></th>
-                                    <th><b>CPF</b></th>
-                                    <th><b>E-mail</b></th>
-                                </tr>";
-            }
-
+            
             $htmlString .= "<tr>
+                                <td>{$oficinas[$inscrito->ID]->post_title}</td>
                                 <td>{$inscrito->st_estado}</td>
                                 <td>{$inscrito->st_municipio}</td>
                                 <td>{$inscrito->display_name}</td>
@@ -913,7 +892,6 @@ final class SNC_Oficinas_Service
                                 <td>{$inscrito->user_email}</td>
                             </tr>";
 
-            $idOficina = $inscrito->ID;
         }
 
         $htmlString .= '</table>';

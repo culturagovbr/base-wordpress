@@ -1194,7 +1194,7 @@
                 "label": "Assinatura Digitalizada",
                 "name": "assinatura_federal_assinatura_digitalizada",
                 "type": "image",
-                "instructions": "",
+                "instructions": "Tamanho máximo entre: 300px(Largura) por 150px(Altura). Apenas: png, jpg, jpeg, gif.",
                 "required": 1,
                 "conditional_logic": 0,
                 "wrapper": {
@@ -1218,7 +1218,7 @@
                 "label": "Logotipo",
                 "name": "assinatura_federal_logotipo",
                 "type": "image",
-                "instructions": "",
+                "instructions": "Tamanho máximo entre: 500px(Largura) por 100px(Altura). Apenas: png, jpg, jpeg, gif.",
                 "required": 1,
                 "conditional_logic": 0,
                 "wrapper": {
@@ -1233,7 +1233,7 @@
                 "min_height": "",
                 "min_size": "",
                 "max_width": 500,
-                "max_height": 150,
+                "max_height": 100,
                 "max_size": "",
                 "mime_types": "png,jpg,jpeg,gif"
             }
@@ -1353,7 +1353,7 @@
                 "label": "Assinatura Digitalizada",
                 "name": "assinatura_oficina_assinatura_digitalizada",
                 "type": "image",
-                "instructions": "",
+                "instructions": "Tamanho máximo entre: 300px(Largura) por 150px(Altura). Apenas: png, jpg, jpeg, gif.",
                 "required": 1,
                 "conditional_logic": 0,
                 "wrapper": {
@@ -1377,7 +1377,7 @@
                 "label": "Logotipo",
                 "name": "assinatura_oficina_logotipo",
                 "type": "image",
-                "instructions": "",
+                "instructions": "Tamanho máximo entre: 300px(Largura) por 100px(Altura). Apenas: png, jpg, jpeg, gif.",
                 "required": 1,
                 "conditional_logic": 0,
                 "wrapper": {
@@ -1392,7 +1392,7 @@
                 "min_height": "",
                 "min_size": "",
                 "max_width": 300,
-                "max_height": 150,
+                "max_height": 100,
                 "max_size": "",
                 "mime_types": "png,jpg,jpeg,gif"
             }

@@ -428,22 +428,7 @@ final class SNC_Oficinas_Service
                      AND pagina.meta_key = '_user_webpage'
                     JOIN {$userMetaTable} ferramenta 
                       ON ferramenta.user_id = u.ID
-                     AND ferramenta.meta_key = '_user_socials'
-                    JOIN {$postMetaTable} interesse_1 
-                      ON interesse_1.post_id = insc.ID
-                     AND interesse_1.meta_key = 'inscricao_interesse_1'
-                    JOIN {$postMetaTable} interesse_2 
-                      ON interesse_2.post_id = insc.ID
-                     AND interesse_2.meta_key = 'inscricao_interesse_2'
-                    JOIN {$postMetaTable} interesse_3 
-                      ON interesse_3.post_id = insc.ID
-                     AND interesse_3.meta_key = 'inscricao_interesse_3'
-                    JOIN {$postMetaTable} interesse_4 
-                      ON interesse_4.post_id = insc.ID
-                     AND interesse_4.meta_key = 'inscricao_interesse_4'
-                    JOIN {$postMetaTable} interesse_5 
-                      ON interesse_5.post_id = insc.ID
-                     AND interesse_5.meta_key = 'inscricao_interesse_5'                     
+                     AND ferramenta.meta_key = '_user_socials'                 
                     LEFT JOIN {$postTable} quest
                       ON quest.post_parent = insc.ID 
 				     AND quest.post_author = u.ID

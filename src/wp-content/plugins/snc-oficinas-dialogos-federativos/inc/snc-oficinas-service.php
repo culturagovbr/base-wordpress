@@ -5,8 +5,15 @@ if (!defined('WPINC'))
 
 require_once SNC_ODF_PLUGIN_PATH . '/vendor/autoload.php';
 
+/**
+ * Class SNC_Oficinas_Service
+ */
 final class SNC_Oficinas_Service
 {
+    /**
+     * @param null $postIdOficina
+     * @return mixed
+     */
     public static function get_quantitativo_inscritos($postIdOficina = null)
     {
         global $wpdb;
@@ -93,6 +100,9 @@ final class SNC_Oficinas_Service
         return $wpdb->$command($query);
     }
 
+    /**
+     * @return array|object|null
+     */
     public static function get_quantitativo_inscritos_concluidos()
     {
         global $wpdb;
@@ -139,6 +149,9 @@ final class SNC_Oficinas_Service
         return $wpdb->get_results($query);
     }
 
+    /**
+     * @return array|object|null
+     */
     public static function get_all_inscritos_concluidos()
     {
         global $wpdb;
@@ -188,7 +201,11 @@ final class SNC_Oficinas_Service
         return $wpdb->get_results($query);
     }
 
-    public static function get_all_inscritos()
+    /**
+     * @param bool $concluidos
+     * @return array|object|null
+     */
+    public static function get_all_inscritos($concluidos = false)
     {
         global $wpdb;
 
@@ -197,30 +214,76 @@ final class SNC_Oficinas_Service
         $userTable = $wpdb->users;
         $userMetaTable = $wpdb->usermeta;
 
+        $where = "";
+
+        if ($concluidos) {
+            $where = " AND o.post_status NOT IN ('auto-draft', 'canceled') 
+                       AND insc.post_status IN ('waiting_questions', 'finish')";
+        }
+
         $query = "SELECT o.ID, 
                          o.post_title as oficina, 
                          insc.ID AS num_inscricao,
                          u.display_name AS nome,
                          u.user_email AS email,
+                         nascimento.meta_value AS dt_nascimento,
+                         escolar.meta_value AS escolaridade,
+                         genero.meta_value AS sexo,
                          cpf.meta_value AS nu_cpf,
                          rg.meta_value AS nu_rg,
-                         fone.meta_value AS telefone,
                          endereco.meta_value AS st_endereco,
-                         estado.meta_value AS st_estado,
                          municipio.meta_value AS st_municipio,
-                         genero.meta_value AS sexo,
-                         escolar.meta_value AS escolaridade,
-                         insc_perfil.meta_value AS perfil,
+                         estado.meta_value AS st_estado,
+                         bairro.meta_value AS st_bairro,
+                         numero.meta_value AS st_numero,
+                         complemento.meta_value AS st_complemento,
+                         cep.meta_value AS st_cep,
+                         fone.meta_value AS telefone,
+                         celular.meta_value AS telefone_celular,
+                         institucional.meta_value AS email_institucional, 
+                         pagina.meta_value AS pagina_web, 
+                         ferramenta.meta_value AS ferramentas,
                          DATE_FORMAT(STR_TO_DATE(ini.meta_value, '%Y%m%d'), '%d/%m/%Y') AS data_inicio,
                          DATE_FORMAT(STR_TO_DATE(fim.meta_value, '%Y%m%d'), '%d/%m/%Y') AS data_fim,
-                         interesse_1.meta_value AS interesse1,
-                         interesse_2.meta_value AS interesse2,
-                         interesse_3.meta_value AS interesse3,
-                         interesse_4.meta_value AS interesse4,
-                         interesse_5.meta_value AS interesse5,
-                         car.meta_value AS cargo,
-                         org.meta_value AS orgao,
-                         esf.meta_value AS esfera,
+                         insc_perfil.meta_value AS perfil,
+                         insc.post_status,
+                         insc.post_type,
+                         CASE insc.post_status 
+                         	WHEN 'waiting_list' THEN 'Lista de Espera'
+                         	WHEN 'confirmed' THEN 'Confirmada'
+                         	WHEN 'canceled' THEN 'Cancelada'
+                         	WHEN 'waiting_presence' THEN 'Aguardando Presença'
+                         	WHEN 'waiting_questions' THEN 'Aguardando Questionário'
+                         	WHEN 'finish' THEN 'Concluída'
+                         	WHEN 'pending' THEN 'Pendente'
+                         	ELSE ''
+                         	END AS st_inscricao,
+                         CONVERT(
+                         	(SELECT JSON_OBJECTAGG(COALESCE(perg.post_excerpt, COALESCE(perg.post_title, '')), COALESCE(perg.post_title, ''))
+							   FROM {$postTable} quest 
+							   JOIN {$postTable} perg 
+								 ON perg.post_parent = quest.ID 
+   								AND perg.post_excerpt NOT IN ('inscricao_perfil', 'inscricao_oficina_uf', 'inscricao_autorizacao_de_uso_da_imagem')
+							   JOIN {$postMetaTable} resp_ 
+   								 ON resp_.meta_key = perg.post_excerpt 
+ 							  WHERE quest.post_excerpt = 'ficha-de-inscricao-para-as-oficinas-dos-dialogos-federativos'
+ 							    AND resp_.post_id = insc.ID 
+ 							   ORDER BY resp_.meta_id 
+ 							    ) USING utf8mb4) 
+ 							AS perguntas_inscricao, 
+ 						CONVERT(
+                         	(SELECT JSON_OBJECTAGG(COALESCE(resp_.meta_key, ''), COALESCE(resp_.meta_value, ''))
+							   FROM {$postTable} quest 
+							   JOIN {$postTable} perg 
+								 ON perg.post_parent = quest.ID 
+								AND perg.post_excerpt NOT IN ('inscricao_perfil', 'inscricao_oficina_uf', 'inscricao_autorizacao_de_uso_da_imagem')
+							   JOIN {$postMetaTable} resp_ 
+   								 ON resp_.meta_key = perg.post_excerpt 
+ 							  WHERE quest.post_excerpt = 'ficha-de-inscricao-para-as-oficinas-dos-dialogos-federativos'
+ 							    AND resp_.post_id = insc.ID 
+ 							   ORDER BY resp_.meta_id 
+ 							    ) USING utf8mb4) 
+ 							AS respostas_inscricao, 
                          CONVERT(
                          	CASE 
 	                         	WHEN insc_perfil.meta_value = 'Gestor de Cultura' THEN 
@@ -324,6 +387,9 @@ final class SNC_Oficinas_Service
                     JOIN {$userMetaTable} fone 
                       ON fone.user_id = u.ID
                      AND fone.meta_key = '_user_phone'
+					JOIN {$userMetaTable} celular 
+                      ON celular.user_id = u.ID
+                     AND celular.meta_key = '_user_celphone'
                     JOIN {$userMetaTable} endereco 
                       ON endereco.user_id = u.ID
                      AND endereco.meta_key = '_user_address'
@@ -333,12 +399,36 @@ final class SNC_Oficinas_Service
                     JOIN {$userMetaTable} municipio 
                       ON municipio.user_id = u.ID
                      AND municipio.meta_key = '_user_county'
+                    JOIN {$userMetaTable} bairro 
+                      ON bairro.user_id = u.ID
+                     AND bairro.meta_key = '_user_neighborhood'
+                    JOIN {$userMetaTable} complemento 
+                      ON complemento.user_id = u.ID
+                     AND complemento.meta_key = '_user_complement'
+                    JOIN {$userMetaTable} numero 
+                      ON numero.user_id = u.ID
+                     AND numero.meta_key = '_user_number'
                     JOIN {$userMetaTable} genero 
                       ON genero.user_id = u.ID
                      AND genero.meta_key = '_user_gender'
-                     JOIN {$userMetaTable} escolar 
+                    JOIN {$userMetaTable} escolar 
                       ON escolar.user_id = u.ID
                      AND escolar.meta_key = '_user_schooling'
+                    JOIN {$userMetaTable} nascimento 
+                      ON nascimento.user_id = u.ID
+                     AND nascimento.meta_key = '_user_birthday'
+                    JOIN {$userMetaTable} cep 
+                      ON cep.user_id = u.ID
+                     AND cep.meta_key = '_user_zipcode'
+                    JOIN {$userMetaTable} institucional 
+                      ON institucional.user_id = u.ID
+                     AND institucional.meta_key = '_user_institutional-email'
+                    JOIN {$userMetaTable} pagina 
+                      ON pagina.user_id = u.ID
+                     AND pagina.meta_key = '_user_webpage'
+                    JOIN {$userMetaTable} ferramenta 
+                      ON ferramenta.user_id = u.ID
+                     AND ferramenta.meta_key = '_user_socials'
                     JOIN {$postMetaTable} interesse_1 
                       ON interesse_1.post_id = insc.ID
                      AND interesse_1.meta_key = 'inscricao_interesse_1'
@@ -353,21 +443,13 @@ final class SNC_Oficinas_Service
                      AND interesse_4.meta_key = 'inscricao_interesse_4'
                     JOIN {$postMetaTable} interesse_5 
                       ON interesse_5.post_id = insc.ID
-                     AND interesse_5.meta_key = 'inscricao_interesse_5'
-                    LEFT JOIN {$postMetaTable} car 
-                      ON car.post_id = insc.ID
-                     AND car.meta_key = 'inscricao_gestor_cargo'
-                    LEFT JOIN {$postMetaTable} org 
-                      ON org.post_id = insc.ID
-                     AND org.meta_key = 'inscricao_gestor_orgao'
-                    LEFT JOIN {$postMetaTable} esf 
-                      ON esf.post_id = insc.ID
-                     AND esf.meta_key = 'inscricao_gestor_tipo' 
+                     AND interesse_5.meta_key = 'inscricao_interesse_5'                     
                     LEFT JOIN {$postTable} quest
                       ON quest.post_parent = insc.ID 
 				     AND quest.post_author = u.ID
    				     AND quest.post_type = 'participacao-oficina'
-                   WHERE o.post_type = 'oficinas'
+                   WHERE o.post_type = 'oficinas' 
+                     {$where}
                    ORDER BY STR_TO_DATE(ini.meta_value, '%Y%m%d'), 
                             o.post_title, 
                             u.display_name";
@@ -375,6 +457,9 @@ final class SNC_Oficinas_Service
         return $wpdb->get_results($query);
     }
 
+    /**
+     * @return array|object|void|null
+     */
     public static function get_all_interesses()
     {
         global $wpdb;
@@ -519,6 +604,9 @@ final class SNC_Oficinas_Service
         return $wpdb->get_row($query);
     }
 
+    /**
+     * @return array|object|null
+     */
     public static function get_email_admin()
     {
         global $wpdb;
@@ -538,6 +626,11 @@ final class SNC_Oficinas_Service
         return $wpdb->get_results($query);
     }
 
+    /**
+     * @param $post_id
+     * @param int $limitVal
+     * @return array|object|null
+     */
     public static function get_oficina_insc_waiting($post_id, $limitVal = 0)
     {
         $limit = (int)$limitVal > 0 ? ' LIMIT {$limitVal} ' : '';
@@ -574,6 +667,10 @@ final class SNC_Oficinas_Service
         return $wpdb->get_results($query);
     }
 
+    /**
+     * @param $post_id
+     * @return array|object|void|null
+     */
     public static function get_oficina_by_insc($post_id)
     {
         global $wpdb;
@@ -592,6 +689,10 @@ final class SNC_Oficinas_Service
         return $wpdb->get_row($query);
     }
 
+    /**
+     * @param $post_id
+     * @return array|object|null
+     */
     public static function get_oficina_insc($post_id)
     {
         global $wpdb;
@@ -632,6 +733,10 @@ final class SNC_Oficinas_Service
         return $wpdb->get_results($query);
     }
 
+    /**
+     * @param int $numDiasAntes
+     * @return array|object|null
+     */
     public static function snc_next_oficinas($numDiasAntes = 1)
     {
         global $wpdb;
@@ -661,6 +766,9 @@ final class SNC_Oficinas_Service
         return $wpdb->get_results($query);
     }
 
+    /**
+     * @return array|object|null
+     */
     public static function snc_next_oficinas_to_finish()
     {
         global $wpdb;
@@ -700,6 +808,9 @@ final class SNC_Oficinas_Service
         return $wpdb->get_results($query);
     }
 
+    /**
+     * @return array|object|null
+     */
     public static function snc_oficinas_to_finish()
     {
         global $wpdb;
@@ -728,6 +839,10 @@ final class SNC_Oficinas_Service
         return $wpdb->get_results($query);
     }
 
+    /**
+     * @param $post_id
+     * @return false|int
+     */
     public static function update_list_waiting($post_id)
     {
         global $wpdb;
@@ -737,6 +852,9 @@ final class SNC_Oficinas_Service
         return $wpdb->update($postTable, array('post_status' => 'confirmed',), array('ID' => $post_id), array('%s'), array('%d'));
     }
 
+    /**
+     * @param $post_id
+     */
     public static function trigger_change_waiting_list($post_id)
     {
         $oficinaQuant = self::get_quantitativo_inscritos($post_id);
@@ -756,6 +874,9 @@ final class SNC_Oficinas_Service
         return;
     }
 
+    /**
+     *
+     */
     public static function trigger_change_waiting_presence()
     {
         $listaFinaliza = self::snc_next_oficinas_to_finish();
@@ -766,6 +887,9 @@ final class SNC_Oficinas_Service
         }
     }
 
+    /**
+     *
+     */
     public static function trigger_change_finish_offices()
     {
         $listaFinaliza = self::snc_oficinas_to_finish();
@@ -776,6 +900,9 @@ final class SNC_Oficinas_Service
         }
     }
 
+    /**
+     * @return string
+     */
     public static function generate_relatorio_concluidos_csv()
     {
         $filename = get_temp_dir() . 'relatorio_inscritos.csv';
@@ -789,6 +916,13 @@ final class SNC_Oficinas_Service
         return $filename;
     }
 
+    /**
+     * @param $function
+     * @param $nameXlsx
+     * @return \PhpOffice\PhpSpreadsheet\Spreadsheet|null
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
+     * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception
+     */
     public static function generate_relatorio_admin_xlsx($function, $nameXlsx)
     {
         $reader = new \PhpOffice\PhpSpreadsheet\Reader\Html();
@@ -823,6 +957,10 @@ final class SNC_Oficinas_Service
         return $spreadSheet;
     }
 
+    /**
+     * @param $fp
+     * @return mixed
+     */
     public static function generate_relatorio_concluidos_base_csv($fp)
     {
         $qtdOficinasInscritos = SNC_Oficinas_Service::get_quantitativo_inscritos_concluidos();
@@ -857,48 +995,62 @@ final class SNC_Oficinas_Service
         return $fp;
     }
 
+    /**
+     * @return string
+     */
     public static function generate_relatorio_concluidos_base_xlsx()
     {
-        $qtdOficinasInscritos = SNC_Oficinas_Service::get_quantitativo_inscritos_concluidos();
-        $inscritos = SNC_Oficinas_Service::get_all_inscritos_concluidos();
+        $inscritos = SNC_Oficinas_Service::get_all_inscritos(true);
 
-        $oficinas = [];
-
-        foreach ($qtdOficinasInscritos AS $oficina) {
-            $oficinas[$oficina->ID] = $oficina;
-        }
-
-        $idOficina = null;
-
-        $htmlString = "<table>";
-
-        $htmlString .= "<tr>
-                            <th><b>Oficina</b></th>
-                            <th><b>UF</b></th>
-                            <th><b>Município</b></th>
-                            <th><b>Nome do Participante</b></th>
-                            <th><b>CPF</b></th>
-                            <th><b>E-mail</b></th>
-                        </tr>";
+        $htmlString = [];
 
         foreach ($inscritos as $k => $inscrito) {
-            
-            $htmlString .= "<tr>
-                                <td>{$oficinas[$inscrito->ID]->post_title}</td>
-                                <td>{$inscrito->st_estado}</td>
-                                <td>{$inscrito->st_municipio}</td>
-                                <td>{$inscrito->display_name}</td>
-                                <td>{$inscrito->nu_cpf}</td>
-                                <td>{$inscrito->user_email}</td>
-                            </tr>";
+            $htmlString[$inscrito->perfil][] =
+                "<tr>
+                    <td>{$inscrito->oficina}</td>
+                    <td>{$inscrito->num_inscricao}</td>
+                    <td>{$inscrito->st_estado}</td>
+                    <td>{$inscrito->st_municipio}</td>
+                    <td>{$inscrito->nome}</td>
+                    <td>{$inscrito->nu_cpf}</td>
+                    <td>{$inscrito->email}</td>
+                    <td>{$inscrito->st_inscricao}</td>" .
 
+                self::generate_results_resp_xlsx($inscrito) . "</tr>";
+
+            $htmlString['perguntas'][$inscrito->perfil] = self::get_array_questions($inscrito);
         }
 
-        $htmlString .= '</table>';
+        $cabecalhoPadrao = "<td><b>Oficina</b></td><td><b>Nº da Inscrição</b></td><td><b>UF</b></td>
+                            <td><b>Município</b></td><td><b>Nome do Participante</b></td>
+                            <td><b>CPF</b></td><td><b>E-mail</b></td><td><b>Situação da inscrição</b></td>";
 
-        return $htmlString;
+        $planilhas["Dicionários"] = '<table border="1" cellspacing="0">';
+
+        if (isset($htmlString["Gestor de Cultura"])) {
+            self::get_html_planilha_perfil($planilhas, $cabecalhoPadrao, $htmlString, "Gestor de Cultura");
+        }
+
+        if (isset($htmlString["Conselheiro de Cultura"])) {
+            self::get_html_planilha_perfil($planilhas, $cabecalhoPadrao, $htmlString, "Conselheiro de Cultura");
+        }
+
+        if (isset($htmlString["Ponteiro de Cultura"])) {
+            self::get_html_planilha_perfil($planilhas, $cabecalhoPadrao, $htmlString, "Ponteiro de Cultura");
+        }
+
+        if (isset($htmlString["Sociedade Civil"])) {
+            self::get_html_planilha_perfil($planilhas, $cabecalhoPadrao, $htmlString, "Sociedade Civil");
+        }
+
+        $planilhas["Dicionários"] .= "</table>";
+
+        return $planilhas;
     }
 
+    /**
+     * @return string
+     */
     public static function generate_relatorio_interesses_base_xlsx()
     {
         $interesses = SNC_Oficinas_Service::get_all_interesses();
@@ -1001,6 +1153,9 @@ final class SNC_Oficinas_Service
         return $htmlString;
     }
 
+    /**
+     * @return mixed
+     */
     public static function generate_relatorio_perfil_base_xlsx()
     {
         $inscritos = SNC_Oficinas_Service::get_all_inscritos();
@@ -1010,48 +1165,39 @@ final class SNC_Oficinas_Service
         foreach ($inscritos as $k => $inscrito) {
             $htmlString[$inscrito->perfil][] =
                 "<tr>
-                                <td>{$inscrito->oficina}</td>
-                                <td>{$inscrito->num_inscricao}</td>
-                                <td>{$inscrito->st_estado}</td>
-                                <td>{$inscrito->st_municipio}</td>
-                                <td>{$inscrito->nome}</td>
-                                <td>{$inscrito->cargo}</td>
-                                <td>{$inscrito->orgao}</td>
-                                <td>{$inscrito->esfera}</td>
-                                <td>{$inscrito->perfil}</td>
-                                <td>{$inscrito->interesse1}</td>
-                                <td>{$inscrito->interesse2}</td>
-                                <td>{$inscrito->interesse3}</td>
-                                <td>{$inscrito->interesse4}</td>
-                                <td>{$inscrito->interesse5}</td>" .
+                    <td>{$inscrito->oficina}</td>
+                    <td>{$inscrito->num_inscricao}</td>
+                    <td>{$inscrito->st_estado}</td>
+                    <td>{$inscrito->st_municipio}</td>
+                    <td>{$inscrito->nome}</td>
+                    <td>{$inscrito->perfil}</td>
+                    <td>{$inscrito->st_inscricao}</td>" .
 
-                self::generate_results_resp_xlsx($inscrito) . "</tr>";
+                self::generate_results_resp_inscricao_xlsx($inscrito) . "</tr>";
 
-            $htmlString['perguntas'][$inscrito->perfil] = self::get_array_questions($inscrito);
+            $htmlString['perguntas'][$inscrito->perfil] = self::get_array_inscricao_questions($inscrito);
         }
 
         $cabecalhoPadrao = "<td><b>Oficina</b></td><td><b>Nº da Inscrição</b></td><td><b>UF</b></td>
-                            <td><b>Município</b></td><td><b>Nome</b></td><td><b>Cargo</b></td>
-                            <td><b>Orgão</b></td><td><b>Esfera</b></td><td><b>Perfil</b></td>
-                            <td><b>Interesse 1</b></td><td><b>Interesse 2</b></td><td><b>Interesse 3</b></td>
-                            <td><b>Interesse 4</b></td><td><b>Interesse 5</b></td>";
+                            <td><b>Município</b></td><td><b>Nome</b></td><td><b>Perfil</b></td>
+                            <td><b>Informações da inscrição</b></td>";
 
         $planilhas["Dicionários"] = '<table border="1" cellspacing="0">';
 
         if (isset($htmlString["Gestor de Cultura"])) {
-            self::get_html_planilha_perfil($planilhas, $cabecalhoPadrao, $htmlString, "Gestor de Cultura");
+            self::get_html_planilha_perfil($planilhas, $cabecalhoPadrao, $htmlString, "Gestor de Cultura", true);
         }
 
         if (isset($htmlString["Conselheiro de Cultura"])) {
-            self::get_html_planilha_perfil($planilhas, $cabecalhoPadrao, $htmlString, "Conselheiro de Cultura");
+            self::get_html_planilha_perfil($planilhas, $cabecalhoPadrao, $htmlString, "Conselheiro de Cultura", true);
         }
 
         if (isset($htmlString["Ponteiro de Cultura"])) {
-            self::get_html_planilha_perfil($planilhas, $cabecalhoPadrao, $htmlString, "Ponteiro de Cultura");
+            self::get_html_planilha_perfil($planilhas, $cabecalhoPadrao, $htmlString, "Ponteiro de Cultura", true);
         }
 
         if (isset($htmlString["Sociedade Civil"])) {
-            self::get_html_planilha_perfil($planilhas, $cabecalhoPadrao, $htmlString, "Sociedade Civil");
+            self::get_html_planilha_perfil($planilhas, $cabecalhoPadrao, $htmlString, "Sociedade Civil", true);
         }
 
         $planilhas["Dicionários"] .= "</table>";
@@ -1059,7 +1205,13 @@ final class SNC_Oficinas_Service
         return $planilhas;
     }
 
-    final public static function get_html_planilha_perfil(&$planilhas, $cabecalhoPadrao, $htmlString, $perfil)
+    /**
+     * @param $planilhas
+     * @param $cabecalhoPadrao
+     * @param $htmlString
+     * @param $perfil
+     */
+    final public static function get_html_planilha_perfil(&$planilhas, $cabecalhoPadrao, $htmlString, $perfil, $inscricao = false)
     {
         $cabecalho = "<td><b>" . implode("</b></td><td><b>", array_keys($htmlString['perguntas'][$perfil])) . "</b></td>";
 
@@ -1074,7 +1226,7 @@ final class SNC_Oficinas_Service
         $planilhas["Dicionários"] .= "<tr><td><b>Cód.</b></td><td><b>Perguntas</b></td></tr>";
 
         foreach ($htmlString['perguntas'][$perfil] as $k => $pergunta) {
-            if ("CM-03" == $k) {
+            if (!$inscricao && "CM-03" == $k) {
                 $planilhas["Dicionários"] .= '<tr><td></td><td><i><b>Por favor, avalie as afirmações seguintes segundo a sua opinião sobre o 
                                             <br/>evento Diálogos Federativos: Cultura de Ponto à Ponta</b> (Ref: CM-03 à CM-10)</i></td></tr>';
             }
@@ -1085,6 +1237,10 @@ final class SNC_Oficinas_Service
         $planilhas["Dicionários"] .= '<tr><td colspan="2"></td></tr><tr><td colspan="2"></td></tr>';
     }
 
+    /**
+     * @param $inscrito
+     * @return string
+     */
     final public static function generate_results_resp_xlsx($inscrito)
     {
         $respostas = json_decode($inscrito->respostas_perfil);
@@ -1107,6 +1263,10 @@ final class SNC_Oficinas_Service
         return $return;
     }
 
+    /**
+     * @param $respostas
+     * @return string
+     */
     final public static function generate_base_avaliacao_xlsx($respostas)
     {
         $html = '<td>' . SNC_Oficinas_Utils::get_resp_oficina_questionario_saber_evento($respostas->oficina_questionario_saber_evento) . '</td>';
@@ -1125,6 +1285,10 @@ final class SNC_Oficinas_Service
         return $html;
     }
 
+    /**
+     * @param $respostas
+     * @return string
+     */
     final public static function generate_gestor_results_xlsx($respostas)
     {
         $html = '<td>' . SNC_Oficinas_Utils::get_resp_oficina_questionario_necessidade_aprofundamento($respostas->oficina_questionario_necessidade_aprofundamento) . '</td>';
@@ -1134,6 +1298,10 @@ final class SNC_Oficinas_Service
         return $html;
     }
 
+    /**
+     * @param $respostas
+     * @return string
+     */
     final public static function generate_conselheiro_results_xlsx($respostas)
     {
         $html = '<td>' . SNC_Oficinas_Utils::get_resp_oficina_sim_nao($respostas->oficina_questionario_federado_cultura) . '</td>';
@@ -1149,6 +1317,10 @@ final class SNC_Oficinas_Service
         return $html;
     }
 
+    /**
+     * @param $respostas
+     * @return string
+     */
     final public static function generate_ponteiro_results_xlsx($respostas)
     {
         $html = '<td>' . SNC_Oficinas_Utils::get_resp_oficina_ponto_cultura($respostas->oficina_questionario_ponto_cultura) . '</td>';
@@ -1162,6 +1334,10 @@ final class SNC_Oficinas_Service
         return $html;
     }
 
+    /**
+     * @param $inscrito
+     * @return array
+     */
     final public static function get_array_questions($inscrito)
     {
         $perguntas = json_decode($inscrito->perguntas_perfil);
@@ -1184,6 +1360,10 @@ final class SNC_Oficinas_Service
         return $return;
     }
 
+    /**
+     * @param $respostas
+     * @return string
+     */
     final public static function generate_sociedade_results_xlsx($respostas)
     {
         $html = self::generate_base_avaliacao_xlsx($respostas);
@@ -1191,6 +1371,10 @@ final class SNC_Oficinas_Service
         return $html;
     }
 
+    /**
+     * @param $perguntas
+     * @return array
+     */
     final public static function get_array_base_avaliacao_questions($perguntas)
     {
         $array = [];
@@ -1210,6 +1394,10 @@ final class SNC_Oficinas_Service
         return $array;
     }
 
+    /**
+     * @param $perguntas
+     * @return array
+     */
     final public static function get_array_gestor_questions($perguntas)
     {
         $array = [];
@@ -1218,6 +1406,10 @@ final class SNC_Oficinas_Service
         return array_merge($array, self::get_array_base_avaliacao_questions($perguntas));
     }
 
+    /**
+     * @param $perguntas
+     * @return array
+     */
     final public static function get_array_conselheiro_questions($perguntas)
     {
         $array = [];
@@ -1232,6 +1424,10 @@ final class SNC_Oficinas_Service
         return array_merge($array, self::get_array_base_avaliacao_questions($perguntas));
     }
 
+    /**
+     * @param $perguntas
+     * @return array
+     */
     final public static function get_array_ponteiro_questions($perguntas)
     {
         $array = [];
@@ -1244,10 +1440,225 @@ final class SNC_Oficinas_Service
         return array_merge($array, self::get_array_base_avaliacao_questions($perguntas));
     }
 
+    /**
+     * @param $perguntas
+     * @return array
+     */
     final public static function get_array_sociedade_questions($perguntas)
     {
         $array = [];
 
         return array_merge($array, self::get_array_base_avaliacao_questions($perguntas));
+    }
+
+    /**
+     * @param $inscrito
+     * @return array
+     */
+    final public static function get_array_inscricao_questions($inscrito)
+    {
+        $perguntas = json_decode($inscrito->perguntas_inscricao);
+
+        switch ($inscrito->perfil) {
+            case 'Gestor de Cultura' :
+                $return = self::get_array_gestor_inscricao_questions($perguntas);
+                break;
+            case 'Conselheiro de Cultura' :
+                $return = self::get_array_conselheiro_inscricao_questions($perguntas);
+                break;
+            case 'Ponteiro de Cultura':
+                $return = self::get_array_ponteiro_inscricao_questions($perguntas);
+                break;
+            default :
+                $return = self::get_array_sociedade_inscricao_questions($perguntas);
+                break;
+        }
+
+        return $return;
+    }
+
+    /**
+     * @param $perguntas
+     * @return array
+     */
+    final public static function get_array_base_inscricao_questions($perguntas)
+    {
+        $array = [];
+        $array["CM-01"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->inscricao_interesse_1);
+        $array["CM-02"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->inscricao_interesse_2);
+        $array["CM-03"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->inscricao_interesse_3);
+        $array["CM-04"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->inscricao_interesse_4);
+        $array["CM-05"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->inscricao_interesse_5);
+
+        return $array;
+    }
+
+    /**
+     * @param $perguntas
+     * @return array
+     */
+    final public static function get_array_gestor_inscricao_questions($perguntas)
+    {
+        $array = self::get_array_base_inscricao_questions($perguntas);
+
+        $array["GE-01"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->inscricao_gestor_cargo);
+        $array["GE-02"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->inscricao_gestor_orgao);
+        $array["GE-03"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->inscricao_gestor_tipo);
+        $array["GE-04"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->inscricao_gestor_ja_institucionalizou);
+        $array["GE-05"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->inscricao_gestor_ente_possui_cultura_viva);
+        $array["GE-06"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->inscricao_gestor_participou_capacitacao_governo_federal);
+        $array["GE-07"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->inscricao_gestor_ente_oferta_capacitacao);
+        $array["GE-08"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->inscricao_gestor_participou_de_curso);
+        $array["GE-09"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->inscricao_gestor_ente_possui_pontos_de_cultura);
+        $array["GE-10"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->inscricao_gestor_interesse_pontos_de_cultura_regiao);
+        $array["GE-11"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->inscricao_gestor_ente_possui_conselho_de_cultura_em_funcionamento);
+        $array["GE-12"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->inscricao_gestor_ente_realizou_conferencia_de_cultura);
+
+        return $array;
+    }
+
+    /**
+     * @param $perguntas
+     * @return array
+     */
+    final public static function get_array_conselheiro_inscricao_questions($perguntas)
+    {
+        return self::get_array_base_inscricao_questions($perguntas);
+    }
+
+    /**
+     * @param $perguntas
+     * @return array
+     */
+    final public static function get_array_ponteiro_inscricao_questions($perguntas)
+    {
+        $array = self::get_array_base_inscricao_questions($perguntas);
+
+        $array["PO-01"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->inscricao_ponteiro_entidade);
+        $array["PO-02"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->inscricao_ponteiro_localidade);
+        $array["PO-03"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->inscricao_ponteiro_funcao);
+        $array["PO-04"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->inscricao_ponteiro_possui_certificacao_cultura_viva);
+        $array["PO-05"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->inscricao_ponteiro_participou_capacitacao_estado_municipio);
+
+        return $array;
+    }
+
+    /**
+     * @param $perguntas
+     * @return array
+     */
+    final public static function get_array_sociedade_inscricao_questions($perguntas)
+    {
+        $array = self::get_array_base_inscricao_questions($perguntas);
+
+        $array["SC-01"] = SNC_Oficinas_Utils::get_text_nl2br($perguntas->inscricao_sociedade_area_atuacao);
+
+        return $array;
+    }
+
+    /**
+     * @param $inscrito
+     * @return string
+     */
+    final public static function generate_results_resp_inscricao_xlsx($inscrito)
+    {
+        $respostas = json_decode($inscrito->respostas_inscricao);
+
+        switch ($inscrito->perfil) {
+            case 'Gestor de Cultura' :
+                $return = self::generate_gestor_results_inscricao_xlsx($respostas);
+                break;
+            case 'Conselheiro de Cultura' :
+                $return = self::generate_conselheiro_results_inscricao_xlsx($respostas);
+                break;
+            case 'Ponteiro de Cultura':
+                $return = self::generate_ponteiro_results_inscricao_xlsx($respostas);
+                break;
+            default :
+                $return = self::generate_sociedade_results_inscricao_xlsx($respostas);
+                break;
+        }
+
+        return $return;
+    }
+
+    /**
+     * @param $respostas
+     * @return string
+     */
+    final public static function generate_base_respostas_inscricao_xlsx($respostas)
+    {
+        $html = '<td>' . SNC_Oficinas_Utils::get_text_nl2br($respostas->inscricao_interesse_1) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_text_nl2br($respostas->inscricao_interesse_2) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_text_nl2br($respostas->inscricao_interesse_3) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_text_nl2br($respostas->inscricao_interesse_4) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_text_nl2br($respostas->inscricao_interesse_5) . '</td>';
+
+        return $html;
+    }
+
+    /**
+     * @param $respostas
+     * @return string
+     */
+    final public static function generate_gestor_results_inscricao_xlsx($respostas)
+    {
+        $html = self::generate_base_respostas_inscricao_xlsx($respostas);
+
+        $html .= '<td>' . SNC_Oficinas_Utils::get_text_nl2br($respostas->inscricao_gestor_cargo) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_text_nl2br($respostas->inscricao_gestor_orgao) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_text_nl2br($respostas->inscricao_gestor_tipo) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_text_nl2br($respostas->inscricao_gestor_ja_institucionalizou) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_text_nl2br($respostas->inscricao_gestor_ente_possui_cultura_viva) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_text_nl2br($respostas->inscricao_gestor_participou_capacitacao_governo_federal) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_text_nl2br($respostas->inscricao_gestor_ente_oferta_capacitacao) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_text_nl2br($respostas->inscricao_gestor_participou_de_curso) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_text_nl2br($respostas->inscricao_gestor_ente_possui_pontos_de_cultura) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_text_nl2br($respostas->inscricao_gestor_interesse_pontos_de_cultura_regiao) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_text_nl2br($respostas->inscricao_gestor_ente_possui_conselho_de_cultura_em_funcionamento) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_text_nl2br($respostas->inscricao_gestor_ente_realizou_conferencia_de_cultura) . '</td>';
+
+        return $html;
+    }
+
+    /**
+     * @param $respostas
+     * @return string
+     */
+    final public static function generate_conselheiro_results_inscricao_xlsx($respostas)
+    {
+        $html = self::generate_base_respostas_inscricao_xlsx($respostas);
+
+        return $html;
+    }
+
+    /**
+     * @param $respostas
+     * @return string
+     */
+    final public static function generate_ponteiro_results_inscricao_xlsx($respostas)
+    {
+        $html = self::generate_base_respostas_inscricao_xlsx($respostas);
+
+        $html .= '<td>' . SNC_Oficinas_Utils::get_text_nl2br($respostas->inscricao_ponteiro_entidade) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_text_nl2br($respostas->inscricao_ponteiro_localidade) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_text_nl2br($respostas->inscricao_ponteiro_funcao) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_text_nl2br($respostas->inscricao_ponteiro_possui_certificacao_cultura_viva) . '</td>';
+        $html .= '<td>' . SNC_Oficinas_Utils::get_text_nl2br($respostas->inscricao_ponteiro_participou_capacitacao_estado_municipio) . '</td>';
+
+        return $html;
+    }
+
+    /**
+     * @param $respostas
+     * @return string
+     */
+    final public static function generate_sociedade_results_inscricao_xlsx($respostas)
+    {
+        $html = self::generate_base_respostas_inscricao_xlsx($respostas);
+
+        $html .= '<td>' . SNC_Oficinas_Utils::get_text_nl2br($respostas->inscricao_sociedade_area_atuacao) . '</td>';
+
+        return $html;
     }
 }

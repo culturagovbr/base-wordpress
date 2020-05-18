@@ -1,0 +1,92 @@
+body.happyforms-preview {
+  background-color: #fff !important;
+  padding: 40px;
+}
+
+body::before, body::after {
+  content: '' !important;
+  display: none !important;
+}
+
+.happyforms-block-editable {
+  position: relative;
+}
+
+.customize-partial-edit-shortcut.happyforms-partial-edit-shortcut {
+  display: block !important;
+  position: absolute;
+  top: 0;
+}
+
+.notice {
+  margin-bottom: 15px;
+}
+
+.notice-success {
+  padding: 1px 12px;
+  border-left: 4px solid #46b450;
+  box-shadow: 0 1px 1px 0 rgba( 0, 0, 0, 0.1 );
+  background: #fff;
+}
+
+.notice p {
+  margin: 10px 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-size: 13px;
+  color: #444;
+}
+
+.notice a {
+  color: #0073aa;
+  text-decoration: underline;
+  transition: color 0.05s ease-in-out;
+  cursor: auto;
+}
+
+.notice a:hover {
+  color: #00a0d2;
+}
+
+.happyforms-preview-badge {
+  padding-left: 10px;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.happyforms-part.unloading, .happyforms-block-editable--partial.unloading {
+  opacity: 0.25;
+  cursor: progress !important;
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+}
+
+.happyforms-part.highlighted {
+  outline: 1px solid lightblue;
+}
+
+a.happyforms-ask-link,
+a.happyforms-ask-link.customize-unpreviewable {
+  cursor: pointer !important;
+}
+
+.happyforms-form__part.happyforms-part--recaptcha {
+  display: none;
+}
+
+.happyforms-part--width-auto + .happyforms-part--recaptcha {
+  display: none !important;
+}
+
+.happyforms-part--focus-reveal-description input:focus + .happyforms-part__tooltip + .happyforms-part__description,
+.happyforms-part--focus-reveal-description textarea:focus + .happyforms-part__tooltip + .happyforms-part__description {
+  display: block;
+}
+
+.preview-hidden {
+  display: none !important;
+}
+
+a.disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+}

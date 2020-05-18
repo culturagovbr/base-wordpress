@@ -1,0 +1,261 @@
+/**
+ *
+ * Admin menus
+ *
+ */
+#wp-admin-bar-happyforms .ab-icon svg {
+  width: 20px;
+  margin-top: 2px;
+}
+
+#wp-admin-bar-happyforms:hover .ab-icon .cls-2 {
+  fill: #00b9eb;
+}
+
+i.mce-i-happyforms-form-picker:before, i.mce-i-happyforms-form-picker:before {
+  content: '\f130';
+  display: block;
+  width: 20px;
+  height: 20px;
+  font: 400 20px/1 dashicons;
+  background-size: cover;
+  background-position: center;
+}
+
+#toplevel_page_happyforms a[href="admin.php?page=happyforms-welcome"] {
+  display: none;
+}
+
+.post-type-happyform .column-shortcode {
+  overflow: hidden;
+}
+
+.happyforms-shortcode-col span {
+  display: block;
+  margin-bottom: .2em;
+  line-height: 1.5em;
+}
+
+.happyforms-shortcode-col input {
+  position: absolute;
+  left: -999px;
+}
+
+.happyforms-shortcode-col a.happyforms-shortcode-clipboard {
+  display: none;
+  font-size: 13px;
+  line-height: 1.5em;
+  padding: 2px 0 0;
+}
+
+.happyforms-shortcode-col span {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+tr.type-happyform:hover .happyforms-shortcode-col a.happyforms-shortcode-clipboard {
+  display: inline-block;
+}
+
+/**
+ *
+ * Message edit screen
+ *
+ */
+table.happyforms-message-data-table {
+  margin-top: 0;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.04);
+  background: #fff;
+  border: 1px solid #ccd0d4;
+}
+
+.happyforms-message-data-table th {
+  padding: 20px 15px;
+}
+
+#happyforms-message-details .inside {
+  padding: 0;
+}
+
+#happyforms-message-details .inside .dashicons {
+  color: #82878c;
+  margin-right: 2px;
+}
+
+#happyforms-message-details .misc-pub-trash:before {
+  font: normal 20px/1 dashicons;
+  speak: none;
+  display: inline-block;
+  margin-left: -1px;
+  padding-right: 3px;
+  vertical-align: top;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\f182";
+  color: #82878c;
+}
+
+#happyforms-message-details .misc-pub-trash a {
+  text-decoration: none;
+  color: #a00;
+}
+
+p.happyforms-message-nav {
+  text-align: right;
+}
+
+p.happyforms-message-nav span.divider:first-child,
+p.happyforms-message-nav span.divider:last-child {
+  display: none;
+}
+
+/**
+ *
+ * Automatic updates notice
+ *
+ */
+.notice form#automatic-updates {
+  padding-bottom: 10px;
+}
+
+.notice-success #automatic-updates {
+    display: none;
+}
+
+.notice form#automatic-updates input {
+  display: inline-block;
+}
+
+.notice form#automatic-updates input[type="email"],
+.notice form#automatic-updates input[type="password"] {
+  display: inline-block;
+  padding: 5px 7px;
+  margin: 0 1px;
+}
+
+/**
+ *
+ * Tracking page
+ *
+ */
+.happyforms-welcome-panel {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+.happyforms-welcome-panel .welcome-panel-content {
+  margin: 0;
+  padding-bottom: 5px;
+}
+
+.happyforms-welcome-panel .welcome-panel-content form,
+form.happyforms-updater-credentials {
+  max-width: 460px;
+}
+
+.happyforms-welcome-panel p.description,
+.happyforms_page_ttf-updates-happyforms p.description {
+  margin: 7px 0 15px;
+  font-style: normal;
+}
+
+.happyforms-welcome-panel .welcome-panel-content input[type="email"],
+.happyforms-welcome-panel .welcome-panel-content input[type="password"],
+.happyforms-welcome-panel .welcome-panel-content input[type="text"] {
+  width: 96%;
+  padding: 8px;
+  margin-bottom: 15px;
+}
+
+.happyforms-welcome-panel .welcome-panel-content .button.button-hero {
+  margin: 0;
+}
+
+.happyforms-welcome-panel .welcome-panel-content .button-hero {
+  text-align: center;
+}
+
+.happyforms-welcome-panel .welcome-panel-content .button-hero.button-block {
+  width: 96%;
+}
+
+.happyforms-welcome-panel .welcome-panel-content .button.button-hero svg {
+  height: 12px;
+  vertical-align: middle;
+}
+
+.happyforms-welcome-panel .welcome-panel-content .button.button-hero svg,
+form.happyforms-updater-credentials .button.button-hero svg {
+  -webkit-filter: drop-shadow(0 0 2px #006799);
+  filter: drop-shadow(0 0 2px #006799);
+}
+
+p.welcome-panel-footer {
+  max-width: 760px;
+  color: #72777c;
+}
+
+p.welcome-panel-footer a {
+  color: inherit;
+}
+
+p.welcome-panel-footer a:hover,
+p.welcome-panel-footer a:active {
+  color: #0073aa;
+}
+
+#available-widgets div[id*='widget-tpl-happyforms_widget-'] .widget-title:before {
+  content: '\f130';
+}
+
+.happyforms-editor-button span.dashicons {
+  position: relative;
+  top: 4px;
+  padding-right: 5px;
+}
+
+#happyforms-modal {
+  display: none;
+  border: 0;
+}
+
+.happyforms-dialog {
+  top: calc(50% - 150px) !important;
+}
+
+.happyforms-dialog .ui-button-icon-primary.ui-icon-closethick {
+  display: none;
+}
+
+.happyforms-dialog .ui-dialog-title {
+  font-size: 14px;
+  color: #000;
+}
+
+.happyforms-dialog__select {
+  min-width: 290px;
+}
+
+.happyforms-dialog__button {
+  float: right;
+  margin-top: 18px !important;
+}
+
+.happyforms-dialog .ui-dialog-titlebar {
+  border: 0;
+}
+
+#happyforms-notice-happyforms_form_saved_guide {
+  border-left-color: #46b450;
+}
+
+.type-happyform .column-date span[title] {
+  text-decoration: none;
+}

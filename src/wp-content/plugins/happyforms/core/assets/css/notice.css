@@ -1,0 +1,134 @@
+.happyforms-notice--custom {
+  position: relative;
+  margin-bottom: 15px;
+  padding: 25px;
+  border-left: 6px solid #FFB900;
+  background-color: #FFF8E5;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);
+}
+
+.happyforms-notice--custom h2.happyforms-notice__title {
+  margin: 0 0 15px !important;
+  padding: 0 !important;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
+  font-weight: bold !important;
+  font-size: 16px !important;
+  color: #000 !important;
+}
+
+.happyforms-notice--custom p {
+  margin-bottom: 0 !important;
+  color: #444 !important;
+}
+
+.happyforms-notice--custom ul {
+  list-style: none !important;
+  display: flex !important;
+  flex-flow: column wrap !important;
+  margin: 0 0 15px !important;
+  padding: 0 !important;
+}
+
+.happyforms-notice--custom ul li {
+  flex: 1;
+  width: 100%;
+  line-height: 1.65;
+}
+
+@media screen and (min-width: 800px) {
+  .happyforms-notice--custom ul {
+    flex-flow: row wrap !important;
+  }
+
+  .happyforms-notice--custom ul li {
+    flex: 0 1 32%;
+    width: 32%;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .happyforms-notice--custom ul li {
+    flex: 0 1 24%;
+    width: 24%;
+  }
+}
+
+.happyforms-notice--custom p,
+.happyforms-notice--custom ul li {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
+  font-weight: normal !important;
+  font-size: 16px !important;
+  color: #000 !important;
+}
+
+.happyforms-notice--custom ul li:before {
+  content: url('data:image/svg+xml; utf8, <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-check-circle fa-w-16 fa-2x"><path fill="currentColor" d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z" class=""></path></svg>');
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+}
+
+.happyforms-notice--custom .happyforms-dismiss-notice,
+.happyforms-notice--custom .notice-dismiss {
+  cursor: pointer;
+  outline: 0;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  text-decoration: none;
+  text-shadow: none;
+  box-shadow: none;
+}
+
+.happyforms-notice--custom .happyforms-dismiss-notice:before,
+.happyforms-notice--custom .notice-dismiss:before {
+  content: "\f153";
+  font-family: dashicons;
+  font-size: 18px;
+  color: #333;
+  text-decoration: none;
+}
+
+.happyforms-notice--custom .happyforms-dismiss-notice:hover:before,
+.happyforms-notice--custom .notice-dismiss:hover:before {
+  color: #333;
+}
+
+.happyforms-notice--custom a.button {
+  -webkit-appearance: none;
+  outline: 0;
+  display: inline-block;
+  cursor: pointer !important;
+  padding: 14px 36px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 3px;
+  border-color: #0073aa #006799 #006799;
+  box-sizing: border-box;
+  line-height: 1.4285714;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
+  font-weight: normal !important;
+  font-size: 14px;
+  white-space: nowrap;
+  color: #fff;
+  text-decoration: none;
+  text-shadow: 0 -1px 1px #006799, 1px 0 1px #006799, 0 1px 1px #006799, -1px 0 1px #006799;
+  background: #0085ba;
+  box-shadow: 0 1px 0 #006799;
+}
+
+.happyforms-notice--custom a.button:hover {
+  border-color: #006799;
+  background: #008ec2;
+  color: #fff;
+}
+
+.happyforms-notice--custom a.button:active {
+  vertical-align: top;
+  border-color: #006799;
+  background: #0073aa;
+  box-shadow: inset 0 3px 0 #006799;
+}
